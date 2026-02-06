@@ -77,7 +77,7 @@
 
   // Header scroll state (transparent -> solid background)
   function initHeaderScroll() {
-    var nav = document.querySelector('.header-nav');
+    var nav = document.querySelector('.ukiyo-nav');
     if (!nav) return;
 
     function updateScrolled() {

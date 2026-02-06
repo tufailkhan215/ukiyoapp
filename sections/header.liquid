@@ -1,14 +1,17 @@
-<nav class="header-nav" role="navigation" aria-label="Main">
-  <div class="header-nav__inner">
-    <div class="header-nav__bar">
-      <a href="{{ routes.root_url }}" class="header-nav__logo">
-        <span class="header-nav__logo-main">{{ section.settings.logo_text | default: 'UKIYO' }}</span>
-        {% if section.settings.logo_subtext != blank %}
-          <span class="header-nav__logo-sub">{{ section.settings.logo_subtext }}</span>
-        {% endif %}
+{% comment %} Source structure and Tailwind classes from reference (ukiyo-prod.com) {% endcomment %}
+<nav class="ukiyo-nav fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent" role="navigation" aria-label="Main">
+  <div class="max-w-[1800px] mx-auto px-6 lg:px-12">
+    <div class="flex items-center justify-between h-20 lg:h-24">
+      <a class="relative z-50" href="{{ routes.root_url }}">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl lg:text-3xl font-bold text-white tracking-tighter">{{ section.settings.logo_text | default: 'UKIYO' }}</span>
+          {% if section.settings.logo_subtext != blank %}
+            <span class="text-[10px] text-white/50 font-light tracking-widest hidden sm:block">{{ section.settings.logo_subtext }}</span>
+          {% endif %}
+        </div>
       </a>
 
-      <div class="header-nav__menu">
+      <div class="hidden lg:flex items-center gap-10">
         {% for link in linklists[section.settings.menu].links %}
           {% assign show_chevron = false %}
           {% if section.settings.dropdown_handles != blank %}
@@ -22,31 +25,36 @@
             {% endfor %}
           {% endif %}
 
-          <div class="header-nav__item{% if show_chevron %} header-nav__item--dropdown{% endif %}">
-            <a href="{{ link.url }}" class="header-nav__link{% if link.active %} is-active{% endif %}">
-              <span class="header-nav__link-text">{{ link.title }}</span>
-              {% if show_chevron %}
-                <svg class="header-nav__chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-              {% endif %}
-              <span class="header-nav__underline"></span>
+          {% if show_chevron %}
+            <div class="relative">
+              <a class="group relative flex items-center gap-1" href="{{ link.url }}">
+                <span class="text-sm font-medium tracking-wide transition-colors duration-300 {% if link.active %}text-white{% else %}text-white/60 hover:text-white{% endif %}">{{ link.title }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down w-4 h-4 text-white/40 transition-transform duration-300" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                <span class="absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-white to-gray-400 transition-[width] duration-300 group-hover:w-full {% if link.active %}w-full{% else %}w-0{% endif %}"></span>
+              </a>
+            </div>
+          {% else %}
+            <a class="group relative" href="{{ link.url }}">
+              <span class="text-sm font-medium tracking-wide transition-colors duration-300 {% if link.active %}text-white{% else %}text-white/60 hover:text-white{% endif %}">{{ link.title }}</span>
+              <span class="absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-white to-gray-400 transition-[width] duration-300 group-hover:w-full {% if link.active %}w-full{% else %}w-0{% endif %}"></span>
             </a>
-          </div>
+          {% endif %}
         {% endfor %}
       </div>
 
-      <div class="header-nav__cta-wrap">
+      <div class="hidden lg:block">
         {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
-          <a href="{{ section.settings.cta_link }}" class="header-nav__cta-link">
-            <span class="header-nav__cta-btn">
+          <a href="{{ section.settings.cta_link }}">
+            <button type="button" class="group flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full text-sm font-semibold hover:bg-gray-200 transition-colors duration-300" tabindex="0">
               {{ section.settings.cta_text }}
-              <svg class="header-nav__cta-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-            </span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </button>
           </a>
         {% endif %}
       </div>
 
-      <button type="button" class="header-nav__menu-btn" aria-label="Open menu" data-drawer-trigger>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16"/><path d="M4 18h16"/><path d="M4 6h16"/></svg>
+      <button type="button" class="lg:hidden relative z-50 w-12 h-12 flex items-center justify-center text-white" aria-label="Open menu" data-drawer-trigger>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu w-6 h-6" aria-hidden="true"><path d="M4 12h16"/><path d="M4 18h16"/><path d="M4 6h16"/></svg>
       </button>
     </div>
   </div>
@@ -61,7 +69,7 @@
       <a href="{{ link.url }}">{{ link.title }}</a>
     {% endfor %}
     {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
-      <a href="{{ section.settings.cta_link }}" class="btn btn--primary" style="margin-top: 1rem;">{{ section.settings.cta_text }}</a>
+      <a href="{{ section.settings.cta_link }}" class="btn btn--primary mt-4">{{ section.settings.cta_text }}</a>
     {% endif %}
   </nav>
 </aside>
@@ -71,41 +79,12 @@
   "name": "Header",
   "class": "section-header",
   "settings": [
-    {
-      "type": "text",
-      "id": "logo_text",
-      "label": "Logo text",
-      "default": "UKIYO"
-    },
-    {
-      "type": "text",
-      "id": "logo_subtext",
-      "label": "Logo subtext",
-      "default": "PRODUCTIONS"
-    },
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "Menu",
-      "default": "main-menu"
-    },
-    {
-      "type": "text",
-      "id": "dropdown_handles",
-      "label": "Link handles that show dropdown chevron (comma-separated)",
-      "default": "services, shop"
-    },
-    {
-      "type": "text",
-      "id": "cta_text",
-      "label": "Header CTA text",
-      "default": "Start Project"
-    },
-    {
-      "type": "url",
-      "id": "cta_link",
-      "label": "Header CTA link"
-    }
+    { "type": "text", "id": "logo_text", "label": "Logo text", "default": "UKIYO" },
+    { "type": "text", "id": "logo_subtext", "label": "Logo subtext", "default": "PRODUCTIONS" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
+    { "type": "text", "id": "dropdown_handles", "label": "Link handles that show dropdown chevron (comma-separated)", "default": "services, shop" },
+    { "type": "text", "id": "cta_text", "label": "Header CTA text", "default": "Start Project" },
+    { "type": "url", "id": "cta_link", "label": "Header CTA link" }
   ]
 }
 {% endschema %}

@@ -13,6 +13,19 @@
 
   {{ content_for_header }}
 
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            heading: ['Space Grotesk', 'Inter', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
   {{ 'theme.css' | asset_url | stylesheet_tag }}
 </head>
 <body class="ukiyo-theme template-{{ template.name }}">
@@ -20,7 +33,7 @@
 
   {% section 'header' %}
 
-  <main id="MainContent" class="main-content" role="main" tabindex="-1">
+  <main id="MainContent" class="main-content pt-20 lg:pt-24" role="main" tabindex="-1">
     {{ content_for_layout }}
   </main>
 
