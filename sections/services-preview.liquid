@@ -1,0 +1,83 @@
+<section class="services-preview section-container" data-reveal>
+  <h2 class="trusted-by__title">{{ section.settings.heading | default: 'Services that drive growth' }}</h2>
+  <p class="trusted-by__subtitle">{{ section.settings.subtitle | default: "We work with founders, CEOs, and leadership teams to shape defining ideas and build the strategy and systems that carry them through growth." }}</p>
+  <div class="services-preview__grid">
+    {% for block in section.blocks %}
+      {% if block.type == 'service' %}
+        <div class="services-preview__card glass-card" {{ block.shopify_attributes }}>
+          <span class="services-preview__number">{{ block.settings.number | default: '01' }}</span>
+          <h3 class="services-preview__card-title">{{ block.settings.title | default: 'Brand Strategy' }}</h3>
+          <p class="services-preview__tagline">{{ block.settings.tagline | default: 'Define your edge' }}</p>
+          <p class="services-preview__description">{{ block.settings.description | default: 'Position your brand for category leadership with strategic foundations.' }}</p>
+          {% if block.settings.link_text != blank and block.settings.link_url != blank %}
+            <a href="{{ block.settings.link_url }}" class="services-preview__link">{{ block.settings.link_text | default: 'Explore' }}</a>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
+    <p class="services-preview__cta-wrap">
+      {% render 'button', style: 'secondary', text: section.settings.cta_text, url: section.settings.cta_link %}
+    </p>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Services preview",
+  "tag": "section",
+  "class": "section-services-preview",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Services that drive growth"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "We work with founders, CEOs, and leadership teams to shape defining ideas and build the strategy and systems that carry them through growth."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button text (e.g. Explore all services)"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Service",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "01" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Service" },
+        { "type": "text", "id": "tagline", "label": "Tagline" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "text", "id": "link_text", "label": "Link text", "default": "Explore" },
+        { "type": "url", "id": "link_url", "label": "Link URL" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Services preview",
+      "blocks": [
+        { "type": "service", "settings": { "number": "01", "title": "Brand Strategy", "tagline": "Define your edge", "description": "Position your brand for category leadership with strategic foundations.", "link_text": "Explore" } },
+        { "type": "service", "settings": { "number": "02", "title": "AI Automations", "tagline": "Scale intelligently", "description": "Streamline operations with cutting-edge AI-powered solutions.", "link_text": "Explore" } },
+        { "type": "service", "settings": { "number": "03", "title": "Lead Generation", "tagline": "Grow consistently", "description": "Data-driven strategies that convert prospects into customers.", "link_text": "Explore" } },
+        { "type": "service", "settings": { "number": "04", "title": "Brand Identity", "tagline": "Stand out visually", "description": "Distinctive visual systems that capture your brand essence.", "link_text": "Explore" } },
+        { "type": "service", "settings": { "number": "05", "title": "Content Production", "tagline": "Tell your story", "description": "High-quality content that resonates with modern audiences.", "link_text": "Explore" } },
+        { "type": "service", "settings": { "number": "06", "title": "Growth Marketing", "tagline": "Accelerate results", "description": "Performance marketing that drives measurable business growth.", "link_text": "Explore" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

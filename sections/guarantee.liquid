@@ -1,0 +1,57 @@
+<section class="guarantee section-container" data-reveal>
+  <h2 class="trusted-by__title">{{ section.settings.heading | default: 'Zero Risk. All Reward.' }}</h2>
+  <p class="trusted-by__subtitle">{{ section.settings.subtitle | default: "We're so confident in our results that we put our money where our mouth is." }}</p>
+  <div class="guarantee__grid">
+    {% for block in section.blocks %}
+      {% if block.type == 'guarantee_item' %}
+        <div class="guarantee__card glass-card" {{ block.shopify_attributes }}>
+          <h3 class="guarantee__title">{{ block.settings.title | default: 'Guarantee' }}</h3>
+          <p class="guarantee__description">{{ block.settings.description }}</p>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Guarantee",
+  "tag": "section",
+  "class": "section-guarantee",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Zero Risk. All Reward."
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "We're so confident in our results that we put our money where our mouth is."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "guarantee_item",
+      "name": "Guarantee item",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "description", "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Guarantee",
+      "blocks": [
+        { "type": "guarantee_item", "settings": { "title": "100% Money-Back Guarantee", "description": "If you don't see measurable results within 90 days, we'll refund every penny. No questions asked." } },
+        { "type": "guarantee_item", "settings": { "title": "Unlimited Revisions", "description": "We work until you're 100% satisfied. Your vision is our mission." } },
+        { "type": "guarantee_item", "settings": { "title": "On-Time Delivery", "description": "We guarantee delivery on schedule or your next month is free." } },
+        { "type": "guarantee_item", "settings": { "title": "Results or We Work Free", "description": "If our strategies don't increase your revenue, we'll work for free until they do." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,71 @@
+<section class="urgency section-container" data-reveal>
+  <h2 class="trusted-by__title">{{ section.settings.heading | default: 'Only 3 Spots Left This Month' }}</h2>
+  <p class="trusted-by__subtitle">{{ section.settings.subtitle | default: "We only take on 5 new clients per month to ensure premium quality. Once spots are filled, you'll have to wait until next month." }}</p>
+  {% if section.settings.countdown_label != blank %}
+    <p class="urgency__countdown-label">{{ section.settings.countdown_label }}</p>
+    <div class="urgency__countdown" id="urgency-countdown" data-countdown-end="{{ section.settings.countdown_end | default: '' }}">
+      <span class="urgency__countdown-days"><span class="urgency__num" data-days>0</span> days</span>
+      <span class="urgency__countdown-hrs"><span class="urgency__num" data-hrs>0</span> hrs</span>
+      <span class="urgency__countdown-mins"><span class="urgency__num" data-mins>0</span> mins</span>
+    </div>
+  {% endif %}
+  <p class="urgency__note">{{ section.settings.note | default: 'No credit card required • Free consultation' }}</p>
+  {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
+    <p class="urgency__cta">
+      {% render 'button', style: 'primary', text: section.settings.cta_text, url: section.settings.cta_link, shimmer: true %}
+    </p>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Urgency",
+  "tag": "section",
+  "class": "section-urgency",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Only 3 Spots Left This Month"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "countdown_label",
+      "label": "Countdown label (e.g. Offer Expires In)"
+    },
+    {
+      "type": "text",
+      "id": "countdown_end",
+      "label": "Countdown end (ISO date, e.g. 2026-03-01T00:00:00)"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Note below countdown",
+      "default": "No credit card required • Free consultation"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA button text",
+      "default": "Claim Your Spot Now"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Urgency"
+    }
+  ]
+}
+{% endschema %}

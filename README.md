@@ -18,6 +18,15 @@ sections/
   hero.liquid           # Full-viewport hero, CTAs, scroll indicator
   trusted-by.liquid     # Brand grid (blocks: brand)
   marquee-logos.liquid  # Two-row infinite marquee (blocks: logo)
+  services-preview.liquid   # Services grid (blocks: service)
+  service-bundle.liquid     # Pick-your-stack + bundle summary (blocks: service_card)
+  transformation.liquid     # Before/After UKIYO (blocks: before_item, after_stat, math_stat)
+  work-showcase.liquid      # Case studies (blocks: case_study)
+  stats.liquid              # Metrics (blocks: stat)
+  testimonials.liquid       # Client quotes (blocks: testimonial)
+  guarantee.liquid          # Guarantees (blocks: guarantee_item)
+  lead-magnet.liquid        # Resource list + email form (blocks: resource)
+  urgency.liquid           # Spots left + countdown + CTA
   rich-text.liquid      # Heading + text + optional button
   main-collection.liquid# Collection grid, sort, pagination
   main-product.liquid   # Product detail, add to cart
@@ -73,7 +82,7 @@ Sections are editable in the Theme Editor; each section has its own schema (head
 
 - **Hero background:** Original uses a canvas with mouse-following glow and marble blobs. Theme uses CSS `.liquid-marble` + `.grain-texture` for a similar feel without canvas. For exact parity, add optional canvas JS and a theme setting to toggle.
 - **Images/logos:** No images are bundled. Add logo image in Theme settings when available; use WebP with fallback for performance.
-- **Missing sections from reference:** Services preview (6 cards), Service bundle (pick-your-stack), Transformation (before/after), Work showcase, Stats, Testimonials, Guarantee, Lead magnet, Urgency can be added as new sections using the same design tokens and patterns (see `UKIYO-SHOPIFY-THEME-PROMPT.md`).
+- **Homepage sections:** The index template includes hero, trusted-by, marquee, services-preview, service-bundle, transformation, work-showcase, stats, testimonials, guarantee, lead-magnet, urgency, and a final CTA. All use the same design tokens (see `DESIGN_TOKENS.md`).
 
 ## Reference
 

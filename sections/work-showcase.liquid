@@ -1,0 +1,69 @@
+<section class="work-showcase section-container" data-reveal>
+  <h2 class="trusted-by__title">{{ section.settings.heading | default: 'Recent case studies' }}</h2>
+  <p class="trusted-by__subtitle">{{ section.settings.subtitle | default: '' }}</p>
+  <div class="work-showcase__grid">
+    {% for block in section.blocks %}
+      {% if block.type == 'case_study' %}
+        <a href="{{ block.settings.link_url | default: '#' }}" class="work-showcase__card glass-card" {{ block.shopify_attributes }}>
+          {% if block.settings.image != blank %}
+            <div class="work-showcase__image">
+              <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.title | escape }}" width="600" loading="lazy">
+            </div>
+          {% endif %}
+          <span class="work-showcase__category">{{ block.settings.category }}</span>
+          <h3 class="work-showcase__title">{{ block.settings.title | default: 'Project' }}</h3>
+          <p class="work-showcase__subtitle">{{ block.settings.subtitle }}</p>
+          <p class="work-showcase__description">{{ block.settings.description }}</p>
+          {% if block.settings.metrics != blank %}
+            <p class="work-showcase__metrics">{{ block.settings.metrics }}</p>
+          {% endif %}
+          <span class="work-showcase__link-text">{{ block.settings.link_text | default: 'View case study' }}</span>
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
+    <p class="work-showcase__cta">
+      {% render 'button', style: 'secondary', text: section.settings.cta_text, url: section.settings.cta_link %}
+    </p>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Work showcase",
+  "tag": "section",
+  "class": "section-work-showcase",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Recent case studies" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle" },
+    { "type": "text", "id": "cta_text", "label": "Button text (e.g. View all projects)" },
+    { "type": "url", "id": "cta_link", "label": "Button link" }
+  ],
+  "blocks": [
+    {
+      "type": "case_study",
+      "name": "Case study",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "category", "label": "Category" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "text", "id": "subtitle", "label": "Subtitle" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "text", "id": "metrics", "label": "Metrics (e.g. 340% engagement)" },
+        { "type": "text", "id": "link_text", "label": "Link text" },
+        { "type": "url", "id": "link_url", "label": "Link URL" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Work showcase",
+      "blocks": [
+        { "type": "case_study", "settings": { "category": "AI & Technology", "title": "TechVenture AI", "subtitle": "Revolutionizing Customer Experience", "description": "Complete brand transformation and AI automation implementation that increased customer engagement by 340%.", "metrics": "340% engagement", "link_text": "View case study" } },
+        { "type": "case_study", "settings": { "category": "Lifestyle & Fashion", "title": "Luxe Lifestyle", "subtitle": "Building a Premium Brand Identity", "description": "End-to-end branding and content strategy that positioned a startup as a market leader in luxury lifestyle.", "metrics": "500K+ followers", "link_text": "View case study" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,103 @@
+<section class="service-bundle section-container" data-reveal>
+  <h2 class="trusted-by__title">{{ section.settings.heading | default: 'Pick Your Power Stack' }}</h2>
+  <p class="trusted-by__subtitle">{{ section.settings.subtitle | default: 'Select the services you need. The more you bundle, the more you save—up to 70% OFF!' }}</p>
+  <div class="service-bundle__layout">
+    <div class="service-bundle__cards">
+      {% for block in section.blocks %}
+        {% if block.type == 'service_card' %}
+          <div class="service-bundle__card glass-card" {{ block.shopify_attributes }}>
+            <h3 class="service-bundle__card-title">{{ block.settings.title | default: 'Service' }}</h3>
+            <p class="service-bundle__card-desc">{{ block.settings.description }}</p>
+            <p class="service-bundle__price">{{ block.settings.price | default: '$0' }} <span class="service-bundle__roi">{{ block.settings.roi | default: '+0% ROI' }}</span></p>
+            <label class="service-bundle__checkbox">
+              <input type="checkbox" name="bundle_{{ block.id }}" data-bundle-card>
+              <span>{{ block.settings.cta_label | default: 'Select' }}</span>
+            </label>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="service-bundle__summary glass-card">
+      <h3 class="service-bundle__summary-title">{{ section.settings.bundle_heading | default: 'Your Bundle' }}</h3>
+      <p class="service-bundle__summary-text">{{ section.settings.bundle_text | default: 'Select services to build your bundle' }}</p>
+      {% if section.settings.discount_text != blank %}
+        <p class="service-bundle__discount">{{ section.settings.discount_text }}</p>
+      {% endif %}
+      {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
+        {% render 'button', style: 'primary', text: section.settings.cta_text, url: section.settings.cta_link %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Service bundle",
+  "tag": "section",
+  "class": "section-service-bundle",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Pick Your Power Stack"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Select the services you need. The more you bundle, the more you save—up to 70% OFF!"
+    },
+    {
+      "type": "text",
+      "id": "bundle_heading",
+      "label": "Bundle box heading",
+      "default": "Your Bundle"
+    },
+    {
+      "type": "text",
+      "id": "bundle_text",
+      "label": "Bundle box text",
+      "default": "Select services to build your bundle"
+    },
+    {
+      "type": "text",
+      "id": "discount_text",
+      "label": "Discount badge (e.g. 70% OFF!)"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA button text"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "service_card",
+      "name": "Service card",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "text", "id": "price", "label": "Price (e.g. $15,000)" },
+        { "type": "text", "id": "roi", "label": "ROI (e.g. +35% ROI)" },
+        { "type": "text", "id": "cta_label", "label": "Checkbox label", "default": "Select" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Service bundle",
+      "blocks": [
+        { "type": "service_card", "settings": { "title": "AI Revenue Concierge Chatbot", "description": "Captures leads 24/7, converts DMs to sales", "price": "$15,000", "roi": "+35% ROI" } },
+        { "type": "service_card", "settings": { "title": "Complete Brand Identity System", "description": "Logo, colors, typography, guidelines", "price": "$25,000", "roi": "+20% ROI" } },
+        { "type": "service_card", "settings": { "title": "High-Converting Website", "description": "Custom design, SEO optimized", "price": "$35,000", "roi": "+25% ROI" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

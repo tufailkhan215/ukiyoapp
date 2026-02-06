@@ -38,6 +38,115 @@
         "5": { "type": "logo", "settings": { "name": "NIKE" } }
       }
     },
+    "services-preview": {
+      "type": "services-preview",
+      "settings": {
+        "heading": "Services that drive growth",
+        "subtitle": "We work with founders, CEOs, and leadership teams to shape defining ideas and build the strategy and systems that carry them through growth.",
+        "cta_text": "Explore all services",
+        "cta_link": "/pages/services"
+      }
+    },
+    "service-bundle": {
+      "type": "service-bundle",
+      "settings": {
+        "heading": "Pick Your Power Stack",
+        "subtitle": "Select the services you need. The more you bundle, the more you save—up to 70% OFF!",
+        "bundle_heading": "Your Bundle",
+        "bundle_text": "Select services to build your bundle",
+        "discount_text": "Select All (70% OFF!)",
+        "cta_text": "Get started",
+        "cta_link": "/pages/contact"
+      }
+    },
+    "transformation": {
+      "type": "transformation",
+      "settings": {
+        "heading": "Real Transformations",
+        "subtitle": "These aren't hypotheticals. These are actual results from real clients.",
+        "before_title": "BEFORE UKIYO",
+        "before_subtitle": "The struggle is real (and expensive)",
+        "after_title": "AFTER UKIYO",
+        "after_subtitle": "Let the grown-ups handle it",
+        "quote": "We went from chaos to clarity. Now I actually have time for hobbies. — Every Ukiyo client ever",
+        "math_heading": "The Math Doesn't Lie",
+        "math_subtitle": "Average business owner's time and money wasted annually"
+      },
+      "blocks": {
+        "b1": { "type": "before_item", "settings": { "title": "DIY Design Disasters", "description": "Spent watching Canva tutorials while your competitors hire professionals" } },
+        "b2": { "type": "before_item", "settings": { "title": "Money Left on Table", "description": "Revenue you're missing because your website looks like it's from 2009" } },
+        "s1": { "type": "after_stat", "settings": { "value": "0 hrs", "label": "Wasted on DIY fails" } },
+        "s2": { "type": "after_stat", "settings": { "value": "+$340%", "label": "Average revenue growth" } },
+        "s3": { "type": "after_stat", "settings": { "value": "100%", "label": "Sanity preserved" } },
+        "s4": { "type": "after_stat", "settings": { "value": "1000+ hrs", "label": "Saved annually" } }
+      }
+    },
+    "work-showcase": {
+      "type": "work-showcase",
+      "settings": {
+        "heading": "Recent case studies",
+        "cta_text": "View all projects",
+        "cta_link": "/pages/work"
+      }
+    },
+    "stats": {
+      "type": "stats",
+      "settings": { "heading": "Numbers that matter" },
+      "blocks": {
+        "1": { "type": "stat", "settings": { "value": "$2.4M+", "label": "Revenue Generated", "description": "For clients through strategic campaigns" } },
+        "2": { "type": "stat", "settings": { "value": "500+", "label": "Projects Delivered", "description": "Successful campaigns" } },
+        "3": { "type": "stat", "settings": { "value": "98%", "label": "Client Satisfaction", "description": "Long-term partnerships" } },
+        "4": { "type": "stat", "settings": { "value": "<24hrs", "label": "Response Time", "description": "Fast turnaround" } }
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": { "heading": "Client praise" },
+      "blocks": {
+        "1": { "type": "testimonial", "settings": { "quote": "We went from chaos to clarity. Now I actually have time for hobbies.", "author_name": "Sarah Chen", "author_role": "CEO, TechVenture AI" } }
+      }
+    },
+    "guarantee": {
+      "type": "guarantee",
+      "settings": {
+        "heading": "Zero Risk. All Reward.",
+        "subtitle": "We're so confident in our results that we put our money where our mouth is."
+      },
+      "blocks": {
+        "1": { "type": "guarantee_item", "settings": { "title": "100% Money-Back Guarantee", "description": "If you don't see measurable results within 90 days, we'll refund every penny. No questions asked." } },
+        "2": { "type": "guarantee_item", "settings": { "title": "Unlimited Revisions", "description": "We work until you're 100% satisfied. Your vision is our mission." } },
+        "3": { "type": "guarantee_item", "settings": { "title": "On-Time Delivery", "description": "We guarantee delivery on schedule or your next month is free." } },
+        "4": { "type": "guarantee_item", "settings": { "title": "Results or We Work Free", "description": "If our strategies don't increase your revenue, we'll work for free until they do." } }
+      }
+    },
+    "lead-magnet": {
+      "type": "lead-magnet",
+      "settings": {
+        "heading": "Get Our $991 Value Resource Pack Free",
+        "subtitle": "The exact frameworks, templates, and strategies we use to help brands scale from $10K to $100K+ monthly.",
+        "form_heading": "Instant Download",
+        "form_note": "Join 2,847+ entrepreneurs who've downloaded this resource",
+        "button_text": "Get Free Access",
+        "cta_text": "Claim Your Spot Now",
+        "cta_link": "/pages/contact"
+      },
+      "blocks": {
+        "1": { "type": "resource", "settings": { "title": "100-Point Brand Audit Checklist" } },
+        "2": { "type": "resource", "settings": { "title": "3-Part Video Training Series" } },
+        "3": { "type": "resource", "settings": { "title": "AI Automation Templates Pack" } }
+      }
+    },
+    "urgency": {
+      "type": "urgency",
+      "settings": {
+        "heading": "Only 3 Spots Left This Month",
+        "subtitle": "We only take on 5 new clients per month to ensure premium quality. Once spots are filled, you'll have to wait until next month.",
+        "countdown_label": "Offer Expires In",
+        "note": "No credit card required • Free consultation",
+        "cta_text": "Claim Your Spot Now",
+        "cta_link": "/pages/contact"
+      }
+    },
     "cta": {
       "type": "rich-text",
       "settings": {
@@ -48,5 +157,19 @@
       }
     }
   },
-  "order": ["hero", "trusted-by", "marquee", "cta"]
+  "order": [
+    "hero",
+    "trusted-by",
+    "marquee",
+    "services-preview",
+    "service-bundle",
+    "transformation",
+    "work-showcase",
+    "stats",
+    "testimonials",
+    "guarantee",
+    "lead-magnet",
+    "urgency",
+    "cta"
+  ]
 }

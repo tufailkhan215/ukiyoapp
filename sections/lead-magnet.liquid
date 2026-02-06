@@ -1,0 +1,72 @@
+<section class="lead-magnet section-container" data-reveal>
+  <h2 class="trusted-by__title">{{ section.settings.heading | default: 'Get Our $991 Value Resource Pack Free' }}</h2>
+  <p class="trusted-by__subtitle">{{ section.settings.subtitle | default: "The exact frameworks, templates, and strategies we use to help brands scale from $10K to $100K+ monthly." }}</p>
+  <div class="lead-magnet__content">
+    <div class="lead-magnet__list-wrap">
+      <h3 class="lead-magnet__list-title">{{ section.settings.list_heading | default: 'Includes:' }}</h3>
+      <ul class="lead-magnet__list">
+        {% for block in section.blocks %}
+          {% if block.type == 'resource' %}
+            <li {{ block.shopify_attributes }}>{{ block.settings.title }}</li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="lead-magnet__form-wrap glass-card">
+      <h3 class="lead-magnet__form-title">{{ section.settings.form_heading | default: 'Instant Download' }}</h3>
+      <p class="lead-magnet__form-note">{{ section.settings.form_note | default: 'Join 2,847+ entrepreneurs who\'ve downloaded this resource' }}</p>
+      <form class="lead-magnet__form" action="{{ section.settings.form_action | default: '#' }}" method="post" accept-charset="UTF-8">
+        <input type="hidden" name="form_type" value="customer">
+        <input type="hidden" name="utf8" value="✓">
+        <label for="lead-email" class="visually-hidden">{{ section.settings.email_label | default: 'Email Address' }}</label>
+        <input type="email" id="lead-email" name="contact[email]" placeholder="{{ section.settings.email_placeholder | default: 'your@email.com' }}" required class="lead-magnet__input">
+        <button type="submit" class="btn btn--primary" name="commit">{{ section.settings.button_text | default: 'Get Free Access' }}</button>
+      </form>
+    </div>
+  </div>
+  {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
+    <p class="lead-magnet__cta">
+      {% render 'button', style: 'secondary', text: section.settings.cta_text, url: section.settings.cta_link %}
+    </p>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Lead magnet",
+  "tag": "section",
+  "class": "section-lead-magnet",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Get Our $991 Value Resource Pack Free" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle" },
+    { "type": "text", "id": "list_heading", "label": "List heading", "default": "Includes:" },
+    { "type": "text", "id": "form_heading", "label": "Form heading", "default": "Instant Download" },
+    { "type": "text", "id": "email_label", "label": "Email label (a11y)" },
+    { "type": "text", "id": "email_placeholder", "label": "Email placeholder", "default": "your@email.com" },
+    { "type": "text", "id": "form_note", "label": "Form note" },
+    { "type": "text", "id": "button_text", "label": "Submit button text", "default": "Get Free Access" },
+    { "type": "url", "id": "form_action", "label": "Form action URL (e.g. /contact#contact_form)" },
+    { "type": "text", "id": "cta_text", "label": "Secondary CTA text (e.g. Claim Your Spot Now)" },
+    { "type": "url", "id": "cta_link", "label": "Secondary CTA link" }
+  ],
+  "blocks": [
+    {
+      "type": "resource",
+      "name": "Resource item",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lead magnet",
+      "blocks": [
+        { "type": "resource", "settings": { "title": "100-Point Brand Audit Checklist" } },
+        { "type": "resource", "settings": { "title": "3-Part Video Training Series" } },
+        { "type": "resource", "settings": { "title": "AI Automation Templates Pack" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

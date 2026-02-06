@@ -1,0 +1,101 @@
+<section class="transformation section-container" data-reveal>
+  <h2 class="trusted-by__title">{{ section.settings.heading | default: 'Real Transformations' }}</h2>
+  <p class="trusted-by__subtitle">{{ section.settings.subtitle | default: "These aren't hypotheticals. These are actual results from real clients." }}</p>
+  <div class="transformation__columns">
+    <div class="transformation__col transformation__col--before glass-card">
+      <h3 class="transformation__col-title">{{ section.settings.before_title | default: 'BEFORE UKIYO' }}</h3>
+      <p class="transformation__col-subtitle">{{ section.settings.before_subtitle | default: 'The struggle is real (and expensive)' }}</p>
+      <ul class="transformation__list">
+        {% for block in section.blocks %}
+          {% if block.type == 'before_item' %}
+            <li {{ block.shopify_attributes }}>
+              <strong>{{ block.settings.title }}</strong>
+              <span>{{ block.settings.description }}</span>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="transformation__col transformation__col--after glass-card">
+      <h3 class="transformation__col-title">{{ section.settings.after_title | default: 'AFTER UKIYO' }}</h3>
+      <p class="transformation__col-subtitle">{{ section.settings.after_subtitle | default: "Let the grown-ups handle it" }}</p>
+      <div class="transformation__stats">
+        {% for block in section.blocks %}
+          {% if block.type == 'after_stat' %}
+            <div class="transformation__stat" {{ block.shopify_attributes }}>
+              <span class="transformation__stat-value">{{ block.settings.value | default: '0' }}</span>
+              <span class="transformation__stat-label">{{ block.settings.label }}</span>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      {% if section.settings.quote != blank %}
+        <blockquote class="transformation__quote">{{ section.settings.quote }}</blockquote>
+      {% endif %}
+    </div>
+  </div>
+  {% if section.settings.math_heading != blank %}
+    <div class="transformation__math glass-card">
+      <h3 class="transformation__math-title">{{ section.settings.math_heading }}</h3>
+      <p class="transformation__math-subtitle">{{ section.settings.math_subtitle }}</p>
+      <div class="transformation__math-grid">
+        {% for block in section.blocks %}
+          {% if block.type == 'math_stat' %}
+            <div class="transformation__math-stat" {{ block.shopify_attributes }}>
+              <span class="transformation__math-value">{{ block.settings.value }}</span>
+              <span class="transformation__math-label">{{ block.settings.label }}</span>
+              <span class="transformation__math-note">{{ block.settings.note }}</span>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Transformation",
+  "tag": "section",
+  "class": "section-transformation",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Real Transformations" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle" },
+    { "type": "text", "id": "before_title", "label": "Before column title", "default": "BEFORE UKIYO" },
+    { "type": "text", "id": "before_subtitle", "label": "Before column subtitle" },
+    { "type": "text", "id": "after_title", "label": "After column title", "default": "AFTER UKIYO" },
+    { "type": "text", "id": "after_subtitle", "label": "After column subtitle" },
+    { "type": "textarea", "id": "quote", "label": "Client quote" },
+    { "type": "text", "id": "math_heading", "label": "Math section heading (e.g. The Math Doesn't Lie)" },
+    { "type": "textarea", "id": "math_subtitle", "label": "Math section subtitle" }
+  ],
+  "blocks": [
+    { "type": "before_item", "name": "Before item", "settings": [
+      { "type": "text", "id": "title", "label": "Title" },
+      { "type": "textarea", "id": "description", "label": "Description" }
+    ]},
+    { "type": "after_stat", "name": "After stat", "settings": [
+      { "type": "text", "id": "value", "label": "Value" },
+      { "type": "text", "id": "label", "label": "Label" }
+    ]},
+    { "type": "math_stat", "name": "Math stat", "settings": [
+      { "type": "text", "id": "value", "label": "Value" },
+      { "type": "text", "id": "label", "label": "Label" },
+      { "type": "text", "id": "note", "label": "Note (small text)" }
+    ]}
+  ],
+  "presets": [
+    {
+      "name": "Transformation",
+      "blocks": [
+        { "type": "before_item", "settings": { "title": "DIY Design Disasters", "description": "Spent watching Canva tutorials while your competitors hire professionals" } },
+        { "type": "before_item", "settings": { "title": "Money Left on Table", "description": "Revenue you're missing because your website looks like it's from 2009" } },
+        { "type": "after_stat", "settings": { "value": "0 hrs", "label": "Wasted on DIY fails" } },
+        { "type": "after_stat", "settings": { "value": "+$340%", "label": "Average revenue growth" } },
+        { "type": "after_stat", "settings": { "value": "100%", "label": "Sanity preserved" } },
+        { "type": "after_stat", "settings": { "value": "1000+ hrs", "label": "Saved annually" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
