@@ -75,6 +75,23 @@
     });
   }
 
+  // Header scroll state (transparent -> solid background)
+  function initHeaderScroll() {
+    var nav = document.querySelector('.header-nav');
+    if (!nav) return;
+
+    function updateScrolled() {
+      if (window.scrollY > 10) {
+        nav.classList.add('is-scrolled');
+      } else {
+        nav.classList.remove('is-scrolled');
+      }
+    }
+
+    updateScrolled();
+    window.addEventListener('scroll', updateScrolled, { passive: true });
+  }
+
   // Add .is-visible styles for section reveal
   var style = document.createElement('style');
   style.textContent = '[data-reveal].is-visible { opacity: 1 !important; transform: translateY(0) !important; }';
@@ -86,10 +103,12 @@
       initDrawer();
       initScrollIndicator();
       initSectionReveal();
+      initHeaderScroll();
     });
   } else {
     initDrawer();
     initScrollIndicator();
     initSectionReveal();
+    initHeaderScroll();
   }
 })();

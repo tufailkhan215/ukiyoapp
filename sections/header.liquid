@@ -1,16 +1,56 @@
-<header class="ukiyo-header" role="banner">
-  <a href="{{ routes.root_url }}" class="ukiyo-header__logo">{{ section.settings.logo_text | default: 'UKIYO' }}</a>
-  <div class="ukiyo-header__right">
-    {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
-      <a href="{{ section.settings.cta_link }}" class="btn btn--primary">{{ section.settings.cta_text }}</a>
-    {% endif %}
-    <button type="button" class="ukiyo-header__menu-btn" aria-label="Open menu" data-drawer-trigger>
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+<nav class="header-nav" role="navigation" aria-label="Main">
+  <div class="header-nav__inner">
+    <div class="header-nav__bar">
+      <a href="{{ routes.root_url }}" class="header-nav__logo">
+        <span class="header-nav__logo-main">{{ section.settings.logo_text | default: 'UKIYO' }}</span>
+        {% if section.settings.logo_subtext != blank %}
+          <span class="header-nav__logo-sub">{{ section.settings.logo_subtext }}</span>
+        {% endif %}
+      </a>
+
+      <div class="header-nav__menu">
+        {% for link in linklists[section.settings.menu].links %}
+          {% assign show_chevron = false %}
+          {% if section.settings.dropdown_handles != blank %}
+            {% assign dropdown_handles = section.settings.dropdown_handles | split: ',' %}
+            {% for h in dropdown_handles %}
+              {% assign h_stripped = h | strip %}
+              {% if link.handle == h_stripped %}
+                {% assign show_chevron = true %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+
+          <div class="header-nav__item{% if show_chevron %} header-nav__item--dropdown{% endif %}">
+            <a href="{{ link.url }}" class="header-nav__link{% if link.active %} is-active{% endif %}">
+              <span class="header-nav__link-text">{{ link.title }}</span>
+              {% if show_chevron %}
+                <svg class="header-nav__chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+              {% endif %}
+              <span class="header-nav__underline"></span>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="header-nav__cta-wrap">
+        {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
+          <a href="{{ section.settings.cta_link }}" class="header-nav__cta-link">
+            <span class="header-nav__cta-btn">
+              {{ section.settings.cta_text }}
+              <svg class="header-nav__cta-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </span>
+          </a>
+        {% endif %}
+      </div>
+
+      <button type="button" class="header-nav__menu-btn" aria-label="Open menu" data-drawer-trigger>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16"/><path d="M4 18h16"/><path d="M4 6h16"/></svg>
+      </button>
+    </div>
   </div>
-</header>
+</nav>
 
 <div class="drawer-overlay" data-drawer-overlay aria-hidden="true"></div>
 <aside class="drawer" id="drawer" data-drawer role="dialog" aria-label="Menu">
@@ -38,6 +78,12 @@
       "default": "UKIYO"
     },
     {
+      "type": "text",
+      "id": "logo_subtext",
+      "label": "Logo subtext",
+      "default": "PRODUCTIONS"
+    },
+    {
       "type": "link_list",
       "id": "menu",
       "label": "Menu",
@@ -45,9 +91,15 @@
     },
     {
       "type": "text",
+      "id": "dropdown_handles",
+      "label": "Link handles that show dropdown chevron (comma-separated)",
+      "default": "services, shop"
+    },
+    {
+      "type": "text",
       "id": "cta_text",
       "label": "Header CTA text",
-      "default": "Start Your Project"
+      "default": "Start Project"
     },
     {
       "type": "url",
