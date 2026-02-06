@@ -1,0 +1,30 @@
+{
+  "accessibility": {
+    "skip_to_text": "Skip to content",
+    "close": "Close",
+    "menu": "Menu",
+    "next": "Next",
+    "previous": "Previous"
+  },
+  "general": {
+    "scroll": "Scroll",
+    "start_your_project": "Start Your Project",
+    "view_our_work": "View Our Work",
+    "explore": "Explore",
+    "learn_more": "Learn more",
+    "get_free_access": "Get Free Access",
+    "claim_your_spot": "Claim Your Spot Now"
+  },
+  "sections": {
+    "hero": {
+      "subtitle": "Creative Branding Agency",
+      "headline_line1": "WE BUILD BRANDS",
+      "headline_line2": "THAT PRINT MONEY",
+      "description": "Premium brand development, AI automation, and content production for businesses ready to dominate their market."
+    },
+    "trusted_by": {
+      "title": "Brands That Trust Us",
+      "subtitle": "We've partnered with some of the most recognizable brands in the world."
+    }
+  }
+}

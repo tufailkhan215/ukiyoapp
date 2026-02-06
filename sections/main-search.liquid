@@ -1,0 +1,36 @@
+<section class="section-container" data-reveal>
+  <h1 class="trusted-by__title" style="margin-bottom: 1rem;">Search</h1>
+  <form action="{{ routes.search_url }}" method="get" style="margin-bottom: 2rem;">
+    <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search..." style="width: 100%; max-width: 400px; padding: 0.75rem 1rem; background: #232323; border: 1px solid rgba(255,255,255,0.15); color: #fff; border-radius: 0.25rem; font-family: inherit;">
+    <button type="submit" class="btn btn--primary" style="margin-top: 0.5rem;">Search</button>
+  </form>
+  {% if search.performed %}
+    {% if search.results_count > 0 %}
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem;">
+        {% for item in search.results %}
+          <a href="{{ item.url }}" class="glass-card" style="padding: 1rem; text-decoration: none; color: inherit; border-radius: 0.5rem;">
+            {% if item.featured_image %}
+              <img src="{{ item.featured_image | image_url: width: 300 }}" alt="{{ item.title }}" width="300" height="300" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 0.25rem; margin-bottom: 0.75rem;">
+            {% endif %}
+            <h3 style="font-size: 1rem; margin-bottom: 0.25rem;">{{ item.title }}</h3>
+            <p style="color: #999; margin: 0;">{{ item.price | money }}</p>
+          </a>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="hero__description">No results for "{{ search.terms }}".</p>
+    {% endif %}
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Search",
+  "tag": "section",
+  "class": "section-main-search",
+  "settings": [],
+  "presets": [
+    { "name": "Search" }
+  ]
+}
+{% endschema %}

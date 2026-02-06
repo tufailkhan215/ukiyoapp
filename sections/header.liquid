@@ -1,0 +1,59 @@
+<header class="ukiyo-header" role="banner">
+  <a href="{{ routes.root_url }}" class="ukiyo-header__logo">{{ section.settings.logo_text | default: 'UKIYO' }}</a>
+  <div class="ukiyo-header__right">
+    {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
+      <a href="{{ section.settings.cta_link }}" class="btn btn--primary">{{ section.settings.cta_text }}</a>
+    {% endif %}
+    <button type="button" class="ukiyo-header__menu-btn" aria-label="Open menu" data-drawer-trigger>
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<div class="drawer-overlay" data-drawer-overlay aria-hidden="true"></div>
+<aside class="drawer" id="drawer" data-drawer role="dialog" aria-label="Menu">
+  <button type="button" class="drawer__close" aria-label="Close menu" data-drawer-close>✕</button>
+  <nav class="drawer__nav">
+    <a href="{{ routes.root_url }}">Home</a>
+    {% for link in linklists[section.settings.menu].links %}
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    {% endfor %}
+    {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
+      <a href="{{ section.settings.cta_link }}" class="btn btn--primary" style="margin-top: 1rem;">{{ section.settings.cta_text }}</a>
+    {% endif %}
+  </nav>
+</aside>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "section-header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo text",
+      "default": "UKIYO"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Header CTA text",
+      "default": "Start Your Project"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Header CTA link"
+    }
+  ]
+}
+{% endschema %}

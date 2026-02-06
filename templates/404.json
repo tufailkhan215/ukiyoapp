@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "Page not found",
+        "text": "The page you're looking for doesn't exist or has been moved.",
+        "button_text": "Back to home",
+        "button_link": "/"
+      }
+    }
+  },
+  "order": ["main"]
+}

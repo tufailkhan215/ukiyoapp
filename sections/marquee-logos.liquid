@@ -1,0 +1,63 @@
+<section class="marquee scrollbar-hide" data-reveal>
+  <div class="marquee__row animate-marquee">
+    <div class="marquee__inner">
+      {% for block in section.blocks %}
+        {% if block.type == 'logo' %}
+          <span class="marquee__item" {{ block.shopify_attributes }}>{{ block.settings.name | default: 'Brand' }}</span>
+        {% endif %}
+      {% endfor %}
+      {% for block in section.blocks %}
+        {% if block.type == 'logo' %}
+          <span class="marquee__item">{{ block.settings.name | default: 'Brand' }}</span>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="marquee__row animate-marquee-reverse" style="margin-top: 1rem;">
+    <div class="marquee__inner">
+      {% for block in section.blocks %}
+        {% if block.type == 'logo' %}
+          <span class="marquee__item">{{ block.settings.name | default: 'Brand' }}</span>
+        {% endif %}
+      {% endfor %}
+      {% for block in section.blocks %}
+        {% if block.type == 'logo' %}
+          <span class="marquee__item">{{ block.settings.name | default: 'Brand' }}</span>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Marquee logos",
+  "tag": "section",
+  "class": "section-marquee",
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo / brand",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee logos",
+      "blocks": [
+        { "type": "logo", "settings": { "name": "APPLE" } },
+        { "type": "logo", "settings": { "name": "GOOGLE" } },
+        { "type": "logo", "settings": { "name": "META" } },
+        { "type": "logo", "settings": { "name": "SPOTIFY" } },
+        { "type": "logo", "settings": { "name": "NIKE" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

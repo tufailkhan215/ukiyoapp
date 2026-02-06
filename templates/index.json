@@ -1,0 +1,52 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "subtitle": "Creative Branding Agency",
+        "headline_line1": "WE BUILD BRANDS",
+        "headline_line2": "THAT PRINT MONEY",
+        "description": "Premium brand development, AI automation, and content production for businesses ready to dominate their market.",
+        "cta_primary_text": "Start Your Project",
+        "cta_secondary_text": "View Our Work",
+        "scroll_label": "Scroll"
+      }
+    },
+    "trusted-by": {
+      "type": "trusted-by",
+      "settings": {
+        "title_before": "Brands That Trust",
+        "title_after": "Us",
+        "subtitle": "We've partnered with some of the most recognizable brands in the world."
+      },
+      "blocks": {
+        "nike": { "type": "brand", "settings": { "name": "NIKE" } },
+        "spotify": { "type": "brand", "settings": { "name": "SPOTIFY" } },
+        "apple": { "type": "brand", "settings": { "name": "APPLE" } },
+        "adidas": { "type": "brand", "settings": { "name": "ADIDAS" } },
+        "wandrd": { "type": "brand", "settings": { "name": "WANDRD" } },
+        "coachella": { "type": "brand", "settings": { "name": "COACHELLA" } }
+      }
+    },
+    "marquee": {
+      "type": "marquee-logos",
+      "blocks": {
+        "1": { "type": "logo", "settings": { "name": "APPLE" } },
+        "2": { "type": "logo", "settings": { "name": "GOOGLE" } },
+        "3": { "type": "logo", "settings": { "name": "META" } },
+        "4": { "type": "logo", "settings": { "name": "SPOTIFY" } },
+        "5": { "type": "logo", "settings": { "name": "NIKE" } }
+      }
+    },
+    "cta": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "Let's create something legendary",
+        "text": "Ready to transform your brand into a market leader?",
+        "button_text": "Start Your Project",
+        "button_link": "/pages/contact"
+      }
+    }
+  },
+  "order": ["hero", "trusted-by", "marquee", "cta"]
+}

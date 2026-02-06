@@ -1,0 +1,13 @@
+{% comment %}
+  Usage: {% render 'button', style: 'primary' or 'secondary', text: 'Label', url: '/path', arrow: true %}
+{% endcomment %}
+{% assign style = style | default: 'primary' %}
+{% assign url = url | default: '#' %}
+{% assign text = text | default: 'Button' %}
+{% assign arrow = arrow | default: true %}
+<a href="{{ url }}" class="btn btn--{{ style }}{% if shimmer %} shimmer-btn{% endif %}"{% if external %} target="_blank" rel="noopener"{% endif %}>
+  <span>{{ text }}</span>
+  {% if arrow %}
+    <span class="btn__icon">{% render 'icon-arrow' %}</span>
+  {% endif %}
+</a>

@@ -1,0 +1,18 @@
+<section class="section-container" data-reveal>
+  <h1 class="trusted-by__title" style="margin-bottom: 1rem;">{{ page.title }}</h1>
+  <div class="page-content hero__description" style="max-width: 720px; margin: 0 auto; text-align: left;">
+    {{ page.content }}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page",
+  "tag": "section",
+  "class": "section-main-page",
+  "settings": [],
+  "presets": [
+    { "name": "Page" }
+  ]
+}
+{% endschema %}

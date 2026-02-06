@@ -1,0 +1,20 @@
+{
+  "current": {
+    "color_background": "#000000",
+    "color_foreground": "#ffffff",
+    "color_muted": "#999999",
+    "use_google_fonts": true,
+    "logo_text": "UKIYO",
+    "header_cta_text": "Start Your Project",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {}
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {}
+      }
+    }
+  }
+}

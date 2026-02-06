@@ -1,0 +1,66 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Ukiyo",
+    "theme_version": "1.0.0",
+    "theme_author": "Ukiyo Productions",
+    "theme_documentation_url": "https://github.com/tufailkhan215/ukiyoapp-emergent",
+    "theme_support_url": "https://ukiyo-prod.com/"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "color_foreground",
+        "label": "Text",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "color_muted",
+        "label": "Muted text",
+        "default": "#999999"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "use_google_fonts",
+        "label": "Use Google Fonts (Inter, Space Grotesk, Playfair Display)",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "text",
+        "id": "logo_text",
+        "label": "Logo text",
+        "default": "UKIYO"
+      },
+      {
+        "type": "text",
+        "id": "header_cta_text",
+        "label": "Header CTA text",
+        "default": "Start Your Project"
+      },
+      {
+        "type": "url",
+        "id": "header_cta_link",
+        "label": "Header CTA link"
+      }
+    ]
+  }
+]

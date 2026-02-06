@@ -1,0 +1,55 @@
+<section class="section-container" data-reveal>
+  <div class="collection-toolbar" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
+    <h1 class="trusted-by__title" style="margin-bottom: 0;">{{ collection.title }}</h1>
+    {% if collection.filters.size > 0 or collection.products_count > 0 %}
+      <div class="collection-toolbar__right">
+        {% if collection.sort_options.size > 0 %}
+          <form method="get" class="collection-sort" style="display: flex; align-items: center; gap: 0.5rem;">
+            <label for="SortBy" class="visually-hidden">Sort</label>
+            <select name="sort_by" id="SortBy" class="collection-sort__select" style="background: #232323; color: #fff; border: 1px solid rgba(255,255,255,0.15); padding: 0.5rem 1rem; border-radius: var(--radius); font-family: inherit;">
+              {% for option in collection.sort_options %}
+                <option value="{{ option.value }}" {% if collection.sort_by == option.value %}selected{% endif %}>{{ option.name }}</option>
+              {% endfor %}
+            </select>
+            <button type="submit" class="btn btn--secondary" style="padding: 0.5rem 1rem;">Apply</button>
+          </form>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+
+  {% paginate collection.products by 24 %}
+  <div class="collection-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+    {% for product in collection.products %}
+      <a href="{{ product.url }}" class="glass-card" style="padding: 1.5rem; text-decoration: none; color: inherit; border-radius: 0.5rem; transition: transform 0.3s ease, border-color 0.3s ease;">
+        <div style="aspect-ratio: 1; background: #232323; border-radius: 0.25rem; margin-bottom: 1rem; overflow: hidden;">
+          {% if product.featured_image %}
+            <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.featured_image.alt | escape }}" width="400" height="400" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
+          {% endif %}
+        </div>
+        <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1rem; margin-bottom: 0.25rem;">{{ product.title }}</h3>
+        <p style="color: #999; font-size: 0.875rem; margin: 0;">{{ product.price | money }}</p>
+      </a>
+    {% else %}
+      <p style="grid-column: 1 / -1; color: #999; text-align: center;">No products in this collection.</p>
+    {% endfor %}
+  </div>
+  {% if paginate.pages > 1 %}
+    <nav class="pagination" style="margin-top: 3rem; text-align: center;">
+      {{ paginate | default_pagination }}
+    </nav>
+  {% endif %}
+  {% endpaginate %}
+</section>
+
+{% schema %}
+{
+  "name": "Collection products",
+  "tag": "section",
+  "class": "section-main-collection",
+  "settings": [],
+  "presets": [
+    { "name": "Collection products" }
+  ]
+}
+{% endschema %}

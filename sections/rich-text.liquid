@@ -1,0 +1,48 @@
+<section class="section-container" data-reveal style="text-align: center;">
+  <div style="max-width: 720px; margin: 0 auto;">
+    {% if section.settings.heading != blank %}
+      <h2 class="trusted-by__title" style="margin-bottom: 1rem;">{{ section.settings.heading }}</h2>
+    {% endif %}
+    {% if section.settings.text != blank %}
+      <p class="hero__description" style="margin-bottom: 0;">{{ section.settings.text }}</p>
+    {% endif %}
+    {% if section.settings.button_text != blank and section.settings.button_link != blank %}
+      <p style="margin-top: 1.5rem;">
+        {% render 'button', style: 'primary', text: section.settings.button_text, url: section.settings.button_link %}
+      </p>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Rich text",
+  "tag": "section",
+  "class": "section-rich-text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    { "name": "Rich text" }
+  ]
+}
+{% endschema %}

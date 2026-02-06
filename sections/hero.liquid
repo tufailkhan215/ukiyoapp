@@ -1,0 +1,93 @@
+<section class="hero liquid-marble grain-texture" id="hero">
+  <div class="hero__inner">
+    <div class="hero__subtitle-wrap">
+      <span class="hero__subtitle-line" aria-hidden="true"></span>
+      <span class="hero__subtitle">{{ section.settings.subtitle | default: 'Creative Branding Agency' }}</span>
+      <span class="hero__subtitle-line" aria-hidden="true"></span>
+    </div>
+    <h1 class="hero__headline">
+      {{ section.settings.headline_line1 | default: 'WE BUILD BRANDS' }}
+      <span class="hero__headline-line2">{{ section.settings.headline_line2 | default: 'THAT PRINT MONEY' }}</span>
+    </h1>
+    <p class="hero__description">{{ section.settings.description | default: 'Premium brand development, AI automation, and content production for businesses ready to dominate their market.' }}</p>
+    <div class="hero__ctas">
+      {% if section.settings.cta_primary_text != blank %}
+        {% render 'button', style: 'primary', text: section.settings.cta_primary_text, url: section.settings.cta_primary_link | default: '#', shimmer: true %}
+      {% endif %}
+      {% if section.settings.cta_secondary_text != blank %}
+        {% render 'button', style: 'secondary', text: section.settings.cta_secondary_text, url: section.settings.cta_secondary_link | default: '#' %}
+      {% endif %}
+    </div>
+    <button type="button" class="hero__scroll scroll-indicator" data-scroll-to-next aria-label="Scroll to content">
+      {{ section.settings.scroll_label | default: 'Scroll' }}
+      {% render 'icon-scroll' %}
+    </button>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "tag": "section",
+  "class": "section-hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Creative Branding Agency"
+    },
+    {
+      "type": "text",
+      "id": "headline_line1",
+      "label": "Headline line 1",
+      "default": "WE BUILD BRANDS"
+    },
+    {
+      "type": "text",
+      "id": "headline_line2",
+      "label": "Headline line 2",
+      "default": "THAT PRINT MONEY"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Premium brand development, AI automation, and content production for businesses ready to dominate their market."
+    },
+    {
+      "type": "text",
+      "id": "cta_primary_text",
+      "label": "Primary button text",
+      "default": "Start Your Project"
+    },
+    {
+      "type": "url",
+      "id": "cta_primary_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "cta_secondary_text",
+      "label": "Secondary button text",
+      "default": "View Our Work"
+    },
+    {
+      "type": "url",
+      "id": "cta_secondary_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "text",
+      "id": "scroll_label",
+      "label": "Scroll indicator label",
+      "default": "Scroll"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}
