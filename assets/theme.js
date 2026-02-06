@@ -75,6 +75,23 @@
     });
   }
 
+  // Header: add background on scroll (match reference)
+  function initHeaderScroll() {
+    var nav = document.querySelector('.header-nav');
+    if (!nav) return;
+
+    function updateHeader() {
+      if (window.scrollY > 20) {
+        nav.classList.add('is-scrolled');
+      } else {
+        nav.classList.remove('is-scrolled');
+      }
+    }
+
+    window.addEventListener('scroll', updateHeader, { passive: true });
+    updateHeader();
+  }
+
   // Add .is-visible styles for section reveal
   var style = document.createElement('style');
   style.textContent = '[data-reveal].is-visible { opacity: 1 !important; transform: translateY(0) !important; }';
@@ -86,10 +103,12 @@
       initDrawer();
       initScrollIndicator();
       initSectionReveal();
+      initHeaderScroll();
     });
   } else {
     initDrawer();
     initScrollIndicator();
     initSectionReveal();
+    initHeaderScroll();
   }
 })();
