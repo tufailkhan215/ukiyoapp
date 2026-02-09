@@ -24,7 +24,7 @@
             "settings": {
               "parent_handle": "services",
               "category_title": "Brand Strategy",
-              "links_text": "Company Agent Builder|#\nPartnership & Collaboration|#"
+              "links_text": "Company Agent Builder|/pages/company-agent-builder\nPartnership & Collaboration|/pages/partnership-collaboration"
             }
           },
           "dropdown_category_FwQj3T": {
