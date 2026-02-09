@@ -26,12 +26,49 @@
           {% endif %}
 
           {% if show_chevron %}
-            <div class="relative">
-              <a class="group relative flex items-center gap-1" href="{{ link.url }}">
+            {% assign has_dropdown_blocks = false %}
+            {% for block in section.blocks %}
+              {% if block.type == 'dropdown_category' and block.settings.parent_handle == link.handle %}
+                {% assign has_dropdown_blocks = true %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+            <div class="relative nav-dropdown" data-dropdown data-dropdown-handle="{{ link.handle }}">
+              <a class="group relative flex items-center gap-1 nav-dropdown-trigger" href="{{ link.url }}" data-dropdown-trigger aria-expanded="false" aria-haspopup="true">
                 <span class="text-sm font-medium tracking-wide transition-colors duration-300 {% if link.active %}text-white{% else %}text-white/60 hover:text-white{% endif %}">{{ link.title }}</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down w-4 h-4 text-white/40 transition-transform duration-300" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down w-4 h-4 text-white/40 transition-transform duration-300 nav-dropdown-chevron" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
                 <span class="absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-white to-gray-400 transition-[width] duration-300 group-hover:w-full {% if link.active %}w-full{% else %}w-0{% endif %}"></span>
               </a>
+              {% if has_dropdown_blocks %}
+                <div class="nav-dropdown-panel absolute top-full left-0 pt-4 opacity-0 invisible pointer-events-none transition-all duration-300" data-dropdown-panel aria-hidden="true">
+                  <div class="w-[600px] bg-black/95 backdrop-blur-xl border border-white/10 p-6 grid grid-cols-2 gap-6">
+                    {% for block in section.blocks %}
+                      {% if block.type == 'dropdown_category' and block.settings.parent_handle == link.handle %}
+                        <div {{ block.shopify_attributes }}>
+                          {% if block.settings.category_title != blank %}
+                            <span class="text-xs font-medium text-white/40 tracking-[0.2em] uppercase mb-3 block">{{ block.settings.category_title }}</span>
+                          {% endif %}
+                          <div class="space-y-2">
+                            {% if block.settings.links_text != blank %}
+                              {% assign link_lines = block.settings.links_text | newline_to_br | split: '<br />' %}
+                              {% for line in link_lines %}
+                                {% assign line_stripped = line | strip %}
+                                {% if line_stripped != '' %}
+                                  {% assign parts = line_stripped | split: '|' %}
+                                  {% assign label = parts[0] | strip %}
+                                  {% assign url = parts[1] | strip %}
+                                  {% if url == '' %}{% assign url = '#' %}{% endif %}
+                                  <a class="block text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all py-1" href="{{ url }}">{{ label }}</a>
+                                {% endif %}
+                              {% endfor %}
+                            {% endif %}
+                          </div>
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
             </div>
           {% else %}
             <a class="group relative" href="{{ link.url }}">
@@ -82,9 +119,35 @@
     { "type": "text", "id": "logo_text", "label": "Logo text", "default": "UKIYO" },
     { "type": "text", "id": "logo_subtext", "label": "Logo subtext", "default": "PRODUCTIONS" },
     { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
-    { "type": "text", "id": "dropdown_handles", "label": "Link handles that show dropdown chevron (comma-separated)", "default": "services, shop" },
+    { "type": "text", "id": "dropdown_handles", "label": "Link handles that show mega dropdown (comma-separated)", "default": "services, shop" },
     { "type": "text", "id": "cta_text", "label": "Header CTA text", "default": "Start Project" },
     { "type": "url", "id": "cta_link", "label": "Header CTA link" }
+  ],
+  "blocks": [
+    {
+      "type": "dropdown_category",
+      "name": "Dropdown category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "parent_handle",
+          "label": "Parent menu link handle",
+          "info": "Must match the menu link handle (e.g. services, shop).",
+          "default": "services"
+        },
+        {
+          "type": "text",
+          "id": "category_title",
+          "label": "Category title"
+        },
+        {
+          "type": "textarea",
+          "id": "links_text",
+          "label": "Links (one per line)",
+          "info": "Format: Label|URL (e.g. Company Agent Builder|/services/company-agent-builder)"
+        }
+      ]
+    }
   ]
 }
 {% endschema %}
