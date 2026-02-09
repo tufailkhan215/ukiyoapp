@@ -39,7 +39,13 @@
           {% endfor %}
 
           {% comment %} Show dropdown trigger (chevron) when: mega handle, or has menu children {% endcomment %}
-          {% assign show_dropdown_trigger = show_chevron or has_children %}
+          {% assign show_dropdown_trigger = false %}
+          {% if show_chevron %}
+            {% assign show_dropdown_trigger = true %}
+          {% endif %}
+          {% if has_children %}
+            {% assign show_dropdown_trigger = true %}
+          {% endif %}
 
           {% if show_dropdown_trigger %}
             <div class="relative nav-dropdown" data-dropdown data-dropdown-handle="{{ link.handle }}">
