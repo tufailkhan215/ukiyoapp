@@ -19,16 +19,25 @@
       "header": {
         "type": "header",
         "blocks": {
+          "dropdown_category_FwQj3T": {
+            "type": "dropdown_category",
+            "settings": {
+              "parent_handle": "services",
+              "category_title": "Category title 2",
+              "links_text": "Links1|#\nLinks2|#\nLinks3|#"
+            }
+          },
           "dropdown_category_TLpWTd": {
             "type": "dropdown_category",
             "settings": {
               "parent_handle": "services",
-              "category_title": "Category title",
+              "category_title": "Category title 1",
               "links_text": "Links1|#\nLinks2|#\nLinks3|#"
             }
           }
         },
         "block_order": [
+          "dropdown_category_FwQj3T",
           "dropdown_category_TLpWTd"
         ],
         "settings": {
