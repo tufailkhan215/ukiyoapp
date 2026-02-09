@@ -1,0 +1,145 @@
+{% comment %} FAQ accordion: strap + gradient title, then details/summary items with plus/minus icons. {% endcomment %}
+<section class="relative py-20 lg:py-28 bg-black" data-testid="faq-section">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="max-w-[900px] mx-auto px-6 lg:px-12">
+    <div class="text-center mb-12">
+      {% if section.settings.strap != blank %}
+        <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-4">{{ section.settings.strap }}</span>
+      {% endif %}
+      {% if section.settings.title_before != blank or section.settings.title_gradient != blank %}
+        <h2 class="text-3xl md:text-4xl font-bold text-white">
+          {{ section.settings.title_before }}
+          {% if section.settings.title_gradient != blank %}
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_gradient }}</span>
+          {% endif %}
+        </h2>
+      {% endif %}
+    </div>
+
+    <div class="faq-accordion space-y-3">
+      {% for block in section.blocks %}
+        {% if block.type == 'faq' %}
+          <details class="border border-white/[0.05] bg-white/[0.01] group/faq" {{ block.shopify_attributes }}{% if forloop.first %} open{% endif %}>
+            <summary class="flex items-center justify-between p-6 text-left list-none cursor-pointer [&::-webkit-details-marker]:hidden">
+              <span class="text-white font-medium pr-4">{{ block.settings.question }}</span>
+              <span class="flex-shrink-0 flex items-center justify-center">
+                <svg class="faq-icon-plus w-5 h-5 text-white/40" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                <svg class="faq-icon-minus w-5 h-5 text-white/40 hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-6">
+              <p class="text-white/50 leading-relaxed">{{ block.settings.answer }}</p>
+            </div>
+          </details>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-accordion details[open] .faq-icon-plus { display: none; }
+  .faq-accordion details[open] .faq-icon-minus { display: block !important; }
+  .faq-accordion details:not([open]) .faq-icon-plus { display: block; }
+  .faq-accordion details:not([open]) .faq-icon-minus { display: none !important; }
+</style>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "tag": "section",
+  "class": "section-faq",
+  "settings": [
+    {
+      "type": "text",
+      "id": "strap",
+      "label": "Strap (small label above title)",
+      "default": "(FAQ)"
+    },
+    {
+      "type": "text",
+      "id": "title_before",
+      "label": "Title (before gradient part)",
+      "default": "Frequently Asked "
+    },
+    {
+      "type": "text",
+      "id": "title_gradient",
+      "label": "Title (gradient part)",
+      "default": "Questions"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "settings": {
+        "strap": "(FAQ)",
+        "title_before": "Frequently Asked ",
+        "title_gradient": "Questions"
+      },
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How long does it take to build and deploy a company agent?",
+            "answer": "Typically 2-4 weeks depending on complexity. Starter packages can be live in as little as 10 business days, while Enterprise solutions with multiple integrations may take 4-6 weeks."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Can the AI agent handle complex customer inquiries?",
+            "answer": "Yes. Our agents are trained on your brand guidelines and knowledge base, and can handle multi-turn conversations. For highly complex or sensitive issues, we support seamless human handoff."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What platforms can the agent be deployed on?",
+            "answer": "Website chat, Instagram DMs, Facebook Messenger, email, and SMS. Enterprise plans can include custom integrations and additional channels."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How do you train the AI on our brand voice?",
+            "answer": "We use your existing content, tone guidelines, and sample conversations in a discovery workshop, then calibrate the agent so responses stay consistent with your brand."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What happens if the AI gives incorrect information?",
+            "answer": "Agents are trained on your approved knowledge base and can be set to escalate uncertain queries to humans. We also provide ongoing monitoring and optimization to improve accuracy."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Can we update the agent's knowledge base ourselves?",
+            "answer": "Yes. Depending on your plan, you get access to a dashboard to add or edit FAQs and content. We can also handle updates as part of ongoing support."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

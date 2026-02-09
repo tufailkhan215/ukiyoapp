@@ -1,0 +1,145 @@
+{% comment %} Related services: strap + gradient title, 3-col grid of linked cards (title, description, Learn more). {% endcomment %}
+<section class="relative py-20 lg:py-28 bg-black" data-testid="related-services">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="text-center mb-12">
+      {% if section.settings.strap != blank %}
+        <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-4">{{ section.settings.strap }}</span>
+      {% endif %}
+      {% if section.settings.title_before != blank or section.settings.title_gradient != blank %}
+        <h2 class="text-3xl md:text-4xl font-bold text-white">
+          {{ section.settings.title_before }}
+          {% if section.settings.title_gradient != blank %}
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_gradient }}</span>
+          {% endif %}
+        </h2>
+      {% endif %}
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      {% for block in section.blocks %}
+        {% if block.type == 'service' %}
+          {% assign card_url = block.settings.url | default: '#' %}
+          <div {{ block.shopify_attributes }}>
+            <a class="group block h-full" href="{{ card_url }}"{% if block.settings.open_new_tab %} target="_blank" rel="noopener noreferrer"{% endif %}>
+              <div class="h-full p-6 border border-white/[0.05] bg-white/[0.01] hover:bg-white/[0.03] hover:border-white/10 transition-all">
+                {% if block.settings.title != blank %}
+                  <h3 class="text-lg font-bold text-white mb-2 group-hover:text-gray-200 transition-colors">{{ block.settings.title }}</h3>
+                {% endif %}
+                {% if block.settings.description != blank %}
+                  <p class="text-sm text-white/40 mb-4 line-clamp-2">{{ block.settings.description }}</p>
+                {% endif %}
+                <span class="inline-flex items-center gap-2 text-sm text-white/50 group-hover:text-white transition-colors">
+                  {{ block.settings.cta_text | default: 'Learn more' }}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 flex-shrink-0" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                </span>
+              </div>
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Related Services",
+  "tag": "section",
+  "class": "section-related-services",
+  "settings": [
+    {
+      "type": "text",
+      "id": "strap",
+      "label": "Strap (small label above title)",
+      "default": "(Related Services)"
+    },
+    {
+      "type": "text",
+      "id": "title_before",
+      "label": "Title (before gradient part)",
+      "default": "You Might Also "
+    },
+    {
+      "type": "text",
+      "id": "title_gradient",
+      "label": "Title (gradient part)",
+      "default": "Like"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Service",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Service title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Short description"
+        },
+        {
+          "type": "text",
+          "id": "url",
+          "label": "Link URL"
+        },
+        {
+          "type": "text",
+          "id": "cta_text",
+          "label": "Link text",
+          "default": "Learn more"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_new_tab",
+          "label": "Open in new tab",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Related Services",
+      "settings": {
+        "strap": "(Related Services)",
+        "title_before": "You Might Also ",
+        "title_gradient": "Like"
+      },
+      "blocks": [
+        {
+          "type": "service",
+          "settings": {
+            "title": "AI Revenue Concierge Chatbot",
+            "description": "An intelligent AI chatbot that engages visitors on your website and Instagram DMs, qualifying leads and driving revenue while you sleep.",
+            "url": "/services/ai-revenue-concierge",
+            "cta_text": "Learn more"
+          }
+        },
+        {
+          "type": "service",
+          "settings": {
+            "title": "Klaviyo Flows Services",
+            "description": "Expert Klaviyo flow setup and optimization that converts subscribers into customers on autopilot.",
+            "url": "/services/klaviyo-flows",
+            "cta_text": "Learn more"
+          }
+        },
+        {
+          "type": "service",
+          "settings": {
+            "title": "Virtual Assistance & Admin Support",
+            "description": "Professional virtual assistance that handles your administrative tasks so you can focus on what moves the needle.",
+            "url": "/services/virtual-assistance",
+            "cta_text": "Learn more"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

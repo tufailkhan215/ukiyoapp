@@ -1,0 +1,77 @@
+{% comment %} Single testimonial: quote icon, blockquote, author image + name + role. {% endcomment %}
+<section class="relative py-20 lg:py-28 bg-black" data-testid="service-testimonial">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="relative z-10 max-w-[1000px] mx-auto px-6 lg:px-12 text-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-quote w-16 h-16 text-white/10 mx-auto mb-8" aria-hidden="true"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/></svg>
+
+    {% if section.settings.quote != blank %}
+      <blockquote class="text-xl md:text-2xl lg:text-3xl text-white font-medium leading-relaxed mb-10">
+        {{ section.settings.quote }}
+      </blockquote>
+    {% endif %}
+
+    <div class="flex items-center justify-center gap-4">
+      {% if section.settings.author_image != blank %}
+        <img
+          src="{{ section.settings.author_image | image_url: width: 96 }}"
+          alt="{{ section.settings.author_name | default: 'Author' | escape }}"
+          class="w-12 h-12 rounded-full object-cover grayscale"
+          width="48"
+          height="48"
+          loading="lazy"
+        >
+      {% endif %}
+      <div class="text-left">
+        {% if section.settings.author_name != blank %}
+          <p class="text-white font-semibold">{{ section.settings.author_name }}</p>
+        {% endif %}
+        {% if section.settings.author_role != blank %}
+          <p class="text-white/40 text-sm">{{ section.settings.author_role }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Service Testimonial",
+  "tag": "section",
+  "class": "section-service-testimonial",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Testimonial quote",
+      "default": "\"The Company Agent Builder transformed how we interact with customers. Our brand voice is now perfectly consistent 24/7, and we've seen a 40% reduction in support costs while improving customer satisfaction.\""
+    },
+    {
+      "type": "image_picker",
+      "id": "author_image",
+      "label": "Author image"
+    },
+    {
+      "type": "text",
+      "id": "author_name",
+      "label": "Author name",
+      "default": "Sarah Chen"
+    },
+    {
+      "type": "text",
+      "id": "author_role",
+      "label": "Author role / title",
+      "default": "CEO, TechVenture AI"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Service Testimonial",
+      "settings": {
+        "quote": "\"The Company Agent Builder transformed how we interact with customers. Our brand voice is now perfectly consistent 24/7, and we've seen a 40% reduction in support costs while improving customer satisfaction.\"",
+        "author_name": "Sarah Chen",
+        "author_role": "CEO, TechVenture AI"
+      }
+    }
+  ]
+}
+{% endschema %}
