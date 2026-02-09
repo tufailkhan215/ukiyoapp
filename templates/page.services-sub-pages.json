@@ -300,6 +300,420 @@
         "paragraph_2": "<p>In an era where customer expectations are at an all-time high, having a consistent brand voice across every touchpoint is crucial. Our Company Agent Builder service creates bespoke AI agents trained on your brand guidelines, tone of voice, product knowledge, and company values. These agents become extensions of your team, handling everything from customer inquiries to lead qualification with the precision and personality your brand deserves.</p>",
         "title_included": "Everything You Need to Launch Your AI Agent"
       }
+    },
+    "services_key_features_qwLJ4x": {
+      "type": "services-key-features",
+      "blocks": {
+        "feature_cVUqcy": {
+          "type": "feature",
+          "settings": {
+            "title": "Brand Voice Training",
+            "description": "AI agents trained on your unique tone, values, and messaging guidelines for consistent communication"
+          }
+        },
+        "feature_CGK8jh": {
+          "type": "feature",
+          "settings": {
+            "title": "Multi-Channel Deployment",
+            "description": "Deploy across website, email, social media, Instagram DMs, and messaging platforms seamlessly"
+          }
+        },
+        "feature_WRfYgM": {
+          "type": "feature",
+          "settings": {
+            "title": "Knowledge Base Integration",
+            "description": "Connected to your products, services, FAQs, and company information for accurate responses"
+          }
+        },
+        "feature_Nz6XTd": {
+          "type": "feature",
+          "settings": {
+            "title": "Continuous Learning",
+            "description": "Agents improve over time based on interactions, feedback, and new information"
+          }
+        },
+        "feature_aYey6f": {
+          "type": "feature",
+          "settings": {
+            "title": "Human Handoff",
+            "description": "Seamless escalation to human agents when complex situations require personal touch"
+          }
+        },
+        "feature_wBVcMj": {
+          "type": "feature",
+          "settings": {
+            "title": "Analytics Dashboard",
+            "description": "Real-time insights into agent performance, customer satisfaction, and conversation trends"
+          }
+        }
+      },
+      "block_order": [
+        "feature_cVUqcy",
+        "feature_CGK8jh",
+        "feature_WRfYgM",
+        "feature_Nz6XTd",
+        "feature_aYey6f",
+        "feature_wBVcMj"
+      ],
+      "name": "Services Key Features",
+      "settings": {
+        "strap": "(Key Features)",
+        "title_before": "What You",
+        "title_gradient": "Get"
+      }
+    },
+    "services_timeline_jcmmxh": {
+      "type": "services-timeline",
+      "blocks": {
+        "step_VWnEJa": {
+          "type": "step",
+          "settings": {
+            "title": "Discovery Workshop",
+            "description": "Deep dive into your brand voice, values, customer journey, and business objectives"
+          }
+        },
+        "step_GejF3z": {
+          "type": "step",
+          "settings": {
+            "title": "Knowledge Mapping",
+            "description": "Document all products, services, FAQs, policies, and brand guidelines comprehensively"
+          }
+        },
+        "step_MxmXGH": {
+          "type": "step",
+          "settings": {
+            "title": "Agent Development",
+            "description": "Build and train your custom AI agent with your unique brand DNA and personality"
+          }
+        },
+        "step_NfX4qg": {
+          "type": "step",
+          "settings": {
+            "title": "Testing & Refinement",
+            "description": "Rigorous testing across scenarios, edge cases, and real customer interactions"
+          }
+        },
+        "step_78eaHH": {
+          "type": "step",
+          "settings": {
+            "title": "Deployment & Integration",
+            "description": "Launch across your chosen channels with full monitoring and support"
+          }
+        },
+        "step_zEyLVB": {
+          "type": "step",
+          "settings": {
+            "title": "Continuous Optimization",
+            "description": "Ongoing improvement based on real interactions, feedback, and performance data"
+          }
+        }
+      },
+      "block_order": [
+        "step_VWnEJa",
+        "step_GejF3z",
+        "step_MxmXGH",
+        "step_NfX4qg",
+        "step_78eaHH",
+        "step_zEyLVB"
+      ],
+      "name": "Services Timeline",
+      "settings": {
+        "strap": "(Our Process)",
+        "title_before": "How We",
+        "title_gradient": "Deliver",
+        "subtitle": "Our proven process ensures exceptional results every time."
+      }
+    },
+    "services_plan_URffPE": {
+      "type": "services-plan",
+      "blocks": {
+        "plan_HyVafM": {
+          "type": "plan",
+          "settings": {
+            "name": "Starter",
+            "description": "Perfect for small businesses getting started with AI automation",
+            "price": "$2,500",
+            "period": "/ one-time setup",
+            "badge": "",
+            "features_text": "Single AI agent\nWebsite deployment\nBasic knowledge base (up to 50 FAQs)\nStandard response templates\nEmail support\n30-day optimization period",
+            "cta_text": "Get Started",
+            "cta_url": "",
+            "cta_new_tab": true
+          }
+        },
+        "plan_FrHA6H": {
+          "type": "plan",
+          "settings": {
+            "name": "Professional",
+            "description": "Ideal for growing businesses ready to scale their customer experience",
+            "price": "$5,000",
+            "period": "/ one-time setup",
+            "badge": "Most Popular",
+            "features_text": "Advanced AI agent with personality\nWebsite + Instagram DM deployment\nComprehensive knowledge base (unlimited)\nCustom conversation flows\nCRM integration\nAnalytics dashboard\nPriority support\n90-day optimization period",
+            "cta_text": "Get Started",
+            "cta_url": "",
+            "cta_new_tab": true
+          }
+        },
+        "plan_qWaeyc": {
+          "type": "plan",
+          "settings": {
+            "name": "Enterprise",
+            "description": "For established brands requiring complete AI ecosystem",
+            "price": "$12,000",
+            "period": "/ one-time setup",
+            "badge": "",
+            "features_text": "Multiple AI agents\nAll channels (Web, IG, FB, Email, SMS)\nAdvanced integrations (Shopify, HubSpot, etc.)\nCustom training & fine-tuning\nDedicated account manager\nWhite-glove onboarding\n24/7 priority support\nQuarterly strategy reviews",
+            "cta_text": "Get Started",
+            "cta_url": "",
+            "cta_new_tab": true
+          }
+        }
+      },
+      "block_order": [
+        "plan_HyVafM",
+        "plan_FrHA6H",
+        "plan_qWaeyc"
+      ],
+      "name": "Services Plan",
+      "settings": {
+        "strap": "(Investment)",
+        "title_before": "Choose Your",
+        "title_gradient": "Plan",
+        "description": "Select the package that best fits your needs. All plans include our signature quality and support.",
+        "footer_before": "Need ongoing support? Add",
+        "footer_highlight": "$500/mo",
+        "footer_after": "for Ongoing optimization, updates, and support"
+      }
+    },
+    "service_testimonial_ekeHMB": {
+      "type": "service-testimonial",
+      "name": "Service Testimonial",
+      "settings": {
+        "quote": "\"The Company Agent Builder transformed how we interact with customers. Our brand voice is now perfectly consistent 24/7, and we've seen a 40% reduction in support costs while improving customer satisfaction.\"",
+        "author_name": "Sarah Chen",
+        "author_role": "CEO, TechVenture AI"
+      }
+    },
+    "use_cases_q3tjXM": {
+      "type": "use-cases",
+      "blocks": {
+        "use_case_rT9VqK": {
+          "type": "use_case",
+          "settings": {
+            "title": "Customer Support Automation",
+            "tagline": "Never Miss a Customer Question Again",
+            "url": "#",
+            "cta_text": "Explore",
+            "open_new_tab": false
+          }
+        },
+        "use_case_4bwBcy": {
+          "type": "use_case",
+          "settings": {
+            "title": "Sales Lead Qualification",
+            "tagline": "Only Talk to Ready-to-Buy Prospects",
+            "url": "#",
+            "cta_text": "Explore",
+            "open_new_tab": false
+          }
+        },
+        "use_case_GD64Xa": {
+          "type": "use_case",
+          "settings": {
+            "title": "Product Recommendations",
+            "tagline": "Show Customers Exactly What They Want",
+            "url": "",
+            "cta_text": "Explore",
+            "open_new_tab": false
+          }
+        },
+        "use_case_xAVNaF": {
+          "type": "use_case",
+          "settings": {
+            "title": "Appointment Scheduling",
+            "tagline": "Fill Your Calendar on Autopilot",
+            "url": "",
+            "cta_text": "Explore",
+            "open_new_tab": false
+          }
+        },
+        "use_case_Dimqy4": {
+          "type": "use_case",
+          "settings": {
+            "title": "FAQ & Knowledge Base",
+            "tagline": "Instant Answers, Zero Wait Time",
+            "url": "",
+            "cta_text": "Explore",
+            "open_new_tab": false
+          }
+        },
+        "use_case_JfAcB9": {
+          "type": "use_case",
+          "settings": {
+            "title": "Onboarding Assistance",
+            "tagline": "Guide Every Customer to Success",
+            "url": "",
+            "cta_text": "Explore",
+            "open_new_tab": false
+          }
+        },
+        "use_case_NweVV6": {
+          "type": "use_case",
+          "settings": {
+            "title": "Order Status Updates",
+            "tagline": "Proactive Communication, Happy Customers",
+            "url": "",
+            "cta_text": "Explore",
+            "open_new_tab": false
+          }
+        },
+        "use_case_HRYHLh": {
+          "type": "use_case",
+          "settings": {
+            "title": "Feedback Collection",
+            "tagline": "Capture Insights at the Perfect Moment",
+            "url": "",
+            "cta_text": "Explore",
+            "open_new_tab": false
+          }
+        }
+      },
+      "block_order": [
+        "use_case_rT9VqK",
+        "use_case_4bwBcy",
+        "use_case_GD64Xa",
+        "use_case_xAVNaF",
+        "use_case_Dimqy4",
+        "use_case_JfAcB9",
+        "use_case_NweVV6",
+        "use_case_HRYHLh"
+      ],
+      "name": "Use Cases",
+      "settings": {
+        "strap": "(Perfect For)",
+        "title_before": "Use",
+        "title_gradient": "Cases",
+        "description": "Click any use case to see how it transforms your business"
+      }
+    },
+    "faq_RzHXCd": {
+      "type": "faq",
+      "blocks": {
+        "faq_7d93ic": {
+          "type": "faq",
+          "settings": {
+            "question": "How long does it take to build and deploy a company agent?",
+            "answer": "Typically 2-4 weeks depending on complexity. Starter packages can be live in as little as 10 business days, while Enterprise solutions with multiple integrations may take 4-6 weeks."
+          }
+        },
+        "faq_Lh88e7": {
+          "type": "faq",
+          "settings": {
+            "question": "Can the AI agent handle complex customer inquiries?",
+            "answer": "Yes. Our agents are trained on your brand guidelines and knowledge base, and can handle multi-turn conversations. For highly complex or sensitive issues, we support seamless human handoff."
+          }
+        },
+        "faq_imN7DG": {
+          "type": "faq",
+          "settings": {
+            "question": "What platforms can the agent be deployed on?",
+            "answer": "Website chat, Instagram DMs, Facebook Messenger, email, and SMS. Enterprise plans can include custom integrations and additional channels."
+          }
+        },
+        "faq_RHcRGW": {
+          "type": "faq",
+          "settings": {
+            "question": "How do you train the AI on our brand voice?",
+            "answer": "We use your existing content, tone guidelines, and sample conversations in a discovery workshop, then calibrate the agent so responses stay consistent with your brand."
+          }
+        },
+        "faq_MgjXXd": {
+          "type": "faq",
+          "settings": {
+            "question": "What happens if the AI gives incorrect information?",
+            "answer": "Agents are trained on your approved knowledge base and can be set to escalate uncertain queries to humans. We also provide ongoing monitoring and optimization to improve accuracy."
+          }
+        },
+        "faq_cXrfCF": {
+          "type": "faq",
+          "settings": {
+            "question": "Can we update the agent's knowledge base ourselves?",
+            "answer": "Yes. Depending on your plan, you get access to a dashboard to add or edit FAQs and content. We can also handle updates as part of ongoing support."
+          }
+        }
+      },
+      "block_order": [
+        "faq_7d93ic",
+        "faq_Lh88e7",
+        "faq_imN7DG",
+        "faq_RHcRGW",
+        "faq_MgjXXd",
+        "faq_cXrfCF"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "strap": "(FAQ)",
+        "title_before": "Frequently Asked",
+        "title_gradient": "Questions"
+      }
+    },
+    "related_services_UtrJkF": {
+      "type": "related-services",
+      "blocks": {
+        "service_6YFJpa": {
+          "type": "service",
+          "settings": {
+            "title": "AI Revenue Concierge Chatbot",
+            "description": "An intelligent AI chatbot that engages visitors on your website and Instagram DMs, qualifying leads and driving revenue while you sleep.",
+            "url": "/services/ai-revenue-concierge",
+            "cta_text": "Learn more",
+            "open_new_tab": false
+          }
+        },
+        "service_Ez33Vi": {
+          "type": "service",
+          "settings": {
+            "title": "Klaviyo Flows Services",
+            "description": "Expert Klaviyo flow setup and optimization that converts subscribers into customers on autopilot.",
+            "url": "/services/klaviyo-flows",
+            "cta_text": "Learn more",
+            "open_new_tab": false
+          }
+        },
+        "service_J37i6X": {
+          "type": "service",
+          "settings": {
+            "title": "Virtual Assistance & Admin Support",
+            "description": "Professional virtual assistance that handles your administrative tasks so you can focus on what moves the needle.",
+            "url": "/services/virtual-assistance",
+            "cta_text": "Learn more",
+            "open_new_tab": false
+          }
+        }
+      },
+      "block_order": [
+        "service_6YFJpa",
+        "service_Ez33Vi",
+        "service_J37i6X"
+      ],
+      "name": "Related Services",
+      "settings": {
+        "strap": "(Related Services)",
+        "title_before": "You Might Also",
+        "title_gradient": "Like"
+      }
+    },
+    "services_cta_dUgeXW": {
+      "type": "services-cta",
+      "name": "Services CTA",
+      "settings": {
+        "heading": "Ready to Build Your AI-Powered Brand Agent?",
+        "description": "Book a free consultation to discuss how we can automate your customer interactions while maintaining your unique brand voice.",
+        "cta_text": "Book Free Consultation",
+        "cta_url": "#",
+        "cta_new_tab": true
+      }
     }
   },
   "order": [
@@ -312,6 +726,14 @@
     "rich_text_EEHbYG",
     "services_rich_text_VBT9G7",
     "two_column_text_C8d8mg",
-    "two_column_text_zCXJVY"
+    "two_column_text_zCXJVY",
+    "services_key_features_qwLJ4x",
+    "services_timeline_jcmmxh",
+    "services_plan_URffPE",
+    "service_testimonial_ekeHMB",
+    "use_cases_q3tjXM",
+    "faq_RzHXCd",
+    "related_services_UtrJkF",
+    "services_cta_dUgeXW"
   ]
 }
