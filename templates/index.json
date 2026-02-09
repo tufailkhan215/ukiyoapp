@@ -520,6 +520,7 @@
         "testimonial_CXXQxE": {
           "type": "testimonial",
           "settings": {
+            "image": "shopify://shop_images/user.png",
             "quote": "Ukiyo transformed our entire digital presence. Their AI automation solutions saved us over $500K annually while dramatically improving customer satisfaction.",
             "name": "Sarah Chen",
             "role": "CEO, TechVenture AI"
@@ -528,6 +529,7 @@
         "testimonial_LQWVCy": {
           "type": "testimonial",
           "settings": {
+            "image": "shopify://shop_images/user.png",
             "quote": "The team at Ukiyo doesn't just deliver—they exceed every expectation. Our brand went from unknown startup to industry leader in just 18 months.",
             "name": "Marcus Williams",
             "role": "Founder, Luxe Lifestyle"
@@ -536,6 +538,7 @@
         "testimonial_ixkeea": {
           "type": "testimonial",
           "settings": {
+            "image": "shopify://shop_images/user.png",
             "quote": "Strategic clarity and execution that actually moves the needle. We saw 340% growth in the first year.",
             "name": "Alex Rivera",
             "role": "CMO, Growth Labs"
@@ -544,6 +547,7 @@
         "testimonial_gKdwwh": {
           "type": "testimonial",
           "settings": {
+            "image": "shopify://shop_images/user.png",
             "quote": "From brand strategy to launch, Ukiyo felt like an extension of our team. Couldn't recommend them more.",
             "name": "Jordan Lee",
             "role": "Founder, SustainCo"
@@ -701,8 +705,8 @@
         "title_after": "Left This Month",
         "description": "We only take on 5 new clients per month to ensure premium quality. Once spots are filled, you'll have to wait until next month.",
         "countdown_label": "Offer Expires In",
-        "countdown_end": "",
-        "cta_url": "",
+        "countdown_end": "2026-12-31 23:59:59",
+        "cta_url": "#",
         "cta_new_tab": true,
         "cta_text": "Claim Your Spot Now",
         "cta_subtext": "No credit card required • Free consultation"
