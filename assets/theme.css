@@ -218,6 +218,11 @@ img {
   animation: scrollPulse 2s ease-in-out infinite;
 }
 
+/* Hero scroll indicator dot (inside oval) */
+.scroll-indicator-dot {
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
 @keyframes marbleShift {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.8; transform: scale(1.05); }
@@ -264,6 +269,7 @@ img {
 
 @media (prefers-reduced-motion: reduce) {
   .scroll-indicator,
+  .scroll-indicator-dot,
   .animate-marquee,
   .animate-marquee-reverse,
   .animate-float,

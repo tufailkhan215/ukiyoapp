@@ -1,32 +1,40 @@
-<section class="marquee scrollbar-hide" data-reveal>
-  <div class="marquee__row animate-marquee">
-    <div class="marquee__inner">
-      {% for block in section.blocks %}
-        {% if block.type == 'logo' %}
-          <span class="marquee__item" {{ block.shopify_attributes }}>{{ block.settings.name | default: 'Brand' }}</span>
-        {% endif %}
+{% comment %} Source structure and Tailwind classes from reference (MarqueeLogos) {% endcomment %}
+<section class="relative py-20 bg-black overflow-hidden">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+
+  <div class="text-center mb-12">
+    <span class="text-[10px] font-medium text-white/30 tracking-[0.4em] uppercase">{{ section.settings.title | default: 'Trusted by Industry Leaders' }}</span>
+  </div>
+
+  <div class="relative">
+    {% comment %} Row 1: filled text (text-white/[0.06]) - duplicate for seamless marquee {% endcomment %}
+    <div class="overflow-hidden mb-4">
+      <div class="flex whitespace-nowrap animate-marquee scrollbar-hide w-max">
+      {% for i in (1..2) %}
+        {% for block in section.blocks %}
+          {% if block.type == 'logo' and block.settings.row == '1' %}
+            <span class="mx-10 text-3xl md:text-4xl font-bold text-white/[0.06]" {% if i == 1 %}{{ block.shopify_attributes }}{% endif %}>{{ block.settings.name | default: 'Brand' }}</span>
+          {% endif %}
+        {% endfor %}
       {% endfor %}
-      {% for block in section.blocks %}
-        {% if block.type == 'logo' %}
-          <span class="marquee__item">{{ block.settings.name | default: 'Brand' }}</span>
-        {% endif %}
+      </div>
+    </div>
+
+    {% comment %} Row 2: outline only (-webkit-text-stroke) - duplicate for seamless marquee, reverse direction {% endcomment %}
+    <div class="overflow-hidden">
+      <div class="flex whitespace-nowrap animate-marquee-reverse scrollbar-hide w-max">
+      {% for i in (1..2) %}
+        {% for block in section.blocks %}
+          {% if block.type == 'logo' and block.settings.row == '2' %}
+            <span class="mx-10 text-3xl md:text-4xl font-bold text-transparent" style="-webkit-text-stroke: 1px rgba(255, 255, 255, 0.06);" {% if i == 1 %}{{ block.shopify_attributes }}{% endif %}>{{ block.settings.name | default: 'Brand' }}</span>
+          {% endif %}
+        {% endfor %}
       {% endfor %}
+      </div>
     </div>
   </div>
-  <div class="marquee__row animate-marquee-reverse" style="margin-top: 1rem;">
-    <div class="marquee__inner">
-      {% for block in section.blocks %}
-        {% if block.type == 'logo' %}
-          <span class="marquee__item">{{ block.settings.name | default: 'Brand' }}</span>
-        {% endif %}
-      {% endfor %}
-      {% for block in section.blocks %}
-        {% if block.type == 'logo' %}
-          <span class="marquee__item">{{ block.settings.name | default: 'Brand' }}</span>
-        {% endif %}
-      {% endfor %}
-    </div>
-  </div>
+
+  <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
 </section>
 
 {% schema %}
@@ -34,28 +42,43 @@
   "name": "Marquee logos",
   "tag": "section",
   "class": "section-marquee",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Section title", "default": "Trusted by Industry Leaders" }
+  ],
   "blocks": [
     {
       "type": "logo",
       "name": "Logo / brand",
       "settings": [
-        {
-          "type": "text",
-          "id": "name",
-          "label": "Name"
-        }
+        { "type": "text", "id": "name", "label": "Name" },
+        { "type": "select", "id": "row", "label": "Row", "default": "1", "options": [
+          { "value": "1", "label": "Row 1 (filled)" },
+          { "value": "2", "label": "Row 2 (outline)" }
+        ]}
       ]
     }
   ],
   "presets": [
     {
       "name": "Marquee logos",
+      "settings": { "title": "Trusted by Industry Leaders" },
       "blocks": [
-        { "type": "logo", "settings": { "name": "APPLE" } },
-        { "type": "logo", "settings": { "name": "GOOGLE" } },
-        { "type": "logo", "settings": { "name": "META" } },
-        { "type": "logo", "settings": { "name": "SPOTIFY" } },
-        { "type": "logo", "settings": { "name": "NIKE" } }
+        { "type": "logo", "settings": { "name": "APPLE", "row": "1" } },
+        { "type": "logo", "settings": { "name": "GOOGLE", "row": "1" } },
+        { "type": "logo", "settings": { "name": "META", "row": "1" } },
+        { "type": "logo", "settings": { "name": "AMAZON", "row": "1" } },
+        { "type": "logo", "settings": { "name": "SPOTIFY", "row": "1" } },
+        { "type": "logo", "settings": { "name": "NIKE", "row": "1" } },
+        { "type": "logo", "settings": { "name": "ADOBE", "row": "1" } },
+        { "type": "logo", "settings": { "name": "TARGET", "row": "1" } },
+        { "type": "logo", "settings": { "name": "STRIPE", "row": "2" } },
+        { "type": "logo", "settings": { "name": "FIGMA", "row": "2" } },
+        { "type": "logo", "settings": { "name": "SLACK", "row": "2" } },
+        { "type": "logo", "settings": { "name": "NOTION", "row": "2" } },
+        { "type": "logo", "settings": { "name": "NETFLIX", "row": "2" } },
+        { "type": "logo", "settings": { "name": "TESLA", "row": "2" } },
+        { "type": "logo", "settings": { "name": "AIRBNB", "row": "2" } },
+        { "type": "logo", "settings": { "name": "UBER", "row": "2" } }
       ]
     }
   ]
