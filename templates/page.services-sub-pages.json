@@ -133,6 +133,55 @@
         "cta_secondary_text": "View Case Studies",
         "cta_secondary_url": "/pages/work"
       }
+    },
+    "stats_YdmTqx": {
+      "type": "stats",
+      "blocks": {
+        "stat_6RCYkx": {
+          "type": "stat",
+          "settings": {
+            "value": "$50M+",
+            "label": "Revenue Generated",
+            "desc": "For clients through strategic campaigns"
+          }
+        },
+        "stat_e3UaEi": {
+          "type": "stat",
+          "settings": {
+            "value": "340%",
+            "label": "Average Growth",
+            "desc": "Monthly revenue increase"
+          }
+        },
+        "stat_Wz73LD": {
+          "type": "stat",
+          "settings": {
+            "value": "98%",
+            "label": "Client Retention",
+            "desc": "Long-term partnerships"
+          }
+        },
+        "stat_jhKtEa": {
+          "type": "stat",
+          "settings": {
+            "value": "$500K+",
+            "label": "Annual Savings",
+            "desc": "Through AI automation"
+          }
+        }
+      },
+      "block_order": [
+        "stat_6RCYkx",
+        "stat_e3UaEi",
+        "stat_Wz73LD",
+        "stat_jhKtEa"
+      ],
+      "name": "Stats",
+      "settings": {
+        "strap": "(Our Impact)",
+        "title_before": "Numbers that",
+        "title_gradient": "matter"
+      }
     }
   },
   "order": [
@@ -140,6 +189,7 @@
     "services_hero_Hfxecm",
     "services_intro_C3pYy7",
     "services_category_grid_nxbLPE",
-    "service_details_intro_yGMBf3"
+    "service_details_intro_yGMBf3",
+    "stats_YdmTqx"
   ]
 }
