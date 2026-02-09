@@ -23,8 +23,8 @@
             "type": "dropdown_category",
             "settings": {
               "parent_handle": "services",
-              "category_title": "Category title 1",
-              "links_text": "Links1|#\nLinks2|#\nLinks3|#"
+              "category_title": "Brand Strategy",
+              "links_text": "Company Agent Builder|/pages/company-agent-builder\nPartnership & Collaboration|/pages/partnership-collaboration"
             }
           },
           "dropdown_category_FwQj3T": {

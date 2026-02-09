@@ -1,0 +1,206 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "services_hero_Hfxecm": {
+      "type": "services-hero",
+      "disabled": true,
+      "name": "Services Hero",
+      "settings": {
+        "watermark": "SERVICES",
+        "strap": "Our Services",
+        "title_line1": "Let's Plant",
+        "title_line2": "Your Flag",
+        "description": "We work with founders, CEOs, and leadership teams to shape defining ideas and build strategy and design systems for growth at scale.",
+        "scroll_text": "(Scroll to explore)"
+      }
+    },
+    "services_intro_C3pYy7": {
+      "type": "services-intro",
+      "disabled": true,
+      "name": "Services Intro",
+      "settings": {
+        "strap": "(What We Do)",
+        "title_before": "Brand strategy, identity, and experience built for",
+        "title_gradient": "growth at scale.",
+        "paragraph_1": "Our work spans brand strategy, identity, and experience, delivered as a single integrated system. We lead engagements from positioning through messaging, identity design, digital experiences, and brand systems.",
+        "paragraph_2": "The focus is practical by design: building brands that can be applied consistently across product, marketing, and communications.",
+        "cta_text": "Book a Discovery Call",
+        "cta_url": "/pages/contact"
+      }
+    },
+    "services_category_grid_nxbLPE": {
+      "type": "services-category-grid",
+      "blocks": {
+        "category_VwPgaM": {
+          "type": "category",
+          "settings": {
+            "icon": "sparkles",
+            "title": "Brand Strategy",
+            "description": "Define your edge and steer your company into the future",
+            "links_text": "Company Agent Builder|/services/company-agent-builder|From $5,000\nPartnership & Collaboration Engine|/services/partnership-collaboration|From $3,500"
+          }
+        },
+        "category_PpaMwh": {
+          "type": "category",
+          "settings": {
+            "icon": "zap",
+            "title": "AI Automations",
+            "description": "Streamline operations with intelligent solutions",
+            "links_text": "AI Revenue Concierge Chatbot|/services/ai-revenue-concierge|From $2,500"
+          }
+        },
+        "category_pygQfL": {
+          "type": "category",
+          "settings": {
+            "icon": "palette",
+            "title": "Brand Identity",
+            "description": "Stand out visually with distinctive design systems",
+            "links_text": "Graphic Design & Brand Identity|/services/graphic-design|From $8,000"
+          }
+        },
+        "category_XrHHgT": {
+          "type": "category",
+          "settings": {
+            "icon": "globe",
+            "title": "Digital Experience",
+            "description": "Captivate audiences with immersive experiences",
+            "links_text": "Website & Web Development|/services/web-development|From $15,000\nMobile & App Development|/services/mobile-app-development|From $25,000"
+          }
+        },
+        "category_ayXYEP": {
+          "type": "category",
+          "settings": {
+            "icon": "film",
+            "title": "Content Production",
+            "description": "Visual storytelling that resonates",
+            "links_text": "Monthly Content Calendar|/services/monthly-content-calendar|From $2,000\nPinterest SEO Services|/services/pinterest-seo|From $1,500\nSEO Blog Services|/services/seo-blog|From $3,000"
+          }
+        },
+        "category_XAQBt7": {
+          "type": "category",
+          "settings": {
+            "icon": "trending-up",
+            "title": "Growth Marketing",
+            "description": "Data-driven strategies for sustainable growth",
+            "links_text": "Klaviyo Flows Services|/services/klaviyo-flows|From $3,500\nPaid Ads Creative System|/services/paid-ads-creative|From $4,000\nVirtual Assistance & Admin|/services/virtual-assistance|From $1,500"
+          }
+        }
+      },
+      "block_order": [
+        "category_VwPgaM",
+        "category_PpaMwh",
+        "category_pygQfL",
+        "category_XrHHgT",
+        "category_ayXYEP",
+        "category_XAQBt7"
+      ],
+      "disabled": true,
+      "name": "Services Category Grid",
+      "settings": {
+        "strap": "(Our Services)",
+        "title_before": "Everything You",
+        "title_gradient": "Need to Grow",
+        "description": "12 specialized services across 6 categories, each designed to accelerate your business growth."
+      }
+    },
+    "service_details_intro_yGMBf3": {
+      "type": "service-details-intro",
+      "name": "Service Details Intro",
+      "settings": {
+        "back_link_text": "Back to Services",
+        "back_link_url": "/pages/services",
+        "category_label": "Brand Strategy",
+        "category_icon": "sparkles",
+        "title": "Company Agent Builder",
+        "subtitle": "Your Brand's AI-Powered Strategic Partner",
+        "description": "Build intelligent agents that embody your brand values and work 24/7",
+        "cta_primary_text": "Book Free Consultation",
+        "cta_primary_url": "#",
+        "cta_primary_new_tab": true,
+        "cta_secondary_text": "View Case Studies",
+        "cta_secondary_url": "/pages/work"
+      }
+    },
+    "stats_YdmTqx": {
+      "type": "stats",
+      "blocks": {
+        "stat_6RCYkx": {
+          "type": "stat",
+          "settings": {
+            "value": "$50M+",
+            "label": "Revenue Generated",
+            "desc": "For clients through strategic campaigns"
+          }
+        },
+        "stat_e3UaEi": {
+          "type": "stat",
+          "settings": {
+            "value": "340%",
+            "label": "Average Growth",
+            "desc": "Monthly revenue increase"
+          }
+        },
+        "stat_Wz73LD": {
+          "type": "stat",
+          "settings": {
+            "value": "98%",
+            "label": "Client Retention",
+            "desc": "Long-term partnerships"
+          }
+        },
+        "stat_jhKtEa": {
+          "type": "stat",
+          "settings": {
+            "value": "$500K+",
+            "label": "Annual Savings",
+            "desc": "Through AI automation"
+          }
+        }
+      },
+      "block_order": [
+        "stat_6RCYkx",
+        "stat_e3UaEi",
+        "stat_Wz73LD",
+        "stat_jhKtEa"
+      ],
+      "name": "Stats",
+      "settings": {
+        "strap": "(Our Impact)",
+        "title_before": "Numbers that",
+        "title_gradient": "matter"
+      }
+    },
+    "rich_text_EEHbYG": {
+      "type": "rich-text",
+      "name": "Rich text",
+      "settings": {
+        "heading": "(Our Approach)",
+        "text": "We leverage AI-driven automation and data optimizations to help brands work smarter and faster. Say goodbye to tedious tasks and hello to real-time insights that fuel your growth.",
+        "button_text": "Button",
+        "button_link": "#"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "services_hero_Hfxecm",
+    "services_intro_C3pYy7",
+    "services_category_grid_nxbLPE",
+    "service_details_intro_yGMBf3",
+    "stats_YdmTqx",
+    "rich_text_EEHbYG"
+  ]
+}
