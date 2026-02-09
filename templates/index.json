@@ -114,6 +114,15 @@
         "title": "Trusted by Industry Leaders"
       }
     },
+    "big_statement_8bQy8a": {
+      "type": "big-statement",
+      "name": "Big statement",
+      "settings": {
+        "quote_part1": "Brand strategy, identity, and experience",
+        "quote_part2": "built for growth at scale.",
+        "tagline": "Our Philosophy"
+      }
+    },
     "trusted-by": {
       "type": "trusted-by",
       "settings": {
@@ -130,11 +139,87 @@
         "button_text": "Start Your Project",
         "button_link": "/pages/contact"
       }
+    },
+    "transformation_xNQCz7": {
+      "type": "transformation",
+      "blocks": {
+        "transformation_UgzTP6": {
+          "type": "transformation",
+          "settings": {
+            "filter_label": "E-Commerce Brand",
+            "before_heading": "BEFORE UKIYO",
+            "after_heading": "AFTER UKIYO",
+            "timeline": "In 6 months",
+            "before_revenue": "$12K/mo",
+            "before_leads": "50/month",
+            "before_conversion": "1.2%",
+            "before_hours": "80hrs/week manual work",
+            "after_revenue": "$147K/mo",
+            "after_leads": "2,400/month",
+            "after_conversion": "4.8%",
+            "after_hours": "10hrs/week (automated)",
+            "quote": "Ukiyo transformed our entire business. We went from struggling to thriving.",
+            "attribution": "E-Commerce Brand • Fashion & Apparel"
+          }
+        },
+        "transformation_qihCY7": {
+          "type": "transformation",
+          "settings": {
+            "filter_label": "SaaS Startup",
+            "before_heading": "BEFORE UKIYO",
+            "after_heading": "AFTER UKIYO",
+            "timeline": "In 6 months",
+            "before_revenue": "$8K/mo",
+            "before_leads": "120/month",
+            "before_conversion": "0.8%",
+            "before_hours": "60hrs/week",
+            "after_revenue": "$89K/mo",
+            "after_leads": "1,800/month",
+            "after_conversion": "3.2%",
+            "after_hours": "15hrs/week (automated)",
+            "quote": "From chaos to clarity. Ukiyo built the systems we needed to scale.",
+            "attribution": "SaaS Startup • B2B Software"
+          }
+        },
+        "transformation_Qpe74w": {
+          "type": "transformation",
+          "settings": {
+            "filter_label": "Local Service Business",
+            "before_heading": "BEFORE UKIYO",
+            "after_heading": "AFTER UKIYO",
+            "timeline": "In 6 months",
+            "before_revenue": "$25K/mo",
+            "before_leads": "30/month",
+            "before_conversion": "2%",
+            "before_hours": "70hrs/week",
+            "after_revenue": "$92K/mo",
+            "after_leads": "450/month",
+            "after_conversion": "5.5%",
+            "after_hours": "20hrs/week (automated)",
+            "quote": "Our revenue tripled. Ukiyo gave us a real brand and a real pipeline.",
+            "attribution": "Local Service Business • Home Services"
+          }
+        }
+      },
+      "block_order": [
+        "transformation_UgzTP6",
+        "transformation_qihCY7",
+        "transformation_Qpe74w"
+      ],
+      "name": "Transformation",
+      "settings": {
+        "strap": "(Before & After)",
+        "title_before": "Real",
+        "title_gradient": "Transformations",
+        "subtitle": "These aren't hypotheticals. These are actual results from real clients."
+      }
     }
   },
   "order": [
     "hero",
     "marquee",
+    "big_statement_8bQy8a",
+    "transformation_xNQCz7",
     "trusted-by",
     "cta"
   ]
