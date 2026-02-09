@@ -16,6 +16,7 @@
     },
     "services_hero_Hfxecm": {
       "type": "services-hero",
+      "disabled": true,
       "name": "Services Hero",
       "settings": {
         "watermark": "SERVICES",
@@ -28,6 +29,7 @@
     },
     "services_intro_C3pYy7": {
       "type": "services-intro",
+      "disabled": true,
       "name": "Services Intro",
       "settings": {
         "strap": "(What We Do)",
@@ -105,6 +107,7 @@
         "category_ayXYEP",
         "category_XAQBt7"
       ],
+      "disabled": true,
       "name": "Services Category Grid",
       "settings": {
         "strap": "(Our Services)",
@@ -112,12 +115,31 @@
         "title_gradient": "Need to Grow",
         "description": "12 specialized services across 6 categories, each designed to accelerate your business growth."
       }
+    },
+    "service_details_intro_yGMBf3": {
+      "type": "service-details-intro",
+      "name": "Service Details Intro",
+      "settings": {
+        "back_link_text": "Back to Services",
+        "back_link_url": "/pages/services",
+        "category_label": "Brand Strategy",
+        "category_icon": "sparkles",
+        "title": "Company Agent Builder",
+        "subtitle": "Your Brand's AI-Powered Strategic Partner",
+        "description": "Build intelligent agents that embody your brand values and work 24/7",
+        "cta_primary_text": "Book Free Consultation",
+        "cta_primary_url": "#",
+        "cta_primary_new_tab": true,
+        "cta_secondary_text": "View Case Studies",
+        "cta_secondary_url": "/pages/work"
+      }
     }
   },
   "order": [
     "main",
     "services_hero_Hfxecm",
     "services_intro_C3pYy7",
-    "services_category_grid_nxbLPE"
+    "services_category_grid_nxbLPE",
+    "service_details_intro_yGMBf3"
   ]
 }
