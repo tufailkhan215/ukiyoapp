@@ -1,15 +1,200 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "hero",
       "settings": {
         "subtitle": "Creative Branding Agency",
-        "headline_line1": "WE BUILD BRANDS",
-        "headline_line2": "THAT PRINT MONEY",
+        "headline_line1": "WE CREATE",
+        "headline_line2": "EXCEPTIONAL",
+        "headline_line3": "Brand Experiences",
         "description": "Premium brand development, AI automation, and content production for businesses ready to dominate their market.",
         "cta_primary_text": "Start Your Project",
+        "cta_primary_link": "#",
         "cta_secondary_text": "View Our Work",
+        "cta_secondary_link": "#",
         "scroll_label": "Scroll"
+      }
+    },
+    "marquee": {
+      "type": "marquee-logos",
+      "blocks": {
+        "logo_gtXMwV": {
+          "type": "logo",
+          "settings": {
+            "name": "",
+            "row": "2"
+          }
+        },
+        "logo_w86fX9": {
+          "type": "logo",
+          "settings": {
+            "name": "NOKIA",
+            "row": "2"
+          }
+        },
+        "logo_rWRt8M": {
+          "type": "logo",
+          "settings": {
+            "name": "APPLE",
+            "row": "2"
+          }
+        },
+        "logo_BEnFJa": {
+          "type": "logo",
+          "settings": {
+            "name": "AMAZON",
+            "row": "2"
+          }
+        },
+        "logo_VRnNgD": {
+          "type": "logo",
+          "settings": {
+            "name": "",
+            "row": "2"
+          }
+        },
+        "logo_debhPJ": {
+          "type": "logo",
+          "settings": {
+            "name": "AMAZON",
+            "row": "1"
+          }
+        },
+        "logo_Ft3KYp": {
+          "type": "logo",
+          "settings": {
+            "name": "SPOTIFY",
+            "row": "1"
+          }
+        },
+        "logo_kRbck3": {
+          "type": "logo",
+          "settings": {
+            "name": "APPLE",
+            "row": "1"
+          }
+        },
+        "logo_mYXBQG": {
+          "type": "logo",
+          "settings": {
+            "name": "NIKE",
+            "row": "1"
+          }
+        },
+        "logo_q7JBDR": {
+          "type": "logo",
+          "settings": {
+            "name": "",
+            "row": "1"
+          }
+        }
+      },
+      "block_order": [
+        "logo_gtXMwV",
+        "logo_w86fX9",
+        "logo_rWRt8M",
+        "logo_BEnFJa",
+        "logo_VRnNgD",
+        "logo_debhPJ",
+        "logo_Ft3KYp",
+        "logo_kRbck3",
+        "logo_mYXBQG",
+        "logo_q7JBDR"
+      ],
+      "settings": {
+        "title": "Trusted by Industry Leaders"
+      }
+    },
+    "big_statement_8bQy8a": {
+      "type": "big-statement",
+      "name": "Big statement",
+      "settings": {
+        "quote_part1": "Brand strategy, identity, and experience",
+        "quote_part2": "built for growth at scale.",
+        "tagline": "Our Philosophy"
+      }
+    },
+    "transformation_xNQCz7": {
+      "type": "transformation",
+      "blocks": {
+        "transformation_UgzTP6": {
+          "type": "transformation",
+          "settings": {
+            "filter_label": "E-Commerce Brand",
+            "before_heading": "BEFORE UKIYO",
+            "after_heading": "AFTER UKIYO",
+            "timeline": "In 6 months",
+            "before_revenue": "$12K/mo",
+            "before_leads": "50/month",
+            "before_conversion": "1.2%",
+            "before_hours": "80hrs/week manual work",
+            "after_revenue": "$147K/mo",
+            "after_leads": "2,400/month",
+            "after_conversion": "4.8%",
+            "after_hours": "10hrs/week (automated)",
+            "quote": "Ukiyo transformed our entire business. We went from struggling to thriving.",
+            "attribution": "E-Commerce Brand • Fashion & Apparel"
+          }
+        },
+        "transformation_qihCY7": {
+          "type": "transformation",
+          "settings": {
+            "filter_label": "SaaS Startup",
+            "before_heading": "BEFORE UKIYO",
+            "after_heading": "AFTER UKIYO",
+            "timeline": "In 6 months",
+            "before_revenue": "$8K/mo",
+            "before_leads": "120/month",
+            "before_conversion": "0.8%",
+            "before_hours": "60hrs/week",
+            "after_revenue": "$89K/mo",
+            "after_leads": "1,800/month",
+            "after_conversion": "3.2%",
+            "after_hours": "15hrs/week (automated)",
+            "quote": "From chaos to clarity. Ukiyo built the systems we needed to scale.",
+            "attribution": "SaaS Startup • B2B Software"
+          }
+        },
+        "transformation_Qpe74w": {
+          "type": "transformation",
+          "settings": {
+            "filter_label": "Local Service Business",
+            "before_heading": "BEFORE UKIYO",
+            "after_heading": "AFTER UKIYO",
+            "timeline": "In 6 months",
+            "before_revenue": "$25K/mo",
+            "before_leads": "30/month",
+            "before_conversion": "2%",
+            "before_hours": "70hrs/week",
+            "after_revenue": "$92K/mo",
+            "after_leads": "450/month",
+            "after_conversion": "5.5%",
+            "after_hours": "20hrs/week (automated)",
+            "quote": "Our revenue tripled. Ukiyo gave us a real brand and a real pipeline.",
+            "attribution": "Local Service Business • Home Services"
+          }
+        }
+      },
+      "block_order": [
+        "transformation_UgzTP6",
+        "transformation_qihCY7",
+        "transformation_Qpe74w"
+      ],
+      "name": "Transformation",
+      "settings": {
+        "strap": "(Before & After)",
+        "title_before": "Real",
+        "title_gradient": "Transformations",
+        "subtitle": "These aren't hypotheticals. These are actual results from real clients."
       }
     },
     "trusted-by": {
@@ -18,24 +203,6 @@
         "title_before": "Brands That Trust",
         "title_after": "Us",
         "subtitle": "We've partnered with some of the most recognizable brands in the world."
-      },
-      "blocks": {
-        "nike": { "type": "brand", "settings": { "name": "NIKE" } },
-        "spotify": { "type": "brand", "settings": { "name": "SPOTIFY" } },
-        "apple": { "type": "brand", "settings": { "name": "APPLE" } },
-        "adidas": { "type": "brand", "settings": { "name": "ADIDAS" } },
-        "wandrd": { "type": "brand", "settings": { "name": "WANDRD" } },
-        "coachella": { "type": "brand", "settings": { "name": "COACHELLA" } }
-      }
-    },
-    "marquee": {
-      "type": "marquee-logos",
-      "blocks": {
-        "1": { "type": "logo", "settings": { "name": "APPLE" } },
-        "2": { "type": "logo", "settings": { "name": "GOOGLE" } },
-        "3": { "type": "logo", "settings": { "name": "META" } },
-        "4": { "type": "logo", "settings": { "name": "SPOTIFY" } },
-        "5": { "type": "logo", "settings": { "name": "NIKE" } }
       }
     },
     "cta": {
@@ -48,5 +215,12 @@
       }
     }
   },
-  "order": ["hero", "trusted-by", "marquee", "cta"]
+  "order": [
+    "hero",
+    "marquee",
+    "big_statement_8bQy8a",
+    "transformation_xNQCz7",
+    "trusted-by",
+    "cta"
+  ]
 }
