@@ -182,6 +182,16 @@
         "title_before": "Numbers that",
         "title_gradient": "matter"
       }
+    },
+    "rich_text_EEHbYG": {
+      "type": "rich-text",
+      "name": "Rich text",
+      "settings": {
+        "heading": "(Our Approach)",
+        "text": "We leverage AI-driven automation and data optimizations to help brands work smarter and faster. Say goodbye to tedious tasks and hello to real-time insights that fuel your growth.",
+        "button_text": "Button",
+        "button_link": "#"
+      }
     }
   },
   "order": [
@@ -190,6 +200,7 @@
     "services_intro_C3pYy7",
     "services_category_grid_nxbLPE",
     "service_details_intro_yGMBf3",
-    "stats_YdmTqx"
+    "stats_YdmTqx",
+    "rich_text_EEHbYG"
   ]
 }
