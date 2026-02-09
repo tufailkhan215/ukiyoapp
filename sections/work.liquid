@@ -1,0 +1,163 @@
+{% comment %} Source structure and Tailwind classes from reference (WorkSection) {% endcomment %}
+<section class="relative py-28 lg:py-40 bg-black overflow-hidden">
+  <div class="absolute top-1/2 -translate-y-1/2 left-0 whitespace-nowrap pointer-events-none select-none" aria-hidden="true">
+    <span class="text-[20vw] font-bold text-white/[0.015] leading-none">SELECTED WORK</span>
+  </div>
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-12">
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
+      <div>
+        {% if section.settings.strap != blank %}
+          <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-5">{{ section.settings.strap }}</span>
+        {% endif %}
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.05]">
+          {{ section.settings.title_line1 | default: 'Recent' }}<br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_line2 | default: 'case studies' }}</span>
+        </h2>
+      </div>
+      {% if section.settings.view_all_url != blank %}
+        <a class="group inline-flex items-center gap-2 text-white font-medium hover:text-white/70 transition-colors" href="{{ section.settings.view_all_url }}">
+          {{ section.settings.view_all_text | default: 'View all projects' }}
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-arrow-up-right w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </a>
+      {% endif %}
+    </div>
+
+    {% assign featured = section.blocks | where: 'type', 'case_study' | where: 'settings.layout', 'featured' %}
+    {% assign compact = section.blocks | where: 'type', 'case_study' | where: 'settings.layout', 'compact' %}
+
+    <div class="space-y-3 mb-3">
+      {% for block in section.blocks %}
+        {% if block.type == 'case_study' and block.settings.layout == 'featured' %}
+          {% assign num = forloop.index | prepend: '0' | slice: -2, 2 %}
+          <div {{ block.shopify_attributes }}>
+            <a class="group block" href="{{ block.settings.link | default: section.settings.view_all_url }}">
+              <div class="relative bg-white/[0.02] border border-white/[0.05] overflow-hidden hover:border-white/10 transition-all duration-700">
+                <div class="grid lg:grid-cols-2">
+                  <div class="relative aspect-[16/10] lg:aspect-auto lg:min-h-[500px] overflow-hidden">
+                    {% if block.settings.image != blank %}
+                      <img alt="{{ block.settings.title | escape }}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" src="{{ block.settings.image | image_url: width: 800 }}" width="800" height="500" loading="lazy">
+                    {% else %}
+                      <div class="absolute inset-0 bg-white/[0.05] flex items-center justify-center"><span class="text-white/20 text-sm">Image</span></div>
+                    {% endif %}
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-700"></div>
+                    <div class="absolute top-6 left-6">
+                      <span class="text-7xl font-bold text-white/10">{{ num }}</span>
+                    </div>
+                  </div>
+                  <div class="p-8 lg:p-14 flex flex-col justify-center">
+                    {% if block.settings.category != blank %}
+                      <span class="text-[10px] font-medium text-white/30 tracking-[0.3em] uppercase block mb-5">{{ block.settings.category }}</span>
+                    {% endif %}
+                    {% if block.settings.client != blank %}
+                      <p class="text-sm text-white/40 mb-2">{{ block.settings.client }}</p>
+                    {% endif %}
+                    <h3 class="text-2xl lg:text-3xl font-bold text-white mb-4 group-hover:text-gray-200 transition-colors">{{ block.settings.title }}</h3>
+                    {% if block.settings.description != blank %}
+                      <p class="text-white/40 leading-relaxed mb-6">{{ block.settings.description }}</p>
+                    {% endif %}
+                    {% if block.settings.result_1 != blank or block.settings.result_2 != blank %}
+                      <div class="flex flex-wrap gap-2 mb-8">
+                        {% if block.settings.result_1 != blank %}
+                          <span class="px-3 py-1.5 text-xs font-medium uppercase tracking-wider bg-white/[0.03] text-white/50 border border-white/[0.05] rounded-full">{{ block.settings.result_1 }}</span>
+                        {% endif %}
+                        {% if block.settings.result_2 != blank %}
+                          <span class="px-3 py-1.5 text-xs font-medium uppercase tracking-wider bg-white/[0.03] text-white/50 border border-white/[0.05] rounded-full">{{ block.settings.result_2 }}</span>
+                        {% endif %}
+                      </div>
+                    {% endif %}
+                    <span class="inline-flex items-center gap-2 text-white/40 group-hover:text-white transition-colors text-sm font-medium">
+                      View case study
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-3">
+      {% for block in section.blocks %}
+        {% if block.type == 'case_study' and block.settings.layout == 'compact' %}
+          <div {{ block.shopify_attributes }}>
+            <a class="group block" href="{{ block.settings.link | default: section.settings.view_all_url }}">
+              <div class="relative aspect-[4/3] overflow-hidden bg-white/[0.02] border border-white/[0.05] hover:border-white/10 transition-all duration-700">
+                {% if block.settings.image != blank %}
+                  <img alt="{{ block.settings.title | escape }}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="{{ block.settings.image | image_url: width: 800 }}" width="800" height="600" loading="lazy">
+                {% else %}
+                  <div class="absolute inset-0 bg-white/[0.05] flex items-center justify-center"><span class="text-white/20 text-sm">Image</span></div>
+                {% endif %}
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-6">
+                  {% if block.settings.category != blank %}
+                    <span class="text-[10px] font-medium text-white/40 tracking-[0.2em] uppercase block mb-2">{{ block.settings.category }}</span>
+                  {% endif %}
+                  <h3 class="text-xl font-bold text-white group-hover:text-gray-200 transition-colors">{{ block.settings.title }}</h3>
+                </div>
+                <div class="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-arrow-up-right w-5 h-5 text-white" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                </div>
+              </div>
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Work",
+  "tag": "section",
+  "class": "section-work",
+  "settings": [
+    { "type": "text", "id": "strap", "label": "Strap line", "default": "(Selected Work)" },
+    { "type": "text", "id": "title_line1", "label": "Title line 1", "default": "Recent" },
+    { "type": "text", "id": "title_line2", "label": "Title line 2 (gradient)", "default": "case studies" },
+    { "type": "text", "id": "view_all_text", "label": "View all link text", "default": "View all projects" },
+    { "type": "url", "id": "view_all_url", "label": "View all link URL" }
+  ],
+  "blocks": [
+    {
+      "type": "case_study",
+      "name": "Case study",
+      "settings": [
+        { "type": "select", "id": "layout", "label": "Layout", "default": "featured", "options": [
+          { "value": "featured", "label": "Featured (large horizontal)" },
+          { "value": "compact", "label": "Compact (small card)" }
+        ]},
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "category", "label": "Category" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "text", "id": "client", "label": "Client (featured only)" },
+        { "type": "textarea", "id": "description", "label": "Description (featured only)" },
+        { "type": "text", "id": "result_1", "label": "Result tag 1 (featured only)" },
+        { "type": "text", "id": "result_2", "label": "Result tag 2 (featured only)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Work",
+      "settings": {
+        "strap": "(Selected Work)",
+        "title_line1": "Recent",
+        "title_line2": "case studies",
+        "view_all_text": "View all projects"
+      },
+      "blocks": [
+        { "type": "case_study", "settings": { "layout": "featured", "category": "AI & Technology", "client": "TechVenture AI", "title": "Revolutionizing Customer Experience", "description": "Complete brand transformation and AI automation implementation that increased customer engagement by 340%.", "result_1": "340% engagement", "result_2": "$2.4M revenue" } },
+        { "type": "case_study", "settings": { "layout": "featured", "category": "Lifestyle & Fashion", "client": "Luxe Lifestyle", "title": "Building a Premium Brand Identity", "description": "End-to-end branding and content strategy that positioned a startup as a market leader in luxury lifestyle.", "result_1": "500K+ followers", "result_2": "Featured in Vogue" } },
+        { "type": "case_study", "settings": { "layout": "compact", "category": "Sustainability", "title": "Sustainable Growth Through Innovation" } },
+        { "type": "case_study", "settings": { "layout": "compact", "category": "Food & Beverage", "title": "From Local to National Recognition" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

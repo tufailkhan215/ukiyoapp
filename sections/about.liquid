@@ -1,0 +1,228 @@
+{% comment %} Source structure and Tailwind classes from reference (AboutSection) {% endcomment %}
+<section class="relative py-28 lg:py-40 bg-black overflow-hidden" data-testid="about-section">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-white/[0.015] blur-[180px]" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-12">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div>
+        {% if section.settings.strap != blank %}
+          <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-5">{{ section.settings.strap }}</span>
+        {% endif %}
+        <h2 class="text-4xl md:text-5xl font-bold text-white leading-[1.1] mb-8">
+          {{ section.settings.title_line1 | default: 'Turning bold' }}<br>
+          {{ section.settings.title_line2 | default: 'vision into' }}<br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_gradient | default: 'brand impact' }}</span>
+        </h2>
+        <div class="space-y-4 text-white/40 text-base leading-relaxed mb-8">
+          {% if section.settings.paragraph_1 != blank %}
+            <p>{{ section.settings.paragraph_1 }}</p>
+          {% endif %}
+          {% if section.settings.paragraph_2 != blank %}
+            <p>{{ section.settings.paragraph_2 }}</p>
+          {% endif %}
+        </div>
+        {% if section.settings.cta_url != blank %}
+          <a href="{{ section.settings.cta_url }}" class="group inline-flex items-center gap-3 px-7 py-3.5 bg-white text-black rounded-full font-semibold text-sm hover:bg-gray-200 transition-colors" data-testid="about-cta">
+            {{ section.settings.cta_text | default: 'Learn About Us' }}
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+          </a>
+        {% endif %}
+        {% assign location_blocks = section.blocks | where: 'type', 'location' %}
+        {% if location_blocks.size > 0 %}
+          <div class="flex flex-wrap gap-6 mt-12 pt-12 border-t border-white/10">
+            {% for block in location_blocks %}
+              <div class="flex items-center gap-2" {{ block.shopify_attributes }}>
+                <span class="w-1.5 h-1.5 rounded-full bg-white/30" aria-hidden="true"></span>
+                {% if block.settings.name != blank %}
+                  <span class="text-sm text-white/40">{{ block.settings.name }}</span>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="relative">
+        <div class="relative aspect-[4/5] overflow-hidden">
+          {% if section.settings.image != blank %}
+            <img alt="{{ section.settings.image.alt | default: 'About' | escape }}" class="w-full h-full object-cover grayscale" src="{{ section.settings.image | image_url: width: 800 }}" width="800" height="1000" loading="lazy">
+          {% else %}
+            <div class="w-full h-full bg-white/[0.05] flex items-center justify-center"><span class="text-white/20 text-sm">Image</span></div>
+          {% endif %}
+          <div class="absolute inset-0 bg-black/20" aria-hidden="true"></div>
+          <div class="absolute inset-0 border border-white/10 pointer-events-none" aria-hidden="true"></div>
+          {% if section.settings.video_url != blank %}
+            <a href="{{ section.settings.video_url }}" class="absolute inset-0 flex items-center justify-center cursor-pointer group" aria-label="Play video" target="_blank" rel="noopener noreferrer">
+          {% else %}
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+          {% endif %}
+              <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center {% if section.settings.video_url != blank %}group-hover:bg-white/20 transition-colors{% endif %}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play w-6 h-6 text-white fill-white" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              </div>
+          {% if section.settings.video_url != blank %}
+            </a>
+          {% else %}
+            </div>
+          {% endif %}
+        </div>
+        {% if section.settings.stat_1_value != blank or section.settings.stat_1_label != blank %}
+          <div class="absolute -left-6 lg:-left-12 bottom-1/4 bg-black border border-white/10 p-5">
+            {% if section.settings.stat_1_value != blank %}
+              <p class="text-3xl font-bold text-white mb-1">{{ section.settings.stat_1_value }}</p>
+            {% endif %}
+            {% if section.settings.stat_1_label != blank %}
+              <p class="text-[10px] text-white/40 uppercase tracking-wider">{{ section.settings.stat_1_label }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+        {% if section.settings.stat_2_value != blank or section.settings.stat_2_label != blank %}
+          <div class="absolute -right-6 lg:-right-12 top-1/4 bg-black border border-white/10 p-5">
+            {% if section.settings.stat_2_value != blank %}
+              <p class="text-3xl font-bold text-white mb-1">{{ section.settings.stat_2_value }}</p>
+            {% endif %}
+            {% if section.settings.stat_2_label != blank %}
+              <p class="text-[10px] text-white/40 uppercase tracking-wider">{{ section.settings.stat_2_label }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About",
+  "tag": "section",
+  "class": "section-about",
+  "settings": [
+    {
+      "type": "text",
+      "id": "strap",
+      "label": "Strap (small label above title)",
+      "default": "(About Ukiyo)"
+    },
+    {
+      "type": "text",
+      "id": "title_line1",
+      "label": "Title line 1",
+      "default": "Turning bold"
+    },
+    {
+      "type": "text",
+      "id": "title_line2",
+      "label": "Title line 2",
+      "default": "vision into"
+    },
+    {
+      "type": "text",
+      "id": "title_gradient",
+      "label": "Title (gradient part)",
+      "default": "brand impact"
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph_1",
+      "label": "Paragraph 1",
+      "default": "At Ukiyo Productions, we believe exceptional brands are built on strategy, creativity, and relentless innovation."
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph_2",
+      "label": "Paragraph 2",
+      "default": "Our team combines deep expertise in branding, content creation, and cutting-edge AI automation to help businesses scale faster."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button text",
+      "default": "Learn About Us"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button URL",
+      "default": "/pages/about"
+    },
+    {
+      "type": "header",
+      "content": "Image & video"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "Video URL (play button link)",
+      "info": "Leave blank to show play icon without link."
+    },
+    {
+      "type": "header",
+      "content": "Stats on image"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_value",
+      "label": "Stat 1 value (e.g. 10+)"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_label",
+      "label": "Stat 1 label",
+      "default": "Years Experience"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_value",
+      "label": "Stat 2 value (e.g. 500+)"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_label",
+      "label": "Stat 2 label",
+      "default": "Projects Delivered"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "location",
+      "name": "Location",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Location name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About",
+      "settings": {
+        "strap": "(About Ukiyo)",
+        "title_line1": "Turning bold",
+        "title_line2": "vision into",
+        "title_gradient": "brand impact",
+        "paragraph_1": "At Ukiyo Productions, we believe exceptional brands are built on strategy, creativity, and relentless innovation.",
+        "paragraph_2": "Our team combines deep expertise in branding, content creation, and cutting-edge AI automation to help businesses scale faster.",
+        "cta_text": "Learn About Us",
+        "cta_url": "/pages/about",
+        "stat_1_value": "10+",
+        "stat_1_label": "Years Experience",
+        "stat_2_value": "500+",
+        "stat_2_label": "Projects Delivered"
+      },
+      "blocks": [
+        { "type": "location", "settings": { "name": "Los Angeles" } },
+        { "type": "location", "settings": { "name": "New York" } },
+        { "type": "location", "settings": { "name": "Tokyo" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

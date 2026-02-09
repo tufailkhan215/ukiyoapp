@@ -1,0 +1,219 @@
+{% comment %} Source structure and Tailwind classes from reference (ValueStackSection) {% endcomment %}
+<section class="value-stack-section relative py-28 lg:py-40 bg-black overflow-hidden">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.02),transparent_60%)]" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="text-center mb-16">
+      {% if section.settings.strap != blank %}
+        <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-5">{{ section.settings.strap }}</span>
+      {% endif %}
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+        {{ section.settings.title_before | default: 'What You' }} <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_gradient | default: 'Get' }}</span>
+      </h2>
+      {% if section.settings.subtitle != blank %}
+        <p class="text-lg text-white/40 max-w-2xl mx-auto">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12 items-start">
+      {% comment %} Left: value items + summary {% endcomment %}
+      <div>
+        <div class="space-y-4">
+          {% for block in section.blocks %}
+            {% if block.type == 'value_item' %}
+              <div class="flex items-center justify-between p-4 border border-white/[0.05] bg-white/[0.01] hover:bg-white/[0.03] transition-all" {{ block.shopify_attributes }}>
+                <div class="flex items-center gap-4">
+                  <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-check w-4 h-4 text-white" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                  </div>
+                  <div>
+                    <p class="text-white font-medium">{{ block.settings.name }}</p>
+                    {% if block.settings.desc != blank %}
+                      <p class="text-white/40 text-sm">{{ block.settings.desc }}</p>
+                    {% endif %}
+                  </div>
+                </div>
+                {% if block.settings.value != blank %}
+                  <span class="text-white/50 line-through flex-shrink-0 ml-4">{{ block.settings.value }}</span>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <div class="mt-8 p-6 border-2 border-white/20 bg-white/[0.02]">
+          <div class="flex justify-between items-center mb-4">
+            <span class="text-white/60">Total Value:</span>
+            <span class="text-2xl text-white/50 line-through">{{ section.settings.total_value | default: '$100,000' }}</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-white font-semibold">Your Investment:</span>
+            <span class="text-4xl font-bold text-white">{{ section.settings.investment | default: '$15,000' }}</span>
+          </div>
+          {% if section.settings.discount_text != blank %}
+            <p class="text-white/40 text-sm mt-4 text-center">{{ section.settings.discount_text }}</p>
+          {% endif %}
+        </div>
+      </div>
+
+      {% comment %} Right: ROI Calculator {% endcomment %}
+      <div class="bg-white/[0.02] border border-white/[0.05] p-8">
+        <div class="flex items-center gap-3 mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-calculator w-6 h-6 text-white/60" aria-hidden="true"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg>
+          <h3 class="text-2xl font-bold text-white">ROI Calculator</h3>
+        </div>
+
+        <div class="mb-8">
+          <label class="text-white/60 text-sm block mb-3" for="value-stack-revenue-{{ section.id }}">Your Current Monthly Revenue</label>
+          <div class="relative">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-dollar-sign absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" aria-hidden="true"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <input id="value-stack-revenue-{{ section.id }}" class="value-stack-revenue w-full bg-white/[0.03] border border-white/10 rounded-lg px-12 py-4 text-white text-2xl font-semibold focus:outline-none focus:border-white/30" type="number" min="0" step="1000" value="{{ section.settings.roi_default_revenue | default: 50000 }}">
+          </div>
+        </div>
+
+        <div class="space-y-4 mb-8">
+          <p class="text-white/40 text-sm uppercase tracking-wider">Potential Additional Monthly Revenue</p>
+          {% assign roi_rows = section.blocks | where: 'type', 'roi_row' %}
+          {% for block in roi_rows %}
+            <div class="flex justify-between items-center p-3 bg-white/[0.02] rounded value-stack-roi-row" data-pct="{{ block.settings.percentage | default: 35 }}" {{ block.shopify_attributes }}>
+              <span class="text-white/60">{{ block.settings.label }}</span>
+              <span class="text-white font-semibold value-stack-roi-amount">+$0</span>
+            </div>
+          {% endfor %}
+          {% if roi_rows.size == 0 %}
+            <div class="flex justify-between items-center p-3 bg-white/[0.02] rounded value-stack-roi-row" data-pct="35">
+              <span class="text-white/60">AI Automation (+35%)</span>
+              <span class="text-white font-semibold value-stack-roi-amount">+$17,500</span>
+            </div>
+            <div class="flex justify-between items-center p-3 bg-white/[0.02] rounded value-stack-roi-row" data-pct="25">
+              <span class="text-white/60">Email Flows (+25%)</span>
+              <span class="text-white font-semibold value-stack-roi-amount">+$12,500</span>
+            </div>
+            <div class="flex justify-between items-center p-3 bg-white/[0.02] rounded value-stack-roi-row" data-pct="15">
+              <span class="text-white/60">Content Strategy (+15%)</span>
+              <span class="text-white font-semibold value-stack-roi-amount">+$7,500</span>
+            </div>
+            <div class="flex justify-between items-center p-3 bg-white/[0.02] rounded value-stack-roi-row" data-pct="20">
+              <span class="text-white/60">Brand Refresh (+20%)</span>
+              <span class="text-white font-semibold value-stack-roi-amount">+$10,000</span>
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="border-t border-white/10 pt-6">
+          <div class="flex justify-between items-center">
+            <span class="text-white/60">Potential Monthly Increase:</span>
+            <span class="text-3xl font-bold text-green-400 value-stack-roi-total">+$47,500</span>
+          </div>
+          {% if section.settings.roi_disclaimer != blank %}
+            <p class="text-white/30 text-sm mt-2">{{ section.settings.roi_disclaimer }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  var section = document.querySelector('.value-stack-section');
+  if (!section) return;
+  var input = section.querySelector('.value-stack-revenue');
+  var rows = section.querySelectorAll('.value-stack-roi-row');
+  var totalEl = section.querySelector('.value-stack-roi-total');
+  if (!input || !totalEl) return;
+
+  function formatMoney(n) {
+    return '$' + Math.round(n).toLocaleString();
+  }
+
+  function update() {
+    var rev = parseFloat(input.value) || 0;
+    var sum = 0;
+    rows.forEach(function(row) {
+      var pct = parseFloat(row.getAttribute('data-pct')) || 0;
+      var amount = rev * (pct / 100);
+      sum += amount;
+      var amountEl = row.querySelector('.value-stack-roi-amount');
+      if (amountEl) amountEl.textContent = '+' + formatMoney(amount);
+    });
+    totalEl.textContent = '+' + formatMoney(sum);
+  }
+
+  input.addEventListener('input', update);
+  input.addEventListener('change', update);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', update);
+  } else {
+    update();
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Value Stack",
+  "tag": "section",
+  "class": "section-value-stack",
+  "settings": [
+    { "type": "text", "id": "strap", "label": "Strap line", "default": "(The Value Stack)" },
+    { "type": "text", "id": "title_before", "label": "Title (before gradient)", "default": "What You" },
+    { "type": "text", "id": "title_gradient", "label": "Title (gradient part)", "default": "Get" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Everything you need to 10x your brand and automate your revenue" },
+    { "type": "text", "id": "total_value", "label": "Total value (strikethrough)", "default": "$100,000" },
+    { "type": "text", "id": "investment", "label": "Your investment price", "default": "$15,000" },
+    { "type": "text", "id": "discount_text", "label": "Discount line", "default": "That's 85% OFF the total value" },
+    { "type": "header", "content": "ROI Calculator" },
+    { "type": "text", "id": "roi_default_revenue", "label": "Default monthly revenue (number)", "default": "50000" },
+    { "type": "text", "id": "roi_disclaimer", "label": "Calculator disclaimer", "default": "Based on results from 150+ clients" }
+  ],
+  "blocks": [
+    {
+      "type": "value_item",
+      "name": "Value item",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Name" },
+        { "type": "text", "id": "desc", "label": "Description" },
+        { "type": "text", "id": "value", "label": "Original value (e.g. $15,000)" }
+      ]
+    },
+    {
+      "type": "roi_row",
+      "name": "ROI row",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label (e.g. AI Automation (+35%))" },
+        { "type": "range", "id": "percentage", "label": "Percentage", "min": 5, "max": 50, "step": 5, "default": 35, "unit": "%" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Value Stack",
+      "settings": {
+        "strap": "(The Value Stack)",
+        "title_before": "What You",
+        "title_gradient": "Get",
+        "subtitle": "Everything you need to 10x your brand and automate your revenue",
+        "total_value": "$100,000",
+        "investment": "$15,000",
+        "discount_text": "That's 85% OFF the total value",
+        "roi_default_revenue": "50000",
+        "roi_disclaimer": "Based on results from 150+ clients"
+      },
+      "blocks": [
+        { "type": "value_item", "settings": { "name": "AI Revenue Concierge Chatbot", "desc": "Captures leads 24/7, converts DMs to sales", "value": "$15,000" } },
+        { "type": "value_item", "settings": { "name": "Complete Brand Identity System", "desc": "Logo, colors, typography, guidelines", "value": "$25,000" } },
+        { "type": "value_item", "settings": { "name": "High-Converting Website", "desc": "Custom design, SEO optimized", "value": "$35,000" } },
+        { "type": "value_item", "settings": { "name": "Email Automation Flows", "desc": "Welcome, abandoned cart, win-back", "value": "$12,000" } },
+        { "type": "value_item", "settings": { "name": "Content Strategy + Calendar", "desc": "90-day content plan with templates", "value": "$8,000" } },
+        { "type": "value_item", "settings": { "name": "1:1 Strategy Sessions", "desc": "Monthly calls with our strategists", "value": "$5,000" } },
+        { "type": "roi_row", "settings": { "label": "AI Automation (+35%)", "percentage": 35 } },
+        { "type": "roi_row", "settings": { "label": "Email Flows (+25%)", "percentage": 25 } },
+        { "type": "roi_row", "settings": { "label": "Content Strategy (+15%)", "percentage": 15 } },
+        { "type": "roi_row", "settings": { "label": "Brand Refresh (+20%)", "percentage": 20 } }
+      ]
+    }
+  ]
+}
+{% endschema %}

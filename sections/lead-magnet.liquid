@@ -1,0 +1,247 @@
+{% comment %} Source structure and Tailwind classes from reference (LeadMagnetSection) {% endcomment %}
+<section class="relative py-28 lg:py-40 bg-black overflow-hidden">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.03),transparent_60%)]" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-[1200px] mx-auto px-6 lg:px-12">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        {% if section.settings.strap != blank %}
+          <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-5">{{ section.settings.strap }}</span>
+        {% endif %}
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+          {{ section.settings.title_before | default: 'Get Our ' }}
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_gradient | default: '$991 Value' }}</span>
+          {{ section.settings.title_after | default: ' Resource Pack Free' }}
+        </h2>
+        {% if section.settings.description != blank %}
+          <p class="text-lg text-white/40 mb-8">{{ section.settings.description }}</p>
+        {% endif %}
+
+        <div class="space-y-4 mb-8">
+          {% for block in section.blocks %}
+            {% if block.type == 'bonus' %}
+              <div class="flex items-center gap-4" {{ block.shopify_attributes }}>
+                <div class="w-10 h-10 rounded-lg bg-white/[0.05] flex items-center justify-center flex-shrink-0">
+                  {% case block.settings.icon %}
+                    {% when 'file_text' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white/60" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg>
+                    {% when 'video' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white/60" aria-hidden="true"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"></path><rect x="2" y="6" width="14" height="12" rx="2"></rect></svg>
+                    {% when 'zap' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white/60" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
+                    {% else %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white/60" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg>
+                  {% endcase %}
+                </div>
+                <div class="flex-1">
+                  {% if block.settings.title != blank %}
+                    <p class="text-white font-medium">{{ block.settings.title }}</p>
+                  {% endif %}
+                </div>
+                {% if block.settings.value != blank %}
+                  <span class="text-white/40 text-sm line-through">{{ block.settings.value }}</span>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        {% if section.settings.privacy_text != blank %}
+          <div class="flex items-center gap-2 text-white/40 text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check w-4 h-4 text-green-400 flex-shrink-0" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+            <span>{{ section.settings.privacy_text }}</span>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="bg-white/[0.02] border border-white/[0.05] p-8 lg:p-10 hover:bg-white/[0.03] hover:border-white/10 transition-all duration-500">
+        <div class="flex items-center gap-3 mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download w-6 h-6 text-white/60" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
+          <h3 class="text-xl font-bold text-white">{{ section.settings.form_heading | default: 'Instant Download' }}</h3>
+        </div>
+
+        <form action="{{ section.settings.form_action_url | default: '/contact#lead_magnet' }}" method="post" accept-charset="UTF-8">
+          <input type="hidden" name="utf8" value="✓">
+          {% if section.settings.form_action_url == blank %}
+            <input type="hidden" name="contact[body]" value="Lead magnet signup">
+          {% endif %}
+          <div class="mb-6">
+            <label for="lead-magnet-email-{{ section.id }}" class="text-white/60 text-sm block mb-2">{{ section.settings.email_label | default: 'Email Address' }}</label>
+            <div class="relative">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30 pointer-events-none" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>
+              <input id="lead-magnet-email-{{ section.id }}" type="email" name="contact[email]" placeholder="{{ section.settings.email_placeholder | default: 'your@email.com' }}" class="w-full bg-white/[0.03] border border-white/10 rounded-lg pl-12 pr-4 py-4 text-white placeholder:text-white/30 focus:outline-none focus:border-white/30" required aria-required="true">
+            </div>
+          </div>
+          <button type="submit" class="w-full py-4 bg-white text-black rounded-lg font-bold text-lg hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
+            {{ section.settings.button_text | default: 'Get Free Access' }}
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right w-5 h-5" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </button>
+        </form>
+
+        {% if section.settings.social_proof != blank %}
+          <p class="text-white/30 text-xs text-center mt-6">{{ section.settings.social_proof }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Lead Magnet",
+  "tag": "section",
+  "class": "section-lead-magnet",
+  "settings": [
+    {
+      "type": "text",
+      "id": "strap",
+      "label": "Strap (small label above title)",
+      "default": "(Free Resources)"
+    },
+    {
+      "type": "text",
+      "id": "title_before",
+      "label": "Title (before gradient part)",
+      "default": "Get Our "
+    },
+    {
+      "type": "text",
+      "id": "title_gradient",
+      "label": "Title (gradient part)",
+      "default": "$991 Value"
+    },
+    {
+      "type": "text",
+      "id": "title_after",
+      "label": "Title (after gradient part)",
+      "default": " Resource Pack Free"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description below title",
+      "default": "The exact frameworks, templates, and strategies we use to help brands scale from $10K to $100K+ monthly."
+    },
+    {
+      "type": "text",
+      "id": "privacy_text",
+      "label": "Privacy assurance text",
+      "default": "No spam, ever. Unsubscribe anytime."
+    },
+    {
+      "type": "header",
+      "content": "Form"
+    },
+    {
+      "type": "url",
+      "id": "form_action_url",
+      "label": "Form action URL",
+      "info": "Leave blank to use Shopify contact form (/contact). Use a full URL for an email app (e.g. Klaviyo)."
+    },
+    {
+      "type": "text",
+      "id": "form_heading",
+      "label": "Form heading",
+      "default": "Instant Download"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Email field label",
+      "default": "Email Address"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder",
+      "default": "your@email.com"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Submit button text",
+      "default": "Get Free Access"
+    },
+    {
+      "type": "text",
+      "id": "social_proof",
+      "label": "Social proof text (below button)",
+      "default": "Join 2,847+ entrepreneurs who've downloaded this resource"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bonus",
+      "name": "Bonus item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "file_text", "label": "Document" },
+            { "value": "video", "label": "Video" },
+            { "value": "zap", "label": "Zap / Lightning" }
+          ],
+          "default": "file_text"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Strikethrough value (e.g. $297)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lead Magnet",
+      "settings": {
+        "strap": "(Free Resources)",
+        "title_before": "Get Our ",
+        "title_gradient": "$991 Value",
+        "title_after": " Resource Pack Free",
+        "description": "The exact frameworks, templates, and strategies we use to help brands scale from $10K to $100K+ monthly.",
+        "privacy_text": "No spam, ever. Unsubscribe anytime.",
+        "form_heading": "Instant Download",
+        "email_label": "Email Address",
+        "email_placeholder": "your@email.com",
+        "button_text": "Get Free Access",
+        "social_proof": "Join 2,847+ entrepreneurs who've downloaded this resource"
+      },
+      "blocks": [
+        {
+          "type": "bonus",
+          "settings": {
+            "icon": "file_text",
+            "title": "100-Point Brand Audit Checklist",
+            "value": "$297"
+          }
+        },
+        {
+          "type": "bonus",
+          "settings": {
+            "icon": "video",
+            "title": "3-Part Video Training Series",
+            "value": "$497"
+          }
+        },
+        {
+          "type": "bonus",
+          "settings": {
+            "icon": "zap",
+            "title": "AI Automation Templates Pack",
+            "value": "$197"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
