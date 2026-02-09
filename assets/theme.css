@@ -235,6 +235,15 @@ img {
   75% { transform: translateY(-20px) rotate(3deg) scale(1.05); filter: blur(130px); }
 }
 
+/* Stats section: centered glow pulse (scale ~1.02 like reference) */
+@keyframes statsGlowPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.02); }
+}
+.stats-section-glow {
+  animation: statsGlowPulse 4s ease-in-out infinite;
+}
+
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
