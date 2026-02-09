@@ -397,9 +397,10 @@
           "type": "case_study",
           "settings": {
             "layout": "featured",
+            "image": "shopify://shop_images/photo-1485827404703-89b55fcc595e.jpg",
             "category": "AI & Technology",
             "title": "Revolutionizing Customer Experience",
-            "link": "",
+            "link": "#",
             "client": "TechVenture AI",
             "description": "Complete brand transformation and AI automation implementation that increased customer engagement by 340%.",
             "result_1": "340% engagement",
@@ -410,9 +411,10 @@
           "type": "case_study",
           "settings": {
             "layout": "featured",
+            "image": "shopify://shop_images/photo-1497435334941-8c899ee9e8e9.jpg",
             "category": "Lifestyle & Fashion",
             "title": "Building a Premium Brand Identity",
-            "link": "",
+            "link": "#",
             "client": "Luxe Lifestyle",
             "description": "End-to-end branding and content strategy that positioned a startup as a market leader in luxury lifestyle.",
             "result_1": "500K+ followers",
@@ -423,9 +425,10 @@
           "type": "case_study",
           "settings": {
             "layout": "compact",
+            "image": "shopify://shop_images/photo-1441984904996-e0b6ba687e04.jpg",
             "category": "Sustainability",
             "title": "Sustainable Growth Through Innovation",
-            "link": "",
+            "link": "#",
             "client": "",
             "description": "",
             "result_1": "",
@@ -436,6 +439,7 @@
           "type": "case_study",
           "settings": {
             "layout": "compact",
+            "image": "shopify://shop_images/photo-1414235077428-338989a2e8c0.jpg",
             "category": "Food & Beverage",
             "title": "From Local to National Recognition",
             "link": "",
