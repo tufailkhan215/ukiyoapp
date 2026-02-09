@@ -18,6 +18,19 @@
     "sections": {
       "header": {
         "type": "header",
+        "blocks": {
+          "dropdown_category_TLpWTd": {
+            "type": "dropdown_category",
+            "settings": {
+              "parent_handle": "services",
+              "category_title": "Category title",
+              "links_text": "Links1|#\nLinks2|#\nLinks3|#"
+            }
+          }
+        },
+        "block_order": [
+          "dropdown_category_TLpWTd"
+        ],
         "settings": {
           "logo_text": "UKIYO",
           "logo_subtext": "PRODUCTIONS",
