@@ -20,17 +20,61 @@
         "type": "header",
         "settings": {
           "logo_text": "UKIYO",
+          "logo_subtext": "PRODUCTIONS",
           "menu": "main-menu",
+          "dropdown_handles": "services, shop",
           "cta_text": "Start Your Project",
           "cta_link": "#"
         }
       },
       "footer": {
         "type": "footer",
+        "blocks": {
+          "menu_RXWxix": {
+            "type": "menu",
+            "settings": {
+              "heading": "Services",
+              "menu": "main-menu"
+            }
+          },
+          "menu_WBftKw": {
+            "type": "menu",
+            "settings": {
+              "heading": "Services",
+              "menu": "footer"
+            }
+          },
+          "menu_kV4WzM": {
+            "type": "menu",
+            "settings": {
+              "heading": "Services",
+              "menu": "customer-account-main-menu"
+            }
+          }
+        },
+        "block_order": [
+          "menu_RXWxix",
+          "menu_WBftKw",
+          "menu_kV4WzM"
+        ],
         "settings": {
+          "cta_strap": "(Ready to Rally Around Your Big Idea?)",
+          "cta_line1": "Let's create",
+          "cta_line2": "something great",
+          "cta_text": "Book a Discovery Call",
+          "cta_link": "#",
           "logo_text": "UKIYO",
-          "contact_email": "",
-          "copyright": "© 2026 Ukiyo Productions. All rights reserved."
+          "logo_subtext": "PRODUCTIONS",
+          "footer_description": "Creative branding & content activation for better engagement. We create exceptional brand experiences.",
+          "social_instagram": "#",
+          "social_linkedin": "#",
+          "social_twitter": "#",
+          "social_youtube": "#",
+          "contact_email": "hello.ukiyoprod@gmail.com",
+          "contact_address": "Los Angeles, CA",
+          "copyright": "© 2026 Ukiyo Productions. All rights reserved.",
+          "privacy_link": "#",
+          "terms_link": "#"
         }
       }
     },
