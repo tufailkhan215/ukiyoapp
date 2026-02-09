@@ -25,21 +25,32 @@
             {% endfor %}
           {% endif %}
 
-          {% if show_chevron %}
-            {% assign has_dropdown_blocks = false %}
-            {% for block in section.blocks %}
-              {% if block.type == 'dropdown_category' and block.settings.parent_handle == link.handle %}
-                {% assign has_dropdown_blocks = true %}
-                {% break %}
-              {% endif %}
-            {% endfor %}
+          {% assign has_children = false %}
+          {% if link.links.size > 0 %}
+            {% assign has_children = true %}
+          {% endif %}
+
+          {% assign has_dropdown_blocks = false %}
+          {% for block in section.blocks %}
+            {% if block.type == 'dropdown_category' and block.settings.parent_handle == link.handle %}
+              {% assign has_dropdown_blocks = true %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+
+          {% comment %} Show dropdown trigger (chevron) when: mega handle, or has menu children {% endcomment %}
+          {% assign show_dropdown_trigger = show_chevron or has_children %}
+
+          {% if show_dropdown_trigger %}
             <div class="relative nav-dropdown" data-dropdown data-dropdown-handle="{{ link.handle }}">
               <a class="group relative flex items-center gap-1 nav-dropdown-trigger" href="{{ link.url }}" data-dropdown-trigger aria-expanded="false" aria-haspopup="true">
                 <span class="text-sm font-medium tracking-wide transition-colors duration-300 {% if link.active %}text-white{% else %}text-white/60 hover:text-white{% endif %}">{{ link.title }}</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down w-4 h-4 text-white/40 transition-transform duration-300 nav-dropdown-chevron" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
                 <span class="absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-white to-gray-400 transition-[width] duration-300 group-hover:w-full {% if link.active %}w-full{% else %}w-0{% endif %}"></span>
               </a>
+
               {% if has_dropdown_blocks %}
+                {% comment %} Mega menu (from section blocks) {% endcomment %}
                 <div class="nav-dropdown-panel absolute top-full left-0 pt-4 opacity-0 invisible pointer-events-none transition-all duration-300" data-dropdown-panel aria-hidden="true">
                   <div class="w-[600px] bg-black/95 backdrop-blur-xl border border-white/10 p-6 grid grid-cols-2 gap-6">
                     {% for block in section.blocks %}
@@ -66,6 +77,26 @@
                         </div>
                       {% endif %}
                     {% endfor %}
+                  </div>
+                </div>
+              {% elsif has_children %}
+                {% comment %} Simple dropdown from menu children (and sub-children) {% endcomment %}
+                <div class="nav-dropdown-panel nav-simple-dropdown absolute top-full left-0 pt-2 opacity-0 invisible pointer-events-none transition-all duration-300" data-dropdown-panel aria-hidden="true">
+                  <div class="min-w-[200px] bg-black/95 backdrop-blur-xl border border-white/10 py-3 px-4 rounded-lg">
+                    <div class="space-y-0.5">
+                      {% for child_link in link.links %}
+                        <div class="nav-simple-dropdown__item">
+                          <a class="block text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all py-2 px-2 rounded" href="{{ child_link.url }}">{{ child_link.title }}</a>
+                          {% if child_link.links.size > 0 %}
+                            <div class="ml-3 mt-0.5 mb-1 space-y-0.5 border-l border-white/10 pl-3">
+                              {% for sub_link in child_link.links %}
+                                <a class="block text-sm text-white/50 hover:text-white/90 transition-all py-1" href="{{ sub_link.url }}">{{ sub_link.title }}</a>
+                              {% endfor %}
+                            </div>
+                          {% endif %}
+                        </div>
+                      {% endfor %}
+                    </div>
                   </div>
                 </div>
               {% endif %}
@@ -103,7 +134,25 @@
   <nav class="drawer__nav">
     <a href="{{ routes.root_url }}">Home</a>
     {% for link in linklists[section.settings.menu].links %}
-      <a href="{{ link.url }}">{{ link.title }}</a>
+      {% if link.links.size > 0 %}
+        <div class="drawer__nav-group">
+          <a href="{{ link.url }}">{{ link.title }}</a>
+          <div class="drawer__nav-children">
+            {% for child_link in link.links %}
+              <a href="{{ child_link.url }}" class="drawer__nav-child">{{ child_link.title }}</a>
+              {% if child_link.links.size > 0 %}
+                <div class="drawer__nav-sub">
+                  {% for sub_link in child_link.links %}
+                    <a href="{{ sub_link.url }}" class="drawer__nav-subchild">{{ sub_link.title }}</a>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% else %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% endif %}
     {% endfor %}
     {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
       <a href="{{ section.settings.cta_link }}" class="btn btn--primary mt-4">{{ section.settings.cta_text }}</a>
