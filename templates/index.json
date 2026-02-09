@@ -13,8 +13,8 @@
       "type": "hero",
       "settings": {
         "subtitle": "Creative Branding Agency",
-        "headline_line1": "WE BUILD BRANDS",
-        "headline_line2": "THAT PRINT MONEY",
+        "headline_line1": "WE CREATE",
+        "headline_line2": "EXCEPTIONAL",
         "headline_line3": "Brand Experiences",
         "description": "Premium brand development, AI automation, and content production for businesses ready to dominate their market.",
         "cta_primary_text": "Start Your Project",
@@ -123,23 +123,6 @@
         "tagline": "Our Philosophy"
       }
     },
-    "trusted-by": {
-      "type": "trusted-by",
-      "settings": {
-        "title_before": "Brands That Trust",
-        "title_after": "Us",
-        "subtitle": "We've partnered with some of the most recognizable brands in the world."
-      }
-    },
-    "cta": {
-      "type": "rich-text",
-      "settings": {
-        "heading": "Let's create something legendary",
-        "text": "Ready to transform your brand into a market leader?",
-        "button_text": "Start Your Project",
-        "button_link": "/pages/contact"
-      }
-    },
     "transformation_xNQCz7": {
       "type": "transformation",
       "blocks": {
@@ -212,6 +195,23 @@
         "title_before": "Real",
         "title_gradient": "Transformations",
         "subtitle": "These aren't hypotheticals. These are actual results from real clients."
+      }
+    },
+    "trusted-by": {
+      "type": "trusted-by",
+      "settings": {
+        "title_before": "Brands That Trust",
+        "title_after": "Us",
+        "subtitle": "We've partnered with some of the most recognizable brands in the world."
+      }
+    },
+    "cta": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "Let's create something legendary",
+        "text": "Ready to transform your brand into a market leader?",
+        "button_text": "Start Your Project",
+        "button_link": "/pages/contact"
       }
     }
   },
