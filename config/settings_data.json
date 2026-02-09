@@ -19,6 +19,14 @@
       "header": {
         "type": "header",
         "blocks": {
+          "dropdown_category_TLpWTd": {
+            "type": "dropdown_category",
+            "settings": {
+              "parent_handle": "services",
+              "category_title": "Category title 1",
+              "links_text": "Links1|#\nLinks2|#\nLinks3|#"
+            }
+          },
           "dropdown_category_FwQj3T": {
             "type": "dropdown_category",
             "settings": {
@@ -27,18 +35,28 @@
               "links_text": "Links1|#\nLinks2|#\nLinks3|#"
             }
           },
-          "dropdown_category_TLpWTd": {
+          "dropdown_category_iCYpNb": {
             "type": "dropdown_category",
             "settings": {
               "parent_handle": "services",
-              "category_title": "Category title 1",
+              "category_title": "Category title 3",
+              "links_text": "Links1|#\nLinks2|#\nLinks3|#"
+            }
+          },
+          "dropdown_category_3UYqiR": {
+            "type": "dropdown_category",
+            "settings": {
+              "parent_handle": "services",
+              "category_title": "Category title 4",
               "links_text": "Links1|#\nLinks2|#\nLinks3|#"
             }
           }
         },
         "block_order": [
+          "dropdown_category_TLpWTd",
           "dropdown_category_FwQj3T",
-          "dropdown_category_TLpWTd"
+          "dropdown_category_iCYpNb",
+          "dropdown_category_3UYqiR"
         ],
         "settings": {
           "logo_text": "UKIYO",
