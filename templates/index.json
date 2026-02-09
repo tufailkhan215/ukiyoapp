@@ -197,6 +197,94 @@
         "subtitle": "These aren't hypotheticals. These are actual results from real clients."
       }
     },
+    "services_E87PUi": {
+      "type": "services",
+      "blocks": {
+        "service_8Y8tnQ": {
+          "type": "service",
+          "settings": {
+            "icon": "sparkles",
+            "title": "Brand Strategy",
+            "subtitle": "Define your edge",
+            "description": "Position your brand for category leadership with strategic foundations.",
+            "link_text": "Explore",
+            "link": "#"
+          }
+        },
+        "service_bA8K3q": {
+          "type": "service",
+          "settings": {
+            "icon": "zap",
+            "title": "AI Automations",
+            "subtitle": "Scale intelligently",
+            "description": "Streamline operations with cutting-edge AI-powered solutions.",
+            "link_text": "Explore",
+            "link": ""
+          }
+        },
+        "service_MrKaX3": {
+          "type": "service",
+          "settings": {
+            "icon": "target",
+            "title": "Lead Generation",
+            "subtitle": "Grow consistently",
+            "description": "Data-driven strategies that convert prospects into customers.",
+            "link_text": "Explore",
+            "link": ""
+          }
+        },
+        "service_GfpBDz": {
+          "type": "service",
+          "settings": {
+            "icon": "palette",
+            "title": "Brand Identity",
+            "subtitle": "Stand out visually",
+            "description": "Distinctive visual systems that capture your brand essence.",
+            "link_text": "Explore",
+            "link": ""
+          }
+        },
+        "service_Wbm4Hz": {
+          "type": "service",
+          "settings": {
+            "icon": "camera",
+            "title": "Content Production",
+            "subtitle": "Tell your story",
+            "description": "High-quality content that resonates with modern audiences.",
+            "link_text": "Explore",
+            "link": ""
+          }
+        },
+        "service_Mgcmyy": {
+          "type": "service",
+          "settings": {
+            "icon": "trending-up",
+            "title": "Growth Marketing",
+            "subtitle": "Accelerate results",
+            "description": "Performance marketing that drives measurable business growth.",
+            "link_text": "Explore",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "service_8Y8tnQ",
+        "service_bA8K3q",
+        "service_MrKaX3",
+        "service_GfpBDz",
+        "service_Wbm4Hz",
+        "service_Mgcmyy"
+      ],
+      "name": "Services",
+      "settings": {
+        "strap": "(What We Do)",
+        "title_line1": "Services that",
+        "title_line2": "drive growth",
+        "description": "We work with founders, CEOs, and leadership teams to shape defining ideas and build the strategy and systems that carry them through growth.",
+        "explore_text": "Explore all services",
+        "explore_url": "#"
+      }
+    },
     "trusted-by": {
       "type": "trusted-by",
       "settings": {
@@ -220,6 +308,7 @@
     "marquee",
     "big_statement_8bQy8a",
     "transformation_xNQCz7",
+    "services_E87PUi",
     "trusted-by",
     "cta"
   ]
