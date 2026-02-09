@@ -759,6 +759,7 @@
     },
     "trusted-by": {
       "type": "trusted-by",
+      "disabled": true,
       "settings": {
         "title_before": "Brands That Trust",
         "title_after": "Us",
@@ -767,6 +768,7 @@
     },
     "cta": {
       "type": "rich-text",
+      "disabled": true,
       "settings": {
         "heading": "Let's create something legendary",
         "text": "Ready to transform your brand into a market leader?",
