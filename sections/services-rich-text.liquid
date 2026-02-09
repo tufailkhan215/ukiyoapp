@@ -1,0 +1,45 @@
+{% comment %} Services rich text: strap + centered paragraph (e.g. impact statement). {% endcomment %}
+<section class="relative py-20 lg:py-28 bg-black" data-testid="services-rich-text">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="max-w-[1000px] mx-auto px-6 lg:px-12 text-center">
+    {% if section.settings.strap != blank %}
+      <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-6">{{ section.settings.strap }}</span>
+    {% endif %}
+    {% if section.settings.body != blank %}
+      <div class="rte text-2xl md:text-3xl text-white/70 leading-relaxed font-light">
+        {{ section.settings.body }}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Services Rich Text",
+  "tag": "section",
+  "class": "section-services-rich-text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "strap",
+      "label": "Strap (small label above content)",
+      "default": "(Our Approach)"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Content",
+      "default": "<p>We leverage AI-driven automation and data optimizations to help brands work smarter and faster. Say goodbye to tedious tasks and hello to real-time insights that fuel your growth.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Services Rich Text",
+      "settings": {
+        "strap": "(Our Approach)",
+        "body": "<p>We leverage AI-driven automation and data optimizations to help brands work smarter and faster. Say goodbye to tedious tasks and hello to real-time insights that fuel your growth.</p>"
+      }
+    }
+  ]
+}
+{% endschema %}

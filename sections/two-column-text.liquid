@@ -1,0 +1,174 @@
+{% comment %}
+  Two-column layout. Two modes:
+  - Overview: left = strap + title (with gradient part), right = two paragraphs.
+  - What's included: left = strap + title (white), right = checklist grid (blocks).
+{% endcomment %}
+{% assign layout = section.settings.layout | default: 'overview' %}
+<section class="relative py-20 lg:py-28 bg-black" data-testid="two-column-text">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="grid lg:grid-cols-2 {% if layout == 'included' %}gap-12 lg:gap-20{% else %}gap-16 lg:gap-24{% endif %}">
+      <div>
+        {% if section.settings.strap != blank %}
+          <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-6">{{ section.settings.strap }}</span>
+        {% endif %}
+
+        {% if layout == 'included' %}
+          {% comment %} What's included: single title, no gradient {% endcomment %}
+          {% if section.settings.title_included != blank %}
+            <h2 class="text-3xl md:text-4xl font-bold text-white leading-[1.1] mb-6">{{ section.settings.title_included }}</h2>
+          {% endif %}
+        {% else %}
+          {% comment %} Overview: title with optional gradient part {% endcomment %}
+          {% if section.settings.title_before != blank or section.settings.title_gradient != blank %}
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.1]">
+              {{ section.settings.title_before }}
+              {% if section.settings.title_gradient != blank %}
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_gradient }}</span>
+              {% endif %}
+            </h2>
+          {% endif %}
+        {% endif %}
+      </div>
+
+      <div class="{% if layout != 'included' %}lg:pt-8{% endif %}">
+        {% if layout == 'included' %}
+          {% comment %} Checklist: blocks with check icon + text {% endcomment %}
+          <div class="grid sm:grid-cols-2 gap-4">
+            {% for block in section.blocks %}
+              {% if block.type == 'feature' %}
+                <div class="flex items-start gap-3" {{ block.shopify_attributes }}>
+                  <div class="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 mt-0.5" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 text-white/70"><path d="M20 6 9 17l-5-5"/></svg>
+                  </div>
+                  <span class="text-white/60 text-sm">{{ block.settings.text }}</span>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% else %}
+          {% if section.settings.paragraph_1 != blank %}
+            <div class="rte text-lg text-white/50 leading-relaxed mb-6">
+              {{ section.settings.paragraph_1 }}
+            </div>
+          {% endif %}
+          {% if section.settings.paragraph_2 != blank %}
+            <div class="rte text-base text-white/40 leading-relaxed">
+              {{ section.settings.paragraph_2 }}
+            </div>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Two Column Text",
+  "tag": "section",
+  "class": "section-two-column-text",
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "overview", "label": "Overview (two paragraphs)" },
+        { "value": "included", "label": "What's included (checklist)" }
+      ],
+      "default": "overview"
+    },
+    {
+      "type": "text",
+      "id": "strap",
+      "label": "Strap (small label above title)",
+      "default": "(Overview)"
+    },
+    {
+      "type": "header",
+      "content": "Overview layout"
+    },
+    {
+      "type": "text",
+      "id": "title_before",
+      "label": "Title (before gradient part)",
+      "default": "What is "
+    },
+    {
+      "type": "text",
+      "id": "title_gradient",
+      "label": "Title (gradient part)",
+      "default": "Company Agent Builder?"
+    },
+    {
+      "type": "richtext",
+      "id": "paragraph_1",
+      "label": "First paragraph",
+      "default": "<p>Create custom AI agents that understand your company inside and out. From customer service to sales, your brand voice stays consistent across every interaction.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "paragraph_2",
+      "label": "Second paragraph",
+      "default": "<p>In an era where customer expectations are at an all-time high, having a consistent brand voice across every touchpoint is crucial. Our Company Agent Builder service creates bespoke AI agents trained on your brand guidelines, tone of voice, product knowledge, and company values. These agents become extensions of your team, handling everything from customer inquiries to lead qualification with the precision and personality your brand deserves.</p>"
+    },
+    {
+      "type": "header",
+      "content": "What's included layout"
+    },
+    {
+      "type": "text",
+      "id": "title_included",
+      "label": "Heading",
+      "default": "Everything You Need to Launch Your AI Agent"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Two Column Text",
+      "settings": {
+        "layout": "overview",
+        "strap": "(Overview)",
+        "title_before": "What is ",
+        "title_gradient": "Company Agent Builder?",
+        "paragraph_1": "<p>Create custom AI agents that understand your company inside and out. From customer service to sales, your brand voice stays consistent across every interaction.</p>",
+        "paragraph_2": "<p>In an era where customer expectations are at an all-time high, having a consistent brand voice across every touchpoint is crucial. Our Company Agent Builder service creates bespoke AI agents trained on your brand guidelines, tone of voice, product knowledge, and company values. These agents become extensions of your team, handling everything from customer inquiries to lead qualification with the precision and personality your brand deserves.</p>"
+      }
+    },
+    {
+      "name": "Two Column Text (What's Included)",
+      "settings": {
+        "layout": "included",
+        "strap": "(What's Included)",
+        "title_included": "Everything You Need to Launch Your AI Agent"
+      },
+      "blocks": [
+        { "type": "feature", "settings": { "text": "Custom AI agent development and training" } },
+        { "type": "feature", "settings": { "text": "Brand voice and tone calibration" } },
+        { "type": "feature", "settings": { "text": "Knowledge base setup and integration" } },
+        { "type": "feature", "settings": { "text": "Multi-channel deployment (Website + Social)" } },
+        { "type": "feature", "settings": { "text": "Real-time analytics dashboard" } },
+        { "type": "feature", "settings": { "text": "Conversation flow optimization" } },
+        { "type": "feature", "settings": { "text": "Monthly performance reports" } },
+        { "type": "feature", "settings": { "text": "Dedicated support team" } },
+        { "type": "feature", "settings": { "text": "" } },
+        { "type": "feature", "settings": { "text": "" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
