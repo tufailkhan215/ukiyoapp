@@ -1,0 +1,96 @@
+{% comment %} Source structure and Tailwind classes from reference (ServicesHero) {% endcomment %}
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-black" data-testid="services-hero">
+  <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black" aria-hidden="true"></div>
+  <div class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none" aria-hidden="true">
+    <span class="text-[20vw] font-bold text-white whitespace-nowrap tracking-tighter select-none" style="opacity: 0.015;">{{ section.settings.watermark | default: 'SERVICES' }}</span>
+  </div>
+
+  <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 text-center">
+    {% if section.settings.strap != blank %}
+      <div class="mb-8">
+        <div class="inline-flex items-center gap-4">
+          <span class="w-12 h-px bg-white/30" aria-hidden="true"></span>
+          <span class="text-[11px] font-medium text-white/50 tracking-[0.35em] uppercase">{{ section.settings.strap }}</span>
+          <span class="w-12 h-px bg-white/30" aria-hidden="true"></span>
+        </div>
+      </div>
+    {% endif %}
+
+    <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[0.95] tracking-tight mb-8">
+      {{ section.settings.title_line1 | default: "Let's Plant" }}<br>
+      <span class="text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-600">{{ section.settings.title_line2 | default: 'Your Flag' }}</span>
+    </h1>
+
+    {% if section.settings.description != blank %}
+      <p class="text-base md:text-lg text-white/40 max-w-2xl mx-auto mb-12 leading-relaxed">{{ section.settings.description }}</p>
+    {% endif %}
+
+    <div class="flex flex-col items-center gap-3">
+      {% if section.settings.scroll_text != blank %}
+        <span class="text-[10px] text-white/30 tracking-[0.4em] uppercase">{{ section.settings.scroll_text }}</span>
+      {% endif %}
+      <div class="scroll-indicator-dot" data-scroll-to-next aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down w-5 h-5 text-white/30" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Services Hero",
+  "tag": "section",
+  "class": "section-services-hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "watermark",
+      "label": "Background watermark text",
+      "default": "SERVICES"
+    },
+    {
+      "type": "text",
+      "id": "strap",
+      "label": "Strap (small label above title)",
+      "default": "Our Services"
+    },
+    {
+      "type": "text",
+      "id": "title_line1",
+      "label": "Title line 1",
+      "default": "Let's Plant"
+    },
+    {
+      "type": "text",
+      "id": "title_line2",
+      "label": "Title line 2 (gradient)",
+      "default": "Your Flag"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "We work with founders, CEOs, and leadership teams to shape defining ideas and build strategy and design systems for growth at scale."
+    },
+    {
+      "type": "text",
+      "id": "scroll_text",
+      "label": "Scroll indicator text",
+      "default": "(Scroll to explore)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Services Hero",
+      "settings": {
+        "watermark": "SERVICES",
+        "strap": "Our Services",
+        "title_line1": "Let's Plant",
+        "title_line2": "Your Flag",
+        "description": "We work with founders, CEOs, and leadership teams to shape defining ideas and build strategy and design systems for growth at scale.",
+        "scroll_text": "(Scroll to explore)"
+      }
+    }
+  ]
+}
+{% endschema %}
