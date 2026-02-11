@@ -11,7 +11,127 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {}
+    },
+    "work_hero_8cByLV": {
+      "type": "work-hero",
+      "blocks": {
+        "stat_fyjKG4": {
+          "type": "stat",
+          "settings": {
+            "value": "150+",
+            "label": "Projects Delivered"
+          }
+        },
+        "stat_KTLExk": {
+          "type": "stat",
+          "settings": {
+            "value": "$50M+",
+            "label": "Revenue Generated"
+          }
+        },
+        "stat_FqfPnY": {
+          "type": "stat",
+          "settings": {
+            "value": "98%",
+            "label": "Client Satisfaction"
+          }
+        },
+        "stat_inezJx": {
+          "type": "stat",
+          "settings": {
+            "value": "40+",
+            "label": "Brand Partners"
+          }
+        }
+      },
+      "block_order": [
+        "stat_fyjKG4",
+        "stat_KTLExk",
+        "stat_FqfPnY",
+        "stat_inezJx"
+      ],
+      "name": "Work Hero",
+      "settings": {
+        "strap": "(Our Work)",
+        "title_line_1": "ACTIVATIONS &",
+        "title_line_2": "CASE STUDIES",
+        "description": "Discover our diverse projects and activations tailored to meet your needs. We're committed to delivering innovative solutions that drive success."
+      }
+    },
+    "brand_activation_bYyitf": {
+      "type": "brand-activation",
+      "blocks": {
+        "image_W3p3kr": {
+          "type": "image",
+          "settings": {
+            "title": "Brand Identity"
+          }
+        },
+        "image_tafkyV": {
+          "type": "image",
+          "settings": {
+            "title": "Logo Design"
+          }
+        },
+        "image_HHAFGQ": {
+          "type": "image",
+          "settings": {
+            "title": "Packaging"
+          }
+        },
+        "image_W4C4tJ": {
+          "type": "image",
+          "settings": {
+            "title": "Print Materials"
+          }
+        },
+        "image_RX8KX4": {
+          "type": "image",
+          "settings": {
+            "title": "Social Media"
+          }
+        },
+        "image_hHhATi": {
+          "type": "image",
+          "settings": {
+            "title": "Brand Strategy"
+          }
+        },
+        "image_4kLiJa": {
+          "type": "image",
+          "settings": {
+            "title": "Creative Direction"
+          }
+        },
+        "image_YMKhVT": {
+          "type": "image",
+          "settings": {
+            "title": "Digital Assets"
+          }
+        }
+      },
+      "block_order": [
+        "image_W3p3kr",
+        "image_tafkyV",
+        "image_HHAFGQ",
+        "image_W4C4tJ",
+        "image_RX8KX4",
+        "image_hHhATi",
+        "image_4kLiJa",
+        "image_YMKhVT"
+      ],
+      "name": "Brand Activation",
+      "settings": {
+        "strap": "(Branding)",
+        "title_before": "Brand",
+        "title_gradient": "Activations",
+        "description": "Branding is key to a standout identity and success. We activate your brand with powerful social media content, strategic partnerships, and engaging articles. With experience in the U.S. and Asia, we boost brand awareness, attract customers, and create new marketing opportunities.",
+        "cta_text": "Start Your Project",
+        "cta_url": "/contact",
+        "cta_new_tab": false
+      }
     },
     "services_cta_nPTw36": {
       "type": "services-cta",
@@ -23,10 +143,131 @@
         "cta_url": "",
         "cta_new_tab": true
       }
+    },
+    "featured_projects_NAbVdw": {
+      "type": "featured-projects",
+      "blocks": {
+        "project_Etci3j": {
+          "type": "project",
+          "settings": {
+            "layout": "wide",
+            "category": "AI & Automation",
+            "client": "TechVenture AI",
+            "title": "Revolutionizing Customer Experience with AI",
+            "description": "Complete brand transformation and AI automation implementation that increased customer engagement by 340%.",
+            "results_text": "340% engagement\n$2.4M revenue\n85% automation",
+            "url": "/work/techventure-ai-transformation"
+          }
+        },
+        "project_cNCDhE": {
+          "type": "project",
+          "settings": {
+            "layout": "default",
+            "category": "Branding",
+            "client": "Luxe Lifestyle",
+            "title": "Building a Premium Brand Identity",
+            "description": "End-to-end branding and content strategy that positioned a startup as a market leader.",
+            "results_text": "500K+ followers\nFeatured in Vogue\n12x ROI",
+            "url": "/work/luxe-lifestyle-brand"
+          }
+        },
+        "project_XWc7pY": {
+          "type": "project",
+          "settings": {
+            "layout": "tall",
+            "category": "Case Studies",
+            "client": "GreenTech Solutions",
+            "title": "Sustainable Growth Through Digital",
+            "description": "Comprehensive digital transformation combining automation, content, and lead generation.",
+            "results_text": "200% leads\nCarbon neutral\nAward-winning",
+            "url": "/work/greentech-digital-innovation"
+          }
+        },
+        "project_jFDU3d": {
+          "type": "project",
+          "settings": {
+            "layout": "default",
+            "category": "Branding",
+            "client": "Urban Eats",
+            "title": "From Local to National Recognition",
+            "description": "Strategic branding and social media management that expanded a local restaurant chain nationwide.",
+            "results_text": "50 locations\n1M+ followers\nPress coverage",
+            "url": "/work/urban-eats-expansion"
+          }
+        },
+        "project_gcYABz": {
+          "type": "project",
+          "settings": {
+            "layout": "wide",
+            "category": "Web Development",
+            "client": "Fintech Pro",
+            "title": "High-Converting Financial Platform",
+            "description": "Custom web application with AI-driven analytics that tripled lead conversion rates.",
+            "results_text": "3x conversion\n<1.5s load\n99.9% uptime",
+            "url": "/work/fintech-pro-website"
+          }
+        },
+        "project_3BdRRx": {
+          "type": "project",
+          "settings": {
+            "layout": "default",
+            "category": "Content Production",
+            "client": "Wandrd",
+            "title": "Adventure Content at Scale",
+            "description": "Multi-platform content strategy that captured the spirit of adventure travel.",
+            "results_text": "2M+ views\n45% engagement\nGlobal reach",
+            "url": "/work/wandrd-content-campaign"
+          }
+        },
+        "project_QxDA3B": {
+          "type": "project",
+          "settings": {
+            "layout": "default",
+            "category": "Branding",
+            "client": "Polaroid",
+            "title": "Nostalgia Meets Modern",
+            "description": "Brand activation campaign that bridged classic Polaroid aesthetics with contemporary audiences.",
+            "results_text": "Viral campaign\nGen-Z reach\nBrand refresh",
+            "url": "/work/polaroid-brand-activation"
+          }
+        },
+        "project_AHaAqE": {
+          "type": "project",
+          "settings": {
+            "layout": "default",
+            "category": "Case Studies",
+            "client": "Adidas",
+            "title": "Streetwear Meets Performance",
+            "description": "Collaborative campaign merging streetwear culture with athletic performance branding.",
+            "results_text": "Limited edition\nSold out\nCultural impact",
+            "url": "/work/adidas-collaboration"
+          }
+        }
+      },
+      "block_order": [
+        "project_Etci3j",
+        "project_cNCDhE",
+        "project_XWc7pY",
+        "project_jFDU3d",
+        "project_gcYABz",
+        "project_3BdRRx",
+        "project_QxDA3B",
+        "project_AHaAqE"
+      ],
+      "name": "Featured Projects",
+      "settings": {
+        "strap": "(Case Studies)",
+        "title_before": "Featured",
+        "title_gradient": "Projects",
+        "filters_text": "All\nBranding\nAI & Automation\nWeb Development\nContent Production\nCase Studies"
+      }
     }
   },
   "order": [
     "main",
+    "work_hero_8cByLV",
+    "brand_activation_bYyitf",
+    "featured_projects_NAbVdw",
     "services_cta_nPTw36"
   ]
 }
