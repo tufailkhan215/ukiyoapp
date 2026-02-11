@@ -781,6 +781,91 @@
         "button_text": "Start Your Project",
         "button_link": "/pages/contact"
       }
+    },
+    "brutal_stack_GyzaPU": {
+      "type": "brutal-stack",
+      "blocks": {
+        "service_xPdPYG": {
+          "type": "service",
+          "settings": {
+            "title": "AI Revenue Concierge Chatbot",
+            "description": "Captures leads 24/7, converts DMs to sales",
+            "price": "$15,000",
+            "roi": "+35% ROI"
+          }
+        },
+        "service_TUKTbq": {
+          "type": "service",
+          "settings": {
+            "title": "Complete Brand Identity System",
+            "description": "Logo, colors, typography, guidelines",
+            "price": "$25,000",
+            "roi": "+20% ROI"
+          }
+        },
+        "service_9CWjbY": {
+          "type": "service",
+          "settings": {
+            "title": "High-Converting Website",
+            "description": "Custom design, SEO optimized",
+            "price": "$35,000",
+            "roi": "+25% ROI"
+          }
+        },
+        "service_dzTg6b": {
+          "type": "service",
+          "settings": {
+            "title": "Email Automation Flows",
+            "description": "Welcome, abandoned cart, win-back",
+            "price": "$12,000",
+            "roi": "+25% ROI"
+          }
+        },
+        "service_8yfiPD": {
+          "type": "service",
+          "settings": {
+            "title": "Content Strategy + Calendar",
+            "description": "90-day content plan with templates",
+            "price": "$8,000",
+            "roi": "+15% ROI"
+          }
+        },
+        "service_4waeGa": {
+          "type": "service",
+          "settings": {
+            "title": "1:1 Strategy Sessions",
+            "description": "Monthly calls with our strategists",
+            "price": "$5,000",
+            "roi": "+10% ROI"
+          }
+        }
+      },
+      "block_order": [
+        "service_xPdPYG",
+        "service_TUKTbq",
+        "service_9CWjbY",
+        "service_dzTg6b",
+        "service_8yfiPD",
+        "service_4waeGa"
+      ],
+      "name": "Brutal Stack",
+      "settings": {
+        "badge": "(Build Your Bundle)",
+        "title_before": "Pick Your",
+        "title_gradient": "Power Stack",
+        "subtitle": "Select the services you need. The more you bundle, the more you save—up to",
+        "save_line": "70% OFF!",
+        "services_heading": "Select Services",
+        "select_all_text": "Select All (70% OFF!)",
+        "bundle_heading": "Your Bundle",
+        "bundle_placeholder": "Select services to build your bundle",
+        "roi_heading": "ROI Calculator",
+        "roi_revenue_label": "Your Current Monthly Revenue",
+        "roi_boost_label": "Selected Services ROI Boost",
+        "roi_increase_label": "Potential Monthly Increase:",
+        "cta_url": "",
+        "cta_text": "Lock In This Bundle"
+      }
     }
   },
   "order": [
@@ -790,6 +875,7 @@
     "transformation_xNQCz7",
     "services_E87PUi",
     "value_stack_eE3PiF",
+    "brutal_stack_GyzaPU",
     "work_UHwm8D",
     "stats_Fyj9UD",
     "testimonials_prH64B",
