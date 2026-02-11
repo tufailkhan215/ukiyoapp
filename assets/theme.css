@@ -321,6 +321,31 @@ img {
   animation: cta-circle-rotate-ccw 35s linear infinite;
 }
 
+/* Big Statement: central blur orb (match ukiyo-prod.com translateX ~17.7px translateY ~-11.8px scale 1.177) */
+@keyframes big-statement-orb-float {
+  0%, 100% { transform: translate(-50%, -50%) translateX(0) translateY(0) scale(1); }
+  20% { transform: translate(-50%, -50%) translateX(10px) translateY(-6px) scale(1.06); }
+  40% { transform: translate(-50%, -50%) translateX(16px) translateY(-10px) scale(1.14); }
+  60% { transform: translate(-50%, -50%) translateX(17.7px) translateY(-11.8px) scale(1.177); }
+  80% { transform: translate(-50%, -50%) translateX(9px) translateY(-5px) scale(1.05); }
+}
+
+.big-statement-orb {
+  animation: big-statement-orb-float 10s ease-in-out infinite;
+}
+
+/* Big Statement: particle dots – subtle pulse + drift (match ukiyo-prod.com) */
+@keyframes big-statement-dot-pulse {
+  0%, 100% { opacity: 0.2; transform: scale(1) translate(0, 0); }
+  33% { opacity: 0.45; transform: scale(1.12) translate(2px, -2px); }
+  66% { opacity: 0.3; transform: scale(1.05) translate(-1px, 1px); }
+}
+
+.big-statement-particle {
+  animation: big-statement-dot-pulse 4s ease-in-out infinite;
+  transform-origin: center;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .scroll-indicator,
   .scroll-indicator-dot,
@@ -331,6 +356,8 @@ img {
   .animate-cta-dot-float,
   .animate-cta-circle-cw,
   .animate-cta-circle-ccw,
+  .big-statement-orb,
+  .big-statement-particle,
   .liquid-marble::before,
   .liquid-marble::after {
     animation: none;
