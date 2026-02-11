@@ -1,37 +1,82 @@
-{% comment %} Source structure and Tailwind classes from reference (MarqueeLogos) {% endcomment %}
-<section class="relative py-20 bg-black overflow-hidden">
+{% comment %} Trusted-by: badge, title, subtitle, 8-cell grid (glass cards, alternating highlight), two scrolling marquee rows with gradient fades. {% endcomment %}
+<section class="relative py-20 lg:py-28 bg-black overflow-hidden" data-testid="trusted-by-section">
+  <div class="absolute inset-0" aria-hidden="true">
+    <div class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-white blur-[150px] opacity-[0.03]"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-white blur-[120px] opacity-[0.03]"></div>
+  </div>
   <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
 
-  <div class="text-center mb-12">
-    <span class="text-[10px] font-medium text-white/30 tracking-[0.4em] uppercase">{{ section.settings.title | default: 'Trusted by Industry Leaders' }}</span>
-  </div>
-
-  <div class="relative">
-    {% comment %} Row 1: filled text (text-white/[0.06]) - duplicate for seamless marquee {% endcomment %}
-    <div class="overflow-hidden mb-4">
-      <div class="flex whitespace-nowrap animate-marquee scrollbar-hide w-max">
-      {% for i in (1..2) %}
-        {% for block in section.blocks %}
-          {% if block.type == 'logo' and block.settings.row == '1' %}
-            <span class="mx-10 text-3xl md:text-4xl font-bold text-white/[0.06]" {% if i == 1 %}{{ block.shopify_attributes }}{% endif %}>{{ block.settings.name | default: 'Brand' }}</span>
-          {% endif %}
-        {% endfor %}
-      {% endfor %}
+  <div class="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-12">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-white/10 bg-white/[0.02] backdrop-blur-sm mb-6">
+        <span class="w-2 h-2 rounded-full bg-white/50" aria-hidden="true"></span>
+        <span class="text-[11px] font-medium text-white/50 tracking-[0.3em] uppercase">{{ section.settings.badge_text | default: 'Trusted By Industry Leaders' }}</span>
       </div>
+      {% if section.settings.title_before != blank or section.settings.title_gradient != blank %}
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+          {{ section.settings.title_before }}
+          {% if section.settings.title_gradient != blank %}
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_gradient }}</span>
+          {% endif %}
+        </h2>
+      {% endif %}
+      {% if section.settings.subtitle != blank %}
+        <p class="text-white/40 max-w-lg mx-auto">{{ section.settings.subtitle }}</p>
+      {% endif %}
     </div>
 
-    {% comment %} Row 2: outline only (-webkit-text-stroke) - duplicate for seamless marquee, reverse direction {% endcomment %}
-    <div class="overflow-hidden">
-      <div class="flex whitespace-nowrap animate-marquee-reverse scrollbar-hide w-max">
-      {% for i in (1..2) %}
-        {% for block in section.blocks %}
-          {% if block.type == 'logo' and block.settings.row == '2' %}
-            <span class="mx-10 text-3xl md:text-4xl font-bold text-transparent" style="-webkit-text-stroke: 1px rgba(255, 255, 255, 0.06);" {% if i == 1 %}{{ block.shopify_attributes }}{% endif %}>{{ block.settings.name | default: 'Brand' }}</span>
-          {% endif %}
-        {% endfor %}
+    {% assign logo_blocks = section.blocks | where: 'type', 'logo' %}
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+      {% for block in logo_blocks %}
+        {% assign is_highlight = false %}
+        {% assign idx = forloop.index0 | plus: 0 %}
+        {% if idx == 0 or idx == 2 or idx == 4 or idx == 6 %}
+          {% assign is_highlight = true %}
+        {% endif %}
+        <div class="group relative" {{ block.shopify_attributes }}>
+          <div class="relative h-28 flex items-center justify-center glass-card overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" aria-hidden="true"></div>
+            {% if is_highlight %}
+              <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent" aria-hidden="true"></div>
+              <span class="relative text-2xl md:text-3xl font-bold transition-all duration-500 text-white/40 group-hover:text-white/70" style="text-shadow: rgba(255, 255, 255, 0.2) 0px 0px 40px;">{{ block.settings.name | default: 'Brand' }}</span>
+            {% else %}
+              <span class="relative text-2xl md:text-3xl font-bold transition-all duration-500 text-white/20 group-hover:text-white/50">{{ block.settings.name | default: 'Brand' }}</span>
+            {% endif %}
+          </div>
+        </div>
       {% endfor %}
-      </div>
     </div>
+
+    {% if logo_blocks.size > 0 %}
+      {% comment %} Row 1: filled subtle text, scrolls left {% endcomment %}
+      <div class="relative overflow-hidden py-4 mb-2">
+        <div class="flex whitespace-nowrap animate-marquee w-max">
+          {% for i in (1..2) %}
+            {% for block in logo_blocks %}
+              {% if block.type == 'logo' %}
+                <span class="mx-8 text-4xl md:text-5xl font-black text-white/[0.04] hover:text-white/10 transition-colors cursor-default select-none">{{ block.settings.name | default: 'Brand' }}</span>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </div>
+        <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" aria-hidden="true"></div>
+        <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" aria-hidden="true"></div>
+      </div>
+      {% comment %} Row 2: outline/stroke text, scrolls right (reverse); reversed order to match opposite flow {% endcomment %}
+      <div class="relative overflow-hidden py-4">
+        <div class="flex whitespace-nowrap animate-marquee-reverse w-max">
+          {% for i in (1..2) %}
+            {% for block in logo_blocks reversed %}
+              {% if block.type == 'logo' %}
+                <span class="mx-8 text-4xl md:text-5xl font-black text-transparent hover:text-white/10 transition-colors cursor-default select-none" style="-webkit-text-stroke: 1px rgba(255, 255, 255, 0.06);">{{ block.settings.name | default: 'Brand' }}</span>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </div>
+        <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" aria-hidden="true"></div>
+        <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" aria-hidden="true"></div>
+      </div>
+    {% endif %}
   </div>
 
   <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
@@ -39,46 +84,66 @@
 
 {% schema %}
 {
-  "name": "Marquee logos",
+  "name": "Marquee Logos",
   "tag": "section",
-  "class": "section-marquee",
+  "class": "section-marquee-logos",
   "settings": [
-    { "type": "text", "id": "title", "label": "Section title", "default": "Trusted by Industry Leaders" }
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "Trusted By Industry Leaders"
+    },
+    {
+      "type": "text",
+      "id": "title_before",
+      "label": "Title (before gradient part)",
+      "default": "Brands That "
+    },
+    {
+      "type": "text",
+      "id": "title_gradient",
+      "label": "Title (gradient part)",
+      "default": "Trust Us"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "We've partnered with some of the most recognizable brands in the world."
+    }
   ],
   "blocks": [
     {
       "type": "logo",
-      "name": "Logo / brand",
+      "name": "Brand",
       "settings": [
-        { "type": "text", "id": "name", "label": "Name" },
-        { "type": "select", "id": "row", "label": "Row", "default": "1", "options": [
-          { "value": "1", "label": "Row 1 (filled)" },
-          { "value": "2", "label": "Row 2 (outline)" }
-        ]}
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Brand name"
+        }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Marquee logos",
-      "settings": { "title": "Trusted by Industry Leaders" },
+      "name": "Marquee Logos",
+      "settings": {
+        "badge_text": "Trusted By Industry Leaders",
+        "title_before": "Brands That ",
+        "title_gradient": "Trust Us",
+        "subtitle": "We've partnered with some of the most recognizable brands in the world."
+      },
       "blocks": [
-        { "type": "logo", "settings": { "name": "APPLE", "row": "1" } },
-        { "type": "logo", "settings": { "name": "GOOGLE", "row": "1" } },
-        { "type": "logo", "settings": { "name": "META", "row": "1" } },
-        { "type": "logo", "settings": { "name": "AMAZON", "row": "1" } },
-        { "type": "logo", "settings": { "name": "SPOTIFY", "row": "1" } },
-        { "type": "logo", "settings": { "name": "NIKE", "row": "1" } },
-        { "type": "logo", "settings": { "name": "ADOBE", "row": "1" } },
-        { "type": "logo", "settings": { "name": "TARGET", "row": "1" } },
-        { "type": "logo", "settings": { "name": "STRIPE", "row": "2" } },
-        { "type": "logo", "settings": { "name": "FIGMA", "row": "2" } },
-        { "type": "logo", "settings": { "name": "SLACK", "row": "2" } },
-        { "type": "logo", "settings": { "name": "NOTION", "row": "2" } },
-        { "type": "logo", "settings": { "name": "NETFLIX", "row": "2" } },
-        { "type": "logo", "settings": { "name": "TESLA", "row": "2" } },
-        { "type": "logo", "settings": { "name": "AIRBNB", "row": "2" } },
-        { "type": "logo", "settings": { "name": "UBER", "row": "2" } }
+        { "type": "logo", "settings": { "name": "NIKE" } },
+        { "type": "logo", "settings": { "name": "SPOTIFY" } },
+        { "type": "logo", "settings": { "name": "APPLE" } },
+        { "type": "logo", "settings": { "name": "ADIDAS" } },
+        { "type": "logo", "settings": { "name": "WANDRD" } },
+        { "type": "logo", "settings": { "name": "COACHELLA" } },
+        { "type": "logo", "settings": { "name": "SXSW" } },
+        { "type": "logo", "settings": { "name": "POLAROID" } }
       ]
     }
   ]

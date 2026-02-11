@@ -1,18 +1,58 @@
-{% comment %} Source structure and Tailwind classes from reference (BigStatement) {% endcomment %}
-<section class="relative py-40 lg:py-56 bg-black overflow-hidden">
+{% comment %} Big Statement: carousel of label + quote + subtext, central blur, particles, prev/next, pagination dots with progress. {% endcomment %}
+{% assign statement_blocks = section.blocks | where: 'type', 'statement' %}
+<section class="relative py-32 lg:py-48 bg-black overflow-hidden group" data-testid="big-statement" data-cms-section="big_statement" data-big-statement>
   <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] rounded-full bg-white blur-[200px] opacity-[0.04]" aria-hidden="true"></div>
 
-  <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 text-center">
-    <div class="w-20 h-px bg-white/20 mx-auto mb-14 origin-center" aria-hidden="true"></div>
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    {% assign particle_positions = "52,18|69,55|88,27|40,30|70,24|63,38|54,29|16,89|85,38|27,9|20,12|22,81|76,98|8,23|58,97" | split: "|" %}
+    {% for pos in particle_positions %}
+      {% assign parts = pos | split: "," %}
+      <div class="absolute w-1 h-1 bg-white/20 rounded-full" style="left: {{ parts[0] }}%; top: {{ parts[1] }}%;"></div>
+    {% endfor %}
+  </div>
 
-    <blockquote class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium leading-[1.2] tracking-tight">
-      <span class="text-white/20">"</span><span class="text-white">{{ section.settings.quote_part1 | default: 'Brand strategy, identity, and experience' }}</span><span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500"> {{ section.settings.quote_part2 | default: 'built for growth at scale.' }}</span><span class="text-white/20">"</span>
-    </blockquote>
+  <div class="relative z-10 max-w-[1200px] mx-auto px-6 lg:px-12">
+    {% if statement_blocks.size > 0 %}
+      <div class="relative">
+        <button type="button" class="big-statement-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-16 p-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-all opacity-0 group-hover:opacity-100 hover:opacity-100 z-20" aria-label="Previous">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left w-5 h-5 text-white/60" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+        </button>
+        <button type="button" class="big-statement-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-16 p-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-all opacity-0 group-hover:opacity-100 hover:opacity-100 z-20" aria-label="Next">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right w-5 h-5 text-white/60" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+        </button>
 
-    <div class="w-20 h-px bg-white/20 mx-auto my-14 origin-center" aria-hidden="true"></div>
+        <div class="big-statement-track overflow-hidden w-full">
+          <div class="big-statement-track-inner flex transition-transform duration-500 ease-out" style="width: {{ statement_blocks.size | times: 100 }}%;">
+            {% for block in statement_blocks %}
+              <div class="big-statement-slide flex-shrink-0 flex-grow min-w-0 text-center px-0" style="flex-basis: 0;" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+                <p class="text-center text-sm text-white/40 tracking-[0.3em] uppercase mb-8" data-cms-field="label2">{{ block.settings.label | default: 'Our Mission' }}</p>
+                <blockquote class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.3] tracking-tight mb-8" data-cms-field="quote2">
+                  <span class="text-white/30 text-4xl lg:text-6xl">"</span><span class="text-white">{{ block.settings.quote | default: 'To empower bold brands with AI-driven innovation and creative excellence.' }}</span><span class="text-white/30 text-4xl lg:text-6xl">"</span>
+                </blockquote>
+                {% if block.settings.subtext != blank %}
+                  <p class="text-white/50 text-base lg:text-lg max-w-2xl mx-auto" data-cms-field="subtext2">{{ block.settings.subtext }}</p>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
 
-    {% if section.settings.tagline != blank %}
-      <p class="text-sm text-white/30 tracking-[0.3em] uppercase">{{ section.settings.tagline }}</p>
+        <div class="flex justify-center gap-3 mt-12 big-statement-dots">
+          {% for block in statement_blocks %}
+            <button type="button" class="big-statement-dot relative h-2 rounded-full transition-all duration-500 w-2 bg-white/20 hover:bg-white/40" aria-label="{{ block.settings.label | default: 'Slide' }}" data-index="{{ forloop.index0 }}">
+              <span class="big-statement-progress absolute inset-0 bg-white/50 rounded-full origin-left scale-x-0" style="transform: scaleX(0);"></span>
+            </button>
+          {% endfor %}
+        </div>
+      </div>
+    {% else %}
+      <p class="text-center text-sm text-white/40 tracking-[0.3em] uppercase mb-8">Our Mission</p>
+      <div class="text-center">
+        <blockquote class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.3] tracking-tight mb-8">
+          <span class="text-white/30 text-4xl lg:text-6xl">"</span><span class="text-white">To empower bold brands with AI-driven innovation and creative excellence.</span><span class="text-white/30 text-4xl lg:text-6xl">"</span>
+        </blockquote>
+        <p class="text-white/50 text-base lg:text-lg max-w-2xl mx-auto">We exist to turn ambitious ideas into market-defining realities.</p>
+      </div>
     {% endif %}
   </div>
 </section>
@@ -22,13 +62,27 @@
   "name": "Big statement",
   "tag": "section",
   "class": "section-big-statement",
-  "settings": [
-    { "type": "text", "id": "quote_part1", "label": "Quote part 1 (white)", "default": "Brand strategy, identity, and experience" },
-    { "type": "text", "id": "quote_part2", "label": "Quote part 2 (gradient)", "default": "built for growth at scale." },
-    { "type": "text", "id": "tagline", "label": "Tagline below quote", "default": "Our Philosophy" }
+  "settings": [],
+  "blocks": [
+    {
+      "type": "statement",
+      "name": "Statement",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label (e.g. Our Mission)", "default": "Our Mission" },
+        { "type": "textarea", "id": "quote", "label": "Quote", "default": "To empower bold brands with AI-driven innovation and creative excellence." },
+        { "type": "textarea", "id": "subtext", "label": "Subtext", "default": "We exist to turn ambitious ideas into market-defining realities." }
+      ]
+    }
   ],
   "presets": [
-    { "name": "Big statement" }
+    {
+      "name": "Big statement",
+      "blocks": [
+        { "type": "statement", "settings": { "label": "Our Philosophy", "quote": "Philosophy quote.", "subtext": "Philosophy subtext." } },
+        { "type": "statement", "settings": { "label": "Our Mission", "quote": "To empower bold brands with AI-driven innovation and creative excellence.", "subtext": "We exist to turn ambitious ideas into market-defining realities." } },
+        { "type": "statement", "settings": { "label": "Our Standard", "quote": "Standard quote.", "subtext": "Standard subtext." } }
+      ]
+    }
   ]
 }
 {% endschema %}

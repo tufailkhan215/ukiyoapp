@@ -167,6 +167,230 @@
     });
   }
 
+  // Big statement carousel (prev/next, dots, optional progress bar + auto-advance)
+  function initBigStatementCarousel() {
+    document.querySelectorAll('[data-big-statement]').forEach(function (sectionEl) {
+      var trackInner = sectionEl.querySelector('.big-statement-track-inner');
+      var prevBtn = sectionEl.querySelector('.big-statement-prev');
+      var nextBtn = sectionEl.querySelector('.big-statement-next');
+      var dots = sectionEl.querySelectorAll('.big-statement-dot');
+      if (!trackInner || !dots.length) return;
+
+      var total = dots.length;
+      var index = 0;
+      var progressTimer = null;
+      var duration = 6000;
+
+      function goTo(i) {
+        index = ((i % total) + total) % total;
+        var pct = total > 0 ? (100 / total) * index : 0;
+        trackInner.style.transform = 'translateX(-' + pct + '%)';
+
+        dots.forEach(function (dot, j) {
+          var isActive = j === index;
+          var progress = dot.querySelector('.big-statement-progress');
+          dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+          dot.style.width = isActive ? '2rem' : '0.5rem';
+          dot.style.backgroundColor = isActive ? 'white' : 'rgba(255,255,255,0.2)';
+          if (progress) {
+            progress.style.transform = 'scaleX(0)';
+            progress.style.transition = 'none';
+          }
+        });
+
+        if (progressTimer) clearInterval(progressTimer);
+        var activeDot = dots[index];
+        var activeProgress = activeDot ? activeDot.querySelector('.big-statement-progress') : null;
+        if (activeProgress) {
+          var start = Date.now();
+          progressTimer = setInterval(function () {
+            var elapsed = Date.now() - start;
+            var x = Math.min(1, elapsed / duration);
+            activeProgress.style.transform = 'scaleX(' + x + ')';
+            if (x >= 1) {
+              clearInterval(progressTimer);
+              progressTimer = null;
+              goTo(index + 1);
+            }
+          }, 50);
+        }
+      }
+
+      if (prevBtn) prevBtn.addEventListener('click', function () { goTo(index - 1); });
+      if (nextBtn) nextBtn.addEventListener('click', function () { goTo(index + 1); });
+      dots.forEach(function (dot) {
+        dot.addEventListener('click', function () {
+          var i = parseInt(dot.getAttribute('data-index'), 10);
+          if (!isNaN(i)) goTo(i);
+        });
+      });
+
+      goTo(0);
+    });
+  }
+
+  // Brutal Stack: service bundle selector, discount pills, Your Bundle summary, ROI calculator
+  function initBrutalStack() {
+    document.querySelectorAll('[data-brutal-stack]').forEach(function (sectionEl) {
+      var tiersJson = sectionEl.getAttribute('data-discount-tiers');
+      var tiers = tiersJson ? JSON.parse(tiersJson) : { 2: 20, 3: 35, 4: 50, 5: 60, 6: 70 };
+      var services = sectionEl.querySelectorAll('.brutal-stack-service');
+      var selectAllBtn = sectionEl.querySelector('.brutal-stack-select-all');
+      var placeholder = sectionEl.querySelector('.brutal-stack-bundle-placeholder');
+      var bundleContent = sectionEl.querySelector('.brutal-stack-bundle-content');
+      var bundleItems = sectionEl.querySelector('.brutal-stack-bundle-items');
+      var revenueInput = sectionEl.querySelector('.brutal-stack-revenue');
+      var roiItems = sectionEl.querySelector('.brutal-stack-roi-items');
+      var pills = sectionEl.querySelectorAll('.brutal-stack-pill');
+
+      function fmt(n) {
+        return '$' + Math.round(n).toLocaleString();
+      }
+
+      function getSelected() {
+        var list = [];
+        services.forEach(function (btn) {
+          if (btn.getAttribute('data-selected') === 'true') {
+            list.push({
+              title: btn.getAttribute('data-title') || '',
+              price: parseFloat(btn.getAttribute('data-price')) || 0,
+              roi: parseFloat(btn.getAttribute('data-roi')) || 0
+            });
+          }
+        });
+        return list;
+      }
+
+      function getDiscountPct(count) {
+        if (count < 2) return 0;
+        var pct = tiers[String(count)];
+        return typeof pct === 'number' ? pct : 0;
+      }
+
+      function refreshPills() {
+        var count = getSelected().length;
+        pills.forEach(function (pill) {
+          var pillCount = parseInt(pill.getAttribute('data-count'), 10);
+          var isActive = pillCount === count && count >= 2;
+          pill.classList.toggle('bg-green-500', isActive);
+          pill.classList.toggle('text-white', isActive);
+          pill.classList.toggle('bg-white/[0.03]', !isActive);
+          pill.classList.toggle('text-white/40', !isActive);
+          pill.classList.toggle('border', !isActive);
+          pill.classList.toggle('border-white/10', !isActive);
+        });
+      }
+
+      function refreshBundle() {
+        var selected = getSelected();
+        if (selected.length === 0) {
+          if (placeholder) placeholder.classList.remove('hidden');
+          if (bundleContent) bundleContent.classList.add('hidden');
+          return;
+        }
+        if (placeholder) placeholder.classList.add('hidden');
+        if (bundleContent) bundleContent.classList.remove('hidden');
+        var subtotal = selected.reduce(function (sum, s) { return sum + s.price; }, 0);
+        var discountPct = getDiscountPct(selected.length);
+        var discountAmount = subtotal * (discountPct / 100);
+        var total = subtotal - discountAmount;
+
+        if (bundleItems) {
+          bundleItems.innerHTML = selected.map(function (s) {
+            return '<div class="flex justify-between text-sm"><span class="text-white/60">' + escapeHtml(s.title) + '</span><span class="text-white/40">' + fmt(s.price) + '</span></div>';
+          }).join('');
+        }
+        var subtotalEl = sectionEl.querySelector('.brutal-stack-subtotal');
+        var pctEl = sectionEl.querySelector('.brutal-stack-discount-pct');
+        var amountEl = sectionEl.querySelector('.brutal-stack-discount-amount');
+        var totalEl = sectionEl.querySelector('.brutal-stack-total');
+        var savingsEl = sectionEl.querySelector('.brutal-stack-savings');
+        if (subtotalEl) subtotalEl.textContent = fmt(subtotal);
+        if (pctEl) pctEl.textContent = discountPct;
+        if (amountEl) amountEl.textContent = '-' + fmt(discountAmount);
+        if (totalEl) totalEl.textContent = fmt(total);
+        if (savingsEl) savingsEl.textContent = 'You save ' + fmt(discountAmount);
+      }
+
+      function refreshROI() {
+        var selected = getSelected();
+        var revenue = parseFloat(revenueInput && revenueInput.value) || 0;
+        var totalRoi = selected.reduce(function (sum, s) { return sum + s.roi; }, 0);
+        var increase = revenue * (totalRoi / 100);
+
+        if (roiItems) {
+          roiItems.innerHTML = selected.map(function (s) {
+            return '<div class="flex justify-between p-3 bg-black/5 rounded"><span class="text-black/60 text-sm">' + escapeHtml(s.title) + '</span><span class="text-black font-medium">+' + s.roi + '%</span></div>';
+          }).join('');
+        }
+        var increaseEl = sectionEl.querySelector('.brutal-stack-increase');
+        var totalRoiEl = sectionEl.querySelector('.brutal-stack-roi-total');
+        if (increaseEl) increaseEl.textContent = '+' + fmt(increase);
+        if (totalRoiEl) totalRoiEl.textContent = 'Total ROI boost: +' + totalRoi + '%';
+      }
+
+      function escapeHtml(s) {
+        var div = document.createElement('div');
+        div.textContent = s;
+        return div.innerHTML;
+      }
+
+      function toggleService(btn) {
+        var on = btn.getAttribute('data-selected') !== 'true';
+        btn.setAttribute('data-selected', on ? 'true' : 'false');
+        var check = btn.querySelector('.brutal-stack-check');
+        var title = btn.querySelector('.brutal-stack-title');
+        var price = btn.querySelector('.brutal-stack-price');
+        if (on) {
+          btn.classList.remove('border-white/[0.05]', 'bg-white/[0.02]');
+          btn.classList.add('border-white/30', 'bg-white/[0.05]');
+          if (check) {
+            check.classList.remove('bg-white/10');
+            check.classList.add('bg-white');
+            var svg = check.querySelector('svg');
+            if (svg) svg.classList.remove('hidden');
+          }
+          if (title) title.classList.remove('text-white/70'), title.classList.add('text-white');
+          if (price) price.classList.remove('text-white/50'), price.classList.add('text-white');
+        } else {
+          btn.classList.add('border-white/[0.05]', 'bg-white/[0.02]');
+          btn.classList.remove('border-white/30', 'bg-white/[0.05]');
+          if (check) {
+            check.classList.add('bg-white/10');
+            check.classList.remove('bg-white');
+            var svg = check.querySelector('svg');
+            if (svg) svg.classList.add('hidden');
+          }
+          if (title) title.classList.add('text-white/70'), title.classList.remove('text-white');
+          if (price) price.classList.add('text-white/50'), price.classList.remove('text-white');
+        }
+        refreshBundle();
+        refreshPills();
+        refreshROI();
+      }
+
+      services.forEach(function (btn) {
+        btn.addEventListener('click', function () { toggleService(btn); });
+      });
+
+      if (selectAllBtn) {
+        selectAllBtn.addEventListener('click', function () {
+          var selectedCount = getSelected().length;
+          var targetOn = selectedCount !== services.length;
+          services.forEach(function (btn) {
+            var currentlyOn = btn.getAttribute('data-selected') === 'true';
+            if (currentlyOn !== targetOn) toggleService(btn);
+          });
+        });
+      }
+
+      if (revenueInput) revenueInput.addEventListener('input', refreshROI);
+
+      refreshPills();
+      refreshROI();
+    });
+  }
+
   // Nav mega dropdown (hover show/hide, chevron rotate)
   function initNavDropdowns() {
     document.querySelectorAll('[data-dropdown]').forEach(function (dropdown) {
@@ -225,6 +449,8 @@
       initScrollIndicator();
       initSectionReveal();
       initTestimonialCarousel();
+      initBigStatementCarousel();
+      initBrutalStack();
       initUrgencyCountdown();
       initNavDropdowns();
       initHeaderScroll();
@@ -234,6 +460,8 @@
     initScrollIndicator();
     initSectionReveal();
     initTestimonialCarousel();
+    initBigStatementCarousel();
+    initBrutalStack();
     initUrgencyCountdown();
     initNavDropdowns();
     initHeaderScroll();
