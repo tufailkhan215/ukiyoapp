@@ -12,9 +12,21 @@
     "main": {
       "type": "main-page",
       "settings": {}
+    },
+    "services_cta_nPTw36": {
+      "type": "services-cta",
+      "name": "Services CTA",
+      "settings": {
+        "heading": "Ready to Build Your AI-Powered Brand Agent?",
+        "description": "Book a free consultation to discuss how we can automate your customer interactions while maintaining your unique brand voice.",
+        "cta_text": "Book Free Consultation",
+        "cta_url": "",
+        "cta_new_tab": true
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "services_cta_nPTw36"
   ]
 }
