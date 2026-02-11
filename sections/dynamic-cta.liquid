@@ -1,0 +1,116 @@
+{% comment %} Dynamic CTA: tagline, gradient headline, subtitle, CTA button with hover shine. Radial gradient, dots, concentric circles. {% endcomment %}
+{% assign dot_positions = "51,69|72,15|94,95|63,28|1,66|81,77|46,42|64,24|78,27|15,30|78,12|88,79|21,57|10,53|73,69|49,83|89,33|77,6|89,7|43,93|56,99|76,47|79,48|28,82|11,1|37,51|77,3|85,51|77,6|59,45" | split: "|" %}
+
+<section class="relative py-32 lg:py-48 bg-black overflow-hidden" data-testid="dynamic-cta" data-cms-section="cta">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="absolute inset-0" style="background: radial-gradient(rgba(255, 255, 255, 0.04), transparent 60%);" aria-hidden="true"></div>
+
+  <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+    {% for pos in dot_positions %}
+      {% assign parts = pos | split: "," %}
+      <div class="absolute w-1 h-1 bg-white/30 rounded-full" style="left: {{ parts[0] }}%; top: {{ parts[1] }}%;"></div>
+    {% endfor %}
+  </div>
+
+  <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px]">
+      <div class="absolute inset-0 rounded-full border border-white/[0.05]"></div>
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white/20"></div>
+    </div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px]">
+      <div class="absolute inset-0 rounded-full border border-dashed border-white/[0.03]"></div>
+      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 rounded-full bg-white/30"></div>
+    </div>
+  </div>
+
+  <div class="relative z-10 max-w-[1000px] mx-auto px-6 lg:px-12 text-center">
+    {% if section.settings.tagline != blank %}
+      <span class="inline-block text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase mb-6">{{ section.settings.tagline }}</span>
+    {% endif %}
+    <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+      {{ section.settings.title_before }}
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_gradient }}</span>
+    </h2>
+    {% if section.settings.subtitle != blank %}
+      <p class="text-lg text-white/50 mb-10 max-w-xl mx-auto">{{ section.settings.subtitle }}</p>
+    {% endif %}
+    {% if section.settings.cta_text != blank %}
+      <div>
+        <a href="{{ section.settings.cta_url | default: '/contact' }}"{% if section.settings.cta_new_tab %} target="_blank" rel="noopener noreferrer"{% endif %}>
+          <button type="button" class="group px-10 py-5 bg-white text-black rounded-full font-semibold text-lg relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-black/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500" aria-hidden="true"></div>
+            <span class="relative flex items-center justify-center gap-3">
+              {{ section.settings.cta_text }}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+            </span>
+          </button>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Dynamic CTA",
+  "tag": "section",
+  "class": "section-dynamic-cta",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "(Ready to Rally Around Your Big Idea?)"
+    },
+    {
+      "type": "text",
+      "id": "title_before",
+      "label": "Title (before gradient)",
+      "default": "Let's create "
+    },
+    {
+      "type": "text",
+      "id": "title_gradient",
+      "label": "Title (gradient part)",
+      "default": "something legendary"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Ready to transform your brand into a market leader?"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button text",
+      "default": "Start Your Project"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button URL",
+      "default": "/contact"
+    },
+    {
+      "type": "checkbox",
+      "id": "cta_new_tab",
+      "label": "Open link in new tab",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dynamic CTA",
+      "settings": {
+        "tagline": "(Ready to Rally Around Your Big Idea?)",
+        "title_before": "Let's create ",
+        "title_gradient": "something legendary",
+        "subtitle": "Ready to transform your brand into a market leader?",
+        "cta_text": "Start Your Project",
+        "cta_url": "/contact"
+      }
+    }
+  ]
+}
+{% endschema %}
