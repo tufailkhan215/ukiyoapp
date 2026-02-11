@@ -396,6 +396,91 @@
         "roi_disclaimer": "Based on results from 150+ clients"
       }
     },
+    "brutal_stack_GyzaPU": {
+      "type": "brutal-stack",
+      "blocks": {
+        "service_xPdPYG": {
+          "type": "service",
+          "settings": {
+            "title": "AI Revenue Concierge Chatbot",
+            "description": "Captures leads 24/7, converts DMs to sales",
+            "price": "$15,000",
+            "roi": "+35% ROI"
+          }
+        },
+        "service_TUKTbq": {
+          "type": "service",
+          "settings": {
+            "title": "Complete Brand Identity System",
+            "description": "Logo, colors, typography, guidelines",
+            "price": "$25,000",
+            "roi": "+20% ROI"
+          }
+        },
+        "service_9CWjbY": {
+          "type": "service",
+          "settings": {
+            "title": "High-Converting Website",
+            "description": "Custom design, SEO optimized",
+            "price": "$35,000",
+            "roi": "+25% ROI"
+          }
+        },
+        "service_dzTg6b": {
+          "type": "service",
+          "settings": {
+            "title": "Email Automation Flows",
+            "description": "Welcome, abandoned cart, win-back",
+            "price": "$12,000",
+            "roi": "+25% ROI"
+          }
+        },
+        "service_8yfiPD": {
+          "type": "service",
+          "settings": {
+            "title": "Content Strategy + Calendar",
+            "description": "90-day content plan with templates",
+            "price": "$8,000",
+            "roi": "+15% ROI"
+          }
+        },
+        "service_4waeGa": {
+          "type": "service",
+          "settings": {
+            "title": "1:1 Strategy Sessions",
+            "description": "Monthly calls with our strategists",
+            "price": "$5,000",
+            "roi": "+10% ROI"
+          }
+        }
+      },
+      "block_order": [
+        "service_xPdPYG",
+        "service_TUKTbq",
+        "service_9CWjbY",
+        "service_dzTg6b",
+        "service_8yfiPD",
+        "service_4waeGa"
+      ],
+      "name": "Brutal Stack",
+      "settings": {
+        "badge": "(Build Your Bundle)",
+        "title_before": "Pick Your",
+        "title_gradient": "Power Stack",
+        "subtitle": "Select the services you need. The more you bundle, the more you save—up to",
+        "save_line": "70% OFF!",
+        "services_heading": "Select Services",
+        "select_all_text": "Select All (70% OFF!)",
+        "bundle_heading": "Your Bundle",
+        "bundle_placeholder": "Select services to build your bundle",
+        "roi_heading": "ROI Calculator",
+        "roi_revenue_label": "Your Current Monthly Revenue",
+        "roi_boost_label": "Selected Services ROI Boost",
+        "roi_increase_label": "Potential Monthly Increase:",
+        "cta_url": "",
+        "cta_text": "Lock In This Bundle"
+      }
+    },
     "work_UHwm8D": {
       "type": "work",
       "blocks": {
@@ -518,6 +603,140 @@
         "strap": "(Our Impact)",
         "title_before": "Numbers that",
         "title_gradient": "matter"
+      }
+    },
+    "business_statistics_zWJ3bN": {
+      "type": "business-statistics",
+      "blocks": {
+        "without_item_yUrpUe": {
+          "type": "without_item",
+          "settings": {
+            "icon": "clock",
+            "icon_bg": "bg-red-500",
+            "title": "DIY Design Disasters",
+            "metric": "47 hours/week",
+            "description": "Spent watching Canva tutorials while your competitors hire professionals"
+          }
+        },
+        "without_item_zFAfGL": {
+          "type": "without_item",
+          "settings": {
+            "icon": "dollar",
+            "icon_bg": "bg-orange-500",
+            "title": "Money Left on Table",
+            "metric": "$127K/year",
+            "description": "Revenue you're missing because your website looks like it's from 2009"
+          }
+        },
+        "without_item_7hBMWc": {
+          "type": "without_item",
+          "settings": {
+            "icon": "brain",
+            "icon_bg": "bg-yellow-500",
+            "title": "Mental Breakdowns",
+            "metric": "3.7 per week",
+            "description": "Crying over why Instagram keeps changing its algorithm"
+          }
+        },
+        "without_item_bkdiK3": {
+          "type": "without_item",
+          "settings": {
+            "icon": "coffee",
+            "icon_bg": "bg-amber-500",
+            "title": "Caffeine Dependency",
+            "metric": "∞ cups",
+            "description": "Needed to stay awake while editing that 'quick' video at 3am"
+          }
+        },
+        "with_item_Nzn4ck": {
+          "type": "with_item",
+          "settings": {
+            "icon": "trending_down",
+            "metric": "0 hrs",
+            "subtitle": "Wasted on DIY fails"
+          }
+        },
+        "with_item_6P6Fnb": {
+          "type": "with_item",
+          "settings": {
+            "icon": "dollar",
+            "metric": "+$340%",
+            "subtitle": "Average revenue growth"
+          }
+        },
+        "with_item_fTtL3h": {
+          "type": "with_item",
+          "settings": {
+            "icon": "brain",
+            "metric": "100%",
+            "subtitle": "Sanity preserved"
+          }
+        },
+        "with_item_Vd4K6t": {
+          "type": "with_item",
+          "settings": {
+            "icon": "clock",
+            "metric": "1000+ hrs",
+            "subtitle": "Saved annually"
+          }
+        },
+        "math_stat_VDgFJY": {
+          "type": "math_stat",
+          "settings": {
+            "value": "2,080",
+            "label": "Hours lost to DIY marketing",
+            "sublabel": "(That's 52 weeks of full-time work)",
+            "color": "red"
+          }
+        },
+        "math_stat_QrQqkK": {
+          "type": "math_stat",
+          "settings": {
+            "value": "$89K",
+            "label": "Avg. lost revenue opportunity",
+            "sublabel": "(From poor branding & no automation)",
+            "color": "orange"
+          }
+        },
+        "math_stat_hbVLWC": {
+          "type": "math_stat",
+          "settings": {
+            "value": "847",
+            "label": "Gray hairs grown prematurely",
+            "sublabel": "(Okay we made this one up, but still)",
+            "color": "yellow"
+          }
+        }
+      },
+      "block_order": [
+        "without_item_yUrpUe",
+        "without_item_zFAfGL",
+        "without_item_7hBMWc",
+        "without_item_bkdiK3",
+        "with_item_Nzn4ck",
+        "with_item_6P6Fnb",
+        "with_item_fTtL3h",
+        "with_item_Vd4K6t",
+        "math_stat_VDgFJY",
+        "math_stat_QrQqkK",
+        "math_stat_hbVLWC"
+      ],
+      "name": "Business Statistics",
+      "settings": {
+        "badge": "(Brutal Honesty Incoming)",
+        "title_before": "Businesses Are",
+        "title_gradient": "Playing With Themselves",
+        "subtitle": "...by not working with us. Here's what \"doing it yourself\" actually looks like:",
+        "without_heading": "WITHOUT UKIYO",
+        "without_subtitle": "The struggle is real (and expensive)",
+        "with_heading": "WITH UKIYO",
+        "with_subtitle": "Let the grown-ups handle it",
+        "testimonial": "\"We went from chaos to clarity. Now I actually have time for hobbies.\"",
+        "testimonial_attr": "Every Ukiyo client ever",
+        "cta_url": "/contact",
+        "cta_text": "Stop Playing With Yourself",
+        "math_heading": "The Math Doesn't Lie",
+        "math_subheading": "Average business owner's time and money wasted annually"
       }
     },
     "testimonials_prH64B": {
@@ -782,89 +1001,17 @@
         "button_link": "/pages/contact"
       }
     },
-    "brutal_stack_GyzaPU": {
-      "type": "brutal-stack",
-      "blocks": {
-        "service_xPdPYG": {
-          "type": "service",
-          "settings": {
-            "title": "AI Revenue Concierge Chatbot",
-            "description": "Captures leads 24/7, converts DMs to sales",
-            "price": "$15,000",
-            "roi": "+35% ROI"
-          }
-        },
-        "service_TUKTbq": {
-          "type": "service",
-          "settings": {
-            "title": "Complete Brand Identity System",
-            "description": "Logo, colors, typography, guidelines",
-            "price": "$25,000",
-            "roi": "+20% ROI"
-          }
-        },
-        "service_9CWjbY": {
-          "type": "service",
-          "settings": {
-            "title": "High-Converting Website",
-            "description": "Custom design, SEO optimized",
-            "price": "$35,000",
-            "roi": "+25% ROI"
-          }
-        },
-        "service_dzTg6b": {
-          "type": "service",
-          "settings": {
-            "title": "Email Automation Flows",
-            "description": "Welcome, abandoned cart, win-back",
-            "price": "$12,000",
-            "roi": "+25% ROI"
-          }
-        },
-        "service_8yfiPD": {
-          "type": "service",
-          "settings": {
-            "title": "Content Strategy + Calendar",
-            "description": "90-day content plan with templates",
-            "price": "$8,000",
-            "roi": "+15% ROI"
-          }
-        },
-        "service_4waeGa": {
-          "type": "service",
-          "settings": {
-            "title": "1:1 Strategy Sessions",
-            "description": "Monthly calls with our strategists",
-            "price": "$5,000",
-            "roi": "+10% ROI"
-          }
-        }
-      },
-      "block_order": [
-        "service_xPdPYG",
-        "service_TUKTbq",
-        "service_9CWjbY",
-        "service_dzTg6b",
-        "service_8yfiPD",
-        "service_4waeGa"
-      ],
-      "name": "Brutal Stack",
+    "dynamic_cta_Rq7hkB": {
+      "type": "dynamic-cta",
+      "name": "Dynamic CTA",
       "settings": {
-        "badge": "(Build Your Bundle)",
-        "title_before": "Pick Your",
-        "title_gradient": "Power Stack",
-        "subtitle": "Select the services you need. The more you bundle, the more you save—up to",
-        "save_line": "70% OFF!",
-        "services_heading": "Select Services",
-        "select_all_text": "Select All (70% OFF!)",
-        "bundle_heading": "Your Bundle",
-        "bundle_placeholder": "Select services to build your bundle",
-        "roi_heading": "ROI Calculator",
-        "roi_revenue_label": "Your Current Monthly Revenue",
-        "roi_boost_label": "Selected Services ROI Boost",
-        "roi_increase_label": "Potential Monthly Increase:",
-        "cta_url": "",
-        "cta_text": "Lock In This Bundle"
+        "tagline": "(Ready to Rally Around Your Big Idea?)",
+        "title_before": "Let's create",
+        "title_gradient": "something legendary",
+        "subtitle": "Ready to transform your brand into a market leader?",
+        "cta_text": "Start Your Project",
+        "cta_url": "/contact",
+        "cta_new_tab": false
       }
     }
   },
@@ -878,12 +1025,14 @@
     "brutal_stack_GyzaPU",
     "work_UHwm8D",
     "stats_Fyj9UD",
+    "business_statistics_zWJ3bN",
     "testimonials_prH64B",
     "guarantee_37PUCE",
     "lead_magnet_iCNhMM",
     "urgency_83eAUA",
     "about_4mCeyC",
     "trusted-by",
-    "cta"
+    "cta",
+    "dynamic_cta_Rq7hkB"
   ]
 }
