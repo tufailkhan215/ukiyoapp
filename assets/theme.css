@@ -276,12 +276,43 @@ img {
   animation: float 6s ease-in-out infinite;
 }
 
+/* Dynamic CTA: dot twinkle, circle rotation */
+@keyframes cta-dot-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.2); }
+}
+
+.animate-cta-dot-pulse {
+  animation: cta-dot-pulse 3s ease-in-out infinite;
+}
+
+@keyframes cta-circle-rotate-cw {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes cta-circle-rotate-ccw {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+.animate-cta-circle-cw {
+  animation: cta-circle-rotate-cw 45s linear infinite;
+}
+
+.animate-cta-circle-ccw {
+  animation: cta-circle-rotate-ccw 35s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .scroll-indicator,
   .scroll-indicator-dot,
   .animate-marquee,
   .animate-marquee-reverse,
   .animate-float,
+  .animate-cta-dot-pulse,
+  .animate-cta-circle-cw,
+  .animate-cta-circle-ccw,
   .liquid-marble::before,
   .liquid-marble::after {
     animation: none;
