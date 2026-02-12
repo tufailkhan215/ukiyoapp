@@ -151,8 +151,10 @@
             "category": "Brand Partnership",
             "title": "POLAROID",
             "description": "Nostalgic brand activation campaign bridging classic aesthetics with contemporary audiences.",
-            "gallery_count": "3",
-            "gallery_images": "https://cdn.shopify.com/s/files/1/0804/2669/6957/files/elmurorosa_drone_shot_of_tropical_island_--ar_916_--style_raw_a4bea9bc-922d-4f57-b454-57f5fe4564c6.webp?v=1770890639\nhttps://cdn.shopify.com/s/files/1/0804/2669/6957/files/IMG_9657_1.webp?v=1770890638\nhttps://cdn.shopify.com/s/files/1/0804/2669/6957/files/DSCF8277.webp?v=1770890637"
+            "gallery_image_2": "shopify://shop_images/IMG_6776.webp",
+            "gallery_image_3": "shopify://shop_images/IMG_9657_1.webp",
+            "gallery_image_4": "shopify://shop_images/DSCF8277.webp",
+            "gallery_image_5": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge.webp"
           }
         },
         "project_99yqWB": {
@@ -162,8 +164,8 @@
             "category": "Adventure Travel",
             "title": "WANDRD",
             "description": "Multi-platform content strategy capturing the spirit of adventure travel.",
-            "gallery_count": "3",
-            "gallery_images": ""
+            "gallery_image_2": "shopify://shop_images/DSC_29323129.webp",
+            "gallery_image_3": "shopify://shop_images/25930044-A454-4EE9-BF1C-43FA0D5EA00E.jpg"
           }
         },
         "project_7V6yPh": {
@@ -173,8 +175,11 @@
             "category": "Energy & Lifestyle",
             "title": "MONSTER",
             "description": "High-energy brand content and experiential marketing campaigns.",
-            "gallery_count": "3",
-            "gallery_images": ""
+            "gallery_image_2": "shopify://shop_images/DSCF7109_3532ce56-01d4-42c1-ba19-6401dd0bff36.webp",
+            "gallery_image_3": "shopify://shop_images/IMG_3161.webp",
+            "gallery_image_4": "shopify://shop_images/elmurorosa_drone_shot_of_tropical_island_--ar_916_--style_raw_a4bea9bc-922d-4f57-b454-57f5fe4564c6.webp",
+            "gallery_image_5": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge.webp",
+            "gallery_image_6": "shopify://shop_images/IMG_9657_1.webp"
           }
         },
         "project_cBBYnk": {
@@ -182,9 +187,7 @@
           "settings": {
             "category": "Fashion & Lifestyle",
             "title": "POPPY.CALIFORNIA",
-            "description": "California-inspired brand storytelling and visual identity development.",
-            "gallery_count": "3",
-            "gallery_images": ""
+            "description": "California-inspired brand storytelling and visual identity development."
           }
         },
         "project_ErkRht": {
@@ -192,9 +195,7 @@
           "settings": {
             "category": "E-commerce",
             "title": "FURTRADERS",
-            "description": "Complete brand refresh with content strategy and e-commerce optimization.",
-            "gallery_count": "3",
-            "gallery_images": ""
+            "description": "Complete brand refresh with content strategy and e-commerce optimization."
           }
         },
         "project_bRFthk": {
@@ -202,9 +203,7 @@
           "settings": {
             "category": "Lifestyle & Wellness",
             "title": "SUPRAMOOD",
-            "description": "Comprehensive brand strategy with podcast series and affiliate program.",
-            "gallery_count": "4",
-            "gallery_images": ""
+            "description": "Comprehensive brand strategy with podcast series and affiliate program."
           }
         },
         "project_7jNmCg": {
@@ -212,9 +211,7 @@
           "settings": {
             "category": "Technology",
             "title": "DJI",
-            "description": "Aerial photography and drone content creation partnership.",
-            "gallery_count": "2",
-            "gallery_images": ""
+            "description": "Aerial photography and drone content creation partnership."
           }
         },
         "project_YWjctq": {
@@ -222,9 +219,7 @@
           "settings": {
             "category": "Streetwear",
             "title": "CLSC",
-            "description": "Urban streetwear brand activation and cultural marketing.",
-            "gallery_count": "3",
-            "gallery_images": ""
+            "description": "Urban streetwear brand activation and cultural marketing."
           }
         },
         "project_bzgPTT": {
@@ -232,9 +227,7 @@
           "settings": {
             "category": "Travel & Experience",
             "title": "MAVERICK HELICOPTERS",
-            "description": "Luxury travel experience content and brand storytelling.",
-            "gallery_count": "3",
-            "gallery_images": ""
+            "description": "Luxury travel experience content and brand storytelling."
           }
         },
         "project_jqN7Vf": {
@@ -242,9 +235,7 @@
           "settings": {
             "category": "Media & Culture",
             "title": "HIGHSNOBIETY",
-            "description": "Editorial content partnership and cultural brand activation.",
-            "gallery_count": "3",
-            "gallery_images": ""
+            "description": "Editorial content partnership and cultural brand activation."
           }
         },
         "project_fAHDzT": {
@@ -252,9 +243,7 @@
           "settings": {
             "category": "Culinary",
             "title": "JI RESTAURANT | BALI INDONESIA",
-            "description": "Balinese fine dining experience captured through visual storytelling.",
-            "gallery_count": "3",
-            "gallery_images": ""
+            "description": "Balinese fine dining experience captured through visual storytelling."
           }
         },
         "project_agJeiy": {
@@ -262,9 +251,7 @@
           "settings": {
             "category": "Hospitality",
             "title": "SATORI | MAUI",
-            "description": "Hawaiian wellness retreat brand development and content creation.",
-            "gallery_count": "3",
-            "gallery_images": ""
+            "description": "Hawaiian wellness retreat brand development and content creation."
           }
         },
         "project_ReWfVG": {
@@ -272,9 +259,7 @@
           "settings": {
             "category": "Culinary",
             "title": "CHAI'BA | BALI INDONESIA",
-            "description": "Indian-inspired cuisine brand story and visual identity.",
-            "gallery_count": "3",
-            "gallery_images": ""
+            "description": "Indian-inspired cuisine brand story and visual identity."
           }
         },
         "project_Mitqyd": {
@@ -282,9 +267,7 @@
           "settings": {
             "category": "Hospitality",
             "title": "TWO HANDS | AUSTIN TEXAS",
-            "description": "Austin café brand activation and social media content strategy.",
-            "gallery_count": "3",
-            "gallery_images": ""
+            "description": "Austin café brand activation and social media content strategy."
           }
         },
         "project_PGNpBH": {
@@ -292,9 +275,7 @@
           "settings": {
             "category": "Culinary",
             "title": "DAKAN | CALIFORNIA",
-            "description": "California fusion restaurant brand development and photography.",
-            "gallery_count": "3",
-            "gallery_images": ""
+            "description": "California fusion restaurant brand development and photography."
           }
         },
         "project_hBEN6j": {
@@ -302,9 +283,7 @@
           "settings": {
             "category": "Entertainment",
             "title": "HARDROCK | CALIFORNIA",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_count": "3",
-            "gallery_images": ""
+            "description": "Iconic entertainment venue content creation and brand activation."
           }
         }
       },
@@ -470,6 +449,100 @@
         "cta_url": "",
         "cta_new_tab": true
       }
+    },
+    "our_impact_aMV3jN": {
+      "type": "our-impact",
+      "blocks": {
+        "stat_GjqJwP": {
+          "type": "stat",
+          "settings": {
+            "gradient": "green_emerald",
+            "icon": "dollar_sign",
+            "metric": "$50M+",
+            "title": "Revenue Generated",
+            "description": "For clients through strategic campaigns"
+          }
+        },
+        "stat_cKGxRw": {
+          "type": "stat",
+          "settings": {
+            "gradient": "blue_indigo",
+            "icon": "trending_up",
+            "metric": "340%",
+            "title": "Average Growth",
+            "description": "Monthly revenue increase"
+          }
+        },
+        "stat_dXThTg": {
+          "type": "stat",
+          "settings": {
+            "gradient": "purple_violet",
+            "icon": "users",
+            "metric": "500K+",
+            "title": "Audience Reached",
+            "description": "Through combined campaigns"
+          }
+        },
+        "stat_DUQt7E": {
+          "type": "stat",
+          "settings": {
+            "gradient": "orange_red",
+            "icon": "clock",
+            "metric": "1000+",
+            "title": "Hours Saved",
+            "description": "Monthly through automation"
+          }
+        },
+        "partnership_badge_Ft7xbN": {
+          "type": "partnership_badge",
+          "settings": {
+            "icon": "award",
+            "label": "Featured at SXSW 2024"
+          }
+        },
+        "partnership_badge_EWmQNe": {
+          "type": "partnership_badge",
+          "settings": {
+            "icon": "target",
+            "label": "Coachella Brand Partner"
+          }
+        },
+        "partnership_badge_LCbBby": {
+          "type": "partnership_badge",
+          "settings": {
+            "icon": "zap",
+            "label": "Polaroid Collaboration"
+          }
+        },
+        "partnership_badge_6LxQUE": {
+          "type": "partnership_badge",
+          "settings": {
+            "icon": "chart_column",
+            "label": "50+ Brands Transformed"
+          }
+        }
+      },
+      "block_order": [
+        "stat_GjqJwP",
+        "stat_cKGxRw",
+        "stat_dXThTg",
+        "stat_DUQt7E",
+        "partnership_badge_Ft7xbN",
+        "partnership_badge_EWmQNe",
+        "partnership_badge_LCbBby",
+        "partnership_badge_6LxQUE"
+      ],
+      "name": "Our Impact",
+      "settings": {
+        "badge": "(Our Impact)",
+        "title_before": "Numbers That",
+        "title_gradient": "Matter",
+        "subtitle": "Real results from real partnerships. Here's what we've achieved together.",
+        "cta_heading": "Ready to add your brand to this list?",
+        "cta_text": "Let's talk",
+        "cta_url": "/contact",
+        "cta_new_tab": false
+      }
     }
   },
   "order": [
@@ -478,6 +551,7 @@
     "brand_activation_bYyitf",
     "featured_work_JMQwnw",
     "featured_projects_NAbVdw",
+    "our_impact_aMV3jN",
     "services_cta_nPTw36"
   ]
 }
