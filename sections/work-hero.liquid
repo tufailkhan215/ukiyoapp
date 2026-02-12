@@ -10,15 +10,15 @@
       {% if section.settings.title_line_1 != blank or section.settings.title_line_2 != blank %}
         <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9] tracking-tight mb-8">
           {% if section.settings.title_line_1 != blank %}
-            <span class="block text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-600">{{ section.settings.title_line_1 }}</span>
+            <span class="block text-transparent bg-clip-text bg-gradient-to-b from-white via-white/70 to-white/40">{{ section.settings.title_line_1 }}</span>
           {% endif %}
           {% if section.settings.title_line_2 != blank %}
-            <span class="block text-transparent bg-clip-text bg-gradient-to-b from-gray-200 via-gray-500 to-gray-800">{{ section.settings.title_line_2 }}</span>
+            <span class="block text-transparent bg-clip-text bg-gradient-to-b from-white/60 via-white/40 to-white/20">{{ section.settings.title_line_2 }}</span>
           {% endif %}
         </h1>
       {% endif %}
       {% if section.settings.description != blank %}
-        <p class="text-lg md:text-xl text-white/40 max-w-2xl mx-auto mb-12">{{ section.settings.description }}</p>
+        <p class="text-lg md:text-xl text-white/50 max-w-2xl mx-auto mb-12">{{ section.settings.description }}</p>
       {% endif %}
 
       {% assign stat_blocks = section.blocks | where: 'type', 'stat' %}
