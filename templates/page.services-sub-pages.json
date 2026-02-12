@@ -120,6 +120,8 @@
       "type": "service-details-intro",
       "name": "Service Details Intro",
       "settings": {
+        "enable_canvas_glow": true,
+        "enable_dots": true,
         "back_link_text": "Back to Services",
         "back_link_url": "/pages/services",
         "category_label": "Brand Strategy",
@@ -704,6 +706,359 @@
         "title_gradient": "Like"
       }
     },
+    "icon_boxes_Fwkywn": {
+      "type": "icon-boxes",
+      "blocks": {
+        "box_WB7mkd": {
+          "type": "box",
+          "settings": {
+            "icon": "clock",
+            "title": "Time Drain",
+            "metric": "40hrs/week",
+            "description": "Average time spent on repetitive customer inquiries",
+            "phrase": ""
+          }
+        },
+        "box_TkbD4x": {
+          "type": "box",
+          "settings": {
+            "icon": "users",
+            "title": "Inconsistent Voice",
+            "metric": "67%",
+            "description": "Of customers notice brand voice inconsistencies",
+            "phrase": ""
+          }
+        },
+        "box_pXAFhe": {
+          "type": "box",
+          "settings": {
+            "icon": "trending_down",
+            "title": "Missed Opportunities",
+            "metric": "$50K+",
+            "description": "Lost annually from slow response times",
+            "phrase": ""
+          }
+        }
+      },
+      "block_order": [
+        "box_WB7mkd",
+        "box_TkbD4x",
+        "box_pXAFhe"
+      ],
+      "name": "Icon Boxes (Challenge)",
+      "settings": {
+        "variant": "challenge",
+        "badge": "(The Challenge)",
+        "title_before": "Problems We",
+        "title_gradient": "Solve",
+        "subtitle": "These common pain points are holding businesses back. We fix them."
+      }
+    },
+    "icon_boxes_TzdEHE": {
+      "type": "icon-boxes",
+      "blocks": {
+        "box_Qb4yCY": {
+          "type": "box",
+          "settings": {
+            "icon": "zap",
+            "title": "24/7 Availability",
+            "metric": "",
+            "description": "",
+            "phrase": "Never miss a customer"
+          }
+        },
+        "box_MrqLQm": {
+          "type": "box",
+          "settings": {
+            "icon": "message_square",
+            "title": "Consistent Messaging",
+            "metric": "",
+            "description": "",
+            "phrase": "Perfect brand voice every time"
+          }
+        },
+        "box_bmGBXq": {
+          "type": "box",
+          "settings": {
+            "icon": "trending_up",
+            "title": "Scale Instantly",
+            "metric": "",
+            "description": "",
+            "phrase": "Handle 1000s of conversations"
+          }
+        }
+      },
+      "block_order": [
+        "box_Qb4yCY",
+        "box_MrqLQm",
+        "box_bmGBXq"
+      ],
+      "name": "Icon Boxes (Solution)",
+      "settings": {
+        "variant": "solution",
+        "badge": "(The Solution)",
+        "title_before": "How We",
+        "title_gradient": "Deliver",
+        "subtitle": "Proven strategies that get real results for your business."
+      }
+    },
+    "icon_boxes_1_p3ApL6": {
+      "type": "icon-boxes-1",
+      "blocks": {
+        "box_8xtQqU": {
+          "type": "box",
+          "settings": {
+            "icon": "search",
+            "metric": "80%",
+            "title": "Finding Partners",
+            "description": "Of brands struggle to find aligned partners",
+            "phrase": ""
+          }
+        },
+        "box_UcUKkm": {
+          "type": "box",
+          "settings": {
+            "icon": "handshake",
+            "metric": "60%",
+            "title": "Negotiation",
+            "description": "Of partnership deals fail in negotiation",
+            "phrase": ""
+          }
+        },
+        "box_RHtcP4": {
+          "type": "box",
+          "settings": {
+            "icon": "chart_column",
+            "metric": "45%",
+            "title": "ROI Tracking",
+            "description": "Can't accurately measure partnership ROI",
+            "phrase": ""
+          }
+        }
+      },
+      "block_order": [
+        "box_8xtQqU",
+        "box_UcUKkm",
+        "box_RHtcP4"
+      ],
+      "name": "Icon Boxes (Stats) – Challenge",
+      "settings": {
+        "variant": "challenge",
+        "badge": "(The Challenge)",
+        "title_before": "Problems We",
+        "title_gradient": "Solve",
+        "subtitle": "These common pain points are holding businesses back. We fix them."
+      }
+    },
+    "icon_boxes_1_6xtMCE": {
+      "type": "icon-boxes-1",
+      "blocks": {
+        "box_36qM34": {
+          "type": "box",
+          "settings": {
+            "icon": "target",
+            "metric": "",
+            "title": "AI-Powered Discovery",
+            "description": "",
+            "phrase": "Perfect partner matches"
+          }
+        },
+        "box_d9nhqQ": {
+          "type": "box",
+          "settings": {
+            "icon": "file_text",
+            "metric": "",
+            "title": "Expert Negotiation",
+            "description": "",
+            "phrase": "Win-win deal structures"
+          }
+        },
+        "box_mw3gWG": {
+          "type": "box",
+          "settings": {
+            "icon": "trending_up",
+            "metric": "",
+            "title": "Performance Tracking",
+            "description": "",
+            "phrase": "Clear ROI dashboards"
+          }
+        }
+      },
+      "block_order": [
+        "box_36qM34",
+        "box_d9nhqQ",
+        "box_mw3gWG"
+      ],
+      "name": "Icon Boxes (Stats) – Solution",
+      "settings": {
+        "variant": "solution",
+        "badge": "(The Solution)",
+        "title_before": "How We",
+        "title_gradient": "Deliver",
+        "subtitle": "Proven strategies that get real results for your business."
+      }
+    },
+    "tech_stack_YRcfBE": {
+      "type": "tech-stack",
+      "blocks": {
+        "tech_hNTBrh": {
+          "type": "tech",
+          "settings": {
+            "icon": "bot",
+            "label": "OpenAI",
+            "gradient": "emerald_teal",
+            "url": ""
+          }
+        },
+        "tech_GJUEV6": {
+          "type": "tech",
+          "settings": {
+            "icon": "bot",
+            "label": "Claude",
+            "gradient": "orange_amber",
+            "url": ""
+          }
+        },
+        "tech_LkKhg3": {
+          "type": "tech",
+          "settings": {
+            "icon": "code",
+            "label": "Langchain",
+            "gradient": "green_emerald",
+            "url": ""
+          }
+        },
+        "tech_Wxnr9D": {
+          "type": "tech",
+          "settings": {
+            "icon": "zap",
+            "label": "Zapier",
+            "gradient": "orange_red",
+            "url": ""
+          }
+        },
+        "tech_xcw84U": {
+          "type": "tech",
+          "settings": {
+            "icon": "zap",
+            "label": "Make",
+            "gradient": "purple_violet",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "tech_hNTBrh",
+        "tech_GJUEV6",
+        "tech_LkKhg3",
+        "tech_Wxnr9D",
+        "tech_xcw84U"
+      ],
+      "name": "Tech Stack",
+      "settings": {
+        "badge": "(Powered By)",
+        "title_before": "Tech",
+        "title_gradient": "Stack",
+        "subtitle": "Industry-leading tools that power your success. Click to learn more.",
+        "footer_text": "Click on any tool to learn more"
+      }
+    },
+    "project_timeline_Cq98KA": {
+      "type": "project-timeline",
+      "blocks": {
+        "step_Fnqghz": {
+          "type": "step",
+          "settings": {
+            "number": "",
+            "label": "Week 1",
+            "title": "Discovery & Brand Training"
+          }
+        },
+        "step_tiReLw": {
+          "type": "step",
+          "settings": {
+            "number": "",
+            "label": "Week 2",
+            "title": "Agent Development"
+          }
+        },
+        "step_CJxzWT": {
+          "type": "step",
+          "settings": {
+            "number": "",
+            "label": "Week 3",
+            "title": "Testing & Refinement"
+          }
+        },
+        "step_AjFwPY": {
+          "type": "step",
+          "settings": {
+            "number": "",
+            "label": "Week 4",
+            "title": "Launch & Monitor"
+          }
+        }
+      },
+      "block_order": [
+        "step_Fnqghz",
+        "step_tiReLw",
+        "step_CJxzWT",
+        "step_AjFwPY"
+      ],
+      "name": "Project Timeline",
+      "settings": {
+        "badge": "(Delivery)",
+        "title_before": "Project",
+        "title_gradient": "Timeline",
+        "subtitle": "A clear roadmap from kickoff to launch. No surprises, just results.",
+        "guarantee_title": "On-Time Guarantee",
+        "guarantee_subtitle": "Or your next month is free"
+      }
+    },
+    "hard_truth_dxy9GA": {
+      "type": "hard-truth",
+      "name": "Hard Truth",
+      "settings": {
+        "badge": "(The Hard Truth)",
+        "title_line1": "F*CK AROUND",
+        "title_line2": "& FIND OUT",
+        "subtitle": "The real cost of \"saving money\" on your brand.",
+        "subtitle_bold": "Spoiler: it's expensive.",
+        "budget_label": "F*ck Around",
+        "budget_title": "The \"Budget\" Route",
+        "budget_cost": "$500 - $2K",
+        "budget_time": "2 weeks",
+        "budget_bullets": "Generic template that looks like everyone else\nDeveloper ghosts you after 3 revisions\nSite breaks on mobile (discovered by your biggest client)\nSEO? Never heard of her\nYou rebuild it in 6 months anyway",
+        "budget_foot_label": "True Cost",
+        "budget_foot_value": "$15K+ (time wasted, lost clients, rebuild)",
+        "investment_label": "Do It Right",
+        "investment_title": "The \"Investment\" Route",
+        "investment_cost": "$5K - $25K+",
+        "investment_time": "4-8 weeks",
+        "investment_bullets": "Custom design that makes competitors jealous\nActually converts visitors into customers\nWorks flawlessly on every device\nSEO optimized from day one\nScales with your business for years",
+        "investment_foot_label": "Return",
+        "investment_foot_value": "ROI: 300-1000% in first year",
+        "math_heading": "The Math Don't Lie",
+        "math_budget_amount": "$1,500",
+        "math_budget_label": "Initial \"savings\"",
+        "math_budget_breakdown": "+ $5K lost clients\n+ $3K fixes\n+ $8K rebuild",
+        "math_budget_total": "$17,500 total",
+        "math_investment_amount": "$10,000",
+        "math_investment_label": "Quality investment",
+        "math_investment_breakdown": "+ $0 fixes\n+ $0 rebuilds\n+ $50K new business",
+        "math_investment_total": "$40K profit",
+        "quote": "\"Cheap work ain't good, good work ain't cheap.\"",
+        "quote_attr": "— Every experienced business owner ever",
+        "six_months_heading": "6 Months Later...",
+        "six_months_budget_title": "The \"Budget\" Client",
+        "six_months_budget_bullets": "On their 3rd designer\nLost 2 major deals due to \"unprofessional website\"\nStill explaining why the contact form doesn't work\nConsidering just using a Wix template",
+        "six_months_investment_title": "The \"Investment\" Client",
+        "six_months_investment_bullets": "Closed 15 new clients directly from website\nFeatured in industry publication\nCompetitors asking \"who did your branding?\"\nPlanning expansion into new market",
+        "cta_heading": "Ready to do it right the first time?",
+        "cta_text": "Let's Talk",
+        "cta_url": "https://tidycal.com/salesautomateiq"
+      }
+    },
     "services_cta_dUgeXW": {
       "type": "services-cta",
       "name": "Services CTA",
@@ -734,6 +1089,13 @@
     "use_cases_q3tjXM",
     "faq_RzHXCd",
     "related_services_UtrJkF",
+    "icon_boxes_Fwkywn",
+    "icon_boxes_TzdEHE",
+    "icon_boxes_1_p3ApL6",
+    "icon_boxes_1_6xtMCE",
+    "tech_stack_YRcfBE",
+    "project_timeline_Cq98KA",
+    "hard_truth_dxy9GA",
     "services_cta_dUgeXW"
   ]
 }
