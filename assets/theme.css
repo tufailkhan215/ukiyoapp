@@ -296,11 +296,11 @@ img {
 }
 
 .animate-cta-dot-pulse {
-  animation: cta-dot-pulse 23.5s ease-in-out infinite;
+  animation: cta-dot-pulse 23s ease-in-out infinite;
 }
 
 .animate-cta-dot-float {
-  animation: cta-dot-float 4s ease-in-out infinite;
+  animation: cta-dot-float 24s ease-in-out infinite;
 }
 
 @keyframes cta-circle-rotate-cw {
