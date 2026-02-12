@@ -11,10 +11,24 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {}
+    },
+    "services_hero_7xAyQh": {
+      "type": "services-hero",
+      "name": "Services Hero",
+      "settings": {
+        "watermark": "SERVICES",
+        "strap": "Our Services",
+        "title_line1": "Let's Plant",
+        "title_line2": "Your Flag",
+        "description": "We work with founders, CEOs, and leadership teams to shape defining ideas and build strategy and design systems for growth at scale.",
+        "scroll_text": "(Scroll to explore)"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "services_hero_7xAyQh"
   ]
 }
