@@ -9,12 +9,17 @@
  */
 {
   "sections": {
+    "contact_background": {
+      "type": "contact-background",
+      "settings": {}
+    },
     "main": {
       "type": "main-page",
       "settings": {}
     }
   },
   "order": [
+    "contact_background",
     "main"
   ]
 }

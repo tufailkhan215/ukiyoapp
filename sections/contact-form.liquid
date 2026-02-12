@@ -1,0 +1,410 @@
+{% comment %} Contact Form: two-column layout — form (name, email, company, budget, message) + contact info & testimonial. {% endcomment %}
+<section class="relative py-16 lg:py-24 overflow-hidden bg-black">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
+    <div class="grid lg:grid-cols-5 gap-12 lg:gap-16">
+      <div class="lg:col-span-3">
+        <div class="mb-8">
+          {% if section.settings.badge != blank %}
+            <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-4">{{ section.settings.badge }}</span>
+          {% endif %}
+          {% if section.settings.heading != blank %}
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">{{ section.settings.heading }}</h2>
+          {% endif %}
+          {% if section.settings.subtitle != blank %}
+            <p class="text-white/50">{{ section.settings.subtitle }}</p>
+          {% endif %}
+        </div>
+
+        <div id="contact-form-wrapper-{{ section.id }}">
+        {% form 'contact', class: 'contact-form space-y-6' %}
+          {% if form.posted_successfully? %}
+            <p class="p-4 rounded-xl bg-white/10 border border-white/20 text-white text-sm" role="status">
+              {{ section.settings.success_message | default: "Thanks for contacting us. We'll get back to you as soon as possible." }}
+            </p>
+          {% endif %}
+          {% if form.errors %}
+            <div class="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-200 text-sm" role="alert">
+              {{ form.errors | default_errors }}
+            </div>
+          {% endif %}
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label for="contact-name-{{ section.id }}" class="block text-white/60 text-sm mb-2">{{ section.settings.label_name | default: 'Your Name' }} *</label>
+              <input
+                type="text"
+                id="contact-name-{{ section.id }}"
+                name="contact[name]"
+                class="w-full px-4 py-4 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors"
+                placeholder="{{ section.settings.placeholder_name | default: 'John Doe' }}"
+                required
+                aria-required="true"
+                value="{% if form.name %}{{ form.name }}{% endif %}"
+              >
+            </div>
+            <div>
+              <label for="contact-email-{{ section.id }}" class="block text-white/60 text-sm mb-2">{{ section.settings.label_email | default: 'Email Address' }} *</label>
+              <input
+                type="email"
+                id="contact-email-{{ section.id }}"
+                name="contact[email]"
+                class="w-full px-4 py-4 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors"
+                placeholder="{{ section.settings.placeholder_email | default: 'john@company.com' }}"
+                required
+                aria-required="true"
+                value="{% if form.email %}{{ form.email }}{% endif %}"
+              >
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label for="contact-company-{{ section.id }}" class="block text-white/60 text-sm mb-2">{{ section.settings.label_company | default: 'Company' }}</label>
+              <input
+                type="text"
+                id="contact-company-{{ section.id }}"
+                class="contact-form-company w-full px-4 py-4 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors"
+                placeholder="{{ section.settings.placeholder_company | default: 'Your Company' }}"
+              >
+            </div>
+            <div>
+              <label for="contact-budget-{{ section.id }}" class="block text-white/60 text-sm mb-2">{{ section.settings.label_budget | default: 'Budget Range' }}</label>
+              <select
+                id="contact-budget-{{ section.id }}"
+                class="contact-form-budget w-full px-4 py-4 rounded-xl bg-white/[0.02] border border-white/10 text-white focus:border-white/30 focus:outline-none transition-colors appearance-none"
+                style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27rgba(255,255,255,0.5)%27 stroke-width=%272%27%3E%3Cpath d=%27m6 9 6 6 6-6%27/%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 1.25rem; padding-right: 2.5rem;"
+              >
+                <option value="" class="bg-black">{{ section.settings.budget_placeholder | default: 'Select budget' }}</option>
+                {% if section.settings.budget_option_1 != blank %}<option value="{{ section.settings.budget_option_1 | escape }}" class="bg-black">{{ section.settings.budget_option_1 }}</option>{% endif %}
+                {% if section.settings.budget_option_2 != blank %}<option value="{{ section.settings.budget_option_2 | escape }}" class="bg-black">{{ section.settings.budget_option_2 }}</option>{% endif %}
+                {% if section.settings.budget_option_3 != blank %}<option value="{{ section.settings.budget_option_3 | escape }}" class="bg-black">{{ section.settings.budget_option_3 }}</option>{% endif %}
+                {% if section.settings.budget_option_4 != blank %}<option value="{{ section.settings.budget_option_4 | escape }}" class="bg-black">{{ section.settings.budget_option_4 }}</option>{% endif %}
+                {% if section.settings.budget_option_5 != blank %}<option value="{{ section.settings.budget_option_5 | escape }}" class="bg-black">{{ section.settings.budget_option_5 }}</option>{% endif %}
+                {% if section.settings.budget_option_1 == blank and section.settings.budget_option_2 == blank %}
+                  <option value="$5,000 - $10,000" class="bg-black">$5,000 - $10,000</option>
+                  <option value="$10,000 - $25,000" class="bg-black">$10,000 - $25,000</option>
+                  <option value="$25,000 - $50,000" class="bg-black">$25,000 - $50,000</option>
+                  <option value="$50,000+" class="bg-black">$50,000+</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="contact-body-{{ section.id }}" class="block text-white/60 text-sm mb-2">{{ section.settings.label_message | default: 'Tell us about your project' }} *</label>
+            <textarea
+              id="contact-body-{{ section.id }}"
+              name="contact[body]"
+              rows="5"
+              class="contact-form-message w-full px-4 py-4 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors resize-none"
+              placeholder="{{ section.settings.placeholder_message | default: "Describe your project goals, timeline, and any specific requirements..." }}"
+              required
+              aria-required="true"
+            >{% if form.body %}{{ form.body }}{% endif %}</textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="contact-form-submit w-full py-4 rounded-xl bg-white text-black font-semibold flex items-center justify-center gap-2 hover:bg-gray-100 transition-colors disabled:opacity-50"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send w-5 h-5" aria-hidden="true"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg>
+            {{ section.settings.button_text | default: 'Send Message' }}
+          </button>
+        {% endform %}
+        </div>
+      </div>
+
+      <div class="lg:col-span-2">
+        <div class="space-y-8">
+          {% if section.settings.quick_response_heading != blank or section.settings.quick_response_text != blank %}
+            <div class="p-6 rounded-2xl bg-gradient-to-br from-white/5 to-gray-500/5 border border-white/10">
+              <div class="flex items-center gap-3 mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap w-6 h-6 text-white/60" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
+                <span class="text-white font-semibold">{{ section.settings.quick_response_heading | default: 'Quick Response Guaranteed' }}</span>
+              </div>
+              {% if section.settings.quick_response_text != blank %}
+                <p class="text-white/50 text-sm">{{ section.settings.quick_response_text }}</p>
+              {% endif %}
+            </div>
+          {% endif %}
+
+          <div class="space-y-4">
+            {% if section.settings.email != blank %}
+              <a href="mailto:{{ section.settings.email | escape }}" class="flex items-center gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors group">
+                <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail w-5 h-5 text-white/60" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>
+                </div>
+                <div>
+                  <div class="text-white/40 text-xs uppercase tracking-wider">{{ section.settings.label_email_card | default: 'Email' }}</div>
+                  <div class="text-white group-hover:text-gray-300 transition-colors">{{ section.settings.email }}</div>
+                </div>
+              </a>
+            {% endif %}
+            {% if section.settings.location != blank %}
+              <div class="flex items-center gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/10">
+                <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin w-5 h-5 text-white/60" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </div>
+                <div>
+                  <div class="text-white/40 text-xs uppercase tracking-wider">{{ section.settings.label_location | default: 'Location' }}</div>
+                  <div class="text-white">{{ section.settings.location }}</div>
+                </div>
+              </div>
+            {% endif %}
+            {% if section.settings.hours != blank %}
+              <div class="flex items-center gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/10">
+                <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock w-5 h-5 text-white/60" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                </div>
+                <div>
+                  <div class="text-white/40 text-xs uppercase tracking-wider">{{ section.settings.label_hours | default: 'Hours' }}</div>
+                  <div class="text-white">{{ section.settings.hours }}</div>
+                </div>
+              </div>
+            {% endif %}
+          </div>
+
+          {% if section.settings.testimonial_quote != blank %}
+            <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/10">
+              <div class="flex items-center gap-2 mb-4" aria-hidden="true">
+                {% for i in (1..5) %}
+                  <svg class="w-5 h-5 text-white fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"></path></svg>
+                {% endfor %}
+              </div>
+              <p class="text-white/70 text-sm italic mb-2">"{{ section.settings.testimonial_quote }}"</p>
+              {% if section.settings.testimonial_author != blank %}
+                <p class="text-white/40 text-xs">{{ section.settings.testimonial_author }}</p>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  var wrapper = document.getElementById('contact-form-wrapper-{{ section.id }}');
+  if (!wrapper) return;
+  var form = wrapper.querySelector('form.contact-form');
+  if (!form) return;
+  var company = form.querySelector('.contact-form-company');
+  var budget = form.querySelector('.contact-form-budget');
+  var bodyEl = form.querySelector('.contact-form-message');
+  form.addEventListener('submit', function(e) {
+    if (!bodyEl || (!company && !budget)) return;
+    var parts = [];
+    if (company && company.value && company.value.trim()) parts.push('Company: ' + company.value.trim());
+    if (budget && budget.value) parts.push('Budget: ' + budget.value);
+    if (parts.length) bodyEl.value = parts.join('\n') + '\n\n' + (bodyEl.value || '').trim();
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Contact form",
+  "tag": "section",
+  "class": "section-contact-form",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Form header"
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge",
+      "default": "(Get In Touch)"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Send Us a Message"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Fill out the form below and we'll get back to you within 24 hours."
+    },
+    {
+      "type": "header",
+      "content": "Form labels and placeholders"
+    },
+    {
+      "type": "text",
+      "id": "label_name",
+      "label": "Label: Name",
+      "default": "Your Name"
+    },
+    {
+      "type": "text",
+      "id": "placeholder_name",
+      "label": "Placeholder: Name",
+      "default": "John Doe"
+    },
+    {
+      "type": "text",
+      "id": "label_email",
+      "label": "Label: Email",
+      "default": "Email Address"
+    },
+    {
+      "type": "text",
+      "id": "placeholder_email",
+      "label": "Placeholder: Email",
+      "default": "john@company.com"
+    },
+    {
+      "type": "text",
+      "id": "label_company",
+      "label": "Label: Company",
+      "default": "Company"
+    },
+    {
+      "type": "text",
+      "id": "placeholder_company",
+      "label": "Placeholder: Company",
+      "default": "Your Company"
+    },
+    {
+      "type": "text",
+      "id": "label_budget",
+      "label": "Label: Budget",
+      "default": "Budget Range"
+    },
+    {
+      "type": "text",
+      "id": "budget_placeholder",
+      "label": "Budget dropdown placeholder",
+      "default": "Select budget"
+    },
+    {
+      "type": "text",
+      "id": "budget_option_1",
+      "label": "Budget option 1",
+      "default": "$5,000 - $10,000"
+    },
+    {
+      "type": "text",
+      "id": "budget_option_2",
+      "label": "Budget option 2",
+      "default": "$10,000 - $25,000"
+    },
+    {
+      "type": "text",
+      "id": "budget_option_3",
+      "label": "Budget option 3",
+      "default": "$25,000 - $50,000"
+    },
+    {
+      "type": "text",
+      "id": "budget_option_4",
+      "label": "Budget option 4",
+      "default": "$50,000+"
+    },
+    {
+      "type": "text",
+      "id": "budget_option_5",
+      "label": "Budget option 5"
+    },
+    {
+      "type": "text",
+      "id": "label_message",
+      "label": "Label: Message",
+      "default": "Tell us about your project"
+    },
+    {
+      "type": "text",
+      "id": "placeholder_message",
+      "label": "Placeholder: Message",
+      "default": "Describe your project goals, timeline, and any specific requirements..."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Submit button text",
+      "default": "Send Message"
+    },
+    {
+      "type": "textarea",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thanks for contacting us. We'll get back to you as soon as possible."
+    },
+    {
+      "type": "header",
+      "content": "Right column"
+    },
+    {
+      "type": "text",
+      "id": "quick_response_heading",
+      "label": "Quick response heading",
+      "default": "Quick Response Guaranteed"
+    },
+    {
+      "type": "textarea",
+      "id": "quick_response_text",
+      "label": "Quick response text",
+      "default": "We respond to all inquiries within 24 hours. Most requests are answered same-day."
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email (display + mailto)",
+      "default": "hello.ukiyoprod@gmail.com"
+    },
+    {
+      "type": "text",
+      "id": "label_email_card",
+      "label": "Card label: Email",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "location",
+      "label": "Location",
+      "default": "Nevada County, California"
+    },
+    {
+      "type": "text",
+      "id": "label_location",
+      "label": "Card label: Location",
+      "default": "Location"
+    },
+    {
+      "type": "text",
+      "id": "hours",
+      "label": "Hours",
+      "default": "Mon - Fri: 9AM - 6PM PST"
+    },
+    {
+      "type": "text",
+      "id": "label_hours",
+      "label": "Card label: Hours",
+      "default": "Hours"
+    },
+    {
+      "type": "textarea",
+      "id": "testimonial_quote",
+      "label": "Testimonial quote",
+      "default": "Working with Ukiyo transformed our brand. The results exceeded every expectation."
+    },
+    {
+      "type": "text",
+      "id": "testimonial_author",
+      "label": "Testimonial author",
+      "default": "— Sarah K., CEO at TechStart"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact form"
+    }
+  ]
+}
+{% endschema %}
