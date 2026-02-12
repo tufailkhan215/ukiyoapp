@@ -167,6 +167,18 @@
         "testimonial_quote": "Working with Ukiyo transformed our brand. The results exceeded every expectation.",
         "testimonial_author": "— Sarah K., CEO at TechStart"
       }
+    },
+    "contact_prefer_to_talk_xyijFn": {
+      "type": "contact-prefer-to-talk",
+      "name": "Prefer to Talk",
+      "settings": {
+        "heading": "Prefer to Talk?",
+        "description": "Schedule a free 30-minute consultation to discuss your project goals and how we can help bring your vision to life.",
+        "tidycal_path": "salesautomateiq/consultation",
+        "tidycal_script_url": "",
+        "embed_min_height": 600,
+        "placeholder_text": "Set TidyCal path in section settings (e.g. salesautomateiq/consultation)."
+      }
     }
   },
   "order": [
@@ -174,6 +186,7 @@
     "main",
     "contact_intro_BTX3N8",
     "about_stats_hBLCWr",
-    "contact_form_8JmRJE"
+    "contact_form_8JmRJE",
+    "contact_prefer_to_talk_xyijFn"
   ]
 }
