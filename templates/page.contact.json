@@ -179,6 +179,76 @@
         "embed_min_height": 600,
         "placeholder_text": "Set TidyCal path in section settings (e.g. salesautomateiq/consultation)."
       }
+    },
+    "marquee_logos_p6q6xL": {
+      "type": "marquee-logos",
+      "blocks": {
+        "logo_MkCyM6": {
+          "type": "logo",
+          "settings": {
+            "name": "NIKE"
+          }
+        },
+        "logo_47xHCR": {
+          "type": "logo",
+          "settings": {
+            "name": "SPOTIFY"
+          }
+        },
+        "logo_3ybTEM": {
+          "type": "logo",
+          "settings": {
+            "name": "APPLE"
+          }
+        },
+        "logo_BQtbQc": {
+          "type": "logo",
+          "settings": {
+            "name": "ADIDAS"
+          }
+        },
+        "logo_CNF4DX": {
+          "type": "logo",
+          "settings": {
+            "name": "WANDRD"
+          }
+        },
+        "logo_CgRzje": {
+          "type": "logo",
+          "settings": {
+            "name": "COACHELLA"
+          }
+        },
+        "logo_eB7Deb": {
+          "type": "logo",
+          "settings": {
+            "name": "SXSW"
+          }
+        },
+        "logo_feiYaB": {
+          "type": "logo",
+          "settings": {
+            "name": "POLAROID"
+          }
+        }
+      },
+      "block_order": [
+        "logo_MkCyM6",
+        "logo_47xHCR",
+        "logo_3ybTEM",
+        "logo_BQtbQc",
+        "logo_CNF4DX",
+        "logo_CgRzje",
+        "logo_eB7Deb",
+        "logo_feiYaB"
+      ],
+      "name": "Marquee Logos",
+      "settings": {
+        "badge_text": "Trusted By Industry Leaders",
+        "title_before": "Brands That",
+        "title_gradient": "Trust Us",
+        "subtitle": "We've partnered with some of the most recognizable brands in the world."
+      }
     }
   },
   "order": [
@@ -187,6 +257,7 @@
     "contact_intro_BTX3N8",
     "about_stats_hBLCWr",
     "contact_form_8JmRJE",
-    "contact_prefer_to_talk_xyijFn"
+    "contact_prefer_to_talk_xyijFn",
+    "marquee_logos_p6q6xL"
   ]
 }
