@@ -334,15 +334,16 @@ img {
   animation: big-statement-orb-float 10s ease-in-out infinite;
 }
 
-/* Big Statement: particle dots – subtle pulse + drift (match ukiyo-prod.com) */
+/* Big Statement: particle dots – pulse + drift (increased motion) */
 @keyframes big-statement-dot-pulse {
   0%, 100% { opacity: 0.2; transform: scale(1) translate(0, 0); }
-  33% { opacity: 0.45; transform: scale(1.12) translate(2px, -2px); }
-  66% { opacity: 0.3; transform: scale(1.05) translate(-1px, 1px); }
+  25% { opacity: 0.5; transform: scale(1.2) translate(12px, -12px); }
+  50% { opacity: 0.4; transform: scale(1.15) translate(-10px, 10px); }
+  75% { opacity: 0.35; transform: scale(1.1) translate(-16px, -2px); }
 }
 
 .big-statement-particle {
-  animation: big-statement-dot-pulse 4s ease-in-out infinite;
+  animation: big-statement-dot-pulse 5s ease-in-out infinite;
   transform-origin: center;
 }
 
