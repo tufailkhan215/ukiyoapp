@@ -1,6 +1,7 @@
 {% comment %} About Stats: badge + "Numbers That Matter" (gradient), grid of stat cards with white/gray icon gradients and hover glow. {% endcomment %}
 {% assign stat_blocks = section.blocks | where: 'type', 'stat' %}
-<section class="relative py-24 lg:py-32 overflow-hidden bg-black">
+{% capture about_stats_bg_style %}background-color: {{ section.settings.background_color | default: '#000000' }};{% if section.settings.background_image != blank %} background-image: url({{ section.settings.background_image | image_url: width: 1920 }}); background-size: cover; background-position: center;{% endif %}{% endcapture %}
+<section class="relative py-24 lg:py-32 overflow-hidden" style="{{ about_stats_bg_style | strip }}">
   <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" aria-hidden="true"></div>
   <div class="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
     <div class="text-center mb-16">
@@ -82,6 +83,22 @@
   "tag": "section",
   "class": "section-about-stats",
   "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image",
+      "info": "Optional. Used with cover; color shows behind or if image fails to load."
+    },
     {
       "type": "text",
       "id": "badge",

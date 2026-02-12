@@ -1,5 +1,6 @@
 {% comment %} Contact Form: two-column layout — form (name, email, company, budget, message) + contact info & testimonial. {% endcomment %}
-<section class="relative py-16 lg:py-24 overflow-hidden bg-black">
+{% capture contact_form_bg_style %}background-color: {{ section.settings.background_color | default: '#000000' }};{% if section.settings.background_image != blank %} background-image: url({{ section.settings.background_image | image_url: width: 1920 }}); background-size: cover; background-position: center;{% endif %}{% endcapture %}
+<section class="relative py-16 lg:py-24 overflow-hidden" style="{{ contact_form_bg_style | strip }}">
   <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
   <div class="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
     <div class="grid lg:grid-cols-5 gap-12 lg:gap-16">
@@ -209,6 +210,22 @@
   "tag": "section",
   "class": "section-contact-form",
   "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image",
+      "info": "Optional. Used with cover; color shows behind or if image fails to load."
+    },
     {
       "type": "header",
       "content": "Form header"

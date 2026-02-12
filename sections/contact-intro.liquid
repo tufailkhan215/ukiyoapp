@@ -1,6 +1,7 @@
 {% comment %} Contact Intro: badge pill, "START YOUR TRANSFORMATION" (gradient), subtitle, stats grid (4 cards). {% endcomment %}
 {% assign stat_blocks = section.blocks | where: 'type', 'stat' %}
-<section class="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden bg-black">
+{% capture contact_intro_bg_style %}background-color: {{ section.settings.background_color | default: '#000000' }};{% if section.settings.background_image != blank %} background-image: url({{ section.settings.background_image | image_url: width: 1920 }}); background-size: cover; background-position: center;{% endif %}{% endcapture %}
+<section class="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden" style="{{ contact_intro_bg_style | strip }}">
   <div class="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
     <div class="text-center max-w-3xl mx-auto mb-16">
       {% if section.settings.badge_text != blank %}
@@ -66,6 +67,22 @@
   "tag": "section",
   "class": "section-contact-intro",
   "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image",
+      "info": "Optional. Used with cover; color shows behind or if image fails to load."
+    },
     {
       "type": "text",
       "id": "badge_text",
