@@ -1,0 +1,105 @@
+{% comment %} Project Timeline: two-column layout with badge, title, subtitle, guarantee box, and vertical timeline steps. {% endcomment %}
+{% assign step_blocks = section.blocks | where: 'type', 'step' %}
+
+<section class="relative py-24 lg:py-32 bg-black" data-testid="project-timeline">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div>
+        {% if section.settings.badge != blank %}
+          <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-4">{{ section.settings.badge }}</span>
+        {% endif %}
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          {{ section.settings.title_before }}
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_gradient }}</span>
+        </h2>
+        {% if section.settings.subtitle != blank %}
+          <p class="text-lg text-white/50 mb-8">{{ section.settings.subtitle }}</p>
+        {% endif %}
+        {% if section.settings.guarantee_title != blank or section.settings.guarantee_subtitle != blank %}
+          <div class="flex items-center gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/10">
+            <div class="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-circle-check-big w-6 h-6 text-emerald-400"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>
+            </div>
+            <div>
+              <p class="text-white font-medium">{{ section.settings.guarantee_title }}</p>
+              {% if section.settings.guarantee_subtitle != blank %}
+                <p class="text-white/40 text-sm">{{ section.settings.guarantee_subtitle }}</p>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="relative">
+        <div class="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-white/10 via-white/5 to-transparent" aria-hidden="true"></div>
+        <div class="flex flex-col">
+          {% for block in step_blocks %}
+            <div class="flex items-start gap-6" {{ block.shopify_attributes }}>
+              <div class="flex flex-col items-center shrink-0">
+                <div class="w-12 h-12 rounded-full bg-white/5 border border-white/20 flex items-center justify-center text-white font-bold">
+                  {{ block.settings.number | default: forloop.index }}
+                </div>
+                {% unless forloop.last %}
+                  <div class="w-px h-20 bg-gradient-to-b from-white/20 to-transparent my-2"></div>
+                {% endunless %}
+              </div>
+              <div class="pt-2 pb-8">
+                {% if block.settings.label != blank %}
+                  <p class="text-white/30 text-xs uppercase tracking-widest mb-1">{{ block.settings.label }}</p>
+                {% endif %}
+                <p class="text-xl font-semibold text-white">{{ block.settings.title }}</p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Project Timeline",
+  "tag": "section",
+  "class": "section-project-timeline",
+  "settings": [
+    { "type": "text", "id": "badge", "label": "Badge", "default": "(Delivery)" },
+    { "type": "text", "id": "title_before", "label": "Title (before gradient)", "default": "Project " },
+    { "type": "text", "id": "title_gradient", "label": "Title (gradient part)", "default": "Timeline" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "A clear roadmap from kickoff to launch. No surprises, just results." },
+    { "type": "text", "id": "guarantee_title", "label": "Guarantee box title", "default": "On-Time Guarantee" },
+    { "type": "text", "id": "guarantee_subtitle", "label": "Guarantee box subtitle", "default": "Or your next month is free" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Timeline step",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number (optional)", "info": "Leave blank to use step order (1, 2, 3…)" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Week 1", "info": "e.g. Week 1, Week 2" },
+        { "type": "text", "id": "title", "label": "Title" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Project Timeline",
+      "settings": {
+        "badge": "(Delivery)",
+        "title_before": "Project ",
+        "title_gradient": "Timeline",
+        "subtitle": "A clear roadmap from kickoff to launch. No surprises, just results.",
+        "guarantee_title": "On-Time Guarantee",
+        "guarantee_subtitle": "Or your next month is free"
+      },
+      "blocks": [
+        { "type": "step", "settings": { "label": "Week 1", "title": "Discovery & Brand Training" } },
+        { "type": "step", "settings": { "label": "Week 2", "title": "Agent Development" } },
+        { "type": "step", "settings": { "label": "Week 3", "title": "Testing & Refinement" } },
+        { "type": "step", "settings": { "label": "Week 4", "title": "Launch & Monitor" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

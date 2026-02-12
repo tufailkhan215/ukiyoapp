@@ -1,0 +1,249 @@
+{% comment %} Hard Truth / Investment infographic: F*ck Around vs Do It Right, math, quote, 6 months later, CTA. {% endcomment %}
+<section class="relative py-12 lg:py-16 bg-black overflow-hidden" data-testid="investment-infographic">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
+    <div class="text-center mb-8">
+      {% if section.settings.badge != blank %}
+        <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-2">{{ section.settings.badge }}</span>
+      {% endif %}
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-2">
+        {{ section.settings.title_line1 }}
+        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_line2 }}</span>
+      </h2>
+      {% if section.settings.subtitle != blank %}
+        <p class="text-base text-white/50 max-w-2xl mx-auto">{{ section.settings.subtitle }}<span class="text-white/70 font-medium"> {{ section.settings.subtitle_bold }}</span></p>
+      {% endif %}
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-4 mb-8">
+      <div class="relative p-5 rounded-2xl bg-gradient-to-br from-red-500/20 to-orange-500/20 border border-red-500/30">
+        <div class="absolute -top-2 -right-2 w-12 h-12 rounded-xl bg-black flex items-center justify-center text-2xl border border-red-500/30" aria-hidden="true">💀</div>
+        <div class="inline-flex items-center gap-2 px-2 py-0.5 rounded-full bg-black/50 text-red-400 text-xs font-bold uppercase tracking-wider mb-3">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-trending-down w-3 h-3"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline><polyline points="16 17 22 17 22 11"></polyline></svg>
+          {{ section.settings.budget_label }}
+        </div>
+        <h3 class="text-xl font-bold text-white mb-1">{{ section.settings.budget_title }}</h3>
+        <div class="flex items-center gap-4 text-xs mb-4">
+          <div class="flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-dollar-sign w-3 h-3 text-white/40"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            <span class="text-white/70">{{ section.settings.budget_cost }}</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-clock w-3 h-3 text-white/40"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span class="text-white/70">{{ section.settings.budget_time }}</span>
+          </div>
+        </div>
+        <div class="space-y-2 mb-4">
+          {% assign budget_bullets = section.settings.budget_bullets | newline_to_br | split: '<br />' %}
+          {% for line in budget_bullets %}
+            {% assign line = line | strip %}
+            {% if line != '' %}
+              <div class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-circle-x w-4 h-4 text-red-400 flex-shrink-0 mt-0.5"><circle cx="12" cy="12" r="10"></circle><path d="m15 9-6 6"></path><path d="m9 9 6 6"></path></svg>
+                <span class="text-xs text-white/50">{{ line }}</span>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <div class="p-3 rounded-lg bg-black/30 border border-red-500/30">
+          <div class="text-[10px] text-white/40 uppercase tracking-wider mb-0.5">{{ section.settings.budget_foot_label }}</div>
+          <div class="text-base font-bold text-red-400">{{ section.settings.budget_foot_value }}</div>
+        </div>
+      </div>
+
+      <div class="relative p-5 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-green-500/20 border border-emerald-500/30">
+        <div class="absolute -top-2 -right-2 w-12 h-12 rounded-xl bg-black flex items-center justify-center text-2xl border border-emerald-500/30" aria-hidden="true">🏆</div>
+        <div class="inline-flex items-center gap-2 px-2 py-0.5 rounded-full bg-black/50 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-3">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-trending-up w-3 h-3"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+          {{ section.settings.investment_label }}
+        </div>
+        <h3 class="text-xl font-bold text-white mb-1">{{ section.settings.investment_title }}</h3>
+        <div class="flex items-center gap-4 text-xs mb-4">
+          <div class="flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-dollar-sign w-3 h-3 text-white/40"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            <span class="text-white/70">{{ section.settings.investment_cost }}</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-clock w-3 h-3 text-white/40"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span class="text-white/70">{{ section.settings.investment_time }}</span>
+          </div>
+        </div>
+        <div class="space-y-2 mb-4">
+          {% assign investment_bullets = section.settings.investment_bullets | newline_to_br | split: '<br />' %}
+          {% for line in investment_bullets %}
+            {% assign line = line | strip %}
+            {% if line != '' %}
+              <div class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-circle-check-big w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>
+                <span class="text-xs text-white/70">{{ line }}</span>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <div class="p-3 rounded-lg bg-black/30 border border-emerald-500/30">
+          <div class="text-[10px] text-white/40 uppercase tracking-wider mb-0.5">{{ section.settings.investment_foot_label }}</div>
+          <div class="text-base font-bold text-emerald-400">{{ section.settings.investment_foot_value }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-8">
+      <div class="p-5 rounded-2xl bg-white/[0.02] border border-white/10">
+        <h3 class="text-xl font-bold text-white mb-4 text-center">{{ section.settings.math_heading }}</h3>
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="text-center p-4 rounded-xl bg-red-500/5 border border-red-500/20">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-skull w-8 h-8 text-red-400 mx-auto mb-2"><path d="m12.5 17-.5-1-.5 1h1z"></path><path d="M15 22a1 1 0 0 0 1-1v-1a2 2 0 0 0 1.56-3.25 8 8 0 1 0-11.12 0A2 2 0 0 0 8 20v1a1 1 0 0 0 1 1z"></path><circle cx="15" cy="12" r="1"></circle><circle cx="9" cy="12" r="1"></circle></svg>
+            <div class="text-2xl font-bold text-red-400 mb-1">{{ section.settings.math_budget_amount }}</div>
+            <div class="text-xs text-white/50 mb-2">{{ section.settings.math_budget_label }}</div>
+            <div class="text-[10px] text-white/30">{{ section.settings.math_budget_breakdown | newline_to_br }}<br><span class="text-red-400 font-bold">= {{ section.settings.math_budget_total }}</span></div>
+          </div>
+          <div class="flex items-center justify-center">
+            <div class="text-3xl font-black text-white/20">VS</div>
+          </div>
+          <div class="text-center p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-trophy w-8 h-8 text-emerald-400 mx-auto mb-2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+            <div class="text-2xl font-bold text-emerald-400 mb-1">{{ section.settings.math_investment_amount }}</div>
+            <div class="text-xs text-white/50 mb-2">{{ section.settings.math_investment_label }}</div>
+            <div class="text-[10px] text-white/30">{{ section.settings.math_investment_breakdown | newline_to_br }}<br><span class="text-emerald-400 font-bold">= {{ section.settings.math_investment_total }}</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mb-8">
+      <div class="inline-block p-5 rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10">
+        <div class="text-xl md:text-2xl font-bold text-white/80 italic mb-2">{{ section.settings.quote }}</div>
+        <div class="text-white/40 text-xs">{{ section.settings.quote_attr }}</div>
+      </div>
+    </div>
+
+    <div class="mb-8">
+      <h3 class="text-lg font-bold text-white mb-4 text-center">{{ section.settings.six_months_heading }}</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="p-4 rounded-xl bg-red-500/5 border border-red-500/20">
+          <div class="flex items-center gap-2 mb-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-triangle-alert w-5 h-5 text-red-400"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
+            <span class="text-white font-semibold text-sm">{{ section.settings.six_months_budget_title }}</span>
+          </div>
+          <div class="space-y-1 text-xs text-white/50">
+            {% assign budget_later = section.settings.six_months_budget_bullets | newline_to_br | split: '<br />' %}
+            {% for line in budget_later %}{% assign line = line | strip %}{% if line != '' %}<p>• {{ line }}</p>{% endif %}{% endfor %}
+          </div>
+        </div>
+        <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
+          <div class="flex items-center gap-2 mb-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-target w-5 h-5 text-emerald-400"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+            <span class="text-white font-semibold text-sm">{{ section.settings.six_months_investment_title }}</span>
+          </div>
+          <div class="space-y-1 text-xs text-white/50">
+            {% assign investment_later = section.settings.six_months_investment_bullets | newline_to_br | split: '<br />' %}
+            {% for line in investment_later %}{% assign line = line | strip %}{% if line != '' %}<p>• {{ line }}</p>{% endif %}{% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <p class="text-white/50 mb-4 text-sm">{{ section.settings.cta_heading }}</p>
+      {% if section.settings.cta_url != blank %}
+        <a href="{{ section.settings.cta_url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition-colors group text-sm">
+          <span>{{ section.settings.cta_text }}</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-arrow-right w-4 h-4 group-hover:translate-x-1 transition-transform"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hard Truth",
+  "tag": "section",
+  "class": "section-hard-truth",
+  "settings": [
+    { "type": "text", "id": "badge", "label": "Badge", "default": "(The Hard Truth)" },
+    { "type": "text", "id": "title_line1", "label": "Title line 1", "default": "F*CK AROUND" },
+    { "type": "text", "id": "title_line2", "label": "Title line 2 (gradient)", "default": "& FIND OUT" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "The real cost of \"saving money\" on your brand." },
+    { "type": "text", "id": "subtitle_bold", "label": "Subtitle bold", "default": "Spoiler: it's expensive." },
+    { "type": "text", "id": "budget_label", "label": "Budget card label", "default": "F*ck Around" },
+    { "type": "text", "id": "budget_title", "label": "Budget card title", "default": "The \"Budget\" Route" },
+    { "type": "text", "id": "budget_cost", "label": "Budget cost", "default": "$500 - $2K" },
+    { "type": "text", "id": "budget_time", "label": "Budget time", "default": "2 weeks" },
+    { "type": "textarea", "id": "budget_bullets", "label": "Budget bullets (one per line)" },
+    { "type": "text", "id": "budget_foot_label", "label": "Budget footer label", "default": "True Cost" },
+    { "type": "text", "id": "budget_foot_value", "label": "Budget footer value", "default": "$15K+ (time wasted, lost clients, rebuild)" },
+    { "type": "text", "id": "investment_label", "label": "Investment card label", "default": "Do It Right" },
+    { "type": "text", "id": "investment_title", "label": "Investment card title", "default": "The \"Investment\" Route" },
+    { "type": "text", "id": "investment_cost", "label": "Investment cost", "default": "$5K - $25K+" },
+    { "type": "text", "id": "investment_time", "label": "Investment time", "default": "4-8 weeks" },
+    { "type": "textarea", "id": "investment_bullets", "label": "Investment bullets (one per line)" },
+    { "type": "text", "id": "investment_foot_label", "label": "Investment footer label", "default": "Return" },
+    { "type": "text", "id": "investment_foot_value", "label": "Investment footer value", "default": "ROI: 300-1000% in first year" },
+    { "type": "text", "id": "math_heading", "label": "Math section heading", "default": "The Math Don't Lie" },
+    { "type": "text", "id": "math_budget_amount", "label": "Math budget amount", "default": "$1,500" },
+    { "type": "text", "id": "math_budget_label", "label": "Math budget label", "default": "Initial \"savings\"" },
+    { "type": "textarea", "id": "math_budget_breakdown", "label": "Math budget breakdown (newlines)", "default": "+ $5K lost clients\n+ $3K fixes\n+ $8K rebuild" },
+    { "type": "text", "id": "math_budget_total", "label": "Math budget total", "default": "$17,500 total" },
+    { "type": "text", "id": "math_investment_amount", "label": "Math investment amount", "default": "$10,000" },
+    { "type": "text", "id": "math_investment_label", "label": "Math investment label", "default": "Quality investment" },
+    { "type": "textarea", "id": "math_investment_breakdown", "label": "Math investment breakdown (newlines)", "default": "+ $0 fixes\n+ $0 rebuilds\n+ $50K new business" },
+    { "type": "text", "id": "math_investment_total", "label": "Math investment total", "default": "$40K profit" },
+    { "type": "textarea", "id": "quote", "label": "Quote", "default": "\"Cheap work ain't good, good work ain't cheap.\"" },
+    { "type": "text", "id": "quote_attr", "label": "Quote attribution", "default": "— Every experienced business owner ever" },
+    { "type": "text", "id": "six_months_heading", "label": "6 months section heading", "default": "6 Months Later..." },
+    { "type": "text", "id": "six_months_budget_title", "label": "6 months budget title", "default": "The \"Budget\" Client" },
+    { "type": "textarea", "id": "six_months_budget_bullets", "label": "6 months budget bullets (one per line)" },
+    { "type": "text", "id": "six_months_investment_title", "label": "6 months investment title", "default": "The \"Investment\" Client" },
+    { "type": "textarea", "id": "six_months_investment_bullets", "label": "6 months investment bullets (one per line)" },
+    { "type": "text", "id": "cta_heading", "label": "CTA heading", "default": "Ready to do it right the first time?" },
+    { "type": "text", "id": "cta_text", "label": "CTA button text", "default": "Let's Talk" },
+    { "type": "text", "id": "cta_url", "label": "CTA button URL" }
+  ],
+  "presets": [
+    {
+      "name": "Hard Truth",
+      "settings": {
+        "badge": "(The Hard Truth)",
+        "title_line1": "F*CK AROUND",
+        "title_line2": "& FIND OUT",
+        "subtitle": "The real cost of \"saving money\" on your brand.",
+        "subtitle_bold": "Spoiler: it's expensive.",
+        "budget_label": "F*ck Around",
+        "budget_title": "The \"Budget\" Route",
+        "budget_cost": "$500 - $2K",
+        "budget_time": "2 weeks",
+        "budget_bullets": "Generic template that looks like everyone else\nDeveloper ghosts you after 3 revisions\nSite breaks on mobile (discovered by your biggest client)\nSEO? Never heard of her\nYou rebuild it in 6 months anyway",
+        "budget_foot_label": "True Cost",
+        "budget_foot_value": "$15K+ (time wasted, lost clients, rebuild)",
+        "investment_label": "Do It Right",
+        "investment_title": "The \"Investment\" Route",
+        "investment_cost": "$5K - $25K+",
+        "investment_time": "4-8 weeks",
+        "investment_bullets": "Custom design that makes competitors jealous\nActually converts visitors into customers\nWorks flawlessly on every device\nSEO optimized from day one\nScales with your business for years",
+        "investment_foot_label": "Return",
+        "investment_foot_value": "ROI: 300-1000% in first year",
+        "math_heading": "The Math Don't Lie",
+        "math_budget_amount": "$1,500",
+        "math_budget_label": "Initial \"savings\"",
+        "math_budget_breakdown": "+ $5K lost clients\n+ $3K fixes\n+ $8K rebuild",
+        "math_budget_total": "$17,500 total",
+        "math_investment_amount": "$10,000",
+        "math_investment_label": "Quality investment",
+        "math_investment_breakdown": "+ $0 fixes\n+ $0 rebuilds\n+ $50K new business",
+        "math_investment_total": "$40K profit",
+        "quote": "\"Cheap work ain't good, good work ain't cheap.\"",
+        "quote_attr": "— Every experienced business owner ever",
+        "six_months_heading": "6 Months Later...",
+        "six_months_budget_title": "The \"Budget\" Client",
+        "six_months_budget_bullets": "On their 3rd designer\nLost 2 major deals due to \"unprofessional website\"\nStill explaining why the contact form doesn't work\nConsidering just using a Wix template",
+        "six_months_investment_title": "The \"Investment\" Client",
+        "six_months_investment_bullets": "Closed 15 new clients directly from website\nFeatured in industry publication\nCompetitors asking \"who did your branding?\"\nPlanning expansion into new market",
+        "cta_heading": "Ready to do it right the first time?",
+        "cta_text": "Let's Talk",
+        "cta_url": "https://tidycal.com/salesautomateiq"
+      }
+    }
+  ]
+}
+{% endschema %}

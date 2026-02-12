@@ -1,0 +1,109 @@
+{% comment %} Tech Stack: badge, title with gradient "Stack", row of tech buttons with hover glow. {% endcomment %}
+{% assign tech_blocks = section.blocks | where: 'type', 'tech' %}
+
+<section class="relative py-24 lg:py-32 bg-black overflow-hidden" data-testid="tech-stack">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.03),transparent_50%)]" aria-hidden="true"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] border border-white/[0.03] rounded-full rotate-[32deg]" aria-hidden="true"></div>
+  <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="text-center mb-16">
+      {% if section.settings.badge != blank %}
+        <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-4">{{ section.settings.badge }}</span>
+      {% endif %}
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+        {{ section.settings.title_before }}
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_gradient }}</span>
+      </h2>
+      {% if section.settings.subtitle != blank %}
+        <p class="text-white/40 max-w-md mx-auto mb-12">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <div class="flex justify-center">
+      <div class="max-w-3xl">
+        <div class="space-y-6">
+          <div class="flex flex-wrap gap-3 justify-center">
+            {% for block in tech_blocks %}
+              {% assign url = block.settings.url | default: '#' %}
+              {% case block.settings.gradient %}
+                {% when 'orange_amber' %}   {% assign glow_class = 'from-orange-500 to-amber-500' %}
+                {% when 'green_emerald' %} {% assign glow_class = 'from-green-500 to-emerald-500' %}
+                {% when 'orange_red' %}    {% assign glow_class = 'from-orange-500 to-red-500' %}
+                {% when 'purple_violet' %} {% assign glow_class = 'from-purple-500 to-violet-500' %}
+                {% else %}                {% assign glow_class = 'from-emerald-500 to-teal-500' %}
+              {% endcase %}
+              <a href="{{ url }}" class="group relative inline-flex" {{ block.shopify_attributes }}>
+                <div class="absolute -inset-1 rounded-xl bg-gradient-to-r {{ glow_class }} opacity-0 group-hover:opacity-30 blur-lg transition-all duration-300"></div>
+                <div class="relative flex items-center gap-2 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 group-hover:border-white/20 group-hover:bg-white/[0.06] transition-all duration-300">
+                  {% case block.settings.icon %}
+                    {% when 'bot' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-bot w-5 h-5 text-white/60 group-hover:text-white transition-colors shrink-0"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg>
+                    {% when 'code' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-code w-5 h-5 text-white/60 group-hover:text-white transition-colors shrink-0"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    {% when 'zap' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-zap w-5 h-5 text-white/60 group-hover:text-white transition-colors shrink-0"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
+                    {% else %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-cpu w-5 h-5 text-white/60 group-hover:text-white transition-colors shrink-0"><rect width="16" height="16" x="4" y="4" rx="2" ry="2"></rect><rect width="6" height="6" x="9" y="9"></rect><path d="M15 2v2"></path><path d="M15 20v2"></path><path d="M2 15h2"></path><path d="M2 9h2"></path><path d="M20 15h2"></path><path d="M20 9h2"></path><path d="M9 2v2"></path><path d="M9 20v2"></path></svg>
+                  {% endcase %}
+                  <span class="text-white/80 group-hover:text-white font-medium transition-colors">{{ block.settings.label }}</span>
+                  <span class="text-white/40 text-xs ml-1" aria-hidden="true">→</span>
+                </div>
+              </a>
+            {% endfor %}
+          </div>
+          {% if section.settings.footer_text != blank %}
+            <p class="text-white/40 text-sm text-center">{{ section.settings.footer_text }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute left-1/2 bottom-0 -translate-x-1/2 w-px h-20 bg-gradient-to-b from-white/10 to-transparent" aria-hidden="true"></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Tech Stack",
+  "tag": "section",
+  "class": "section-tech-stack",
+  "settings": [
+    { "type": "text", "id": "badge", "label": "Badge", "default": "(Powered By)" },
+    { "type": "text", "id": "title_before", "label": "Title (before gradient)", "default": "Tech " },
+    { "type": "text", "id": "title_gradient", "label": "Title (gradient part)", "default": "Stack" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Industry-leading tools that power your success. Click to learn more." },
+    { "type": "text", "id": "footer_text", "label": "Footer text", "default": "Click on any tool to learn more" }
+  ],
+  "blocks": [
+    {
+      "type": "tech",
+      "name": "Tech item",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "default": "bot", "options": [ { "value": "bot", "label": "Bot" }, { "value": "code", "label": "Code" }, { "value": "zap", "label": "Zap" } ] },
+        { "type": "text", "id": "label", "label": "Label" },
+        { "type": "select", "id": "gradient", "label": "Hover glow gradient", "default": "emerald_teal", "options": [ { "value": "emerald_teal", "label": "Emerald → Teal" }, { "value": "orange_amber", "label": "Orange → Amber" }, { "value": "green_emerald", "label": "Green → Emerald" }, { "value": "orange_red", "label": "Orange → Red" }, { "value": "purple_violet", "label": "Purple → Violet" } ] },
+        { "type": "url", "id": "url", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tech Stack",
+      "settings": {
+        "badge": "(Powered By)",
+        "title_before": "Tech ",
+        "title_gradient": "Stack",
+        "subtitle": "Industry-leading tools that power your success. Click to learn more.",
+        "footer_text": "Click on any tool to learn more"
+      },
+      "blocks": [
+        { "type": "tech", "settings": { "icon": "bot", "label": "OpenAI", "gradient": "emerald_teal" } },
+        { "type": "tech", "settings": { "icon": "bot", "label": "Claude", "gradient": "orange_amber" } },
+        { "type": "tech", "settings": { "icon": "code", "label": "Langchain", "gradient": "green_emerald" } },
+        { "type": "tech", "settings": { "icon": "zap", "label": "Zapier", "gradient": "orange_red" } },
+        { "type": "tech", "settings": { "icon": "zap", "label": "Make", "gradient": "purple_violet" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

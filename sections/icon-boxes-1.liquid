@@ -1,0 +1,142 @@
+{% comment %} Icon Boxes (Stats): Challenge (red, metric+description) or Solution (emerald, title+phrase). Centered circular icon. {% endcomment %}
+{% assign box_blocks = section.blocks | where: 'type', 'box' %}
+{% assign is_solution = false %}
+{% if section.settings.variant == 'solution' %}
+  {% assign is_solution = true %}
+{% endif %}
+
+<section class="relative py-12 lg:py-16 bg-black overflow-hidden" data-testid="icon-boxes-1">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  {% if is_solution %}
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(16,185,129,0.05),transparent_50%)]" aria-hidden="true"></div>
+  {% else %}
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(239,68,68,0.05),transparent_50%)]" aria-hidden="true"></div>
+  {% endif %}
+  <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="text-center mb-8">
+      {% if section.settings.badge != blank %}
+        <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-2">{{ section.settings.badge }}</span>
+      {% endif %}
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">
+        {{ section.settings.title_before }}
+        {% if is_solution %}
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">{{ section.settings.title_gradient }}</span>
+        {% else %}
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-400">{{ section.settings.title_gradient }}</span>
+        {% endif %}
+      </h2>
+      {% if section.settings.subtitle != blank %}
+        <p class="text-white/40 max-w-lg mx-auto text-sm">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {% for block in box_blocks %}
+        <div class="text-center group" {{ block.shopify_attributes }}>
+          {% if is_solution %}
+            <div class="w-14 h-14 mx-auto mb-4 rounded-full border-2 border-emerald-500/30 flex items-center justify-center group-hover:border-emerald-500 group-hover:bg-emerald-500/10 transition-all duration-300">
+              {% case block.settings.icon %}
+                {% when 'target' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-target w-6 h-6 text-emerald-400"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                {% when 'file_text' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-file-text w-6 h-6 text-emerald-400"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg>
+                {% when 'trending_up' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-trending-up w-6 h-6 text-emerald-400"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+                {% when 'search' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-search w-6 h-6 text-emerald-400"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg>
+                {% when 'handshake' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-handshake w-6 h-6 text-emerald-400"><path d="m11 17 2 2a1 1 0 1 0 3-3"></path><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"></path><path d="m21 3 1 11h-2"></path><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"></path><path d="M3 4h8"></path></svg>
+                {% when 'chart_column' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-chart-no-axes-column-increasing w-6 h-6 text-emerald-400"><line x1="12" x2="12" y1="20" y2="10"></line><line x1="18" x2="18" y1="20" y2="4"></line><line x1="6" x2="6" y1="20" y2="16"></line></svg>
+                {% else %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-circle w-6 h-6 text-emerald-400"><circle cx="12" cy="12" r="10"></circle></svg>
+              {% endcase %}
+            </div>
+            <h4 class="text-lg font-bold text-white mb-1">{{ block.settings.title }}</h4>
+            {% if block.settings.phrase != blank %}
+              <p class="text-xl font-bold text-emerald-400">{{ block.settings.phrase }}</p>
+            {% endif %}
+          {% else %}
+            <div class="w-14 h-14 mx-auto mb-4 rounded-full border-2 border-red-500/30 flex items-center justify-center group-hover:border-red-500 group-hover:bg-red-500/10 transition-all duration-300">
+              {% case block.settings.icon %}
+                {% when 'search' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-search w-6 h-6 text-red-400"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg>
+                {% when 'handshake' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-handshake w-6 h-6 text-red-400"><path d="m11 17 2 2a1 1 0 1 0 3-3"></path><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"></path><path d="m21 3 1 11h-2"></path><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"></path><path d="M3 4h8"></path></svg>
+                {% when 'chart_column' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-chart-no-axes-column-increasing w-6 h-6 text-red-400"><line x1="12" x2="12" y1="20" y2="10"></line><line x1="18" x2="18" y1="20" y2="4"></line><line x1="6" x2="6" y1="20" y2="16"></line></svg>
+                {% else %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-circle w-6 h-6 text-red-400"><circle cx="12" cy="12" r="10"></circle></svg>
+              {% endcase %}
+            </div>
+            {% if block.settings.metric != blank %}
+              <p class="text-3xl font-black text-red-400 mb-1">{{ block.settings.metric }}</p>
+            {% endif %}
+            <h4 class="text-lg font-bold text-white mb-1">{{ block.settings.title }}</h4>
+            <p class="text-xs text-white/40 max-w-xs mx-auto">{{ block.settings.description }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Icon Boxes (Stats)",
+  "tag": "section",
+  "class": "section-icon-boxes-1",
+  "settings": [
+    { "type": "select", "id": "variant", "label": "Style", "default": "challenge", "options": [ { "value": "challenge", "label": "Challenge (red – metric + description)" }, { "value": "solution", "label": "Solution (emerald – title + phrase)" } ] },
+    { "type": "text", "id": "badge", "label": "Badge", "default": "(The Challenge)" },
+    { "type": "text", "id": "title_before", "label": "Title (before gradient)", "default": "Problems We " },
+    { "type": "text", "id": "title_gradient", "label": "Title (gradient part)", "default": "Solve" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "These common pain points are holding businesses back. We fix them." }
+  ],
+  "blocks": [
+    {
+      "type": "box",
+      "name": "Stat box",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "default": "search", "options": [ { "value": "search", "label": "Search" }, { "value": "handshake", "label": "Handshake" }, { "value": "chart_column", "label": "Chart (column)" }, { "value": "target", "label": "Target" }, { "value": "file_text", "label": "File / doc" }, { "value": "trending_up", "label": "Trending up" } ] },
+        { "type": "text", "id": "metric", "label": "Metric (Challenge style, e.g. 80%)" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "description", "label": "Description (Challenge style)" },
+        { "type": "text", "id": "phrase", "label": "Phrase (Solution style – accent line)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icon Boxes (Stats) – Challenge",
+      "settings": {
+        "variant": "challenge",
+        "badge": "(The Challenge)",
+        "title_before": "Problems We ",
+        "title_gradient": "Solve",
+        "subtitle": "These common pain points are holding businesses back. We fix them."
+      },
+      "blocks": [
+        { "type": "box", "settings": { "icon": "search", "metric": "80%", "title": "Finding Partners", "description": "Of brands struggle to find aligned partners" } },
+        { "type": "box", "settings": { "icon": "handshake", "metric": "60%", "title": "Negotiation", "description": "Of partnership deals fail in negotiation" } },
+        { "type": "box", "settings": { "icon": "chart_column", "metric": "45%", "title": "ROI Tracking", "description": "Can't accurately measure partnership ROI" } }
+      ]
+    },
+    {
+      "name": "Icon Boxes (Stats) – Solution",
+      "settings": {
+        "variant": "solution",
+        "badge": "(The Solution)",
+        "title_before": "How We ",
+        "title_gradient": "Deliver",
+        "subtitle": "Proven strategies that get real results for your business."
+      },
+      "blocks": [
+        { "type": "box", "settings": { "icon": "target", "title": "AI-Powered Discovery", "phrase": "Perfect partner matches" } },
+        { "type": "box", "settings": { "icon": "file_text", "title": "Expert Negotiation", "phrase": "Win-win deal structures" } },
+        { "type": "box", "settings": { "icon": "trending_up", "title": "Performance Tracking", "phrase": "Clear ROI dashboards" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

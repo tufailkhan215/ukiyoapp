@@ -1,5 +1,7 @@
-{% comment %} Service detail page intro: back link, category tag, gradient title, subtitle, description, CTAs. {% endcomment %}
-<section class="relative min-h-screen flex items-center overflow-hidden bg-black" data-testid="service-details-intro">
+{% comment %} Service detail page intro: canvas glow, dots (parallax/drift), back link, category tag, gradient title, CTAs. {% endcomment %}
+{% assign canvas_id = 'service-details-intro-canvas-' | append: section.id %}
+{% assign dot_positions = "19,12.7|11.6,49.9|56.4,24.3|45.2,58.9|64.6,21.5|12.5,17.7|78,35|22,72|88,62" | split: '|' %}
+<section class="relative min-h-screen flex items-center overflow-hidden bg-black" data-testid="service-details-intro" data-service-intro-section data-enable-canvas="{{ section.settings.enable_canvas_glow }}" data-enable-dots="{{ section.settings.enable_dots }}">
   {% if section.settings.background_image != blank %}
     <div class="absolute inset-0 w-full h-full">
       <img
@@ -13,7 +15,20 @@
       >
     </div>
   {% endif %}
-  <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black" aria-hidden="true"></div>
+  {% if section.settings.enable_canvas_glow %}
+    <canvas id="{{ canvas_id }}" class="absolute inset-0 w-full h-full service-details-intro-canvas" width="1528" height="507" aria-hidden="true"></canvas>
+  {% endif %}
+  {% if section.settings.enable_dots %}
+    <div class="service-details-intro-dots absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+      {% for pos in dot_positions %}
+        {% assign parts = pos | split: ',' %}
+        {% assign size_w = 5 | plus: forloop.index0 | modulo: 4 %}
+        {% assign size_h = 7 | plus: forloop.index0 | modulo: 3 %}
+        <div class="service-details-intro-dot absolute rounded-full bg-[rgba(200,180,160,0.3)]" style="left: {{ parts[0] }}%; top: {{ parts[1] }}%; width: {{ 5 | plus: size_w }}px; height: {{ 6 | plus: size_h }}px;"></div>
+      {% endfor %}
+    </div>
+  {% endif %}
+  <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black" aria-hidden="true"></div>
 
   <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 py-32 w-full">
     {% if section.settings.back_link_text != blank and section.settings.back_link_url != blank %}
@@ -27,7 +42,7 @@
 
     {% if section.settings.category_label != blank %}
       <div class="mb-6">
-        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/[0.02]">
+        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm">
           {% if section.settings.category_icon != 'none' %}
             {% case section.settings.category_icon %}
               {% when 'sparkles' %}
@@ -52,7 +67,7 @@
 
     {% if section.settings.title != blank %}
       <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[0.95] tracking-tight mb-6">
-        <span class="text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-600">{{ section.settings.title }}</span>
+        <span class="text-transparent bg-clip-text bg-gradient-to-b from-white via-white/70 to-white/40">{{ section.settings.title }}</span>
       </h1>
     {% endif %}
 
@@ -80,6 +95,78 @@
   </div>
 </section>
 
+{% if section.settings.enable_canvas_glow or section.settings.enable_dots %}
+<script>
+(function() {
+  var section = document.querySelector('[data-service-intro-section]');
+  if (!section) return;
+  var enableCanvas = section.getAttribute('data-enable-canvas') === 'true';
+  var enableDots = section.getAttribute('data-enable-dots') === 'true';
+  if (!enableCanvas && !enableDots) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var canvas = document.getElementById('{{ canvas_id }}');
+  var mouseX = 0.5, mouseY = 0.5;
+  var ctx;
+  var dots = enableDots ? section.querySelectorAll('.service-details-intro-dot') : [];
+  var startTime = Date.now();
+
+  if (enableCanvas && canvas) {
+    ctx = canvas.getContext('2d');
+    function resizeCanvas() {
+      var w = canvas.offsetWidth, h = canvas.offsetHeight;
+      canvas.width = w; canvas.height = h;
+    }
+    if (typeof ResizeObserver !== 'undefined') {
+      var ro = new ResizeObserver(resizeCanvas);
+      ro.observe(canvas.parentElement);
+    }
+    resizeCanvas();
+  }
+
+  section.addEventListener('mousemove', function(e) {
+    var rect = section.getBoundingClientRect();
+    mouseX = (e.clientX - rect.left) / rect.width;
+    mouseY = (e.clientY - rect.top) / rect.height;
+  }, { passive: true });
+
+  function loop() {
+    var t = (Date.now() - startTime) * 0.001;
+
+    if (enableCanvas && ctx && canvas.width && canvas.height) {
+      var w = canvas.width, h = canvas.height;
+      ctx.fillStyle = '#000000';
+      ctx.fillRect(0, 0, w, h);
+      var x = mouseX * w, y = mouseY * h;
+      var g = ctx.createRadialGradient(x, y, 0, x, y, 450);
+      g.addColorStop(0, 'rgba(255,255,255,0.1)');
+      g.addColorStop(0.5, 'rgba(255,255,255,0.03)');
+      g.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, w, h);
+    }
+
+    if (enableDots && dots.length) {
+      var mx = (mouseX - 0.5) * 2, my = (mouseY - 0.5) * 2;
+      for (var i = 0; i < dots.length; i++) {
+        var dot = dots[i];
+        var factor = 18 + (i % 3) * 8;
+        var phase = i * 0.7;
+        var parallaxX = mx * factor;
+        var parallaxY = my * factor;
+        var driftX = Math.sin(t + phase) * 5;
+        var driftY = Math.cos(t * 0.85 + phase) * 5;
+        dot.style.transform = 'translate(' + (parallaxX + driftX) + 'px, ' + (parallaxY + driftY) + 'px)';
+      }
+    }
+
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
+</script>
+{% endif %}
+
 {% schema %}
 {
   "name": "Service Details Intro",
@@ -91,6 +178,24 @@
       "id": "background_image",
       "label": "Background image",
       "info": "Optional. Leave blank for solid dark gradient."
+    },
+    {
+      "type": "header",
+      "content": "Ambient effects"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_canvas_glow",
+      "label": "Cursor-follow glow (canvas)",
+      "default": true,
+      "info": "Respects prefers-reduced-motion."
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_dots",
+      "label": "Floating dots (parallax + drift)",
+      "default": true,
+      "info": "Respects prefers-reduced-motion."
     },
     {
       "type": "header",
