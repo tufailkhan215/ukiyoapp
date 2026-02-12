@@ -280,13 +280,15 @@ img {
 @keyframes cta-dot-pulse {
   0%, 100% { opacity: 0.25; transform: scale(1) translate(0, 0); }
   25% { opacity: 0.65; transform: scale(1.2) translate(104px, -109px); }
-  66% { opacity: 0.5; transform: scale(1.05) translate(-130px, 173px); }
+  50% { opacity: 0.5; transform: scale(1.05) translate(-130px, 173px); }
+  75% { opacity: 0.35; transform: scale(1.1) translate(165px, -2px); }
 }
 
 @keyframes cta-dot-float {
   0%, 100% { opacity: 0.35; transform: scale(1) translate(0, 0); }
   25% { opacity: 0.6; transform: scale(1.15) translate(-114px, 214px); }
-  66% { opacity: 0.45; transform: scale(1.1) translate(143px, -104px); }
+  50% { opacity: 0.45; transform: scale(1.1) translate(210px, -104px); }
+  75% { opacity: 0.35; transform: scale(1.1) translate(-105px, 12px); }
 }
 
 .animate-cta-dot-pulse,
