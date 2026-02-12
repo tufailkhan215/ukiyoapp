@@ -795,8 +795,8 @@
           "type": "guarantee",
           "settings": {
             "icon": "shield",
-            "title": "100% Money-Back Guarantee",
-            "description": "If you don't see measurable results within 90 days, we'll refund every penny. No questions asked."
+            "title": "Performance Promise",
+            "description": "If you don’t see measurable results within 90 days, we’ll continue working for free until you do. Your success is our priority."
           }
         },
         "guarantee_mBqYnB": {
@@ -819,8 +819,8 @@
           "type": "guarantee",
           "settings": {
             "icon": "award",
-            "title": "Results or We Work Free",
-            "description": "If our strategies don't increase your revenue, we'll work for free until they do."
+            "title": "90-Day Success Commitment",
+            "description": "Our iron-clad guarantee means you get results or we keep working at no extra cost until you do."
           }
         }
       },
