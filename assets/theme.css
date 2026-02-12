@@ -279,14 +279,16 @@ img {
 /* Dynamic CTA: dot twinkle + drift (match live ukiyo-prod.com) */
 @keyframes cta-dot-pulse {
   0%, 100% { opacity: 0.25; transform: scale(1) translate(0, 0); }
-  33% { opacity: 0.65; transform: scale(1.2) translate(4px, -5px); }
-  66% { opacity: 0.5; transform: scale(1.05) translate(-3px, 3px); }
+  25% { opacity: 0.65; transform: scale(1.2) translate(104px, -109px); }
+  50% { opacity: 0.5; transform: scale(1.05) translate(-130px, 173px); }
+  75% { opacity: 0.35; transform: scale(1.1) translate(165px, -2px); }
 }
 
 @keyframes cta-dot-float {
   0%, 100% { opacity: 0.35; transform: scale(1) translate(0, 0); }
-  33% { opacity: 0.6; transform: scale(1.15) translate(-4px, 4px); }
-  66% { opacity: 0.45; transform: scale(1.1) translate(3px, -3px); }
+  25% { opacity: 0.6; transform: scale(1.15) translate(-114px, 214px); }
+  50% { opacity: 0.45; transform: scale(1.1) translate(143px, -104px); }
+  75% { opacity: 0.35; transform: scale(1.1) translate(165px, -2px); }
 }
 
 .animate-cta-dot-pulse,
@@ -296,11 +298,11 @@ img {
 }
 
 .animate-cta-dot-pulse {
-  animation: cta-dot-pulse 3.5s ease-in-out infinite;
+  animation: cta-dot-pulse 60s ease-in-out infinite;
 }
 
 .animate-cta-dot-float {
-  animation: cta-dot-float 4s ease-in-out infinite;
+  animation: cta-dot-float 90s ease-in-out infinite;
 }
 
 @keyframes cta-circle-rotate-cw {
@@ -337,13 +339,13 @@ img {
 /* Big Statement: particle dots – pulse + drift (increased motion) */
 @keyframes big-statement-dot-pulse {
   0%, 100% { opacity: 0.2; transform: scale(1) translate(0, 0); }
-  25% { opacity: 0.5; transform: scale(1.2) translate(12px, -12px); }
-  50% { opacity: 0.4; transform: scale(1.15) translate(-10px, 10px); }
-  75% { opacity: 0.35; transform: scale(1.1) translate(-16px, -2px); }
-} 
+  25% { opacity: 0.5; transform: scale(1.2) translate(4px, -4px); }
+  50% { opacity: 0.4; transform: scale(1.15) translate(-3px, 3px); }
+  75% { opacity: 0.35; transform: scale(1.1) translate(-4px, -2px); }
+}
 
 .big-statement-particle {
-  animation: big-statement-dot-pulse 5s ease-in-out infinite;
+  animation: big-statement-dot-pulse 3.5s ease-in-out infinite;
   transform-origin: center;
 }
 
