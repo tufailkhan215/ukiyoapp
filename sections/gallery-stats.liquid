@@ -1,0 +1,109 @@
+{% comment %} Gallery Stats: top amber gradient line, grid of 4 stat blocks (icon + number + label). {% endcomment %}
+{% assign stat_blocks = section.blocks | where: 'type', 'stat' %}
+<section class="relative py-16 lg:py-24 bg-black">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" aria-hidden="true"></div>
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      {% for block in stat_blocks %}
+        {% assign g = block.settings.gradient %}
+        <div class="text-center" {{ block.shopify_attributes }}>
+          {% if g == 'amber_orange' %}
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center mx-auto mb-4">
+          {% elsif g == 'purple_pink' %}
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mx-auto mb-4">
+          {% elsif g == 'blue_cyan' %}
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center mx-auto mb-4">
+          {% elsif g == 'emerald_teal' %}
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center mx-auto mb-4">
+          {% else %}
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center mx-auto mb-4">
+          {% endif %}
+            {% case block.settings.icon %}
+              {% when 'award' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-white" aria-hidden="true"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path><circle cx="12" cy="8" r="6"></circle></svg>
+              {% when 'users' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-white" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>
+              {% when 'target' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-white" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+              {% when 'trending_up' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-white" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+              {% else %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-7 h-7 text-white"><circle cx="12" cy="12" r="10"></circle></svg>
+            {% endcase %}
+          </div>
+          {% if block.settings.number != blank %}
+            <div class="text-4xl font-black text-white mb-1"><span>{{ block.settings.number }}</span></div>
+          {% endif %}
+          {% if block.settings.label != blank %}
+            <div class="text-white/40 text-sm">{{ block.settings.label }}</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Gallery Stats",
+  "tag": "section",
+  "class": "section-gallery-stats",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "select",
+          "id": "gradient",
+          "label": "Icon gradient",
+          "options": [
+            { "value": "amber_orange", "label": "Amber / Orange" },
+            { "value": "purple_pink", "label": "Purple / Pink" },
+            { "value": "blue_cyan", "label": "Blue / Cyan" },
+            { "value": "emerald_teal", "label": "Emerald / Teal" }
+          ],
+          "default": "amber_orange"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "award", "label": "Award" },
+            { "value": "users", "label": "Users" },
+            { "value": "target", "label": "Target" },
+            { "value": "trending_up", "label": "Trending up" }
+          ],
+          "default": "award"
+        },
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number / stat",
+          "default": "150+"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Projects Completed"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gallery Stats",
+      "blocks": [
+        { "type": "stat", "settings": { "gradient": "amber_orange", "icon": "award", "number": "150+", "label": "Projects Completed" } },
+        { "type": "stat", "settings": { "gradient": "purple_pink", "icon": "users", "number": "50+", "label": "Brand Partners" } },
+        { "type": "stat", "settings": { "gradient": "blue_cyan", "icon": "target", "number": "25+", "label": "Countries Reached" } },
+        { "type": "stat", "settings": { "gradient": "emerald_teal", "icon": "trending_up", "number": "340%", "label": "Avg Engagement Lift" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
