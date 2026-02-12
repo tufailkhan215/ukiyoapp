@@ -115,7 +115,7 @@
         "image_YMKhVT": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/IMG_6776.webp",
+            "image": "shopify://shop_images/photo-1522071820081-009f0129c71c.jpg",
             "title": "Digital Assets"
           }
         }
@@ -148,6 +148,7 @@
           "type": "project",
           "settings": {
             "layout": "wide",
+            "image": "shopify://shop_images/DSCF8277.webp",
             "category": "AI & Automation",
             "client": "TechVenture AI",
             "title": "Revolutionizing Customer Experience with AI",
@@ -160,6 +161,7 @@
           "type": "project",
           "settings": {
             "layout": "default",
+            "image": "shopify://shop_images/FurTraders_mag_article_samples-02_2.webp",
             "category": "Branding",
             "client": "Luxe Lifestyle",
             "title": "Building a Premium Brand Identity",
@@ -172,6 +174,7 @@
           "type": "project",
           "settings": {
             "layout": "tall",
+            "image": "shopify://shop_images/25930044-A454-4EE9-BF1C-43FA0D5EA00E.jpg",
             "category": "Case Studies",
             "client": "GreenTech Solutions",
             "title": "Sustainable Growth Through Digital",
@@ -184,6 +187,7 @@
           "type": "project",
           "settings": {
             "layout": "default",
+            "image": "shopify://shop_images/elmurorosa_drone_shot_of_tropical_island_--ar_916_--style_raw_a4bea9bc-922d-4f57-b454-57f5fe4564c6.webp",
             "category": "Branding",
             "client": "Urban Eats",
             "title": "From Local to National Recognition",
@@ -196,6 +200,7 @@
           "type": "project",
           "settings": {
             "layout": "wide",
+            "image": "shopify://shop_images/DSCF7109_3532ce56-01d4-42c1-ba19-6401dd0bff36.webp",
             "category": "Web Development",
             "client": "Fintech Pro",
             "title": "High-Converting Financial Platform",
@@ -208,6 +213,7 @@
           "type": "project",
           "settings": {
             "layout": "default",
+            "image": "shopify://shop_images/IMG_9657_1.webp",
             "category": "Content Production",
             "client": "Wandrd",
             "title": "Adventure Content at Scale",
@@ -220,6 +226,7 @@
           "type": "project",
           "settings": {
             "layout": "default",
+            "image": "shopify://shop_images/25930044-A454-4EE9-BF1C-43FA0D5EA00E.jpg",
             "category": "Branding",
             "client": "Polaroid",
             "title": "Nostalgia Meets Modern",
@@ -232,6 +239,7 @@
           "type": "project",
           "settings": {
             "layout": "default",
+            "image": "shopify://shop_images/IMG_3161.webp",
             "category": "Case Studies",
             "client": "Adidas",
             "title": "Streetwear Meets Performance",
