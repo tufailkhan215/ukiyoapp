@@ -337,13 +337,13 @@ img {
 /* Big Statement: particle dots – pulse + drift (increased motion) */
 @keyframes big-statement-dot-pulse {
   0%, 100% { opacity: 0.2; transform: scale(1) translate(0, 0); }
-  25% { opacity: 0.5; transform: scale(1.2) translate(100px, -120px); }
-  50% { opacity: 0.4; transform: scale(1.15) translate(-105px, 150px); }
-  75% { opacity: 0.35; transform: scale(1.1) translate(-165px, -2px); }
+  25% { opacity: 0.5; transform: scale(1.2) translate(150px, -120px); }
+  50% { opacity: 0.4; transform: scale(1.15) translate(-195px, 150px); }
+  75% { opacity: 0.35; transform: scale(1.1) translate(-265px, -2px); }
 }
 
 .big-statement-particle {
-  animation: big-statement-dot-pulse 10s ease-in-out infinite;
+  animation: big-statement-dot-pulse 20s ease-in-out infinite;
   transform-origin: center;
 }
 
