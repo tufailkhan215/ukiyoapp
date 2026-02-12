@@ -62,6 +62,7 @@
       ],
       "name": "Contact Intro",
       "settings": {
+        "background_color": "rgba(0,0,0,0)",
         "badge_text": "Let's Talk",
         "badge_icon": "message_square",
         "title_line1": "START YOUR",
@@ -127,6 +128,7 @@
       ],
       "name": "About Stats",
       "settings": {
+        "background_color": "rgba(0,0,0,0)",
         "badge": "(Our Impact)",
         "title_before": "Numbers That",
         "title_gradient": "Matter"
@@ -136,6 +138,7 @@
       "type": "contact-form",
       "name": "Contact form",
       "settings": {
+        "background_color": "rgba(0,0,0,0)",
         "badge": "(Get In Touch)",
         "heading": "Send Us a Message",
         "subtitle": "Fill out the form below and we'll get back to you within 24 hours.",
@@ -172,6 +175,7 @@
       "type": "contact-prefer-to-talk",
       "name": "Prefer to Talk",
       "settings": {
+        "background_color": "rgba(0,0,0,0)",
         "heading": "Prefer to Talk?",
         "description": "Schedule a free 30-minute consultation to discuss your project goals and how we can help bring your vision to life.",
         "tidycal_path": "salesautomateiq/consultation",
