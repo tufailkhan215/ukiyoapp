@@ -37,13 +37,47 @@
       {% for block in section.blocks %}
         {% if block.type == 'project' %}
           {% assign category_val = block.settings.category | strip | escape %}
-          {% assign gallery_count = block.settings.gallery_count | default: 1 %}
-          {% if gallery_count == blank or gallery_count == 0 %}
-            {% assign gallery_count = 1 %}
+          {% comment %} Build gallery from cover + optional gallery images; count is automatic. {% endcomment %}
+          {% assign gallery_count = 0 %}
+          {% if block.settings.image != blank %}{% assign gallery_count = gallery_count | plus: 1 %}{% endif %}
+          {% if block.settings.gallery_image_2 != blank %}{% assign gallery_count = gallery_count | plus: 1 %}{% endif %}
+          {% if block.settings.gallery_image_3 != blank %}{% assign gallery_count = gallery_count | plus: 1 %}{% endif %}
+          {% if block.settings.gallery_image_4 != blank %}{% assign gallery_count = gallery_count | plus: 1 %}{% endif %}
+          {% if block.settings.gallery_image_5 != blank %}{% assign gallery_count = gallery_count | plus: 1 %}{% endif %}
+          {% if block.settings.gallery_image_6 != blank %}{% assign gallery_count = gallery_count | plus: 1 %}{% endif %}
+          {% if gallery_count == 0 %}{% assign gallery_count = 1 %}{% endif %}
+          {% assign gallery_parts = '' %}
+          {% if block.settings.image != blank %}
+            {% assign u = block.settings.image | image_url: width: 800 %}
+            {% assign gallery_parts = gallery_parts | append: '"' | append: u | append: '"' %}
           {% endif %}
-          {% assign gallery_images_list = block.settings.gallery_images | newline_to_br | split: '<br />' %}
-          {% assign gallery_images_json = gallery_images_list | json %}
-          <button type="button" class="featured-work-card group relative aspect-[4/5] overflow-hidden rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 transition-colors cursor-pointer" data-index="{{ forloop.index0 }}" data-category="{{ category_val }}" data-gallery-images="{{ gallery_images_json | escape }}" {{ block.shopify_attributes }}>
+          {% if block.settings.gallery_image_2 != blank %}
+            {% assign u = block.settings.gallery_image_2 | image_url: width: 800 %}
+            {% if gallery_parts != '' %}{% assign gallery_parts = gallery_parts | append: ',' %}{% endif %}
+            {% assign gallery_parts = gallery_parts | append: '"' | append: u | append: '"' %}
+          {% endif %}
+          {% if block.settings.gallery_image_3 != blank %}
+            {% assign u = block.settings.gallery_image_3 | image_url: width: 800 %}
+            {% if gallery_parts != '' %}{% assign gallery_parts = gallery_parts | append: ',' %}{% endif %}
+            {% assign gallery_parts = gallery_parts | append: '"' | append: u | append: '"' %}
+          {% endif %}
+          {% if block.settings.gallery_image_4 != blank %}
+            {% assign u = block.settings.gallery_image_4 | image_url: width: 800 %}
+            {% if gallery_parts != '' %}{% assign gallery_parts = gallery_parts | append: ',' %}{% endif %}
+            {% assign gallery_parts = gallery_parts | append: '"' | append: u | append: '"' %}
+          {% endif %}
+          {% if block.settings.gallery_image_5 != blank %}
+            {% assign u = block.settings.gallery_image_5 | image_url: width: 800 %}
+            {% if gallery_parts != '' %}{% assign gallery_parts = gallery_parts | append: ',' %}{% endif %}
+            {% assign gallery_parts = gallery_parts | append: '"' | append: u | append: '"' %}
+          {% endif %}
+          {% if block.settings.gallery_image_6 != blank %}
+            {% assign u = block.settings.gallery_image_6 | image_url: width: 800 %}
+            {% if gallery_parts != '' %}{% assign gallery_parts = gallery_parts | append: ',' %}{% endif %}
+            {% assign gallery_parts = gallery_parts | append: '"' | append: u | append: '"' %}
+          {% endif %}
+          {% assign gallery_images_json = '[' | append: gallery_parts | append: ']' %}
+          <button type="button" class="featured-work-card group relative aspect-[4/5] overflow-hidden rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 transition-colors cursor-pointer" data-index="{{ forloop.index0 }}" data-category="{{ category_val }}" data-gallery-images="{{ gallery_images_json | escape }}" data-gallery-count="{{ gallery_count }}" {{ block.shopify_attributes }}>
             {% if block.settings.image != blank %}
               <img
                 alt="{{ block.settings.title | default: 'Project' | escape }}"
@@ -141,25 +175,22 @@
     var category = card.getAttribute('data-category') || '';
     var title = card.querySelector('h3') ? card.querySelector('h3').textContent.trim() : '';
     var desc = card.querySelector('p') ? card.querySelector('p').textContent.trim() : '';
-    var galleryBadge = card.querySelector('.absolute.top-4.right-4 span');
-    var imageCount = galleryBadge ? parseInt(galleryBadge.textContent.split('/')[1]) || 1 : 1;
     var galleryImagesAttr = card.getAttribute('data-gallery-images') || '';
     var images = [];
     if (galleryImagesAttr) {
       try {
-        var urls = JSON.parse(galleryImagesAttr).filter(function(u) { return u && u.trim(); });
-        if (urls.length > 0) {
-          images = urls.slice(0, imageCount);
-        }
+        var urls = JSON.parse(galleryImagesAttr).filter(function(u) { return u && String(u).trim(); });
+        if (urls.length > 0) images = urls;
       } catch (e) {
         console.warn('Failed to parse gallery images:', e);
       }
     }
     if (images.length === 0 && img && img.src) {
-      images.push(img.src);
-      for (var i = 1; i < imageCount; i++) {
-        images.push(img.src);
-      }
+      images = [img.src];
+    }
+    var imageCount = parseInt(card.getAttribute('data-gallery-count'), 10);
+    if (isNaN(imageCount) || imageCount < 1) {
+      imageCount = images.length > 0 ? images.length : 1;
     }
     projects.push({ category: category, title: title, description: desc, images: images, imageCount: imageCount });
   });
@@ -182,8 +213,8 @@
     currentImageIndex = 0;
     var proj = projects[index];
     if (!proj) return;
-    modalImg.src = proj.images[0];
-    modalImg.alt = proj.title;
+    modalImg.src = proj.images[0] || '';
+    modalImg.alt = proj.title || '';
     modalTitle.textContent = proj.title;
     modalDescription.textContent = proj.description;
     modalCategory.innerHTML = proj.category ? '<span class="inline-block px-3 py-1 bg-white/10 rounded-full text-xs text-white/70 uppercase tracking-wider mb-4">' + proj.category + '</span>' : '';
@@ -332,17 +363,37 @@
           "label": "Short description"
         },
         {
-          "type": "text",
-          "id": "gallery_count",
-          "label": "Gallery image count",
-          "info": "Number of images in gallery (e.g., 3 for 1/3 badge). Leave blank if only one image.",
-          "default": "3"
+          "type": "header",
+          "content": "Gallery (optional extra images)"
         },
         {
-          "type": "textarea",
-          "id": "gallery_images",
-          "label": "Gallery image URLs (optional)",
-          "info": "One image URL per line. If empty, uses main image for all gallery items."
+          "type": "paragraph",
+          "content": "Cover image above is the first slide. Add more images below to build the popup gallery. Count and badge (e.g. 1/3) are automatic."
+        },
+        {
+          "type": "image_picker",
+          "id": "gallery_image_2",
+          "label": "Gallery image 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "gallery_image_3",
+          "label": "Gallery image 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "gallery_image_4",
+          "label": "Gallery image 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "gallery_image_5",
+          "label": "Gallery image 5"
+        },
+        {
+          "type": "image_picker",
+          "id": "gallery_image_6",
+          "label": "Gallery image 6"
         }
       ]
     }
@@ -357,18 +408,18 @@
         "filters_text": "All\nBrand Partnership\nAdventure Travel\nEnergy & Lifestyle\nFashion & Lifestyle\nCulinary\nHospitality"
       },
       "blocks": [
-        { "type": "project", "settings": { "category": "Brand Partnership", "title": "POLAROID", "description": "Nostalgic brand activation campaign bridging classic aesthetics with contemporary audiences.", "gallery_count": "3" } },
-        { "type": "project", "settings": { "category": "Adventure Travel", "title": "WANDRD", "description": "Multi-platform content strategy capturing the spirit of adventure travel.", "gallery_count": "3" } },
-        { "type": "project", "settings": { "category": "Energy & Lifestyle", "title": "MONSTER", "description": "High-energy brand content and experiential marketing campaigns.", "gallery_count": "3" } },
+        { "type": "project", "settings": { "category": "Brand Partnership", "title": "POLAROID", "description": "Nostalgic brand activation campaign bridging classic aesthetics with contemporary audiences." } },
+        { "type": "project", "settings": { "category": "Adventure Travel", "title": "WANDRD", "description": "Multi-platform content strategy capturing the spirit of adventure travel." } },
+        { "type": "project", "settings": { "category": "Energy & Lifestyle", "title": "MONSTER", "description": "High-energy brand content and experiential marketing campaigns." } },
         { "type": "project", "settings": { "category": "Fashion & Lifestyle", "title": "POPPY.CALIFORNIA", "description": "California-inspired brand storytelling and visual identity development." } },
-        { "type": "project", "settings": { "category": "E-commerce", "title": "FURTRADERS", "description": "Complete brand refresh with content strategy and e-commerce optimization.", "gallery_count": "3" } },
-        { "type": "project", "settings": { "category": "Lifestyle & Wellness", "title": "SUPRAMOOD", "description": "Comprehensive brand strategy with podcast series and affiliate program.", "gallery_count": "4" } },
-        { "type": "project", "settings": { "category": "Technology", "title": "DJI", "description": "Aerial photography and drone content creation partnership.", "gallery_count": "2" } },
+        { "type": "project", "settings": { "category": "E-commerce", "title": "FURTRADERS", "description": "Complete brand refresh with content strategy and e-commerce optimization." } },
+        { "type": "project", "settings": { "category": "Lifestyle & Wellness", "title": "SUPRAMOOD", "description": "Comprehensive brand strategy with podcast series and affiliate program." } },
+        { "type": "project", "settings": { "category": "Technology", "title": "DJI", "description": "Aerial photography and drone content creation partnership." } },
         { "type": "project", "settings": { "category": "Streetwear", "title": "CLSC", "description": "Urban streetwear brand activation and cultural marketing." } },
         { "type": "project", "settings": { "category": "Travel & Experience", "title": "MAVERICK HELICOPTERS", "description": "Luxury travel experience content and brand storytelling." } },
         { "type": "project", "settings": { "category": "Media & Culture", "title": "HIGHSNOBIETY", "description": "Editorial content partnership and cultural brand activation." } },
-        { "type": "project", "settings": { "category": "Culinary", "title": "JI RESTAURANT | BALI INDONESIA", "description": "Balinese fine dining experience captured through visual storytelling.", "gallery_count": "3" } },
-        { "type": "project", "settings": { "category": "Hospitality", "title": "SATORI | MAUI", "description": "Hawaiian wellness retreat brand development and content creation.", "gallery_count": "3" } },
+        { "type": "project", "settings": { "category": "Culinary", "title": "JI RESTAURANT | BALI INDONESIA", "description": "Balinese fine dining experience captured through visual storytelling." } },
+        { "type": "project", "settings": { "category": "Hospitality", "title": "SATORI | MAUI", "description": "Hawaiian wellness retreat brand development and content creation." } },
         { "type": "project", "settings": { "category": "Culinary", "title": "CHAI'BA | BALI INDONESIA", "description": "Indian-inspired cuisine brand story and visual identity." } },
         { "type": "project", "settings": { "category": "Hospitality", "title": "TWO HANDS | AUSTIN TEXAS", "description": "Austin café brand activation and social media content strategy." } },
         { "type": "project", "settings": { "category": "Culinary", "title": "DAKAN | CALIFORNIA", "description": "California fusion restaurant brand development and photography." } },
