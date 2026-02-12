@@ -285,8 +285,8 @@ img {
 
 @keyframes cta-dot-float {
   0%, 100% { opacity: 0.35; transform: scale(1) translate(0, 0); }
-  33% { opacity: 0.6; transform: scale(1.15) translate(-4px, 4px); }
-  66% { opacity: 0.45; transform: scale(1.1) translate(3px, -3px); }
+  33% { opacity: 0.6; transform: scale(1.15) translate(-104px, 214px); }
+  66% { opacity: 0.45; transform: scale(1.1) translate(143px, -143px); }
 }
 
 .animate-cta-dot-pulse,
