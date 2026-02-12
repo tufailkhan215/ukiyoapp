@@ -66,48 +66,56 @@
         "image_W3p3kr": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/25930044-A454-4EE9-BF1C-43FA0D5EA00E.jpg",
             "title": "Brand Identity"
           }
         },
         "image_tafkyV": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/elmurorosa_drone_shot_of_tropical_island_--ar_916_--style_raw_a4bea9bc-922d-4f57-b454-57f5fe4564c6.webp",
             "title": "Logo Design"
           }
         },
         "image_HHAFGQ": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/DSCF8277.webp",
             "title": "Packaging"
           }
         },
         "image_W4C4tJ": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge.webp",
             "title": "Print Materials"
           }
         },
         "image_RX8KX4": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/DSC_29323129.webp",
             "title": "Social Media"
           }
         },
         "image_hHhATi": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/FurTraders_mag_article_samples-02_2.webp",
             "title": "Brand Strategy"
           }
         },
         "image_4kLiJa": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/IMG_3161.webp",
             "title": "Creative Direction"
           }
         },
         "image_YMKhVT": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/IMG_6776.webp",
             "title": "Digital Assets"
           }
         }
@@ -131,17 +139,6 @@
         "cta_text": "Start Your Project",
         "cta_url": "/contact",
         "cta_new_tab": false
-      }
-    },
-    "services_cta_nPTw36": {
-      "type": "services-cta",
-      "name": "Services CTA",
-      "settings": {
-        "heading": "Ready to Build Your AI-Powered Brand Agent?",
-        "description": "Book a free consultation to discuss how we can automate your customer interactions while maintaining your unique brand voice.",
-        "cta_text": "Book Free Consultation",
-        "cta_url": "",
-        "cta_new_tab": true
       }
     },
     "featured_projects_NAbVdw": {
@@ -260,6 +257,17 @@
         "title_before": "Featured",
         "title_gradient": "Projects",
         "filters_text": "All\nBranding\nAI & Automation\nWeb Development\nContent Production\nCase Studies"
+      }
+    },
+    "services_cta_nPTw36": {
+      "type": "services-cta",
+      "name": "Services CTA",
+      "settings": {
+        "heading": "Ready to Build Your AI-Powered Brand Agent?",
+        "description": "Book a free consultation to discuss how we can automate your customer interactions while maintaining your unique brand voice.",
+        "cta_text": "Book Free Consultation",
+        "cta_url": "",
+        "cta_new_tab": true
       }
     }
   },
