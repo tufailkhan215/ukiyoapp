@@ -279,8 +279,8 @@ img {
 /* Dynamic CTA: dot twinkle + drift (match live ukiyo-prod.com) */
 @keyframes cta-dot-pulse {
   0%, 100% { opacity: 0.25; transform: scale(1) translate(0, 0); }
-  33% { opacity: 0.65; transform: scale(1.2) translate(4px, -5px); }
-  66% { opacity: 0.5; transform: scale(1.05) translate(-3px, 3px); }
+  33% { opacity: 0.65; transform: scale(1.2) translate(174px, -159px); }
+  66% { opacity: 0.5; transform: scale(1.05) translate(-193px, 103px); }
 }
 
 @keyframes cta-dot-float {
@@ -296,7 +296,7 @@ img {
 }
 
 .animate-cta-dot-pulse {
-  animation: cta-dot-pulse 3.5s ease-in-out infinite;
+  animation: cta-dot-pulse 23.5s ease-in-out infinite;
 }
 
 .animate-cta-dot-float {
