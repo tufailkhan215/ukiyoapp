@@ -343,7 +343,7 @@ img {
 }
 
 .big-statement-particle {
-  animation: big-statement-dot-pulse 20s ease-in-out infinite;
+  animation: big-statement-dot-pulse 70s ease-in-out infinite;
   transform-origin: center;
 }
 
