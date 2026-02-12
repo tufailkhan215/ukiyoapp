@@ -449,6 +449,100 @@
         "cta_url": "",
         "cta_new_tab": true
       }
+    },
+    "our_impact_aMV3jN": {
+      "type": "our-impact",
+      "blocks": {
+        "stat_GjqJwP": {
+          "type": "stat",
+          "settings": {
+            "gradient": "green_emerald",
+            "icon": "dollar_sign",
+            "metric": "$50M+",
+            "title": "Revenue Generated",
+            "description": "For clients through strategic campaigns"
+          }
+        },
+        "stat_cKGxRw": {
+          "type": "stat",
+          "settings": {
+            "gradient": "blue_indigo",
+            "icon": "trending_up",
+            "metric": "340%",
+            "title": "Average Growth",
+            "description": "Monthly revenue increase"
+          }
+        },
+        "stat_dXThTg": {
+          "type": "stat",
+          "settings": {
+            "gradient": "purple_violet",
+            "icon": "users",
+            "metric": "500K+",
+            "title": "Audience Reached",
+            "description": "Through combined campaigns"
+          }
+        },
+        "stat_DUQt7E": {
+          "type": "stat",
+          "settings": {
+            "gradient": "orange_red",
+            "icon": "clock",
+            "metric": "1000+",
+            "title": "Hours Saved",
+            "description": "Monthly through automation"
+          }
+        },
+        "partnership_badge_Ft7xbN": {
+          "type": "partnership_badge",
+          "settings": {
+            "icon": "award",
+            "label": "Featured at SXSW 2024"
+          }
+        },
+        "partnership_badge_EWmQNe": {
+          "type": "partnership_badge",
+          "settings": {
+            "icon": "target",
+            "label": "Coachella Brand Partner"
+          }
+        },
+        "partnership_badge_LCbBby": {
+          "type": "partnership_badge",
+          "settings": {
+            "icon": "zap",
+            "label": "Polaroid Collaboration"
+          }
+        },
+        "partnership_badge_6LxQUE": {
+          "type": "partnership_badge",
+          "settings": {
+            "icon": "chart_column",
+            "label": "50+ Brands Transformed"
+          }
+        }
+      },
+      "block_order": [
+        "stat_GjqJwP",
+        "stat_cKGxRw",
+        "stat_dXThTg",
+        "stat_DUQt7E",
+        "partnership_badge_Ft7xbN",
+        "partnership_badge_EWmQNe",
+        "partnership_badge_LCbBby",
+        "partnership_badge_6LxQUE"
+      ],
+      "name": "Our Impact",
+      "settings": {
+        "badge": "(Our Impact)",
+        "title_before": "Numbers That",
+        "title_gradient": "Matter",
+        "subtitle": "Real results from real partnerships. Here's what we've achieved together.",
+        "cta_heading": "Ready to add your brand to this list?",
+        "cta_text": "Let's talk",
+        "cta_url": "/contact",
+        "cta_new_tab": false
+      }
     }
   },
   "order": [
@@ -457,6 +551,7 @@
     "brand_activation_bYyitf",
     "featured_work_JMQwnw",
     "featured_projects_NAbVdw",
+    "our_impact_aMV3jN",
     "services_cta_nPTw36"
   ]
 }
