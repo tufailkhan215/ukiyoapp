@@ -279,14 +279,14 @@ img {
 /* Dynamic CTA: dot twinkle + drift (match live ukiyo-prod.com) */
 @keyframes cta-dot-pulse {
   0%, 100% { opacity: 0.25; transform: scale(1) translate(0, 0); }
-  33% { opacity: 0.65; transform: scale(1.2) translate(174px, -159px); }
-  66% { opacity: 0.5; transform: scale(1.05) translate(-193px, 103px); }
+  33% { opacity: 0.65; transform: scale(1.2) translate(104px, -109px); }
+  66% { opacity: 0.5; transform: scale(1.05) translate(-13px, 73px); }
 }
 
 @keyframes cta-dot-float {
   0%, 100% { opacity: 0.35; transform: scale(1) translate(0, 0); }
-  33% { opacity: 0.6; transform: scale(1.15) translate(-104px, 214px); }
-  66% { opacity: 0.45; transform: scale(1.1) translate(143px, -143px); }
+  33% { opacity: 0.6; transform: scale(1.15) translate(-14px, 114px); }
+  66% { opacity: 0.45; transform: scale(1.1) translate(43px, -43px); }
 }
 
 .animate-cta-dot-pulse,
