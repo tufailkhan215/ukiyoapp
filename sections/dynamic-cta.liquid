@@ -11,13 +11,13 @@
       {% assign mod = forloop.index0 | modulo: 3 %}
       {% if mod == 0 %}
         {% assign anim_class = 'animate-cta-dot-pulse' %}
-        {% assign duration = 3.5 %}
+        {% assign duration = 33.5 %}
       {% elsif mod == 1 %}
         {% assign anim_class = 'animate-cta-dot-float' %}
-        {% assign duration = 4 %}
+        {% assign duration = 64 %}
       {% else %}
         {% assign anim_class = 'animate-cta-dot-pulse' %}
-        {% assign duration = 4.5 %}
+        {% assign duration = 44.5 %}
       {% endif %}
       <div class="absolute w-1 h-1 bg-white/30 rounded-full {{ anim_class }}" style="left: {{ parts[0] }}%; top: {{ parts[1] }}%; animation-delay: {{ forloop.index0 | times: 0.1 }}s; animation-duration: {{ duration }}s;"></div>
     {% endfor %}
