@@ -846,24 +846,24 @@
           "type": "bonus",
           "settings": {
             "icon": "file_text",
-            "title": "100-Point Brand Audit Checklist",
-            "value": "$297"
+            "title": "Customized Digital Report outlining our recommended solutions tailored specifically to your business needs",
+            "value": "$1000+"
           }
         },
         "bonus_HxyX3J": {
           "type": "bonus",
           "settings": {
             "icon": "video",
-            "title": "3-Part Video Training Series",
-            "value": "$497"
+            "title": "Exclusive Access to a Free Course — step-by-step video training to help you understand or implement the solutions",
+            "value": "$1000+"
           }
         },
         "bonus_4Bbbhw": {
           "type": "bonus",
           "settings": {
             "icon": "zap",
-            "title": "AI Automation Templates Pack",
-            "value": "$197"
+            "title": "Special 20% Discount on any future services when you decide to work with us",
+            "value": "$1500+"
           }
         }
       },
@@ -875,17 +875,17 @@
       "name": "Lead Magnet",
       "settings": {
         "strap": "(Free Resources)",
-        "title_before": "Get Our",
-        "title_gradient": "$991 Value",
-        "title_after": "Resource Pack Free",
-        "description": "The exact frameworks, templates, and strategies we use to help brands scale from $10K to $100K+ monthly.",
-        "privacy_text": "No spam, ever. Unsubscribe anytime.",
+        "title_before": "Get a",
+        "title_gradient": "Free Discovery Consultation",
+        "title_after": "(Valued at $2,000)",
+        "description": "We invite you to a personalized session where we explore your biggest challenges and uncover tailored solutions to help you succeed.",
+        "privacy_text": "Why are we giving this away for free? Because we genuinely want to see you win. While we are a for-profit business, we believe in building strong, lasting relationships. That’s why our clients typically work with us for over 25+ months, because trust and results matter most.",
         "form_action_url": "",
-        "form_heading": "Instant Download",
-        "email_label": "Email Address",
-        "email_placeholder": "your@email.com",
-        "button_text": "Get Free Access",
-        "social_proof": "Join 2,847+ entrepreneurs who've downloaded this resource"
+        "form_heading": "Want A FREE Consultation?",
+        "email_label": "Enter your email to book a personalized session.",
+        "email_placeholder": "Email Address",
+        "button_text": "Get My Free Consultation",
+        "social_proof": "Join over 1,000 entrepreneurs who have already booked their free consultation and started transforming their business."
       }
     },
     "urgency_83eAUA": {
