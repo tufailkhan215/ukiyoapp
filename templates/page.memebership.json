@@ -12,9 +12,525 @@
     "main": {
       "type": "main-page",
       "settings": {}
+    },
+    "membership_intro_YdhrkT": {
+      "type": "membership-intro",
+      "blocks": {
+        "category_xkVmmh": {
+          "type": "category",
+          "settings": {
+            "label": "Templates",
+            "count": "8+",
+            "show_count": false
+          }
+        },
+        "category_fjmRMC": {
+          "type": "category",
+          "settings": {
+            "label": "Courses",
+            "count": "11+",
+            "show_count": false
+          }
+        },
+        "category_iMarec": {
+          "type": "category",
+          "settings": {
+            "label": "AI Agents",
+            "count": "10+",
+            "show_count": false
+          }
+        },
+        "category_Xx3wQC": {
+          "type": "category",
+          "settings": {
+            "label": "Sections",
+            "count": "86+",
+            "show_count": false
+          }
+        }
+      },
+      "block_order": [
+        "category_xkVmmh",
+        "category_fjmRMC",
+        "category_iMarec",
+        "category_Xx3wQC"
+      ],
+      "name": "Membership Intro",
+      "settings": {
+        "show_circles": true,
+        "badge": "(Membership)",
+        "title_line1": "UNLIMITED",
+        "title_line2": "DIGITAL ASSETS",
+        "description": "One subscription. Complete access to automation templates, courses, AI agents, and Shopify sections.",
+        "value_label": "Total Library Value",
+        "value_text": "$2,500+"
+      }
+    },
+    "membership_everything_you_need_rjArma": {
+      "type": "membership-everything-you-need",
+      "blocks": {
+        "feature_centered_iYMCB8": {
+          "type": "feature_centered",
+          "settings": {
+            "icon": "download",
+            "title": "Unlimited Downloads",
+            "description": "No limits, no extra fees"
+          }
+        },
+        "feature_centered_WNdJRk": {
+          "type": "feature_centered",
+          "settings": {
+            "icon": "zap",
+            "title": "Instant Access",
+            "description": "Start using immediately"
+          }
+        },
+        "feature_centered_QwXGGp": {
+          "type": "feature_centered",
+          "settings": {
+            "icon": "sparkles",
+            "title": "New Releases",
+            "description": "Get all new content"
+          }
+        },
+        "feature_centered_CEKJyW": {
+          "type": "feature_centered",
+          "settings": {
+            "icon": "users",
+            "title": "Community",
+            "description": "Private Discord access"
+          }
+        },
+        "feature_inline_XRLQxj": {
+          "type": "feature_inline",
+          "settings": {
+            "icon": "star",
+            "title": "Premium Quality",
+            "description": "Battle-tested templates"
+          }
+        },
+        "feature_inline_3Ax9ET": {
+          "type": "feature_inline",
+          "settings": {
+            "icon": "shield",
+            "title": "Cancel Anytime",
+            "description": "No contracts"
+          }
+        },
+        "feature_inline_PWCRGQ": {
+          "type": "feature_inline",
+          "settings": {
+            "icon": "headphones",
+            "title": "Priority Support",
+            "description": "Direct team access"
+          }
+        }
+      },
+      "block_order": [
+        "feature_centered_iYMCB8",
+        "feature_centered_WNdJRk",
+        "feature_centered_QwXGGp",
+        "feature_centered_CEKJyW",
+        "feature_inline_XRLQxj",
+        "feature_inline_3Ax9ET",
+        "feature_inline_PWCRGQ"
+      ],
+      "name": "Everything You Need",
+      "settings": {
+        "badge": "(Why Membership)",
+        "heading": "Everything You Need"
+      }
+    },
+    "membership_pricing_plan_QJLyxg": {
+      "type": "membership-pricing-plan",
+      "blocks": {
+        "plan_DL7AqM": {
+          "type": "plan",
+          "settings": {
+            "highlight": false,
+            "highlight_label": "Most Popular",
+            "title": "Monthly",
+            "description": "Perfect for trying out our library",
+            "price": "$100",
+            "price_suffix": "/month",
+            "features": "Access to all Automation Templates\nAccess to all Courses\nAccess to all AI Agents\nAccess to all Shopify Sections",
+            "cta_text": "Get Started",
+            "cta_url": "/contact"
+          }
+        },
+        "plan_V88N8d": {
+          "type": "plan",
+          "settings": {
+            "highlight": true,
+            "highlight_label": "Most Popular",
+            "title": "Quarterly",
+            "description": "Most popular choice",
+            "price": "$350",
+            "price_suffix": "/quarter",
+            "features": "Everything in Monthly\nPriority support\nEarly access to new releases\nQuarterly strategy call",
+            "cta_text": "Get Started",
+            "cta_url": "/contact"
+          }
+        },
+        "plan_WNfCMN": {
+          "type": "plan",
+          "settings": {
+            "highlight": false,
+            "highlight_label": "Most Popular",
+            "title": "Annual",
+            "description": "Best value for committed builders",
+            "price": "$1200",
+            "price_suffix": "/year",
+            "features": "Everything in Quarterly\n1-on-1 onboarding session\nCustom template requests\nLifetime updates guarantee",
+            "cta_text": "Get Started",
+            "cta_url": "/contact"
+          }
+        }
+      },
+      "block_order": [
+        "plan_DL7AqM",
+        "plan_V88N8d",
+        "plan_WNfCMN"
+      ],
+      "name": "Pricing Plan",
+      "settings": {
+        "badge": "(Pricing)",
+        "heading": "Choose Your Plan",
+        "subtitle": "Start with monthly or save with longer commitments."
+      }
+    },
+    "membership_browse_library_yadRWa": {
+      "type": "membership-browse-library",
+      "blocks": {
+        "category_paVkyE": {
+          "type": "category",
+          "settings": {
+            "icon": "workflow",
+            "title": "Automation Templates",
+            "description": "Pre-built automation systems for Make.com. Download once, open START_HERE, and start generating assets today.",
+            "item_count": "8+ items",
+            "url": "/shop/automation-templates"
+          }
+        },
+        "category_6PpBqJ": {
+          "type": "category",
+          "settings": {
+            "icon": "graduation_cap",
+            "title": "Courses",
+            "description": "Practical, on-demand courses with structured learning paths. Learn proven frameworks and skills you can apply immediately.",
+            "item_count": "15+ items",
+            "url": "/shop/courses"
+          }
+        },
+        "category_kqVgF3": {
+          "type": "category",
+          "settings": {
+            "icon": "bot",
+            "title": "AI Agents",
+            "description": "Purpose-built agents focused on doing one thing really well. Click once, get clear results—no setup required.",
+            "item_count": "10+ items",
+            "url": "/shop/ai-agents"
+          }
+        },
+        "category_WB6rCx": {
+          "type": "category",
+          "settings": {
+            "icon": "panels_top_left",
+            "title": "Shopify Sections",
+            "description": "Ready-to-install Shopify sections built for real storefront needs. Download and add them to your theme fast.",
+            "item_count": "100+ items",
+            "url": "/shop/shopify-sections"
+          }
+        }
+      },
+      "block_order": [
+        "category_paVkyE",
+        "category_6PpBqJ",
+        "category_kqVgF3",
+        "category_WB6rCx"
+      ],
+      "name": "Browse Library",
+      "settings": {
+        "badge": "(Browse Library)",
+        "heading": "What's Included"
+      }
+    },
+    "membership_deep_dive_adfgYV": {
+      "type": "membership-deep-dive",
+      "blocks": {
+        "category_HHqhak": {
+          "type": "category",
+          "settings": {
+            "icon": "workflow",
+            "title": "Automation Templates",
+            "subtitle": "8 templates • $99 each value",
+            "description": "Pre-built Make.com blueprints for common business workflows. Import, connect your apps, and start automating in minutes.",
+            "features": "Lead Generation\nSocial Media\nEmail Marketing\nContent Pipeline",
+            "link_text": "View All Templates",
+            "link_url": "/shop/automation-templates",
+            "stat1_value": "50+",
+            "stat1_label": "Scenarios",
+            "stat1_color": "accent",
+            "stat2_value": "100",
+            "stat2_label": "Hours Saved",
+            "stat2_color": "white",
+            "stat3_value": "5m",
+            "stat3_label": "Setup Time",
+            "stat3_color": "white"
+          }
+        },
+        "category_MecCi9": {
+          "type": "category",
+          "settings": {
+            "icon": "graduation_cap",
+            "title": "Courses",
+            "subtitle": "11 courses • Free & Premium",
+            "description": "Practical, project-based courses teaching AI tools, content creation, and brand building. Learn skills you can apply immediately.",
+            "features": "AI Image Generation\nPrompt Engineering\nVideo Production\nBrand Systems",
+            "link_text": "View All Courses",
+            "link_url": "/shop/courses",
+            "stat1_value": "50+",
+            "stat1_label": "Lessons",
+            "stat1_color": "accent",
+            "stat2_value": "15",
+            "stat2_label": "Hours",
+            "stat2_color": "white",
+            "stat3_value": "FREE",
+            "stat3_label": "Courses Avail.",
+            "stat3_color": "emerald"
+          }
+        },
+        "category_YgwC9N": {
+          "type": "category",
+          "settings": {
+            "icon": "bot",
+            "title": "AI Agents",
+            "subtitle": "10 agents • GPT-4 powered",
+            "description": "Purpose-built AI assistants for specific tasks. Pre-trained with domain knowledge and optimized prompts for immediate deployment.",
+            "features": "Customer Support\nSales Outreach\nSEO Strategy\nCourse Creation",
+            "link_text": "View All Agents",
+            "link_url": "/shop/ai-agents",
+            "stat1_value": "10",
+            "stat1_label": "Specialists",
+            "stat1_color": "accent",
+            "stat2_value": "24/7",
+            "stat2_label": "Available",
+            "stat2_color": "white",
+            "stat3_value": "∞",
+            "stat3_label": "Conversations",
+            "stat3_color": "white"
+          }
+        },
+        "category_4HQVUk": {
+          "type": "category",
+          "settings": {
+            "icon": "panels_top_left",
+            "title": "Shopify Sections",
+            "subtitle": "86 sections • No code required",
+            "description": "Premium Shopify 2.0 sections for every store need. Drag, drop, and customize in the theme editor—zero coding required.",
+            "features": "Hero Sections (25)\nCTA Sections (19)\nMedia Galleries (23)\nCollections (9)",
+            "link_text": "View All Sections",
+            "link_url": "/shop/shopify-sections",
+            "stat1_value": "86",
+            "stat1_label": "Sections",
+            "stat1_color": "accent",
+            "stat2_value": "5",
+            "stat2_label": "Categories",
+            "stat2_color": "white",
+            "stat3_value": "100%",
+            "stat3_label": "Customizable",
+            "stat3_color": "white"
+          }
+        }
+      },
+      "block_order": [
+        "category_HHqhak",
+        "category_MecCi9",
+        "category_YgwC9N",
+        "category_4HQVUk"
+      ],
+      "name": "Deep Dive",
+      "settings": {
+        "badge": "(Deep Dive)",
+        "heading": "Everything in Detail",
+        "subtitle": "Each category is packed with premium assets designed to help you ship faster."
+      }
+    },
+    "featured_products_v1_TXqf7K": {
+      "type": "featured-products-v1",
+      "blocks": {
+        "product_HBgQcG": {
+          "type": "product",
+          "settings": {
+            "title": "Work and Personal Productivity Automation Templates",
+            "price": "$99",
+            "url": "#",
+            "membership_label": "Included in membership"
+          }
+        },
+        "product_jNfr7W": {
+          "type": "product",
+          "settings": {
+            "title": "Ultimate AI Avatar Bot Template",
+            "price": "$99",
+            "url": "#",
+            "membership_label": "Included in membership"
+          }
+        },
+        "product_DVXT4T": {
+          "type": "product",
+          "settings": {
+            "title": "Twitter Automation Templates",
+            "price": "$99",
+            "url": "#",
+            "membership_label": "Included in membership"
+          }
+        },
+        "product_XGKVVx": {
+          "type": "product",
+          "settings": {
+            "title": "Social Assistant News Bot Template",
+            "price": "$99",
+            "url": "#",
+            "membership_label": "Included in membership"
+          }
+        }
+      },
+      "block_order": [
+        "product_HBgQcG",
+        "product_jNfr7W",
+        "product_DVXT4T",
+        "product_XGKVVx"
+      ],
+      "name": "Featured Products v1",
+      "settings": {
+        "badge": "(Featured)",
+        "heading": "Automation Templates",
+        "view_all_text": "View All",
+        "view_all_url": "/shop/automation-templates",
+        "show_membership_label": false
+      }
+    },
+    "faq_qzK68R": {
+      "type": "faq",
+      "blocks": {
+        "faq_wFRxLa": {
+          "type": "faq",
+          "settings": {
+            "question": "How long does it take to build and deploy a company agent?",
+            "answer": "Typically 2-4 weeks depending on complexity. Starter packages can be live in as little as 10 business days, while Enterprise solutions with multiple integrations may take 4-6 weeks."
+          }
+        },
+        "faq_YzR8p8": {
+          "type": "faq",
+          "settings": {
+            "question": "Can the AI agent handle complex customer inquiries?",
+            "answer": "Yes. Our agents are trained on your brand guidelines and knowledge base, and can handle multi-turn conversations. For highly complex or sensitive issues, we support seamless human handoff."
+          }
+        },
+        "faq_hUCyQP": {
+          "type": "faq",
+          "settings": {
+            "question": "What platforms can the agent be deployed on?",
+            "answer": "Website chat, Instagram DMs, Facebook Messenger, email, and SMS. Enterprise plans can include custom integrations and additional channels."
+          }
+        },
+        "faq_UeHYHE": {
+          "type": "faq",
+          "settings": {
+            "question": "How do you train the AI on our brand voice?",
+            "answer": "We use your existing content, tone guidelines, and sample conversations in a discovery workshop, then calibrate the agent so responses stay consistent with your brand."
+          }
+        },
+        "faq_AaRpNn": {
+          "type": "faq",
+          "settings": {
+            "question": "What happens if the AI gives incorrect information?",
+            "answer": "Agents are trained on your approved knowledge base and can be set to escalate uncertain queries to humans. We also provide ongoing monitoring and optimization to improve accuracy."
+          }
+        },
+        "faq_7ctc3p": {
+          "type": "faq",
+          "settings": {
+            "question": "Can we update the agent's knowledge base ourselves?",
+            "answer": "Yes. Depending on your plan, you get access to a dashboard to add or edit FAQs and content. We can also handle updates as part of ongoing support."
+          }
+        }
+      },
+      "block_order": [
+        "faq_wFRxLa",
+        "faq_YzR8p8",
+        "faq_hUCyQP",
+        "faq_UeHYHE",
+        "faq_AaRpNn",
+        "faq_7ctc3p"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "strap": "(FAQ)",
+        "title_before": "Frequently Asked",
+        "title_gradient": "Questions"
+      }
+    },
+    "social_proof_ARJX37": {
+      "type": "social-proof",
+      "blocks": {
+        "stat_GxXQEX": {
+          "type": "stat",
+          "settings": {
+            "icon": "users",
+            "value": "2847+",
+            "label": "Happy Customers"
+          }
+        },
+        "stat_aEPqxm": {
+          "type": "stat",
+          "settings": {
+            "icon": "download",
+            "value": "15234+",
+            "label": "Downloads"
+          }
+        },
+        "stat_XLVg6Y": {
+          "type": "stat",
+          "settings": {
+            "icon": "trending_up",
+            "value": "98%",
+            "label": "Satisfaction Rate"
+          }
+        },
+        "testimonial_tK6cCL": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Absolutely incredible quality. We've tried many solutions but nothing comes close to this level of polish.",
+            "author_name": "Michael Torres",
+            "author_title": "Marketing Director, GrowthCo",
+            "rating": 5
+          }
+        }
+      },
+      "block_order": [
+        "stat_GxXQEX",
+        "stat_aEPqxm",
+        "stat_XLVg6Y",
+        "testimonial_tK6cCL"
+      ],
+      "name": "Social Proof",
+      "settings": {
+        "badge": "(Social Proof)",
+        "heading": "What Our Members Say"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "membership_intro_YdhrkT",
+    "membership_everything_you_need_rjArma",
+    "membership_pricing_plan_QJLyxg",
+    "membership_browse_library_yadRWa",
+    "membership_deep_dive_adfgYV",
+    "featured_products_v1_TXqf7K",
+    "faq_qzK68R",
+    "social_proof_ARJX37"
   ]
 }
