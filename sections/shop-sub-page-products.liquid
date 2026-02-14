@@ -1,0 +1,430 @@
+{% comment %} Shop Sub Page Products: header with count + sort, product grid. Card style: default (blue) | courses (purple/pink, play, View Course) | agents (emerald/teal, bot, Active, tags) | sections (amber/orange, compact, download icon). {% endcomment %}
+{% assign collection = section.settings.collection %}
+{% assign products_per_page = section.settings.products_per_page | default: 24 %}
+{% assign limit_count = products_per_page | at_least: 1 | at_most: 50 %}
+{% assign cols = section.settings.columns | default: '4' %}
+{% assign card_style = section.settings.card_style | default: 'default' %}
+{% if cols == '2' %}
+  {% assign grid_class = 'md:grid-cols-2' %}
+{% elsif cols == '3' %}
+  {% assign grid_class = 'md:grid-cols-2 lg:grid-cols-3' %}
+{% elsif cols == '5' %}
+  {% assign grid_class = 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5' %}
+{% else %}
+  {% assign grid_class = 'md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' %}
+{% endif %}
+
+<section class="relative py-16 lg:py-24" {{ section.shopify_attributes }}>
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="flex items-center justify-between mb-12">
+      <div>
+        {% if section.settings.eyebrow != blank %}
+          <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-2">{{ section.settings.eyebrow }}</span>
+        {% endif %}
+        <h2 class="text-2xl font-bold text-white">
+          {% if collection != blank %}
+            {{ collection.products_count }} {{ section.settings.title_suffix | default: 'Products Available' }}
+          {% else %}
+            {{ section.settings.title_suffix | default: 'Products Available' }}
+          {% endif %}
+          {% if section.settings.show_live_badge %}
+            <span class="ml-2 text-xs text-emerald-400 font-normal">(Live)</span>
+          {% endif %}
+        </h2>
+      </div>
+      {% if collection != blank and collection.products_count > 0 %}
+        <div class="flex items-center gap-2">
+          <span class="text-white/40 text-sm">Sort by:</span>
+          <form action="{{ collection.url }}" method="get" class="inline">
+            <select name="sort_by" class="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-white/30 w-auto min-w-[180px]" aria-label="Sort products" onchange="this.form.submit()">
+              <option value="best-selling" {% if collection.sort_by == 'best-selling' %}selected{% endif %}>Popular</option>
+              <option value="created-descending" {% if collection.sort_by == 'created-descending' %}selected{% endif %}>Newest</option>
+              <option value="price-ascending" {% if collection.sort_by == 'price-ascending' %}selected{% endif %}>Price: Low to High</option>
+              <option value="price-descending" {% if collection.sort_by == 'price-descending' %}selected{% endif %}>Price: High to Low</option>
+            </select>
+          </form>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if collection != blank %}
+      <div class="grid {{ grid_class }} {% if card_style == 'sections' %}gap-4{% else %}gap-6{% endif %}">
+        {% for product in collection.products limit: limit_count %}
+          {% if card_style == 'courses' %}
+            <a class="block group" href="{{ product.url }}" data-discover="true">
+              <div class="relative">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" aria-hidden="true"></div>
+                <div class="relative bg-white/[0.02] border border-white/10 rounded-2xl overflow-hidden group-hover:border-white/20 transition-all duration-500">
+                  <div class="relative aspect-video overflow-hidden bg-gradient-to-br from-purple-900/20 to-pink-900/10">
+                    {% if product.featured_image %}
+                      <img
+                        alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        src="{{ product.featured_image | image_url: width: 800 }}"
+                        width="800"
+                        height="450"
+                        loading="lazy"
+                      >
+                    {% else %}
+                      <div class="w-full h-full flex items-center justify-center text-white/20" aria-hidden="true">No image</div>
+                    {% endif %}
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" aria-hidden="true"></div>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-70">
+                      <div class="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 group-hover:bg-white/30 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white ml-1" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+                      </div>
+                    </div>
+                    <div class="absolute top-4 right-4">
+                      {% if product.price == 0 %}
+                        <span class="px-3 py-1 rounded-full bg-emerald-500 text-white font-bold text-sm">Free</span>
+                      {% else %}
+                        <span class="px-3 py-1 rounded-full bg-white text-black font-bold text-sm">{{ product.price | money }}</span>
+                      {% endif %}
+                    </div>
+                  </div>
+                  <div class="p-6">
+                    <div class="flex items-center gap-2 mb-3">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-graduation-cap w-4 h-4 text-purple-400 shrink-0" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg>
+                      <span class="text-xs text-white/40 uppercase tracking-wider">{{ section.settings.type_label | default: 'Course' }}</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 line-clamp-2 group-hover:text-purple-400 transition-colors">{{ product.title }}</h3>
+                    <p class="text-sm text-white/50 line-clamp-2 mb-4">{{ product.description | strip_html | truncate: 120 }}</p>
+                    <div class="flex items-center gap-4 text-sm text-white/40">
+                      <div class="flex items-center gap-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 shrink-0" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span>{{ product.metafields.custom.duration.value | default: product.metafields.descriptors.duration.value | default: section.settings.default_duration }}</span>
+                      </div>
+                      <div class="flex items-center gap-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 shrink-0" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                        <span>{{ product.metafields.custom.students.value | default: product.metafields.descriptors.students.value | default: section.settings.default_students }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="px-6 pb-6">
+                    <span class="w-full py-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 shrink-0" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+                      {{ section.settings.cta_text | default: 'View Course' }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          {% elsif card_style == 'agents' %}
+            <a class="block group" href="{{ product.url }}" data-discover="true">
+              <div class="relative">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" aria-hidden="true"></div>
+                <div class="relative bg-white/[0.02] border border-white/10 rounded-2xl overflow-hidden group-hover:border-emerald-500/30 transition-all duration-500">
+                  <div class="relative h-32 bg-gradient-to-br from-emerald-900/30 to-teal-900/20 overflow-hidden">
+                    <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, transparent 50%); background-size: 100% 100%; background-position: 0% 0%;" aria-hidden="true"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                      <div class="w-20 h-20 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-emerald-400" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg>
+                      </div>
+                    </div>
+                    {% if section.settings.show_active_badge %}
+                      <div class="absolute top-4 right-4 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true"></span>
+                        <span class="text-xs text-emerald-400">{{ section.settings.active_badge_text | default: 'Active' }}</span>
+                      </div>
+                    {% endif %}
+                  </div>
+                  <div class="p-6">
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors line-clamp-2">{{ product.title }}</h3>
+                    <p class="text-sm text-white/50 line-clamp-2 mb-4">{{ product.description | strip_html | truncate: 120 }}</p>
+                    {% assign max_tags = section.settings.agents_max_tags | default: 3 | at_least: 1 | at_most: 6 %}
+                    {% if product.tags.size > 0 %}
+                      <div class="space-y-2 mb-4">
+                        {% for tag in product.tags limit: max_tags %}
+                          <div class="flex items-center gap-2 text-sm text-white/60">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-emerald-400 shrink-0" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+                            <span>{{ tag }}</span>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                    <div class="flex items-center justify-between">
+                      <span class="text-2xl font-bold text-white">{{ product.price | money }}</span>
+                      <span class="px-4 py-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-medium group-hover:bg-emerald-500/20 transition-colors">{{ section.settings.agents_cta_text | default: 'View Details' }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          {% elsif card_style == 'sections' %}
+            <a class="block group" href="{{ product.url }}" data-discover="true">
+              <div class="relative bg-white/[0.02] border border-white/10 rounded-xl overflow-hidden group-hover:border-amber-500/30 transition-all duration-300">
+                <div class="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-amber-900/10 to-orange-900/5">
+                  {% if product.featured_image %}
+                    <img
+                      alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      src="{{ product.featured_image | image_url: width: 400 }}"
+                      width="400"
+                      height="300"
+                      loading="lazy"
+                    >
+                  {% else %}
+                    <div class="w-full h-full flex items-center justify-center text-white/20" aria-hidden="true">No image</div>
+                  {% endif %}
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" aria-hidden="true"></div>
+                  <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span class="text-white font-medium">{{ section.settings.sections_cta_text | default: 'View Details' }}</span>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h3 class="text-sm font-semibold text-white mb-1 line-clamp-1 group-hover:text-amber-400 transition-colors">{{ product.title }}</h3>
+                  <p class="text-xs text-white/40 mb-2">{{ section.settings.sections_type_label | default: 'Section' }}</p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-lg font-bold text-white">{{ product.price | money }}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-white/40 group-hover:text-amber-400 transition-colors shrink-0" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
+                  </div>
+                </div>
+              </div>
+            </a>
+          {% else %}
+            <a class="block group" href="{{ product.url }}">
+              <div class="relative">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" aria-hidden="true"></div>
+                <div class="relative bg-white/[0.02] border border-white/10 rounded-2xl overflow-hidden group-hover:border-white/20 transition-all duration-500">
+                  <div class="relative aspect-video overflow-hidden bg-gradient-to-br from-blue-900/20 to-cyan-900/10">
+                    {% if product.featured_image %}
+                      <img
+                        alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        src="{{ product.featured_image | image_url: width: 800 }}"
+                        width="800"
+                        height="450"
+                        loading="lazy"
+                      >
+                    {% else %}
+                      <div class="w-full h-full flex items-center justify-center text-white/20" aria-hidden="true">No image</div>
+                    {% endif %}
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" aria-hidden="true"></div>
+                    <div class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20 opacity-0 translate-y-2.5 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download w-5 h-5 text-white" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
+                    </div>
+                    <div class="absolute bottom-4 left-4">
+                      <span class="px-4 py-2 rounded-full bg-white text-black font-bold text-sm">{{ product.price | money }}</span>
+                    </div>
+                  </div>
+                  <div class="p-6">
+                    <h3 class="text-lg font-bold text-white mb-2 line-clamp-1 group-hover:text-blue-400 transition-colors">{{ product.title }}</h3>
+                    <p class="text-sm text-white/50 line-clamp-2 mb-4">{{ product.description | strip_html | truncate: 120 }}</p>
+                    {% if product.tags.size > 0 %}
+                      <div class="flex flex-wrap gap-2">
+                        {% for tag in product.tags limit: 4 %}
+                          <span class="text-xs px-2 py-1 rounded-md bg-white/5 text-white/60">{{ tag }}</span>
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                  </div>
+                  <div class="px-6 pb-6 opacity-0 translate-y-5 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                    <span class="w-full py-3 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold flex items-center justify-center gap-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart w-4 h-4" aria-hidden="true"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
+                      View Details
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          {% endif %}
+        {% else %}
+          <p class="text-white/50 col-span-full text-center py-12">No products in this collection.</p>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="text-white/50 text-center py-12">Select a collection in the section settings.</p>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shop Sub Page Products",
+  "tag": "section",
+  "class": "section-shop-sub-page-products",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection",
+      "info": "Products are displayed from this collection only."
+    },
+    {
+      "type": "select",
+      "id": "card_style",
+      "label": "Card style",
+      "options": [
+        { "value": "default", "label": "Default (blue, View Details)" },
+        { "value": "courses", "label": "Courses (purple/pink, play overlay, View Course)" },
+        { "value": "agents", "label": "AI Agents (emerald/teal, bot icon, Active badge, tags, View Details)" },
+        { "value": "sections", "label": "Sections (amber/orange, compact card, download icon)" }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "text",
+      "id": "sections_type_label",
+      "label": "Type label (Sections style)",
+      "default": "Section",
+      "info": "Shown below title, e.g. Section"
+    },
+    {
+      "type": "text",
+      "id": "sections_cta_text",
+      "label": "Hover overlay text (Sections style)",
+      "default": "View Details"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_active_badge",
+      "label": "Show Active badge (Agents style)",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "active_badge_text",
+      "label": "Active badge text (Agents style)",
+      "default": "Active"
+    },
+    {
+      "type": "text",
+      "id": "agents_cta_text",
+      "label": "CTA text (Agents style)",
+      "default": "View Details"
+    },
+    {
+      "type": "range",
+      "id": "agents_max_tags",
+      "label": "Max tags to show (Agents style)",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "text",
+      "id": "type_label",
+      "label": "Type label (Courses style)",
+      "default": "Course",
+      "info": "Shown with graduation cap icon, e.g. Course"
+    },
+    {
+      "type": "text",
+      "id": "default_duration",
+      "label": "Default duration (Courses style)",
+      "default": "2-4 hours",
+      "info": "Shown when product has no duration metafield"
+    },
+    {
+      "type": "text",
+      "id": "default_students",
+      "label": "Default students count (Courses style)",
+      "default": "1.2k",
+      "info": "Shown when product has no students metafield"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA button text (Courses style)",
+      "default": "View Course"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "(Browse)"
+    },
+    {
+      "type": "text",
+      "id": "title_suffix",
+      "label": "Title suffix",
+      "default": "Products Available",
+      "info": "Shown after the product count, e.g. '18 Products Available'"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_live_badge",
+      "label": "Show (Live) badge",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products to show",
+      "min": 4,
+      "max": 50,
+      "step": 1,
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "Columns (desktop)",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" },
+        { "value": "5", "label": "5" }
+      ],
+      "default": "4"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop Sub Page Products",
+      "settings": {
+        "eyebrow": "(Browse)",
+        "title_suffix": "Products Available",
+        "show_live_badge": true,
+        "products_per_page": 24,
+        "columns": "4"
+      }
+    },
+    {
+      "name": "Shop Sub Page Products (Courses)",
+      "settings": {
+        "eyebrow": "(Browse)",
+        "title_suffix": "Products Available",
+        "show_live_badge": true,
+        "card_style": "courses",
+        "type_label": "Course",
+        "default_duration": "2-4 hours",
+        "default_students": "1.2k",
+        "cta_text": "View Course",
+        "products_per_page": 24,
+        "columns": "4"
+      }
+    },
+    {
+      "name": "Shop Sub Page Products (AI Agents)",
+      "settings": {
+        "eyebrow": "(Browse)",
+        "title_suffix": "Products Available",
+        "show_live_badge": true,
+        "card_style": "agents",
+        "show_active_badge": true,
+        "active_badge_text": "Active",
+        "agents_cta_text": "View Details",
+        "agents_max_tags": 3,
+        "products_per_page": 24,
+        "columns": "4"
+      }
+    },
+    {
+      "name": "Shop Sub Page Products (Sections)",
+      "settings": {
+        "eyebrow": "(Browse)",
+        "title_suffix": "Products Available",
+        "show_live_badge": true,
+        "card_style": "sections",
+        "sections_type_label": "Section",
+        "sections_cta_text": "View Details",
+        "products_per_page": 24,
+        "columns": "5"
+      }
+    }
+  ]
+}
+{% endschema %}

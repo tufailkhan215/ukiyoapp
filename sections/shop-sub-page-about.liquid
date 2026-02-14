@@ -1,0 +1,771 @@
+{% comment %} Shop Sub Page About: stats bar, two-column (What's Inside + Steps, Categories, or Capabilities), bottom (Use Cases, Skills, or Installation). Theme: blue | purple | emerald | amber. {% endcomment %}
+{% assign stat_blocks = section.blocks | where: 'type', 'stat' %}
+{% assign feature_blocks = section.blocks | where: 'type', 'feature' %}
+{% assign step_blocks = section.blocks | where: 'type', 'step' %}
+{% assign use_case_blocks = section.blocks | where: 'type', 'use_case' %}
+{% assign category_row_blocks = section.blocks | where: 'type', 'category_row' %}
+{% assign skill_blocks = section.blocks | where: 'type', 'skill' %}
+{% assign capability_blocks = section.blocks | where: 'type', 'capability' %}
+{% assign installation_step_blocks = section.blocks | where: 'type', 'installation_step' %}
+{% assign color_theme = section.settings.color_theme | default: 'blue' %}
+{% assign right_mode = section.settings.right_column_mode | default: 'steps' %}
+{% assign bottom_mode = section.settings.bottom_mode | default: 'use_cases' %}
+
+<section class="relative py-16 lg:py-24 border-t border-white/5" {{ section.shopify_attributes }}>
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+    {% if stat_blocks.size > 0 %}
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 p-8 rounded-2xl mb-16 {% if color_theme == 'amber' %}bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20{% elsif color_theme == 'emerald' %}bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20{% elsif color_theme == 'purple' %}bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20{% else %}bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/20{% endif %}">
+        {% for block in stat_blocks %}
+          <div class="text-center" {{ block.shopify_attributes }}>
+            <div class="text-3xl md:text-4xl font-black {% if block.settings.use_gradient %}text-transparent bg-clip-text {% if color_theme == 'amber' %}bg-gradient-to-r from-amber-400 to-orange-400{% elsif color_theme == 'emerald' %}bg-gradient-to-r from-emerald-400 to-teal-400{% elsif color_theme == 'purple' %}bg-gradient-to-r from-purple-400 to-pink-400{% else %}bg-gradient-to-r from-blue-400 to-cyan-400{% endif %}{% else %}text-white{% endif %}">
+              {{ block.settings.value }}
+            </div>
+            <div class="text-white/40 text-sm mt-1">{{ block.settings.label }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 mb-16">
+      <div>
+        {% if section.settings.inside_eyebrow != blank %}
+          <span class="text-[10px] font-medium tracking-[0.3em] uppercase block mb-4 {% if color_theme == 'amber' %}text-amber-400{% elsif color_theme == 'emerald' %}text-emerald-400{% elsif color_theme == 'purple' %}text-purple-400{% else %}text-blue-400{% endif %}">{{ section.settings.inside_eyebrow }}</span>
+        {% endif %}
+        {% if section.settings.inside_heading != blank %}
+          <h3 class="text-2xl md:text-3xl font-bold text-white mb-6">{{ section.settings.inside_heading }}</h3>
+        {% endif %}
+        {% if section.settings.inside_description != blank %}
+          <p class="text-white/50 mb-8">{{ section.settings.inside_description }}</p>
+        {% endif %}
+        {% if feature_blocks.size > 0 %}
+          <div class="space-y-4">
+            {% for block in feature_blocks %}
+              <div class="flex gap-4 items-start" {{ block.shopify_attributes }}>
+                <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 {% if color_theme == 'amber' %}bg-gradient-to-br from-amber-500 to-orange-500{% elsif color_theme == 'emerald' %}bg-gradient-to-br from-emerald-500 to-teal-500{% elsif color_theme == 'purple' %}bg-gradient-to-br from-purple-500 to-pink-500{% else %}bg-gradient-to-br from-blue-500 to-cyan-500{% endif %}">
+                  {% case block.settings.icon %}
+                    {% when 'workflow' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"></rect><path d="M7 11v4a2 2 0 0 0 2 2h4"></path><rect width="8" height="8" x="13" y="13" rx="2"></rect></svg>
+                    {% when 'zap' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
+                    {% when 'layers' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"></path><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"></path><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"></path></svg>
+                    {% when 'shield' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    {% when 'play' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+                    {% when 'book_open' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white" aria-hidden="true"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg>
+                    {% when 'award' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white" aria-hidden="true"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path><circle cx="12" cy="8" r="6"></circle></svg>
+                    {% when 'brain' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white" aria-hidden="true"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"></path><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"></path><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"></path><path d="M17.599 6.5a3 3 0 0 0 .399-1.375"></path><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"></path><path d="M3.477 10.896a4 4 0 0 1 .585-.396"></path><path d="M19.938 10.5a4 4 0 0 1 .585.396"></path><path d="M6 18a4 4 0 0 1-1.967-.516"></path><path d="M19.967 17.484A4 4 0 0 1 18 18"></path></svg>
+                    {% when 'message_square' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    {% when 'refresh_cw' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white" aria-hidden="true"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg>
+                    {% when 'panels' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg>
+                    {% when 'palette' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg>
+                    {% when 'monitor' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg>
+                    {% else %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"></rect><path d="M7 11v4a2 2 0 0 0 2 2h4"></path><rect width="8" height="8" x="13" y="13" rx="2"></rect></svg>
+                  {% endcase %}
+                </div>
+                <div>
+                  {% if block.settings.title != blank %}<h4 class="text-white font-semibold mb-1">{{ block.settings.title }}</h4>{% endif %}
+                  {% if block.settings.description != blank %}<p class="text-white/50 text-sm">{{ block.settings.description }}</p>{% endif %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <div>
+        {% if right_mode == 'categories' %}
+          {% if section.settings.course_eyebrow != blank %}
+            <span class="text-[10px] font-medium {% if color_theme == 'amber' %}text-orange-400{% elsif color_theme == 'emerald' %}text-teal-400{% elsif color_theme == 'purple' %}text-pink-400{% else %}text-cyan-400{% endif %} tracking-[0.3em] uppercase block mb-4">{{ section.settings.course_eyebrow }}</span>
+          {% endif %}
+          {% if section.settings.course_heading != blank %}
+            <h3 class="text-2xl md:text-3xl font-bold text-white mb-6">{{ section.settings.course_heading }}</h3>
+          {% endif %}
+          {% if category_row_blocks.size > 0 %}
+            <div class="space-y-3 mt-8">
+              {% for block in category_row_blocks %}
+                <div class="p-4 rounded-xl bg-white/[0.02] border border-white/10" {{ block.shopify_attributes }}>
+                  <div class="flex items-center justify-between mb-1">
+                    <div class="flex items-center gap-3">
+                      <div class="w-2 h-2 rounded-full {% if block.settings.dot_color == 'pink' %}bg-pink-500{% elsif block.settings.dot_color == 'fuchsia' %}bg-fuchsia-500{% elsif block.settings.dot_color == 'amber' %}bg-amber-500{% elsif block.settings.dot_color == 'orange' %}bg-orange-500{% elsif block.settings.dot_color == 'yellow' %}bg-yellow-500{% elsif block.settings.dot_color == 'red' %}bg-red-500{% elsif block.settings.dot_color == 'rose' %}bg-rose-500{% else %}bg-purple-500{% endif %}"></div>
+                      <span class="text-white font-medium">{{ block.settings.label }}</span>
+                    </div>
+                    {% if block.settings.count != blank %}<span class="text-white/40 text-sm">{{ block.settings.count }}</span>{% endif %}
+                  </div>
+                  {% if block.settings.subtext != blank %}<p class="text-white/40 text-xs pl-5">{{ block.settings.subtext }}</p>{% endif %}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+          {% if section.settings.show_cta_box and section.settings.cta_heading != blank %}
+            <div class="mt-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+              <div class="flex items-center gap-2 text-emerald-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path><path d="M20 3v4"></path><path d="M22 5h-4"></path><path d="M4 17v2"></path><path d="M5 18H3"></path></svg>
+                <span class="font-medium">{{ section.settings.cta_heading }}</span>
+              </div>
+              {% if section.settings.cta_subtext != blank %}<p class="text-white/50 text-sm mt-1">{{ section.settings.cta_subtext }}</p>{% endif %}
+            </div>
+          {% endif %}
+        {% elsif right_mode == 'capabilities' %}
+          {% if section.settings.capability_eyebrow != blank %}
+            <span class="text-[10px] font-medium {% if color_theme == 'amber' %}text-orange-400{% elsif color_theme == 'emerald' %}text-teal-400{% elsif color_theme == 'purple' %}text-pink-400{% else %}text-cyan-400{% endif %} tracking-[0.3em] uppercase block mb-4">{{ section.settings.capability_eyebrow }}</span>
+          {% endif %}
+          {% if section.settings.capability_heading != blank %}
+            <h3 class="text-2xl md:text-3xl font-bold text-white mb-6">{{ section.settings.capability_heading }}</h3>
+          {% endif %}
+          {% if capability_blocks.size > 0 %}
+            <div class="grid grid-cols-2 gap-3 mt-8">
+              {% for block in capability_blocks %}
+                <div class="p-3 rounded-lg bg-white/[0.02] border border-white/10 flex items-center gap-3" {{ block.shopify_attributes }}>
+                  {% assign cap_icon_class = 'w-5 h-5 shrink-0 ' %}
+                  {% if color_theme == 'emerald' %}{% assign cap_icon_class = cap_icon_class | append: 'text-emerald-400' %}{% elsif color_theme == 'purple' %}{% assign cap_icon_class = cap_icon_class | append: 'text-purple-400' %}{% else %}{% assign cap_icon_class = cap_icon_class | append: 'text-blue-400' %}{% endif %}
+                  {% case block.settings.icon %}
+                    {% when 'target' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="{{ cap_icon_class }}" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                    {% when 'message_square' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="{{ cap_icon_class }}" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    {% when 'book_open' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="{{ cap_icon_class }}" aria-hidden="true"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg>
+                    {% when 'trending_up' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="{{ cap_icon_class }}" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+                    {% when 'palette' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="{{ cap_icon_class }}" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg>
+                    {% when 'chart_column' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="{{ cap_icon_class }}" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg>
+                    {% else %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="{{ cap_icon_class }}" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                  {% endcase %}
+                  {% if block.settings.label != blank %}<span class="text-white/70 text-sm">{{ block.settings.label }}</span>{% endif %}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+          {% if section.settings.show_agent_cta and section.settings.agent_cta_heading != blank %}
+            <div class="mt-6 p-4 rounded-xl bg-white/[0.02] border border-white/10">
+              <div class="flex items-center gap-2 mb-2">
+                <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" aria-hidden="true"></div>
+                <span class="text-white font-medium">{{ section.settings.agent_cta_heading }}</span>
+              </div>
+              {% if section.settings.agent_cta_subtext != blank %}<p class="text-white/50 text-sm">{{ section.settings.agent_cta_subtext }}</p>{% endif %}
+            </div>
+          {% endif %}
+        {% else %}
+          {% if section.settings.steps_eyebrow != blank %}
+            <span class="text-[10px] font-medium {% if color_theme == 'emerald' %}text-teal-400{% elsif color_theme == 'purple' %}text-pink-400{% else %}text-cyan-400{% endif %} tracking-[0.3em] uppercase block mb-4">{{ section.settings.steps_eyebrow }}</span>
+          {% endif %}
+          {% if section.settings.steps_heading != blank %}
+            <h3 class="text-2xl md:text-3xl font-bold text-white mb-6">{{ section.settings.steps_heading }}</h3>
+          {% endif %}
+          {% if step_blocks.size > 0 %}
+            <div class="mt-8">
+              {% for block in step_blocks %}
+                <div class="relative flex gap-4" {{ block.shopify_attributes }}>
+                  <div class="flex flex-col items-center">
+                    <div class="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white font-bold">{{ forloop.index }}</div>
+                    {% unless forloop.last %}
+                      <div class="w-px h-full bg-white/10 my-2 min-h-[2rem]"></div>
+                    {% endunless %}
+                  </div>
+                  <div class="pb-8">
+                    {% if block.settings.title != blank %}<h4 class="text-white font-semibold mb-1">{{ block.settings.title }}</h4>{% endif %}
+                    {% if block.settings.description != blank %}<p class="text-white/50 text-sm">{{ block.settings.description }}</p>{% endif %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+
+    {% if bottom_mode == 'installation' %}
+      {% if section.settings.installation_eyebrow != blank or section.settings.installation_heading != blank or installation_step_blocks.size > 0 %}
+        <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/10">
+          {% if section.settings.installation_eyebrow != blank %}
+            <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-4 text-center">{{ section.settings.installation_eyebrow }}</span>
+          {% endif %}
+          {% if section.settings.installation_heading != blank %}
+            <h3 class="text-xl font-bold text-white mb-8 text-center">{{ section.settings.installation_heading }}</h3>
+          {% endif %}
+          {% if installation_step_blocks.size > 0 %}
+            <div class="grid md:grid-cols-3 gap-6">
+              {% for block in installation_step_blocks %}
+                <div class="text-center" {{ block.shopify_attributes }}>
+                  <div class="w-12 h-12 rounded-full flex items-center justify-center font-bold mx-auto mb-3 {% if color_theme == 'amber' %}bg-amber-500/20 border border-amber-500/30 text-amber-400{% elsif color_theme == 'emerald' %}bg-emerald-500/20 border border-emerald-500/30 text-emerald-400{% elsif color_theme == 'purple' %}bg-purple-500/20 border border-purple-500/30 text-purple-400{% else %}bg-blue-500/20 border border-blue-500/30 text-blue-400{% endif %}">{{ forloop.index }}</div>
+                  {% if block.settings.title != blank %}<h4 class="text-white font-medium mb-1">{{ block.settings.title }}</h4>{% endif %}
+                  {% if block.settings.description != blank %}<p class="text-white/50 text-sm">{{ block.settings.description }}</p>{% endif %}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% elsif bottom_mode == 'skills' %}
+      {% if section.settings.skills_eyebrow != blank or skill_blocks.size > 0 %}
+        <div>
+          {% if section.settings.skills_eyebrow != blank %}
+            <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-4 text-center">{{ section.settings.skills_eyebrow }}</span>
+          {% endif %}
+          {% if skill_blocks.size > 0 %}
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+              {% for block in skill_blocks %}
+                <div class="p-4 rounded-xl bg-white/[0.02] border border-white/10 text-center" {{ block.shopify_attributes }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mx-auto mb-2 {% if color_theme == 'amber' %}text-amber-400{% elsif color_theme == 'emerald' %}text-emerald-400{% elsif color_theme == 'purple' %}text-purple-400{% else %}text-blue-400{% endif %}" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+                  {% if block.settings.label != blank %}<span class="text-white/70 text-sm">{{ block.settings.label }}</span>{% endif %}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% elsif section.settings.use_cases_eyebrow != blank or use_case_blocks.size > 0 %}
+      <div>
+        {% if section.settings.use_cases_eyebrow != blank %}
+          <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-4 text-center">{{ section.settings.use_cases_eyebrow }}</span>
+        {% endif %}
+        {% if use_case_blocks.size > 0 %}
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {% for block in use_case_blocks %}
+              <div class="p-4 rounded-xl bg-white/[0.02] border border-white/10 text-center group cursor-default" {{ block.shopify_attributes }}>
+                {% assign icon_class = 'w-8 h-8 mx-auto mb-2 group-hover:scale-110 transition-transform ' %}
+                {% if color_theme == 'emerald' %}{% assign icon_class = icon_class | append: 'text-emerald-400' %}{% elsif color_theme == 'purple' %}{% assign icon_class = icon_class | append: 'text-purple-400' %}{% else %}{% assign icon_class = icon_class | append: 'text-blue-400' %}{% endif %}
+                {% case block.settings.icon %}
+                  {% when 'target' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target {{ icon_class }}" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                  {% when 'trending_up' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up {{ icon_class }}" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+                  {% when 'clock' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock {{ icon_class }}" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  {% when 'layers' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layers {{ icon_class }}" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"></path><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"></path><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"></path></svg>
+                  {% when 'database' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="{{ icon_class }}" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                  {% when 'shopping_bag' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag {{ icon_class }}" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><path d="M3 6h18"></path><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                  {% when 'users' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users {{ icon_class }}" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                  {% when 'graduation_cap' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-graduation-cap {{ icon_class }}" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg>
+                  {% else %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="{{ icon_class }}" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                {% endcase %}
+                {% if block.settings.label != blank %}<span class="text-white/70 text-sm">{{ block.settings.label }}</span>{% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shop Sub Page About",
+  "tag": "section",
+  "class": "section-shop-sub-page-about",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_theme",
+      "label": "Color theme",
+      "options": [
+        { "value": "blue", "label": "Blue / Cyan" },
+        { "value": "purple", "label": "Purple / Pink" },
+        { "value": "emerald", "label": "Emerald / Teal" },
+        { "value": "amber", "label": "Amber / Orange" }
+      ],
+      "default": "blue"
+    },
+    {
+      "type": "header",
+      "content": "What's Inside (left column)"
+    },
+    {
+      "type": "text",
+      "id": "inside_eyebrow",
+      "label": "Eyebrow",
+      "default": "What's Inside"
+    },
+    {
+      "type": "text",
+      "id": "inside_heading",
+      "label": "Heading",
+      "default": "Production-Ready Blueprints"
+    },
+    {
+      "type": "textarea",
+      "id": "inside_description",
+      "label": "Description",
+      "default": "Each template includes complete Make.com blueprints with pre-configured modules, error handling, and documentation. Import once and customize for your specific needs."
+    },
+    {
+      "type": "header",
+      "content": "Right column"
+    },
+    {
+      "type": "select",
+      "id": "right_column_mode",
+      "label": "Right column layout",
+      "options": [
+        { "value": "steps", "label": "How It Works (steps)" },
+        { "value": "categories", "label": "Course Categories (list + CTA)" },
+        { "value": "capabilities", "label": "Agent Capabilities (grid + CTA)" }
+      ],
+      "default": "steps"
+    },
+    {
+      "type": "text",
+      "id": "steps_eyebrow",
+      "label": "Steps: Eyebrow",
+      "default": "How It Works"
+    },
+    {
+      "type": "text",
+      "id": "steps_heading",
+      "label": "Steps: Heading",
+      "default": "Setup in 3 Steps"
+    },
+    {
+      "type": "text",
+      "id": "course_eyebrow",
+      "label": "Categories: Eyebrow",
+      "default": "Course Categories"
+    },
+    {
+      "type": "text",
+      "id": "course_heading",
+      "label": "Categories: Heading",
+      "default": "Skills That Matter"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta_box",
+      "label": "Show CTA box (Categories mode)",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "cta_heading",
+      "label": "CTA box heading",
+      "default": "Free courses available!"
+    },
+    {
+      "type": "text",
+      "id": "cta_subtext",
+      "label": "CTA box subtext",
+      "default": "Start learning with no commitment"
+    },
+    {
+      "type": "text",
+      "id": "capability_eyebrow",
+      "label": "Capabilities: Eyebrow",
+      "default": "Agent Capabilities"
+    },
+    {
+      "type": "text",
+      "id": "capability_heading",
+      "label": "Capabilities: Heading",
+      "default": "What They Can Do"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_agent_cta",
+      "label": "Show agent CTA box (Capabilities mode)",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "agent_cta_heading",
+      "label": "Agent CTA heading",
+      "default": "Always Online"
+    },
+    {
+      "type": "text",
+      "id": "agent_cta_subtext",
+      "label": "Agent CTA subtext",
+      "default": "Deploy once, available 24/7 without maintenance"
+    },
+    {
+      "type": "header",
+      "content": "Bottom section"
+    },
+    {
+      "type": "select",
+      "id": "bottom_mode",
+      "label": "Bottom layout",
+      "options": [
+        { "value": "use_cases", "label": "Popular Use Cases (icon cards)" },
+        { "value": "skills", "label": "What You'll Master (check list)" },
+        { "value": "installation", "label": "Installation (3 steps)" }
+      ],
+      "default": "use_cases"
+    },
+    {
+      "type": "text",
+      "id": "installation_eyebrow",
+      "label": "Installation: Eyebrow",
+      "default": "Installation"
+    },
+    {
+      "type": "text",
+      "id": "installation_heading",
+      "label": "Installation: Heading",
+      "default": "Add to Your Store in 3 Steps"
+    },
+    {
+      "type": "text",
+      "id": "use_cases_eyebrow",
+      "label": "Use cases: Eyebrow",
+      "default": "Popular Use Cases"
+    },
+    {
+      "type": "text",
+      "id": "skills_eyebrow",
+      "label": "Skills: Eyebrow",
+      "default": "What You'll Master"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value",
+          "default": "50+"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Automation Scenarios"
+        },
+        {
+          "type": "checkbox",
+          "id": "use_gradient",
+          "label": "Use gradient text",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "feature",
+      "name": "Feature (What's Inside)",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "workflow", "label": "Workflow" },
+            { "value": "zap", "label": "Lightning" },
+            { "value": "layers", "label": "Layers" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "play", "label": "Play" },
+            { "value": "book_open", "label": "Book open" },
+            { "value": "award", "label": "Award" },
+            { "value": "brain", "label": "Brain" },
+            { "value": "message_square", "label": "Message" },
+            { "value": "refresh_cw", "label": "Refresh" },
+            { "value": "panels", "label": "Panels" },
+            { "value": "palette", "label": "Palette" },
+            { "value": "monitor", "label": "Monitor" }
+          ],
+          "default": "workflow"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Complete Workflows"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "End-to-end automation from trigger to action"
+        }
+      ]
+    },
+    {
+      "type": "capability",
+      "name": "Capability (Agent Capabilities)",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "target", "label": "Target" },
+            { "value": "message_square", "label": "Message" },
+            { "value": "book_open", "label": "Book open" },
+            { "value": "trending_up", "label": "Trending up" },
+            { "value": "palette", "label": "Palette" },
+            { "value": "chart_column", "label": "Chart" }
+          ],
+          "default": "target"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Lead Research"
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "name": "Step (How It Works)",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Download & Import"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Get the JSON blueprint and import into Make.com with one click"
+        }
+      ]
+    },
+    {
+      "type": "category_row",
+      "name": "Category row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Content Creation & Visual Media"
+        },
+        {
+          "type": "text",
+          "id": "count",
+          "label": "Count (e.g. 6 courses)",
+          "default": "6 courses"
+        },
+        {
+          "type": "text",
+          "id": "subtext",
+          "label": "Subtext (optional)",
+          "default": ""
+        },
+        {
+          "type": "select",
+          "id": "dot_color",
+          "label": "Dot color",
+          "options": [
+            { "value": "purple", "label": "Purple" },
+            { "value": "pink", "label": "Pink" },
+            { "value": "fuchsia", "label": "Fuchsia" },
+            { "value": "amber", "label": "Amber" },
+            { "value": "orange", "label": "Orange" },
+            { "value": "yellow", "label": "Yellow" },
+            { "value": "red", "label": "Red" },
+            { "value": "rose", "label": "Rose" }
+          ],
+          "default": "purple"
+        }
+      ]
+    },
+    {
+      "type": "installation_step",
+      "name": "Installation step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Download Section"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Get the Liquid file and assets"
+        }
+      ]
+    },
+    {
+      "type": "skill",
+      "name": "Skill (What You'll Master)",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "AI Image Generation"
+        }
+      ]
+    },
+    {
+      "type": "use_case",
+      "name": "Use case card",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "target", "label": "Target" },
+            { "value": "trending_up", "label": "Trending up" },
+            { "value": "clock", "label": "Clock" },
+            { "value": "layers", "label": "Layers" },
+            { "value": "database", "label": "Database" },
+            { "value": "shopping_bag", "label": "Shopping bag" },
+            { "value": "users", "label": "Users" },
+            { "value": "graduation_cap", "label": "Graduation cap" }
+          ],
+          "default": "target"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Lead Generation"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop Sub Page About",
+      "settings": {
+        "inside_eyebrow": "What's Inside",
+        "inside_heading": "Production-Ready Blueprints",
+        "inside_description": "Each template includes complete Make.com blueprints with pre-configured modules, error handling, and documentation. Import once and customize for your specific needs.",
+        "steps_eyebrow": "How It Works",
+        "steps_heading": "Setup in 3 Steps",
+        "use_cases_eyebrow": "Popular Use Cases"
+      },
+      "blocks": [
+        { "type": "stat", "settings": { "value": "50+", "label": "Automation Scenarios", "use_gradient": true } },
+        { "type": "stat", "settings": { "value": "100hrs", "label": "Time Saved Monthly" } },
+        { "type": "stat", "settings": { "value": "5min", "label": "Avg Setup Time" } },
+        { "type": "stat", "settings": { "value": "99%", "label": "Uptime Rate" } },
+        { "type": "feature", "settings": { "icon": "workflow", "title": "Complete Workflows", "description": "End-to-end automation from trigger to action" } },
+        { "type": "feature", "settings": { "icon": "zap", "title": "Error Handling Built-In", "description": "Automatic retries and failure notifications" } },
+        { "type": "feature", "settings": { "icon": "layers", "title": "Modular Design", "description": "Mix and match components across workflows" } },
+        { "type": "step", "settings": { "title": "Download & Import", "description": "Get the JSON blueprint and import into Make.com with one click" } },
+        { "type": "step", "settings": { "title": "Connect Your Apps", "description": "Authenticate your accounts (Gmail, Notion, Slack, etc.)" } },
+        { "type": "step", "settings": { "title": "Activate & Go", "description": "Turn on the scenario and watch it run automatically" } },
+        { "type": "use_case", "settings": { "icon": "target", "label": "Lead Generation" } },
+        { "type": "use_case", "settings": { "icon": "trending_up", "label": "Social Media" } },
+        { "type": "use_case", "settings": { "icon": "clock", "label": "Task Management" } },
+        { "type": "use_case", "settings": { "icon": "layers", "label": "Data Sync" } }
+      ]
+    },
+    {
+      "name": "Shop Sub Page About (Courses)",
+      "settings": {
+        "color_theme": "purple",
+        "inside_eyebrow": "Learning Approach",
+        "inside_heading": "Practical, Not Theoretical",
+        "inside_description": "Every course is built around real-world projects. You'll learn by doing—building actual campaigns, workflows, and assets you can use immediately in your work.",
+        "right_column_mode": "categories",
+        "course_eyebrow": "Course Categories",
+        "course_heading": "Skills That Matter",
+        "show_cta_box": true,
+        "cta_heading": "Free courses available!",
+        "cta_subtext": "Start learning with no commitment",
+        "bottom_mode": "skills",
+        "skills_eyebrow": "What You'll Master"
+      },
+      "blocks": [
+        { "type": "stat", "settings": { "value": "50+", "label": "Video Lessons" } },
+        { "type": "stat", "settings": { "value": "15hrs", "label": "Total Content" } },
+        { "type": "stat", "settings": { "value": "5K+", "label": "Students Enrolled" } },
+        { "type": "stat", "settings": { "value": "4", "label": "Avg Rating" } },
+        { "type": "feature", "settings": { "icon": "play", "title": "On-Demand Videos", "description": "Learn at your own pace, anytime, anywhere" } },
+        { "type": "feature", "settings": { "icon": "book_open", "title": "Downloadable Resources", "description": "Templates, checklists, and swipe files included" } },
+        { "type": "feature", "settings": { "icon": "award", "title": "Completion Certificates", "description": "Showcase your new skills with verifiable credentials" } },
+        { "type": "category_row", "settings": { "label": "Content Creation & Visual Media", "count": "6 courses", "dot_color": "purple" } },
+        { "type": "category_row", "settings": { "label": "Marketing & Brand", "count": "3 courses", "dot_color": "pink" } },
+        { "type": "category_row", "settings": { "label": "Scaling & Growth", "count": "2 courses", "dot_color": "fuchsia" } },
+        { "type": "skill", "settings": { "label": "AI Image Generation" } },
+        { "type": "skill", "settings": { "label": "Video Production" } },
+        { "type": "skill", "settings": { "label": "Prompt Engineering" } },
+        { "type": "skill", "settings": { "label": "Brand Systems" } },
+        { "type": "skill", "settings": { "label": "Content Scaling" } }
+      ]
+    },
+    {
+      "name": "Shop Sub Page About (AI Agents)",
+      "settings": {
+        "color_theme": "emerald",
+        "inside_eyebrow": "What Are AI Agents?",
+        "inside_heading": "Pre-Trained Specialists",
+        "inside_description": "Each AI agent is purpose-built for a specific task. Unlike generic chatbots, these agents come with custom system prompts, domain knowledge, and optimized workflows for their specialty.",
+        "right_column_mode": "capabilities",
+        "capability_eyebrow": "Agent Capabilities",
+        "capability_heading": "What They Can Do",
+        "show_agent_cta": true,
+        "agent_cta_heading": "Always Online",
+        "agent_cta_subtext": "Deploy once, available 24/7 without maintenance",
+        "bottom_mode": "use_cases",
+        "use_cases_eyebrow": "Perfect For"
+      },
+      "blocks": [
+        { "type": "stat", "settings": { "value": "10", "label": "Specialized Agents" } },
+        { "type": "stat", "settings": { "value": "24/7", "label": "Always Available" } },
+        { "type": "stat", "settings": { "value": "GPT-4", "label": "Powered By" } },
+        { "type": "stat", "settings": { "value": "∞", "label": "Conversations" } },
+        { "type": "feature", "settings": { "icon": "brain", "title": "Domain Expertise", "description": "Pre-loaded with industry-specific knowledge and best practices" } },
+        { "type": "feature", "settings": { "icon": "message_square", "title": "Conversational Interface", "description": "Natural language interaction—no technical setup required" } },
+        { "type": "feature", "settings": { "icon": "refresh_cw", "title": "Continuous Learning", "description": "Agents improve with each interaction and feedback" } },
+        { "type": "capability", "settings": { "icon": "target", "label": "Lead Research" } },
+        { "type": "capability", "settings": { "icon": "message_square", "label": "Customer Support" } },
+        { "type": "capability", "settings": { "icon": "book_open", "label": "Course Design" } },
+        { "type": "capability", "settings": { "icon": "trending_up", "label": "SEO Strategy" } },
+        { "type": "capability", "settings": { "icon": "palette", "label": "Image Prompts" } },
+        { "type": "capability", "settings": { "icon": "chart_column", "label": "Ad Creation" } },
+        { "type": "use_case", "settings": { "icon": "shopping_bag", "label": "E-Commerce" } },
+        { "type": "use_case", "settings": { "icon": "users", "label": "Agencies" } },
+        { "type": "use_case", "settings": { "icon": "graduation_cap", "label": "Educators" } },
+        { "type": "use_case", "settings": { "icon": "target", "label": "Sales Teams" } }
+      ]
+    },
+    {
+      "name": "Shop Sub Page About (Sections)",
+      "settings": {
+        "color_theme": "amber",
+        "inside_eyebrow": "Section Library",
+        "inside_heading": "Every Section You Need",
+        "inside_description": "From hero banners to product collections, our sections cover every e-commerce use case. Each section is built with Shopify 2.0's section architecture for maximum flexibility.",
+        "right_column_mode": "categories",
+        "course_eyebrow": "Section Types",
+        "course_heading": "Organized by Purpose",
+        "bottom_mode": "installation",
+        "installation_eyebrow": "Installation",
+        "installation_heading": "Add to Your Store in 3 Steps"
+      },
+      "blocks": [
+        { "type": "stat", "settings": { "value": "86+", "label": "Premium Sections" } },
+        { "type": "stat", "settings": { "value": "5", "label": "Section Types" } },
+        { "type": "stat", "settings": { "value": "0", "label": "Code Required" } },
+        { "type": "stat", "settings": { "value": "100%", "label": "Customizable" } },
+        { "type": "feature", "settings": { "icon": "panels", "title": "Shopify 2.0 Native", "description": "Built for the latest theme architecture with full customizer support" } },
+        { "type": "feature", "settings": { "icon": "palette", "title": "Fully Customizable", "description": "Adjust colors, fonts, spacing, and content without code" } },
+        { "type": "feature", "settings": { "icon": "monitor", "title": "Mobile Responsive", "description": "Looks perfect on every device and screen size" } },
+        { "type": "category_row", "settings": { "label": "Hero Sections", "count": "25", "subtext": "First impressions that convert", "dot_color": "amber" } },
+        { "type": "category_row", "settings": { "label": "CTA Sections", "count": "19", "subtext": "Drive action and urgency", "dot_color": "orange" } },
+        { "type": "category_row", "settings": { "label": "Media Sections", "count": "23", "subtext": "Galleries, videos, interactive", "dot_color": "yellow" } },
+        { "type": "category_row", "settings": { "label": "Collection Sections", "count": "9", "subtext": "Showcase products beautifully", "dot_color": "red" } },
+        { "type": "category_row", "settings": { "label": "Content Sections", "count": "10", "subtext": "FAQs, testimonials, features", "dot_color": "rose" } },
+        { "type": "installation_step", "settings": { "title": "Download Section", "description": "Get the Liquid file and assets" } },
+        { "type": "installation_step", "settings": { "title": "Upload to Theme", "description": "Add to your Shopify theme files" } },
+        { "type": "installation_step", "settings": { "title": "Customize in Editor", "description": "Adjust settings in theme customizer" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
