@@ -1,10 +1,28 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "main": {
-      "type": "main-collection",
-      "settings": {},
-      "blocks": {}
+    "blog_intro_kbEr3z": {
+      "type": "blog-intro",
+      "name": "Blog Intro",
+      "settings": {
+        "background_color": "#0a0a0a",
+        "show_grid": true,
+        "badge": "(Insights & Stories)",
+        "title_line1": "BLOGS &",
+        "title_line2": "LATEST ARTICLES",
+        "subtitle": "Insights, inspiration, and innovation from the intersection of creativity, technology, and culture."
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "blog_intro_kbEr3z"
+  ]
 }
