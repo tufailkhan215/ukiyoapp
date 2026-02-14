@@ -14,193 +14,201 @@
       "disabled": true,
       "settings": {}
     },
-    "shop_sub_page_intro_8gU98D": {
+    "shop_sub_page_intro_tK6agX": {
       "type": "shop-sub-page-intro",
       "blocks": {
-        "tag_EFWctF": {
+        "tag_ggPzDF": {
           "type": "tag",
           "settings": {
-            "icon": "zap",
-            "label": "Instant Setup",
+            "icon": "panels",
+            "label": "Shopify 2.0",
             "accent": false,
             "highlight": false
           }
         },
-        "tag_Dk8zTK": {
+        "tag_cDwAiw": {
           "type": "tag",
           "settings": {
-            "icon": "download",
-            "label": "Lifetime Access",
-            "accent": false,
-            "highlight": false
-          }
-        },
-        "tag_PRH8M8": {
-          "type": "tag",
-          "settings": {
-            "icon": "star",
-            "label": "5-Star Rated",
+            "icon": "sparkles",
+            "label": "No Code",
             "accent": false,
             "highlight": false
           }
         }
       },
       "block_order": [
-        "tag_EFWctF",
-        "tag_Dk8zTK",
-        "tag_PRH8M8"
+        "tag_ggPzDF",
+        "tag_cDwAiw"
       ],
-      "name": "Shop Sub Page Intro",
+      "name": "Shop Sub Page Intro (Sections)",
       "settings": {
         "back_link_text": "Back to Shop",
         "back_link_url": "",
-        "category_label": "18 Templates",
-        "category_icon": "workflow",
+        "category_label": "58+ Sections",
+        "category_icon": "panels",
         "category_icon_glow": true,
-        "title_line_1": "AUTOMATION",
-        "title_line_2": "TEMPLATES",
+        "title_line_1": "SHOPIFY",
+        "title_line_2": "SECTIONS",
         "title_line_3": "",
-        "description": "Pre-built Make.com automation systems. Download, import, and start automating in minutes—not months.",
-        "color_theme": "blue",
+        "description": "Premium Shopify 2.0 sections. Drag, drop, and customize—no coding required.",
+        "color_theme": "amber",
         "show_circle": true
       }
     },
-    "shop_sub_page_about_VMWH9r": {
+    "shop_sub_page_about_8tMVkm": {
       "type": "shop-sub-page-about",
       "blocks": {
-        "stat_GWD7ba": {
+        "stat_crdFL3": {
           "type": "stat",
           "settings": {
-            "value": "50+",
-            "label": "Automation Scenarios",
-            "use_gradient": true
-          }
-        },
-        "stat_YPXGan": {
-          "type": "stat",
-          "settings": {
-            "value": "100hrs",
-            "label": "Time Saved Monthly",
+            "value": "86+",
+            "label": "Premium Sections",
             "use_gradient": false
           }
         },
-        "stat_k9Na3w": {
+        "stat_NRzBgk": {
           "type": "stat",
           "settings": {
-            "value": "5min",
-            "label": "Avg Setup Time",
+            "value": "5",
+            "label": "Section Types",
             "use_gradient": false
           }
         },
-        "stat_kRiXbz": {
+        "stat_xKJ44G": {
           "type": "stat",
           "settings": {
-            "value": "99%",
-            "label": "Uptime Rate",
+            "value": "0",
+            "label": "Code Required",
             "use_gradient": false
           }
         },
-        "feature_6ayyDM": {
+        "stat_bhDVxg": {
+          "type": "stat",
+          "settings": {
+            "value": "100%",
+            "label": "Customizable",
+            "use_gradient": false
+          }
+        },
+        "feature_H4rhj4": {
           "type": "feature",
           "settings": {
-            "icon": "workflow",
-            "title": "Complete Workflows",
-            "description": "End-to-end automation from trigger to action"
+            "icon": "panels",
+            "title": "Shopify 2.0 Native",
+            "description": "Built for the latest theme architecture with full customizer support"
           }
         },
-        "feature_t9LUty": {
+        "feature_KgnqaQ": {
           "type": "feature",
           "settings": {
-            "icon": "zap",
-            "title": "Error Handling Built-In",
-            "description": "Automatic retries and failure notifications"
+            "icon": "palette",
+            "title": "Fully Customizable",
+            "description": "Adjust colors, fonts, spacing, and content without code"
           }
         },
-        "feature_LYWeXR": {
+        "feature_tjPb9N": {
           "type": "feature",
           "settings": {
-            "icon": "layers",
-            "title": "Modular Design",
-            "description": "Mix and match components across workflows"
+            "icon": "monitor",
+            "title": "Mobile Responsive",
+            "description": "Looks perfect on every device and screen size"
           }
         },
-        "step_dimTgp": {
-          "type": "step",
+        "category_row_yixBip": {
+          "type": "category_row",
           "settings": {
-            "title": "Download & Import",
-            "description": "Get the JSON blueprint and import into Make.com with one click"
+            "label": "Hero Sections",
+            "count": "25",
+            "subtext": "First impressions that convert",
+            "dot_color": "amber"
           }
         },
-        "step_VnmnPr": {
-          "type": "step",
+        "category_row_AhMKVj": {
+          "type": "category_row",
           "settings": {
-            "title": "Connect Your Apps",
-            "description": "Authenticate your accounts (Gmail, Notion, Slack, etc.)"
+            "label": "CTA Sections",
+            "count": "19",
+            "subtext": "Drive action and urgency",
+            "dot_color": "orange"
           }
         },
-        "step_L4VrdW": {
-          "type": "step",
+        "category_row_xD3wjN": {
+          "type": "category_row",
           "settings": {
-            "title": "Activate & Go",
-            "description": "Turn on the scenario and watch it run automatically"
+            "label": "Media Sections",
+            "count": "23",
+            "subtext": "Galleries, videos, interactive",
+            "dot_color": "yellow"
           }
         },
-        "use_case_JJcta4": {
-          "type": "use_case",
+        "category_row_k9DNMQ": {
+          "type": "category_row",
           "settings": {
-            "icon": "target",
-            "label": "Lead Generation"
+            "label": "Collection Sections",
+            "count": "9",
+            "subtext": "Showcase products beautifully",
+            "dot_color": "red"
           }
         },
-        "use_case_jMAqxd": {
-          "type": "use_case",
+        "category_row_jbPemd": {
+          "type": "category_row",
           "settings": {
-            "icon": "trending_up",
-            "label": "Social Media"
+            "label": "Content Sections",
+            "count": "10",
+            "subtext": "FAQs, testimonials, features",
+            "dot_color": "rose"
           }
         },
-        "use_case_RCYrLV": {
-          "type": "use_case",
+        "installation_step_YLYfFe": {
+          "type": "installation_step",
           "settings": {
-            "icon": "clock",
-            "label": "Task Management"
+            "title": "Download Section",
+            "description": "Get the Liquid file and assets"
           }
         },
-        "use_case_ERKAra": {
-          "type": "use_case",
+        "installation_step_NkxaKw": {
+          "type": "installation_step",
           "settings": {
-            "icon": "layers",
-            "label": "Data Sync"
+            "title": "Upload to Theme",
+            "description": "Add to your Shopify theme files"
+          }
+        },
+        "installation_step_mJNDQw": {
+          "type": "installation_step",
+          "settings": {
+            "title": "Customize in Editor",
+            "description": "Adjust settings in theme customizer"
           }
         }
       },
       "block_order": [
-        "stat_GWD7ba",
-        "stat_YPXGan",
-        "stat_k9Na3w",
-        "stat_kRiXbz",
-        "feature_6ayyDM",
-        "feature_t9LUty",
-        "feature_LYWeXR",
-        "step_dimTgp",
-        "step_VnmnPr",
-        "step_L4VrdW",
-        "use_case_JJcta4",
-        "use_case_jMAqxd",
-        "use_case_RCYrLV",
-        "use_case_ERKAra"
+        "stat_crdFL3",
+        "stat_NRzBgk",
+        "stat_xKJ44G",
+        "stat_bhDVxg",
+        "feature_H4rhj4",
+        "feature_KgnqaQ",
+        "feature_tjPb9N",
+        "category_row_yixBip",
+        "category_row_AhMKVj",
+        "category_row_xD3wjN",
+        "category_row_k9DNMQ",
+        "category_row_jbPemd",
+        "installation_step_YLYfFe",
+        "installation_step_NkxaKw",
+        "installation_step_mJNDQw"
       ],
-      "name": "Shop Sub Page About",
+      "name": "Shop Sub Page About (Sections)",
       "settings": {
-        "color_theme": "blue",
-        "inside_eyebrow": "What's Inside",
-        "inside_heading": "Production-Ready Blueprints",
-        "inside_description": "Each template includes complete Make.com blueprints with pre-configured modules, error handling, and documentation. Import once and customize for your specific needs.",
-        "right_column_mode": "steps",
+        "color_theme": "amber",
+        "inside_eyebrow": "Section Library",
+        "inside_heading": "Every Section You Need",
+        "inside_description": "From hero banners to product collections, our sections cover every e-commerce use case. Each section is built with Shopify 2.0's section architecture for maximum flexibility.",
+        "right_column_mode": "categories",
         "steps_eyebrow": "How It Works",
         "steps_heading": "Setup in 3 Steps",
-        "course_eyebrow": "Course Categories",
-        "course_heading": "Skills That Matter",
+        "course_eyebrow": "Section Types",
+        "course_heading": "Organized by Purpose",
         "show_cta_box": false,
         "cta_heading": "Free courses available!",
         "cta_subtext": "Start learning with no commitment",
@@ -209,19 +217,19 @@
         "show_agent_cta": false,
         "agent_cta_heading": "Always Online",
         "agent_cta_subtext": "Deploy once, available 24/7 without maintenance",
-        "bottom_mode": "use_cases",
+        "bottom_mode": "installation",
         "installation_eyebrow": "Installation",
         "installation_heading": "Add to Your Store in 3 Steps",
         "use_cases_eyebrow": "Popular Use Cases",
         "skills_eyebrow": "What You'll Master"
       }
     },
-    "shop_sub_page_products_yweFaV": {
+    "shop_sub_page_products_Q3eXVp": {
       "type": "shop-sub-page-products",
-      "name": "Shop Sub Page Products",
+      "name": "Shop Sub Page Products (Sections)",
       "settings": {
         "collection": "frontpage",
-        "card_style": "default",
+        "card_style": "sections",
         "sections_type_label": "Section",
         "sections_cta_text": "View Details",
         "show_active_badge": true,
@@ -236,25 +244,14 @@
         "title_suffix": "Products Available",
         "show_live_badge": true,
         "products_per_page": 24,
-        "columns": "4"
-      }
-    },
-    "shop_sub_page_cta_EUHFUp": {
-      "type": "shop-sub-page-cta",
-      "name": "Shop Sub Page CTA",
-      "settings": {
-        "heading": "Get Unlimited Access",
-        "description": "Join membership and download everything for one monthly price.",
-        "button_text": "View Membership Plans",
-        "button_url": ""
+        "columns": "5"
       }
     }
   },
   "order": [
     "main",
-    "shop_sub_page_intro_8gU98D",
-    "shop_sub_page_about_VMWH9r",
-    "shop_sub_page_products_yweFaV",
-    "shop_sub_page_cta_EUHFUp"
+    "shop_sub_page_intro_tK6agX",
+    "shop_sub_page_about_8tMVkm",
+    "shop_sub_page_products_Q3eXVp"
   ]
 }
