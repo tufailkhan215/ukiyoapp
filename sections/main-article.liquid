@@ -1,6 +1,6 @@
 {% comment %} Single article: uses global article object — image, meta, title, content. {% endcomment %}
 <article class="relative py-16 lg:py-24 overflow-hidden bg-black" {{ section.shopify_attributes }}>
-  <div class="max-w-[800px] mx-auto px-6 lg:px-12">
+  <div class="max-w-[1080px] mx-auto px-6 lg:px-12">
     {% if article.tags.first != blank %}
       <div class="mb-4">
         <span class="text-xs text-white/50 uppercase tracking-wider">{{ article.tags.first }}</span>
@@ -8,7 +8,7 @@
     {% endif %}
     <h1 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">{{ article.title }}</h1>
     <div class="text-white/40 text-sm mb-8">
-      {{ article.published_at | date: format: 'month_day_year' }}
+      {{ article.published_at | date: '%B %d, %Y' }}
       {% if article.author != blank %} • {{ article.author }}{% endif %}
       {% if article.content != blank %} • {{ article.content | strip_html | split: ' ' | size | divided_by: 200 | at_least: 1 }} min read{% endif %}
     </div>
