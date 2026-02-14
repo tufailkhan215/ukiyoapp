@@ -14,194 +14,203 @@
       "disabled": true,
       "settings": {}
     },
-    "shop_sub_page_intro_8gU98D": {
+    "shop_sub_page_intro_7qp3nq": {
       "type": "shop-sub-page-intro",
       "blocks": {
-        "tag_EFWctF": {
+        "tag_dKGfXH": {
           "type": "tag",
           "settings": {
-            "icon": "zap",
-            "label": "Instant Setup",
+            "icon": "play",
+            "label": "On-Demand",
             "accent": false,
             "highlight": false
           }
         },
-        "tag_Dk8zTK": {
+        "tag_U84VpE": {
           "type": "tag",
           "settings": {
-            "icon": "download",
-            "label": "Lifetime Access",
+            "icon": "users",
+            "label": "5K+ Students",
             "accent": false,
             "highlight": false
           }
         },
-        "tag_PRH8M8": {
+        "tag_i4VcqE": {
           "type": "tag",
           "settings": {
-            "icon": "star",
-            "label": "5-Star Rated",
+            "icon": "sparkles",
+            "label": "Free Courses Available",
             "accent": false,
-            "highlight": false
+            "highlight": true
           }
         }
       },
       "block_order": [
-        "tag_EFWctF",
-        "tag_Dk8zTK",
-        "tag_PRH8M8"
+        "tag_dKGfXH",
+        "tag_U84VpE",
+        "tag_i4VcqE"
       ],
-      "name": "Shop Sub Page Intro",
+      "name": "Shop Sub Page Intro (Courses)",
       "settings": {
         "back_link_text": "Back to Shop",
         "back_link_url": "",
-        "category_label": "18 Templates",
-        "category_icon": "workflow",
+        "category_label": "23 Courses",
+        "category_icon": "graduation_cap",
         "category_icon_glow": true,
-        "title_line_1": "AUTOMATION",
-        "title_line_2": "TEMPLATES",
+        "title_line_1": "LEARN.",
+        "title_line_2": "BUILD. GROW.",
         "title_line_3": "",
-        "description": "Pre-built Make.com automation systems. Download, import, and start automating in minutes—not months.",
-        "color_theme": "blue",
+        "description": "Practical, no-fluff courses from industry experts. Learn proven frameworks you can apply immediately.",
+        "color_theme": "purple",
         "show_circle": true
       }
     },
-    "shop_sub_page_about_VMWH9r": {
+    "shop_sub_page_about_BKNMBT": {
       "type": "shop-sub-page-about",
       "blocks": {
-        "stat_GWD7ba": {
+        "stat_gCttVx": {
           "type": "stat",
           "settings": {
             "value": "50+",
-            "label": "Automation Scenarios",
-            "use_gradient": true
-          }
-        },
-        "stat_YPXGan": {
-          "type": "stat",
-          "settings": {
-            "value": "100hrs",
-            "label": "Time Saved Monthly",
+            "label": "Video Lessons",
             "use_gradient": false
           }
         },
-        "stat_k9Na3w": {
+        "stat_YMfWYy": {
           "type": "stat",
           "settings": {
-            "value": "5min",
-            "label": "Avg Setup Time",
+            "value": "15hrs",
+            "label": "Total Content",
             "use_gradient": false
           }
         },
-        "stat_kRiXbz": {
+        "stat_PfA9ea": {
           "type": "stat",
           "settings": {
-            "value": "99%",
-            "label": "Uptime Rate",
+            "value": "5K+",
+            "label": "Students Enrolled",
             "use_gradient": false
           }
         },
-        "feature_6ayyDM": {
+        "stat_jjKjLL": {
+          "type": "stat",
+          "settings": {
+            "value": "4",
+            "label": "Avg Rating",
+            "use_gradient": false
+          }
+        },
+        "feature_qtYHD6": {
           "type": "feature",
           "settings": {
-            "icon": "workflow",
-            "title": "Complete Workflows",
-            "description": "End-to-end automation from trigger to action"
+            "icon": "play",
+            "title": "On-Demand Videos",
+            "description": "Learn at your own pace, anytime, anywhere"
           }
         },
-        "feature_t9LUty": {
+        "feature_RtF8EC": {
           "type": "feature",
           "settings": {
-            "icon": "zap",
-            "title": "Error Handling Built-In",
-            "description": "Automatic retries and failure notifications"
+            "icon": "book_open",
+            "title": "Downloadable Resources",
+            "description": "Templates, checklists, and swipe files included"
           }
         },
-        "feature_LYWeXR": {
+        "feature_TzfnRy": {
           "type": "feature",
           "settings": {
-            "icon": "layers",
-            "title": "Modular Design",
-            "description": "Mix and match components across workflows"
+            "icon": "award",
+            "title": "Completion Certificates",
+            "description": "Showcase your new skills with verifiable credentials"
           }
         },
-        "step_dimTgp": {
-          "type": "step",
+        "category_row_y8HjGf": {
+          "type": "category_row",
           "settings": {
-            "title": "Download & Import",
-            "description": "Get the JSON blueprint and import into Make.com with one click"
+            "label": "Content Creation & Visual Media",
+            "count": "6 courses",
+            "subtext": "—",
+            "dot_color": "purple"
           }
         },
-        "step_VnmnPr": {
-          "type": "step",
+        "category_row_9YkkmR": {
+          "type": "category_row",
           "settings": {
-            "title": "Connect Your Apps",
-            "description": "Authenticate your accounts (Gmail, Notion, Slack, etc.)"
+            "label": "Marketing & Brand",
+            "count": "3 courses",
+            "subtext": "—",
+            "dot_color": "pink"
           }
         },
-        "step_L4VrdW": {
-          "type": "step",
+        "category_row_gGTXWd": {
+          "type": "category_row",
           "settings": {
-            "title": "Activate & Go",
-            "description": "Turn on the scenario and watch it run automatically"
+            "label": "Scaling & Growth",
+            "count": "2 courses",
+            "subtext": "—",
+            "dot_color": "fuchsia"
           }
         },
-        "use_case_JJcta4": {
-          "type": "use_case",
+        "skill_t9dFWG": {
+          "type": "skill",
           "settings": {
-            "icon": "target",
-            "label": "Lead Generation"
+            "label": "AI Image Generation"
           }
         },
-        "use_case_jMAqxd": {
-          "type": "use_case",
+        "skill_BMhyQ7": {
+          "type": "skill",
           "settings": {
-            "icon": "trending_up",
-            "label": "Social Media"
+            "label": "Video Production"
           }
         },
-        "use_case_RCYrLV": {
-          "type": "use_case",
+        "skill_aCBBaf": {
+          "type": "skill",
           "settings": {
-            "icon": "clock",
-            "label": "Task Management"
+            "label": "Prompt Engineering"
           }
         },
-        "use_case_ERKAra": {
-          "type": "use_case",
+        "skill_J4xdFD": {
+          "type": "skill",
           "settings": {
-            "icon": "layers",
-            "label": "Data Sync"
+            "label": "Brand Systems"
+          }
+        },
+        "skill_hPK4tJ": {
+          "type": "skill",
+          "settings": {
+            "label": "Content Scaling"
           }
         }
       },
       "block_order": [
-        "stat_GWD7ba",
-        "stat_YPXGan",
-        "stat_k9Na3w",
-        "stat_kRiXbz",
-        "feature_6ayyDM",
-        "feature_t9LUty",
-        "feature_LYWeXR",
-        "step_dimTgp",
-        "step_VnmnPr",
-        "step_L4VrdW",
-        "use_case_JJcta4",
-        "use_case_jMAqxd",
-        "use_case_RCYrLV",
-        "use_case_ERKAra"
+        "stat_gCttVx",
+        "stat_YMfWYy",
+        "stat_PfA9ea",
+        "stat_jjKjLL",
+        "feature_qtYHD6",
+        "feature_RtF8EC",
+        "feature_TzfnRy",
+        "category_row_y8HjGf",
+        "category_row_9YkkmR",
+        "category_row_gGTXWd",
+        "skill_t9dFWG",
+        "skill_BMhyQ7",
+        "skill_aCBBaf",
+        "skill_J4xdFD",
+        "skill_hPK4tJ"
       ],
-      "name": "Shop Sub Page About",
+      "name": "Shop Sub Page About (Courses)",
       "settings": {
-        "color_theme": "blue",
-        "inside_eyebrow": "What's Inside",
-        "inside_heading": "Production-Ready Blueprints",
-        "inside_description": "Each template includes complete Make.com blueprints with pre-configured modules, error handling, and documentation. Import once and customize for your specific needs.",
-        "right_column_mode": "steps",
+        "color_theme": "purple",
+        "inside_eyebrow": "Learning Approach",
+        "inside_heading": "Practical, Not Theoretical",
+        "inside_description": "Every course is built around real-world projects. You'll learn by doing—building actual campaigns, workflows, and assets you can use immediately in your work.",
+        "right_column_mode": "categories",
         "steps_eyebrow": "How It Works",
         "steps_heading": "Setup in 3 Steps",
         "course_eyebrow": "Course Categories",
         "course_heading": "Skills That Matter",
-        "show_cta_box": false,
+        "show_cta_box": true,
         "cta_heading": "Free courses available!",
         "cta_subtext": "Start learning with no commitment",
         "capability_eyebrow": "Agent Capabilities",
@@ -209,19 +218,19 @@
         "show_agent_cta": false,
         "agent_cta_heading": "Always Online",
         "agent_cta_subtext": "Deploy once, available 24/7 without maintenance",
-        "bottom_mode": "use_cases",
+        "bottom_mode": "skills",
         "installation_eyebrow": "Installation",
         "installation_heading": "Add to Your Store in 3 Steps",
         "use_cases_eyebrow": "Popular Use Cases",
         "skills_eyebrow": "What You'll Master"
       }
     },
-    "shop_sub_page_products_yweFaV": {
+    "shop_sub_page_products_eBhcDy": {
       "type": "shop-sub-page-products",
-      "name": "Shop Sub Page Products",
+      "name": "Shop Sub Page Products (Courses)",
       "settings": {
-        "collection": "frontpage",
-        "card_style": "default",
+        "collection": "collection-3",
+        "card_style": "courses",
         "sections_type_label": "Section",
         "sections_cta_text": "View Details",
         "show_active_badge": true,
@@ -239,7 +248,7 @@
         "columns": "4"
       }
     },
-    "shop_sub_page_cta_EUHFUp": {
+    "shop_sub_page_cta_6m8Pwg": {
       "type": "shop-sub-page-cta",
       "name": "Shop Sub Page CTA",
       "settings": {
@@ -252,9 +261,9 @@
   },
   "order": [
     "main",
-    "shop_sub_page_intro_8gU98D",
-    "shop_sub_page_about_VMWH9r",
-    "shop_sub_page_products_yweFaV",
-    "shop_sub_page_cta_EUHFUp"
+    "shop_sub_page_intro_7qp3nq",
+    "shop_sub_page_about_BKNMBT",
+    "shop_sub_page_products_eBhcDy",
+    "shop_sub_page_cta_6m8Pwg"
   ]
 }
