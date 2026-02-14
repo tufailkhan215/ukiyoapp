@@ -9,20 +9,13 @@
  */
 {
   "sections": {
-    "blog_intro_kbEr3z": {
-      "type": "blog-intro",
-      "name": "Blog Intro",
-      "settings": {
-        "background_color": "#0a0a0a",
-        "show_grid": true,
-        "badge": "(Insights & Stories)",
-        "title_line1": "BLOGS &",
-        "title_line2": "LATEST ARTICLES",
-        "subtitle": "Insights, inspiration, and innovation from the intersection of creativity, technology, and culture."
-      }
+    "main_collection_eefhdV": {
+      "type": "main-collection",
+      "name": "Collection products",
+      "settings": {}
     }
   },
   "order": [
-    "blog_intro_kbEr3z"
+    "main_collection_eefhdV"
   ]
 }
