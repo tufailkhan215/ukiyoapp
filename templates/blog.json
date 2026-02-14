@@ -260,6 +260,18 @@
         "title_before": "Latest",
         "title_gradient": "Articles"
       }
+    },
+    "blog_newsletter_signup_RcRmqg": {
+      "type": "blog-newsletter-signup",
+      "name": "Newsletter sign up",
+      "settings": {
+        "heading": "Stay in the Loop",
+        "description": "Get the latest insights on creativity, technology, and brand growth delivered to your inbox.",
+        "placeholder": "Enter your email",
+        "email_label": "Email",
+        "button_text": "Subscribe",
+        "success_message": "Thanks for subscribing!"
+      }
     }
   },
   "order": [
@@ -268,6 +280,7 @@
     "blog_browse_by_category_AbRday",
     "main_blog",
     "blog_editors_pick_dqPNUd",
-    "blog_latest_articles_mCYz7A"
+    "blog_latest_articles_mCYz7A",
+    "blog_newsletter_signup_RcRmqg"
   ]
 }
