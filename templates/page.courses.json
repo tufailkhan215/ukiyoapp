@@ -1,0 +1,260 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "shop_sub_page_intro_8gU98D": {
+      "type": "shop-sub-page-intro",
+      "blocks": {
+        "tag_EFWctF": {
+          "type": "tag",
+          "settings": {
+            "icon": "zap",
+            "label": "Instant Setup",
+            "accent": false,
+            "highlight": false
+          }
+        },
+        "tag_Dk8zTK": {
+          "type": "tag",
+          "settings": {
+            "icon": "download",
+            "label": "Lifetime Access",
+            "accent": false,
+            "highlight": false
+          }
+        },
+        "tag_PRH8M8": {
+          "type": "tag",
+          "settings": {
+            "icon": "star",
+            "label": "5-Star Rated",
+            "accent": false,
+            "highlight": false
+          }
+        }
+      },
+      "block_order": [
+        "tag_EFWctF",
+        "tag_Dk8zTK",
+        "tag_PRH8M8"
+      ],
+      "name": "Shop Sub Page Intro",
+      "settings": {
+        "back_link_text": "Back to Shop",
+        "back_link_url": "",
+        "category_label": "18 Templates",
+        "category_icon": "workflow",
+        "category_icon_glow": true,
+        "title_line_1": "AUTOMATION",
+        "title_line_2": "TEMPLATES",
+        "title_line_3": "",
+        "description": "Pre-built Make.com automation systems. Download, import, and start automating in minutes—not months.",
+        "color_theme": "blue",
+        "show_circle": true
+      }
+    },
+    "shop_sub_page_about_VMWH9r": {
+      "type": "shop-sub-page-about",
+      "blocks": {
+        "stat_GWD7ba": {
+          "type": "stat",
+          "settings": {
+            "value": "50+",
+            "label": "Automation Scenarios",
+            "use_gradient": true
+          }
+        },
+        "stat_YPXGan": {
+          "type": "stat",
+          "settings": {
+            "value": "100hrs",
+            "label": "Time Saved Monthly",
+            "use_gradient": false
+          }
+        },
+        "stat_k9Na3w": {
+          "type": "stat",
+          "settings": {
+            "value": "5min",
+            "label": "Avg Setup Time",
+            "use_gradient": false
+          }
+        },
+        "stat_kRiXbz": {
+          "type": "stat",
+          "settings": {
+            "value": "99%",
+            "label": "Uptime Rate",
+            "use_gradient": false
+          }
+        },
+        "feature_6ayyDM": {
+          "type": "feature",
+          "settings": {
+            "icon": "workflow",
+            "title": "Complete Workflows",
+            "description": "End-to-end automation from trigger to action"
+          }
+        },
+        "feature_t9LUty": {
+          "type": "feature",
+          "settings": {
+            "icon": "zap",
+            "title": "Error Handling Built-In",
+            "description": "Automatic retries and failure notifications"
+          }
+        },
+        "feature_LYWeXR": {
+          "type": "feature",
+          "settings": {
+            "icon": "layers",
+            "title": "Modular Design",
+            "description": "Mix and match components across workflows"
+          }
+        },
+        "step_dimTgp": {
+          "type": "step",
+          "settings": {
+            "title": "Download & Import",
+            "description": "Get the JSON blueprint and import into Make.com with one click"
+          }
+        },
+        "step_VnmnPr": {
+          "type": "step",
+          "settings": {
+            "title": "Connect Your Apps",
+            "description": "Authenticate your accounts (Gmail, Notion, Slack, etc.)"
+          }
+        },
+        "step_L4VrdW": {
+          "type": "step",
+          "settings": {
+            "title": "Activate & Go",
+            "description": "Turn on the scenario and watch it run automatically"
+          }
+        },
+        "use_case_JJcta4": {
+          "type": "use_case",
+          "settings": {
+            "icon": "target",
+            "label": "Lead Generation"
+          }
+        },
+        "use_case_jMAqxd": {
+          "type": "use_case",
+          "settings": {
+            "icon": "trending_up",
+            "label": "Social Media"
+          }
+        },
+        "use_case_RCYrLV": {
+          "type": "use_case",
+          "settings": {
+            "icon": "clock",
+            "label": "Task Management"
+          }
+        },
+        "use_case_ERKAra": {
+          "type": "use_case",
+          "settings": {
+            "icon": "layers",
+            "label": "Data Sync"
+          }
+        }
+      },
+      "block_order": [
+        "stat_GWD7ba",
+        "stat_YPXGan",
+        "stat_k9Na3w",
+        "stat_kRiXbz",
+        "feature_6ayyDM",
+        "feature_t9LUty",
+        "feature_LYWeXR",
+        "step_dimTgp",
+        "step_VnmnPr",
+        "step_L4VrdW",
+        "use_case_JJcta4",
+        "use_case_jMAqxd",
+        "use_case_RCYrLV",
+        "use_case_ERKAra"
+      ],
+      "name": "Shop Sub Page About",
+      "settings": {
+        "color_theme": "blue",
+        "inside_eyebrow": "What's Inside",
+        "inside_heading": "Production-Ready Blueprints",
+        "inside_description": "Each template includes complete Make.com blueprints with pre-configured modules, error handling, and documentation. Import once and customize for your specific needs.",
+        "right_column_mode": "steps",
+        "steps_eyebrow": "How It Works",
+        "steps_heading": "Setup in 3 Steps",
+        "course_eyebrow": "Course Categories",
+        "course_heading": "Skills That Matter",
+        "show_cta_box": false,
+        "cta_heading": "Free courses available!",
+        "cta_subtext": "Start learning with no commitment",
+        "capability_eyebrow": "Agent Capabilities",
+        "capability_heading": "What They Can Do",
+        "show_agent_cta": false,
+        "agent_cta_heading": "Always Online",
+        "agent_cta_subtext": "Deploy once, available 24/7 without maintenance",
+        "bottom_mode": "use_cases",
+        "installation_eyebrow": "Installation",
+        "installation_heading": "Add to Your Store in 3 Steps",
+        "use_cases_eyebrow": "Popular Use Cases",
+        "skills_eyebrow": "What You'll Master"
+      }
+    },
+    "shop_sub_page_products_yweFaV": {
+      "type": "shop-sub-page-products",
+      "name": "Shop Sub Page Products",
+      "settings": {
+        "collection": "frontpage",
+        "card_style": "default",
+        "sections_type_label": "Section",
+        "sections_cta_text": "View Details",
+        "show_active_badge": true,
+        "active_badge_text": "Active",
+        "agents_cta_text": "View Details",
+        "agents_max_tags": 3,
+        "type_label": "Course",
+        "default_duration": "2-4 hours",
+        "default_students": "1.2k",
+        "cta_text": "View Course",
+        "eyebrow": "(Browse)",
+        "title_suffix": "Products Available",
+        "show_live_badge": true,
+        "products_per_page": 24,
+        "columns": "4"
+      }
+    },
+    "shop_sub_page_cta_EUHFUp": {
+      "type": "shop-sub-page-cta",
+      "name": "Shop Sub Page CTA",
+      "settings": {
+        "heading": "Get Unlimited Access",
+        "description": "Join membership and download everything for one monthly price.",
+        "button_text": "View Membership Plans",
+        "button_url": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "shop_sub_page_intro_8gU98D",
+    "shop_sub_page_about_VMWH9r",
+    "shop_sub_page_products_yweFaV",
+    "shop_sub_page_cta_EUHFUp"
+  ]
+}
