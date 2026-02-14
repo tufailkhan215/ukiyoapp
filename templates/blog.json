@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "blog_intro": {
+      "type": "blog-intro",
+      "settings": {
+        "badge": "(Insights & Stories)",
+        "title_line1": "BLOGS &",
+        "title_line2": "LATEST ARTICLES",
+        "subtitle": "Insights, inspiration, and innovation from the intersection of creativity, technology, and culture."
+      }
+    },
+    "main_blog": {
+      "type": "main-blog",
+      "settings": {
+        "articles_per_page": 9
+      }
+    }
+  },
+  "order": [
+    "blog_intro",
+    "main_blog"
+  ]
+}
