@@ -1,7 +1,7 @@
-{% comment %} Blog Intro: full-height hero with optional canvas grid, badge, two-line gradient title, subtitle. {% endcomment %}
+{% comment %} Blog Intro: full-height hero with optional canvas (grid + cursor-follow glow), badge, two-line gradient title, subtitle. {% endcomment %}
 {% capture blog_intro_bg_style %}background-color: {{ section.settings.background_color | default: '#0a0a0a' }};{% if section.settings.background_image != blank %} background-image: url({{ section.settings.background_image | image_url: width: 1920 }}); background-size: cover; background-position: center;{% endif %}{% endcapture %}
-<section class="relative min-h-screen flex items-center overflow-hidden" style="{{ blog_intro_bg_style | strip }}" {{ section.shopify_attributes }}>
-  {% if section.settings.show_grid %}
+<section class="relative min-h-screen flex items-center overflow-hidden" style="{{ blog_intro_bg_style | strip }}" data-blog-intro-section data-blog-intro-glow="{% if section.settings.cursor_glow %}true{% else %}false{% endif %}" data-blog-intro-grid="{% if section.settings.show_grid %}true{% else %}false{% endif %}" {{ section.shopify_attributes }}>
+  {% if section.settings.show_grid or section.settings.cursor_glow %}
     <canvas id="blog-intro-canvas-{{ section.id }}" class="absolute inset-0 w-full h-full" width="1920" height="1080" aria-hidden="true"></canvas>
   {% endif %}
   <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 pt-32 pb-20 w-full">
@@ -26,19 +26,43 @@
   </div>
 </section>
 
-{% if section.settings.show_grid %}
+{% if section.settings.show_grid or section.settings.cursor_glow %}
 <script>
 (function() {
+  var section = document.querySelector('[data-blog-intro-section]');
+  if (!section) return;
   var canvas = document.getElementById('blog-intro-canvas-{{ section.id }}');
   if (!canvas) return;
+  var enableGlow = section.getAttribute('data-blog-intro-glow') === 'true';
+  var showGrid = section.getAttribute('data-blog-intro-grid') === 'true';
+  if (!showGrid && !enableGlow) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) enableGlow = false;
+
   var ctx = canvas.getContext('2d');
-  function draw() {
+  var mouseX = 0.5, mouseY = 0.5;
+  var targetX = 0.5, targetY = 0.5;
+  var lerp = 0.08;
+
+  function resizeCanvas() {
     var w = canvas.parentElement.clientWidth;
     var h = canvas.parentElement.clientHeight;
     canvas.width = w;
     canvas.height = h;
-    ctx.fillStyle = 'transparent';
-    ctx.fillRect(0, 0, w, h);
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    var ro = new ResizeObserver(resizeCanvas);
+    ro.observe(canvas.parentElement);
+  }
+  resizeCanvas();
+
+  section.addEventListener('mousemove', function(e) {
+    var rect = section.getBoundingClientRect();
+    targetX = (e.clientX - rect.left) / rect.width;
+    targetY = (e.clientY - rect.top) / rect.height;
+  }, { passive: true });
+
+  function drawGrid(w, h) {
+    if (!showGrid) return;
     ctx.strokeStyle = 'rgba(255,255,255,0.04)';
     ctx.lineWidth = 1;
     var spacing = 48;
@@ -55,8 +79,32 @@
       ctx.stroke();
     }
   }
-  draw();
-  window.addEventListener('resize', draw);
+
+  function loop() {
+    var w = canvas.width, h = canvas.height;
+    if (!w || !h) { requestAnimationFrame(loop); return; }
+
+    if (enableGlow) {
+      mouseX += (targetX - mouseX) * lerp;
+      mouseY += (targetY - mouseY) * lerp;
+    }
+
+    ctx.clearRect(0, 0, w, h);
+    drawGrid(w, h);
+
+    if (enableGlow) {
+      var x = mouseX * w, y = mouseY * h;
+      var g = ctx.createRadialGradient(x, y, 0, x, y, 420);
+      g.addColorStop(0, 'rgba(255,255,255,0.08)');
+      g.addColorStop(0.45, 'rgba(255,255,255,0.03)');
+      g.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, w, h);
+    }
+
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
 })();
 </script>
 {% endif %}
@@ -89,6 +137,13 @@
       "label": "Show grid overlay",
       "default": true,
       "info": "Draws a subtle grid pattern on the background."
+    },
+    {
+      "type": "checkbox",
+      "id": "cursor_glow",
+      "label": "Cursor-follow glow",
+      "default": true,
+      "info": "Soft glow on canvas that follows the mouse. Disabled when prefers-reduced-motion is set."
     },
     {
       "type": "header",
