@@ -1,0 +1,199 @@
+{% comment %} Latest Articles: badge + gradient title, grid of article cards (image, category tag, meta, title, excerpt). {% endcomment %}
+{% assign article_blocks = section.blocks | where: 'type', 'article' %}
+<section class="relative py-32 lg:py-40 overflow-hidden bg-black" {{ section.shopify_attributes }}>
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="mb-16">
+      {% if section.settings.badge != blank %}
+        <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-4">{{ section.settings.badge }}</span>
+      {% endif %}
+      {% if section.settings.title_before != blank or section.settings.title_gradient != blank %}
+        <h2 class="text-4xl md:text-5xl font-bold text-white">
+          {{ section.settings.title_before }}
+          {% if section.settings.title_gradient != blank %}
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_gradient }}</span>
+          {% endif %}
+        </h2>
+      {% endif %}
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+      {% for block in article_blocks %}
+        {% assign article_url = block.settings.url | default: '#' %}
+        <div class="group" {{ block.shopify_attributes }}>
+          <a href="{{ article_url }}" class="block">
+            <div class="relative aspect-[4/3] overflow-hidden mb-5">
+              {% if block.settings.image != blank %}
+                <img
+                  alt="{{ block.settings.title | default: 'Article' | escape }}"
+                  class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                  src="{{ block.settings.image | image_url: width: 800 }}"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                >
+              {% else %}
+                <div class="absolute inset-0 bg-white/5" aria-hidden="true"></div>
+              {% endif %}
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true"></div>
+              {% if block.settings.category_tag != blank %}
+                <div class="absolute top-4 left-4 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full">
+                  <span class="text-xs text-white uppercase tracking-wider">{{ block.settings.category_tag }}</span>
+                </div>
+              {% endif %}
+            </div>
+            {% if block.settings.meta != blank %}
+              <span class="text-white/40 text-xs mb-2 block">{{ block.settings.meta }}</span>
+            {% endif %}
+            {% if block.settings.title != blank %}
+              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-white/90 transition-colors leading-tight">{{ block.settings.title }}</h3>
+            {% endif %}
+            {% if block.settings.excerpt != blank %}
+              <p class="text-white/40 text-sm leading-relaxed blog-latest-articles-excerpt">{{ block.settings.excerpt }}</p>
+            {% endif %}
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .blog-latest-articles-excerpt {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Latest Articles",
+  "tag": "section",
+  "class": "section-blog-latest-articles",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge",
+      "default": "(Recent)"
+    },
+    {
+      "type": "text",
+      "id": "title_before",
+      "label": "Title (before gradient)",
+      "default": "Latest "
+    },
+    {
+      "type": "text",
+      "id": "title_gradient",
+      "label": "Title (gradient word)",
+      "default": "Articles"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "article",
+      "name": "Article",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "category_tag",
+          "label": "Category tag",
+          "default": "Branding"
+        },
+        {
+          "type": "text",
+          "id": "meta",
+          "label": "Meta (date & read time)",
+          "default": "Jan 10, 2025 • 6 min read"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Article title",
+          "default": "Building a Brand That Resonates in 2025"
+        },
+        {
+          "type": "textarea",
+          "id": "excerpt",
+          "label": "Excerpt",
+          "default": "Learn the essential elements of creating a brand identity that truly connects with your target market."
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Article URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Latest Articles",
+      "blocks": [
+        {
+          "type": "article",
+          "settings": {
+            "category_tag": "Branding",
+            "meta": "Jan 10, 2025 • 6 min read",
+            "title": "Building a Brand That Resonates in 2025",
+            "excerpt": "Learn the essential elements of creating a brand identity that truly connects with your target market."
+          }
+        },
+        {
+          "type": "article",
+          "settings": {
+            "category_tag": "Automation",
+            "meta": "Jan 5, 2025 • 10 min read",
+            "title": "Automation Strategies for Modern Businesses",
+            "excerpt": "Stay ahead of the curve with these cutting-edge automation strategies for scaling your operations."
+          }
+        },
+        {
+          "type": "article",
+          "settings": {
+            "category_tag": "Creative",
+            "meta": "Dec 28, 2024 • 7 min read",
+            "title": "The Art of Visual Storytelling",
+            "excerpt": "How to create compelling visual narratives that capture attention and drive engagement."
+          }
+        },
+        {
+          "type": "article",
+          "settings": {
+            "category_tag": "Marketing",
+            "meta": "Dec 20, 2024 • 5 min read",
+            "title": "Community-Driven Marketing: The Ukiyo Way",
+            "excerpt": "Discover how building authentic communities can transform your brand presence."
+          }
+        },
+        {
+          "type": "article",
+          "settings": {
+            "category_tag": "Case Studies",
+            "meta": "Dec 15, 2024 • 12 min read",
+            "title": "Scaling from $2k to $100k: Real Case Studies",
+            "excerpt": "Real stories of businesses that transformed their revenue using AI-driven automation."
+          }
+        },
+        {
+          "type": "article",
+          "settings": {
+            "category_tag": "Branding",
+            "meta": "Dec 10, 2024 • 9 min read",
+            "title": "The Psychology of Premium Branding",
+            "excerpt": "Understanding what makes luxury brands feel luxurious and how to apply it."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
