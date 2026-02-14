@@ -3,7 +3,8 @@
   <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
   <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.03),transparent_70%)]" aria-hidden="true"></div>
   <div class="relative max-w-[800px] mx-auto px-6 lg:px-12 text-center">
-    {% form 'contact', id: 'newsletter-' | append: section.id, class: 'newsletter-signup-form' %}
+    {% assign newsletter_form_id = 'newsletter-' | append: section.id %}
+    {% form 'contact', id: newsletter_form_id, class: 'newsletter-signup-form' %}
       <input type="hidden" name="contact[body]" value="Newsletter signup">
       {% if form.posted_successfully? %}
         <p class="text-white/60 text-sm mb-6" role="status">

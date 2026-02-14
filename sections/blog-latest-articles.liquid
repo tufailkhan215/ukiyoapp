@@ -1,5 +1,17 @@
-{% comment %} Latest Articles: badge + gradient title, grid of article cards (image, category tag, meta, title, excerpt). {% endcomment %}
+{% comment %} Latest Articles: badge + gradient title. Content: manual blocks OR articles from selected blog (with per-page, per-row, pagination). {% endcomment %}
 {% assign article_blocks = section.blocks | where: 'type', 'article' %}
+{% assign content_source = section.settings.content_source | default: 'blocks' %}
+{% assign selected_blog = section.settings.blog %}
+{% assign articles_per_row = section.settings.articles_per_row | default: '3' %}
+{% assign grid_cols_class = 'md:grid-cols-2' %}
+{% if articles_per_row == '2' %}
+  {% assign grid_cols_class = 'md:grid-cols-2 lg:grid-cols-2' %}
+{% elsif articles_per_row == '3' %}
+  {% assign grid_cols_class = 'md:grid-cols-2 lg:grid-cols-3' %}
+{% else %}
+  {% assign grid_cols_class = 'md:grid-cols-2 lg:grid-cols-4' %}
+{% endif %}
+
 <section class="relative py-32 lg:py-40 overflow-hidden bg-black" {{ section.shopify_attributes }}>
   <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
   <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
@@ -17,44 +29,100 @@
       {% endif %}
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-      {% for block in article_blocks %}
-        {% assign article_url = block.settings.url | default: '#' %}
-        <div class="group" {{ block.shopify_attributes }}>
-          <a href="{{ article_url }}" class="block">
-            <div class="relative aspect-[4/3] overflow-hidden mb-5">
-              {% if block.settings.image != blank %}
-                <img
-                  alt="{{ block.settings.title | default: 'Article' | escape }}"
-                  class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
-                  src="{{ block.settings.image | image_url: width: 800 }}"
-                  width="800"
-                  height="600"
-                  loading="lazy"
-                >
-              {% else %}
-                <div class="absolute inset-0 bg-white/5" aria-hidden="true"></div>
-              {% endif %}
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true"></div>
-              {% if block.settings.category_tag != blank %}
-                <div class="absolute top-4 left-4 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full">
-                  <span class="text-xs text-white uppercase tracking-wider">{{ block.settings.category_tag }}</span>
+    {% if content_source == 'blog' and selected_blog != blank %}
+      {% assign articles_per_page = section.settings.articles_per_page | default: 9 %}
+      {% paginate selected_blog.articles by articles_per_page %}
+        <div class="grid {{ grid_cols_class }} gap-8 lg:gap-12">
+          {% for article in selected_blog.articles %}
+            <article class="group">
+              <a href="{{ article.url }}" class="block">
+                <div class="relative aspect-[4/3] overflow-hidden mb-5">
+                  {% if article.image %}
+                    <img
+                      alt="{{ article.image.alt | default: article.title | escape }}"
+                      class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                      src="{{ article.image | image_url: width: 800 }}"
+                      width="800"
+                      height="600"
+                      loading="lazy"
+                    >
+                  {% else %}
+                    <div class="absolute inset-0 bg-white/5" aria-hidden="true"></div>
+                  {% endif %}
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true"></div>
+                  {% if article.tags.first != blank %}
+                    <div class="absolute top-4 left-4 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full">
+                      <span class="text-xs text-white uppercase tracking-wider">{{ article.tags.first }}</span>
+                    </div>
+                  {% endif %}
                 </div>
-              {% endif %}
-            </div>
-            {% if block.settings.meta != blank %}
-              <span class="text-white/40 text-xs mb-2 block">{{ block.settings.meta }}</span>
-            {% endif %}
-            {% if block.settings.title != blank %}
-              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-white/90 transition-colors leading-tight">{{ block.settings.title }}</h3>
-            {% endif %}
-            {% if block.settings.excerpt != blank %}
-              <p class="text-white/40 text-sm leading-relaxed blog-latest-articles-excerpt">{{ block.settings.excerpt }}</p>
-            {% endif %}
-          </a>
+                <span class="text-white/40 text-xs mb-2 block">
+                  {{ article.published_at | date: '%B %d, %Y' }}{% if article.content != blank %} • {{ article.content | strip_html | split: ' ' | size | divided_by: 200 | at_least: 1 }} min read{% endif %}
+                </span>
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-white/90 transition-colors leading-tight">{{ article.title }}</h3>
+                {% if article.excerpt != blank %}
+                  <p class="text-white/40 text-sm leading-relaxed blog-latest-articles-excerpt">{{ article.excerpt_or_content | strip_html | truncate: 120 }}</p>
+                {% elsif article.content != blank %}
+                  <p class="text-white/40 text-sm leading-relaxed blog-latest-articles-excerpt">{{ article.content | strip_html | truncate: 120 }}</p>
+                {% endif %}
+              </a>
+            </article>
+          {% else %}
+            <p class="text-white/50 text-center py-12 col-span-full">No articles in this blog yet.</p>
+          {% endfor %}
         </div>
-      {% endfor %}
-    </div>
+        {% if paginate.pages > 1 %}
+          <nav class="mt-12 flex flex-wrap justify-center items-center gap-2" aria-label="Latest articles pagination">
+            {% if paginate.previous %}
+              <a href="{{ paginate.previous.url }}" class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-white/70 hover:bg-white/10 transition-colors">Previous</a>
+            {% endif %}
+            <span class="px-4 py-2 text-white/50 text-sm">Page {{ paginate.current_page }} of {{ paginate.pages }}</span>
+            {% if paginate.next %}
+              <a href="{{ paginate.next.url }}" class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-white/70 hover:bg-white/10 transition-colors">Next</a>
+            {% endif %}
+          </nav>
+        {% endif %}
+      {% endpaginate %}
+    {% else %}
+      <div class="grid {{ grid_cols_class }} gap-8 lg:gap-12">
+        {% for block in article_blocks %}
+          {% assign article_url = block.settings.url | default: '#' %}
+          <div class="group" {{ block.shopify_attributes }}>
+            <a href="{{ article_url }}" class="block">
+              <div class="relative aspect-[4/3] overflow-hidden mb-5">
+                {% if block.settings.image != blank %}
+                  <img
+                    alt="{{ block.settings.title | default: 'Article' | escape }}"
+                    class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                    src="{{ block.settings.image | image_url: width: 800 }}"
+                    width="800"
+                    height="600"
+                    loading="lazy"
+                  >
+                {% else %}
+                  <div class="absolute inset-0 bg-white/5" aria-hidden="true"></div>
+                {% endif %}
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true"></div>
+                {% if block.settings.category_tag != blank %}
+                  <div class="absolute top-4 left-4 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full">
+                    <span class="text-xs text-white uppercase tracking-wider">{{ block.settings.category_tag }}</span>
+                  </div>
+                {% endif %}
+              </div>
+              {% if block.settings.meta != blank %}
+                <span class="text-white/40 text-xs mb-2 block">{{ block.settings.meta }}</span>
+              {% endif %}
+              {% if block.settings.title != blank %}
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-white/90 transition-colors leading-tight">{{ block.settings.title }}</h3>
+              {% endif %}
+              {% if block.settings.excerpt != blank %}
+                <p class="text-white/40 text-sm leading-relaxed blog-latest-articles-excerpt">{{ block.settings.excerpt }}</p>
+              {% endif %}
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
   </div>
 </section>
 
@@ -73,6 +141,45 @@
   "tag": "section",
   "class": "section-blog-latest-articles",
   "settings": [
+    {
+      "type": "radio",
+      "id": "content_source",
+      "label": "Content source",
+      "options": [
+        { "value": "blocks", "label": "Manual articles (blocks below)" },
+        { "value": "blog", "label": "From blog (select a blog)" }
+      ],
+      "default": "blocks",
+      "info": "Show manually added article cards, or fetch articles from a blog with pagination."
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog",
+      "info": "Used when content source is \"From blog\"."
+    },
+    {
+      "type": "range",
+      "id": "articles_per_page",
+      "label": "Articles per page",
+      "min": 3,
+      "max": 24,
+      "step": 3,
+      "default": 9,
+      "info": "Applies when content source is \"From blog\". Pagination appears when there are more articles."
+    },
+    {
+      "type": "select",
+      "id": "articles_per_row",
+      "label": "Articles per row (desktop)",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ],
+      "default": "3",
+      "info": "Grid columns on large screens."
+    },
     {
       "type": "text",
       "id": "badge",
