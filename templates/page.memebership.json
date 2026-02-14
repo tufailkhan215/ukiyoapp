@@ -421,7 +421,6 @@
       "blocks": {
         "product_KideaA": {
           "type": "product",
-          "disabled": true,
           "settings": {
             "title": "Work and Personal Productivity Automation Templates",
             "price": "$99",
@@ -431,7 +430,6 @@
         },
         "product_mkYVA4": {
           "type": "product",
-          "disabled": true,
           "settings": {
             "title": "Ultimate AI Avatar Bot Template",
             "price": "$99",
@@ -441,7 +439,6 @@
         },
         "product_TJUdRB": {
           "type": "product",
-          "disabled": true,
           "settings": {
             "title": "Twitter Automation Templates",
             "price": "$99",
@@ -451,7 +448,6 @@
         },
         "product_iUD7JH": {
           "type": "product",
-          "disabled": true,
           "settings": {
             "title": "Social Assistant News Bot Template",
             "price": "$99",
