@@ -1,0 +1,171 @@
+{% comment %} Everything You Need: badge + heading, row of 4 centered feature cards (icon on top), row of 3 inline feature cards (icon left, colored). {% endcomment %}
+{% assign centered_blocks = section.blocks | where: 'type', 'feature_centered' %}
+{% assign inline_blocks = section.blocks | where: 'type', 'feature_inline' %}
+<section class="relative py-24 lg:py-32 bg-black" {{ section.shopify_attributes }}>
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="text-center mb-16">
+      {% if section.settings.badge != blank %}
+        <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-4">{{ section.settings.badge }}</span>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h2 class="text-4xl md:text-5xl font-bold text-white">{{ section.settings.heading }}</h2>
+      {% endif %}
+    </div>
+
+    {% if centered_blocks.size > 0 %}
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        {% for block in centered_blocks %}
+          <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/10 text-center group cursor-default" {{ block.shopify_attributes }}>
+            <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+              {% case block.settings.icon %}
+                {% when 'download' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/60 group-hover:text-white transition-colors" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
+                {% when 'zap' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/60 group-hover:text-white transition-colors" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
+                {% when 'sparkles' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/60 group-hover:text-white transition-colors" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path><path d="M20 3v4"></path><path d="M22 5h-4"></path><path d="M4 17v2"></path><path d="M5 18H3"></path></svg>
+                {% when 'users' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/60 group-hover:text-white transition-colors" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                {% else %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/60 group-hover:text-white transition-colors" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
+              {% endcase %}
+            </div>
+            {% if block.settings.title != blank %}
+              <h4 class="text-lg font-semibold text-white mb-2">{{ block.settings.title }}</h4>
+            {% endif %}
+            {% if block.settings.description != blank %}
+              <p class="text-white/50 text-sm">{{ block.settings.description }}</p>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if inline_blocks.size > 0 %}
+      <div class="grid md:grid-cols-3 gap-6">
+        {% for block in inline_blocks %}
+          <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/10 flex items-center gap-4" {{ block.shopify_attributes }}>
+            <div class="shrink-0">
+              {% case block.settings.icon %}
+                {% when 'star' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-400" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                {% when 'shield' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-400" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg>
+                {% when 'headphones' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400" aria-hidden="true"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"></path></svg>
+                {% else %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-400" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+              {% endcase %}
+            </div>
+            <div>
+              {% if block.settings.title != blank %}
+                <h4 class="text-white font-medium">{{ block.settings.title }}</h4>
+              {% endif %}
+              {% if block.settings.description != blank %}
+                <p class="text-white/50 text-sm">{{ block.settings.description }}</p>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Everything You Need",
+  "tag": "section",
+  "class": "section-membership-everything-you-need",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge",
+      "default": "(Why Membership)"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Everything You Need"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature_centered",
+      "name": "Feature (icon on top)",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "download", "label": "Download" },
+            { "value": "zap", "label": "Lightning" },
+            { "value": "sparkles", "label": "Sparkles" },
+            { "value": "users", "label": "Users" }
+          ],
+          "default": "download"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Unlimited Downloads"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "No limits, no extra fees"
+        }
+      ]
+    },
+    {
+      "type": "feature_inline",
+      "name": "Feature (icon left)",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "star", "label": "Star (yellow)" },
+            { "value": "shield", "label": "Shield (emerald)" },
+            { "value": "headphones", "label": "Headphones (blue)" }
+          ],
+          "default": "star"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Premium Quality"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Battle-tested templates"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Everything You Need",
+      "blocks": [
+        { "type": "feature_centered", "settings": { "icon": "download", "title": "Unlimited Downloads", "description": "No limits, no extra fees" } },
+        { "type": "feature_centered", "settings": { "icon": "zap", "title": "Instant Access", "description": "Start using immediately" } },
+        { "type": "feature_centered", "settings": { "icon": "sparkles", "title": "New Releases", "description": "Get all new content" } },
+        { "type": "feature_centered", "settings": { "icon": "users", "title": "Community", "description": "Private Discord access" } },
+        { "type": "feature_inline", "settings": { "icon": "star", "title": "Premium Quality", "description": "Battle-tested templates" } },
+        { "type": "feature_inline", "settings": { "icon": "shield", "title": "Cancel Anytime", "description": "No contracts" } },
+        { "type": "feature_inline", "settings": { "icon": "headphones", "title": "Priority Support", "description": "Direct team access" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

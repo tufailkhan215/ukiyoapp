@@ -1,0 +1,201 @@
+{% comment %} Pricing Plan: badge + heading + subtitle, grid of plan cards (title, description, price, feature list, CTA). One card can be highlighted (Most Popular) with glow and filled button. {% endcomment %}
+{% assign plan_blocks = section.blocks | where: 'type', 'plan' %}
+<section class="relative py-24 lg:py-32 bg-black" {{ section.shopify_attributes }}>
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="max-w-[1200px] mx-auto px-6 lg:px-12">
+    <div class="text-center mb-16">
+      {% if section.settings.badge != blank %}
+        <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-4">{{ section.settings.badge }}</span>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subtitle != blank %}
+        <p class="text-white/50 max-w-xl mx-auto">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    {% if plan_blocks.size > 0 %}
+      <div class="grid md:grid-cols-3 gap-6">
+        {% for block in plan_blocks %}
+          {% assign is_highlighted = block.settings.highlight %}
+          <div class="relative" {{ block.shopify_attributes }}>
+            {% if is_highlighted %}
+              <div class="absolute -inset-1 bg-gradient-to-r from-white/20 to-white/5 rounded-3xl blur-xl opacity-50" aria-hidden="true"></div>
+            {% endif %}
+            <div class="relative p-8 rounded-2xl border transition-all duration-300 {% if is_highlighted %}bg-white/[0.04] border-white/20{% else %}bg-white/[0.02] border-white/10{% endif %}">
+              {% if is_highlighted and block.settings.highlight_label != blank %}
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-white text-black text-xs font-bold rounded-full">{{ block.settings.highlight_label }}</div>
+              {% endif %}
+              {% if block.settings.title != blank %}
+                <h3 class="text-xl font-bold text-white mb-1">{{ block.settings.title }}</h3>
+              {% endif %}
+              {% if block.settings.description != blank %}
+                <p class="text-white/50 text-sm mb-6">{{ block.settings.description }}</p>
+              {% endif %}
+              <div class="flex items-baseline gap-1 mb-6">
+                {% if block.settings.price != blank %}
+                  <span class="text-4xl font-black text-white">{{ block.settings.price }}</span>
+                {% endif %}
+                {% if block.settings.price_suffix != blank %}
+                  <span class="text-white/40">{{ block.settings.price_suffix }}</span>
+                {% endif %}
+              </div>
+              {% if block.settings.features != blank %}
+                {% assign feature_lines = block.settings.features | newline_to_br | split: '<br />' %}
+                <div class="space-y-3 mb-8">
+                  {% for line in feature_lines %}
+                    {% assign line_stripped = line | strip %}
+                    {% if line_stripped != '' %}
+                      <div class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-emerald-400" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <span class="text-white/60 text-sm">{{ line_stripped }}</span>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+              {% assign cta_url = block.settings.cta_url | default: '#' %}
+              {% assign cta_text = block.settings.cta_text | default: 'Get Started' %}
+              <a href="{{ cta_url }}" class="block w-full py-3 rounded-full text-center font-semibold transition-all {% if is_highlighted %}bg-white text-black hover:bg-gray-200{% else %}border border-white/20 text-white hover:bg-white/10{% endif %}">{{ cta_text }}</a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pricing Plan",
+  "tag": "section",
+  "class": "section-membership-pricing-plan",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge",
+      "default": "(Pricing)"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Choose Your Plan"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Start with monthly or save with longer commitments."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "plan",
+      "name": "Plan",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "highlight",
+          "label": "Highlight as featured (Most Popular)",
+          "default": false,
+          "info": "Adds glow, brighter border, and filled CTA button."
+        },
+        {
+          "type": "text",
+          "id": "highlight_label",
+          "label": "Highlight badge text",
+          "default": "Most Popular",
+          "info": "Shown when plan is highlighted."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Plan name",
+          "default": "Monthly"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Short description",
+          "default": "Perfect for trying out our library"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price (e.g. $100)",
+          "default": "$100"
+        },
+        {
+          "type": "text",
+          "id": "price_suffix",
+          "label": "Price suffix (e.g. /month)",
+          "default": "/month"
+        },
+        {
+          "type": "textarea",
+          "id": "features",
+          "label": "Features (one per line)",
+          "default": "Access to all Automation Templates\nAccess to all Courses\nAccess to all AI Agents\nAccess to all Shopify Sections"
+        },
+        {
+          "type": "text",
+          "id": "cta_text",
+          "label": "Button text",
+          "default": "Get Started"
+        },
+        {
+          "type": "url",
+          "id": "cta_url",
+          "label": "Button URL",
+          "default": "/contact"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pricing Plan",
+      "blocks": [
+        {
+          "type": "plan",
+          "settings": {
+            "title": "Monthly",
+            "description": "Perfect for trying out our library",
+            "price": "$100",
+            "price_suffix": "/month",
+            "features": "Access to all Automation Templates\nAccess to all Courses\nAccess to all AI Agents\nAccess to all Shopify Sections",
+            "cta_url": "/contact"
+          }
+        },
+        {
+          "type": "plan",
+          "settings": {
+            "highlight": true,
+            "highlight_label": "Most Popular",
+            "title": "Quarterly",
+            "description": "Most popular choice",
+            "price": "$350",
+            "price_suffix": "/quarter",
+            "features": "Everything in Monthly\nPriority support\nEarly access to new releases\nQuarterly strategy call",
+            "cta_url": "/contact"
+          }
+        },
+        {
+          "type": "plan",
+          "settings": {
+            "title": "Annual",
+            "description": "Best value for committed builders",
+            "price": "$1200",
+            "price_suffix": "/year",
+            "features": "Everything in Quarterly\n1-on-1 onboarding session\nCustom template requests\nLifetime updates guarantee",
+            "cta_url": "/contact"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
