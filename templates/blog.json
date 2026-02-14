@@ -1,23 +1,286 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "blog_intro": {
       "type": "blog-intro",
       "settings": {
+        "background_color": "#0a0a0a",
+        "show_grid": true,
         "badge": "(Insights & Stories)",
         "title_line1": "BLOGS &",
         "title_line2": "LATEST ARTICLES",
         "subtitle": "Insights, inspiration, and innovation from the intersection of creativity, technology, and culture."
       }
     },
+    "text_marquee_v1_b39qhQ": {
+      "type": "text-marquee-v1",
+      "blocks": {
+        "item_7iM3HM": {
+          "type": "item",
+          "settings": {
+            "text": "ARTISTS"
+          }
+        },
+        "item_ATHXgE": {
+          "type": "item",
+          "settings": {
+            "text": "INNOVATORS"
+          }
+        },
+        "item_6VDk47": {
+          "type": "item",
+          "settings": {
+            "text": "TECH TRENDS"
+          }
+        },
+        "item_g3ajpT": {
+          "type": "item",
+          "settings": {
+            "text": "PRODUCTS"
+          }
+        },
+        "item_FJxjJg": {
+          "type": "item",
+          "settings": {
+            "text": "EXPERIENCES"
+          }
+        },
+        "item_8Jy77m": {
+          "type": "item",
+          "settings": {
+            "text": "CULINARY"
+          }
+        },
+        "item_gaYGVG": {
+          "type": "item",
+          "settings": {
+            "text": "TRAVEL"
+          }
+        },
+        "item_adzyWH": {
+          "type": "item",
+          "settings": {
+            "text": "CREATIVITY"
+          }
+        }
+      },
+      "block_order": [
+        "item_7iM3HM",
+        "item_ATHXgE",
+        "item_6VDk47",
+        "item_g3ajpT",
+        "item_FJxjJg",
+        "item_8Jy77m",
+        "item_gaYGVG",
+        "item_adzyWH"
+      ],
+      "name": "Text Marquee v1",
+      "settings": {
+        "a11y_label": "Scrolling text",
+        "speed": 40
+      }
+    },
+    "blog_browse_by_category_AbRday": {
+      "type": "blog-browse-by-category",
+      "blocks": {
+        "category_aTJiAr": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/DSC_29323129.webp",
+            "title": "Creative Spotlight",
+            "description": "Highlighting the incredible talents of artists, innovators, and musicians from all avenues of art. Explore their stories, processes, and contributions.",
+            "url": "",
+            "cta_text": "Explore Creative Spotlight"
+          }
+        },
+        "category_9T3Fzr": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/25930044-A454-4EE9-BF1C-43FA0D5EA00E.jpg",
+            "title": "Tech & Products",
+            "description": "Explore the exciting world of technology! The latest gadgets and innovative products that are changing our lives. From smart home devices to cutting-edge apps.",
+            "url": "",
+            "cta_text": "Explore Tech & Products"
+          }
+        },
+        "category_Cqwea9": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/FurTraders_mag_article_samples-02_2.webp",
+            "title": "Culinary Hub",
+            "description": "Dive into a world of culinary delights through our expertly curated food blog. From mouth-watering recipes and restaurant reviews to chef interviews.",
+            "url": "",
+            "cta_text": "Explore Culinary Hub"
+          }
+        },
+        "category_fn3b7x": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/IMG_3161.webp",
+            "title": "Travel & Experiences",
+            "description": "Discover the beauty of the world! Breathtaking destinations, unique adventures, and cultural experiences that inspire wanderlust.",
+            "url": "",
+            "cta_text": "Explore Travel & Experiences"
+          }
+        }
+      },
+      "block_order": [
+        "category_aTJiAr",
+        "category_9T3Fzr",
+        "category_Cqwea9",
+        "category_fn3b7x"
+      ],
+      "name": "Browse by Category",
+      "settings": {
+        "badge": "(Explore Topics)",
+        "title_before": "Browse by",
+        "title_gradient": "Category"
+      }
+    },
     "main_blog": {
       "type": "main-blog",
+      "disabled": true,
       "settings": {
         "articles_per_page": 9
+      }
+    },
+    "blog_editors_pick_dqPNUd": {
+      "type": "blog-editors-pick",
+      "blocks": {
+        "featured_rzRtth": {
+          "type": "featured",
+          "settings": {
+            "image": "shopify://shop_images/IMG_9657_1.webp",
+            "category_tag": "AI & Technology",
+            "meta": "Jan 15, 2025 • 8 min read",
+            "title": "The Future of AI in Brand Marketing: A Complete Guide",
+            "excerpt": "Discover how artificial intelligence is revolutionizing the way brands connect with their audiences. From personalization at scale to predictive analytics.",
+            "url": "",
+            "cta_text": "Read Article"
+          }
+        }
+      },
+      "block_order": [
+        "featured_rzRtth"
+      ],
+      "name": "Editor's Pick",
+      "settings": {
+        "badge": "(Featured)",
+        "title_before": "Editor's",
+        "title_gradient": "Pick"
+      }
+    },
+    "blog_latest_articles_mCYz7A": {
+      "type": "blog-latest-articles",
+      "blocks": {
+        "article_jgCRQy": {
+          "type": "article",
+          "settings": {
+            "category_tag": "Branding",
+            "meta": "Jan 10, 2025 • 6 min read",
+            "title": "Building a Brand That Resonates in 2025",
+            "excerpt": "Learn the essential elements of creating a brand identity that truly connects with your target market.",
+            "url": ""
+          }
+        },
+        "article_mKWNLh": {
+          "type": "article",
+          "settings": {
+            "category_tag": "Automation",
+            "meta": "Jan 5, 2025 • 10 min read",
+            "title": "Automation Strategies for Modern Businesses",
+            "excerpt": "Stay ahead of the curve with these cutting-edge automation strategies for scaling your operations.",
+            "url": ""
+          }
+        },
+        "article_jkWGEt": {
+          "type": "article",
+          "settings": {
+            "category_tag": "Creative",
+            "meta": "Dec 28, 2024 • 7 min read",
+            "title": "The Art of Visual Storytelling",
+            "excerpt": "How to create compelling visual narratives that capture attention and drive engagement.",
+            "url": ""
+          }
+        },
+        "article_XEGPFr": {
+          "type": "article",
+          "settings": {
+            "category_tag": "Marketing",
+            "meta": "Dec 20, 2024 • 5 min read",
+            "title": "Community-Driven Marketing: The Ukiyo Way",
+            "excerpt": "Discover how building authentic communities can transform your brand presence.",
+            "url": ""
+          }
+        },
+        "article_4mRMnG": {
+          "type": "article",
+          "settings": {
+            "category_tag": "Case Studies",
+            "meta": "Dec 15, 2024 • 12 min read",
+            "title": "Scaling from $2k to $100k: Real Case Studies",
+            "excerpt": "Real stories of businesses that transformed their revenue using AI-driven automation.",
+            "url": ""
+          }
+        },
+        "article_HbHg3x": {
+          "type": "article",
+          "settings": {
+            "category_tag": "Branding",
+            "meta": "Dec 10, 2024 • 9 min read",
+            "title": "The Psychology of Premium Branding",
+            "excerpt": "Understanding what makes luxury brands feel luxurious and how to apply it.",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "article_jgCRQy",
+        "article_mKWNLh",
+        "article_jkWGEt",
+        "article_XEGPFr",
+        "article_4mRMnG",
+        "article_HbHg3x"
+      ],
+      "name": "Latest Articles",
+      "settings": {
+        "content_source": "blog",
+        "blog": "news",
+        "articles_per_page": 9,
+        "articles_per_row": "3",
+        "badge": "(Recent)",
+        "title_before": "Latest",
+        "title_gradient": "Articles"
+      }
+    },
+    "blog_newsletter_signup_RcRmqg": {
+      "type": "blog-newsletter-signup",
+      "name": "Newsletter sign up",
+      "settings": {
+        "heading": "Stay in the Loop",
+        "description": "Get the latest insights on creativity, technology, and brand growth delivered to your inbox.",
+        "placeholder": "Enter your email",
+        "email_label": "Email",
+        "button_text": "Subscribe",
+        "success_message": "Thanks for subscribing!"
       }
     }
   },
   "order": [
     "blog_intro",
-    "main_blog"
+    "text_marquee_v1_b39qhQ",
+    "blog_browse_by_category_AbRday",
+    "main_blog",
+    "blog_editors_pick_dqPNUd",
+    "blog_latest_articles_mCYz7A",
+    "blog_newsletter_signup_RcRmqg"
   ]
 }
