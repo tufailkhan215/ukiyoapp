@@ -19,6 +19,16 @@
       "header": {
         "type": "header",
         "blocks": {
+          "dropdown_compact_HzXHHz": {
+            "type": "dropdown_compact",
+            "settings": {
+              "parent_handle": "shop",
+              "header_title": "Membership Overview",
+              "header_url": "#",
+              "section_label": "Categories",
+              "links_text": "Automation Templates|#\nCourses|#\nAI Agents|#\nShopify Sections|#"
+            }
+          },
           "dropdown_category_TLpWTd": {
             "type": "dropdown_category",
             "settings": {
@@ -53,6 +63,7 @@
           }
         },
         "block_order": [
+          "dropdown_compact_HzXHHz",
           "dropdown_category_TLpWTd",
           "dropdown_category_FwQj3T",
           "dropdown_category_iCYpNb",
