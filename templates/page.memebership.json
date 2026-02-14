@@ -11,6 +11,7 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {}
     },
     "membership_intro_YdhrkT": {
@@ -411,6 +412,61 @@
         "show_membership_label": false
       }
     },
+    "featured_products_v1_GHt7zc": {
+      "type": "featured-products-v1",
+      "blocks": {
+        "product_KideaA": {
+          "type": "product",
+          "settings": {
+            "title": "Work and Personal Productivity Automation Templates",
+            "price": "$99",
+            "url": "#",
+            "membership_label": "Included in membership"
+          }
+        },
+        "product_mkYVA4": {
+          "type": "product",
+          "settings": {
+            "title": "Ultimate AI Avatar Bot Template",
+            "price": "$99",
+            "url": "#",
+            "membership_label": "Included in membership"
+          }
+        },
+        "product_TJUdRB": {
+          "type": "product",
+          "settings": {
+            "title": "Twitter Automation Templates",
+            "price": "$99",
+            "url": "#",
+            "membership_label": "Included in membership"
+          }
+        },
+        "product_iUD7JH": {
+          "type": "product",
+          "settings": {
+            "title": "Social Assistant News Bot Template",
+            "price": "$99",
+            "url": "#",
+            "membership_label": "Included in membership"
+          }
+        }
+      },
+      "block_order": [
+        "product_KideaA",
+        "product_mkYVA4",
+        "product_TJUdRB",
+        "product_iUD7JH"
+      ],
+      "name": "Featured Products v1",
+      "settings": {
+        "badge": "(Featured)",
+        "heading": "Automation Templates",
+        "view_all_text": "View All",
+        "view_all_url": "/shop/automation-templates",
+        "show_membership_label": false
+      }
+    },
     "faq_qzK68R": {
       "type": "faq",
       "blocks": {
@@ -530,6 +586,7 @@
     "membership_browse_library_yadRWa",
     "membership_deep_dive_adfgYV",
     "featured_products_v1_TXqf7K",
+    "featured_products_v1_GHt7zc",
     "faq_qzK68R",
     "social_proof_ARJX37"
   ]
