@@ -102,7 +102,7 @@
                     </div>
                     {% if block.settings.count != blank %}<span class="text-white/40 text-sm">{{ block.settings.count }}</span>{% endif %}
                   </div>
-                  {% if block.settings.subtext != blank %}<p class="text-white/40 text-xs pl-5">{{ block.settings.subtext }}</p>{% endif %}
+                  {% if block.settings.subtext != blank and block.settings.subtext != '—' %}<p class="text-white/40 text-xs pl-5">{{ block.settings.subtext }}</p>{% endif %}
                 </div>
               {% endfor %}
             </div>
@@ -557,7 +557,7 @@
           "type": "text",
           "id": "subtext",
           "label": "Subtext (optional)",
-          "default": " "
+          "default": "—"
         },
         {
           "type": "select",
