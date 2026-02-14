@@ -405,6 +405,10 @@
       ],
       "name": "Featured Products v1",
       "settings": {
+        "content_source": "blocks",
+        "collection": "",
+        "products_to_show": 4,
+        "products_per_row": "4",
         "badge": "(Featured)",
         "heading": "Automation Templates",
         "view_all_text": "View All",
@@ -460,11 +464,15 @@
       ],
       "name": "Featured Products v1",
       "settings": {
+        "content_source": "collection",
+        "collection": "frontpage",
+        "products_to_show": 4,
+        "products_per_row": "4",
         "badge": "(Featured)",
         "heading": "Automation Templates",
         "view_all_text": "View All",
         "view_all_url": "/shop/automation-templates",
-        "show_membership_label": false
+        "show_membership_label": true
       }
     },
     "faq_qzK68R": {
