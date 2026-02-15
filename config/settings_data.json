@@ -72,7 +72,7 @@
         "settings": {
           "logo_text": "UKIYO",
           "logo_subtext": "PRODUCTIONS",
-          "menu": "main-menu",
+          "menu": "header-navigation",
           "dropdown_handles": "services, shop",
           "cta_text": "Start Your Project",
           "cta_link": "#"
