@@ -1,6 +1,6 @@
 {% comment %}
-  Product detail: dark layout, color theme from product/collection metafield or section default,
-  tabs (Overview, Benefits, Features, FAQ) from product metafields so they change per product.
+  Product detail: dark layout, color theme from product/collection metafield or section default.
+  Tabs (Overview, Benefits, Features, FAQ) use product METAFIELDS only — no snippets, no section blocks.
   See docs/IMPLEMENTATION-PRODUCT-PAGE.md for metafield setup.
 {% endcomment %}
 {% assign first_collection = product.collections.first %}
@@ -180,6 +180,7 @@
     </div>
   {% endif %}
 
+  {% comment %} Tab content from product metafields (custom.overview, .benefits, .features, .faqs) only; no snippet. {% endcomment %}
   {% if has_overview or has_benefits or has_features or has_faqs %}
     <section class="relative z-10 border-t border-white/10" id="product-tabs">
       <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
