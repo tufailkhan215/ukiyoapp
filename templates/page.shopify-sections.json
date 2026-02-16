@@ -1,0 +1,257 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "shop_sub_page_intro_tK6agX": {
+      "type": "shop-sub-page-intro",
+      "blocks": {
+        "tag_ggPzDF": {
+          "type": "tag",
+          "settings": {
+            "icon": "panels",
+            "label": "Shopify 2.0",
+            "accent": false,
+            "highlight": false
+          }
+        },
+        "tag_cDwAiw": {
+          "type": "tag",
+          "settings": {
+            "icon": "sparkles",
+            "label": "No Code",
+            "accent": false,
+            "highlight": false
+          }
+        }
+      },
+      "block_order": [
+        "tag_ggPzDF",
+        "tag_cDwAiw"
+      ],
+      "name": "Shop Sub Page Intro (Sections)",
+      "settings": {
+        "back_link_text": "Back to Shop",
+        "back_link_url": "",
+        "category_label": "58+ Sections",
+        "category_icon": "panels",
+        "category_icon_glow": true,
+        "title_line_1": "SHOPIFY",
+        "title_line_2": "SECTIONS",
+        "title_line_3": "",
+        "description": "Premium Shopify 2.0 sections. Drag, drop, and customize—no coding required.",
+        "color_theme": "amber",
+        "show_circle": true
+      }
+    },
+    "shop_sub_page_about_8tMVkm": {
+      "type": "shop-sub-page-about",
+      "blocks": {
+        "stat_crdFL3": {
+          "type": "stat",
+          "settings": {
+            "value": "86+",
+            "label": "Premium Sections",
+            "use_gradient": false
+          }
+        },
+        "stat_NRzBgk": {
+          "type": "stat",
+          "settings": {
+            "value": "5",
+            "label": "Section Types",
+            "use_gradient": false
+          }
+        },
+        "stat_xKJ44G": {
+          "type": "stat",
+          "settings": {
+            "value": "0",
+            "label": "Code Required",
+            "use_gradient": false
+          }
+        },
+        "stat_bhDVxg": {
+          "type": "stat",
+          "settings": {
+            "value": "100%",
+            "label": "Customizable",
+            "use_gradient": false
+          }
+        },
+        "feature_H4rhj4": {
+          "type": "feature",
+          "settings": {
+            "icon": "panels",
+            "title": "Shopify 2.0 Native",
+            "description": "Built for the latest theme architecture with full customizer support"
+          }
+        },
+        "feature_KgnqaQ": {
+          "type": "feature",
+          "settings": {
+            "icon": "palette",
+            "title": "Fully Customizable",
+            "description": "Adjust colors, fonts, spacing, and content without code"
+          }
+        },
+        "feature_tjPb9N": {
+          "type": "feature",
+          "settings": {
+            "icon": "monitor",
+            "title": "Mobile Responsive",
+            "description": "Looks perfect on every device and screen size"
+          }
+        },
+        "category_row_yixBip": {
+          "type": "category_row",
+          "settings": {
+            "label": "Hero Sections",
+            "count": "25",
+            "subtext": "First impressions that convert",
+            "dot_color": "amber"
+          }
+        },
+        "category_row_AhMKVj": {
+          "type": "category_row",
+          "settings": {
+            "label": "CTA Sections",
+            "count": "19",
+            "subtext": "Drive action and urgency",
+            "dot_color": "orange"
+          }
+        },
+        "category_row_xD3wjN": {
+          "type": "category_row",
+          "settings": {
+            "label": "Media Sections",
+            "count": "23",
+            "subtext": "Galleries, videos, interactive",
+            "dot_color": "yellow"
+          }
+        },
+        "category_row_k9DNMQ": {
+          "type": "category_row",
+          "settings": {
+            "label": "Collection Sections",
+            "count": "9",
+            "subtext": "Showcase products beautifully",
+            "dot_color": "red"
+          }
+        },
+        "category_row_jbPemd": {
+          "type": "category_row",
+          "settings": {
+            "label": "Content Sections",
+            "count": "10",
+            "subtext": "FAQs, testimonials, features",
+            "dot_color": "rose"
+          }
+        },
+        "installation_step_YLYfFe": {
+          "type": "installation_step",
+          "settings": {
+            "title": "Download Section",
+            "description": "Get the Liquid file and assets"
+          }
+        },
+        "installation_step_NkxaKw": {
+          "type": "installation_step",
+          "settings": {
+            "title": "Upload to Theme",
+            "description": "Add to your Shopify theme files"
+          }
+        },
+        "installation_step_mJNDQw": {
+          "type": "installation_step",
+          "settings": {
+            "title": "Customize in Editor",
+            "description": "Adjust settings in theme customizer"
+          }
+        }
+      },
+      "block_order": [
+        "stat_crdFL3",
+        "stat_NRzBgk",
+        "stat_xKJ44G",
+        "stat_bhDVxg",
+        "feature_H4rhj4",
+        "feature_KgnqaQ",
+        "feature_tjPb9N",
+        "category_row_yixBip",
+        "category_row_AhMKVj",
+        "category_row_xD3wjN",
+        "category_row_k9DNMQ",
+        "category_row_jbPemd",
+        "installation_step_YLYfFe",
+        "installation_step_NkxaKw",
+        "installation_step_mJNDQw"
+      ],
+      "name": "Shop Sub Page About (Sections)",
+      "settings": {
+        "color_theme": "amber",
+        "inside_eyebrow": "Section Library",
+        "inside_heading": "Every Section You Need",
+        "inside_description": "From hero banners to product collections, our sections cover every e-commerce use case. Each section is built with Shopify 2.0's section architecture for maximum flexibility.",
+        "right_column_mode": "categories",
+        "steps_eyebrow": "How It Works",
+        "steps_heading": "Setup in 3 Steps",
+        "course_eyebrow": "Section Types",
+        "course_heading": "Organized by Purpose",
+        "show_cta_box": false,
+        "cta_heading": "Free courses available!",
+        "cta_subtext": "Start learning with no commitment",
+        "capability_eyebrow": "Agent Capabilities",
+        "capability_heading": "What They Can Do",
+        "show_agent_cta": false,
+        "agent_cta_heading": "Always Online",
+        "agent_cta_subtext": "Deploy once, available 24/7 without maintenance",
+        "bottom_mode": "installation",
+        "installation_eyebrow": "Installation",
+        "installation_heading": "Add to Your Store in 3 Steps",
+        "use_cases_eyebrow": "Popular Use Cases",
+        "skills_eyebrow": "What You'll Master"
+      }
+    },
+    "shop_sub_page_products_Q3eXVp": {
+      "type": "shop-sub-page-products",
+      "name": "Shop Sub Page Products (Sections)",
+      "settings": {
+        "collection": "frontpage",
+        "card_style": "sections",
+        "sections_type_label": "Section",
+        "sections_cta_text": "View Details",
+        "show_active_badge": true,
+        "active_badge_text": "Active",
+        "agents_cta_text": "View Details",
+        "agents_max_tags": 3,
+        "type_label": "Course",
+        "default_duration": "2-4 hours",
+        "default_students": "1.2k",
+        "cta_text": "View Course",
+        "eyebrow": "(Browse)",
+        "title_suffix": "Products Available",
+        "show_live_badge": true,
+        "products_per_page": 24,
+        "columns": "5"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "shop_sub_page_intro_tK6agX",
+    "shop_sub_page_about_8tMVkm",
+    "shop_sub_page_products_Q3eXVp"
+  ]
+}

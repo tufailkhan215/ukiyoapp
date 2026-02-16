@@ -1,0 +1,274 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "shop_sub_page_intro_iDVFyr": {
+      "type": "shop-sub-page-intro",
+      "blocks": {
+        "tag_YpDaXV": {
+          "type": "tag",
+          "settings": {
+            "icon": "pulse",
+            "label": "Always Online",
+            "accent": true,
+            "highlight": false
+          }
+        },
+        "tag_dkqRYy": {
+          "type": "tag",
+          "settings": {
+            "icon": "zap",
+            "label": "GPT-4 Powered",
+            "accent": false,
+            "highlight": false
+          }
+        }
+      },
+      "block_order": [
+        "tag_YpDaXV",
+        "tag_dkqRYy"
+      ],
+      "name": "Shop Sub Page Intro (AI Agents)",
+      "settings": {
+        "back_link_text": "Back to Shop",
+        "back_link_url": "",
+        "category_label": "21 AI Agents",
+        "category_icon": "bot",
+        "category_icon_glow": true,
+        "title_line_1": "AI",
+        "title_line_2": "AGENTS",
+        "title_line_3": "READY TO DEPLOY",
+        "description": "Pre-trained AI assistants for your business. Deploy intelligent automation that works 24/7.",
+        "color_theme": "emerald",
+        "show_circle": true
+      }
+    },
+    "shop_sub_page_about_GqxneN": {
+      "type": "shop-sub-page-about",
+      "blocks": {
+        "stat_L7NQyt": {
+          "type": "stat",
+          "settings": {
+            "value": "10",
+            "label": "Specialized Agents",
+            "use_gradient": false
+          }
+        },
+        "stat_wj3EbU": {
+          "type": "stat",
+          "settings": {
+            "value": "24/7",
+            "label": "Always Available",
+            "use_gradient": false
+          }
+        },
+        "stat_9CDJtG": {
+          "type": "stat",
+          "settings": {
+            "value": "GPT-4",
+            "label": "Powered By",
+            "use_gradient": false
+          }
+        },
+        "stat_MrHnLg": {
+          "type": "stat",
+          "settings": {
+            "value": "∞",
+            "label": "Conversations",
+            "use_gradient": false
+          }
+        },
+        "feature_3nrc4N": {
+          "type": "feature",
+          "settings": {
+            "icon": "brain",
+            "title": "Domain Expertise",
+            "description": "Pre-loaded with industry-specific knowledge and best practices"
+          }
+        },
+        "feature_U9kUL4": {
+          "type": "feature",
+          "settings": {
+            "icon": "message_square",
+            "title": "Conversational Interface",
+            "description": "Natural language interaction—no technical setup required"
+          }
+        },
+        "feature_6NyMUm": {
+          "type": "feature",
+          "settings": {
+            "icon": "refresh_cw",
+            "title": "Continuous Learning",
+            "description": "Agents improve with each interaction and feedback"
+          }
+        },
+        "capability_tttQca": {
+          "type": "capability",
+          "settings": {
+            "icon": "target",
+            "label": "Lead Research"
+          }
+        },
+        "capability_ThdbNf": {
+          "type": "capability",
+          "settings": {
+            "icon": "message_square",
+            "label": "Customer Support"
+          }
+        },
+        "capability_YgKRiU": {
+          "type": "capability",
+          "settings": {
+            "icon": "book_open",
+            "label": "Course Design"
+          }
+        },
+        "capability_ybeM7A": {
+          "type": "capability",
+          "settings": {
+            "icon": "trending_up",
+            "label": "SEO Strategy"
+          }
+        },
+        "capability_ait7MU": {
+          "type": "capability",
+          "settings": {
+            "icon": "palette",
+            "label": "Image Prompts"
+          }
+        },
+        "capability_PibgjU": {
+          "type": "capability",
+          "settings": {
+            "icon": "chart_column",
+            "label": "Ad Creation"
+          }
+        },
+        "use_case_Czr4Gt": {
+          "type": "use_case",
+          "settings": {
+            "icon": "shopping_bag",
+            "label": "E-Commerce"
+          }
+        },
+        "use_case_qdwHaU": {
+          "type": "use_case",
+          "settings": {
+            "icon": "users",
+            "label": "Agencies"
+          }
+        },
+        "use_case_9mgieA": {
+          "type": "use_case",
+          "settings": {
+            "icon": "graduation_cap",
+            "label": "Educators"
+          }
+        },
+        "use_case_LyAB8V": {
+          "type": "use_case",
+          "settings": {
+            "icon": "target",
+            "label": "Sales Teams"
+          }
+        }
+      },
+      "block_order": [
+        "stat_L7NQyt",
+        "stat_wj3EbU",
+        "stat_9CDJtG",
+        "stat_MrHnLg",
+        "feature_3nrc4N",
+        "feature_U9kUL4",
+        "feature_6NyMUm",
+        "capability_tttQca",
+        "capability_ThdbNf",
+        "capability_YgKRiU",
+        "capability_ybeM7A",
+        "capability_ait7MU",
+        "capability_PibgjU",
+        "use_case_Czr4Gt",
+        "use_case_qdwHaU",
+        "use_case_9mgieA",
+        "use_case_LyAB8V"
+      ],
+      "name": "Shop Sub Page About (AI Agents)",
+      "settings": {
+        "color_theme": "emerald",
+        "inside_eyebrow": "What Are AI Agents?",
+        "inside_heading": "Pre-Trained Specialists",
+        "inside_description": "Each AI agent is purpose-built for a specific task. Unlike generic chatbots, these agents come with custom system prompts, domain knowledge, and optimized workflows for their specialty.",
+        "right_column_mode": "capabilities",
+        "steps_eyebrow": "How It Works",
+        "steps_heading": "Setup in 3 Steps",
+        "course_eyebrow": "Course Categories",
+        "course_heading": "Skills That Matter",
+        "show_cta_box": false,
+        "cta_heading": "Free courses available!",
+        "cta_subtext": "Start learning with no commitment",
+        "capability_eyebrow": "Agent Capabilities",
+        "capability_heading": "What They Can Do",
+        "show_agent_cta": true,
+        "agent_cta_heading": "Always Online",
+        "agent_cta_subtext": "Deploy once, available 24/7 without maintenance",
+        "bottom_mode": "use_cases",
+        "installation_eyebrow": "Installation",
+        "installation_heading": "Add to Your Store in 3 Steps",
+        "use_cases_eyebrow": "Perfect For",
+        "skills_eyebrow": "What You'll Master"
+      }
+    },
+    "shop_sub_page_products_QBPnTG": {
+      "type": "shop-sub-page-products",
+      "name": "Shop Sub Page Products (AI Agents)",
+      "settings": {
+        "collection": "collection-2",
+        "card_style": "agents",
+        "sections_type_label": "Section",
+        "sections_cta_text": "View Details",
+        "show_active_badge": true,
+        "active_badge_text": "Active",
+        "agents_cta_text": "View Details",
+        "agents_max_tags": 3,
+        "type_label": "Course",
+        "default_duration": "2-4 hours",
+        "default_students": "1.2k",
+        "cta_text": "View Course",
+        "eyebrow": "(Browse)",
+        "title_suffix": "Products Available",
+        "show_live_badge": true,
+        "products_per_page": 24,
+        "columns": "4"
+      }
+    },
+    "shop_sub_page_cta_n4NQjw": {
+      "type": "shop-sub-page-cta",
+      "name": "Shop Sub Page CTA",
+      "settings": {
+        "heading": "Get Unlimited Access",
+        "description": "Join membership and download everything for one monthly price.",
+        "button_text": "View Membership Plans",
+        "button_url": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "shop_sub_page_intro_iDVFyr",
+    "shop_sub_page_about_GqxneN",
+    "shop_sub_page_products_QBPnTG",
+    "shop_sub_page_cta_n4NQjw"
+  ]
+}

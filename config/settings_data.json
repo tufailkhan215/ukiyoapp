@@ -26,7 +26,7 @@
               "header_title": "Membership Overview",
               "header_url": "#",
               "section_label": "Categories",
-              "links_text": "Automation Templates|/pages/automation-templates\nCourses|#\nAI Agents|#\nShopify Sections|#"
+              "links_text": "Automation Templates|/pages/automation-templates\nCourses|/pages/courses\nAI Agents|/pages/ai-agents\nShopify Sections|/pages/shopify-sections"
             }
           },
           "dropdown_category_TLpWTd": {
@@ -72,7 +72,7 @@
         "settings": {
           "logo_text": "UKIYO",
           "logo_subtext": "PRODUCTIONS",
-          "menu": "main-menu",
+          "menu": "header-navigation",
           "dropdown_handles": "services, shop",
           "cta_text": "Start Your Project",
           "cta_link": "#"
