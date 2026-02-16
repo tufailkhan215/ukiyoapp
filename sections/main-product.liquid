@@ -1,55 +1,54 @@
 {% comment %}
-  Single product page: dark layout, color theme per product/collection, tabs (Overview, Benefits, Features, FAQs).
-  Color theme: product.metafields.custom.color_theme > first collection's custom.color_theme > section setting.
-  Tab content: product description + metafields (whats_included, benefits, features, faqs).
+  Product detail: dark layout, color theme from product/collection metafield or section default,
+  tabs (Overview, Benefits, Features, FAQ) from product metafields so they change per product.
+  See docs/IMPLEMENTATION-PRODUCT-PAGE.md for metafield setup.
 {% endcomment %}
-{% assign color_theme = product.metafields.custom.color_theme | default: product.collections.first.metafields.custom.color_theme | default: section.settings.color_theme | default: 'blue' %}
-{% assign type_badge = product.metafields.custom.type_badge | default: section.settings.default_type_badge %}
-{% assign short_desc = product.metafields.custom.short_description | default: product.description | strip_html | truncate: 200 %}
-{% assign feature_tags = product.metafields.custom.feature_tags.value | default: product.metafields.custom.feature_tags %}
-{% assign whats_included = product.metafields.custom.whats_included.value | default: product.metafields.custom.whats_included %}
-{% assign benefits_content = product.metafields.custom.benefits %}
-{% assign features_content = product.metafields.custom.features %}
-{% assign faq_list = product.metafields.custom.faqs.value | default: product.metafields.custom.faqs %}
-{% assign faq_questions = product.metafields.custom.faq_questions.value %}
-{% assign faq_answers = product.metafields.custom.faq_answers.value %}
-{% assign product_version = product.metafields.custom.version | default: section.settings.default_version %}
-{% assign product_license = product.metafields.custom.license | default: section.settings.default_license %}
-{% assign downloads_text = product.metafields.custom.downloads_count | default: section.settings.downloads_placeholder %}
+{% assign first_collection = product.collections.first %}
+{% assign color_theme = product.metafields.custom.color_theme.value | default: first_collection.metafields.custom.color_theme.value | default: section.settings.default_color_theme | default: 'blue' %}
+{% assign badge_label = product.metafields.custom.badge_label.value | default: product.type | default: section.settings.default_badge_label %}
+{% assign overview_content = product.metafields.custom.overview | default: nil %}
+{% assign benefits_content = product.metafields.custom.benefits | default: nil %}
+{% assign features_content = product.metafields.custom.features | default: nil %}
+{% assign faqs_content = product.metafields.custom.faqs | default: nil %}
+{% assign has_overview = overview_content != blank or product.description != blank %}
+{% assign has_benefits = benefits_content != blank %}
+{% assign has_features = features_content != blank %}
+{% assign has_faqs = faqs_content != blank %}
+{% assign product_category = product.metafields.custom.category.value | default: product.type | default: section.settings.default_category %}
+{% assign product_version = product.metafields.custom.version.value | default: section.settings.default_version %}
+{% assign product_last_updated = product.metafields.custom.last_updated.value | default: section.settings.default_last_updated %}
+{% assign product_license = product.metafields.custom.license.value | default: section.settings.default_license %}
+{% assign whats_included_str = product.metafields.custom.whats_included.value | default: section.settings.default_whats_included %}
+{% assign whats_included_items = whats_included_str | split: '|' %}
+{% assign shop_url = section.settings.shop_url | default: routes.root_url %}
+{% assign collection_for_breadcrumb = product.collections.first %}
 
-{% capture gradient_class %}
-  {% if color_theme == 'amber' %}from-amber-500 to-orange-500
-  {% elsif color_theme == 'emerald' %}from-emerald-500 to-teal-500
-  {% elsif color_theme == 'purple' %}from-purple-500 to-pink-500
-  {% else %}from-blue-500 to-cyan-500{% endif %}
-{% endcapture %}
-{% capture gradient_class_light %}
-  {% if color_theme == 'amber' %}from-amber-400 to-orange-400
-  {% elsif color_theme == 'emerald' %}from-emerald-400 to-teal-400
-  {% elsif color_theme == 'purple' %}from-purple-400 to-pink-400
-  {% else %}from-blue-400 to-cyan-400{% endif %}
-{% endcapture %}
-{% capture accent_text_class %}
-  {% if color_theme == 'amber' %}text-amber-400
-  {% elsif color_theme == 'emerald' %}text-emerald-400
-  {% elsif color_theme == 'purple' %}text-purple-400
-  {% else %}text-blue-400{% endif %}
-{% endcapture %}
 
-<main class="bg-black min-h-screen relative section-main-product" {{ section.shopify_attributes }}>
+<main class="bg-black min-h-screen relative" data-testid="product-detail-page" {{ section.shopify_attributes }}>
   <div class="fixed inset-0 overflow-hidden pointer-events-none z-0" aria-hidden="true">
-    <div class="absolute rounded-full blur-3xl w-[600px] h-[600px] left-[10%] top-[20%] bg-gradient-to-r {{ gradient_class | strip }} opacity-[0.08]"></div>
-    <div class="absolute rounded-full blur-3xl w-[500px] h-[500px] right-[10%] bottom-[20%] bg-gradient-to-r {{ gradient_class | strip }} opacity-[0.06]"></div>
+    {% if color_theme == 'purple' %}
+      <div class="absolute rounded-full blur-3xl w-[600px] h-[600px] left-[10%] top-[20%]" style="background: radial-gradient(circle, rgba(139, 92, 246, 0.082), transparent 70%);"></div>
+      <div class="absolute rounded-full blur-3xl w-[500px] h-[500px] right-[10%] bottom-[20%]" style="background: radial-gradient(circle, rgba(236, 72, 153, 0.063), transparent 70%);"></div>
+    {% elsif color_theme == 'emerald' %}
+      <div class="absolute rounded-full blur-3xl w-[600px] h-[600px] left-[10%] top-[20%]" style="background: radial-gradient(circle, rgba(16, 185, 129, 0.08), transparent 70%);"></div>
+      <div class="absolute rounded-full blur-3xl w-[500px] h-[500px] right-[10%] bottom-[20%]" style="background: radial-gradient(circle, rgba(20, 184, 166, 0.06), transparent 70%);"></div>
+    {% elsif color_theme == 'amber' %}
+      <div class="absolute rounded-full blur-3xl w-[600px] h-[600px] left-[10%] top-[20%]" style="background: radial-gradient(circle, rgba(245, 158, 11, 0.08), transparent 70%);"></div>
+      <div class="absolute rounded-full blur-3xl w-[500px] h-[500px] right-[10%] bottom-[20%]" style="background: radial-gradient(circle, rgba(249, 115, 22, 0.06), transparent 70%);"></div>
+    {% else %}
+      <div class="absolute rounded-full blur-3xl w-[600px] h-[600px] left-[10%] top-[20%]" style="background: radial-gradient(circle, rgba(59, 130, 246, 0.08), transparent 70%);"></div>
+      <div class="absolute rounded-full blur-3xl w-[500px] h-[500px] right-[10%] bottom-[20%]" style="background: radial-gradient(circle, rgba(6, 182, 212, 0.06), transparent 70%);"></div>
+    {% endif %}
   </div>
 
   <div class="relative z-10 pt-28 pb-8">
     <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
       <nav class="flex items-center gap-2 text-sm" aria-label="Breadcrumb">
-        <a class="text-white/40 hover:text-white transition-colors" href="{{ section.settings.shop_link | default: routes.root_url }}">{{ section.settings.breadcrumb_shop | default: 'Shop' }}</a>
-        <span class="text-white/20">/</span>
-        {% if product.collections.first %}
-          <a class="text-white/40 hover:text-white transition-colors capitalize" href="{{ product.collections.first.url }}">{{ product.collections.first.title }}</a>
-          <span class="text-white/20">/</span>
+        <a class="text-white/40 hover:text-white transition-colors" href="{{ shop_url }}">{{ section.settings.breadcrumb_shop | default: 'Shop' }}</a>
+        <span class="text-white/20" aria-hidden="true">/</span>
+        {% if collection_for_breadcrumb %}
+          <a class="text-white/40 hover:text-white transition-colors capitalize" href="{{ collection_for_breadcrumb.url }}">{{ collection_for_breadcrumb.title }}</a>
+          <span class="text-white/20" aria-hidden="true">/</span>
         {% endif %}
         <span class="text-white/60 truncate max-w-[200px]" aria-current="page">{{ product.title }}</span>
       </nav>
@@ -60,7 +59,15 @@
     <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
         <div class="relative">
-          <div class="absolute -inset-4 bg-gradient-to-r {{ gradient_class | strip }} opacity-10 blur-3xl rounded-3xl" aria-hidden="true"></div>
+          {% if color_theme == 'purple' %}
+            <div class="absolute -inset-4 bg-gradient-to-r from-purple-500 to-pink-500 opacity-10 blur-3xl rounded-3xl" aria-hidden="true"></div>
+          {% elsif color_theme == 'emerald' %}
+            <div class="absolute -inset-4 bg-gradient-to-r from-emerald-500 to-teal-500 opacity-10 blur-3xl rounded-3xl" aria-hidden="true"></div>
+          {% elsif color_theme == 'amber' %}
+            <div class="absolute -inset-4 bg-gradient-to-r from-amber-500 to-orange-500 opacity-10 blur-3xl rounded-3xl" aria-hidden="true"></div>
+          {% else %}
+            <div class="absolute -inset-4 bg-gradient-to-r from-blue-500 to-cyan-500 opacity-10 blur-3xl rounded-3xl" aria-hidden="true"></div>
+          {% endif %}
           <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-white/[0.02] border border-white/10">
             {% if product.featured_image %}
               <img
@@ -72,44 +79,48 @@
                 loading="eager"
               >
             {% else %}
-              <div class="w-full h-full flex items-center justify-center text-white/20">No image</div>
+              <div class="w-full h-full flex items-center justify-center text-white/30">No image</div>
             {% endif %}
-            {% if type_badge != blank %}
+            {% if badge_label != blank %}
               <div class="absolute top-4 left-4">
-                <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r {{ gradient_class | strip }} text-white text-xs font-medium">
-                  {{ type_badge }}
+                <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-white text-xs font-medium {% if color_theme == 'purple' %}bg-gradient-to-r from-purple-500 to-pink-500{% elsif color_theme == 'emerald' %}bg-gradient-to-r from-emerald-500 to-teal-500{% elsif color_theme == 'amber' %}bg-gradient-to-r from-amber-500 to-orange-500{% else %}bg-gradient-to-r from-blue-500 to-cyan-500{% endif %}">
+                  {% if section.settings.badge_icon == 'graduation_cap' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg>{% elsif section.settings.badge_icon == 'bot' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg>{% elsif section.settings.badge_icon == 'layout' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg>{% endif %}
+                  {{ badge_label }}
                 </span>
               </div>
             {% endif %}
           </div>
-          {% if product.images.size > 1 %}
-            <div class="flex gap-3 mt-4">
-              {% for image in product.images limit: 4 %}
-                <button type="button" class="product-thumb w-20 h-20 rounded-lg bg-white/[0.02] border border-white/10 overflow-hidden focus:border-white/20 focus:ring-1 focus:ring-white/20" data-index="{{ forloop.index0 }}" aria-label="View image {{ forloop.index }}">
-                  <img src="{{ image | image_url: width: 160 }}" alt="{{ image.alt | escape }}" class="w-full h-full object-cover" width="80" height="80" loading="lazy">
-                </button>
-              {% endfor %}
-            </div>
-          {% endif %}
+          <div class="flex gap-3 mt-4">
+            {% for image in product.images limit: 3 %}
+              <div class="w-20 h-20 rounded-lg bg-white/[0.02] border border-white/10 overflow-hidden {% if forloop.first %}border-2 border-white/20{% endif %}">
+                <img src="{{ image | image_url: width: 160 }}" alt="{{ image.alt | escape }}" width="80" height="80" class="w-full h-full object-cover" loading="lazy">
+              </div>
+            {% endfor %}
+            {% if product.images.size == 0 %}
+              <div class="w-20 h-20 rounded-lg bg-white/[0.02] border-2 border-white/20"></div>
+              <div class="w-20 h-20 rounded-lg bg-white/[0.02] border border-white/10"></div>
+              <div class="w-20 h-20 rounded-lg bg-white/[0.02] border border-white/10"></div>
+            {% endif %}
+          </div>
         </div>
 
-        <div class="product-info">
+        <div>
           {% if section.settings.show_rating %}
             <div class="flex items-center gap-3 mb-4">
               <div class="flex items-center gap-1" aria-hidden="true">
-                {% for i in (1..5) %}<span class="w-4 h-4 text-yellow-400">★</span>{% endfor %}
+                {% for i in (1..5) %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-yellow-400" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>{% endfor %}
               </div>
-              <span class="text-white/40 text-sm">{{ product.metafields.reviews.rating.value.rating | default: '5.0' }} ({{ product.metafields.reviews.rating_count.value | default: 24 }} reviews)</span>
+              <span class="text-white/40 text-sm">{{ section.settings.rating_text | default: '5.0 (24 reviews)' }}</span>
             </div>
           {% endif %}
           <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">{{ product.title }}</h1>
-          <p class="text-lg text-white/60 mb-6 leading-relaxed">{{ short_desc }}</p>
-          {% if feature_tags != blank and feature_tags.size > 0 %}
+          <p class="text-lg text-white/60 mb-6 leading-relaxed">{{ product.description | strip_html | truncate: 200 }}</p>
+          {% if product.tags.size > 0 %}
             <div class="mb-8">
               <div class="grid grid-cols-2 gap-3">
-                {% for tag in feature_tags %}
+                {% for tag in product.tags limit: 6 %}
                   <div class="flex items-center gap-2">
-                    <span class="w-4 h-4 {{ accent_text_class }} flex-shrink-0" aria-hidden="true">✓</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-emerald-400 flex-shrink-0" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
                     <span class="text-white/70 text-sm">{{ tag }}</span>
                   </div>
                 {% endfor %}
@@ -125,32 +136,31 @@
           <div class="flex flex-col sm:flex-row gap-4 mb-8">
             <form action="{{ routes.cart_add_url }}" method="post" class="flex-1">
               <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-              <button type="submit" name="add" class="w-full flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-lg bg-gradient-to-r {{ gradient_class | strip }} text-white hover:opacity-90 transition-opacity">
-                <span aria-hidden="true">🛒</span> {{ section.settings.buy_button_text | default: 'Buy Now' }}
+              <button type="submit" name="add" class="w-full flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-lg text-white {% if color_theme == 'purple' %}bg-gradient-to-r from-purple-500 to-pink-500{% elsif color_theme == 'emerald' %}bg-gradient-to-r from-emerald-500 to-teal-500{% elsif color_theme == 'amber' %}bg-gradient-to-r from-amber-500 to-orange-500{% else %}bg-gradient-to-r from-blue-500 to-cyan-500{% endif %}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5" aria-hidden="true"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
+                {{ section.settings.buy_button_text | default: 'Buy Now' }}
               </button>
             </form>
             {% if section.settings.show_wishlist %}
-              <button type="button" class="flex items-center justify-center gap-2 px-6 py-4 rounded-full font-semibold border border-white/20 text-white hover:bg-white/10 transition-colors" aria-label="Save">
-                ♥ {{ section.settings.save_button_text | default: 'Save' }}
-              </button>
+              <button type="button" class="flex items-center justify-center gap-2 px-6 py-4 rounded-full font-semibold border border-white/20 text-white hover:bg-white/10 transition-colors" aria-label="Save"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg></button>
             {% endif %}
-            {% if section.settings.show_share %}
-              <button type="button" class="flex items-center justify-center w-14 h-14 rounded-full border border-white/20 text-white/60 hover:bg-white/10 transition-colors flex-shrink-0" aria-label="Share">⎘</button>
-            {% endif %}
+            <button type="button" class="flex items-center justify-center w-14 h-14 rounded-full border border-white/20 text-white/60 hover:bg-white/10 transition-colors" aria-label="Share"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg></button>
           </div>
-          <div class="flex flex-wrap gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/10 mb-6">
-            {% if section.settings.trust_instant %}<div class="flex items-center gap-2 text-sm text-white/50">⬇ <span>{{ section.settings.trust_instant | default: 'Instant Download' }}</span></div>{% endif %}
-            {% if section.settings.trust_guarantee %}<div class="flex items-center gap-2 text-sm text-white/50">🛡 <span>{{ section.settings.trust_guarantee | default: '14-Day Guarantee' }}</span></div>{% endif %}
-            {% if section.settings.trust_access %}<div class="flex items-center gap-2 text-sm text-white/50">⚡ <span>{{ section.settings.trust_access | default: 'Lifetime Access' }}</span></div>{% endif %}
+          <div class="flex flex-wrap gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/10">
+            <div class="flex items-center gap-2 text-sm text-white/50"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg><span>{{ section.settings.guarantee_1 | default: 'Instant Download' }}</span></div>
+            <div class="flex items-center gap-2 text-sm text-white/50"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg><span>{{ section.settings.guarantee_2 | default: '14-Day Guarantee' }}</span></div>
+            <div class="flex items-center gap-2 text-sm text-white/50"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg><span>{{ section.settings.guarantee_3 | default: 'Lifetime Access' }}</span></div>
           </div>
-          {% if downloads_text != blank %}
-            <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/10">
-              <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center">
-                <span class="text-emerald-400 text-xl" aria-hidden="true">⬇</span>
-              </div>
-              <div>
-                <div class="text-2xl font-bold text-white">{{ downloads_text }}</div>
-                <div class="text-white/50 text-sm">{{ section.settings.downloads_label | default: 'Downloads' }}</div>
+          {% if section.settings.show_downloads_placeholder %}
+            <div class="mt-6">
+              <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/10">
+                <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6 text-emerald-400"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
+                </div>
+                <div>
+                  <div class="text-2xl font-bold text-white">{{ product.metafields.custom.downloads_count.value | default: section.settings.downloads_placeholder }}{% if section.settings.downloads_placeholder != blank %}+{% endif %}</div>
+                  <div class="text-white/50 text-sm">{{ section.settings.downloads_label | default: 'Downloads' }}</div>
+                </div>
               </div>
             </div>
           {% endif %}
@@ -159,39 +169,25 @@
     </div>
   </section>
 
-  {% if section.settings.show_download_banner and section.settings.download_banner_text != blank %}
+  {% if section.settings.banner_text != blank %}
     <div class="relative z-10 py-4 border-y border-white/5 bg-white/[0.01]">
-      <div class="max-w-[1400px] mx-auto px-6 lg:px-12 text-center">
-        <span class="text-white/70 text-sm">⬇ {{ section.settings.download_banner_text }}</span>
+      <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+        <div class="flex items-center justify-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-emerald-400"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
+          <span class="text-white/70 text-sm">{{ section.settings.banner_text }}</span>
+        </div>
       </div>
     </div>
   {% endif %}
 
-  {% assign has_overview = product.description != blank or whats_included != blank %}
-  {% assign has_benefits = benefits_content != blank %}
-  {% assign has_features = features_content != blank %}
-  {% assign has_faqs = faq_list != blank or faq_questions != blank %}
-  {% if has_overview %}{% assign first_tab = 'overview' %}
-  {% elsif has_benefits %}{% assign first_tab = 'benefits' %}
-  {% elsif has_features %}{% assign first_tab = 'features' %}
-  {% else %}{% assign first_tab = 'faqs' %}{% endif %}
-
   {% if has_overview or has_benefits or has_features or has_faqs %}
-    <section class="relative z-10 border-t border-white/10">
+    <section class="relative z-10 border-t border-white/10" id="product-tabs">
       <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
-        <div class="flex gap-8 overflow-x-auto product-tabs" role="tablist" aria-label="Product details">
-          {% if has_overview %}
-            <button type="button" class="product-tab py-5 text-sm font-medium border-b-2 whitespace-nowrap {% if first_tab == 'overview' %}border-white text-white{% else %}border-transparent text-white/40 hover:text-white{% endif %}" role="tab" aria-selected="{% if first_tab == 'overview' %}true{% else %}false{% endif %}" data-tab="overview">{{ section.settings.tab_overview | default: 'Overview' }}</button>
-          {% endif %}
-          {% if has_benefits %}
-            <button type="button" class="product-tab py-5 text-sm font-medium border-b-2 whitespace-nowrap {% if first_tab == 'benefits' %}border-white text-white{% else %}border-transparent text-white/40 hover:text-white{% endif %}" role="tab" aria-selected="{% if first_tab == 'benefits' %}true{% else %}false{% endif %}" data-tab="benefits">{{ section.settings.tab_benefits | default: 'Benefits' }}</button>
-          {% endif %}
-          {% if has_features %}
-            <button type="button" class="product-tab py-5 text-sm font-medium border-b-2 whitespace-nowrap {% if first_tab == 'features' %}border-white text-white{% else %}border-transparent text-white/40 hover:text-white{% endif %}" role="tab" aria-selected="{% if first_tab == 'features' %}true{% else %}false{% endif %}" data-tab="features">{{ section.settings.tab_features | default: 'Features' }}</button>
-          {% endif %}
-          {% if has_faqs %}
-            <button type="button" class="product-tab py-5 text-sm font-medium border-b-2 whitespace-nowrap {% if first_tab == 'faqs' %}border-white text-white{% else %}border-transparent text-white/40 hover:text-white{% endif %}" role="tab" aria-selected="{% if first_tab == 'faqs' %}true{% else %}false{% endif %}" data-tab="faqs">{{ section.settings.tab_faqs | default: 'FAQs' }}</button>
-          {% endif %}
+        <div class="flex gap-8 overflow-x-auto border-b border-white/10" role="tablist" aria-label="Product details">
+          {% if has_overview %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap border-white text-white" role="tab" aria-selected="true" data-tab="overview">Overview</button>{% endif %}
+          {% if has_benefits %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap border-transparent text-white/40 hover:text-white" role="tab" aria-selected="false" data-tab="benefits">Benefits</button>{% endif %}
+          {% if has_features %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap border-transparent text-white/40 hover:text-white" role="tab" aria-selected="false" data-tab="features">Features</button>{% endif %}
+          {% if has_faqs %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap border-transparent text-white/40 hover:text-white" role="tab" aria-selected="false" data-tab="faqs">FAQs</button>{% endif %}
         </div>
       </div>
     </section>
@@ -200,60 +196,78 @@
       <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div class="grid lg:grid-cols-3 gap-12">
           <div class="lg:col-span-2">
-            <div id="tab-overview" class="product-tab-panel {% if first_tab != 'overview' %}hidden{% endif %}" role="tabpanel" aria-labelledby="tab-overview">
-              <h2 class="text-2xl font-bold text-white mb-6">{{ section.settings.overview_heading | default: 'About This Product' }}</h2>
-              <div class="prose prose-invert max-w-none">
-                {% if product.description != blank %}
-                  <div class="text-white/60 leading-relaxed mb-6">{{ product.description }}</div>
-                {% endif %}
-                {% if whats_included != blank %}
-                  <h3 class="text-xl font-bold text-white mt-8 mb-4">{{ section.settings.whats_included_heading | default: "What's Included" }}</h3>
-                  <ul class="space-y-3">
-                    {% for item in whats_included %}
-                      <li class="flex items-start gap-3 text-white/60">
-                        <span class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0">✓</span>
-                        <span>{{ item }}</span>
-                      </li>
-                    {% endfor %}
-                  </ul>
-                {% endif %}
-              </div>
+            <div id="tab-overview" class="product-tab-panel" role="tabpanel" aria-labelledby="tab-overview" {% unless has_overview %}hidden{% endunless %}>
+              {% if has_overview %}
+                <h2 class="text-2xl font-bold text-white mb-6">About This Product</h2>
+                <div class="prose prose-invert max-w-none">
+                  {% if overview_content != blank %}
+                    <div class="text-white/60 leading-relaxed mb-6">{{ overview_content }}</div>
+                  {% else %}
+                    <div class="text-white/60 leading-relaxed mb-6">{{ product.description }}</div>
+                  {% endif %}
+                  {% if whats_included_items.size > 0 %}
+                    <h3 class="text-xl font-bold text-white mt-8 mb-4">What's Included</h3>
+                    <ul class="space-y-3 list-none p-0 m-0">
+                      {% for item in whats_included_items %}
+                        {% assign line = item | strip %}
+                        {% if line != blank %}
+                          <li class="flex items-start gap-3 text-white/60">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0"><path d="M20 6 9 17l-5-5"></path></svg>
+                            <span>{{ line }}</span>
+                          </li>
+                        {% endif %}
+                      {% endfor %}
+                    </ul>
+                  {% endif %}
+                </div>
+              {% endif %}
             </div>
-            <div id="tab-benefits" class="product-tab-panel {% if first_tab != 'benefits' %}hidden{% endif %}" role="tabpanel">
-              <h2 class="text-2xl font-bold text-white mb-6">{{ section.settings.benefits_heading | default: 'Benefits' }}</h2>
-              <div class="prose prose-invert max-w-none text-white/60">{% if benefits_content != blank %}{{ benefits_content }}{% else %}—{% endif %}</div>
+            <div id="tab-benefits" class="product-tab-panel" role="tabpanel" {% unless has_benefits %}hidden{% endunless %} {% if has_benefits %}aria-labelledby="tab-benefits"{% endif %}>
+              {% if has_benefits %}
+                <h2 class="text-2xl font-bold text-white mb-6">Benefits</h2>
+                <div class="prose prose-invert max-w-none text-white/60">{{ benefits_content }}</div>
+              {% endif %}
             </div>
-            <div id="tab-features" class="product-tab-panel {% if first_tab != 'features' %}hidden{% endif %}" role="tabpanel">
-              <h2 class="text-2xl font-bold text-white mb-6">{{ section.settings.features_heading | default: 'Features' }}</h2>
-              <div class="prose prose-invert max-w-none text-white/60">{% if features_content != blank %}{{ features_content }}{% else %}—{% endif %}</div>
+            <div id="tab-features" class="product-tab-panel" role="tabpanel" {% unless has_features %}hidden{% endunless %} {% if has_features %}aria-labelledby="tab-features"{% endif %}>
+              {% if has_features %}
+                <h2 class="text-2xl font-bold text-white mb-6">Features</h2>
+                <div class="prose prose-invert max-w-none text-white/60">{{ features_content }}</div>
+              {% endif %}
             </div>
-            <div id="tab-faqs" class="product-tab-panel {% if first_tab != 'faqs' %}hidden{% endif %}" role="tabpanel">
-              <h2 class="text-2xl font-bold text-white mb-6">{{ section.settings.faqs_heading | default: 'FAQs' }}</h2>
-              <div class="space-y-6">
-                {% if faq_list != blank %}
-                  {% for faq in faq_list %}
-                    <div class="border-b border-white/10 pb-4">
-                      <h4 class="text-white font-semibold mb-2">{{ faq.question | default: faq.title }}</h4>
-                      <div class="text-white/60">{{ faq.answer | default: faq.body }}</div>
-                    </div>
-                  {% endfor %}
-                {% elsif faq_questions != blank and faq_answers != blank %}
-                  {% for q in faq_questions %}
-                    <div class="border-b border-white/10 pb-4">
-                      <h4 class="text-white font-semibold mb-2">{{ q }}</h4>
-                      <div class="text-white/60">{{ faq_answers[forloop.index0] }}</div>
-                    </div>
-                  {% endfor %}
-                {% endif %}
-              </div>
+            <div id="tab-faqs" class="product-tab-panel" role="tabpanel" {% unless has_faqs %}hidden{% endunless %} {% if has_faqs %}aria-labelledby="tab-faqs"{% endif %}>
+              {% if has_faqs %}
+                <h2 class="text-2xl font-bold text-white mb-6">FAQs</h2>
+                <div class="prose prose-invert max-w-none text-white/60">{{ faqs_content }}</div>
+              {% endif %}
             </div>
           </div>
           <div>
-            <h3 class="text-lg font-bold text-white mb-4">{{ section.settings.details_heading | default: 'Product Details' }}</h3>
+            <h3 class="text-lg font-bold text-white mb-4">Product Details</h3>
             <div class="space-y-4">
-              <div class="flex justify-between py-3 border-b border-white/10"><span class="text-white/40">Category</span><span class="text-white">{{ product.type | default: '—' }}</span></div>
+              <div class="flex justify-between py-3 border-b border-white/10"><span class="text-white/40">Category</span><span class="text-white">{{ product_category }}</span></div>
               <div class="flex justify-between py-3 border-b border-white/10"><span class="text-white/40">Version</span><span class="text-white">{{ product_version }}</span></div>
-              <div class="flex justify-between py-3 border-b border-white/10"><span class="text-white/40">Last Updated</span><span class="text-white">{{ product.updated_at | date: '%b %Y' }}</span></div>
+              <div class="flex justify-between py-3 border-b border-white/10"><span class="text-white/40">Last Updated</span><span class="text-white">{{ product_last_updated }}</span></div>
+              <div class="flex justify-between py-3 border-b border-white/10"><span class="text-white/40">License</span><span class="text-white">{{ product_license }}</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% else %}
+    {% comment %} No tabs: still show description and product details if useful {% endcomment %}
+    <section class="relative z-10 py-16 lg:py-24 border-t border-white/10">
+      <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+        <div class="grid lg:grid-cols-3 gap-12">
+          <div class="lg:col-span-2">
+            <h2 class="text-2xl font-bold text-white mb-6">About This Product</h2>
+            <div class="prose prose-invert max-w-none text-white/60">{{ product.description }}</div>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-white mb-4">Product Details</h3>
+            <div class="space-y-4">
+              <div class="flex justify-between py-3 border-b border-white/10"><span class="text-white/40">Category</span><span class="text-white">{{ product_category }}</span></div>
+              <div class="flex justify-between py-3 border-b border-white/10"><span class="text-white/40">Version</span><span class="text-white">{{ product_version }}</span></div>
+              <div class="flex justify-between py-3 border-b border-white/10"><span class="text-white/40">Last Updated</span><span class="text-white">{{ product_last_updated }}</span></div>
               <div class="flex justify-between py-3 border-b border-white/10"><span class="text-white/40">License</span><span class="text-white">{{ product_license }}</span></div>
             </div>
           </div>
@@ -262,52 +276,48 @@
     </section>
   {% endif %}
 
-  {% if section.settings.show_membership_cta and section.settings.membership_heading != blank %}
-    <section class="relative z-10 py-16 lg:py-24 border-t border-white/10">
-      <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
-        <div class="relative rounded-3xl overflow-hidden">
-          <div class="absolute inset-0 bg-gradient-to-r {{ gradient_class | strip }} opacity-10" aria-hidden="true"></div>
-          <div class="relative p-8 md:p-12 lg:p-16">
-            <div class="max-w-2xl">
-              <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">{{ section.settings.membership_heading }}</h2>
-              <p class="text-lg text-white/60 mb-8">{{ section.settings.membership_subtext }}</p>
-              <div class="flex flex-col sm:flex-row gap-4">
-                {% if section.settings.membership_primary_url != blank %}
-                  <a href="{{ section.settings.membership_primary_url }}" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-black rounded-full font-semibold hover:bg-gray-200 transition-colors">{{ section.settings.membership_primary_text | default: 'View Membership Plans' }}</a>
-                {% endif %}
-                {% if product.collections.first and section.settings.membership_secondary_use_collection %}
-                  <a href="{{ product.collections.first.url }}" class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white rounded-full font-semibold hover:bg-white/10 transition-colors">{{ section.settings.membership_secondary_text | default: 'Browse More' }}</a>
-                {% elsif section.settings.membership_secondary_url != blank %}
-                  <a href="{{ section.settings.membership_secondary_url }}" class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white rounded-full font-semibold hover:bg-white/10 transition-colors">{{ section.settings.membership_secondary_text | default: 'Browse More' }}</a>
-                {% endif %}
-              </div>
+  <section class="relative z-10 py-16 lg:py-24 border-t border-white/10">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+      <div class="relative rounded-3xl overflow-hidden">
+        <div class="absolute inset-0 opacity-10 {% if color_theme == 'purple' %}bg-gradient-to-r from-purple-500 to-pink-500{% elsif color_theme == 'emerald' %}bg-gradient-to-r from-emerald-500 to-teal-500{% elsif color_theme == 'amber' %}bg-gradient-to-r from-amber-500 to-orange-500{% else %}bg-gradient-to-r from-blue-500 to-cyan-500{% endif %}"></div>
+        <div class="relative p-8 md:p-12 lg:p-16">
+          <div class="max-w-2xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">{{ section.settings.cta_heading | default: 'Get Unlimited Access' }}</h2>
+            <p class="text-lg text-white/60 mb-8">{{ section.settings.cta_text }}</p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              {% if section.settings.cta_primary_label != blank %}
+                <a class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-black rounded-full font-semibold hover:bg-gray-200 transition-colors" href="{{ section.settings.cta_primary_url | default: shop_url }}">{{ section.settings.cta_primary_label }}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+              {% endif %}
+              {% if section.settings.cta_secondary_label != blank and section.settings.cta_secondary_url != blank %}
+                <a class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white rounded-full font-semibold hover:bg-white/10 transition-colors" href="{{ section.settings.cta_secondary_url }}">{{ section.settings.cta_secondary_label }}</a>
+              {% endif %}
             </div>
           </div>
         </div>
       </div>
-    </section>
-  {% endif %}
+    </div>
+  </section>
 </main>
 
 <script>
 (function() {
   var tabs = document.querySelectorAll('.product-tab');
   var panels = document.querySelectorAll('.product-tab-panel');
-  tabs.forEach(function(btn) {
-    btn.addEventListener('click', function() {
+  tabs.forEach(function(t) {
+    t.addEventListener('click', function() {
       var id = this.getAttribute('data-tab');
-      tabs.forEach(function(t) { t.setAttribute('aria-selected', 'false'); t.classList.remove('border-white', 'text-white'); t.classList.add('border-transparent', 'text-white/40'); });
-      panels.forEach(function(p) { p.classList.add('hidden'); });
-      this.setAttribute('aria-selected', 'true'); this.classList.add('border-white', 'text-white'); this.classList.remove('border-transparent', 'text-white/40');
-      var panel = document.getElementById('tab-' + id);
-      if (panel) panel.classList.remove('hidden');
+      tabs.forEach(function(tab) {
+        tab.setAttribute('aria-selected', tab.getAttribute('data-tab') === id ? 'true' : 'false');
+        tab.classList.toggle('border-white', tab.getAttribute('data-tab') === id);
+        tab.classList.toggle('text-white', tab.getAttribute('data-tab') === id);
+        tab.classList.toggle('border-transparent', tab.getAttribute('data-tab') !== id);
+        tab.classList.toggle('text-white/40', tab.getAttribute('data-tab') !== id);
+      });
+      panels.forEach(function(p) {
+        p.hidden = p.id !== 'tab-' + id;
+      });
     });
   });
-  var thumbs = document.querySelectorAll('.product-thumb');
-  var mainImg = document.querySelector('.product-info').closest('section').querySelector('.aspect-[4/3] img');
-  if (mainImg && thumbs.length) {
-    thumbs.forEach(function(t, i) { t.addEventListener('click', function() { var src = this.querySelector('img').src.replace(/_\d+x\d+/, '_800x'); mainImg.src = src; thumbs.forEach(function(x) { x.classList.remove('border-2', 'border-white/20'); x.classList.add('border'); }); this.classList.add('border-2', 'border-white/20'); this.classList.remove('border'); }); });
-  }
 })();
 </script>
 
@@ -317,70 +327,48 @@
   "tag": "section",
   "class": "section-main-product",
   "settings": [
-    {
-      "type": "select",
-      "id": "color_theme",
-      "label": "Default color theme",
-      "info": "Overridden by product or collection metafield custom.color_theme (blue, purple, emerald, amber).",
-      "options": [
-        { "value": "blue", "label": "Blue / Cyan" },
-        { "value": "purple", "label": "Purple / Pink" },
-        { "value": "emerald", "label": "Emerald / Teal" },
-        { "value": "amber", "label": "Amber / Orange" }
-      ],
-      "default": "blue"
-    },
-    {
-      "type": "header",
-      "content": "Breadcrumb"
-    },
-    { "type": "text", "id": "breadcrumb_shop", "label": "Shop link text", "default": "Shop" },
-    { "type": "url", "id": "shop_link", "label": "Shop URL", "info": "Breadcrumb first link. Leave blank for home." },
-    {
-      "type": "header",
-      "content": "Product badge & copy"
-    },
-    { "type": "text", "id": "default_type_badge", "label": "Default type badge", "default": "Product", "info": "e.g. Course, Section, Template. Override per product: metafield custom.type_badge." },
+    { "type": "header", "content": "Color & badge" },
+    { "type": "select", "id": "default_color_theme", "label": "Default color theme", "options": [
+      { "value": "blue", "label": "Blue / Cyan" },
+      { "value": "purple", "label": "Purple / Pink" },
+      { "value": "emerald", "label": "Emerald / Teal" },
+      { "value": "amber", "label": "Amber / Orange" }
+    ], "default": "blue", "info": "Overridden by product or collection metafield custom.color_theme" },
+    { "type": "text", "id": "default_badge_label", "label": "Default badge label", "default": "Product", "info": "Shown on product image; overridden by product type or product metafield custom.badge_label" },
+    { "type": "select", "id": "badge_icon", "label": "Badge icon", "options": [
+      { "value": "none", "label": "None" },
+      { "value": "graduation_cap", "label": "Course" },
+      { "value": "bot", "label": "AI Agent" },
+      { "value": "layout", "label": "Section" }
+    ], "default": "none" },
+    { "type": "header", "content": "Breadcrumb" },
+    { "type": "url", "id": "shop_url", "label": "Shop link (breadcrumb)" },
+    { "type": "text", "id": "breadcrumb_shop", "label": "Breadcrumb first label", "default": "Shop" },
+    { "type": "header", "content": "Product info" },
     { "type": "checkbox", "id": "show_rating", "label": "Show rating", "default": true },
-    { "type": "text", "id": "buy_button_text", "label": "Buy button text", "default": "Buy Now" },
+    { "type": "text", "id": "rating_text", "label": "Rating text", "default": "5.0 (24 reviews)" },
     { "type": "checkbox", "id": "show_wishlist", "label": "Show Save button", "default": true },
-    { "type": "text", "id": "save_button_text", "label": "Save button text", "default": "Save" },
-    { "type": "checkbox", "id": "show_share", "label": "Show Share button", "default": true },
-    { "type": "text", "id": "trust_instant", "label": "Trust: Instant", "default": "Instant Download" },
-    { "type": "text", "id": "trust_guarantee", "label": "Trust: Guarantee", "default": "14-Day Guarantee" },
-    { "type": "text", "id": "trust_access", "label": "Trust: Access", "default": "Lifetime Access" },
-    { "type": "text", "id": "downloads_placeholder", "label": "Downloads fallback", "default": "—", "info": "Shown when product.metafields.custom.downloads_count is blank." },
+    { "type": "text", "id": "guarantee_1", "label": "Guarantee 1", "default": "Instant Download" },
+    { "type": "text", "id": "guarantee_2", "label": "Guarantee 2", "default": "14-Day Guarantee" },
+    { "type": "text", "id": "guarantee_3", "label": "Guarantee 3", "default": "Lifetime Access" },
+    { "type": "checkbox", "id": "show_downloads_placeholder", "label": "Show downloads count", "default": true },
+    { "type": "text", "id": "downloads_placeholder", "label": "Downloads placeholder", "default": "800" },
     { "type": "text", "id": "downloads_label", "label": "Downloads label", "default": "Downloads" },
-    { "type": "checkbox", "id": "show_download_banner", "label": "Show download banner", "default": true },
-    { "type": "text", "id": "download_banner_text", "label": "Download banner text", "default": "15,000+ downloads this month" },
-    {
-      "type": "header",
-      "content": "Tabs (product metafields)"
-    },
-    { "type": "text", "id": "tab_overview", "label": "Tab: Overview", "default": "Overview" },
-    { "type": "text", "id": "tab_benefits", "label": "Tab: Benefits", "default": "Benefits" },
-    { "type": "text", "id": "tab_features", "label": "Tab: Features", "default": "Features" },
-    { "type": "text", "id": "tab_faqs", "label": "Tab: FAQs", "default": "FAQs" },
-    { "type": "text", "id": "overview_heading", "label": "Overview heading", "default": "About This Product" },
-    { "type": "text", "id": "whats_included_heading", "label": "What's Included heading", "default": "What's Included" },
-    { "type": "text", "id": "benefits_heading", "label": "Benefits heading", "default": "Benefits" },
-    { "type": "text", "id": "features_heading", "label": "Features heading", "default": "Features" },
-    { "type": "text", "id": "faqs_heading", "label": "FAQs heading", "default": "FAQs" },
-    { "type": "text", "id": "details_heading", "label": "Sidebar: Product Details", "default": "Product Details" },
+    { "type": "text", "id": "banner_text", "label": "Banner text", "default": "15,000+ downloads this month" },
+    { "type": "header", "content": "Tabs fallbacks" },
+    { "type": "textarea", "id": "default_whats_included", "label": "Default What's Included (pipe-separated)", "default": "Complete files ready to use|Documentation and setup guide|Free updates|Commercial license|Email support", "info": "Used when product has no custom.whats_included metafield" },
+    { "type": "text", "id": "default_category", "label": "Default category", "default": "Product" },
     { "type": "text", "id": "default_version", "label": "Default version", "default": "1.0" },
+    { "type": "text", "id": "default_last_updated", "label": "Default last updated", "default": "Feb 2026" },
     { "type": "text", "id": "default_license", "label": "Default license", "default": "Commercial" },
-    {
-      "type": "header",
-      "content": "Membership CTA"
-    },
-    { "type": "checkbox", "id": "show_membership_cta", "label": "Show membership CTA block", "default": true },
-    { "type": "text", "id": "membership_heading", "label": "Membership heading", "default": "Get Unlimited Access" },
-    { "type": "textarea", "id": "membership_subtext", "label": "Membership subtext", "default": "Join our membership and get this product plus 100+ more for one monthly price." },
-    { "type": "url", "id": "membership_primary_url", "label": "Primary CTA URL" },
-    { "type": "text", "id": "membership_primary_text", "label": "Primary CTA text", "default": "View Membership Plans" },
-    { "type": "checkbox", "id": "membership_secondary_use_collection", "label": "Secondary CTA: link to product's collection", "default": true },
-    { "type": "url", "id": "membership_secondary_url", "label": "Secondary CTA URL (if not collection)" },
-    { "type": "text", "id": "membership_secondary_text", "label": "Secondary CTA text", "default": "Browse More" }
+    { "type": "header", "content": "CTA banner" },
+    { "type": "text", "id": "cta_heading", "label": "CTA heading", "default": "Get Unlimited Access" },
+    { "type": "textarea", "id": "cta_text", "label": "CTA text", "default": "Join our membership and get this product plus 100+ more for one monthly price. Download everything, cancel anytime." },
+    { "type": "text", "id": "cta_primary_label", "label": "CTA primary button", "default": "View Membership Plans" },
+    { "type": "url", "id": "cta_primary_url", "label": "CTA primary URL" },
+    { "type": "text", "id": "cta_secondary_label", "label": "CTA secondary button", "default": "Browse More Courses" },
+    { "type": "url", "id": "cta_secondary_url", "label": "CTA secondary URL" },
+    { "type": "text", "id": "buy_button_text", "label": "Buy button text", "default": "Buy Now" }
   ],
   "presets": [
     { "name": "Product" }

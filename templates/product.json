@@ -1,91 +1,9 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
       "type": "main-product",
-      "blocks": {
-        "tab_ApeKUW": {
-          "type": "tab",
-          "settings": {
-            "label": "Overview",
-            "heading": "",
-            "content_source": "overview",
-            "section_heading": ""
-          }
-        },
-        "tab_Q4Jz7z": {
-          "type": "tab",
-          "settings": {
-            "label": "Benefits",
-            "heading": "",
-            "content_source": "description_section",
-            "section_heading": ""
-          }
-        },
-        "tab_TV3gz4": {
-          "type": "tab",
-          "settings": {
-            "label": "Features",
-            "heading": "",
-            "content_source": "overview",
-            "section_heading": ""
-          }
-        },
-        "tab_4pMnEn": {
-          "type": "tab",
-          "settings": {
-            "label": "FAQ",
-            "heading": "",
-            "content_source": "overview",
-            "section_heading": ""
-          }
-        }
-      },
-      "block_order": [
-        "tab_ApeKUW",
-        "tab_Q4Jz7z",
-        "tab_TV3gz4",
-        "tab_4pMnEn"
-      ],
-      "settings": {
-        "default_color_theme": "blue",
-        "default_badge_label": "Product",
-        "badge_icon": "none",
-        "shop_url": "",
-        "breadcrumb_shop": "Shop",
-        "show_rating": true,
-        "rating_text": "5.0 (24 reviews)",
-        "rating_footer": "4.9/5 average rating",
-        "show_wishlist": true,
-        "guarantee_1": "Instant Download",
-        "guarantee_2": "14-Day Guarantee",
-        "guarantee_3": "Lifetime Access",
-        "show_downloads_placeholder": true,
-        "downloads_placeholder": "800",
-        "downloads_label": "Downloads",
-        "banner_text": "15,000+ downloads this month",
-        "default_whats_included": "Complete files ready to use|Documentation and setup guide|Free updates|Commercial license|Email support",
-        "default_version": "1.0",
-        "default_license": "Commercial",
-        "cta_heading": "Get Unlimited Access",
-        "cta_text": "Join our membership and get this product plus 100+ more for one monthly price. Download everything, cancel anytime.",
-        "cta_primary_label": "View Membership Plans",
-        "cta_primary_url": "",
-        "cta_secondary_label": "Browse More Courses",
-        "cta_secondary_url": "",
-        "buy_button_text": "Buy Now"
-      }
+      "settings": {}
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main"]
 }
