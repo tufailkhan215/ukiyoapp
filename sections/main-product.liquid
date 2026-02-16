@@ -10,10 +10,10 @@
 {% assign benefits_content = product.metafields.custom.benefits | default: nil %}
 {% assign features_content = product.metafields.custom.features | default: nil %}
 {% assign faqs_content = product.metafields.custom.faqs | default: nil %}
-{% assign has_overview = overview_content != blank or product.description != blank %}
-{% assign has_benefits = benefits_content != blank %}
-{% assign has_features = features_content != blank %}
-{% assign has_faqs = faqs_content != blank %}
+{% if overview_content != blank or product.description != blank %}{% assign has_overview = true %}{% else %}{% assign has_overview = false %}{% endif %}
+{% if benefits_content != blank %}{% assign has_benefits = true %}{% else %}{% assign has_benefits = false %}{% endif %}
+{% if features_content != blank %}{% assign has_features = true %}{% else %}{% assign has_features = false %}{% endif %}
+{% if faqs_content != blank %}{% assign has_faqs = true %}{% else %}{% assign has_faqs = false %}{% endif %}
 {% assign product_category = product.metafields.custom.category.value | default: product.type | default: section.settings.default_category %}
 {% assign product_version = product.metafields.custom.version.value | default: section.settings.default_version %}
 {% assign product_last_updated = product.metafields.custom.last_updated.value | default: section.settings.default_last_updated %}
