@@ -44,7 +44,7 @@
           "settings": {
             "label": "FAQ",
             "heading": "",
-            "content_source": "overview",
+            "content_source": "description_section",
             "section_heading": ""
           }
         }
