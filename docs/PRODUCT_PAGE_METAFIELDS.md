@@ -1,74 +1,98 @@
-# Product page: color theme & tabs (metafields)
+# Product page: color theme & tabs (snippets + blocks, no metafield lists)
 
-The main product section (`sections/main-product.liquid`) supports **per-product color theme** and **product-specific tab content** (Overview, Benefits, Features, FAQ).
+The product page uses **snippets** and **section blocks** so tab content is **dynamic per product from the product description only**—no metafield lists required.
 
 ## Color theme (per collection or product)
 
-- **Automatic from collection:** If the product belongs to a collection, the theme is derived from the **first collection handle**:
-  - `courses` → **purple** / pink
-  - `sections` or `shopify-sections` → **amber** / orange
-  - `agents` or `automation` → **emerald** / teal
-  - Otherwise → **blue** / cyan (or the section default)
-- **Override per product:** Set product metafield **`custom.color_theme`** (single line text) to: `blue` | `purple` | `emerald` | `amber`.
-
-**Where to set:** Shopify Admin → Settings → Custom data → Products → Add definition:  
-Name `Color theme`, Namespace and key `custom.color_theme`, Type **Single line text**.
+- **From collection:** First collection handle sets the theme: `courses` → purple, `sections` → amber, `agents`/`automation` → emerald, else blue.
+- **Override:** Optional product metafield **`custom.color_theme`** (single line): `blue` | `purple` | `emerald` | `amber`.
 
 ---
 
-## Product-specific tabs
+## Tabs: blocks + snippet, description-only content
 
-Only tabs that have content are shown. Content sources:
+### How it works
 
-| Tab       | Source |
-|----------|--------|
-| Overview | `product.description` + **What's Included** list + **Product Details** (category, version, license, etc.) |
-| Benefits | Product metafield (list or text) |
-| Features | Product metafield (list or text) |
-| FAQs     | Two product metafields: questions list + answers list |
+1. **Blocks** – In the Theme Editor, the Product section has **Tab** blocks. Each block = one tab (label, optional panel heading, content source).
+2. **Snippet** – `snippets/product-tab-content.liquid` renders each tab’s content. It only reads the **product description** and **section settings** (e.g. default “What’s Included”).
+3. **No metafield lists** – Benefits, Features, FAQ, etc. all come from **one field: the product description**, structured with headings.
 
-### Recommended product metafields (Settings → Custom data → Products)
+### Product description format
 
-Create these definitions so each product can have its own tab content:
+Use `## SectionName` on its own line to start a section. Everything **before** the first `##` is the **Overview** content.
 
-| Name (admin label)   | Namespace and key       | Type                | Notes |
-|----------------------|-------------------------|----------------------|--------|
-| Color theme          | `custom.color_theme`    | Single line text     | Optional override: `blue`, `purple`, `emerald`, `amber` |
-| Type badge          | `custom.product_type_badge` | Single line text | e.g. "Course", "Automation Template", "Shopify Section" |
-| What's Included     | `custom.whats_included` | List — Single line text | Bullet list for Overview |
-| Product category    | `custom.product_category` | Single line text  | e.g. "Course"; shown in Product Details |
-| Version             | `custom.product_version` | Single line text   | e.g. "1.0" |
-| Last updated        | `custom.last_updated`    | Single line text   | e.g. "Feb 2026" |
-| License             | `custom.license`        | Single line text   | e.g. "Commercial" |
-| Benefits            | `custom.benefits`       | List — Single line text | Each item = one benefit (Benefits tab) |
-| Features            | `custom.features`       | List — Single line text | Each item = one feature (Features tab) |
-| FAQ questions       | `custom.faq_questions`   | List — Single line text | One question per entry |
-| FAQ answers         | `custom.faq_answers`    | List — Single line text | One answer per entry (same order as questions) |
-| Downloads count     | `custom.downloads_count`| Integer or single line | Shown next to download icon |
+**Example:**
 
-For **FAQ**, keep the same number of entries in `custom.faq_questions` and `custom.faq_answers`; they are paired by index.
+```
+Main overview text for this product. Shown in the Overview tab.
+
+## Benefits
+- Saves time
+- Easy to use
+- No code required
+
+## Features
+- Feature one
+- Feature two
+
+## FAQ
+**Q:** How do I get access?
+**A:** Instant download after purchase.
+
+**Q:** Refunds?
+**A:** 14-day guarantee.
+```
+
+- **Overview** tab → content before the first `##` (plus “What’s Included” from section settings).
+- **Benefits** tab → block with content source “From description (section by heading)” and section heading **Benefits**.
+- **Features** tab → same, section heading **Features**.
+- **FAQ** tab → same, section heading **FAQ**.
+
+Each product can have different text; you only edit the product description in the admin.
+
+### Tab block settings
+
+| Setting           | Purpose |
+|-------------------|--------|
+| **Tab label**     | Text in the tab bar (e.g. Overview, Benefits, FAQ). |
+| **Panel heading** | Optional; defaults to tab label. |
+| **Content source**| **Overview** = description (before first ##) + What’s Included from section. **From description (section by heading)** = one section after a `## SectionName` line. |
+| **Section heading** | For “From description” only. Must match the text after `##` exactly (e.g. `Benefits`, `Features`, `FAQ`). |
+
+### What’s Included (no metafield)
+
+“What’s Included” is **section-level** only. In the Product section settings, set **Default What’s Included** as a pipe-separated list, e.g.:
+
+`Complete files ready to use|Documentation and setup guide|Free updates|Commercial license|Email support`
+
+That list is shown in the Overview tab for all products. To vary it per product, you can add a `## What's Included` section in the product description and add a tab block with that section heading.
+
+### Product Details sidebar
+
+Category, Version, Last updated, License can use **optional** single metafields (`custom.product_category`, etc.) or fall back to **section settings** (default version, default license) and **product type** (as category). No list metafields are used.
 
 ---
 
-## Section settings (Theme Editor)
+## Optional metafields (only if you want overrides)
 
-Under the Product template, you can set:
+| Metafield              | Use |
+|------------------------|-----|
+| `custom.color_theme`   | Override color theme per product. |
+| `custom.product_type_badge` | Override badge label (e.g. Course, Section). |
+| `custom.product_category`   | Override category in Product Details. |
+| `custom.product_version`    | Override version. |
+| `custom.last_updated`       | Override last updated. |
+| `custom.license`            | Override license. |
+| `custom.downloads_count`    | Override download count. |
 
-- **Default color theme** when not inferred from collection or product metafield
-- **Default type badge** and badge icon (course / template / section)
-- **Breadcrumb** shop URL and label
-- **Rating** text and footer
-- **Guarantees** (e.g. Instant Download, 14-Day Guarantee, Lifetime Access)
-- **Downloads** placeholder and label
-- **Default What's Included** (pipe-separated) when product has no `whats_included` metafield
-- **Default version / license** for Product Details
-- **Bottom CTA** (heading, text, primary/secondary buttons and URLs)
-- **Buy button** text
+No list metafields are required; all tab content is driven by the product description and blocks.
 
 ---
 
 ## Summary
 
-1. **Color theme:** Set by collection handle automatically, or override with product metafield `custom.color_theme`.
-2. **Tabs:** Overview always uses description + What's Included + Product Details. Benefits, Features, and FAQs appear only when the corresponding product metafields have content.
-3. Create the product metafield definitions above in Shopify Admin so merchants can fill them per product.
+1. **Tabs** = section blocks (add/reorder in Theme Editor).
+2. **Content** = snippet reads **product description** only; sections are marked with `## SectionName`.
+3. **What’s Included** = section setting (pipe-separated), not a metafield.
+4. **Product Details** = section defaults + optional single metafields; category can use product type.
+5. No Benefits/Features/FAQ (or other) **list** metafields; everything is dynamic from the description and blocks.

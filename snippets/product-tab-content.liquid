@@ -1,0 +1,82 @@
+{% comment %}
+  Renders one product tab panel's content. No metafield lists.
+  - content_source: 'overview' | 'description_section'
+  - section_heading: for description_section, the exact heading (e.g. Benefits, Features, FAQ)
+  Product description format for sections: use "## SectionName" on its own line. Everything before first ## is Overview.
+  Example:
+    Main overview text here.
+
+    ## Benefits
+    - Benefit 1
+    - Benefit 2
+
+    ## Features
+    - Feature 1
+
+    ## FAQ
+    Q: Question?
+    A: Answer.
+{% endcomment %}
+
+{% assign content_source = content_source | default: 'overview' %}
+{% assign section_heading = section_heading | default: '' %}
+
+{% if content_source == 'overview' %}
+  <div class="prose prose-invert max-w-none">
+    {% assign desc = product.description | default: '' | replace: '\r\n', '
+' %}
+    {% assign desc_parts = desc | split: '
+## ' %}
+    {% assign overview_text = desc_parts[0] | strip %}
+    {% if overview_text != blank %}
+      <div class="text-white/60 leading-relaxed mb-6 product-description">{{ overview_text }}</div>
+    {% endif %}
+    {% if default_whats_included != blank %}
+      <h3 class="text-xl font-bold text-white mt-8 mb-4">What's Included</h3>
+      <ul class="space-y-3">
+        {% assign items = default_whats_included | split: '|' %}
+        {% for item in items %}
+          <li class="flex items-start gap-3 text-white/60">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+            <span>{{ item | strip }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+
+{% elsif content_source == 'description_section' and section_heading != blank %}
+  {% assign desc = product.description | default: '' | replace: '\r\n', '
+' %}
+  {% assign desc_parts = desc | split: '
+## ' %}
+  {% assign found_content = false %}
+  {% for part in desc_parts %}
+    {% if forloop.index0 > 0 %}
+      {% assign part_lines = part | split: '
+' %}
+      {% assign head = part_lines[0] | strip %}
+      {% if head == section_heading %}
+        {% assign found_content = true %}
+        {% capture body %}
+{% for line in part_lines offset: 1 %}
+{{ line }}
+{% endfor %}
+{% endcapture %}
+        {% assign body = body | strip %}
+        {% if body != blank %}
+          <div class="text-white/60 leading-relaxed prose prose-invert max-w-none">{{ body }}</div>
+        {% else %}
+          <p class="text-white/40 text-sm">No content for this section.</p>
+        {% endif %}
+        {% break %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+  {% unless found_content %}
+    <p class="text-white/40 text-sm">Add "## {{ section_heading }}" in the product description to show content here.</p>
+  {% endunless %}
+
+{% else %}
+  <p class="text-white/40 text-sm">Select a content source for this tab.</p>
+{% endif %}

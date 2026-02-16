@@ -1,7 +1,7 @@
 {% comment %}
-  Product detail page: dark theme, collection/product-based color theme, product-specific tabs (Overview, Benefits, Features, FAQ).
-  Color theme: product.metafields.custom.color_theme else derived from first collection handle (courses→purple, sections→amber, agents/automation→emerald, default blue).
-  Tab content: Overview = product.description + whats_included + product details; Benefits/Features/FAQ from metafields (only show tabs that have content).
+  Product detail page: dark theme, collection/product-based color theme, tabs via blocks + snippet.
+  Color theme: product metafield or first collection handle (courses→purple, sections→amber, agents→emerald, default blue).
+  Tab content: no metafield lists. Snippet product-tab-content reads product.description only (Overview = before first ##; other tabs = section by "## SectionName"). What's Included from section setting.
 {% endcomment %}
 
 {% assign color_theme = product.metafields.custom.color_theme.value | default: product.metafields.custom.color_theme %}
@@ -15,33 +15,12 @@
 {% assign color_theme = color_theme | default: section.settings.default_color_theme | default: 'blue' %}
 
 {% assign badge_label = product.metafields.custom.product_type_badge.value | default: product.metafields.custom.product_type_badge | default: section.settings.default_badge_label %}
-{% assign whats_included = product.metafields.custom.whats_included.value | default: product.metafields.custom.whats_included %}
-{% assign product_category = product.metafields.custom.product_category.value | default: product.metafields.custom.product_category | default: badge_label %}
+{% assign product_category = product.metafields.custom.product_category.value | default: product.metafields.custom.product_category | default: product.type | default: badge_label %}
 {% assign product_version = product.metafields.custom.product_version.value | default: product.metafields.custom.product_version | default: section.settings.default_version %}
 {% assign last_updated = product.metafields.custom.last_updated.value | default: product.metafields.custom.last_updated %}
 {% assign license = product.metafields.custom.license.value | default: product.metafields.custom.license | default: section.settings.default_license %}
-{% assign benefits = product.metafields.custom.benefits.value | default: product.metafields.custom.benefits %}
-{% assign features = product.metafields.custom.features.value | default: product.metafields.custom.features %}
-{% assign faq_questions = product.metafields.custom.faq_questions.value | default: product.metafields.custom.faq_questions %}
-{% assign faq_answers = product.metafields.custom.faq_answers.value | default: product.metafields.custom.faq_answers %}
 
-{% assign has_overview = true %}
-{% assign has_benefits = false %}
-{% if benefits != blank %}
-  {% if benefits.size > 0 %} {% assign has_benefits = true %}
-  {% elsif benefits != '' %} {% assign has_benefits = true %}
-  {% endif %}
-{% endif %}
-{% assign has_features = false %}
-{% if features != blank %}
-  {% if features.size > 0 %} {% assign has_features = true %}
-  {% elsif features != '' %} {% assign has_features = true %}
-  {% endif %}
-{% endif %}
-{% assign has_faq = false %}
-{% if faq_questions != blank and faq_questions.size > 0 and faq_answers != blank and faq_answers.size > 0 %}
-  {% assign has_faq = true %}
-{% endif %}
+{% assign tab_blocks = section.blocks | where: 'type', 'tab' %}
 
 {% assign gradient_class = 'from-blue-500 to-cyan-500' %}
 {% assign gradient_class_light = 'from-blue-400 to-cyan-400' %}
@@ -222,14 +201,13 @@
     </div>
   {% endif %}
 
-  {% if has_overview or has_benefits or has_features or has_faq %}
+  {% if tab_blocks.size > 0 %}
     <section class="border-t border-white/10 relative z-10" aria-label="Product details tabs">
       <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div class="flex gap-8 overflow-x-auto product-tabs" role="tablist">
-          <button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap border-white text-white" role="tab" aria-selected="true" data-tab="overview">Overview</button>
-          {% if has_benefits %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap border-transparent text-white/40 hover:text-white" role="tab" aria-selected="false" data-tab="benefits">Benefits</button>{% endif %}
-          {% if has_features %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap border-transparent text-white/40 hover:text-white" role="tab" aria-selected="false" data-tab="features">Features</button>{% endif %}
-          {% if has_faq %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap border-transparent text-white/40 hover:text-white" role="tab" aria-selected="false" data-tab="faqs">Faqs</button>{% endif %}
+          {% for block in tab_blocks %}
+            <button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap {% if forloop.first %}border-white text-white{% else %}border-transparent text-white/40 hover:text-white{% endif %}" role="tab" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" data-tab="{{ block.id }}" {{ block.shopify_attributes }}>{{ block.settings.label | default: 'Tab' }}</button>
+          {% endfor %}
         </div>
       </div>
     </section>
@@ -238,86 +216,17 @@
       <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div class="grid lg:grid-cols-3 gap-12">
           <div class="lg:col-span-2">
-            <div id="tab-overview" class="product-tab-panel" role="tabpanel">
-              <h2 class="text-2xl font-bold text-white mb-6">About This Product</h2>
-              <div class="prose prose-invert max-w-none">
-                {% if product.description != blank %}
-                  <div class="text-white/60 leading-relaxed mb-6 product-description">{{ product.description }}</div>
-                {% endif %}
-                {% if whats_included != blank and whats_included.size > 0 %}
-                  <h3 class="text-xl font-bold text-white mt-8 mb-4">What's Included</h3>
-                  <ul class="space-y-3">
-                    {% for item in whats_included %}
-                      <li class="flex items-start gap-3 text-white/60">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0"><path d="M20 6 9 17l-5-5"></path></svg>
-                        <span>{{ item }}</span>
-                      </li>
-                    {% endfor %}
-                  </ul>
-                {% elsif section.settings.default_whats_included != blank %}
-                  <h3 class="text-xl font-bold text-white mt-8 mb-4">What's Included</h3>
-                  <ul class="space-y-3">
-                    {% assign default_items = section.settings.default_whats_included | split: '|' %}
-                    {% for item in default_items %}
-                      <li class="flex items-start gap-3 text-white/60">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0"><path d="M20 6 9 17l-5-5"></path></svg>
-                        <span>{{ item | strip }}</span>
-                      </li>
-                    {% endfor %}
-                  </ul>
-                {% endif %}
+            {% for block in tab_blocks %}
+              <div id="tab-{{ block.id }}" class="product-tab-panel {% unless forloop.first %}hidden{% endunless %}" role="tabpanel" {{ block.shopify_attributes }}>
+                <h2 class="text-2xl font-bold text-white mb-6">{{ block.settings.heading | default: block.settings.label }}</h2>
+                {% render 'product-tab-content',
+                  product: product,
+                  content_source: block.settings.content_source,
+                  section_heading: block.settings.section_heading,
+                  default_whats_included: section.settings.default_whats_included
+                %}
               </div>
-            </div>
-            {% if has_benefits %}
-              <div id="tab-benefits" class="product-tab-panel hidden" role="tabpanel">
-                <h2 class="text-2xl font-bold text-white mb-6">Benefits</h2>
-                {% if benefits.size > 0 %}
-                  <ul class="space-y-3">
-                    {% for item in benefits %}
-                      <li class="flex items-start gap-3 text-white/60">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0"><path d="M20 6 9 17l-5-5"></path></svg>
-                        <span>{{ item }}</span>
-                      </li>
-                    {% endfor %}
-                  </ul>
-                {% else %}
-                  <div class="text-white/60">{{ benefits }}</div>
-                {% endif %}
-              </div>
-            {% endif %}
-            {% if has_features %}
-              <div id="tab-features" class="product-tab-panel hidden" role="tabpanel">
-                <h2 class="text-2xl font-bold text-white mb-6">Features</h2>
-                {% if features.size > 0 %}
-                  <ul class="space-y-3">
-                    {% for item in features %}
-                      <li class="flex items-start gap-3 text-white/60">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0"><path d="M20 6 9 17l-5-5"></path></svg>
-                        <span>{{ item }}</span>
-                      </li>
-                    {% endfor %}
-                  </ul>
-                {% else %}
-                  <div class="text-white/60">{{ features }}</div>
-                {% endif %}
-              </div>
-            {% endif %}
-            {% if has_faq %}
-              <div id="tab-faqs" class="product-tab-panel hidden" role="tabpanel">
-                <h2 class="text-2xl font-bold text-white mb-6">Frequently Asked Questions</h2>
-                <div class="space-y-6">
-                  {% for q in faq_questions %}
-                    {% assign idx = forloop.index0 %}
-                    <div class="border-b border-white/10 pb-6">
-                      <h3 class="text-lg font-semibold text-white mb-2">{{ q }}</h3>
-                      {% if faq_answers[idx] != blank %}
-                        <p class="text-white/60">{{ faq_answers[idx] }}</p>
-                      {% endif %}
-                    </div>
-                  {% endfor %}
-                </div>
-              </div>
-            {% endif %}
+            {% endfor %}
           </div>
           <div>
             <h3 class="text-lg font-bold text-white mb-4">Product Details</h3>
@@ -435,8 +344,39 @@
     { "type": "url", "id": "cta_secondary_url", "label": "Secondary button URL" },
     { "type": "text", "id": "buy_button_text", "label": "Buy button text", "default": "Buy Now" }
   ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "limit": 10,
+      "settings": [
+        { "type": "text", "id": "label", "label": "Tab label", "default": "Overview", "info": "Shown in the tab bar" },
+        { "type": "text", "id": "heading", "label": "Panel heading", "info": "Leave blank to use tab label" },
+        {
+          "type": "select",
+          "id": "content_source",
+          "label": "Content source",
+          "options": [
+            { "value": "overview", "label": "Overview (description + What's Included)" },
+            { "value": "description_section", "label": "From description (section by heading)" }
+          ],
+          "default": "overview",
+          "info": "No metafields: use product description only. For sections add \"## SectionName\" in description."
+        },
+        { "type": "text", "id": "section_heading", "label": "Section heading", "info": "Exact text after ## in description (e.g. Benefits, Features, FAQ). Only for \"From description\" source." }
+      ]
+    }
+  ],
   "presets": [
-    { "name": "Product" }
+    {
+      "name": "Product",
+      "blocks": [
+        { "type": "tab", "settings": { "label": "Overview", "content_source": "overview" } },
+        { "type": "tab", "settings": { "label": "Benefits", "content_source": "description_section", "section_heading": "Benefits" } },
+        { "type": "tab", "settings": { "label": "Features", "content_source": "description_section", "section_heading": "Features" } },
+        { "type": "tab", "settings": { "label": "FAQ", "content_source": "description_section", "section_heading": "FAQ" } }
+      ]
+    }
   ]
 }
 {% endschema %}
