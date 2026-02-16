@@ -1,30 +1,310 @@
-<section class="section-container" data-reveal>
-  <div class="product-page" style="display: grid; grid-template-columns: 1fr; gap: 2rem; max-width: 1200px; margin: 0 auto;">
-    {% if product.featured_image %}
-      <div class="product-page__media" style="aspect-ratio: 1; background: #232323; border-radius: 0.5rem; overflow: hidden;">
-        <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.featured_image.alt | escape }}" width="800" height="800" style="width: 100%; height: 100%; object-fit: cover;">
-      </div>
-    {% endif %}
-    <div class="product-page__info">
-      <h1 class="trusted-by__title" style="margin-bottom: 0.5rem;">{{ product.title }}</h1>
-      <p style="font-size: 1.25rem; color: #999; margin-bottom: 1rem;">{{ product.price | money }}</p>
-      <div class="product-page__description" style="color: #b0b0b0; margin-bottom: 1.5rem;">
-        {{ product.description }}
-      </div>
-      <form action="{{ routes.cart_add_url }}" method="post">
-        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-        <button type="submit" name="add" class="btn btn--primary">Add to cart</button>
-      </form>
+{% comment %}
+  Single product page: dark theme, color per collection/product, dynamic tabs.
+  Data source: ONE JSON metafield (custom.product_page) OR individual metafields OR native (description, tags, type).
+  Color: product/collection metafield custom.color_theme or section default.
+{% endcomment %}
+{% assign pd = product.metafields.custom.product_page.value %}
+{% if pd %}
+  {% comment %} Single JSON metafield: one place for all optional product page data {% endcomment %}
+  {% assign color_theme = pd.color_theme | default: product.collections.first.metafields.custom.color_theme.value | default: section.settings.color_theme | default: 'blue' %}
+  {% assign type_badge = pd.type_badge | default: product.collections.first.title | default: 'Product' %}
+  {% assign short_description = pd.short_description | default: product.description | strip_html | truncate: 200 %}
+  {% assign feature_tags = pd.feature_tags | default: product.tags %}
+  {% assign benefits_content = pd.benefits %}
+  {% assign features_content = pd.features %}
+  {% assign whats_included = pd.whats_included %}
+  {% assign faqs_value = pd.faqs %}
+  {% assign product_category = pd.product_category | default: product.type | default: type_badge %}
+  {% assign product_version = pd.version | default: '1.0' %}
+  {% assign last_updated = pd.last_updated | default: 'Feb 2026' %}
+  {% assign license = pd.license | default: 'Commercial' %}
+  {% assign downloads_count = pd.downloads_count %}
+  {% assign rating = pd.rating %}
+  {% assign review_count = pd.review_count %}
+{% else %}
+  {% assign color_theme = product.metafields.custom.color_theme.value | default: product.collections.first.metafields.custom.color_theme.value | default: section.settings.color_theme | default: 'blue' %}
+  {% assign type_badge = product.metafields.custom.type_badge.value | default: product.collections.first.title | default: 'Product' %}
+  {% assign short_description = product.metafields.custom.short_description.value | default: product.description | strip_html | truncate: 200 %}
+  {% assign feature_tags = product.metafields.custom.feature_tags.value | default: product.tags %}
+  {% assign benefits_content = product.metafields.custom.benefits.value %}
+  {% assign features_content = product.metafields.custom.features.value %}
+  {% assign whats_included = product.metafields.custom.whats_included.value %}
+  {% assign faqs_value = product.metafields.custom.faqs.value %}
+  {% assign product_category = product.metafields.custom.product_category.value | default: product.type | default: type_badge %}
+  {% assign product_version = product.metafields.custom.version.value | default: '1.0' %}
+  {% assign last_updated = product.metafields.custom.last_updated.value | default: 'Feb 2026' %}
+  {% assign license = product.metafields.custom.license.value | default: 'Commercial' %}
+  {% assign downloads_count = product.metafields.custom.downloads_count.value %}
+  {% assign rating = product.metafields.custom.rating.value %}
+  {% assign review_count = product.metafields.custom.review_count.value %}
+{% endif %}
+
+{% capture gradient_class %}
+  {% if color_theme == 'amber' %}from-amber-500 to-orange-500
+  {% elsif color_theme == 'emerald' %}from-emerald-500 to-teal-500
+  {% elsif color_theme == 'purple' %}from-purple-500 to-pink-500
+  {% else %}from-blue-500 to-cyan-500
+  {% endif %}
+{% endcapture %}
+{% capture gradient_class_opacity %}
+  {% if color_theme == 'amber' %}from-amber-500/10 to-orange-500/10
+  {% elsif color_theme == 'emerald' %}from-emerald-500/10 to-teal-500/10
+  {% elsif color_theme == 'purple' %}from-purple-500/10 to-pink-500/10
+  {% else %}from-blue-500/10 to-cyan-500/10
+  {% endif %}
+{% endcapture %}
+{% if color_theme == 'amber' %}
+  {% assign glow_left = 'rgba(245, 158, 11, 0.08)' %}
+  {% assign glow_right = 'rgba(249, 115, 22, 0.06)' %}
+{% elsif color_theme == 'emerald' %}
+  {% assign glow_left = 'rgba(16, 185, 129, 0.08)' %}
+  {% assign glow_right = 'rgba(20, 184, 166, 0.06)' %}
+{% elsif color_theme == 'purple' %}
+  {% assign glow_left = 'rgba(139, 92, 246, 0.082)' %}
+  {% assign glow_right = 'rgba(236, 72, 153, 0.063)' %}
+{% else %}
+  {% assign glow_left = 'rgba(59, 130, 246, 0.08)' %}
+  {% assign glow_right = 'rgba(6, 182, 212, 0.06)' %}
+{% endif %}
+
+<main class="bg-black min-h-screen relative" data-testid="product-detail-page">
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0" aria-hidden="true">
+    <div class="absolute rounded-full blur-3xl" style="width: 600px; height: 600px; background: radial-gradient(circle, {{ glow_left }} transparent 70%); left: 10%; top: 20%;"></div>
+    <div class="absolute rounded-full blur-3xl" style="width: 500px; height: 500px; background: radial-gradient(circle, {{ glow_right }} transparent 70%); right: 10%; bottom: 20%;"></div>
+  </div>
+
+  <div class="relative z-10 pt-28 pb-8">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+      <nav class="flex items-center gap-2 text-sm" aria-label="Breadcrumb">
+        <a class="text-white/40 hover:text-white transition-colors" href="{{ routes.root_url }}">Shop</a>
+        <span class="text-white/20">/</span>
+        {% if product.collections.first %}
+          <a class="text-white/40 hover:text-white transition-colors capitalize" href="{{ product.collections.first.url }}">{{ product.collections.first.title }}</a>
+        {% else %}
+          <span class="text-white/40">Products</span>
+        {% endif %}
+        <span class="text-white/20">/</span>
+        <span class="text-white/60 truncate max-w-[200px]" aria-current="page">{{ product.title }}</span>
+      </nav>
     </div>
   </div>
-</section>
+
+  <section class="relative z-10 pb-16">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
+        {% render 'product-page-hero',
+          product: product,
+          section: section,
+          gradient_class: gradient_class,
+          gradient_class_opacity: gradient_class_opacity,
+          type_badge: type_badge,
+          short_description: short_description,
+          feature_tags: feature_tags,
+          rating: rating,
+          review_count: review_count,
+          downloads_count: downloads_count
+        %}
+      </div>
+    </div>
+  </section>
+
+  {% if section.settings.show_downloads_banner %}
+    <div class="py-4 border-y border-white/5 bg-white/[0.01]">
+      <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+        <div class="flex items-center justify-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-emerald-400" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
+          <span class="text-white/70 text-sm">{{ section.settings.downloads_banner_text | default: '15,000+ downloads this month' }}</span>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {% assign has_overview = product.description != blank or whats_included != blank %}
+  {% assign has_benefits = benefits_content != blank %}
+  {% assign has_features = features_content != blank %}
+  {% assign has_faqs = faqs_value != blank %}
+  {% render 'product-page-tabs',
+    product: product,
+    section: section,
+    has_overview: has_overview,
+    has_benefits: has_benefits,
+    has_features: has_features,
+    has_faqs: has_faqs,
+    whats_included: whats_included,
+    features_content: features_content,
+    benefits_content: benefits_content,
+    faqs_value: faqs_value,
+    product_category: product_category,
+    product_version: product_version,
+    last_updated: last_updated,
+    license: license
+  %}
+  {% render 'product-page-cta', product: product, section: section, gradient_class_opacity: gradient_class_opacity %}
+</main>
+
+<script>
+(function() {
+  var tabs = document.querySelectorAll('.product-tab');
+  var panels = document.querySelectorAll('.product-tab-panel');
+  if (!tabs.length || !panels.length) return;
+  tabs.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var tab = this.getAttribute('data-tab');
+      tabs.forEach(function(b) { b.classList.remove('active'); b.classList.add('border-transparent', 'text-white/40'); b.classList.remove('border-white', 'text-white'); b.setAttribute('aria-selected', 'false'); });
+      this.classList.add('active', 'border-white', 'text-white'); this.classList.remove('border-transparent', 'text-white/40'); this.setAttribute('aria-selected', 'true');
+      panels.forEach(function(p) {
+        var show = p.id === 'panel-' + tab;
+        p.classList.toggle('hidden', !show);
+      });
+    });
+  });
+  var thumbs = document.querySelectorAll('[data-product-thumbnail]');
+  var mainImg = document.getElementById('ProductMainImage');
+  if (mainImg && thumbs.length) {
+    thumbs.forEach(function(t) {
+      t.addEventListener('click', function() {
+        var src = this.getAttribute('data-product-thumbnail');
+        if (src) mainImg.src = src;
+        thumbs.forEach(function(b) { b.classList.remove('border-white/20'); b.classList.add('border-white/10'); });
+        this.classList.add('border-white/20'); this.classList.remove('border-white/10');
+      });
+    });
+  }
+})();
+</script>
 
 {% schema %}
 {
   "name": "Product",
   "tag": "section",
   "class": "section-main-product",
-  "settings": [],
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_theme",
+      "label": "Default color theme",
+      "info": "Overridden by product or collection metafield custom.color_theme",
+      "options": [
+        { "value": "blue", "label": "Blue / Cyan" },
+        { "value": "purple", "label": "Purple / Pink" },
+        { "value": "emerald", "label": "Emerald / Teal" },
+        { "value": "amber", "label": "Amber / Orange" }
+      ],
+      "default": "blue"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_static_rating",
+      "label": "Show rating (static if no metafields)",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "buy_button_text",
+      "label": "Buy button text",
+      "default": "Buy Now"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_save_button",
+      "label": "Show Save (wishlist) button",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Guarantees"
+    },
+    {
+      "type": "text",
+      "id": "guarantee_instant",
+      "label": "Instant download text",
+      "default": "Instant Download"
+    },
+    {
+      "type": "text",
+      "id": "guarantee_days",
+      "label": "Guarantee text",
+      "default": "14-Day Guarantee"
+    },
+    {
+      "type": "text",
+      "id": "guarantee_access",
+      "label": "Access text",
+      "default": "Lifetime Access"
+    },
+    {
+      "type": "header",
+      "content": "Downloads"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_downloads",
+      "label": "Show downloads count",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "default_downloads",
+      "label": "Default downloads (no metafield)",
+      "default": "800+"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_downloads_banner",
+      "label": "Show downloads banner",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "downloads_banner_text",
+      "label": "Downloads banner text",
+      "default": "15,000+ downloads this month"
+    },
+    {
+      "type": "header",
+      "content": "Bottom CTA"
+    },
+    {
+      "type": "text",
+      "id": "cta_heading",
+      "label": "CTA heading",
+      "default": "Get Unlimited Access"
+    },
+    {
+      "type": "textarea",
+      "id": "cta_text",
+      "label": "CTA description",
+      "default": "Join our membership and get this product plus 100+ more for one monthly price. Download everything, cancel anytime."
+    },
+    {
+      "type": "url",
+      "id": "cta_primary_url",
+      "label": "CTA primary button URL"
+    },
+    {
+      "type": "text",
+      "id": "cta_primary_label",
+      "label": "CTA primary button label",
+      "default": "View Membership Plans"
+    },
+    {
+      "type": "checkbox",
+      "id": "cta_secondary_use_collection",
+      "label": "Secondary button: link to product collection",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "cta_secondary_url",
+      "label": "CTA secondary URL (if not collection)"
+    },
+    {
+      "type": "text",
+      "id": "cta_secondary_label",
+      "label": "CTA secondary button label",
+      "default": "Browse More"
+    }
+  ],
   "presets": [
     { "name": "Product" }
   ]
