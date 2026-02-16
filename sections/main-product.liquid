@@ -119,10 +119,14 @@
     </div>
   {% endif %}
 
-  {% assign has_overview = product.description != blank or whats_included != blank %}
-  {% assign has_benefits = benefits_content != blank %}
-  {% assign has_features = features_content != blank %}
-  {% assign has_faqs = faqs_value != blank %}
+  {% assign has_overview = false %}
+  {% if product.description != blank or whats_included != blank %}{% assign has_overview = true %}{% endif %}
+  {% assign has_benefits = false %}
+  {% if benefits_content != blank %}{% assign has_benefits = true %}{% endif %}
+  {% assign has_features = false %}
+  {% if features_content != blank %}{% assign has_features = true %}{% endif %}
+  {% assign has_faqs = false %}
+  {% if faqs_value != blank %}{% assign has_faqs = true %}{% endif %}
   {% render 'product-page-tabs',
     product: product,
     section: section,
