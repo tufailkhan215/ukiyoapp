@@ -1,30 +1,440 @@
-<section class="section-container" data-reveal>
-  <div class="product-page" style="display: grid; grid-template-columns: 1fr; gap: 2rem; max-width: 1200px; margin: 0 auto;">
-    {% if product.featured_image %}
-      <div class="product-page__media" style="aspect-ratio: 1; background: #232323; border-radius: 0.5rem; overflow: hidden;">
-        <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.featured_image.alt | escape }}" width="800" height="800" style="width: 100%; height: 100%; object-fit: cover;">
-      </div>
-    {% endif %}
-    <div class="product-page__info">
-      <h1 class="trusted-by__title" style="margin-bottom: 0.5rem;">{{ product.title }}</h1>
-      <p style="font-size: 1.25rem; color: #999; margin-bottom: 1rem;">{{ product.price | money }}</p>
-      <div class="product-page__description" style="color: #b0b0b0; margin-bottom: 1.5rem;">
-        {{ product.description }}
-      </div>
-      <form action="{{ routes.cart_add_url }}" method="post">
-        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-        <button type="submit" name="add" class="btn btn--primary">Add to cart</button>
-      </form>
+{% comment %}
+  Product detail page: dark theme, collection/product-based color theme, product-specific tabs (Overview, Benefits, Features, FAQ).
+  Color theme: product.metafields.custom.color_theme else derived from first collection handle (courses→purple, sections→amber, agents/automation→emerald, default blue).
+  Tab content: Overview = product.description + whats_included + product details; Benefits/Features/FAQ from metafields (only show tabs that have content).
+{% endcomment %}
+
+{% assign color_theme = product.metafields.custom.color_theme.value | default: product.metafields.custom.color_theme %}
+{% if color_theme == blank and product.collections.size > 0 %}
+  {% assign first_handle = product.collections.first.handle | downcase %}
+  {% if first_handle contains 'course' %}       {% assign color_theme = 'purple' %}
+  {% elsif first_handle contains 'section' %}   {% assign color_theme = 'amber' %}
+  {% elsif first_handle contains 'agent' or first_handle contains 'automation' %} {% assign color_theme = 'emerald' %}
+  {% endif %}
+{% endif %}
+{% assign color_theme = color_theme | default: section.settings.default_color_theme | default: 'blue' %}
+
+{% assign badge_label = product.metafields.custom.product_type_badge.value | default: product.metafields.custom.product_type_badge | default: section.settings.default_badge_label %}
+{% assign whats_included = product.metafields.custom.whats_included.value | default: product.metafields.custom.whats_included %}
+{% assign product_category = product.metafields.custom.product_category.value | default: product.metafields.custom.product_category | default: badge_label %}
+{% assign product_version = product.metafields.custom.product_version.value | default: product.metafields.custom.product_version | default: section.settings.default_version %}
+{% assign last_updated = product.metafields.custom.last_updated.value | default: product.metafields.custom.last_updated %}
+{% assign license = product.metafields.custom.license.value | default: product.metafields.custom.license | default: section.settings.default_license %}
+{% assign benefits = product.metafields.custom.benefits.value | default: product.metafields.custom.benefits %}
+{% assign features = product.metafields.custom.features.value | default: product.metafields.custom.features %}
+{% assign faq_questions = product.metafields.custom.faq_questions.value | default: product.metafields.custom.faq_questions %}
+{% assign faq_answers = product.metafields.custom.faq_answers.value | default: product.metafields.custom.faq_answers %}
+
+{% assign has_overview = true %}
+{% assign has_benefits = false %}
+{% if benefits != blank %}
+  {% if benefits.size > 0 %} {% assign has_benefits = true %}
+  {% elsif benefits != '' %} {% assign has_benefits = true %}
+  {% endif %}
+{% endif %}
+{% assign has_features = false %}
+{% if features != blank %}
+  {% if features.size > 0 %} {% assign has_features = true %}
+  {% elsif features != '' %} {% assign has_features = true %}
+  {% endif %}
+{% endif %}
+{% assign has_faq = false %}
+{% if faq_questions != blank and faq_questions.size > 0 and faq_answers != blank and faq_answers.size > 0 %}
+  {% assign has_faq = true %}
+{% endif %}
+
+{% assign gradient_class = 'from-blue-500 to-cyan-500' %}
+{% assign gradient_class_light = 'from-blue-400 to-cyan-400' %}
+{% assign bg_glow = 'rgba(59, 130, 246, 0.08)' %}
+{% assign bg_glow_2 = 'rgba(34, 211, 238, 0.06)' %}
+{% if color_theme == 'purple' %}
+  {% assign gradient_class = 'from-purple-500 to-pink-500' %}
+  {% assign gradient_class_light = 'from-purple-400 to-pink-400' %}
+  {% assign bg_glow = 'rgba(139, 92, 246, 0.082)' %}
+  {% assign bg_glow_2 = 'rgba(236, 72, 153, 0.063)' %}
+{% elsif color_theme == 'emerald' %}
+  {% assign gradient_class = 'from-emerald-500 to-teal-500' %}
+  {% assign gradient_class_light = 'from-emerald-400 to-teal-400' %}
+  {% assign bg_glow = 'rgba(16, 185, 129, 0.08)' %}
+  {% assign bg_glow_2 = 'rgba(20, 184, 166, 0.06)' %}
+{% elsif color_theme == 'amber' %}
+  {% assign gradient_class = 'from-amber-500 to-orange-500' %}
+  {% assign gradient_class_light = 'from-amber-400 to-orange-400' %}
+  {% assign bg_glow = 'rgba(245, 158, 11, 0.08)' %}
+  {% assign bg_glow_2 = 'rgba(249, 115, 22, 0.06)' %}
+{% endif %}
+
+<main class="bg-black min-h-screen relative section-main-product" data-product-color-theme="{{ color_theme }}">
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0" aria-hidden="true">
+    <div class="absolute rounded-full blur-3xl" style="width: 600px; height: 600px; background: radial-gradient(circle, {{ bg_glow }}, transparent 70%); left: 10%; top: 20%;"></div>
+    <div class="absolute rounded-full blur-3xl" style="width: 500px; height: 500px; background: radial-gradient(circle, {{ bg_glow_2 }}, transparent 70%); right: 10%; bottom: 20%;"></div>
+  </div>
+
+  <div class="pt-28 pb-8 relative z-10">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+      <nav class="flex items-center gap-2 text-sm" aria-label="Breadcrumb">
+        {% assign shop_link = section.settings.shop_url %}
+            {% if shop_link == blank %}{% assign shop_link = routes.root_url | append: 'pages/shop' %}{% endif %}
+            <a class="text-white/40 hover:text-white transition-colors" href="{{ shop_link }}">{{ section.settings.breadcrumb_shop | default: 'Shop' }}</a>
+        <span class="text-white/20">/</span>
+        {% if product.collections.first %}
+          <a class="text-white/40 hover:text-white transition-colors capitalize" href="{{ product.collections.first.url }}">{{ product.collections.first.title }}</a>
+          <span class="text-white/20">/</span>
+        {% endif %}
+        <span class="text-white/60 truncate max-w-[200px]" aria-current="page">{{ product.title }}</span>
+      </nav>
     </div>
   </div>
-</section>
+
+  <section class="pb-16 relative z-10">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
+        <div class="relative">
+          <div class="absolute -inset-4 bg-gradient-to-r {{ gradient_class }} opacity-10 blur-3xl rounded-3xl" aria-hidden="true"></div>
+          <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-white/[0.02] border border-white/10">
+            {% if product.featured_image %}
+              <img
+                alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                class="w-full h-full object-cover"
+                src="{{ product.featured_image | image_url: width: 800 }}"
+                width="800"
+                height="600"
+                loading="eager"
+              >
+            {% else %}
+              <div class="w-full h-full flex items-center justify-center text-white/20">No image</div>
+            {% endif %}
+            {% if badge_label != blank %}
+              <div class="absolute top-4 left-4">
+                <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r {{ gradient_class }} text-white text-xs font-medium">
+                  {% if section.settings.badge_icon == 'course' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg>
+                  {% elsif section.settings.badge_icon == 'template' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                  {% elsif section.settings.badge_icon == 'section' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
+                  {% endif %}
+                  {{ badge_label }}
+                </span>
+              </div>
+            {% endif %}
+          </div>
+          <div class="flex gap-3 mt-4">
+            {% for image in product.images limit: 3 %}
+              <div class="w-20 h-20 rounded-lg overflow-hidden bg-white/[0.02] border {% if forloop.first %}border-2 border-white/20{% else %}border border-white/10{% endif %}">
+                <img src="{{ image | image_url: width: 160 }}" alt="{{ image.alt | escape }}" width="80" height="80" class="w-full h-full object-cover" loading="lazy">
+              </div>
+            {% endfor %}
+            {% if product.images.size < 3 %}
+              {% for i in (1..3) %}
+                {% if forloop.index > product.images.size %}
+                  <div class="w-20 h-20 rounded-lg bg-white/[0.02] border border-white/10" aria-hidden="true"></div>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+
+        <div>
+          {% if section.settings.show_rating %}
+            <div class="flex items-center gap-3 mb-4">
+              <div class="flex items-center gap-1" aria-hidden="true">
+                {% for i in (1..5) %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 text-yellow-400" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>{% endfor %}
+              </div>
+              <span class="text-white/40 text-sm">{{ section.settings.rating_text | default: '5.0 (24 reviews)' }}</span>
+            </div>
+          {% endif %}
+          <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">{{ product.title }}</h1>
+          {% if product.description != blank %}
+            <p class="text-lg text-white/60 mb-6 leading-relaxed">{{ product.description | strip_html | truncate: 200 }}</p>
+          {% endif %}
+          {% if product.tags.size > 0 %}
+            <div class="mb-8">
+              <div class="grid grid-cols-2 gap-3">
+                {% for tag in product.tags limit: 6 %}
+                  <div class="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-emerald-400 flex-shrink-0" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+                    <span class="text-white/70 text-sm">{{ tag }}</span>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
+          <div class="flex items-baseline gap-3 mb-6">
+            <span class="text-4xl font-black text-white">{{ product.price | money }}</span>
+            {% if product.compare_at_price > product.price %}
+              <span class="text-white/40 line-through">{{ product.compare_at_price | money }}</span>
+            {% endif %}
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4 mb-8">
+            <form action="{{ routes.cart_add_url }}" method="post" class="flex-1">
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              <button type="submit" name="add" class="w-full flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-lg bg-gradient-to-r {{ gradient_class }} text-white hover:opacity-90 transition-opacity">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5" aria-hidden="true"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
+                {{ section.settings.buy_button_text | default: 'Buy Now' }}
+              </button>
+            </form>
+            {% if section.settings.show_wishlist %}
+              <button type="button" class="flex items-center justify-center gap-2 px-6 py-4 rounded-full font-semibold border border-white/20 text-white hover:bg-white/10 transition-colors" aria-label="Save">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
+                Save
+              </button>
+            {% endif %}
+            <button type="button" class="flex items-center justify-center w-14 h-14 rounded-full border border-white/20 text-white/60 hover:bg-white/10 transition-colors" aria-label="Share" data-share-product="{{ product.url | prepend: shop.url }}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg>
+            </button>
+          </div>
+          <div class="flex flex-wrap gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/10">
+            {% if section.settings.guarantee_1 != blank %}<div class="flex items-center gap-2 text-sm text-white/50"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg><span>{{ section.settings.guarantee_1 }}</span></div>{% endif %}
+            {% if section.settings.guarantee_2 != blank %}<div class="flex items-center gap-2 text-sm text-white/50"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg><span>{{ section.settings.guarantee_2 }}</span></div>{% endif %}
+            {% if section.settings.guarantee_3 != blank %}<div class="flex items-center gap-2 text-sm text-white/50"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg><span>{{ section.settings.guarantee_3 }}</span></div>{% endif %}
+          </div>
+          {% assign downloads_metafield = product.metafields.custom.downloads_count.value | default: product.metafields.custom.downloads_count %}
+          {% if downloads_metafield != blank or section.settings.show_downloads_placeholder %}
+            <div class="mt-6">
+              <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/10">
+                <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6 text-emerald-400"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
+                </div>
+                <div>
+                  <div class="text-2xl font-bold text-white">{{ downloads_metafield | default: section.settings.downloads_placeholder }}<span class="text-white/60">+</span></div>
+                  <div class="text-white/50 text-sm">{{ section.settings.downloads_label | default: 'Downloads' }}</div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+          {% if section.settings.rating_footer != blank %}
+            <p class="text-white/40 text-sm mt-4">{{ section.settings.rating_footer }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% if section.settings.banner_text != blank %}
+    <div class="py-4 border-y border-white/5 bg-white/[0.01] relative z-10">
+      <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+        <div class="flex items-center justify-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-emerald-400"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
+          <span class="text-white/70 text-sm">{{ section.settings.banner_text }}</span>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if has_overview or has_benefits or has_features or has_faq %}
+    <section class="border-t border-white/10 relative z-10" aria-label="Product details tabs">
+      <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+        <div class="flex gap-8 overflow-x-auto product-tabs" role="tablist">
+          <button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap border-white text-white" role="tab" aria-selected="true" data-tab="overview">Overview</button>
+          {% if has_benefits %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap border-transparent text-white/40 hover:text-white" role="tab" aria-selected="false" data-tab="benefits">Benefits</button>{% endif %}
+          {% if has_features %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap border-transparent text-white/40 hover:text-white" role="tab" aria-selected="false" data-tab="features">Features</button>{% endif %}
+          {% if has_faq %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap border-transparent text-white/40 hover:text-white" role="tab" aria-selected="false" data-tab="faqs">Faqs</button>{% endif %}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 lg:py-24 relative z-10">
+      <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+        <div class="grid lg:grid-cols-3 gap-12">
+          <div class="lg:col-span-2">
+            <div id="tab-overview" class="product-tab-panel" role="tabpanel">
+              <h2 class="text-2xl font-bold text-white mb-6">About This Product</h2>
+              <div class="prose prose-invert max-w-none">
+                {% if product.description != blank %}
+                  <div class="text-white/60 leading-relaxed mb-6 product-description">{{ product.description }}</div>
+                {% endif %}
+                {% if whats_included != blank and whats_included.size > 0 %}
+                  <h3 class="text-xl font-bold text-white mt-8 mb-4">What's Included</h3>
+                  <ul class="space-y-3">
+                    {% for item in whats_included %}
+                      <li class="flex items-start gap-3 text-white/60">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <span>{{ item }}</span>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% elsif section.settings.default_whats_included != blank %}
+                  <h3 class="text-xl font-bold text-white mt-8 mb-4">What's Included</h3>
+                  <ul class="space-y-3">
+                    {% assign default_items = section.settings.default_whats_included | split: '|' %}
+                    {% for item in default_items %}
+                      <li class="flex items-start gap-3 text-white/60">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <span>{{ item | strip }}</span>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </div>
+            </div>
+            {% if has_benefits %}
+              <div id="tab-benefits" class="product-tab-panel hidden" role="tabpanel">
+                <h2 class="text-2xl font-bold text-white mb-6">Benefits</h2>
+                {% if benefits.size > 0 %}
+                  <ul class="space-y-3">
+                    {% for item in benefits %}
+                      <li class="flex items-start gap-3 text-white/60">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <span>{{ item }}</span>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% else %}
+                  <div class="text-white/60">{{ benefits }}</div>
+                {% endif %}
+              </div>
+            {% endif %}
+            {% if has_features %}
+              <div id="tab-features" class="product-tab-panel hidden" role="tabpanel">
+                <h2 class="text-2xl font-bold text-white mb-6">Features</h2>
+                {% if features.size > 0 %}
+                  <ul class="space-y-3">
+                    {% for item in features %}
+                      <li class="flex items-start gap-3 text-white/60">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <span>{{ item }}</span>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% else %}
+                  <div class="text-white/60">{{ features }}</div>
+                {% endif %}
+              </div>
+            {% endif %}
+            {% if has_faq %}
+              <div id="tab-faqs" class="product-tab-panel hidden" role="tabpanel">
+                <h2 class="text-2xl font-bold text-white mb-6">Frequently Asked Questions</h2>
+                <div class="space-y-6">
+                  {% for q in faq_questions %}
+                    {% assign idx = forloop.index0 %}
+                    <div class="border-b border-white/10 pb-6">
+                      <h3 class="text-lg font-semibold text-white mb-2">{{ q }}</h3>
+                      {% if faq_answers[idx] != blank %}
+                        <p class="text-white/60">{{ faq_answers[idx] }}</p>
+                      {% endif %}
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-white mb-4">Product Details</h3>
+            <div class="space-y-4">
+              {% if product_category != blank %}<div class="flex justify-between py-3 border-b border-white/10"><span class="text-white/40">Category</span><span class="text-white">{{ product_category }}</span></div>{% endif %}
+              {% if product_version != blank %}<div class="flex justify-between py-3 border-b border-white/10"><span class="text-white/40">Version</span><span class="text-white">{{ product_version }}</span></div>{% endif %}
+              {% if last_updated != blank %}<div class="flex justify-between py-3 border-b border-white/10"><span class="text-white/40">Last Updated</span><span class="text-white">{{ last_updated }}</span></div>{% endif %}
+              {% if license != blank %}<div class="flex justify-between py-3 border-b border-white/10"><span class="text-white/40">License</span><span class="text-white">{{ license }}</span></div>{% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  {% if section.settings.cta_heading != blank %}
+    <section class="py-16 lg:py-24 border-t border-white/10 relative z-10">
+      <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+        <div class="relative rounded-3xl overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-r {{ gradient_class }} opacity-10" aria-hidden="true"></div>
+          <div class="relative p-8 md:p-12 lg:p-16">
+            <div class="max-w-2xl">
+              <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">{{ section.settings.cta_heading }}</h2>
+              {% if section.settings.cta_text != blank %}<p class="text-lg text-white/60 mb-8">{{ section.settings.cta_text }}</p>{% endif %}
+              <div class="flex flex-col sm:flex-row gap-4">
+                {% if section.settings.cta_primary_url != blank %}<a class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-black rounded-full font-semibold hover:bg-gray-200 transition-colors" href="{{ section.settings.cta_primary_url }}">{{ section.settings.cta_primary_label | default: 'View Membership Plans' }}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>{% endif %}
+                {% if section.settings.cta_secondary_url != blank %}<a class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white rounded-full font-semibold hover:bg-white/10 transition-colors" href="{{ section.settings.cta_secondary_url }}">{{ section.settings.cta_secondary_label | default: 'Browse More' }}</a>{% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+</main>
+
+<script>
+(function() {
+  var tabs = document.querySelectorAll('.product-tab');
+  var panels = document.querySelectorAll('.product-tab-panel');
+  if (!tabs.length || !panels.length) return;
+  tabs.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var tabId = this.getAttribute('data-tab');
+      tabs.forEach(function(t) { t.setAttribute('aria-selected', 'false'); t.classList.remove('border-white', 'text-white'); t.classList.add('border-transparent', 'text-white/40'); });
+      this.setAttribute('aria-selected', 'true'); this.classList.add('border-white', 'text-white'); this.classList.remove('border-transparent', 'text-white/40');
+      panels.forEach(function(p) {
+        var show = (p.id === 'tab-' + tabId);
+        p.classList.toggle('hidden', !show);
+      });
+    });
+  });
+  document.querySelectorAll('[data-share-product]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var url = this.getAttribute('data-share-product');
+      if (navigator.share) {
+        navigator.share({ title: document.title, url: url }).catch(function() {});
+      } else {
+        navigator.clipboard.writeText(url).then(function() {});
+      }
+    });
+  });
+})();
+</script>
 
 {% schema %}
 {
   "name": "Product",
   "tag": "section",
   "class": "section-main-product",
-  "settings": [],
+  "settings": [
+    { "type": "header", "content": "Color theme" },
+    { "type": "select", "id": "default_color_theme", "label": "Default theme (if not from collection)", "options": [
+      { "value": "blue", "label": "Blue / Cyan" },
+      { "value": "purple", "label": "Purple / Pink" },
+      { "value": "emerald", "label": "Emerald / Teal" },
+      { "value": "amber", "label": "Amber / Orange" }
+    ], "default": "blue" },
+    { "type": "header", "content": "Badge" },
+    { "type": "text", "id": "default_badge_label", "label": "Default type badge", "default": "Product", "info": "Override per product with metafield custom.product_type_badge" },
+    { "type": "select", "id": "badge_icon", "label": "Badge icon", "options": [
+      { "value": "none", "label": "None" },
+      { "value": "course", "label": "Course (graduation cap)" },
+      { "value": "template", "label": "Template (grid)" },
+      { "value": "section", "label": "Section (download)" }
+    ], "default": "none" },
+    { "type": "header", "content": "Breadcrumb" },
+    { "type": "url", "id": "shop_url", "label": "Shop link URL", "info": "Leave blank for /shop" },
+    { "type": "text", "id": "breadcrumb_shop", "label": "Shop link text", "default": "Shop" },
+    { "type": "header", "content": "Rating & social" },
+    { "type": "checkbox", "id": "show_rating", "label": "Show rating", "default": true },
+    { "type": "text", "id": "rating_text", "label": "Rating text", "default": "5.0 (24 reviews)" },
+    { "type": "text", "id": "rating_footer", "label": "Rating footer", "default": "4.9/5 average rating" },
+    { "type": "checkbox", "id": "show_wishlist", "label": "Show Save button", "default": true },
+    { "type": "header", "content": "Guarantees" },
+    { "type": "text", "id": "guarantee_1", "label": "Guarantee 1", "default": "Instant Download" },
+    { "type": "text", "id": "guarantee_2", "label": "Guarantee 2", "default": "14-Day Guarantee" },
+    { "type": "text", "id": "guarantee_3", "label": "Guarantee 3", "default": "Lifetime Access" },
+    { "type": "header", "content": "Downloads" },
+    { "type": "checkbox", "id": "show_downloads_placeholder", "label": "Show downloads block", "default": true },
+    { "type": "text", "id": "downloads_placeholder", "label": "Downloads count (placeholder)", "default": "800" },
+    { "type": "text", "id": "downloads_label", "label": "Downloads label", "default": "Downloads" },
+    { "type": "header", "content": "Banner" },
+    { "type": "text", "id": "banner_text", "label": "Banner text", "default": "15,000+ downloads this month" },
+    { "type": "header", "content": "Overview defaults" },
+    { "type": "text", "id": "default_whats_included", "label": "Default What's Included (pipe-separated)", "default": "Complete files ready to use|Documentation and setup guide|Free updates|Commercial license|Email support", "info": "Used when product has no whats_included metafield" },
+    { "type": "text", "id": "default_version", "label": "Default version", "default": "1.0" },
+    { "type": "text", "id": "default_license", "label": "Default license", "default": "Commercial" },
+    { "type": "header", "content": "Bottom CTA" },
+    { "type": "text", "id": "cta_heading", "label": "CTA heading", "default": "Get Unlimited Access" },
+    { "type": "textarea", "id": "cta_text", "label": "CTA description", "default": "Join our membership and get this product plus 100+ more for one monthly price. Download everything, cancel anytime." },
+    { "type": "text", "id": "cta_primary_label", "label": "Primary button text", "default": "View Membership Plans" },
+    { "type": "url", "id": "cta_primary_url", "label": "Primary button URL" },
+    { "type": "text", "id": "cta_secondary_label", "label": "Secondary button text", "default": "Browse More Courses" },
+    { "type": "url", "id": "cta_secondary_url", "label": "Secondary button URL" },
+    { "type": "text", "id": "buy_button_text", "label": "Buy button text", "default": "Buy Now" }
+  ],
   "presets": [
     { "name": "Product" }
   ]
