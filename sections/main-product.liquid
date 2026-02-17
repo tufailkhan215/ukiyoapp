@@ -1033,7 +1033,7 @@
     { "type": "text", "id": "downloads_placeholder", "label": "Downloads placeholder", "default": "800" },
     { "type": "text", "id": "downloads_label", "label": "Downloads label", "default": "Downloads" },
     { "type": "textarea", "id": "banner_slides", "label": "Banner slides (rotating)", "default": "download|15,000+ downloads this month\nstar|4.9/5 average rating\ntrending_up|340% avg ROI for customers\nusers|2,847+ creators trust us", "info": "One line per slide: icon|text. Icons: download, star, users, trending_up. Leave blank to use single Banner text below." },
-    { "type": "number", "id": "banner_slide_duration", "label": "Banner slide duration (seconds)", "default": 4, "min": 2, "max": 10 },
+    { "type": "range", "id": "banner_slide_duration", "label": "Banner slide duration (seconds)", "default": 4, "min": 2, "max": 10, "step": 1, "unit": "s" },
     { "type": "text", "id": "banner_text", "label": "Banner text (single line)", "default": "15,000+ downloads this month", "info": "Used when Banner slides is blank" },
     { "type": "select", "id": "banner_icon", "label": "Banner icon (single line)", "options": [
       { "value": "download", "label": "Download (emerald)" },
