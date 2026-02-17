@@ -62,6 +62,8 @@ When **FAQ accordion** content is present (`custom.faqs_accordion` or section de
 - **Markup:** `max-w-3xl` container, rounded panel with border, each item has a button (question) and collapsible answer. One item open at a time.
 - **Section settings:** `faqs_heading` (default "Frequently Asked Questions"), `default_faqs_accordion` (multi-line, same format). If no accordion data, tab falls back to `custom.faqs` (rich text) when set.
 
+**Metafield setup:** See **[PRODUCT-PAGE-METAFIELDS.md](PRODUCT-PAGE-METAFIELDS.md)** for a full list of metafields to create in Shopify (Settings → Custom data), with types, descriptions, and example values.
+
 **Recommended metafields (Products, namespace `custom`):**
 
 | Key               | Type      | Notes                          |
