@@ -1,0 +1,160 @@
+{% comment %}
+  Wishlist page: displays products saved via localStorage (standard Shopify wishlist pattern).
+  Products are stored with id, title, price, url, handle, image when user clicks "Save" on product page.
+{% endcomment %}
+
+<section class="relative py-16 lg:py-24" {{ section.shopify_attributes }}>
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="mb-8">
+      <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">{{ section.settings.heading | default: 'My Wishlist' }}</h1>
+      {% if section.settings.subheading != blank %}
+        <p class="text-white/50">{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+
+    <div id="wishlist-container" class="wishlist-empty-state">
+      <div class="text-center py-16">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-4 text-white/20" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
+        <p class="text-white/40 text-lg mb-2">{{ section.settings.empty_heading | default: 'Your wishlist is empty' }}</p>
+        <p class="text-white/30 text-sm mb-6">{{ section.settings.empty_text | default: 'Start saving products you love by clicking the Save button on any product page.' }}</p>
+        <a href="{{ section.settings.shop_url | default: routes.collections_url }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold border border-white/20 text-white hover:bg-white/10 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+          {{ section.settings.empty_cta | default: 'Browse Products' }}
+        </a>
+      </div>
+    </div>
+
+    <div id="wishlist-grid" class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" style="display: none;"></div>
+  </div>
+</section>
+
+<script>
+(function() {
+  var wishlistKey = 'ukiyo_wishlist';
+  var container = document.getElementById('wishlist-container');
+  var grid = document.getElementById('wishlist-grid');
+  var emptyState = container.querySelector('.wishlist-empty-state');
+  
+  function getWishlist() {
+    try {
+      var stored = localStorage.getItem(wishlistKey);
+      return stored ? JSON.parse(stored) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+  
+  function removeFromWishlist(productId) {
+    var wishlist = getWishlist();
+    var index = wishlist.findIndex(function(item) { return item.id === productId; });
+    if (index !== -1) {
+      wishlist.splice(index, 1);
+      try {
+        localStorage.setItem(wishlistKey, JSON.stringify(wishlist));
+      } catch (e) {
+        console.warn('Could not save wishlist:', e);
+      }
+      renderWishlist();
+      updateProductPageButtons(productId, false);
+    }
+  }
+  
+  function updateProductPageButtons(productId, isSaved) {
+    var buttons = document.querySelectorAll('.product-wishlist-btn[data-product-id="' + productId + '"]');
+    buttons.forEach(function(btn) {
+      var icon = btn.querySelector('.product-wishlist-icon');
+      var text = btn.querySelector('.product-wishlist-text');
+      if (isSaved) {
+        btn.classList.add('product-wishlist-saved');
+        btn.classList.remove('border-white/20');
+        btn.classList.add('border-red-500/50', 'bg-red-500/10');
+        if (icon) {
+          icon.style.fill = 'currentColor';
+          icon.style.stroke = 'currentColor';
+        }
+        if (text) text.textContent = 'Saved';
+      } else {
+        btn.classList.remove('product-wishlist-saved', 'border-red-500/50', 'bg-red-500/10');
+        btn.classList.add('border-white/20');
+        if (icon) {
+          icon.style.fill = 'none';
+          icon.style.stroke = 'currentColor';
+        }
+        if (text) text.textContent = 'Save';
+      }
+    });
+  }
+  
+  function renderWishlist() {
+    var wishlist = getWishlist();
+    if (wishlist.length === 0) {
+      container.style.display = 'block';
+      grid.style.display = 'none';
+      return;
+    }
+    
+    container.style.display = 'none';
+    grid.style.display = 'grid';
+    grid.innerHTML = '';
+    
+    wishlist.forEach(function(product) {
+      var card = document.createElement('div');
+      card.className = 'relative group';
+      card.innerHTML = '<a href="' + (product.url || '/products/' + product.handle) + '" class="block">' +
+        '<div class="relative p-4 rounded-xl bg-white/[0.02] border border-white/10 group-hover:border-white/20 transition-all duration-300">' +
+        '<div class="aspect-video rounded-lg overflow-hidden mb-3 bg-white/5 relative">' +
+        (product.image ? '<img alt="' + (product.title || 'Product') + '" class="w-full h-full object-cover" src="' + product.image + '" width="800" height="450" loading="lazy">' : '<div class="w-full h-full flex items-center justify-center text-white/20" aria-hidden="true">No image</div>') +
+        '<button type="button" class="absolute top-2 right-2 w-8 h-8 rounded-full bg-black/60 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-red-500/80 transition-colors product-wishlist-remove" data-product-id="' + product.id + '" aria-label="Remove from wishlist">' +
+        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>' +
+        '</button>' +
+        '</div>' +
+        '<h4 class="text-white font-medium text-sm line-clamp-1 group-hover:text-white transition-colors">' + (product.title || 'Product') + '</h4>' +
+        '<p class="text-white/40 text-xs mt-1">' + (product.price || '') + '</p>' +
+        '</div>' +
+        '</a>';
+      grid.appendChild(card);
+    });
+    
+    grid.addEventListener('click', function(e) {
+      var removeBtn = e.target.closest('.product-wishlist-remove');
+      if (removeBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        var productId = removeBtn.getAttribute('data-product-id');
+        removeFromWishlist(productId);
+      }
+    });
+  }
+  
+  window.updateWishlistPage = renderWishlist;
+  renderWishlist();
+})();
+</script>
+
+<style>
+  .wishlist-empty-state {
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Wishlist",
+  "tag": "section",
+  "class": "section-wishlist",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Page heading", "default": "My Wishlist" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Products you've saved for later" },
+    { "type": "text", "id": "empty_heading", "label": "Empty state heading", "default": "Your wishlist is empty" },
+    { "type": "textarea", "id": "empty_text", "label": "Empty state text", "default": "Start saving products you love by clicking the Save button on any product page." },
+    { "type": "text", "id": "empty_cta", "label": "Empty state button", "default": "Browse Products" },
+    { "type": "url", "id": "shop_url", "label": "Shop URL (empty state button)", "default": "/collections/all" }
+  ],
+  "presets": [
+    { "name": "Wishlist" }
+  ]
+}
+{% endschema %}
