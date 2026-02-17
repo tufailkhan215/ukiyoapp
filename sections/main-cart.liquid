@@ -5,7 +5,7 @@
       <form action="{{ routes.cart_url }}" method="post">
         <ul class="space-y-4 mb-8">
           {% for item in cart.items %}
-            <li class="flex gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/10 items-center">
+            <li class="flex gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/10 items-center" data-cart-line-key="{{ item.key }}">
               {% if item.image %}
                 <a href="{{ item.url }}" class="flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden bg-white/5">
                   <img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.title | escape }}" width="80" height="80" class="w-full h-full object-cover" loading="lazy">
@@ -19,6 +19,9 @@
                 <p class="text-white/50 text-sm mt-1">{{ item.final_line_price | money }} × {{ item.quantity }}</p>
               </div>
               <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" class="w-20 px-3 py-2 rounded-lg bg-white/[0.05] border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-white/30">
+              <button type="button" class="cart-item-remove flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full text-white/40 hover:text-red-400 hover:bg-red-500/10 transition-colors" data-key="{{ item.key }}" aria-label="Remove {{ item.product.title | escape }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+              </button>
             </li>
           {% endfor %}
         </ul>
@@ -37,6 +40,25 @@
     {% endif %}
   </div>
 </section>
+
+{% if cart.item_count > 0 %}
+<script>
+(function() {
+  document.querySelectorAll('.cart-item-remove').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var key = this.getAttribute('data-key');
+      if (!key) return;
+      this.disabled = true;
+      fetch('/cart/change.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ id: key, quantity: 0 })
+      }).then(function() { window.location.reload(); }).catch(function() { window.location.reload(); });
+    });
+  });
+})();
+</script>
+{% endif %}
 
 {% schema %}
 {
