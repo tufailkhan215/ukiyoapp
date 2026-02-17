@@ -10,16 +10,38 @@
 {% assign benefits_content = product.metafields.custom.benefits | default: nil %}
 {% assign features_content = product.metafields.custom.features | default: nil %}
 {% assign faqs_content = product.metafields.custom.faqs | default: nil %}
+{% assign faqs_accordion_str = product.metafields.custom.faqs_accordion.value | default: section.settings.default_faqs_accordion %}
+{% assign benefits_list_str = product.metafields.custom.benefits_list.value | default: section.settings.default_benefits_list %}
+{% assign benefits_intro = product.metafields.custom.benefits_intro | default: nil %}
+{% assign benefits_style = product.metafields.custom.benefits_style.value | default: section.settings.benefits_layout | default: 'simple' %}
+{% assign benefits_subtext = product.metafields.custom.benefits_subtext.value | default: section.settings.benefits_subtext %}
+{% assign benefits_stats_str = product.metafields.custom.benefits_stats.value | default: section.settings.default_benefits_stats %}
+{% assign benefits_progress_str = product.metafields.custom.benefits_progress.value | default: section.settings.default_benefits_progress %}
+{% assign benefits_without_list_str = product.metafields.custom.benefits_without_list.value | default: section.settings.default_benefits_without_list %}
+{% assign benefits_with_list_str = product.metafields.custom.benefits_with_list.value | default: section.settings.default_benefits_with_list %}
+{% assign features_list_str = product.metafields.custom.features_list.value | default: section.settings.default_features_list %}
+{% assign features_intro = product.metafields.custom.features_intro | default: nil %}
+{% assign features_style = product.metafields.custom.features_style.value | default: section.settings.features_layout | default: 'simple' %}
+{% assign features_cards_str = product.metafields.custom.features_cards.value | default: section.settings.default_features_cards %}
 {% if overview_content != blank or product.description != blank %}{% assign has_overview = true %}{% else %}{% assign has_overview = false %}{% endif %}
-{% if benefits_content != blank %}{% assign has_benefits = true %}{% else %}{% assign has_benefits = false %}{% endif %}
-{% if features_content != blank %}{% assign has_features = true %}{% else %}{% assign has_features = false %}{% endif %}
-{% if faqs_content != blank %}{% assign has_faqs = true %}{% else %}{% assign has_faqs = false %}{% endif %}
+{% assign benefits_has_structured = false %}
+{% if benefits_style == 'structured' and benefits_stats_str != blank %}{% assign benefits_has_structured = true %}{% endif %}
+{% if benefits_style == 'structured' and benefits_progress_str != blank %}{% assign benefits_has_structured = true %}{% endif %}
+{% if benefits_style == 'structured' and benefits_without_list_str != blank %}{% assign benefits_has_structured = true %}{% endif %}
+{% if benefits_style == 'structured' and benefits_with_list_str != blank %}{% assign benefits_has_structured = true %}{% endif %}
+{% if benefits_content != blank or benefits_list_str != blank or benefits_has_structured %}{% assign has_benefits = true %}{% else %}{% assign has_benefits = false %}{% endif %}
+{% assign features_has_cards = false %}
+{% if features_style == 'cards' and features_cards_str != blank %}{% assign features_has_cards = true %}{% endif %}
+{% if features_content != blank or features_list_str != blank or features_has_cards %}{% assign has_features = true %}{% else %}{% assign has_features = false %}{% endif %}
+{% if faqs_content != blank or faqs_accordion_str != blank %}{% assign has_faqs = true %}{% else %}{% assign has_faqs = false %}{% endif %}
 {% assign product_category = product.metafields.custom.category.value | default: product.type | default: section.settings.default_category %}
 {% assign product_version = product.metafields.custom.version.value | default: section.settings.default_version %}
 {% assign product_last_updated = product.metafields.custom.last_updated.value | default: section.settings.default_last_updated %}
 {% assign product_license = product.metafields.custom.license.value | default: section.settings.default_license %}
 {% assign whats_included_str = product.metafields.custom.whats_included.value | default: section.settings.default_whats_included %}
 {% assign whats_included_items = whats_included_str | split: '|' %}
+{% assign benefits_list_items = benefits_list_str | split: '|' %}
+{% assign features_list_items = features_list_str | split: '|' %}
 {% assign shop_url = section.settings.shop_url | default: routes.root_url %}
 {% assign collection_for_breadcrumb = product.collections.first %}
 
@@ -172,9 +194,15 @@
   {% if section.settings.banner_text != blank %}
     <div class="relative z-10 py-4 border-y border-white/5 bg-white/[0.01]">
       <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
-        <div class="flex items-center justify-center gap-2">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-emerald-400"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
-          <span class="text-white/70 text-sm">{{ section.settings.banner_text }}</span>
+        <div class="overflow-hidden">
+          <div class="flex items-center justify-center gap-2">
+            {% if section.settings.banner_icon == 'users' %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-blue-400" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>
+            {% else %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-emerald-400"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
+            {% endif %}
+            <span class="text-white/70 text-sm">{{ section.settings.banner_text }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -185,10 +213,10 @@
     <section class="relative z-10 border-t border-white/10" id="product-tabs">
       <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div class="flex gap-8 overflow-x-auto border-b border-white/10" role="tablist" aria-label="Product details">
-          {% if has_overview %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap border-white text-white" role="tab" aria-selected="true" data-tab="overview">Overview</button>{% endif %}
-          {% if has_benefits %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap border-transparent text-white/40 hover:text-white" role="tab" aria-selected="false" data-tab="benefits">Benefits</button>{% endif %}
-          {% if has_features %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap border-transparent text-white/40 hover:text-white" role="tab" aria-selected="false" data-tab="features">Features</button>{% endif %}
-          {% if has_faqs %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap border-transparent text-white/40 hover:text-white" role="tab" aria-selected="false" data-tab="faqs">FAQs</button>{% endif %}
+          {% if has_overview %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap border-white text-white" role="tab" aria-selected="true" data-tab="overview">{{ section.settings.tab_label_overview | default: 'Overview' }}</button>{% endif %}
+          {% if has_benefits %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap border-transparent text-white/40 hover:text-white" role="tab" aria-selected="false" data-tab="benefits">{{ section.settings.tab_label_benefits | default: 'Benefits' }}</button>{% endif %}
+          {% if has_features %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap border-transparent text-white/40 hover:text-white" role="tab" aria-selected="false" data-tab="features">{{ section.settings.tab_label_features | default: 'Features' }}</button>{% endif %}
+          {% if has_faqs %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap border-transparent text-white/40 hover:text-white" role="tab" aria-selected="false" data-tab="faqs">{{ section.settings.tab_label_faqs | default: 'FAQs' }}</button>{% endif %}
         </div>
       </div>
     </section>
@@ -199,7 +227,8 @@
           <div class="lg:col-span-2">
             <div id="tab-overview" class="product-tab-panel" role="tabpanel" aria-labelledby="tab-overview" {% unless has_overview %}hidden{% endunless %}>
               {% if has_overview %}
-                <h2 class="text-2xl font-bold text-white mb-6">About This Product</h2>
+                {% assign overview_heading = section.settings.overview_heading | default: "About This Product" %}
+                {% if overview_heading != blank %}<h2 class="text-2xl font-bold text-white mb-6">{{ overview_heading }}</h2>{% endif %}
                 <div class="prose prose-invert max-w-none">
                   {% if overview_content != blank %}
                     <div class="text-white/60 leading-relaxed mb-6">{{ overview_content }}</div>
@@ -207,7 +236,8 @@
                     <div class="text-white/60 leading-relaxed mb-6">{{ product.description }}</div>
                   {% endif %}
                   {% if whats_included_items.size > 0 %}
-                    <h3 class="text-xl font-bold text-white mt-8 mb-4">What's Included</h3>
+                    {% assign wi_heading = section.settings.whats_included_heading | default: "What's Included" %}
+                    {% if wi_heading != blank %}<h3 class="text-xl font-bold text-white mt-8 mb-4">{{ wi_heading }}</h3>{% endif %}
                     <ul class="space-y-3 list-none p-0 m-0">
                       {% for item in whats_included_items %}
                         {% assign line = item | strip %}
@@ -225,20 +255,211 @@
             </div>
             <div id="tab-benefits" class="product-tab-panel" role="tabpanel" {% unless has_benefits %}hidden{% endunless %} {% if has_benefits %}aria-labelledby="tab-benefits"{% endif %}>
               {% if has_benefits %}
-                <h2 class="text-2xl font-bold text-white mb-6">Benefits</h2>
-                <div class="prose prose-invert max-w-none text-white/60">{{ benefits_content }}</div>
+                {% if benefits_style == 'structured' and benefits_has_structured %}
+                  {% comment %} Structured Benefits: Why This Course? + stats + progress bars + Without/With comparison {% endcomment %}
+                  {% assign benefits_heading = section.settings.benefits_heading | default: "Why This Course?" %}
+                  <div class="mb-8">
+                    {% if benefits_heading != blank %}<h2 class="text-2xl font-bold text-white mb-2">{{ benefits_heading }}</h2>{% endif %}
+                    {% if benefits_subtext != blank %}<p class="text-white/50">{{ benefits_subtext }}</p>{% endif %}
+                  </div>
+                  <div class="space-y-12">
+                    {% if benefits_stats_str != blank %}
+                      {% assign stats_parts = benefits_stats_str | split: '|' %}
+                      {% if stats_parts.size >= 8 %}
+                        <div>
+                          <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 {% if color_theme == 'purple' %}text-purple-400{% elsif color_theme == 'emerald' %}text-emerald-400{% elsif color_theme == 'amber' %}text-amber-400{% else %}text-blue-400{% endif %}" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                            {{ section.settings.benefits_stats_heading | default: "What Students Achieve" }}
+                          </h3>
+                          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                            {% for i in (0..3) %}
+                              {% assign v = stats_parts[i | times: 2] | strip %}
+                              {% assign lbl = stats_parts[i | times: 2 | plus: 1] | strip %}
+                              {% assign val_num = v | plus: 0 %}
+                              {% assign circ = 25133 %}
+                              {% assign diff = 100 | minus: val_num %}
+                              {% assign offset_val = circ | times: diff | divided_by: 100 %}
+                              {% assign offset_show = offset_val | divided_by: 100 %}
+                              <div class="flex flex-col items-center">
+                                <div class="relative w-24 h-24">
+                                  <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100" aria-hidden="true">
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="8"></circle>
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke="{% if color_theme == 'purple' %}#8B5CF6{% elsif color_theme == 'emerald' %}#10B981{% elsif color_theme == 'amber' %}#F59E0B{% else %}#3B82F6{% endif %}" stroke-width="8" stroke-linecap="round" stroke-dasharray="251.33" stroke-dashoffset="{{ offset_show }}"></circle>
+                                  </svg>
+                                  <div class="absolute inset-0 flex items-center justify-center"><span class="text-xl font-bold text-white">{{ v }}%</span></div>
+                                </div>
+                                <span class="text-white/50 text-sm mt-2 text-center">{{ lbl }}</span>
+                              </div>
+                            {% endfor %}
+                          </div>
+                        </div>
+                      {% endif %}
+                    {% endif %}
+                    {% if benefits_progress_str != blank %}
+                      {% assign prog_parts = benefits_progress_str | split: '|' %}
+                      {% if prog_parts.size >= 8 %}
+                        <div>
+                          <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 {% if color_theme == 'purple' %}text-pink-400{% elsif color_theme == 'emerald' %}text-teal-400{% elsif color_theme == 'amber' %}text-orange-400{% else %}text-cyan-400{% endif %}" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+                            {{ section.settings.benefits_progress_heading | default: "Skill Development Progress" }}
+                          </h3>
+                          <div class="space-y-3">
+                            {% for i in (0..3) %}
+                              {% assign plabel = prog_parts[i | times: 2] | strip %}
+                              {% assign pct = prog_parts[i | times: 2 | plus: 1] | strip %}
+                              <div class="space-y-1">
+                                <div class="flex justify-between text-sm"><span class="text-white/70">{{ plabel }}</span><span class="text-white font-medium">{{ pct }}%</span></div>
+                                <div class="h-2 bg-white/10 rounded-full overflow-hidden">
+                                  <div class="h-full rounded-full {% if color_theme == 'purple' %}bg-gradient-to-r from-purple-500 to-pink-500{% elsif color_theme == 'emerald' %}bg-gradient-to-r from-emerald-500 to-teal-500{% elsif color_theme == 'amber' %}bg-gradient-to-r from-amber-500 to-orange-500{% else %}bg-gradient-to-r from-blue-500 to-cyan-500{% endif %}" style="width: {{ pct }}%;"></div>
+                                </div>
+                              </div>
+                            {% endfor %}
+                          </div>
+                        </div>
+                      {% endif %}
+                    {% endif %}
+                    {% if benefits_without_list_str != blank or benefits_with_list_str != blank %}
+                      {% assign without_items = benefits_without_list_str | split: '|' %}
+                      {% assign with_items = benefits_with_list_str | split: '|' %}
+                      <div class="grid md:grid-cols-2 gap-6">
+                        <div class="p-6 rounded-2xl bg-red-500/5 border border-red-500/20">
+                          <div class="flex items-center gap-2 mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-red-400" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m15 9-6 6"></path><path d="m9 9 6 6"></path></svg>
+                            <span class="text-white font-medium">{{ section.settings.benefits_without_label | default: "Without This Course" }}</span>
+                          </div>
+                          <div class="space-y-3">
+                            {% for item in without_items %}{% assign line = item | strip %}{% if line != blank %}
+                            <div class="flex items-start gap-2">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" aria-hidden="true"><path d="M5 12h14"></path></svg>
+                              <span class="text-white/50 text-sm">{{ line }}</span>
+                            </div>
+                            {% endif %}{% endfor %}
+                          </div>
+                        </div>
+                        <div class="p-6 rounded-2xl border {% if color_theme == 'purple' %}border-purple-500/30 bg-purple-500/10{% elsif color_theme == 'emerald' %}border-emerald-500/30 bg-emerald-500/10{% elsif color_theme == 'amber' %}border-amber-500/30 bg-amber-500/10{% else %}border-blue-500/30 bg-blue-500/10{% endif %}">
+                          <div class="flex items-center gap-2 mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-emerald-400" aria-hidden="true"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>
+                            <span class="text-white font-medium">{{ section.settings.benefits_with_label | default: "With This Course" }}</span>
+                          </div>
+                          <div class="space-y-3">
+                            {% for item in with_items %}{% assign line = item | strip %}{% if line != blank %}
+                            <div class="flex items-start gap-2">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" aria-hidden="true"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>
+                              <span class="text-white/70 text-sm">{{ line }}</span>
+                            </div>
+                            {% endif %}{% endfor %}
+                          </div>
+                        </div>
+                      </div>
+                    {% endif %}
+                  </div>
+                {% else %}
+                  {% comment %} Simple Benefits: list or rich text {% endcomment %}
+                  {% assign benefits_heading = section.settings.benefits_heading | default: "Benefits" %}
+                  {% if benefits_heading != blank %}<h2 class="text-2xl font-bold text-white mb-6">{{ benefits_heading }}</h2>{% endif %}
+                  <div class="prose prose-invert max-w-none">
+                    {% if benefits_intro != blank %}
+                      <div class="text-white/60 leading-relaxed mb-6">{{ benefits_intro }}</div>
+                    {% endif %}
+                    {% if benefits_list_str != blank and benefits_list_items.size > 0 %}
+                      <ul class="space-y-3 list-none p-0 m-0">
+                        {% for item in benefits_list_items %}
+                          {% assign line = item | strip %}
+                          {% if line != blank %}
+                            <li class="flex items-start gap-3 text-white/60">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+                              <span>{{ line }}</span>
+                            </li>
+                          {% endif %}
+                        {% endfor %}
+                      </ul>
+                    {% elsif benefits_content != blank %}
+                      <div class="text-white/60 leading-relaxed">{{ benefits_content }}</div>
+                    {% endif %}
+                  </div>
+                {% endif %}
               {% endif %}
             </div>
             <div id="tab-features" class="product-tab-panel" role="tabpanel" {% unless has_features %}hidden{% endunless %} {% if has_features %}aria-labelledby="tab-features"{% endif %}>
               {% if has_features %}
-                <h2 class="text-2xl font-bold text-white mb-6">Features</h2>
-                <div class="prose prose-invert max-w-none text-white/60">{{ features_content }}</div>
+                {% assign features_heading = section.settings.features_heading | default: "Features" %}
+                {% if features_heading != blank %}<h2 class="text-2xl font-bold text-white mb-8">{{ features_heading }}</h2>{% endif %}
+                {% if features_has_cards %}
+                  {% assign features_cards_lines = features_cards_str | newline_to_br | split: '<br />' %}
+                  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {% for card_line in features_cards_lines %}
+                      {% assign card_line = card_line | strip %}
+                      {% if card_line != blank %}
+                        {% assign card_parts = card_line | split: '|' %}
+                        {% assign card_title = card_parts[0] | strip %}
+                        {% assign card_desc = card_parts[1] | strip %}
+                        {% assign card_icon = card_parts[2] | strip | downcase %}
+                        <div class="p-5 rounded-xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-all">
+                          <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center mb-3">
+                            {% if card_icon == 'zap' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap w-5 h-5 text-white/60" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>{% elsif card_icon == 'shield' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield w-5 h-5 text-white/60" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg>{% elsif card_icon == 'users' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users w-5 h-5 text-white/60" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>{% elsif card_icon == 'clock' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock w-5 h-5 text-white/60" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>{% elsif card_icon == 'download' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download w-5 h-5 text-white/60" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>{% elsif card_icon == 'star' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-5 h-5 text-white/60" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>{% else %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-white/60" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>{% endif %}
+                          </div>
+                          {% if card_title != blank %}<h4 class="text-white font-medium mb-1">{{ card_title }}</h4>{% endif %}
+                          {% if card_desc != blank %}<p class="text-white/40 text-sm">{{ card_desc }}</p>{% endif %}
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  <div class="prose prose-invert max-w-none">
+                    {% if features_intro != blank %}
+                      <div class="text-white/60 leading-relaxed mb-6">{{ features_intro }}</div>
+                    {% endif %}
+                    {% if features_list_str != blank and features_list_items.size > 0 %}
+                      <ul class="space-y-3 list-none p-0 m-0">
+                        {% for item in features_list_items %}
+                          {% assign line = item | strip %}
+                          {% if line != blank %}
+                            <li class="flex items-start gap-3 text-white/60">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+                              <span>{{ line }}</span>
+                            </li>
+                          {% endif %}
+                        {% endfor %}
+                      </ul>
+                    {% elsif features_content != blank %}
+                      <div class="text-white/60 leading-relaxed">{{ features_content }}</div>
+                    {% endif %}
+                  </div>
+                {% endif %}
               {% endif %}
             </div>
             <div id="tab-faqs" class="product-tab-panel" role="tabpanel" {% unless has_faqs %}hidden{% endunless %} {% if has_faqs %}aria-labelledby="tab-faqs"{% endif %}>
               {% if has_faqs %}
-                <h2 class="text-2xl font-bold text-white mb-6">FAQs</h2>
-                <div class="prose prose-invert max-w-none text-white/60">{{ faqs_content }}</div>
+                {% assign faqs_heading = section.settings.faqs_heading | default: "Frequently Asked Questions" %}
+                {% if faqs_heading != blank %}<h2 class="text-2xl font-bold text-white mb-8">{{ faqs_heading }}</h2>{% endif %}
+                {% if faqs_accordion_str != blank %}
+                  {% assign faqs_accordion_lines = faqs_accordion_str | newline_to_br | split: '<br />' %}
+                  <div class="max-w-3xl">
+                    <div class="rounded-2xl bg-white/[0.02] border border-white/10 px-6 product-faq-accordion">
+                      {% for faq_line in faqs_accordion_lines %}
+                        {% assign faq_line = faq_line | strip %}
+                        {% if faq_line != blank %}
+                          {% assign faq_parts = faq_line | split: '|' %}
+                          {% assign faq_question = faq_parts[0] | strip %}
+                          {% assign faq_answer = faq_parts[1] | strip %}
+                          {% if faq_question != blank %}
+                            <div class="border-b border-white/10 product-faq-accordion-item" data-faq-item>
+                              <button type="button" class="w-full py-5 flex items-center justify-between text-left" aria-expanded="false" aria-controls="faq-answer-{{ forloop.index }}" id="faq-question-{{ forloop.index }}" data-faq-trigger>
+                                <span class="text-white font-medium pr-4">{{ faq_question }}</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down w-5 h-5 text-white/40 product-faq-chevron" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+                              </button>
+                              <div class="product-faq-accordion-content overflow-hidden transition-all duration-200" id="faq-answer-{{ forloop.index }}" role="region" aria-labelledby="faq-question-{{ forloop.index }}" style="max-height: 0; opacity: 0;">
+                                <p class="pb-5 text-white/50 text-sm leading-relaxed">{{ faq_answer }}</p>
+                              </div>
+                            </div>
+                          {% endif %}
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  </div>
+                {% else %}
+                  <div class="prose prose-invert max-w-none text-white/60 leading-relaxed space-y-4">{{ faqs_content }}</div>
+                {% endif %}
               {% endif %}
             </div>
           </div>
@@ -260,7 +481,8 @@
       <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div class="grid lg:grid-cols-3 gap-12">
           <div class="lg:col-span-2">
-            <h2 class="text-2xl font-bold text-white mb-6">About This Product</h2>
+            {% assign fallback_heading = section.settings.overview_heading | default: "About This Product" %}
+            {% if fallback_heading != blank %}<h2 class="text-2xl font-bold text-white mb-6">{{ fallback_heading }}</h2>{% endif %}
             <div class="prose prose-invert max-w-none text-white/60">{{ product.description }}</div>
           </div>
           <div>
@@ -319,6 +541,33 @@
       });
     });
   });
+
+  var faqTriggers = document.querySelectorAll('.product-faq-accordion [data-faq-trigger]');
+  faqTriggers.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = this.closest('.product-faq-accordion-item');
+      var content = item.querySelector('.product-faq-accordion-content');
+      var isOpen = this.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('.product-faq-accordion-item').forEach(function(other) {
+        var oBtn = other.querySelector('[data-faq-trigger]');
+        var oContent = other.querySelector('.product-faq-accordion-content');
+        if (other !== item) {
+          oBtn.setAttribute('aria-expanded', 'false');
+          oContent.style.maxHeight = '0';
+          oContent.style.opacity = '0';
+        }
+      });
+      if (!isOpen) {
+        this.setAttribute('aria-expanded', 'true');
+        content.style.maxHeight = content.scrollHeight + 'px';
+        content.style.opacity = '1';
+      } else {
+        this.setAttribute('aria-expanded', 'false');
+        content.style.maxHeight = '0';
+        content.style.opacity = '0';
+      }
+    });
+  });
 })();
 </script>
 
@@ -356,8 +605,44 @@
     { "type": "text", "id": "downloads_placeholder", "label": "Downloads placeholder", "default": "800" },
     { "type": "text", "id": "downloads_label", "label": "Downloads label", "default": "Downloads" },
     { "type": "text", "id": "banner_text", "label": "Banner text", "default": "15,000+ downloads this month" },
+    { "type": "select", "id": "banner_icon", "label": "Banner icon", "options": [
+      { "value": "download", "label": "Download (emerald)" },
+      { "value": "users", "label": "Creators / Users (blue)" }
+    ], "default": "download", "info": "e.g. '2,847+ creators trust us' with users icon" },
+    { "type": "header", "content": "Tab labels" },
+    { "type": "text", "id": "tab_label_overview", "label": "Overview tab", "default": "Overview" },
+    { "type": "text", "id": "tab_label_benefits", "label": "Benefits tab", "default": "Benefits" },
+    { "type": "text", "id": "tab_label_features", "label": "Features tab", "default": "Features" },
+    { "type": "text", "id": "tab_label_faqs", "label": "FAQs tab", "default": "FAQs" },
+    { "type": "header", "content": "Tab content headings" },
+    { "type": "text", "id": "overview_heading", "label": "Overview: main heading", "default": "About This Product", "info": "Shown above overview text" },
+    { "type": "text", "id": "whats_included_heading", "label": "Overview: What's Included heading", "default": "What's Included" },
+    { "type": "text", "id": "benefits_heading", "label": "Benefits tab heading", "default": "Benefits" },
+    { "type": "select", "id": "benefits_layout", "label": "Benefits layout", "options": [
+      { "value": "simple", "label": "Simple (list or rich text)" },
+      { "value": "structured", "label": "Structured (stats + progress + comparison)" }
+    ], "default": "simple", "info": "Structured uses product metafields: benefits_stats, benefits_progress, benefits_without_list, benefits_with_list" },
+    { "type": "text", "id": "benefits_subtext", "label": "Benefits subtext (structured)", "default": "Real data and metrics that show the value of investing in quality tools." },
+    { "type": "text", "id": "benefits_stats_heading", "label": "Structured: stats section heading", "default": "What Students Achieve" },
+    { "type": "text", "id": "benefits_progress_heading", "label": "Structured: progress section heading", "default": "Skill Development Progress" },
+    { "type": "text", "id": "benefits_without_label", "label": "Structured: left column label", "default": "Without This Course" },
+    { "type": "text", "id": "benefits_with_label", "label": "Structured: right column label", "default": "With This Course" },
+    { "type": "text", "id": "features_heading", "label": "Features tab heading", "default": "Key Features", "info": "e.g. Key Features for cards layout" },
+    { "type": "select", "id": "features_layout", "label": "Features layout", "options": [
+      { "value": "simple", "label": "Simple (list or rich text)" },
+      { "value": "cards", "label": "Cards (grid of title + description + icon)" }
+    ], "default": "cards", "info": "Cards use product metafield custom.features_cards or default below. Each line: title|description|icon (icon: zap, shield, users, clock, download, star)" },
+    { "type": "textarea", "id": "default_features_cards", "label": "Default Features cards (one per line: title|description|icon)", "default": "Ready to Use|Download and start using immediately. No complex setup required.|zap\nFully Tested|Extensively tested to ensure reliability and performance.|shield\nTeam Friendly|Works great for individuals and teams of any size.|users\nTime Saver|Save hours of work with pre-built solutions.|clock\nFree Updates|Get access to all future updates at no extra cost.|download\nPremium Quality|Built with best practices by industry experts.|star" },
+    { "type": "text", "id": "faqs_heading", "label": "FAQs tab heading", "default": "Frequently Asked Questions" },
+    { "type": "textarea", "id": "default_faqs_accordion", "label": "Default FAQs accordion (one per line: question|answer)", "default": "What do I get with this purchase?|You'll receive instant access to download the Course. All files are provided in standard formats that work with the relevant platforms.\nIs there a money-back guarantee?|Yes! We offer a 14-day money-back guarantee. If you're not satisfied with your purchase, contact us for a full refund.\nCan I use this for client projects?|Absolutely! Your purchase includes a commercial license that allows you to use this product for unlimited personal and client projects.\nDo I need any special software?|No special software is required. We provide detailed setup instructions with your purchase.\nIs support included?|Yes, we provide email support for all purchases. Premium members also get access to our private Discord community for faster help.", "info": "Used when product has no custom.faqs_accordion. For accordion layout; otherwise use custom.faqs (rich text)." },
     { "type": "header", "content": "Tabs fallbacks" },
     { "type": "textarea", "id": "default_whats_included", "label": "Default What's Included (pipe-separated)", "default": "Complete files ready to use|Documentation and setup guide|Free updates|Commercial license|Email support", "info": "Used when product has no custom.whats_included metafield" },
+    { "type": "textarea", "id": "default_benefits_list", "label": "Default Benefits (pipe-separated)", "default": "", "info": "Simple layout: when product has no custom.benefits_list or custom.benefits." },
+    { "type": "textarea", "id": "default_benefits_stats", "label": "Structured: stats (value|label|value|label|... 4 pairs)", "default": "94|Course Completion|87|Apply Skills Within 1 Week|76|Career Advancement|92|Would Recommend" },
+    { "type": "textarea", "id": "default_benefits_progress", "label": "Structured: progress (label|percent|... 4 pairs)", "default": "Technical Proficiency|90|Creative Application|85|Industry Knowledge|88|Problem Solving|82" },
+    { "type": "textarea", "id": "default_benefits_without_list", "label": "Structured: Without list (pipe-separated)", "default": "Hours of random YouTube tutorials|Outdated or conflicting information|No structured learning path|Trial and error approach|No community or support" },
+    { "type": "textarea", "id": "default_benefits_with_list", "label": "Structured: With list (pipe-separated)", "default": "Curated, expert-led curriculum|Current industry best practices|Step-by-step progression|Proven frameworks and templates|Access to private community" },
+    { "type": "textarea", "id": "default_features_list", "label": "Default Features list (simple layout, pipe-separated)", "default": "", "info": "Simple layout: when product has no custom.features_list or custom.features." },
     { "type": "text", "id": "default_category", "label": "Default category", "default": "Product" },
     { "type": "text", "id": "default_version", "label": "Default version", "default": "1.0" },
     { "type": "text", "id": "default_last_updated", "label": "Default last updated", "default": "Feb 2026" },
