@@ -15,6 +15,7 @@
     "use_google_fonts": true,
     "logo_text": "UKIYO",
     "header_cta_text": "Start Your Project",
+    "product_badge_icon": "workflow",
     "sections": {
       "header": {
         "type": "header",
