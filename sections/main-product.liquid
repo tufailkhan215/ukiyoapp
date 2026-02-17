@@ -194,13 +194,54 @@
     </div>
   </section>
 
-  {% if section.settings.banner_text != blank %}
+  {% assign banner_slides_str = section.settings.banner_slides | strip | newline_to_br | split: '<br />' %}
+  {% assign banner_slides_count = 0 %}
+  {% for line in banner_slides_str %}{% assign line = line | strip %}{% if line != blank %}{% assign parts = line | split: '|' %}{% if parts.size >= 2 %}{% assign banner_slides_count = banner_slides_count | plus: 1 %}{% endif %}{% endif %}{% endfor %}
+  {% if banner_slides_count > 0 %}
+    <div class="relative z-10 py-4 border-y border-white/5 bg-white/[0.01] product-banner-strip" data-slide-duration="{{ section.settings.banner_slide_duration | default: 4 }}">
+      <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+        <div class="overflow-hidden" style="min-height: 1.75rem;">
+          <div class="relative">
+            {% assign slide_idx = 0 %}
+            {% for line in banner_slides_str %}
+              {% assign line = line | strip %}
+              {% if line != blank %}
+                {% assign parts = line | split: '|' %}
+                {% if parts.size >= 2 %}
+                  {% assign slide_icon = parts[0] | strip | downcase %}
+                  {% assign slide_text = parts[1] | strip %}
+                  {% if slide_text != blank %}
+                    <div class="product-banner-slide absolute inset-0 flex items-center justify-center gap-2 transition-all duration-300 ease-out{% if slide_idx == 0 %} product-banner-slide-active{% endif %}" data-index="{{ slide_idx }}" aria-hidden="{% if slide_idx == 0 %}false{% else %}true{% endif %}">
+                      {% if slide_icon == 'star' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-amber-400" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>{% elsif slide_icon == 'users' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-blue-400" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>{% elsif slide_icon == 'trending_up' or slide_icon == 'trending-up' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-purple-400" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>{% else %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-emerald-400" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>{% endif %}
+                      <span class="text-white/70 text-sm">{{ slide_text }}</span>
+                    </div>
+                    {% assign slide_idx = slide_idx | plus: 1 %}
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <style>
+      .product-banner-slide { opacity: 0; transform: translateY(10px); pointer-events: none; }
+      .product-banner-slide.product-banner-slide-active { opacity: 1; transform: translateY(0); pointer-events: auto; }
+      .product-banner-slide.product-banner-slide-out { opacity: 0; transform: translateY(-10px); }
+      .product-banner-slide.product-banner-slide-in { opacity: 1; transform: translateY(0); }
+      @media (prefers-reduced-motion: reduce) { .product-banner-slide { transition: none; } }
+    </style>
+  {% elsif section.settings.banner_text != blank %}
     <div class="relative z-10 py-4 border-y border-white/5 bg-white/[0.01]">
       <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div class="overflow-hidden">
           <div class="flex items-center justify-center gap-2">
             {% if section.settings.banner_icon == 'users' %}
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-blue-400" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>
+            {% elsif section.settings.banner_icon == 'star' %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-amber-400" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+            {% elsif section.settings.banner_icon == 'trending_up' %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-purple-400" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
             {% else %}
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-emerald-400"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
             {% endif %}
@@ -665,6 +706,31 @@
       }
     });
   });
+
+  var bannerStrip = document.querySelector('.product-banner-strip');
+  if (bannerStrip) {
+    var slides = bannerStrip.querySelectorAll('.product-banner-slide');
+    var duration = parseInt(bannerStrip.getAttribute('data-slide-duration'), 10) || 4;
+    if (slides.length > 1) {
+      var current = 0;
+      setInterval(function() {
+        var next = (current + 1) % slides.length;
+        var currentEl = slides[current];
+        var nextEl = slides[next];
+        currentEl.classList.add('product-banner-slide-out');
+        currentEl.classList.remove('product-banner-slide-active');
+        currentEl.setAttribute('aria-hidden', 'true');
+        nextEl.classList.add('product-banner-slide-in');
+        nextEl.setAttribute('aria-hidden', 'false');
+        setTimeout(function() {
+          currentEl.classList.remove('product-banner-slide-out');
+          nextEl.classList.remove('product-banner-slide-in');
+          nextEl.classList.add('product-banner-slide-active');
+          current = next;
+        }, 300);
+      }, duration * 1000);
+    }
+  }
 })();
 </script>
 
@@ -702,11 +768,15 @@
     { "type": "checkbox", "id": "show_downloads_placeholder", "label": "Show downloads count", "default": true },
     { "type": "text", "id": "downloads_placeholder", "label": "Downloads placeholder", "default": "800" },
     { "type": "text", "id": "downloads_label", "label": "Downloads label", "default": "Downloads" },
-    { "type": "text", "id": "banner_text", "label": "Banner text", "default": "15,000+ downloads this month" },
-    { "type": "select", "id": "banner_icon", "label": "Banner icon", "options": [
+    { "type": "textarea", "id": "banner_slides", "label": "Banner slides (rotating)", "default": "download|15,000+ downloads this month\nstar|4.9/5 average rating\ntrending_up|340% avg ROI for customers\nusers|2,847+ creators trust us", "info": "One line per slide: icon|text. Icons: download, star, users, trending_up. Leave blank to use single Banner text below." },
+    { "type": "number", "id": "banner_slide_duration", "label": "Banner slide duration (seconds)", "default": 4, "min": 2, "max": 10 },
+    { "type": "text", "id": "banner_text", "label": "Banner text (single line)", "default": "15,000+ downloads this month", "info": "Used when Banner slides is blank" },
+    { "type": "select", "id": "banner_icon", "label": "Banner icon (single line)", "options": [
       { "value": "download", "label": "Download (emerald)" },
-      { "value": "users", "label": "Creators / Users (blue)" }
-    ], "default": "download", "info": "e.g. '2,847+ creators trust us' with users icon" },
+      { "value": "users", "label": "Creators / Users (blue)" },
+      { "value": "star", "label": "Star (amber)" },
+      { "value": "trending_up", "label": "Trending up (purple)" }
+    ], "default": "download", "info": "Used when Banner slides is blank" },
     { "type": "header", "content": "Tab labels" },
     { "type": "text", "id": "tab_label_overview", "label": "Overview tab", "default": "Overview" },
     { "type": "text", "id": "tab_label_benefits", "label": "Benefits tab", "default": "Benefits" },
