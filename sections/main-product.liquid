@@ -307,8 +307,10 @@
                           </h3>
                           <div class="space-y-3">
                             {% for i in (0..3) %}
-                              {% assign plabel = prog_parts[i | times: 2] | strip %}
-                              {% assign pct = prog_parts[i | times: 2 | plus: 1] | strip %}
+                              {% assign prog_idx = i | times: 2 %}
+                              {% assign prog_idx_pct = prog_idx | plus: 1 %}
+                              {% assign plabel = prog_parts[prog_idx] | strip %}
+                              {% assign pct = prog_parts[prog_idx_pct] | strip %}
                               <div class="space-y-1">
                                 <div class="flex justify-between text-sm"><span class="text-white/70">{{ plabel }}</span><span class="text-white font-medium">{{ pct }}%</span></div>
                                 <div class="h-2 bg-white/10 rounded-full overflow-hidden">
