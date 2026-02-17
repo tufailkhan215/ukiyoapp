@@ -13,7 +13,7 @@
       "type": "main-product",
       "settings": {
         "default_color_theme": "amber",
-        "default_badge_label": "Product",
+        "default_badge_label": "Shopify Section",
         "badge_icon": "layout",
         "shop_url": "",
         "breadcrumb_shop": "Shop",
