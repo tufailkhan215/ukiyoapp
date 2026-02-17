@@ -62,44 +62,5 @@
         "label": "Header CTA link"
       }
     ]
-  },
-  {
-    "name": "Product (Color & badge)",
-    "settings": [
-      {
-        "type": "select",
-        "id": "product_default_color_theme",
-        "label": "Default color theme",
-        "options": [
-          { "value": "blue", "label": "Blue / Cyan" },
-          { "value": "purple", "label": "Purple / Pink" },
-          { "value": "emerald", "label": "Emerald / Teal" },
-          { "value": "amber", "label": "Amber / Orange" }
-        ],
-        "default": "blue",
-        "info": "Applied to all collection products. Overridden by collection or product metafield custom.color_theme."
-      },
-      {
-        "type": "text",
-        "id": "product_default_badge_label",
-        "label": "Default badge label",
-        "default": "Product",
-        "info": "Shown on product image. Overridden by product type or product metafield custom.badge_label."
-      },
-      {
-        "type": "select",
-        "id": "product_badge_icon",
-        "label": "Badge icon",
-        "options": [
-          { "value": "none", "label": "None" },
-          { "value": "graduation_cap", "label": "Course" },
-          { "value": "bot", "label": "AI Agent" },
-          { "value": "layout", "label": "Section" },
-          { "value": "workflow", "label": "Template" }
-        ],
-        "default": "none",
-        "info": "Icon on product image badge."
-      }
-    ]
   }
 ]

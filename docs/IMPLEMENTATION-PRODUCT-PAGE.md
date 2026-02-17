@@ -2,21 +2,17 @@
 
 ## Summary
 
-- **Color theme per collection/product:** Product metafield → collection metafield → **theme setting** (default Blue). Values: `blue` | `purple` | `emerald` | `amber`. Applied to blurs, image glow, badge, Buy Now button, bottom CTA. Default badge label and badge icon are also in **Theme settings** (Product → Color & badge).
+- **Color theme per collection/product:** Product metafield → collection metafield → section default. Values: `blue` | `purple` | `emerald` | `amber`. Applied to blurs, image glow, badge, Buy Now button, bottom CTA.
 - **Tabs (Overview, Benefits, Features, FAQ) per product only:** Content from product metafields; tabs only show when content exists. No snippets.
 
 ---
 
-## 1. Color theme & badge
+## 1. Color theme
 
-**Resolution order (same for all products; per collection when set):**  
-`product.metafields.custom.color_theme` → `product.collections.first.metafields.custom.color_theme` → **Theme setting** `Product (Color & badge)` → Default **Blue / Cyan**.
+**Resolution order:**  
+`product.metafields.custom.color_theme` → `product.collections.first.metafields.custom.color_theme` → `section.settings.default_color_theme`
 
-- **Theme settings** (Theme customizer → Theme settings): **Product (Color & badge)** — Default color theme (blue default), Default badge label, Badge icon. These apply to all collection products unless overridden by collection or product metafields.
-- **Collection:** Set `custom.color_theme` on a collection so every product in that collection uses that theme unless the product has its own `custom.color_theme`.
-- **Product:** Set `custom.color_theme`, `custom.badge_label` to override per product.
-
-**Shopify metafields:** Product and/or Collection, namespace `custom`, key `color_theme` (Single line text), value one of: `blue`, `purple`, `emerald`, `amber`. Badge label: `custom.badge_label` (product).
+**Shopify:** Product and/or Collection metafield, namespace `custom`, key `color_theme`, type Single line text, value one of: `blue`, `purple`, `emerald`, `amber`.
 
 ---
 

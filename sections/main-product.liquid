@@ -4,9 +4,8 @@
   See docs/IMPLEMENTATION-PRODUCT-PAGE.md for metafield setup.
 {% endcomment %}
 {% assign first_collection = product.collections.first %}
-{% assign color_theme = product.metafields.custom.color_theme.value | default: first_collection.metafields.custom.color_theme.value | default: settings.product_default_color_theme | default: 'blue' %}
-{% assign badge_label = product.metafields.custom.badge_label.value | default: product.type | default: settings.product_default_badge_label %}
-{% assign badge_icon = settings.product_badge_icon | default: 'none' %}
+{% assign color_theme = product.metafields.custom.color_theme.value | default: first_collection.metafields.custom.color_theme.value | default: section.settings.default_color_theme | default: 'blue' %}
+{% assign badge_label = product.metafields.custom.badge_label.value | default: product.type | default: section.settings.default_badge_label %}
 {% assign overview_content = product.metafields.custom.overview | default: nil %}
 {% assign benefits_content = product.metafields.custom.benefits | default: nil %}
 {% assign features_content = product.metafields.custom.features | default: nil %}
@@ -110,7 +109,7 @@
             {% if badge_label != blank %}
               <div class="absolute top-4 left-4">
                 <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-white text-xs font-medium {% if color_theme == 'purple' %}bg-gradient-to-r from-purple-500 to-pink-500{% elsif color_theme == 'emerald' %}bg-gradient-to-r from-emerald-500 to-teal-500{% elsif color_theme == 'amber' %}bg-gradient-to-r from-amber-500 to-orange-500{% else %}bg-gradient-to-r from-blue-500 to-cyan-500{% endif %}">
-                  {% if badge_icon == 'graduation_cap' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg>{% elsif badge_icon == 'bot' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg>{% elsif badge_icon == 'layout' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg>{% elsif badge_icon == 'workflow' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"></rect><path d="M7 11v4a2 2 0 0 0 2 2h4"></path><rect width="8" height="8" x="13" y="13" rx="2"></rect></svg>{% endif %}
+                  {% if section.settings.badge_icon == 'graduation_cap' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg>{% elsif section.settings.badge_icon == 'bot' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg>{% elsif section.settings.badge_icon == 'layout' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg>{% elsif section.settings.badge_icon == 'workflow' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"></rect><path d="M7 11v4a2 2 0 0 0 2 2h4"></path><rect width="8" height="8" x="13" y="13" rx="2"></rect></svg>{% endif %}
                   {{ badge_label }}
                 </span>
               </div>
@@ -675,6 +674,21 @@
   "tag": "section",
   "class": "section-main-product",
   "settings": [
+    { "type": "header", "content": "Color & badge" },
+    { "type": "select", "id": "default_color_theme", "label": "Default color theme", "options": [
+      { "value": "blue", "label": "Blue / Cyan" },
+      { "value": "purple", "label": "Purple / Pink" },
+      { "value": "emerald", "label": "Emerald / Teal" },
+      { "value": "amber", "label": "Amber / Orange" }
+    ], "default": "blue", "info": "Overridden by product or collection metafield custom.color_theme" },
+    { "type": "text", "id": "default_badge_label", "label": "Default badge label", "default": "Product", "info": "Shown on product image; overridden by product type or product metafield custom.badge_label" },
+    { "type": "select", "id": "badge_icon", "label": "Badge icon", "options": [
+      { "value": "none", "label": "None" },
+      { "value": "graduation_cap", "label": "Course" },
+      { "value": "bot", "label": "AI Agent" },
+      { "value": "layout", "label": "Section" },
+      { "value": "workflow", "label": "Template" }
+    ], "default": "none" },
     { "type": "header", "content": "Breadcrumb" },
     { "type": "url", "id": "shop_url", "label": "Shop link (breadcrumb)" },
     { "type": "text", "id": "breadcrumb_shop", "label": "Breadcrumb first label", "default": "Shop" },
