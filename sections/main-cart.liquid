@@ -1,29 +1,41 @@
-<section class="section-container" data-reveal>
-  <h1 class="trusted-by__title" style="margin-bottom: 2rem;">Cart</h1>
-  {% if cart.item_count > 0 %}
-    <form action="{{ routes.cart_url }}" method="post">
-      <ul style="list-style: none; padding: 0; margin: 0 0 2rem;">
-        {% for item in cart.items %}
-          <li class="glass-card" style="padding: 1rem; margin-bottom: 1rem; display: flex; gap: 1rem; align-items: center;">
-            {% if item.image %}
-              <img src="{{ item.image | image_url: width: 80 }}" alt="{{ item.title }}" width="80" height="80" style="border-radius: 0.25rem;">
-            {% endif %}
-            <div style="flex: 1;">
-              <a href="{{ item.url }}" style="color: #fff; text-decoration: none; font-weight: 600;">{{ item.product.title }}</a>
-              <p style="color: #999; margin: 0; font-size: 0.875rem;">{{ item.final_line_price | money }} × {{ item.quantity }}</p>
-            </div>
-            <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" style="width: 4rem; background: #232323; border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 0.5rem; border-radius: 0.25rem;">
-          </li>
-        {% endfor %}
-      </ul>
-      <p style="font-size: 1.25rem; margin-bottom: 1rem;">Total: {{ cart.total_price | money }}</p>
-      <button type="submit" name="update" class="btn btn--secondary" style="margin-right: 0.5rem;">Update cart</button>
-      <button type="submit" name="checkout" class="btn btn--primary">Checkout</button>
-    </form>
-  {% else %}
-    <p class="hero__description">Your cart is empty.</p>
-    <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary">Continue shopping</a>
-  {% endif %}
+<section class="relative z-10 py-16 lg:py-24" {{ section.shopify_attributes }}>
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <h1 class="text-3xl md:text-4xl font-bold text-white mb-8">Cart</h1>
+    {% if cart.item_count > 0 %}
+      <form action="{{ routes.cart_url }}" method="post">
+        <ul class="space-y-4 mb-8">
+          {% for item in cart.items %}
+            <li class="flex gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/10 items-center">
+              {% if item.image %}
+                <a href="{{ item.url }}" class="flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden bg-white/5">
+                  <img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.title | escape }}" width="80" height="80" class="w-full h-full object-cover" loading="lazy">
+                </a>
+              {% endif %}
+              <div class="flex-1 min-w-0">
+                <a href="{{ item.url }}" class="text-white font-medium hover:underline">{{ item.product.title }}</a>
+                {% if item.variant.title != blank and item.variant.title != 'Default Title' %}
+                  <p class="text-white/40 text-sm mt-0.5">{{ item.variant.title }}</p>
+                {% endif %}
+                <p class="text-white/50 text-sm mt-1">{{ item.final_line_price | money }} × {{ item.quantity }}</p>
+              </div>
+              <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" class="w-20 px-3 py-2 rounded-lg bg-white/[0.05] border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-white/30">
+            </li>
+          {% endfor %}
+        </ul>
+        <div class="flex flex-wrap items-center gap-4 p-6 rounded-2xl bg-white/[0.02] border border-white/10">
+          <p class="text-xl font-semibold text-white">Subtotal: {{ cart.total_price | money }}</p>
+          <p class="text-sm text-white/40 w-full">Shipping and taxes calculated at checkout.</p>
+          <button type="submit" name="update" class="px-6 py-3 rounded-full border border-white/20 text-white hover:bg-white/10 transition-colors font-medium">Update cart</button>
+          <button type="submit" name="checkout" class="px-8 py-3 rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition-colors">Checkout</button>
+        </div>
+      </form>
+    {% else %}
+      <div class="text-center py-16">
+        <p class="text-white/50 text-lg mb-6">Your cart is empty.</p>
+        <a href="{{ routes.all_products_collection_url }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold border border-white/20 text-white hover:bg-white/10 transition-colors">Continue shopping</a>
+      </div>
+    {% endif %}
+  </div>
 </section>
 
 {% schema %}

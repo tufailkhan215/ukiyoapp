@@ -151,7 +151,23 @@
         {% endfor %}
       </div>
 
-      <div class="hidden lg:block">
+      <div class="hidden lg:flex items-center gap-4">
+        {% if section.settings.show_wishlist_icon %}
+          <a href="{{ section.settings.wishlist_page_url | default: '/pages/wishlist' }}" class="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 text-white/70 hover:text-white hover:bg-white/10 transition-colors" aria-label="Wishlist">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
+          </a>
+        {% endif %}
+        {% if section.settings.show_account_icon %}
+          <a href="{{ routes.account_url }}" class="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 text-white/70 hover:text-white hover:bg-white/10 transition-colors" aria-label="Account">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          </a>
+        {% endif %}
+        {% if section.settings.show_cart_icon %}
+          <button type="button" class="relative flex items-center justify-center w-10 h-10 rounded-full border border-white/20 text-white/70 hover:text-white hover:bg-white/10 transition-colors" aria-label="Cart" data-cart-drawer-trigger>
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
+            <span class="header-cart-count absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 flex items-center justify-center rounded-full bg-white text-black text-xs font-semibold" data-header-cart-count style="display: none;">{{ cart.item_count }}</span>
+          </button>
+        {% endif %}
         {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
           <a href="{{ section.settings.cta_link }}">
             <button type="button" class="group flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full text-sm font-semibold hover:bg-gray-200 transition-colors duration-300" tabindex="0">
@@ -162,9 +178,17 @@
         {% endif %}
       </div>
 
-      <button type="button" class="lg:hidden relative z-50 w-12 h-12 flex items-center justify-center text-white" aria-label="Open menu" data-drawer-trigger>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu w-6 h-6" aria-hidden="true"><path d="M4 12h16"/><path d="M4 18h16"/><path d="M4 6h16"/></svg>
-      </button>
+      <div class="flex lg:hidden items-center gap-1">
+        {% if section.settings.show_cart_icon %}
+          <button type="button" class="relative z-50 w-10 h-10 flex items-center justify-center text-white" aria-label="Cart" data-cart-drawer-trigger>
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
+            <span class="header-cart-count absolute top-1 right-1 min-w-[16px] h-4 px-1 flex items-center justify-center rounded-full bg-white text-black text-[10px] font-semibold" data-header-cart-count style="display: none;">{{ cart.item_count }}</span>
+          </button>
+        {% endif %}
+        <button type="button" class="relative z-50 w-12 h-12 flex items-center justify-center text-white" aria-label="Open menu" data-drawer-trigger>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu w-6 h-6" aria-hidden="true"><path d="M4 12h16"/><path d="M4 18h16"/><path d="M4 6h16"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 </nav>
@@ -174,6 +198,12 @@
   <button type="button" class="drawer__close" aria-label="Close menu" data-drawer-close>✕</button>
   <nav class="drawer__nav">
     <a href="{{ routes.root_url }}">Home</a>
+    {% if section.settings.show_wishlist_icon %}
+      <a href="{{ section.settings.wishlist_page_url | default: '/pages/wishlist' }}">Wishlist</a>
+    {% endif %}
+    {% if section.settings.show_account_icon %}
+      <a href="{{ routes.account_url }}">Account</a>
+    {% endif %}
     {% for link in linklists[section.settings.menu].links %}
       {% if link.links.size > 0 %}
         <div class="drawer__nav-group">
@@ -210,6 +240,12 @@
     { "type": "text", "id": "logo_subtext", "label": "Logo subtext", "default": "PRODUCTIONS" },
     { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
     { "type": "text", "id": "dropdown_handles", "label": "Link handles that show mega dropdown (comma-separated)", "default": "services, shop" },
+    { "type": "header", "content": "Header icons" },
+    { "type": "checkbox", "id": "show_wishlist_icon", "label": "Show wishlist icon", "default": true },
+    { "type": "url", "id": "wishlist_page_url", "label": "Wishlist page URL", "default": "/pages/wishlist", "info": "Used when wishlist icon is shown" },
+    { "type": "checkbox", "id": "show_account_icon", "label": "Show account icon", "default": true },
+    { "type": "checkbox", "id": "show_cart_icon", "label": "Show cart icon", "default": true },
+    { "type": "header", "content": "CTA" },
     { "type": "text", "id": "cta_text", "label": "Header CTA text", "default": "Start Project" },
     { "type": "url", "id": "cta_link", "label": "Header CTA link" }
   ],

@@ -420,6 +420,34 @@
     });
   }
 
+  // Add to cart: intercept form submit, POST via fetch, open cart drawer and refresh
+  function initAddToCart() {
+    document.addEventListener('submit', function (e) {
+      var form = e.target;
+      if (form.method && form.method.toLowerCase() === 'post' && form.action && form.action.indexOf('/cart/add') !== -1) {
+        e.preventDefault();
+        var formData = new FormData(form);
+        fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' }
+        })
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            if (data.status && data.status === 422) {
+              if (data.description) alert(data.description);
+              return;
+            }
+            if (typeof window.fetchCartDrawer === 'function') window.fetchCartDrawer();
+            if (typeof window.openCartDrawer === 'function') window.openCartDrawer();
+          })
+          .catch(function () {
+            form.submit();
+          });
+      }
+    });
+  }
+
   // Header scroll state (transparent -> solid background)
   function initHeaderScroll() {
     var nav = document.querySelector('.ukiyo-nav');
@@ -454,6 +482,7 @@
       initUrgencyCountdown();
       initNavDropdowns();
       initHeaderScroll();
+      initAddToCart();
     });
   } else {
     initDrawer();
@@ -465,5 +494,6 @@
     initUrgencyCountdown();
     initNavDropdowns();
     initHeaderScroll();
+    initAddToCart();
   }
 })();
