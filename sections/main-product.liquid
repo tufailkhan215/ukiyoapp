@@ -83,16 +83,7 @@
   <section class="relative z-10 pb-16">
     <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
-        <div class="relative">
-          {% if color_theme == 'purple' %}
-            <div class="absolute -inset-4 bg-gradient-to-r from-purple-500 to-pink-500 opacity-10 blur-3xl rounded-3xl" aria-hidden="true"></div>
-          {% elsif color_theme == 'emerald' %}
-            <div class="absolute -inset-4 bg-gradient-to-r from-emerald-500 to-teal-500 opacity-10 blur-3xl rounded-3xl" aria-hidden="true"></div>
-          {% elsif color_theme == 'amber' %}
-            <div class="absolute -inset-4 bg-gradient-to-r from-amber-500 to-orange-500 opacity-10 blur-3xl rounded-3xl" aria-hidden="true"></div>
-          {% else %}
-            <div class="absolute -inset-4 bg-gradient-to-r from-blue-500 to-cyan-500 opacity-10 blur-3xl rounded-3xl" aria-hidden="true"></div>
-          {% endif %}
+        <div class="relative">     
           <div class="product-gallery-main relative aspect-[4/3] rounded-2xl overflow-hidden bg-white/[0.02] border border-white/10">
             {% if product.featured_image or product.images.size > 0 %}
               {% assign main_img = product.featured_image | default: product.images.first %}
