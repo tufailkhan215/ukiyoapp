@@ -273,8 +273,10 @@
                           </h3>
                           <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
                             {% for i in (0..3) %}
-                              {% assign v = stats_parts[i | times: 2] | strip %}
-                              {% assign lbl = stats_parts[i | times: 2 | plus: 1] | strip %}
+                              {% assign idx = i | times: 2 %}
+                              {% assign idx_label = idx | plus: 1 %}
+                              {% assign v = stats_parts[idx] | strip %}
+                              {% assign lbl = stats_parts[idx_label] | strip %}
                               {% assign val_num = v | plus: 0 %}
                               {% assign circ = 25133 %}
                               {% assign diff = 100 | minus: val_num %}
