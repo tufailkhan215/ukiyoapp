@@ -13,7 +13,7 @@
       "type": "main-product",
       "settings": {
         "default_color_theme": "purple",
-        "default_badge_label": "Product",
+        "default_badge_label": "Course",
         "badge_icon": "graduation_cap",
         "shop_url": "",
         "breadcrumb_shop": "Shop",
@@ -43,7 +43,7 @@
         "benefits_progress_heading": "Skill Development Progress",
         "benefits_without_label": "Without This Course",
         "benefits_with_label": "With This Course",
-        "benefits_structured_variant": "course",
+        "benefits_structured_variant": "impact",
         "benefits_impact_heading": "Conversion Impact",
         "benefits_improvements_heading": "Average Store Improvements",
         "default_benefits_impact_cards": "$0|Monthly Savings|dollar-sign|0hrs|Time Saved Weekly|clock|0%|Productivity Boost|trending-up",
