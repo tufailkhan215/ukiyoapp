@@ -318,13 +318,14 @@
 
   {% comment %} Tab content from product metafields (custom.overview, .benefits, .features, .faqs) only; no snippet. {% endcomment %}
   {% if has_overview or has_benefits or has_features or has_faqs %}
+    {% if has_overview %}{% assign first_tab = 'overview' %}{% elsif has_benefits %}{% assign first_tab = 'benefits' %}{% elsif has_features %}{% assign first_tab = 'features' %}{% else %}{% assign first_tab = 'faqs' %}{% endif %}
     <section class="relative z-10 border-t border-white/10" id="product-tabs">
       <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div class="flex gap-8 overflow-x-auto border-b border-white/10" role="tablist" aria-label="Product details">
-          {% if has_overview %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap border-white text-white" role="tab" aria-selected="true" data-tab="overview">{{ section.settings.tab_label_overview | default: 'Overview' }}</button>{% endif %}
-          {% if has_benefits %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap border-transparent text-white/40 hover:text-white" role="tab" aria-selected="false" data-tab="benefits">{{ section.settings.tab_label_benefits | default: 'Benefits' }}</button>{% endif %}
-          {% if has_features %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap border-transparent text-white/40 hover:text-white" role="tab" aria-selected="false" data-tab="features">{{ section.settings.tab_label_features | default: 'Features' }}</button>{% endif %}
-          {% if has_faqs %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap border-transparent text-white/40 hover:text-white" role="tab" aria-selected="false" data-tab="faqs">{{ section.settings.tab_label_faqs | default: 'FAQs' }}</button>{% endif %}
+          {% if has_overview %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap {% if first_tab == 'overview' %}border-white text-white{% else %}border-transparent text-white/40 hover:text-white{% endif %}" role="tab" aria-selected="{% if first_tab == 'overview' %}true{% else %}false{% endif %}" data-tab="overview">{{ section.settings.tab_label_overview | default: 'Overview' }}</button>{% endif %}
+          {% if has_benefits %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap {% if first_tab == 'benefits' %}border-white text-white{% else %}border-transparent text-white/40 hover:text-white{% endif %}" role="tab" aria-selected="{% if first_tab == 'benefits' %}true{% else %}false{% endif %}" data-tab="benefits">{{ section.settings.tab_label_benefits | default: 'Benefits' }}</button>{% endif %}
+          {% if has_features %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap {% if first_tab == 'features' %}border-white text-white{% else %}border-transparent text-white/40 hover:text-white{% endif %}" role="tab" aria-selected="{% if first_tab == 'features' %}true{% else %}false{% endif %}" data-tab="features">{{ section.settings.tab_label_features | default: 'Features' }}</button>{% endif %}
+          {% if has_faqs %}<button type="button" class="product-tab py-5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap {% if first_tab == 'faqs' %}border-white text-white{% else %}border-transparent text-white/40 hover:text-white{% endif %}" role="tab" aria-selected="{% if first_tab == 'faqs' %}true{% else %}false{% endif %}" data-tab="faqs">{{ section.settings.tab_label_faqs | default: 'FAQs' }}</button>{% endif %}
         </div>
       </div>
     </section>
@@ -332,36 +333,49 @@
     <section class="relative z-10 py-16 lg:py-24">
       <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div class="grid lg:grid-cols-3 gap-12">
-          <div class="lg:col-span-2">
-            <div id="tab-overview" class="product-tab-panel" role="tabpanel" aria-labelledby="tab-overview" {% unless has_overview %}hidden{% endunless %}>
+          <div class="lg:col-span-3">
+            <div id="tab-overview" class="product-tab-panel" role="tabpanel" aria-labelledby="tab-overview" {% unless has_overview %}hidden{% endunless %}{% if has_overview and first_tab != 'overview' %} hidden{% endif %}>
               {% if has_overview %}
-                {% assign overview_heading = section.settings.overview_heading | default: "About This Product" %}
-                {% if overview_heading != blank %}<h2 class="text-2xl font-bold text-white mb-6">{{ overview_heading }}</h2>{% endif %}
-                <div class="prose prose-invert max-w-none">
-                  {% if overview_content != blank %}
-                    <div class="text-white/60 leading-relaxed mb-6">{{ overview_content }}</div>
-                  {% else %}
-                    <div class="text-white/60 leading-relaxed mb-6">{{ product.description }}</div>
-                  {% endif %}
-                  {% if whats_included_items.size > 0 %}
-                    {% assign wi_heading = section.settings.whats_included_heading | default: "What's Included" %}
-                    {% if wi_heading != blank %}<h3 class="text-xl font-bold text-white mt-8 mb-4">{{ wi_heading }}</h3>{% endif %}
-                    <ul class="space-y-3 list-none p-0 m-0">
-                      {% for item in whats_included_items %}
-                        {% assign line = item | strip %}
-                        {% if line != blank %}
-                          <li class="flex items-start gap-3 text-white/60">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0"><path d="M20 6 9 17l-5-5"></path></svg>
-                            <span>{{ line }}</span>
-                          </li>
-                        {% endif %}
-                      {% endfor %}
-                    </ul>
-                  {% endif %}
+                <div class="grid lg:grid-cols-3 gap-12">
+                  <div class="lg:col-span-2">
+                    {% assign overview_heading = section.settings.overview_heading | default: "About This Product" %}
+                    {% if overview_heading != blank %}<h2 class="text-2xl font-bold text-white mb-6">{{ overview_heading }}</h2>{% endif %}
+                    <div class="prose prose-invert max-w-none">
+                      {% if overview_content != blank %}
+                        <div class="text-white/60 leading-relaxed mb-6">{{ overview_content }}</div>
+                      {% else %}
+                        <div class="text-white/60 leading-relaxed mb-6">{{ product.description }}</div>
+                      {% endif %}
+                      {% if whats_included_items.size > 0 %}
+                        {% assign wi_heading = section.settings.whats_included_heading | default: "What's Included" %}
+                        {% if wi_heading != blank %}<h3 class="text-xl font-bold text-white mt-8 mb-4">{{ wi_heading }}</h3>{% endif %}
+                        <ul class="space-y-3 list-none p-0 m-0">
+                          {% for item in whats_included_items %}
+                            {% assign line = item | strip %}
+                            {% if line != blank %}
+                              <li class="flex items-start gap-3 text-white/60">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0"><path d="M20 6 9 17l-5-5"></path></svg>
+                                <span>{{ line }}</span>
+                              </li>
+                            {% endif %}
+                          {% endfor %}
+                        </ul>
+                      {% endif %}
+                    </div>
+                  </div>
+                  <div class="lg:col-span-1">
+                    <h3 class="text-lg font-bold text-white mb-4">Product Details</h3>
+                    <div class="space-y-4">
+                      <div class="flex justify-between py-3 border-b border-white/10"><span class="text-white/40">Category</span><span class="text-white">{{ product_category }}</span></div>
+                      <div class="flex justify-between py-3 border-b border-white/10"><span class="text-white/40">Version</span><span class="text-white">{{ product_version }}</span></div>
+                      <div class="flex justify-between py-3 border-b border-white/10"><span class="text-white/40">Last Updated</span><span class="text-white">{{ product_last_updated }}</span></div>
+                      <div class="flex justify-between py-3 border-b border-white/10"><span class="text-white/40">License</span><span class="text-white">{{ product_license }}</span></div>
+                    </div>
+                  </div>
                 </div>
               {% endif %}
             </div>
-            <div id="tab-benefits" class="product-tab-panel" role="tabpanel" {% unless has_benefits %}hidden{% endunless %} {% if has_benefits %}aria-labelledby="tab-benefits"{% endif %}>
+            <div id="tab-benefits" class="product-tab-panel" role="tabpanel" {% unless has_benefits %}hidden{% endunless %}{% if has_benefits and first_tab != 'benefits' %} hidden{% endif %} {% if has_benefits %}aria-labelledby="tab-benefits"{% endif %}>
               {% if has_benefits %}
                 {% if benefits_style == 'structured' and benefits_has_structured %}
                   {% comment %} Structured Benefits: course (circles + progress + comparison) or impact (3 cards + progress + comparison) {% endcomment %}
@@ -582,7 +596,7 @@
                 {% endif %}
               {% endif %}
             </div>
-            <div id="tab-features" class="product-tab-panel" role="tabpanel" {% unless has_features %}hidden{% endunless %} {% if has_features %}aria-labelledby="tab-features"{% endif %}>
+            <div id="tab-features" class="product-tab-panel" role="tabpanel" {% unless has_features %}hidden{% endunless %}{% if has_features and first_tab != 'features' %} hidden{% endif %} {% if has_features %}aria-labelledby="tab-features"{% endif %}>
               {% if has_features %}
                 {% assign features_heading = section.settings.features_heading | default: "Features" %}
                 {% if features_heading != blank %}<h2 class="text-2xl font-bold text-white mb-8">{{ features_heading }}</h2>{% endif %}
@@ -630,7 +644,7 @@
                 {% endif %}
               {% endif %}
             </div>
-            <div id="tab-faqs" class="product-tab-panel" role="tabpanel" {% unless has_faqs %}hidden{% endunless %} {% if has_faqs %}aria-labelledby="tab-faqs"{% endif %}>
+            <div id="tab-faqs" class="product-tab-panel" role="tabpanel" {% unless has_faqs %}hidden{% endunless %}{% if has_faqs and first_tab != 'faqs' %} hidden{% endif %} {% if has_faqs %}aria-labelledby="tab-faqs"{% endif %}>
               {% if has_faqs %}
                 {% assign faqs_heading = section.settings.faqs_heading | default: "Frequently Asked Questions" %}
                 {% if faqs_heading != blank %}<h2 class="text-2xl font-bold text-white mb-8">{{ faqs_heading }}</h2>{% endif %}
@@ -663,15 +677,6 @@
                   <div class="prose prose-invert max-w-none text-white/60 leading-relaxed space-y-4">{{ faqs_content }}</div>
                 {% endif %}
               {% endif %}
-            </div>
-          </div>
-          <div>
-            <h3 class="text-lg font-bold text-white mb-4">Product Details</h3>
-            <div class="space-y-4">
-              <div class="flex justify-between py-3 border-b border-white/10"><span class="text-white/40">Category</span><span class="text-white">{{ product_category }}</span></div>
-              <div class="flex justify-between py-3 border-b border-white/10"><span class="text-white/40">Version</span><span class="text-white">{{ product_version }}</span></div>
-              <div class="flex justify-between py-3 border-b border-white/10"><span class="text-white/40">Last Updated</span><span class="text-white">{{ product_last_updated }}</span></div>
-              <div class="flex justify-between py-3 border-b border-white/10"><span class="text-white/40">License</span><span class="text-white">{{ product_license }}</span></div>
             </div>
           </div>
         </div>
@@ -746,25 +751,37 @@
 (function() {
   // Product gallery: thumbnail click switches main image
   var mainImg = document.getElementById('product-main-image');
-  var thumbs = document.querySelectorAll('.product-thumb');
-  if (mainImg && thumbs.length) {
-    thumbs.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var src = this.getAttribute('data-image-src');
-        var alt = this.getAttribute('data-image-alt');
-        if (src) {
-          mainImg.src = src;
-          mainImg.alt = alt || mainImg.alt;
-        }
-        thumbs.forEach(function(t) {
-          t.classList.remove('border-2', 'border-white/30', 'ring-1', 'ring-white/20');
-          t.classList.add('border');
-          t.setAttribute('aria-selected', 'false');
-        });
-        this.classList.add('border-2', 'border-white/30', 'ring-1', 'ring-white/20');
-        this.classList.remove('border');
-        this.setAttribute('aria-selected', 'true');
-      });
+  var thumbsWrap = document.querySelector('.product-gallery-thumbs');
+  function setActiveThumb(btn) {
+    if (!thumbsWrap) return;
+    thumbsWrap.querySelectorAll('.product-thumb').forEach(function(t) {
+      t.classList.remove('border-2', 'border-white/30', 'ring-1', 'ring-white/20');
+      t.classList.add('border');
+      t.setAttribute('aria-selected', 'false');
+    });
+    if (btn) {
+      btn.classList.add('border-2', 'border-white/30', 'ring-1', 'ring-white/20');
+      btn.classList.remove('border');
+      btn.setAttribute('aria-selected', 'true');
+    }
+  }
+  if (mainImg && thumbsWrap) {
+    thumbsWrap.addEventListener('click', function(e) {
+      var btn = e.target.closest('.product-thumb');
+      if (!btn) return;
+      e.preventDefault();
+      e.stopPropagation();
+      var src = btn.getAttribute('data-image-src');
+      var alt = btn.getAttribute('data-image-alt');
+      if (src) {
+        // Force src swap even if same URL
+        mainImg.removeAttribute('srcset');
+        mainImg.removeAttribute('sizes');
+        mainImg.setAttribute('src', src);
+        mainImg.src = src;
+        if (alt) mainImg.alt = alt;
+      }
+      setActiveThumb(btn);
     });
   }
 
@@ -826,8 +843,22 @@
           comparePriceEl.setAttribute('hidden', '');
         }
       }
-      if (mainImg && variant.featured_image) {
-        mainImg.src = variant.featured_image;
+      var mainImage = document.getElementById('product-main-image');
+      if (mainImage && variant.featured_image) {
+        mainImage.removeAttribute('srcset');
+        mainImage.removeAttribute('sizes');
+        mainImage.setAttribute('src', variant.featured_image);
+        mainImage.src = variant.featured_image;
+        var thumbsWrap = document.querySelector('.product-gallery-thumbs');
+        if (thumbsWrap && typeof setActiveThumb === 'function') {
+          var thumbs = thumbsWrap.querySelectorAll('.product-thumb');
+          for (var i = 0; i < thumbs.length; i++) {
+            if (thumbs[i].getAttribute('data-image-src') === variant.featured_image) {
+              setActiveThumb(thumbs[i]);
+              break;
+            }
+          }
+        }
       }
     }
     optionInputs.forEach(function(inp) {
