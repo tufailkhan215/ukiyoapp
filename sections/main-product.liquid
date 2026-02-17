@@ -11,7 +11,7 @@
 {% assign features_content = product.metafields.custom.features | default: nil %}
 {% assign faqs_content = product.metafields.custom.faqs | default: nil %}
 {% assign faqs_accordion_str = product.metafields.custom.faqs_accordion.value | default: section.settings.default_faqs_accordion %}
-{% assign benefits_list_str = product.metafields.custom.benefits_list.value | default: section.settings.default_benefits_list | strip %}
+{% assign benefits_list_str = product.metafields.custom.benefits_list.value | default: section.settings.default_benefits_list | strip | replace: '—', '' | strip %}
 {% assign benefits_intro = product.metafields.custom.benefits_intro | default: nil %}
 {% assign benefits_style = product.metafields.custom.benefits_style.value | default: section.settings.benefits_layout | default: 'simple' %}
 {% assign benefits_subtext = product.metafields.custom.benefits_subtext.value | default: section.settings.benefits_subtext %}
@@ -19,7 +19,7 @@
 {% assign benefits_progress_str = product.metafields.custom.benefits_progress.value | default: section.settings.default_benefits_progress %}
 {% assign benefits_without_list_str = product.metafields.custom.benefits_without_list.value | default: section.settings.default_benefits_without_list %}
 {% assign benefits_with_list_str = product.metafields.custom.benefits_with_list.value | default: section.settings.default_benefits_with_list %}
-{% assign features_list_str = product.metafields.custom.features_list.value | default: section.settings.default_features_list | strip %}
+{% assign features_list_str = product.metafields.custom.features_list.value | default: section.settings.default_features_list | strip | replace: '—', '' | strip %}
 {% assign features_intro = product.metafields.custom.features_intro | default: nil %}
 {% assign features_style = product.metafields.custom.features_style.value | default: section.settings.features_layout | default: 'simple' %}
 {% assign features_cards_str = product.metafields.custom.features_cards.value | default: section.settings.default_features_cards %}
@@ -641,12 +641,12 @@
     { "type": "textarea", "id": "default_faqs_accordion", "label": "Default FAQs accordion (one per line: question|answer)", "default": "What do I get with this purchase?|You'll receive instant access to download the Course. All files are provided in standard formats that work with the relevant platforms.\nIs there a money-back guarantee?|Yes! We offer a 14-day money-back guarantee. If you're not satisfied with your purchase, contact us for a full refund.\nCan I use this for client projects?|Absolutely! Your purchase includes a commercial license that allows you to use this product for unlimited personal and client projects.\nDo I need any special software?|No special software is required. We provide detailed setup instructions with your purchase.\nIs support included?|Yes, we provide email support for all purchases. Premium members also get access to our private Discord community for faster help.", "info": "Used when product has no custom.faqs_accordion. For accordion layout; otherwise use custom.faqs (rich text)." },
     { "type": "header", "content": "Tabs fallbacks" },
     { "type": "textarea", "id": "default_whats_included", "label": "Default What's Included (pipe-separated)", "default": "Complete files ready to use|Documentation and setup guide|Free updates|Commercial license|Email support", "info": "Used when product has no custom.whats_included metafield" },
-    { "type": "textarea", "id": "default_benefits_list", "label": "Default Benefits (pipe-separated)", "default": " ", "info": "Simple layout: when product has no custom.benefits_list or custom.benefits. Leave as single space for none." },
+    { "type": "textarea", "id": "default_benefits_list", "label": "Default Benefits (pipe-separated)", "default": "—", "info": "Simple layout: when product has no custom.benefits_list or custom.benefits. Use — alone for none." },
     { "type": "textarea", "id": "default_benefits_stats", "label": "Structured: stats (value|label|value|label|... 4 pairs)", "default": "94|Course Completion|87|Apply Skills Within 1 Week|76|Career Advancement|92|Would Recommend" },
     { "type": "textarea", "id": "default_benefits_progress", "label": "Structured: progress (label|percent|... 4 pairs)", "default": "Technical Proficiency|90|Creative Application|85|Industry Knowledge|88|Problem Solving|82" },
     { "type": "textarea", "id": "default_benefits_without_list", "label": "Structured: Without list (pipe-separated)", "default": "Hours of random YouTube tutorials|Outdated or conflicting information|No structured learning path|Trial and error approach|No community or support" },
     { "type": "textarea", "id": "default_benefits_with_list", "label": "Structured: With list (pipe-separated)", "default": "Curated, expert-led curriculum|Current industry best practices|Step-by-step progression|Proven frameworks and templates|Access to private community" },
-    { "type": "textarea", "id": "default_features_list", "label": "Default Features list (simple layout, pipe-separated)", "default": " ", "info": "Simple layout: when product has no custom.features_list or custom.features. Leave as single space for none." },
+    { "type": "textarea", "id": "default_features_list", "label": "Default Features list (simple layout, pipe-separated)", "default": "—", "info": "Simple layout: when product has no custom.features_list or custom.features. Use — alone for none." },
     { "type": "text", "id": "default_category", "label": "Default category", "default": "Product" },
     { "type": "text", "id": "default_version", "label": "Default version", "default": "1.0" },
     { "type": "text", "id": "default_last_updated", "label": "Default last updated", "default": "Feb 2026" },
