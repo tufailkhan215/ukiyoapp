@@ -2,17 +2,21 @@
 
 ## Summary
 
-- **Color theme per collection/product:** Product metafield → collection metafield → section default. Values: `blue` | `purple` | `emerald` | `amber`. Applied to blurs, image glow, badge, Buy Now button, bottom CTA.
+- **Color theme per collection/product:** Product metafield → collection metafield → **theme setting** (default Blue). Values: `blue` | `purple` | `emerald` | `amber`. Applied to blurs, image glow, badge, Buy Now button, bottom CTA. Default badge label and badge icon are also in **Theme settings** (Product → Color & badge).
 - **Tabs (Overview, Benefits, Features, FAQ) per product only:** Content from product metafields; tabs only show when content exists. No snippets.
 
 ---
 
-## 1. Color theme
+## 1. Color theme & badge
 
-**Resolution order:**  
-`product.metafields.custom.color_theme` → `product.collections.first.metafields.custom.color_theme` → `section.settings.default_color_theme`
+**Resolution order (same for all products; per collection when set):**  
+`product.metafields.custom.color_theme` → `product.collections.first.metafields.custom.color_theme` → **Theme setting** `Product (Color & badge)` → Default **Blue / Cyan**.
 
-**Shopify:** Product and/or Collection metafield, namespace `custom`, key `color_theme`, type Single line text, value one of: `blue`, `purple`, `emerald`, `amber`.
+- **Theme settings** (Theme customizer → Theme settings): **Product (Color & badge)** — Default color theme (blue default), Default badge label, Badge icon. These apply to all collection products unless overridden by collection or product metafields.
+- **Collection:** Set `custom.color_theme` on a collection so every product in that collection uses that theme unless the product has its own `custom.color_theme`.
+- **Product:** Set `custom.color_theme`, `custom.badge_label` to override per product.
+
+**Shopify metafields:** Product and/or Collection, namespace `custom`, key `color_theme` (Single line text), value one of: `blue`, `purple`, `emerald`, `amber`. Badge label: `custom.badge_label` (product).
 
 ---
 
@@ -38,7 +42,11 @@ When **Benefits layout** is **Structured** (section setting or product `custom.b
 - **Skill Development Progress:** 4 progress bars. Data from `custom.benefits_progress` (Single line) or section default. Format: `label|percent|label|percent|label|percent|label|percent` (e.g. `Technical Proficiency|90|Creative Application|85|Industry Knowledge|88|Problem Solving|82`).
 - **Comparison cards:** Left "Without This Course" / right "With This Course". Lists from `custom.benefits_without_list` and `custom.benefits_with_list` (Single line, pipe-separated) or section defaults. Labels are configurable in section settings.
 
-Structured Benefits tab is shown when at least one of stats, progress, or comparison lists has content (product or section default). Section settings: `benefits_layout` (simple | structured), `benefits_subtext`, `benefits_stats_heading`, `benefits_progress_heading`, `benefits_without_label`, `benefits_with_label`, and default textareas for stats, progress, without list, with list.
+**Structured variant:** Section or product `custom.benefits_structured_variant` = `course` (default) | `impact`.
+- **Course:** Above layout (4 circular stats "What Students Achieve", "Skill Development Progress" bars, comparison).
+- **Impact:** "Conversion Impact" — 3 cards (value + label + icon: dollar-sign, clock, trending-up). Data from `custom.benefits_impact_cards` or section default. Format: `value|label|icon|value|label|icon|value|label|icon`. Then "Average Store Improvements" (same 4 progress bars as course). Then comparison with default labels "Without Premium Sections" / "With Premium Sections".
+
+Structured Benefits tab is shown when at least one of stats, progress, impact cards, or comparison lists has content. Section settings: `benefits_layout`, `benefits_structured_variant`, `benefits_impact_heading`, `benefits_improvements_heading`, `default_benefits_impact_cards`, plus existing structured headings and default textareas.
 
 ### Features: cards layout
 
@@ -74,6 +82,8 @@ When **FAQ accordion** content is present (`custom.faqs_accordion` or section de
 | `benefits_progress` | Single line | 4 pairs label\|percent (e.g. Technical Proficiency\|90\|…); structured only |
 | `benefits_without_list` | Single line | Pipe-separated items for "Without" column; structured only |
 | `benefits_with_list` | Single line | Pipe-separated items for "With" column; structured only |
+| `benefits_structured_variant` | Single line | `course` or `impact`; structured variant (course = circles + progress, impact = 3 cards + progress) |
+| `benefits_impact_cards` | Single line | Impact variant: 3× value\|label\|icon (e.g. $0\|Monthly Savings\|dollar-sign; icons: dollar-sign, clock, trending-up) |
 | `features`        | Rich text | Simple layout; or use features_list |
 | `features_list`   | Single line | Simple layout; pipe-separated list with checkmarks |
 | `features_intro`  | Rich text | Optional intro (simple layout only) |

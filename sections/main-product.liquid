@@ -4,8 +4,9 @@
   See docs/IMPLEMENTATION-PRODUCT-PAGE.md for metafield setup.
 {% endcomment %}
 {% assign first_collection = product.collections.first %}
-{% assign color_theme = product.metafields.custom.color_theme.value | default: first_collection.metafields.custom.color_theme.value | default: section.settings.default_color_theme | default: 'blue' %}
-{% assign badge_label = product.metafields.custom.badge_label.value | default: product.type | default: section.settings.default_badge_label %}
+{% assign color_theme = product.metafields.custom.color_theme.value | default: first_collection.metafields.custom.color_theme.value | default: settings.product_default_color_theme | default: 'blue' %}
+{% assign badge_label = product.metafields.custom.badge_label.value | default: product.type | default: settings.product_default_badge_label %}
+{% assign badge_icon = settings.product_badge_icon | default: 'none' %}
 {% assign overview_content = product.metafields.custom.overview | default: nil %}
 {% assign benefits_content = product.metafields.custom.benefits | default: nil %}
 {% assign features_content = product.metafields.custom.features | default: nil %}
@@ -19,6 +20,8 @@
 {% assign benefits_progress_str = product.metafields.custom.benefits_progress.value | default: section.settings.default_benefits_progress %}
 {% assign benefits_without_list_str = product.metafields.custom.benefits_without_list.value | default: section.settings.default_benefits_without_list %}
 {% assign benefits_with_list_str = product.metafields.custom.benefits_with_list.value | default: section.settings.default_benefits_with_list %}
+{% assign benefits_structured_variant = product.metafields.custom.benefits_structured_variant.value | default: section.settings.benefits_structured_variant | default: 'course' %}
+{% assign benefits_impact_cards_str = product.metafields.custom.benefits_impact_cards.value | default: section.settings.default_benefits_impact_cards %}
 {% assign features_list_str = product.metafields.custom.features_list.value | default: section.settings.default_features_list | strip | replace: '—', '' | strip %}
 {% assign features_intro = product.metafields.custom.features_intro | default: nil %}
 {% assign features_style = product.metafields.custom.features_style.value | default: section.settings.features_layout | default: 'simple' %}
@@ -27,6 +30,7 @@
 {% assign benefits_has_structured = false %}
 {% if benefits_style == 'structured' and benefits_stats_str != blank %}{% assign benefits_has_structured = true %}{% endif %}
 {% if benefits_style == 'structured' and benefits_progress_str != blank %}{% assign benefits_has_structured = true %}{% endif %}
+{% if benefits_style == 'structured' and benefits_impact_cards_str != blank %}{% assign benefits_has_structured = true %}{% endif %}
 {% if benefits_style == 'structured' and benefits_without_list_str != blank %}{% assign benefits_has_structured = true %}{% endif %}
 {% if benefits_style == 'structured' and benefits_with_list_str != blank %}{% assign benefits_has_structured = true %}{% endif %}
 {% if benefits_content != blank or benefits_list_str != blank or benefits_has_structured %}{% assign has_benefits = true %}{% else %}{% assign has_benefits = false %}{% endif %}
@@ -106,7 +110,7 @@
             {% if badge_label != blank %}
               <div class="absolute top-4 left-4">
                 <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-white text-xs font-medium {% if color_theme == 'purple' %}bg-gradient-to-r from-purple-500 to-pink-500{% elsif color_theme == 'emerald' %}bg-gradient-to-r from-emerald-500 to-teal-500{% elsif color_theme == 'amber' %}bg-gradient-to-r from-amber-500 to-orange-500{% else %}bg-gradient-to-r from-blue-500 to-cyan-500{% endif %}">
-                  {% if section.settings.badge_icon == 'graduation_cap' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg>{% elsif section.settings.badge_icon == 'bot' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg>{% elsif section.settings.badge_icon == 'layout' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg>{% endif %}
+                  {% if badge_icon == 'graduation_cap' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg>{% elsif badge_icon == 'bot' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg>{% elsif badge_icon == 'layout' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg>{% elsif badge_icon == 'workflow' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"></rect><path d="M7 11v4a2 2 0 0 0 2 2h4"></path><rect width="8" height="8" x="13" y="13" rx="2"></rect></svg>{% endif %}
                   {{ badge_label }}
                 </span>
               </div>
@@ -256,13 +260,102 @@
             <div id="tab-benefits" class="product-tab-panel" role="tabpanel" {% unless has_benefits %}hidden{% endunless %} {% if has_benefits %}aria-labelledby="tab-benefits"{% endif %}>
               {% if has_benefits %}
                 {% if benefits_style == 'structured' and benefits_has_structured %}
-                  {% comment %} Structured Benefits: Why This Course? + stats + progress bars + Without/With comparison {% endcomment %}
+                  {% comment %} Structured Benefits: course (circles + progress + comparison) or impact (3 cards + progress + comparison) {% endcomment %}
                   {% assign benefits_heading = section.settings.benefits_heading | default: "Why This Course?" %}
                   <div class="mb-8">
                     {% if benefits_heading != blank %}<h2 class="text-2xl font-bold text-white mb-2">{{ benefits_heading }}</h2>{% endif %}
                     {% if benefits_subtext != blank %}<p class="text-white/50">{{ benefits_subtext }}</p>{% endif %}
                   </div>
                   <div class="space-y-12">
+                    {% if benefits_structured_variant == 'impact' %}
+                      {% comment %} Impact variant: Conversion Impact 3 cards + Average Store Improvements bars + comparison {% endcomment %}
+                      {% if benefits_impact_cards_str != blank %}
+                        {% assign impact_parts = benefits_impact_cards_str | split: '|' %}
+                        {% if impact_parts.size >= 9 %}
+                          <div>
+                            <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 {% if color_theme == 'purple' %}text-purple-400{% elsif color_theme == 'emerald' %}text-emerald-400{% elsif color_theme == 'amber' %}text-amber-400{% else %}text-blue-400{% endif %}" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path></svg>
+                              {{ section.settings.benefits_impact_heading | default: "Conversion Impact" }}
+                            </h3>
+                            <div class="grid grid-cols-3 gap-4">
+                              {% for i in (0..2) %}
+                                {% assign ia = i | times: 3 %}
+                                {% assign ia1 = ia | plus: 1 %}
+                                {% assign ia2 = ia | plus: 2 %}
+                                {% assign iv = impact_parts[ia] | strip %}
+                                {% assign il = impact_parts[ia1] | strip %}
+                                {% assign ik = impact_parts[ia2] | strip | downcase %}
+                                <div class="text-center p-6 rounded-2xl bg-white/[0.02] border border-white/10">
+                                  {% if ik == 'dollar-sign' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-8 h-8 text-emerald-400 mx-auto mb-3" aria-hidden="true"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>{% elsif ik == 'clock' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-8 h-8 text-blue-400 mx-auto mb-3" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>{% elsif ik == 'trending-up' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-8 h-8 text-purple-400 mx-auto mb-3" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>{% else %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-8 h-8 text-white/60 mx-auto mb-3" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle></svg>{% endif %}
+                                  <div class="text-3xl font-black text-transparent bg-clip-text {% if color_theme == 'purple' %}bg-gradient-to-r from-purple-500 to-pink-500{% elsif color_theme == 'emerald' %}bg-gradient-to-r from-emerald-500 to-teal-500{% elsif color_theme == 'amber' %}bg-gradient-to-r from-amber-500 to-orange-500{% else %}bg-gradient-to-r from-blue-500 to-cyan-500{% endif %}"><span>{{ iv }}</span></div>
+                                  <div class="text-white/40 text-sm mt-1">{{ il }}</div>
+                                </div>
+                              {% endfor %}
+                            </div>
+                          </div>
+                        {% endif %}
+                      {% endif %}
+                      {% if benefits_progress_str != blank %}
+                        {% assign prog_parts = benefits_progress_str | split: '|' %}
+                        {% if prog_parts.size >= 8 %}
+                          <div>
+                            <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 {% if color_theme == 'purple' %}text-purple-400{% elsif color_theme == 'emerald' %}text-teal-400{% elsif color_theme == 'amber' %}text-orange-400{% else %}text-cyan-400{% endif %}" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg>
+                              {{ section.settings.benefits_improvements_heading | default: "Average Store Improvements" }}
+                            </h3>
+                            <div class="space-y-3">
+                              {% for i in (0..3) %}
+                                {% assign prog_idx = i | times: 2 %}
+                                {% assign prog_idx_pct = prog_idx | plus: 1 %}
+                                {% assign plabel = prog_parts[prog_idx] | strip %}
+                                {% assign pct = prog_parts[prog_idx_pct] | strip %}
+                                <div class="space-y-1">
+                                  <div class="flex justify-between text-sm"><span class="text-white/70">{{ plabel }}</span><span class="text-white font-medium">{{ pct }}%</span></div>
+                                  <div class="h-2 bg-white/10 rounded-full overflow-hidden">
+                                    <div class="h-full rounded-full {% if color_theme == 'purple' %}bg-gradient-to-r from-purple-500 to-pink-500{% elsif color_theme == 'emerald' %}bg-gradient-to-r from-emerald-500 to-teal-500{% elsif color_theme == 'amber' %}bg-gradient-to-r from-amber-500 to-orange-500{% else %}bg-gradient-to-r from-blue-500 to-cyan-500{% endif %}" style="width: {{ pct }}%;"></div>
+                                  </div>
+                                </div>
+                              {% endfor %}
+                            </div>
+                          </div>
+                        {% endif %}
+                      {% endif %}
+                      {% if benefits_without_list_str != blank or benefits_with_list_str != blank %}
+                        {% assign without_items = benefits_without_list_str | split: '|' %}
+                        {% assign with_items = benefits_with_list_str | split: '|' %}
+                        <div class="grid md:grid-cols-2 gap-6">
+                          <div class="p-6 rounded-2xl bg-red-500/5 border border-red-500/20">
+                            <div class="flex items-center gap-2 mb-4">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-red-400" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m15 9-6 6"></path><path d="m9 9 6 6"></path></svg>
+                              <span class="text-white font-medium">{{ section.settings.benefits_without_label | default: "Without Premium Sections" }}</span>
+                            </div>
+                            <div class="space-y-3">
+                              {% for item in without_items %}{% assign line = item | strip %}{% if line != blank %}
+                              <div class="flex items-start gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" aria-hidden="true"><path d="M5 12h14"></path></svg>
+                                <span class="text-white/50 text-sm">{{ line }}</span>
+                              </div>
+                              {% endif %}{% endfor %}
+                            </div>
+                          </div>
+                          <div class="p-6 rounded-2xl border {% if color_theme == 'purple' %}border-purple-500/30 bg-purple-500/10{% elsif color_theme == 'emerald' %}border-emerald-500/30 bg-emerald-500/10{% elsif color_theme == 'amber' %}border-amber-500/30 bg-amber-500/10{% else %}border-blue-500/30 bg-blue-500/10{% endif %}">
+                            <div class="flex items-center gap-2 mb-4">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-emerald-400" aria-hidden="true"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>
+                              <span class="text-white font-medium">{{ section.settings.benefits_with_label | default: "With Premium Sections" }}</span>
+                            </div>
+                            <div class="space-y-3">
+                              {% for item in with_items %}{% assign line = item | strip %}{% if line != blank %}
+                              <div class="flex items-start gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" aria-hidden="true"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>
+                                <span class="text-white/70 text-sm">{{ line }}</span>
+                              </div>
+                              {% endif %}{% endfor %}
+                            </div>
+                          </div>
+                        </div>
+                      {% endif %}
+                    {% else %}
+                      {% comment %} Course variant: circular stats + progress + comparison {% endcomment %}
                     {% if benefits_stats_str != blank %}
                       {% assign stats_parts = benefits_stats_str | split: '|' %}
                       {% if stats_parts.size >= 8 %}
@@ -355,6 +448,7 @@
                           </div>
                         </div>
                       </div>
+                    {% endif %}
                     {% endif %}
                   </div>
                 {% else %}
@@ -581,20 +675,6 @@
   "tag": "section",
   "class": "section-main-product",
   "settings": [
-    { "type": "header", "content": "Color & badge" },
-    { "type": "select", "id": "default_color_theme", "label": "Default color theme", "options": [
-      { "value": "blue", "label": "Blue / Cyan" },
-      { "value": "purple", "label": "Purple / Pink" },
-      { "value": "emerald", "label": "Emerald / Teal" },
-      { "value": "amber", "label": "Amber / Orange" }
-    ], "default": "blue", "info": "Overridden by product or collection metafield custom.color_theme" },
-    { "type": "text", "id": "default_badge_label", "label": "Default badge label", "default": "Product", "info": "Shown on product image; overridden by product type or product metafield custom.badge_label" },
-    { "type": "select", "id": "badge_icon", "label": "Badge icon", "options": [
-      { "value": "none", "label": "None" },
-      { "value": "graduation_cap", "label": "Course" },
-      { "value": "bot", "label": "AI Agent" },
-      { "value": "layout", "label": "Section" }
-    ], "default": "none" },
     { "type": "header", "content": "Breadcrumb" },
     { "type": "url", "id": "shop_url", "label": "Shop link (breadcrumb)" },
     { "type": "text", "id": "breadcrumb_shop", "label": "Breadcrumb first label", "default": "Shop" },
@@ -631,6 +711,13 @@
     { "type": "text", "id": "benefits_progress_heading", "label": "Structured: progress section heading", "default": "Skill Development Progress" },
     { "type": "text", "id": "benefits_without_label", "label": "Structured: left column label", "default": "Without This Course" },
     { "type": "text", "id": "benefits_with_label", "label": "Structured: right column label", "default": "With This Course" },
+    { "type": "select", "id": "benefits_structured_variant", "label": "Structured variant", "options": [
+      { "value": "course", "label": "Course (circular stats + progress + comparison)" },
+      { "value": "impact", "label": "Impact (3 conversion cards + improvements bars + comparison)" }
+    ], "default": "course", "info": "Impact uses benefits_impact_cards; labels default to Without/With Premium Sections" },
+    { "type": "text", "id": "benefits_impact_heading", "label": "Structured impact: 3-card section heading", "default": "Conversion Impact" },
+    { "type": "text", "id": "benefits_improvements_heading", "label": "Structured impact: progress section heading", "default": "Average Store Improvements" },
+    { "type": "textarea", "id": "default_benefits_impact_cards", "label": "Structured impact: 3 cards (value|label|icon × 3)", "default": "$0|Monthly Savings|dollar-sign|0hrs|Time Saved Weekly|clock|0%|Productivity Boost|trending-up", "info": "Icons: dollar-sign, clock, trending-up" },
     { "type": "text", "id": "features_heading", "label": "Features tab heading", "default": "Key Features", "info": "e.g. Key Features for cards layout" },
     { "type": "select", "id": "features_layout", "label": "Features layout", "options": [
       { "value": "simple", "label": "Simple (list or rich text)" },
