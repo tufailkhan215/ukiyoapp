@@ -20,22 +20,6 @@
       "header": {
         "type": "header",
         "blocks": {
-          "dropdown_category_TNDVkY": {
-            "type": "dropdown_category",
-            "settings": {
-              "parent_handle": "services",
-              "category_title": "Growth Marketing",
-              "links_text": "Klaviyo Flows Services|#\nPaid Ads Creative System|#\nVirtual Assistance|#"
-            }
-          },
-          "dropdown_category_w8tCki": {
-            "type": "dropdown_category",
-            "settings": {
-              "parent_handle": "services",
-              "category_title": "Content Production",
-              "links_text": ""
-            }
-          },
           "dropdown_compact_HzXHHz": {
             "type": "dropdown_compact",
             "settings": {
@@ -77,16 +61,32 @@
               "category_title": "Digital Experience",
               "links_text": "Website & Web Development|#\nMobile & App Development|#"
             }
+          },
+          "dropdown_category_w8tCki": {
+            "type": "dropdown_category",
+            "settings": {
+              "parent_handle": "services",
+              "category_title": "Content Production",
+              "links_text": "Monthly Content Calendar|#\nPinterest SEO Services|#\nSEO Blog Services|#"
+            }
+          },
+          "dropdown_category_TNDVkY": {
+            "type": "dropdown_category",
+            "settings": {
+              "parent_handle": "services",
+              "category_title": "Growth Marketing",
+              "links_text": "Klaviyo Flows Services|#\nPaid Ads Creative System|#\nVirtual Assistance|#"
+            }
           }
         },
         "block_order": [
-          "dropdown_category_TNDVkY",
-          "dropdown_category_w8tCki",
           "dropdown_compact_HzXHHz",
           "dropdown_category_TLpWTd",
           "dropdown_category_FwQj3T",
           "dropdown_category_iCYpNb",
-          "dropdown_category_3UYqiR"
+          "dropdown_category_3UYqiR",
+          "dropdown_category_w8tCki",
+          "dropdown_category_TNDVkY"
         ],
         "settings": {
           "logo_text": "UKIYO",
