@@ -998,6 +998,7 @@
     },
     "dynamic_cta_Rq7hkB": {
       "type": "dynamic-cta",
+      "disabled": true,
       "name": "Dynamic CTA",
       "settings": {
         "tagline": "(Ready to Rally Around Your Big Idea?)",
