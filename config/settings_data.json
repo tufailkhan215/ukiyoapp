@@ -58,8 +58,8 @@
             "type": "dropdown_category",
             "settings": {
               "parent_handle": "services",
-              "category_title": "Category title 4",
-              "links_text": "Links1|#\nLinks2|#\nLinks3|#"
+              "category_title": "Digital Experience",
+              "links_text": "Website & Web Development|#\nMobile & App Development|#"
             }
           }
         },
