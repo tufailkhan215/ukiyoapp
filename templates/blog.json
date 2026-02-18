@@ -14,6 +14,7 @@
       "settings": {
         "background_color": "#0a0a0a",
         "show_grid": true,
+        "cursor_glow": true,
         "badge": "(Insights & Stories)",
         "title_line1": "BLOGS &",
         "title_line2": "LATEST ARTICLES",
@@ -94,7 +95,7 @@
         "category_aTJiAr": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/DSC_29323129.webp",
+            "image": "shopify://shop_images/annavili_A_woman_sitting_relaxed_on_a_light_soft_armchair_weari_e7a38a29-10c8-4214-98da-cb5047dc753c.png",
             "title": "Creative Spotlight",
             "description": "Highlighting the incredible talents of artists, innovators, and musicians from all avenues of art. Explore their stories, processes, and contributions.",
             "url": "",
@@ -114,7 +115,6 @@
         "category_Cqwea9": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/FurTraders_mag_article_samples-02_2.webp",
             "title": "Culinary Hub",
             "description": "Dive into a world of culinary delights through our expertly curated food blog. From mouth-watering recipes and restaurant reviews to chef interviews.",
             "url": "",
@@ -124,7 +124,6 @@
         "category_fn3b7x": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/IMG_3161.webp",
             "title": "Travel & Experiences",
             "description": "Discover the beauty of the world! Breathtaking destinations, unique adventures, and cultural experiences that inspire wanderlust.",
             "url": "",
@@ -158,7 +157,6 @@
         "featured_rzRtth": {
           "type": "featured",
           "settings": {
-            "image": "shopify://shop_images/IMG_9657_1.webp",
             "category_tag": "AI & Technology",
             "meta": "Jan 15, 2025 • 8 min read",
             "title": "The Future of AI in Brand Marketing: A Complete Guide",
