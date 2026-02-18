@@ -35,7 +35,7 @@
             "settings": {
               "parent_handle": "services",
               "category_title": "Brand Strategy",
-              "links_text": "Company Agent Builder|/pages/company-agent-builder\nPartnership & Collaboration|/pages/partnership-collaboration"
+              "links_text": "Company Agent Builder|/pages/company-agent-builder-1\nPartnership & Collaboration|/pages/partnership-collaboration"
             }
           },
           "dropdown_category_FwQj3T": {
@@ -75,6 +75,10 @@
           "logo_subtext": "PRODUCTIONS",
           "menu": "main-menu",
           "dropdown_handles": "services, shop",
+          "show_wishlist_icon": true,
+          "wishlist_page_url": "",
+          "show_account_icon": true,
+          "show_cart_icon": true,
           "cta_text": "Start Your Project",
           "cta_link": "#"
         }
@@ -128,6 +132,10 @@
           "privacy_link": "#",
           "terms_link": "#"
         }
+      },
+      "cart-drawer": {
+        "type": "cart-drawer",
+        "settings": {}
       }
     },
     "content_for_index": []
