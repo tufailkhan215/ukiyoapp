@@ -383,6 +383,7 @@
         "roi_row_TzAnp9",
         "roi_row_XbR4dt"
       ],
+      "disabled": true,
       "name": "Value Stack",
       "settings": {
         "strap": "(The Value Stack)",
