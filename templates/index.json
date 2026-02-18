@@ -489,6 +489,7 @@
           "type": "case_study",
           "settings": {
             "layout": "featured",
+            "image": "shopify://shop_images/customer-support-staff-ready-for-work.jpg",
             "category": "AI & Technology",
             "title": "Revolutionizing Customer Experience",
             "link": "#",
@@ -502,6 +503,7 @@
           "type": "case_study",
           "settings": {
             "layout": "featured",
+            "image": "shopify://shop_images/framed-quotes-behind-bike-rack.jpg",
             "category": "Lifestyle & Fashion",
             "title": "Building a Premium Brand Identity",
             "link": "#",
@@ -515,6 +517,7 @@
           "type": "case_study",
           "settings": {
             "layout": "compact",
+            "image": "shopify://shop_images/motherboard-with-wood-grain.jpg",
             "category": "Sustainability",
             "title": "Sustainable Growth Through Innovation",
             "link": "#",
@@ -855,7 +858,7 @@
           "type": "bonus",
           "settings": {
             "icon": "video",
-            "title": "Exclusive Access to a Free Course — step-by-step video training to help you understand or implement the solutions",
+            "title": "Exclusive Access to a Free Course — step-by-step video to help you understand or implement the solutions",
             "value": "$1000+"
           }
         },
