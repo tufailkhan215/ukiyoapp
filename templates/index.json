@@ -531,6 +531,7 @@
           "type": "case_study",
           "settings": {
             "layout": "compact",
+            "image": "shopify://shop_images/dinner-salad.jpg",
             "category": "Food & Beverage",
             "title": "From Local to National Recognition",
             "link": "",
