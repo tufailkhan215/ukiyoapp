@@ -1,0 +1,267 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "contact_background": {
+      "type": "contact-background",
+      "settings": {}
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "contact_intro_BTX3N8": {
+      "type": "contact-intro",
+      "blocks": {
+        "stat_XTC8tF": {
+          "type": "stat",
+          "settings": {
+            "icon": "clock",
+            "value": "24hr",
+            "label": "Response Time"
+          }
+        },
+        "stat_BFmb9j": {
+          "type": "stat",
+          "settings": {
+            "icon": "circle_check_big",
+            "value": "98%",
+            "label": "Client Satisfaction"
+          }
+        },
+        "stat_XzjTiQ": {
+          "type": "stat",
+          "settings": {
+            "icon": "file_text",
+            "value": "150+",
+            "label": "Projects Delivered"
+          }
+        },
+        "stat_cDLDBk": {
+          "type": "stat",
+          "settings": {
+            "icon": "zap",
+            "value": "50M+",
+            "label": "Revenue Generated"
+          }
+        }
+      },
+      "block_order": [
+        "stat_XTC8tF",
+        "stat_BFmb9j",
+        "stat_XzjTiQ",
+        "stat_cDLDBk"
+      ],
+      "name": "Contact Intro",
+      "settings": {
+        "background_color": "rgba(0,0,0,0)",
+        "badge_text": "Let's Talk",
+        "badge_icon": "message_square",
+        "title_line1": "START YOUR",
+        "title_line2": "TRANSFORMATION",
+        "subtitle": "Ready to elevate your brand? Tell us about your project and let's create something extraordinary together."
+      }
+    },
+    "about_stats_hBLCWr": {
+      "type": "about-stats",
+      "blocks": {
+        "stat_qHyUhq": {
+          "type": "stat",
+          "settings": {
+            "gradient": "white_gray4",
+            "icon": "trending_up",
+            "stat": "500K+",
+            "label": "Average yearly savings"
+          }
+        },
+        "stat_LBR37j": {
+          "type": "stat",
+          "settings": {
+            "gradient": "white_gray4",
+            "icon": "trending_up",
+            "stat": "500K+",
+            "label": "Average yearly savings"
+          }
+        },
+        "stat_ByHPUw": {
+          "type": "stat",
+          "settings": {
+            "gradient": "gray3_gray5",
+            "icon": "zap",
+            "stat": "340%",
+            "label": "Revenue growth"
+          }
+        },
+        "stat_UqzLkd": {
+          "type": "stat",
+          "settings": {
+            "gradient": "gray2_gray4",
+            "icon": "users",
+            "stat": "98%",
+            "label": "Client retention"
+          }
+        },
+        "stat_CfPqRP": {
+          "type": "stat",
+          "settings": {
+            "gradient": "white_gray3",
+            "icon": "target",
+            "stat": "50M+",
+            "label": "Revenue generated"
+          }
+        }
+      },
+      "block_order": [
+        "stat_qHyUhq",
+        "stat_LBR37j",
+        "stat_ByHPUw",
+        "stat_UqzLkd",
+        "stat_CfPqRP"
+      ],
+      "name": "About Stats",
+      "settings": {
+        "background_color": "rgba(0,0,0,0)",
+        "badge": "(Our Impact)",
+        "title_before": "Numbers That",
+        "title_gradient": "Matter"
+      }
+    },
+    "contact_form_8JmRJE": {
+      "type": "contact-form",
+      "name": "Contact form",
+      "settings": {
+        "background_color": "rgba(0,0,0,0)",
+        "badge": "(Get In Touch)",
+        "heading": "Send Us a Message",
+        "subtitle": "Fill out the form below and we'll get back to you within 24 hours.",
+        "label_name": "Your Name",
+        "placeholder_name": "John Doe",
+        "label_email": "Email Address",
+        "placeholder_email": "john@company.com",
+        "label_company": "Company",
+        "placeholder_company": "Your Company",
+        "label_budget": "Budget Range",
+        "budget_placeholder": "Select budget",
+        "budget_option_1": "$5,000 - $10,000",
+        "budget_option_2": "$10,000 - $25,000",
+        "budget_option_3": "$25,000 - $50,000",
+        "budget_option_4": "$50,000+",
+        "budget_option_5": "",
+        "label_message": "Tell us about your project",
+        "placeholder_message": "Describe your project goals, timeline, and any specific requirements...",
+        "button_text": "Send Message",
+        "success_message": "Thanks for contacting us. We'll get back to you as soon as possible.",
+        "quick_response_heading": "Quick Response Guaranteed",
+        "quick_response_text": "We respond to all inquiries within 24 hours. Most requests are answered same-day.",
+        "email": "hello.ukiyoprod@gmail.com",
+        "label_email_card": "Email",
+        "location": "Nevada County, California",
+        "label_location": "Location",
+        "hours": "Mon - Fri: 9AM - 6PM PST",
+        "label_hours": "Hours",
+        "testimonial_quote": "Working with Ukiyo transformed our brand. The results exceeded every expectation.",
+        "testimonial_author": "— Sarah K., CEO at TechStart"
+      }
+    },
+    "contact_prefer_to_talk_xyijFn": {
+      "type": "contact-prefer-to-talk",
+      "name": "Prefer to Talk",
+      "settings": {
+        "background_color": "rgba(0,0,0,0)",
+        "heading": "Prefer to Talk?",
+        "description": "Schedule a free 30-minute consultation to discuss your project goals and how we can help bring your vision to life.",
+        "tidycal_path": "salesautomateiq/consultation",
+        "tidycal_script_url": "",
+        "embed_min_height": 600,
+        "placeholder_text": "Set TidyCal path in section settings (e.g. salesautomateiq/consultation)."
+      }
+    },
+    "marquee_logos_p6q6xL": {
+      "type": "marquee-logos",
+      "blocks": {
+        "logo_MkCyM6": {
+          "type": "logo",
+          "settings": {
+            "name": "NIKE"
+          }
+        },
+        "logo_47xHCR": {
+          "type": "logo",
+          "settings": {
+            "name": "SPOTIFY"
+          }
+        },
+        "logo_3ybTEM": {
+          "type": "logo",
+          "settings": {
+            "name": "APPLE"
+          }
+        },
+        "logo_BQtbQc": {
+          "type": "logo",
+          "settings": {
+            "name": "ADIDAS"
+          }
+        },
+        "logo_CNF4DX": {
+          "type": "logo",
+          "settings": {
+            "name": "WANDRD"
+          }
+        },
+        "logo_CgRzje": {
+          "type": "logo",
+          "settings": {
+            "name": "COACHELLA"
+          }
+        },
+        "logo_eB7Deb": {
+          "type": "logo",
+          "settings": {
+            "name": "SXSW"
+          }
+        },
+        "logo_feiYaB": {
+          "type": "logo",
+          "settings": {
+            "name": "POLAROID"
+          }
+        }
+      },
+      "block_order": [
+        "logo_MkCyM6",
+        "logo_47xHCR",
+        "logo_3ybTEM",
+        "logo_BQtbQc",
+        "logo_CNF4DX",
+        "logo_CgRzje",
+        "logo_eB7Deb",
+        "logo_feiYaB"
+      ],
+      "name": "Marquee Logos",
+      "settings": {
+        "badge_text": "Trusted By Industry Leaders",
+        "title_before": "Brands That",
+        "title_gradient": "Trust Us",
+        "subtitle": "We've partnered with some of the most recognizable brands in the world."
+      }
+    }
+  },
+  "order": [
+    "contact_background",
+    "main",
+    "contact_intro_BTX3N8",
+    "about_stats_hBLCWr",
+    "contact_form_8JmRJE",
+    "contact_prefer_to_talk_xyijFn",
+    "marquee_logos_p6q6xL"
+  ]
+}

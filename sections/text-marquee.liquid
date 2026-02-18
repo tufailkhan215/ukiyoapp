@@ -1,0 +1,62 @@
+{% comment %} Text Marquee: horizontal scrolling text, transparent fill + light stroke, border-y. {% endcomment %}
+{% assign marquee_text = section.settings.text | default: "UKIYO PRODUCTIONS" %}
+{% assign duration = section.settings.speed | default: 30 %}
+<section class="relative overflow-hidden border-y border-white/5 bg-black" aria-hidden="true">
+  <div class="text-marquee-inner flex whitespace-nowrap py-6" style="animation-duration: {{ duration }}s;">
+    {% for i in (1..6) %}
+      <span class="mx-8 text-6xl font-black text-transparent" style="-webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);">{{ marquee_text }}</span>
+    {% endfor %}
+    {% for i in (1..6) %}
+      <span class="mx-8 text-6xl font-black text-transparent" style="-webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);">{{ marquee_text }}</span>
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+  .text-marquee-inner {
+    animation: text-marquee-scroll 30s linear infinite;
+  }
+  @keyframes text-marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .text-marquee-inner {
+      animation: none;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Text Marquee",
+  "tag": "section",
+  "class": "section-text-marquee",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Marquee text",
+      "default": "UKIYO PRODUCTIONS"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Scroll speed (seconds per loop)",
+      "min": 15,
+      "max": 60,
+      "step": 5,
+      "default": 30
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text Marquee",
+      "settings": {
+        "text": "UKIYO PRODUCTIONS",
+        "speed": 30
+      }
+    }
+  ]
+}
+{% endschema %}

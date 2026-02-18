@@ -1,22 +1,76 @@
-<section class="testimonials section-container" data-reveal>
-  <h2 class="trusted-by__title">{{ section.settings.heading | default: 'Client praise' }}</h2>
-  <div class="testimonials__grid">
-    {% for block in section.blocks %}
-      {% if block.type == 'testimonial' %}
-        <blockquote class="testimonials__card glass-card" {{ block.shopify_attributes }}>
-          <p class="testimonials__quote">"{{ block.settings.quote }}"</p>
-          <footer class="testimonials__author">
-            {% if block.settings.avatar != blank %}
-              <img class="testimonials__avatar" src="{{ block.settings.avatar | image_url: width: 80 }}" alt="" width="80" height="80" loading="lazy">
-            {% endif %}
-            <div>
-              <strong class="testimonials__name">{{ block.settings.author_name }}</strong>
-              <span class="testimonials__role">{{ block.settings.author_role }}</span>
-            </div>
-          </footer>
-        </blockquote>
+{% comment %} Source structure and Tailwind classes from reference (TestimonialsSection) {% endcomment %}
+<section class="relative py-28 lg:py-40 bg-black overflow-hidden" data-testid="testimonials-section">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.02),transparent_70%)]" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-[1200px] mx-auto px-6 lg:px-12">
+    <div class="text-center mb-16">
+      {% if section.settings.strap != blank %}
+        <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-5">{{ section.settings.strap }}</span>
       {% endif %}
-    {% endfor %}
+      <h2 class="text-4xl md:text-5xl font-bold text-white">
+        {{ section.settings.title_before | default: 'Client ' }}
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_gradient | default: 'praise' }}</span>
+      </h2>
+    </div>
+
+    {% assign testimonial_blocks = section.blocks | where: 'type', 'testimonial' %}
+    {% if testimonial_blocks.size > 0 %}
+      <div class="relative" data-testimonials-section="{{ section.id }}">
+        <button type="button" class="testimonial-prev absolute -left-2 lg:-left-16 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-white/40 hover:text-white hover:bg-white/[0.08] hover:border-white/20 transition-all duration-500" data-testid="testimonial-prev" aria-label="Previous testimonial">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+        </button>
+        <button type="button" class="testimonial-next absolute -right-2 lg:-right-16 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-white/40 hover:text-white hover:bg-white/[0.08] hover:border-white/20 transition-all duration-500" data-testid="testimonial-next" aria-label="Next testimonial">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+        </button>
+
+        <div class="overflow-hidden">
+          <div class="testimonial-track flex transition-transform duration-500 ease-out" style="width: {{ testimonial_blocks.size | times: 100 }}%;">
+            {% assign slide_pct = 100 | divided_by: testimonial_blocks.size %}
+            {% for block in testimonial_blocks %}
+              <div class="testimonial-slide flex-none min-w-0" style="width: {{ slide_pct }}%;" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+                <div class="relative bg-white/[0.02] border border-white/[0.05] p-8 lg:p-14">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-quote absolute top-8 right-8 w-16 h-16 text-white/[0.03]" aria-hidden="true"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"></path><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"></path></svg>
+                  <div class="grid lg:grid-cols-4 gap-8 items-center">
+                    <div class="relative lg:col-span-1">
+                      <div class="aspect-square overflow-hidden max-w-[200px]">
+                        {% if block.settings.image != blank %}
+                          <img alt="{{ block.settings.name | default: 'Testimonial' | escape }}" class="w-full h-full object-cover grayscale" src="{{ block.settings.image | image_url: width: 200 }}" width="200" height="200" loading="lazy">
+                        {% else %}
+                          <div class="w-full h-full bg-white/[0.05] flex items-center justify-center"><span class="text-white/20 text-sm">Photo</span></div>
+                        {% endif %}
+                      </div>
+                      <div class="absolute inset-0 border border-white/10 max-w-[200px] pointer-events-none" aria-hidden="true"></div>
+                    </div>
+                    <div class="lg:col-span-3">
+                      {% if block.settings.quote != blank %}
+                        <blockquote class="text-lg lg:text-xl xl:text-2xl text-white font-medium leading-relaxed mb-8">"{{ block.settings.quote }}"</blockquote>
+                      {% endif %}
+                      {% if block.settings.name != blank %}
+                        <p class="text-white font-semibold">{{ block.settings.name }}</p>
+                      {% endif %}
+                      {% if block.settings.role != blank %}
+                        <p class="text-white/40 text-sm">{{ block.settings.role }}</p>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="flex justify-center gap-2 mt-8">
+          {% for block in testimonial_blocks %}
+            <button type="button" class="testimonial-dot h-1 rounded-full transition-all duration-500 w-3 bg-white/20 hover:bg-white/40" data-index="{{ forloop.index0 }}" aria-label="Go to testimonial {{ forloop.index }}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}"></button>
+          {% endfor %}
+        </div>
+
+        <div class="absolute bottom-0 right-0 text-sm text-white/30">
+          <span class="testimonial-current text-white font-medium">01</span><span class="mx-2">—</span><span class="testimonial-total">{{ testimonial_blocks.size | prepend: '0' | slice: -2, 2 }}</span>
+        </div>
+      </div>
+    {% endif %}
   </div>
 </section>
 
@@ -28,9 +82,21 @@
   "settings": [
     {
       "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Client praise"
+      "id": "strap",
+      "label": "Strap (small label above title)",
+      "default": "(What Leaders Say)"
+    },
+    {
+      "type": "text",
+      "id": "title_before",
+      "label": "Title (before gradient part)",
+      "default": "Client "
+    },
+    {
+      "type": "text",
+      "id": "title_gradient",
+      "label": "Title (gradient part)",
+      "default": "praise"
     }
   ],
   "blocks": [
@@ -38,18 +104,70 @@
       "type": "testimonial",
       "name": "Testimonial",
       "settings": [
-        { "type": "textarea", "id": "quote", "label": "Quote" },
-        { "type": "text", "id": "author_name", "label": "Author name" },
-        { "type": "text", "id": "author_role", "label": "Author role / company" },
-        { "type": "image_picker", "id": "avatar", "label": "Avatar (optional)" }
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Photo"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Role / title"
+        }
       ]
     }
   ],
   "presets": [
     {
       "name": "Testimonials",
+      "settings": {
+        "strap": "(What Leaders Say)",
+        "title_before": "Client ",
+        "title_gradient": "praise"
+      },
       "blocks": [
-        { "type": "testimonial", "settings": { "quote": "We went from chaos to clarity. Now I actually have time for hobbies.", "author_name": "Sarah Chen", "author_role": "CEO, TechVenture AI" } }
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Ukiyo transformed our entire digital presence. Their AI automation solutions saved us over $500K annually while dramatically improving customer satisfaction.",
+            "name": "Sarah Chen",
+            "role": "CEO, TechVenture AI"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The team at Ukiyo doesn't just deliver—they exceed every expectation. Our brand went from unknown startup to industry leader in just 18 months.",
+            "name": "Marcus Williams",
+            "role": "Founder, Luxe Lifestyle"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Strategic clarity and execution that actually moves the needle. We saw 340% growth in the first year.",
+            "name": "Alex Rivera",
+            "role": "CMO, Growth Labs"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "From brand strategy to launch, Ukiyo felt like an extension of our team. Couldn't recommend them more.",
+            "name": "Jordan Lee",
+            "role": "Founder, SustainCo"
+          }
+        }
       ]
     }
   ]

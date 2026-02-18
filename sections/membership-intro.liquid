@@ -1,0 +1,144 @@
+{% comment %} Membership Intro: full-height hero with badge, two-line title, description, category cards grid, total value box. {% endcomment %}
+{% assign category_blocks = section.blocks | where: 'type', 'category' %}
+<section class="relative min-h-screen flex items-center pt-24 overflow-hidden bg-black" {{ section.shopify_attributes }}>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.03),transparent_50%)]" aria-hidden="true"></div>
+  {% if section.settings.show_circles %}
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 border border-white/[0.02] rounded-full" style="transform: rotate(101deg);" aria-hidden="true"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-64 h-64 border border-white/[0.03] rounded-full" style="transform: rotate(-152deg);" aria-hidden="true"></div>
+  {% endif %}
+
+  <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 py-20 text-center">
+    {% if section.settings.badge != blank %}
+      <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-6">{{ section.settings.badge }}</span>
+    {% endif %}
+    {% if section.settings.title_line1 != blank %}
+      <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9] mb-4">{{ section.settings.title_line1 }}</h1>
+    {% endif %}
+    {% if section.settings.title_line2 != blank %}
+      <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white/40 leading-[0.9] mb-8">{{ section.settings.title_line2 }}</h1>
+    {% endif %}
+    {% if section.settings.description != blank %}
+      <p class="text-lg md:text-xl text-white/50 max-w-2xl mx-auto mb-12">{{ section.settings.description }}</p>
+    {% endif %}
+
+    {% if category_blocks.size > 0 %}
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-12">
+        {% for block in category_blocks %}
+          <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/10 text-center cursor-default" {{ block.shopify_attributes }}>
+            {% if block.settings.show_count and block.settings.count != blank %}
+              <div class="text-4xl md:text-5xl font-black text-white mb-1">{{ block.settings.count }}</div>
+            {% endif %}
+            {% if block.settings.label != blank %}
+              <p class="text-white/40 text-sm">{{ block.settings.label }}</p>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.value_label != blank or section.settings.value_text != blank %}
+      <div class="inline-block p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/20">
+        {% if section.settings.value_label != blank %}
+          <p class="text-white/60 text-sm mb-1">{{ section.settings.value_label }}</p>
+        {% endif %}
+        {% if section.settings.value_text != blank %}
+          <p class="text-4xl font-black text-emerald-400">{{ section.settings.value_text }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Membership Intro",
+  "tag": "section",
+  "class": "section-membership-intro",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_circles",
+      "label": "Show decorative circles",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge",
+      "default": "(Membership)"
+    },
+    {
+      "type": "text",
+      "id": "title_line1",
+      "label": "Title (first line)",
+      "default": "UNLIMITED"
+    },
+    {
+      "type": "text",
+      "id": "title_line2",
+      "label": "Title (second line)",
+      "default": "DIGITAL ASSETS"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "One subscription. Complete access to automation templates, courses, AI agents, and Shopify sections."
+    },
+    {
+      "type": "header",
+      "content": "Total value box"
+    },
+    {
+      "type": "text",
+      "id": "value_label",
+      "label": "Value box label",
+      "default": "Total Library Value"
+    },
+    {
+      "type": "text",
+      "id": "value_text",
+      "label": "Value box amount",
+      "default": "$2,500+"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Templates"
+        },
+        {
+          "type": "text",
+          "id": "count",
+          "label": "Count (e.g. 8+)",
+          "default": "8+"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_count",
+          "label": "Show count above label",
+          "default": false,
+          "info": "When off, only the label is visible (matches minimal style)."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Membership Intro",
+      "blocks": [
+        { "type": "category", "settings": { "label": "Templates", "count": "8+" } },
+        { "type": "category", "settings": { "label": "Courses", "count": "11+" } },
+        { "type": "category", "settings": { "label": "AI Agents", "count": "10+" } },
+        { "type": "category", "settings": { "label": "Sections", "count": "86+" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

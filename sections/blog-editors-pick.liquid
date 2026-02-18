@@ -1,0 +1,158 @@
+{% comment %} Editor's Pick: single featured article card — image (grayscale to color on hover), category tag, meta, title, excerpt, Read Article link. {% endcomment %}
+{% assign featured_block = section.blocks | where: 'type', 'featured' | first %}
+<section class="relative py-32 lg:py-40 overflow-hidden bg-black" {{ section.shopify_attributes }}>
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="mb-16">
+      {% if section.settings.badge != blank %}
+        <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-4">{{ section.settings.badge }}</span>
+      {% endif %}
+      {% if section.settings.title_before != blank or section.settings.title_gradient != blank %}
+        <h2 class="text-4xl md:text-5xl font-bold text-white">
+          {{ section.settings.title_before }}
+          {% if section.settings.title_gradient != blank %}
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_gradient }}</span>
+          {% endif %}
+        </h2>
+      {% endif %}
+    </div>
+
+    {% if featured_block %}
+      {% assign article_url = featured_block.settings.url | default: '#' %}
+      <div class="group relative" {{ featured_block.shopify_attributes }}>
+        <a href="{{ article_url }}" class="block">
+          <div class="grid lg:grid-cols-2 gap-8 items-center">
+            <div class="relative aspect-[4/3] overflow-hidden">
+              {% if featured_block.settings.image != blank %}
+                <img
+                  alt="{{ featured_block.settings.title | default: 'Featured article' | escape }}"
+                  class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                  src="{{ featured_block.settings.image | image_url: width: 800 }}"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                >
+              {% else %}
+                <div class="absolute inset-0 bg-white/5" aria-hidden="true"></div>
+              {% endif %}
+              {% if featured_block.settings.category_tag != blank %}
+                <div class="absolute top-4 left-4 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full">
+                  <span class="text-xs text-white uppercase tracking-wider">{{ featured_block.settings.category_tag }}</span>
+                </div>
+              {% endif %}
+            </div>
+            <div>
+              {% if featured_block.settings.meta != blank %}
+                <span class="text-white/40 text-sm mb-4 block">{{ featured_block.settings.meta }}</span>
+              {% endif %}
+              {% if featured_block.settings.title != blank %}
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 group-hover:text-white/90 transition-colors leading-tight">{{ featured_block.settings.title }}</h2>
+              {% endif %}
+              {% if featured_block.settings.excerpt != blank %}
+                <p class="text-white/50 leading-relaxed mb-6">{{ featured_block.settings.excerpt }}</p>
+              {% endif %}
+              <div class="inline-flex items-center gap-2 text-white/60 group-hover:text-white transition-colors">
+                <span class="text-sm uppercase tracking-wider">{{ featured_block.settings.cta_text | default: 'Read Article' }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Editor's Pick",
+  "tag": "section",
+  "class": "section-blog-editors-pick",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge",
+      "default": "(Featured)"
+    },
+    {
+      "type": "text",
+      "id": "title_before",
+      "label": "Title (before gradient)",
+      "default": "Editor's "
+    },
+    {
+      "type": "text",
+      "id": "title_gradient",
+      "label": "Title (gradient word)",
+      "default": "Pick"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "featured",
+      "name": "Featured article",
+      "limit": 10,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "category_tag",
+          "label": "Category tag",
+          "default": "AI & Technology"
+        },
+        {
+          "type": "text",
+          "id": "meta",
+          "label": "Meta (date & read time)",
+          "default": "Jan 15, 2025 • 8 min read"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Article title",
+          "default": "The Future of AI in Brand Marketing: A Complete Guide"
+        },
+        {
+          "type": "textarea",
+          "id": "excerpt",
+          "label": "Excerpt",
+          "default": "Discover how artificial intelligence is revolutionizing the way brands connect with their audiences. From personalization at scale to predictive analytics."
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Article URL"
+        },
+        {
+          "type": "text",
+          "id": "cta_text",
+          "label": "CTA text",
+          "default": "Read Article"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Editor's Pick",
+      "blocks": [
+        {
+          "type": "featured",
+          "settings": {
+            "category_tag": "AI & Technology",
+            "meta": "Jan 15, 2025 • 8 min read",
+            "title": "The Future of AI in Brand Marketing: A Complete Guide",
+            "excerpt": "Discover how artificial intelligence is revolutionizing the way brands connect with their audiences. From personalization at scale to predictive analytics.",
+            "cta_text": "Read Article"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

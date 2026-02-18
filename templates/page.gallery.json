@@ -1,0 +1,355 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "gallery_intro_F3mGTE": {
+      "type": "gallery-intro",
+      "name": "Gallery Intro",
+      "settings": {
+        "badge_text": "Brand Gallery",
+        "title_line1": "BRAND",
+        "title_line2": "ACTIVATIONS",
+        "subtitle": "A curated collection of brand partnerships and collaborations we have had the privilege to bring to life."
+      }
+    },
+    "gallery_stats_cdWYPB": {
+      "type": "gallery-stats",
+      "blocks": {
+        "stat_yEDjwb": {
+          "type": "stat",
+          "settings": {
+            "gradient": "amber_orange",
+            "icon": "award",
+            "number": "150+",
+            "label": "Projects Completed"
+          }
+        },
+        "stat_VqfWKN": {
+          "type": "stat",
+          "settings": {
+            "gradient": "purple_pink",
+            "icon": "users",
+            "number": "50+",
+            "label": "Brand Partners"
+          }
+        },
+        "stat_9mp8gR": {
+          "type": "stat",
+          "settings": {
+            "gradient": "blue_cyan",
+            "icon": "target",
+            "number": "25+",
+            "label": "Countries Reached"
+          }
+        },
+        "stat_8rtanA": {
+          "type": "stat",
+          "settings": {
+            "gradient": "emerald_teal",
+            "icon": "trending_up",
+            "number": "340%",
+            "label": "Avg Engagement Lift"
+          }
+        }
+      },
+      "block_order": [
+        "stat_yEDjwb",
+        "stat_VqfWKN",
+        "stat_9mp8gR",
+        "stat_8rtanA"
+      ],
+      "name": "Gallery Stats",
+      "settings": {}
+    },
+    "gallery_icons_stats_wVmBPV": {
+      "type": "gallery-icons-stats",
+      "blocks": {
+        "card_gBdfMB": {
+          "type": "card",
+          "settings": {
+            "gradient": "amber_orange",
+            "icon": "camera",
+            "title": "Brand Photography",
+            "description": "Capturing the essence of your brand through stunning visual storytelling that resonates with your audience.",
+            "stat1_number": "500+",
+            "stat1_label": "Shoots",
+            "stat2_number": "50+",
+            "stat2_label": "Brands"
+          }
+        },
+        "card_C6xjfG": {
+          "type": "card",
+          "settings": {
+            "gradient": "purple_pink",
+            "icon": "video",
+            "title": "Video Production",
+            "description": "From concept to delivery, we create cinematic content that elevates your brand and drives engagement.",
+            "stat1_number": "200+",
+            "stat1_label": "Videos",
+            "stat2_number": "10M+",
+            "stat2_label": "Views"
+          }
+        },
+        "card_AFzNET": {
+          "type": "card",
+          "settings": {
+            "gradient": "blue_cyan",
+            "icon": "palette",
+            "title": "Creative Direction",
+            "description": "Strategic creative vision that aligns every visual element with your brand story and business goals.",
+            "stat1_number": "100+",
+            "stat1_label": "Campaigns",
+            "stat2_number": "30%",
+            "stat2_label": "Avg ROI Lift"
+          }
+        },
+        "card_399gqp": {
+          "type": "card",
+          "settings": {
+            "gradient": "emerald_teal",
+            "icon": "target",
+            "title": "Event Coverage",
+            "description": "Immersive event documentation that captures the energy, emotion, and impact of your activations.",
+            "stat1_number": "75+",
+            "stat1_label": "Events",
+            "stat2_number": "25+",
+            "stat2_label": "Countries"
+          }
+        }
+      },
+      "block_order": [
+        "card_gBdfMB",
+        "card_C6xjfG",
+        "card_AFzNET",
+        "card_399gqp"
+      ],
+      "name": "Gallery Icons Stats",
+      "settings": {
+        "badge": "(What We Do)",
+        "title_before": "Why Brands",
+        "title_gradient": "Choose Us",
+        "subtitle": "We transform brand visions into visual experiences that captivate, engage, and convert."
+      }
+    },
+    "gallery_featured_projects_xwFzEr": {
+      "type": "gallery-featured-projects",
+      "blocks": {
+        "project_warRxE": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/elmurorosa_drone_shot_of_tropical_island_--ar_916_--style_raw_a4bea9bc-922d-4f57-b454-57f5fe4564c6.webp",
+            "category": "Brand Partnership",
+            "title": "POLAROID",
+            "description": "Nostalgic brand activation campaign bridging classic aesthetics with contemporary audiences.",
+            "gallery_image_2": "shopify://shop_images/IMG_9657_1.webp",
+            "gallery_image_3": "shopify://shop_images/DSCF8277.webp",
+            "gallery_image_4": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge.webp",
+            "gallery_image_5": "shopify://shop_images/IMG_6776.webp",
+            "gallery_image_6": "shopify://shop_images/FurTraders_mag_article_samples-02_2.webp"
+          }
+        },
+        "project_fkgVcn": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/IMG_9657_1.webp",
+            "category": "Adventure Travel",
+            "title": "WANDRD",
+            "description": "Multi-platform content strategy capturing the spirit of adventure travel."
+          }
+        },
+        "project_pGHgW3": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/DSCF8277.webp",
+            "category": "Energy & Lifestyle",
+            "title": "MONSTER",
+            "description": "High-energy brand content and experiential marketing campaigns.",
+            "gallery_image_2": "shopify://shop_images/photo-1522071820081-009f0129c71c.jpg",
+            "gallery_image_3": "shopify://shop_images/DSCF7109_3532ce56-01d4-42c1-ba19-6401dd0bff36.webp"
+          }
+        },
+        "project_CEzc6k": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/DSC_29323129.webp",
+            "category": "Fashion & Lifestyle",
+            "title": "POPPY.CALIFORNIA",
+            "description": "California-inspired brand storytelling and visual identity development.",
+            "gallery_image_2": "shopify://shop_images/25930044-A454-4EE9-BF1C-43FA0D5EA00E.jpg"
+          }
+        },
+        "project_8X3U8C": {
+          "type": "project",
+          "settings": {
+            "category": "E-commerce",
+            "title": "FURTRADERS",
+            "description": "Complete brand refresh with content strategy and e-commerce optimization."
+          }
+        },
+        "project_eCFeyf": {
+          "type": "project",
+          "settings": {
+            "category": "Lifestyle & Wellness",
+            "title": "SUPRAMOOD",
+            "description": "Comprehensive brand strategy with podcast series and affiliate program."
+          }
+        },
+        "project_4JEiKE": {
+          "type": "project",
+          "settings": {
+            "category": "Technology",
+            "title": "DJI",
+            "description": "Aerial photography and drone content creation partnership."
+          }
+        },
+        "project_6wjDen": {
+          "type": "project",
+          "settings": {
+            "category": "Streetwear",
+            "title": "CLSC",
+            "description": "Urban streetwear brand activation and cultural marketing."
+          }
+        },
+        "project_aFJW6k": {
+          "type": "project",
+          "settings": {
+            "category": "Travel & Experience",
+            "title": "MAVERICK HELICOPTERS",
+            "description": "Luxury travel experience content and brand storytelling."
+          }
+        },
+        "project_K7F8W8": {
+          "type": "project",
+          "settings": {
+            "category": "Media & Culture",
+            "title": "HIGHSNOBIETY",
+            "description": "Editorial content partnership and cultural brand activation."
+          }
+        },
+        "project_h7PziW": {
+          "type": "project",
+          "settings": {
+            "category": "Culinary",
+            "title": "JI RESTAURANT | BALI INDONESIA",
+            "description": "Balinese fine dining experience captured through visual storytelling."
+          }
+        },
+        "project_WgiL8G": {
+          "type": "project",
+          "settings": {
+            "category": "Hospitality",
+            "title": "SATORI | MAUI",
+            "description": "Hawaiian wellness retreat brand development and content creation."
+          }
+        }
+      },
+      "block_order": [
+        "project_warRxE",
+        "project_fkgVcn",
+        "project_pGHgW3",
+        "project_CEzc6k",
+        "project_8X3U8C",
+        "project_eCFeyf",
+        "project_4JEiKE",
+        "project_6wjDen",
+        "project_aFJW6k",
+        "project_K7F8W8",
+        "project_h7PziW",
+        "project_WgiL8G"
+      ],
+      "name": "Gallery Featured Projects",
+      "settings": {
+        "badge": "(Our Work)",
+        "title": "Featured Projects",
+        "filters_text": "All\nBrand partnership\nAdventure travel\nEnergy & lifestyle\nFashion & lifestyle"
+      }
+    },
+    "trusted_by_v2_mzPTDC": {
+      "type": "trusted-by-v2",
+      "blocks": {
+        "brand_rTdhXf": {
+          "type": "brand",
+          "settings": {
+            "label": "Polaroid"
+          }
+        },
+        "brand_n3F7Lg": {
+          "type": "brand",
+          "settings": {
+            "label": "SXSW"
+          }
+        },
+        "brand_zAQgzA": {
+          "type": "brand",
+          "settings": {
+            "label": "Coachella"
+          }
+        },
+        "brand_n6Fjkp": {
+          "type": "brand",
+          "settings": {
+            "label": "Wandrd"
+          }
+        },
+        "brand_Na4gcN": {
+          "type": "brand",
+          "settings": {
+            "label": "Adidas"
+          }
+        },
+        "brand_th8QWE": {
+          "type": "brand",
+          "settings": {
+            "label": "Red Bull"
+          }
+        }
+      },
+      "block_order": [
+        "brand_rTdhXf",
+        "brand_n3F7Lg",
+        "brand_zAQgzA",
+        "brand_n6Fjkp",
+        "brand_Na4gcN",
+        "brand_th8QWE"
+      ],
+      "name": "Trusted By v2",
+      "settings": {
+        "badge": "(Trusted By)",
+        "title": "Brands We've Elevated"
+      }
+    },
+    "gallery_featured_cta_GkryRU": {
+      "type": "gallery-featured-cta",
+      "name": "Gallery Featured CTA",
+      "settings": {
+        "show_icon": true,
+        "heading": "Want to Be Featured?",
+        "description": "We're always looking for exciting brands and projects to collaborate with. Let's create something extraordinary together.",
+        "button_text": "Start a Collaboration",
+        "button_url": "/contact",
+        "button_new_tab": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "gallery_intro_F3mGTE",
+    "gallery_stats_cdWYPB",
+    "gallery_icons_stats_wVmBPV",
+    "gallery_featured_projects_xwFzEr",
+    "trusted_by_v2_mzPTDC",
+    "gallery_featured_cta_GkryRU"
+  ]
+}

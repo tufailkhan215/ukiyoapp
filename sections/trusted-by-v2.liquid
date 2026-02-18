@@ -1,0 +1,77 @@
+{% comment %} Trusted By v2: badge + title, flex wrap of brand pills (rounded-xl, subtle border). {% endcomment %}
+{% assign brand_blocks = section.blocks | where: 'type', 'brand' %}
+<section class="relative py-16 lg:py-24 bg-black">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
+    <div class="text-center mb-12">
+      {% if section.settings.badge != blank %}
+        <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-4">{{ section.settings.badge }}</span>
+      {% endif %}
+      {% if section.settings.title != blank %}
+        <h2 class="text-3xl md:text-4xl font-bold text-white">{{ section.settings.title }}</h2>
+      {% endif %}
+    </div>
+    <div class="flex flex-wrap justify-center gap-8 items-center">
+      {% for block in brand_blocks %}
+        {% if block.settings.label != blank %}
+          <div class="px-8 py-4 rounded-xl bg-white/[0.02] border border-white/10" {{ block.shopify_attributes }}>
+            <span class="text-xl font-bold text-white/40">{{ block.settings.label }}</span>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Trusted By v2",
+  "tag": "section",
+  "class": "section-trusted-by-v2",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge (small label above title)",
+      "default": "(Trusted By)"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Brands We've Elevated"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Brand",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Brand name",
+          "default": "Brand"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trusted By v2",
+      "settings": {
+        "badge": "(Trusted By)",
+        "title": "Brands We've Elevated"
+      },
+      "blocks": [
+        { "type": "brand", "settings": { "label": "Polaroid" } },
+        { "type": "brand", "settings": { "label": "SXSW" } },
+        { "type": "brand", "settings": { "label": "Coachella" } },
+        { "type": "brand", "settings": { "label": "Wandrd" } },
+        { "type": "brand", "settings": { "label": "Adidas" } },
+        { "type": "brand", "settings": { "label": "Red Bull" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

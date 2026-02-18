@@ -1,0 +1,234 @@
+{% comment %} Source structure and Tailwind classes from reference (ServicesCategoryGrid) {% endcomment %}
+<section class="relative py-24 lg:py-32 bg-black overflow-hidden" data-testid="services-category-grid">
+  <div class="absolute inset-0" aria-hidden="true">
+    <div class="absolute top-1/4 left-0 w-[600px] h-[600px] rounded-full bg-white/[0.01] blur-[150px]"></div>
+    <div class="absolute bottom-1/4 right-0 w-[500px] h-[500px] rounded-full bg-white/[0.01] blur-[120px]"></div>
+  </div>
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-12">
+    <div class="text-center mb-16">
+      {% if section.settings.strap != blank %}
+        <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-4">{{ section.settings.strap }}</span>
+      {% endif %}
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+        {{ section.settings.title_before | default: 'Everything You Need to ' }}
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_gradient | default: 'Grow' }}</span>
+      </h2>
+      {% if section.settings.description != blank %}
+        <p class="text-lg text-white/40 max-w-2xl mx-auto">{{ section.settings.description }}</p>
+      {% endif %}
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-6">
+      {% for block in section.blocks %}
+        {% if block.type == 'category' %}
+          {% assign num = forloop.index | prepend: '0' | slice: -2, 2 %}
+          <div class="relative" {{ block.shopify_attributes }}>
+            <div class="relative bg-white/[0.01] border border-white/[0.05] p-8 lg:p-12 overflow-hidden hover:border-white/10 transition-all duration-500">
+              <span class="absolute -right-4 -top-8 text-[120px] font-bold text-white/[0.015] leading-none select-none" aria-hidden="true">{{ num }}</span>
+              <div class="relative z-10">
+                <div class="flex items-start gap-4 mb-8">
+                  <div class="w-14 h-14 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center flex-shrink-0">
+                    {% case block.settings.icon %}
+                      {% when 'sparkles' %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white/50" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
+                      {% when 'zap' %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white/50" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+                      {% when 'palette' %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white/50" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/></svg>
+                      {% when 'globe' %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white/50" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                      {% when 'film' %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white/50" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 3v18"/><path d="M3 7.5h4"/><path d="M3 12h18"/><path d="M3 16.5h4"/><path d="M17 3v18"/><path d="M17 7.5h4"/><path d="M17 16.5h4"/></svg>
+                      {% when 'trending-up' %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white/50" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+                      {% else %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white/50" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>
+                    {% endcase %}
+                  </div>
+                  <div>
+                    {% if block.settings.title != blank %}
+                      <h3 class="text-2xl lg:text-3xl font-bold text-white mb-1">{{ block.settings.title }}</h3>
+                    {% endif %}
+                    {% if block.settings.description != blank %}
+                      <p class="text-white/40 text-sm">{{ block.settings.description }}</p>
+                    {% endif %}
+                  </div>
+                </div>
+
+                <div class="space-y-0">
+                  {% if block.settings.links_text != blank %}
+                    {% assign link_lines = block.settings.links_text | newline_to_br | split: '<br />' %}
+                    {% for line in link_lines %}
+                      {% assign line_stripped = line | strip %}
+                      {% if line_stripped != '' %}
+                        {% assign parts = line_stripped | split: '|' %}
+                        {% assign name = parts[0] | strip %}
+                        {% assign url = parts[1] | strip %}
+                        {% assign price = parts[2] | strip %}
+                        {% if url == '' %}{% assign url = '#' %}{% endif %}
+                        <a class="group flex items-center justify-between py-4 border-b border-white/[0.05] hover:border-white/20 transition-all" href="{{ url }}">
+                          <div class="flex-1">
+                            <h4 class="text-lg font-semibold text-white group-hover:text-gray-200 transition-colors">{{ name }}</h4>
+                          </div>
+                          <div class="flex items-center gap-3">
+                            {% if price != '' %}
+                              <span class="text-sm text-white/30 hidden sm:block">{{ price }}</span>
+                            {% endif %}
+                            <div class="w-10 h-10 rounded-full bg-white/[0.03] border border-white/[0.05] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all group-hover:bg-white/[0.08]">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right w-4 h-4 text-white" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                            </div>
+                          </div>
+                        </a>
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Services Category Grid",
+  "tag": "section",
+  "class": "section-services-category-grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "strap",
+      "label": "Strap (small label above title)",
+      "default": "(Our Services)"
+    },
+    {
+      "type": "text",
+      "id": "title_before",
+      "label": "Title (before gradient part)",
+      "default": "Everything You Need to "
+    },
+    {
+      "type": "text",
+      "id": "title_gradient",
+      "label": "Title (gradient part)",
+      "default": "Grow"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description below title",
+      "default": "12 specialized services across 6 categories, each designed to accelerate your business growth."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Service category",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "sparkles", "label": "Sparkles" },
+            { "value": "zap", "label": "Zap" },
+            { "value": "palette", "label": "Palette" },
+            { "value": "globe", "label": "Globe" },
+            { "value": "film", "label": "Film" },
+            { "value": "trending-up", "label": "Trending up" }
+          ],
+          "default": "sparkles"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category title"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Category description"
+        },
+        {
+          "type": "textarea",
+          "id": "links_text",
+          "label": "Services (one per line)",
+          "info": "Format: Service Name|URL|Price (e.g. Company Agent Builder|/services/company-agent-builder|From $5,000)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Services Category Grid",
+      "settings": {
+        "strap": "(Our Services)",
+        "title_before": "Everything You Need to ",
+        "title_gradient": "Grow",
+        "description": "12 specialized services across 6 categories, each designed to accelerate your business growth."
+      },
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "icon": "sparkles",
+            "title": "Brand Strategy",
+            "description": "Define your edge and steer your company into the future",
+            "links_text": "Company Agent Builder|/services/company-agent-builder|From $5,000\nPartnership & Collaboration Engine|/services/partnership-collaboration|From $3,500"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "icon": "zap",
+            "title": "AI Automations",
+            "description": "Streamline operations with intelligent solutions",
+            "links_text": "AI Revenue Concierge Chatbot|/services/ai-revenue-concierge|From $2,500"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "icon": "palette",
+            "title": "Brand Identity",
+            "description": "Stand out visually with distinctive design systems",
+            "links_text": "Graphic Design & Brand Identity|/services/graphic-design|From $8,000"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "icon": "globe",
+            "title": "Digital Experience",
+            "description": "Captivate audiences with immersive experiences",
+            "links_text": "Website & Web Development|/services/web-development|From $15,000\nMobile & App Development|/services/mobile-app-development|From $25,000"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "icon": "film",
+            "title": "Content Production",
+            "description": "Visual storytelling that resonates",
+            "links_text": "Monthly Content Calendar|/services/monthly-content-calendar|From $2,000\nPinterest SEO Services|/services/pinterest-seo|From $1,500\nSEO Blog Services|/services/seo-blog|From $3,000"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "icon": "trending-up",
+            "title": "Growth Marketing",
+            "description": "Data-driven strategies for sustainable growth",
+            "links_text": "Klaviyo Flows Services|/services/klaviyo-flows|From $3,500\nPaid Ads Creative System|/services/paid-ads-creative|From $4,000\nVirtual Assistance & Admin|/services/virtual-assistance|From $1,500"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

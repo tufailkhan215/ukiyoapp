@@ -1,0 +1,185 @@
+{% comment %} About Accomplish Clients: "For Our Clients" (gradient), grid of achievement cards with icon, metric, title, description. {% endcomment %}
+{% assign card_blocks = section.blocks | where: 'type', 'card' %}
+<section class="relative py-24 lg:py-32 overflow-hidden bg-black">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
+    <div class="text-center mb-16">
+      {% if section.settings.badge != blank %}
+        <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-4">{{ section.settings.badge }}</span>
+      {% endif %}
+      {% if section.settings.title_before != blank or section.settings.title_gradient != blank %}
+        <h2 class="text-4xl md:text-5xl font-bold text-white">
+          {{ section.settings.title_before }}
+          {% if section.settings.title_gradient != blank %}
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">{{ section.settings.title_gradient }}</span>
+          {% endif %}
+        </h2>
+      {% endif %}
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for block in card_blocks %}
+        <div class="group" {{ block.shopify_attributes }}>
+          <div class="h-full p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 hover:bg-white/[0.04] transition-all duration-500">
+            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-white/10 to-gray-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              {% case block.settings.icon %}
+                {% when 'trending_up' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up w-7 h-7 text-white/70" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+                {% when 'workflow' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-workflow w-7 h-7 text-white/70" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"></rect><path d="M7 11v4a2 2 0 0 0 2 2h4"></path><rect width="8" height="8" x="13" y="13" rx="2"></rect></svg>
+                {% when 'target' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target w-7 h-7 text-white/70" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                {% when 'globe' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe w-7 h-7 text-white/70" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+                {% when 'bot' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot w-7 h-7 text-white/70" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg>
+                {% when 'users' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users w-7 h-7 text-white/70" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                {% else %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-7 h-7 text-white/70"><circle cx="12" cy="12" r="10"></circle></svg>
+              {% endcase %}
+            </div>
+            {% if block.settings.metric != blank %}
+              <div class="text-3xl font-black text-white mb-2">{{ block.settings.metric }}</div>
+            {% endif %}
+            {% if block.settings.card_title != blank %}
+              <h3 class="text-lg font-bold text-white mb-2">{{ block.settings.card_title }}</h3>
+            {% endif %}
+            {% if block.settings.description != blank %}
+              <p class="text-white/40 text-sm leading-relaxed">{{ block.settings.description }}</p>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Accomplish Clients",
+  "tag": "section",
+  "class": "section-about-accomplish-clients",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge",
+      "default": "(What We Accomplish)"
+    },
+    {
+      "type": "text",
+      "id": "title_before",
+      "label": "Title (before gradient)",
+      "default": "For Our "
+    },
+    {
+      "type": "text",
+      "id": "title_gradient",
+      "label": "Title (gradient word)",
+      "default": "Clients"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Achievement card",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "trending_up", "label": "Trending up" },
+            { "value": "workflow", "label": "Workflow" },
+            { "value": "target", "label": "Target" },
+            { "value": "globe", "label": "Globe" },
+            { "value": "bot", "label": "Bot" },
+            { "value": "users", "label": "Users" }
+          ],
+          "default": "trending_up"
+        },
+        {
+          "type": "text",
+          "id": "metric",
+          "label": "Metric / value",
+          "default": "$100K+"
+        },
+        {
+          "type": "text",
+          "id": "card_title",
+          "label": "Card title",
+          "default": "Revenue Growth"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Scaled monthly sales from $2k to $100k+ for multiple clients."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Accomplish Clients",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "icon": "trending_up",
+            "metric": "$100K+",
+            "card_title": "Revenue Growth",
+            "description": "Scaled monthly sales from $2k to $100k+ for multiple clients."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "icon": "workflow",
+            "metric": "1000hrs",
+            "card_title": "Workflow Optimization",
+            "description": "Freed an average of 1000 monthly staff hours."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "icon": "target",
+            "metric": "+30%",
+            "card_title": "Brand Elevation",
+            "description": "Rebranded organizations with 30% rise in engagement."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "icon": "globe",
+            "metric": "50+",
+            "card_title": "Web Ecosystems",
+            "description": "50+ custom websites with 35% increase in lead capture."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "icon": "bot",
+            "metric": "10x",
+            "card_title": "AI Content Engine",
+            "description": "AI-enhanced content strategy at scale."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "icon": "users",
+            "metric": "3x",
+            "card_title": "Tripled LTV",
+            "description": "Strategic upsells dramatically increasing customer worth."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

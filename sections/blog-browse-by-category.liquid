@@ -1,0 +1,163 @@
+{% comment %} Browse by Category: badge + gradient title, grid of category cards with image, overlay, title, description, CTA link. {% endcomment %}
+{% assign category_blocks = section.blocks | where: 'type', 'category' %}
+<section class="relative py-32 lg:py-40 overflow-hidden bg-black" {{ section.shopify_attributes }}>
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="mb-16">
+      {% if section.settings.badge != blank %}
+        <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-4">{{ section.settings.badge }}</span>
+      {% endif %}
+      {% if section.settings.title_before != blank or section.settings.title_gradient != blank %}
+        <h2 class="text-4xl md:text-5xl font-bold text-white">
+          {{ section.settings.title_before }}
+          {% if section.settings.title_gradient != blank %}
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_gradient }}</span>
+          {% endif %}
+        </h2>
+      {% endif %}
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      {% for block in category_blocks %}
+        <div class="group relative" {{ block.shopify_attributes }}>
+          {% assign card_url = block.settings.url | default: '#' %}
+          <a href="{{ card_url }}" class="block">
+            <div class="relative aspect-[16/10] overflow-hidden rounded-2xl">
+              {% if block.settings.image != blank %}
+                <img
+                  alt="{{ block.settings.title | default: 'Category' | escape }}"
+                  class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  src="{{ block.settings.image | image_url: width: 800 }}"
+                  width="800"
+                  height="500"
+                  loading="lazy"
+                >
+              {% else %}
+                <div class="absolute inset-0 bg-white/5" aria-hidden="true"></div>
+              {% endif %}
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" aria-hidden="true"></div>
+
+              <div class="absolute bottom-0 left-0 right-0 p-8">
+                {% if block.settings.title != blank %}
+                  <h3 class="text-3xl md:text-4xl font-bold text-white mb-4">{{ block.settings.title }}</h3>
+                {% endif %}
+                {% if block.settings.description != blank %}
+                  <p class="text-white/60 leading-relaxed mb-6 max-w-lg">{{ block.settings.description }}</p>
+                {% endif %}
+                <div class="inline-flex items-center gap-2 text-white/80 group-hover:text-white transition-colors">
+                  <span class="text-sm uppercase tracking-wider">
+                    {% if block.settings.cta_text != blank %}{{ block.settings.cta_text }}{% else %}Explore {{ block.settings.title }}{% endif %}
+                  </span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right w-4 h-4 transition-transform group-hover:translate-x-2" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Browse by Category",
+  "tag": "section",
+  "class": "section-blog-browse-by-category",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge",
+      "default": "(Explore Topics)"
+    },
+    {
+      "type": "text",
+      "id": "title_before",
+      "label": "Title (before gradient)",
+      "default": "Browse by "
+    },
+    {
+      "type": "text",
+      "id": "title_gradient",
+      "label": "Title (gradient word)",
+      "default": "Category"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Creative Spotlight"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Highlighting the incredible talents of artists, innovators, and musicians from all avenues of art. Explore their stories, processes, and contributions."
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "cta_text",
+          "label": "CTA text",
+          "info": "e.g. 'Explore Creative Spotlight'. If blank, uses 'Explore' + title.",
+          "default": "Explore Creative Spotlight"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Browse by Category",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "title": "Creative Spotlight",
+            "description": "Highlighting the incredible talents of artists, innovators, and musicians from all avenues of art. Explore their stories, processes, and contributions.",
+            "cta_text": "Explore Creative Spotlight"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Tech & Products",
+            "description": "Explore the exciting world of technology! The latest gadgets and innovative products that are changing our lives. From smart home devices to cutting-edge apps.",
+            "cta_text": "Explore Tech & Products"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Culinary Hub",
+            "description": "Dive into a world of culinary delights through our expertly curated food blog. From mouth-watering recipes and restaurant reviews to chef interviews.",
+            "cta_text": "Explore Culinary Hub"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Travel & Experiences",
+            "description": "Discover the beauty of the world! Breathtaking destinations, unique adventures, and cultural experiences that inspire wanderlust.",
+            "cta_text": "Explore Travel & Experiences"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

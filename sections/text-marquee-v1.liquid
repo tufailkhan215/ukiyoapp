@@ -1,0 +1,85 @@
+{% comment %} Text Marquee v1: horizontal scrolling list of words, small uppercase, border-y, seamless loop. {% endcomment %}
+{% assign item_blocks = section.blocks | where: 'type', 'item' %}
+<section class="relative overflow-hidden border-y border-white/[0.05] py-4 bg-black" aria-label="{{ section.settings.a11y_label | default: 'Scrolling text' }}" {{ section.shopify_attributes }}>
+  <div class="text-marquee-v1-inner inline-flex whitespace-nowrap" style="animation-duration: {{ section.settings.speed | default: 40 }}s;">
+    <div class="flex">
+      {% for block in item_blocks %}
+        <span class="text-sm text-white/40 uppercase tracking-[0.2em] mx-8" {{ block.shopify_attributes }}>{{ block.settings.text | default: 'Item' }}</span>
+      {% endfor %}
+    </div>
+    <div class="flex">
+      {% for block in item_blocks %}
+        <span class="text-sm text-white/40 uppercase tracking-[0.2em] mx-8">{{ block.settings.text | default: 'Item' }}</span>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .text-marquee-v1-inner {
+    animation: text-marquee-v1-scroll linear infinite;
+  }
+  @keyframes text-marquee-v1-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .text-marquee-v1-inner {
+      animation: none;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Text Marquee v1",
+  "tag": "section",
+  "class": "section-text-marquee-v1",
+  "settings": [
+    {
+      "type": "text",
+      "id": "a11y_label",
+      "label": "Accessibility label",
+      "default": "Scrolling text"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Scroll speed (seconds per loop)",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Word / phrase",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "ARTISTS"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text Marquee v1",
+      "blocks": [
+        { "type": "item", "settings": { "text": "ARTISTS" } },
+        { "type": "item", "settings": { "text": "INNOVATORS" } },
+        { "type": "item", "settings": { "text": "TECH TRENDS" } },
+        { "type": "item", "settings": { "text": "PRODUCTS" } },
+        { "type": "item", "settings": { "text": "EXPERIENCES" } },
+        { "type": "item", "settings": { "text": "CULINARY" } },
+        { "type": "item", "settings": { "text": "TRAVEL" } },
+        { "type": "item", "settings": { "text": "CREATIVITY" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

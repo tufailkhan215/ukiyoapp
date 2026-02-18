@@ -1,0 +1,71 @@
+{% comment %} Gallery Intro: badge pill (amber), two-line title (BRAND + gradient ACTIVATIONS), subtitle. {% endcomment %}
+<section class="relative pt-32 pb-16 lg:pt-40 lg:pb-24 bg-black">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
+    <div class="text-center max-w-4xl mx-auto">
+      {% if section.settings.badge_text != blank %}
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-amber-500/30 bg-amber-500/10 mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-amber-400" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>
+          <span class="text-sm text-amber-300">{{ section.settings.badge_text }}</span>
+        </div>
+      {% endif %}
+      {% if section.settings.title_line1 != blank or section.settings.title_line2 != blank %}
+        <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9] tracking-tight mb-8">
+          {% if section.settings.title_line1 != blank %}
+            <span class="block">{{ section.settings.title_line1 }}</span>
+          {% endif %}
+          {% if section.settings.title_line2 != blank %}
+            <span class="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-red-400">{{ section.settings.title_line2 }}</span>
+          {% endif %}
+        </h1>
+      {% endif %}
+      {% if section.settings.subtitle != blank %}
+        <p class="text-lg md:text-xl text-white/50 max-w-2xl mx-auto">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Gallery Intro",
+  "tag": "section",
+  "class": "section-gallery-intro",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text (pill above title)",
+      "default": "Brand Gallery"
+    },
+    {
+      "type": "text",
+      "id": "title_line1",
+      "label": "Title line 1 (white)",
+      "default": "BRAND"
+    },
+    {
+      "type": "text",
+      "id": "title_line2",
+      "label": "Title line 2 (gradient: amber → orange → red)",
+      "default": "ACTIVATIONS"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "A curated collection of brand partnerships and collaborations we have had the privilege to bring to life."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gallery Intro",
+      "settings": {
+        "badge_text": "Brand Gallery",
+        "title_line1": "BRAND",
+        "title_line2": "ACTIVATIONS",
+        "subtitle": "A curated collection of brand partnerships and collaborations we have had the privilege to bring to life."
+      }
+    }
+  ]
+}
+{% endschema %}

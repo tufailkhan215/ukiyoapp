@@ -1,0 +1,80 @@
+{% comment %} Gallery Featured CTA: centered card with amber gradient, sparkles icon, heading, description, CTA button. {% endcomment %}
+<section class="relative py-24 lg:py-32 bg-black">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="max-w-[1000px] mx-auto px-6 lg:px-12 relative z-10">
+    <div class="text-center p-12 rounded-3xl bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-amber-500/20">
+      {% if section.settings.show_icon %}
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles w-12 h-12 text-amber-400 mx-auto mb-6" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path><path d="M20 3v4"></path><path d="M22 5h-4"></path><path d="M4 17v2"></path><path d="M5 18H3"></path></svg>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h2 class="text-4xl md:text-5xl font-black text-white mb-6">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.description != blank %}
+        <p class="text-white/50 text-lg mb-8 max-w-lg mx-auto">{{ section.settings.description }}</p>
+      {% endif %}
+      {% if section.settings.button_text != blank %}
+        <a href="{{ section.settings.button_url | default: '#' }}" class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-black rounded-full font-semibold hover:opacity-90 transition-opacity" {% if section.settings.button_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+          <span>{{ section.settings.button_text }}</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right w-5 h-5" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Gallery Featured CTA",
+  "tag": "section",
+  "class": "section-gallery-featured-cta",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_icon",
+      "label": "Show sparkles icon",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Want to Be Featured?"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "We're always looking for exciting brands and projects to collaborate with. Let's create something extraordinary together."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Start a Collaboration"
+    },
+    {
+      "type": "text",
+      "id": "button_url",
+      "label": "Button URL",
+      "default": "/contact"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_new_tab",
+      "label": "Open button link in new tab",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gallery Featured CTA",
+      "settings": {
+        "heading": "Want to Be Featured?",
+        "description": "We're always looking for exciting brands and projects to collaborate with. Let's create something extraordinary together.",
+        "button_text": "Start a Collaboration",
+        "button_url": "/contact"
+      }
+    }
+  ]
+}
+{% endschema %}

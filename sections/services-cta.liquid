@@ -1,0 +1,71 @@
+{% comment %} Services page CTA: centered headline, description, primary button with arrow. {% endcomment %}
+<section class="relative py-28 lg:py-40 bg-black overflow-hidden" data-testid="services-cta">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.03),transparent_70%)]" aria-hidden="true"></div>
+  <div class="relative z-10 max-w-[1000px] mx-auto px-6 lg:px-12 text-center">
+    {% if section.settings.heading != blank %}
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">{{ section.settings.heading }}</h2>
+    {% endif %}
+    {% if section.settings.description != blank %}
+      <p class="text-lg text-white/40 mb-10 max-w-xl mx-auto">{{ section.settings.description }}</p>
+    {% endif %}
+    {% if section.settings.cta_text != blank and section.settings.cta_url != blank %}
+      <div>
+        <a href="{{ section.settings.cta_url }}" class="group inline-flex items-center gap-3 px-10 py-5 bg-white text-black rounded-full font-semibold text-lg"{% if section.settings.cta_new_tab %} target="_blank" rel="noopener noreferrer"{% endif %}>
+          {{ section.settings.cta_text }}
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 flex-shrink-0 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Services CTA",
+  "tag": "section",
+  "class": "section-services-cta",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Ready to Build Your AI-Powered Brand Agent?"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Book a free consultation to discuss how we can automate your customer interactions while maintaining your unique brand voice."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button text",
+      "default": "Book Free Consultation"
+    },
+    {
+      "type": "text",
+      "id": "cta_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "cta_new_tab",
+      "label": "Open link in new tab",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Services CTA",
+      "settings": {
+        "heading": "Ready to Build Your AI-Powered Brand Agent?",
+        "description": "Book a free consultation to discuss how we can automate your customer interactions while maintaining your unique brand voice.",
+        "cta_text": "Book Free Consultation",
+        "cta_new_tab": true
+      }
+    }
+  ]
+}
+{% endschema %}

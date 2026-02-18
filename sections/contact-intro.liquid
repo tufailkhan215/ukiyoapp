@@ -1,0 +1,193 @@
+{% comment %} Contact Intro: badge pill, "START YOUR TRANSFORMATION" (gradient), subtitle, stats grid (4 cards). {% endcomment %}
+{% assign stat_blocks = section.blocks | where: 'type', 'stat' %}
+{% capture contact_intro_bg_style %}background-color: {{ section.settings.background_color | default: '#000000' }};{% if section.settings.background_image != blank %} background-image: url({{ section.settings.background_image | image_url: width: 1920 }}); background-size: cover; background-position: center;{% endif %}{% endcapture %}
+<section class="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden" style="{{ contact_intro_bg_style | strip }}">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      {% if section.settings.badge_text != blank %}
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/5 mb-6">
+          {% if section.settings.badge_icon != 'none' %}
+            {% case section.settings.badge_icon %}
+              {% when 'message_square' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square w-4 h-4 text-white/60" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+              {% else %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-white/60"><circle cx="12" cy="12" r="10"></circle></svg>
+            {% endcase %}
+          {% endif %}
+          <span class="text-sm text-white/60">{{ section.settings.badge_text }}</span>
+        </div>
+      {% endif %}
+      {% if section.settings.title_line1 != blank or section.settings.title_line2 != blank %}
+        <h1 class="text-5xl sm:text-6xl md:text-7xl font-black text-white leading-[0.9] tracking-tight mb-6">
+          {% if section.settings.title_line1 != blank %}
+            <span class="block">{{ section.settings.title_line1 }}</span>
+          {% endif %}
+          {% if section.settings.title_line2 != blank %}
+            <span class="block text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-white">{{ section.settings.title_line2 }}</span>
+          {% endif %}
+        </h1>
+      {% endif %}
+      {% if section.settings.subtitle != blank %}
+        <p class="text-lg md:text-xl text-white/50">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    {% if stat_blocks.size > 0 %}
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+        {% for block in stat_blocks %}
+          <div class="text-center p-6 rounded-2xl bg-white/[0.02] border border-white/10" {{ block.shopify_attributes }}>
+            {% case block.settings.icon %}
+              {% when 'clock' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock w-8 h-8 text-white/60 mx-auto mb-4" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              {% when 'circle_check_big' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big w-8 h-8 text-white/60 mx-auto mb-4" aria-hidden="true"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>
+              {% when 'file_text' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text w-8 h-8 text-white/60 mx-auto mb-4" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg>
+              {% when 'zap' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap w-8 h-8 text-white/60 mx-auto mb-4" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
+              {% else %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-8 h-8 text-white/60 mx-auto mb-4"><circle cx="12" cy="12" r="10"></circle></svg>
+            {% endcase %}
+            {% if block.settings.value != blank %}
+              <div class="text-3xl font-black text-white mb-1"><span>{{ block.settings.value }}</span></div>
+            {% endif %}
+            {% if block.settings.label != blank %}
+              <div class="text-white/40 text-sm">{{ block.settings.label }}</div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact Intro",
+  "tag": "section",
+  "class": "section-contact-intro",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image",
+      "info": "Optional. Used with cover; color shows behind or if image fails to load."
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "Let's Talk"
+    },
+    {
+      "type": "select",
+      "id": "badge_icon",
+      "label": "Badge icon",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "message_square", "label": "Message square" }
+      ],
+      "default": "message_square"
+    },
+    {
+      "type": "text",
+      "id": "title_line1",
+      "label": "Title (first line)",
+      "default": "START YOUR"
+    },
+    {
+      "type": "text",
+      "id": "title_line2",
+      "label": "Title (second line, gradient)",
+      "default": "TRANSFORMATION"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Ready to elevate your brand? Tell us about your project and let's create something extraordinary together."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat card",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "clock", "label": "Clock" },
+            { "value": "circle_check_big", "label": "Circle check big" },
+            { "value": "file_text", "label": "File text" },
+            { "value": "zap", "label": "Zap" }
+          ],
+          "default": "clock"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value / number",
+          "default": "24hr"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Response Time"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Intro",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "icon": "clock",
+            "value": "24hr",
+            "label": "Response Time"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "icon": "circle_check_big",
+            "value": "98%",
+            "label": "Client Satisfaction"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "icon": "file_text",
+            "value": "150+",
+            "label": "Projects Delivered"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "icon": "zap",
+            "value": "50M+",
+            "label": "Revenue Generated"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

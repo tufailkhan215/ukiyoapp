@@ -1,0 +1,108 @@
+{% comment %} Register (create customer). Matches theme: dark bg, white text, rounded-xl inputs. {% endcomment %}
+<section class="relative z-10 py-16 lg:py-24" {{ section.shopify_attributes }}>
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="max-w-md mx-auto">
+      {% if section.settings.heading != blank %}
+        <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">{{ section.settings.heading }}</h1>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p class="text-white/50 mb-8">{{ section.settings.subheading }}</p>
+      {% endif %}
+
+      <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/10">
+        {% form 'create_customer', class: 'customer-register space-y-6' %}
+          {% if form.errors %}
+            <div class="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-200 text-sm" role="alert">
+              {{ form.errors | default_errors }}
+            </div>
+          {% endif %}
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div>
+              <label for="FirstName-{{ section.id }}" class="block text-white/60 text-sm mb-2">{{ section.settings.first_name_label | default: 'First name' }}</label>
+              <input
+                type="text"
+                id="FirstName-{{ section.id }}"
+                name="customer[first_name]"
+                class="w-full px-4 py-4 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors"
+                placeholder="{{ section.settings.first_name_placeholder | default: 'First name' }}"
+                autocomplete="given-name"
+                value="{% if form.first_name %}{{ form.first_name }}{% endif %}"
+              >
+            </div>
+            <div>
+              <label for="LastName-{{ section.id }}" class="block text-white/60 text-sm mb-2">{{ section.settings.last_name_label | default: 'Last name' }}</label>
+              <input
+                type="text"
+                id="LastName-{{ section.id }}"
+                name="customer[last_name]"
+                class="w-full px-4 py-4 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors"
+                placeholder="{{ section.settings.last_name_placeholder | default: 'Last name' }}"
+                autocomplete="family-name"
+                value="{% if form.last_name %}{{ form.last_name }}{% endif %}"
+              >
+            </div>
+          </div>
+          <div>
+            <label for="RegisterEmail-{{ section.id }}" class="block text-white/60 text-sm mb-2">{{ section.settings.email_label | default: 'Email' }} *</label>
+            <input
+              type="email"
+              id="RegisterEmail-{{ section.id }}"
+              name="customer[email]"
+              class="w-full px-4 py-4 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors"
+              placeholder="{{ section.settings.email_placeholder | default: 'your@email.com' }}"
+              autocomplete="email"
+              required
+              aria-required="true"
+              value="{% if form.email %}{{ form.email }}{% endif %}"
+            >
+          </div>
+          <div>
+            <label for="RegisterPassword-{{ section.id }}" class="block text-white/60 text-sm mb-2">{{ section.settings.password_label | default: 'Password' }} *</label>
+            <input
+              type="password"
+              id="RegisterPassword-{{ section.id }}"
+              name="customer[password]"
+              class="w-full px-4 py-4 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors"
+              placeholder="••••••••"
+              autocomplete="new-password"
+              required
+              aria-required="true"
+            >
+          </div>
+          <button type="submit" class="w-full py-4 rounded-xl bg-white text-black font-semibold hover:bg-gray-100 transition-colors disabled:opacity-50">
+            {{ section.settings.submit_label | default: 'Create account' }}
+          </button>
+        {% endform %}
+      </div>
+
+      <p class="mt-8 text-center text-white/50 text-sm">
+        {{ section.settings.login_prompt | default: 'Already have an account?' }}
+        <a href="{{ routes.account_login_url }}" class="text-white hover:underline">{{ section.settings.login_link | default: 'Log in' }}</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Customer register",
+  "tag": "section",
+  "class": "section-main-customer-register",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Create account" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Create an account to access your orders and digital downloads." },
+    { "type": "text", "id": "first_name_label", "label": "First name label", "default": "First name" },
+    { "type": "text", "id": "first_name_placeholder", "label": "First name placeholder", "default": "First name" },
+    { "type": "text", "id": "last_name_label", "label": "Last name label", "default": "Last name" },
+    { "type": "text", "id": "last_name_placeholder", "label": "Last name placeholder", "default": "Last name" },
+    { "type": "text", "id": "email_label", "label": "Email label", "default": "Email" },
+    { "type": "text", "id": "email_placeholder", "label": "Email placeholder", "default": "your@email.com" },
+    { "type": "text", "id": "password_label", "label": "Password label", "default": "Password" },
+    { "type": "text", "id": "submit_label", "label": "Submit button", "default": "Create account" },
+    { "type": "text", "id": "login_prompt", "label": "Login prompt", "default": "Already have an account?" },
+    { "type": "text", "id": "login_link", "label": "Login link text", "default": "Log in" }
+  ],
+  "presets": [{ "name": "Customer register" }]
+}
+{% endschema %}

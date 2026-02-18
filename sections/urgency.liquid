@@ -1,20 +1,82 @@
-<section class="urgency section-container" data-reveal>
-  <h2 class="trusted-by__title">{{ section.settings.heading | default: 'Only 3 Spots Left This Month' }}</h2>
-  <p class="trusted-by__subtitle">{{ section.settings.subtitle | default: "We only take on 5 new clients per month to ensure premium quality. Once spots are filled, you'll have to wait until next month." }}</p>
-  {% if section.settings.countdown_label != blank %}
-    <p class="urgency__countdown-label">{{ section.settings.countdown_label }}</p>
-    <div class="urgency__countdown" id="urgency-countdown" data-countdown-end="{{ section.settings.countdown_end | default: '' }}">
-      <span class="urgency__countdown-days"><span class="urgency__num" data-days>0</span> days</span>
-      <span class="urgency__countdown-hrs"><span class="urgency__num" data-hrs>0</span> hrs</span>
-      <span class="urgency__countdown-mins"><span class="urgency__num" data-mins>0</span> mins</span>
-    </div>
-  {% endif %}
-  <p class="urgency__note">{{ section.settings.note | default: 'No credit card required • Free consultation' }}</p>
-  {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
-    <p class="urgency__cta">
-      {% render 'button', style: 'primary', text: section.settings.cta_text, url: section.settings.cta_link, shimmer: true %}
-    </p>
-  {% endif %}
+{% comment %} Source structure and Tailwind classes from reference (UrgencySection) {% endcomment %}
+<section class="relative py-28 lg:py-40 bg-black overflow-hidden" data-urgency-section="{{ section.id }}" {% if section.settings.countdown_end != blank %}data-countdown-end="{{ section.settings.countdown_end | escape }}"{% endif %}>
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="absolute inset-0" aria-hidden="true">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-white/[0.02] blur-[100px] animate-pulse"></div>
+  </div>
+
+  <div class="relative z-10 max-w-[1000px] mx-auto px-6 lg:px-12 text-center">
+    {% if section.settings.strap != blank %}
+      <span class="text-[10px] font-medium text-red-400/80 tracking-[0.3em] uppercase block mb-5">{{ section.settings.strap }}</span>
+    {% endif %}
+    <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+      {{ section.settings.title_before | default: 'Only ' }}
+      <span class="text-red-400">{{ section.settings.spots_text | default: '3 Spots' }}</span>
+      {{ section.settings.title_after | default: ' Left This Month' }}
+    </h2>
+    {% if section.settings.description != blank %}
+      <p class="text-lg text-white/40 max-w-2xl mx-auto mb-12">{{ section.settings.description }}</p>
+    {% endif %}
+
+    {% if section.settings.countdown_label != blank or section.settings.countdown_end != blank %}
+      <div class="mb-12">
+        {% if section.settings.countdown_label != blank %}
+          <p class="text-white/40 text-sm mb-4 uppercase tracking-wider">{{ section.settings.countdown_label }}</p>
+        {% endif %}
+        <div class="flex justify-center gap-4 flex-wrap">
+          <div class="urgency-countdown-hours bg-white/[0.03] border border-white/10 px-6 py-4 min-w-[100px]">
+            <div class="text-4xl font-bold text-white urgency-hours">00</div>
+            <div class="text-white/40 text-xs uppercase tracking-wider">Hours</div>
+          </div>
+          <div class="urgency-countdown-minutes bg-white/[0.03] border border-white/10 px-6 py-4 min-w-[100px]">
+            <div class="text-4xl font-bold text-white urgency-minutes">00</div>
+            <div class="text-white/40 text-xs uppercase tracking-wider">Minutes</div>
+          </div>
+          <div class="urgency-countdown-seconds bg-white/[0.03] border border-white/10 px-6 py-4 min-w-[100px]">
+            <div class="text-4xl font-bold text-white urgency-seconds">00</div>
+            <div class="text-white/40 text-xs uppercase tracking-wider">Seconds</div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% assign benefit_blocks = section.blocks | where: 'type', 'benefit' %}
+    {% if benefit_blocks.size > 0 %}
+      <div class="flex flex-wrap justify-center gap-6 mb-12">
+        {% for block in benefit_blocks %}
+          <div class="flex items-center gap-2 text-white/60" {{ block.shopify_attributes }}>
+            {% case block.settings.icon %}
+              {% when 'clock' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 flex-shrink-0" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              {% when 'users' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 flex-shrink-0" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>
+              {% when 'zap' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 flex-shrink-0" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
+              {% else %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 flex-shrink-0" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            {% endcase %}
+            {% if block.settings.text != blank %}
+              <span class="text-sm">{{ block.settings.text }}</span>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.cta_url != blank %}
+      <div>
+        <a href="{{ section.settings.cta_url }}" class="group inline-block" {% if section.settings.cta_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+          <span class="flex items-center justify-center gap-3 px-12 py-6 bg-white text-black rounded-full font-bold text-lg hover:bg-gray-100 transition-colors">
+            {{ section.settings.cta_text | default: 'Claim Your Spot Now' }}
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+          </span>
+        </a>
+        {% if section.settings.cta_subtext != blank %}
+          <p class="text-white/30 text-sm mt-4">{{ section.settings.cta_subtext }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
 </section>
 
 {% schema %}
@@ -25,46 +87,140 @@
   "settings": [
     {
       "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Only 3 Spots Left This Month"
+      "id": "strap",
+      "label": "Strap (small label above title)",
+      "default": "(Limited Availability)"
+    },
+    {
+      "type": "text",
+      "id": "title_before",
+      "label": "Title (before highlighted part)",
+      "default": "Only "
+    },
+    {
+      "type": "text",
+      "id": "spots_text",
+      "label": "Highlighted text (e.g. 3 Spots)",
+      "default": "3 Spots"
+    },
+    {
+      "type": "text",
+      "id": "title_after",
+      "label": "Title (after highlighted part)",
+      "default": " Left This Month"
     },
     {
       "type": "textarea",
-      "id": "subtitle",
-      "label": "Subtitle"
+      "id": "description",
+      "label": "Description below title",
+      "default": "We only take on 5 new clients per month to ensure premium quality. Once spots are filled, you'll have to wait until next month."
+    },
+    {
+      "type": "header",
+      "content": "Countdown"
     },
     {
       "type": "text",
       "id": "countdown_label",
-      "label": "Countdown label (e.g. Offer Expires In)"
+      "label": "Countdown label",
+      "default": "Offer Expires In"
     },
     {
       "type": "text",
       "id": "countdown_end",
-      "label": "Countdown end (ISO date, e.g. 2026-03-01T00:00:00)"
+      "label": "Countdown end date/time",
+      "info": "e.g. 2026-12-31 23:59:59 or 2026-12-31T23:59:59. Leave blank to hide countdown."
     },
     {
-      "type": "text",
-      "id": "note",
-      "label": "Note below countdown",
-      "default": "No credit card required • Free consultation"
+      "type": "header",
+      "content": "CTA"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "cta_new_tab",
+      "label": "Open in new tab",
+      "default": true
     },
     {
       "type": "text",
       "id": "cta_text",
-      "label": "CTA button text",
+      "label": "Button text",
       "default": "Claim Your Spot Now"
     },
     {
-      "type": "url",
-      "id": "cta_link",
-      "label": "CTA button link"
+      "type": "text",
+      "id": "cta_subtext",
+      "label": "Text below button",
+      "default": "No credit card required • Free consultation"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "clock", "label": "Clock" },
+            { "value": "users", "label": "Users" },
+            { "value": "zap", "label": "Zap" }
+          ],
+          "default": "clock"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Urgency"
+      "name": "Urgency",
+      "settings": {
+        "strap": "(Limited Availability)",
+        "title_before": "Only ",
+        "spots_text": "3 Spots",
+        "title_after": " Left This Month",
+        "description": "We only take on 5 new clients per month to ensure premium quality. Once spots are filled, you'll have to wait until next month.",
+        "countdown_label": "Offer Expires In",
+        "countdown_end": "",
+        "cta_text": "Claim Your Spot Now",
+        "cta_subtext": "No credit card required • Free consultation",
+        "cta_new_tab": true
+      },
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "clock",
+            "text": "Free Strategy Session ($500 value)"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "users",
+            "text": "Priority Onboarding"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "zap",
+            "text": "Bonus: AI Audit Report"
+          }
+        }
+      ]
     }
   ]
 }

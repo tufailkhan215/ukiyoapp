@@ -1,0 +1,101 @@
+{% comment %} Source structure and Tailwind classes from reference (ServicesIntro) {% endcomment %}
+<section class="relative py-24 lg:py-32 bg-black" data-testid="services-intro">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+
+  <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-24">
+      <div>
+        {% if section.settings.strap != blank %}
+          <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-6">{{ section.settings.strap }}</span>
+        {% endif %}
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.15]">
+          {{ section.settings.title_before | default: 'Brand strategy, identity, and experience built for' }}
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_gradient | default: ' growth at scale.' }}</span>
+        </h2>
+      </div>
+
+      <div class="lg:pt-16">
+        {% if section.settings.paragraph_1 != blank %}
+          <p class="text-base text-white/40 leading-relaxed mb-4">{{ section.settings.paragraph_1 }}</p>
+        {% endif %}
+        {% if section.settings.paragraph_2 != blank %}
+          <p class="text-base text-white/40 leading-relaxed mb-8">{{ section.settings.paragraph_2 }}</p>
+        {% endif %}
+        {% if section.settings.cta_text != blank and section.settings.cta_url != blank %}
+          <a href="{{ section.settings.cta_url }}" class="group inline-flex items-center gap-3 px-7 py-3.5 bg-white text-black rounded-full font-semibold text-sm hover:bg-gray-200 transition-colors" data-testid="services-intro-cta">
+            {{ section.settings.cta_text }}
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="h-px bg-gradient-to-r from-white/20 via-white/10 to-transparent mt-20 origin-left" aria-hidden="true"></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Services Intro",
+  "tag": "section",
+  "class": "section-services-intro",
+  "settings": [
+    {
+      "type": "text",
+      "id": "strap",
+      "label": "Strap (small label above title)",
+      "default": "(What We Do)"
+    },
+    {
+      "type": "text",
+      "id": "title_before",
+      "label": "Title (before gradient part)",
+      "default": "Brand strategy, identity, and experience built for"
+    },
+    {
+      "type": "text",
+      "id": "title_gradient",
+      "label": "Title (gradient part)",
+      "default": " growth at scale."
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph_1",
+      "label": "Paragraph 1",
+      "default": "Our work spans brand strategy, identity, and experience, delivered as a single integrated system. We lead engagements from positioning through messaging, identity design, digital experiences, and brand systems."
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph_2",
+      "label": "Paragraph 2",
+      "default": "The focus is practical by design: building brands that can be applied consistently across product, marketing, and communications."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button text",
+      "default": "Book a Discovery Call"
+    },
+    {
+      "type": "text",
+      "id": "cta_url",
+      "label": "Button URL",
+      "default": "/pages/contact"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Services Intro",
+      "settings": {
+        "strap": "(What We Do)",
+        "title_before": "Brand strategy, identity, and experience built for",
+        "title_gradient": " growth at scale.",
+        "paragraph_1": "Our work spans brand strategy, identity, and experience, delivered as a single integrated system. We lead engagements from positioning through messaging, identity design, digital experiences, and brand systems.",
+        "paragraph_2": "The focus is practical by design: building brands that can be applied consistently across product, marketing, and communications.",
+        "cta_text": "Book a Discovery Call",
+        "cta_url": "/pages/contact"
+      }
+    }
+  ]
+}
+{% endschema %}

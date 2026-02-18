@@ -1,0 +1,159 @@
+{% comment %}
+  Contact page background: full-bleed particle animation layer.
+  Use only on the contact template; place before main content section so it sits behind.
+{% endcomment %}
+<section
+  class="contact-background"
+  id="contact-background"
+  aria-hidden="true"
+  style="position: fixed; inset: 0; z-index: -1; pointer-events: none;"
+  {{ section.shopify_attributes }}
+>
+  <div class="contact-background__inner" style="position: absolute; inset: 0; background: #0a0a0a;">
+    <canvas
+      class="contact-background__canvas"
+      id="contact-background-canvas"
+      style="display: block; width: 100%; height: 100%;"
+      width="1"
+      height="1"
+    ></canvas>
+    <div
+      class="contact-background__overlay"
+      style="position: absolute; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 50%); pointer-events: none;"
+      aria-hidden="true"
+    ></div>
+  </div>
+</section>
+
+<script>
+(function() {
+  var section = document.getElementById('contact-background');
+  if (!section) return;
+
+  var canvas = document.getElementById('contact-background-canvas');
+  if (!canvas) return;
+
+  var ctx = canvas.getContext('2d');
+  var particles = [];
+  var animationId = null;
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  function resize() {
+    var parent = canvas.parentElement;
+    var w = parent.clientWidth;
+    var h = parent.clientHeight;
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    initParticles(w, h);
+  }
+
+  var reduceMotion = false;
+  try {
+    reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  } catch (e) {}
+
+  function countForViewport(w, h) {
+    if (reduceMotion) return 0;
+    var area = w * h;
+    var mobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    return mobile ? Math.min(40, Math.floor(area / 18000)) : Math.min(80, Math.floor(area / 12000));
+  }
+
+  function initParticles(w, h) {
+    particles = [];
+    var n = countForViewport(w, h);
+    for (var i = 0; i < n; i++) {
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        r: 0.5 + Math.random() * 1
+      });
+    }
+  }
+
+  function draw() {
+    var parent = canvas.parentElement;
+    var w = parent.clientWidth;
+    var h = parent.clientHeight;
+    ctx.clearRect(0, 0, w, h);
+
+    for (var i = 0; i < particles.length; i++) {
+      var p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > w) p.vx *= -1;
+      if (p.y < 0 || p.y > h) p.vy *= -1;
+      p.x = Math.max(0, Math.min(w, p.x));
+      p.y = Math.max(0, Math.min(h, p.y));
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,255,255,0.35)';
+      ctx.fill();
+    }
+
+    ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+    var maxDist = 120;
+    for (var i = 0; i < particles.length; i++) {
+      for (var j = i + 1; j < particles.length; j++) {
+        var dx = particles[i].x - particles[j].x;
+        var dy = particles[i].y - particles[j].y;
+        if (dx * dx + dy * dy < maxDist * maxDist) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    animationId = requestAnimationFrame(draw);
+  }
+
+  function start() {
+    if (reduceMotion || particles.length === 0) return;
+    if (animationId != null) return;
+    draw();
+  }
+
+  function stop() {
+    if (animationId != null) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+  }
+
+  resize();
+  start();
+
+  window.addEventListener('resize', function() {
+    resize();
+    stop();
+    start();
+  });
+
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) stop();
+    else start();
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Contact background",
+  "tag": "section",
+  "class": "section-contact-background",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Contact background"
+    }
+  ]
+}
+{% endschema %}

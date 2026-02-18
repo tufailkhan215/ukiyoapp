@@ -1,0 +1,143 @@
+{% comment %} Key features grid: centered strap + gradient title, then cards with check icon, title, description. {% endcomment %}
+<section class="relative py-20 lg:py-28 bg-black" data-testid="services-key-features">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="text-center mb-16">
+      {% if section.settings.strap != blank %}
+        <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-4">{{ section.settings.strap }}</span>
+      {% endif %}
+      {% if section.settings.title_before != blank or section.settings.title_gradient != blank %}
+        <h2 class="text-3xl md:text-4xl font-bold text-white">
+          {{ section.settings.title_before }}
+          {% if section.settings.title_gradient != blank %}
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_gradient }}</span>
+          {% endif %}
+        </h2>
+      {% endif %}
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {% for block in section.blocks %}
+        {% if block.type == 'feature' %}
+          <div class="group" {{ block.shopify_attributes }}>
+            <div class="relative h-full p-6 border border-white/[0.05] bg-white/[0.01] hover:bg-white/[0.03] hover:border-white/10 transition-all duration-500">
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded-full bg-white/[0.05] border border-white/10 flex items-center justify-center flex-shrink-0" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-white/60"><path d="M20 6 9 17l-5-5"/></svg>
+                </div>
+                <div>
+                  {% if block.settings.title != blank %}
+                    <h4 class="text-lg font-semibold text-white mb-2">{{ block.settings.title }}</h4>
+                  {% endif %}
+                  {% if block.settings.description != blank %}
+                    <p class="text-sm text-white/40 leading-relaxed">{{ block.settings.description }}</p>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Services Key Features",
+  "tag": "section",
+  "class": "section-services-key-features",
+  "settings": [
+    {
+      "type": "text",
+      "id": "strap",
+      "label": "Strap (small label above title)",
+      "default": "(Key Features)"
+    },
+    {
+      "type": "text",
+      "id": "title_before",
+      "label": "Title (before gradient part)",
+      "default": "What You "
+    },
+    {
+      "type": "text",
+      "id": "title_gradient",
+      "label": "Title (gradient part)",
+      "default": "Get"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Services Key Features",
+      "settings": {
+        "strap": "(Key Features)",
+        "title_before": "What You ",
+        "title_gradient": "Get"
+      },
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Brand Voice Training",
+            "description": "AI agents trained on your unique tone, values, and messaging guidelines for consistent communication"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Multi-Channel Deployment",
+            "description": "Deploy across website, email, social media, Instagram DMs, and messaging platforms seamlessly"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Knowledge Base Integration",
+            "description": "Connected to your products, services, FAQs, and company information for accurate responses"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Continuous Learning",
+            "description": "Agents improve over time based on interactions, feedback, and new information"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Human Handoff",
+            "description": "Seamless escalation to human agents when complex situations require personal touch"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Analytics Dashboard",
+            "description": "Real-time insights into agent performance, customer satisfaction, and conversation trends"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

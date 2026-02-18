@@ -1,0 +1,181 @@
+{% comment %} Customer addresses: list, add new, edit, delete. Theme styling. {% endcomment %}
+<section class="relative z-10 py-16 lg:py-24" {{ section.shopify_attributes }}>
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="mb-8">
+      <a href="{{ routes.account_url }}" class="inline-flex items-center gap-2 text-white/60 hover:text-white text-sm font-medium mb-6">{{ section.settings.back_label | default: 'Back to account' }}</a>
+      <h1 class="text-3xl md:text-4xl font-bold text-white">{{ section.settings.heading | default: 'Addresses' }}</h1>
+      <p class="text-white/50 mt-1">{{ section.settings.subheading | default: 'Manage your shipping addresses.' }}</p>
+    </div>
+
+    <div class="max-w-2xl space-y-8">
+      {% comment %} Add new address {% endcomment %}
+      <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/10">
+        <h2 class="text-xl font-semibold text-white mb-4">{{ section.settings.add_heading | default: 'Add new address' }}</h2>
+        {% form 'customer_address', customer.new_address, class: 'space-y-4' %}
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="AddressFirstNameNew-{{ section.id }}" class="block text-white/60 text-sm mb-2">{{ section.settings.first_name_label | default: 'First name' }}</label>
+              <input type="text" id="AddressFirstNameNew-{{ section.id }}" name="address[first_name]" value="{{ form.first_name }}" class="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors" placeholder="First name">
+            </div>
+            <div>
+              <label for="AddressLastNameNew-{{ section.id }}" class="block text-white/60 text-sm mb-2">{{ section.settings.last_name_label | default: 'Last name' }}</label>
+              <input type="text" id="AddressLastNameNew-{{ section.id }}" name="address[last_name]" value="{{ form.last_name }}" class="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors" placeholder="Last name">
+            </div>
+          </div>
+          <div>
+            <label for="AddressCompanyNew-{{ section.id }}" class="block text-white/60 text-sm mb-2">{{ section.settings.company_label | default: 'Company' }}</label>
+            <input type="text" id="AddressCompanyNew-{{ section.id }}" name="address[company]" value="{{ form.company }}" class="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors" placeholder="Company">
+          </div>
+          <div>
+            <label for="AddressAddress1New-{{ section.id }}" class="block text-white/60 text-sm mb-2">{{ section.settings.address1_label | default: 'Address 1' }}</label>
+            <input type="text" id="AddressAddress1New-{{ section.id }}" name="address[address1]" value="{{ form.address1 }}" class="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors" placeholder="Address 1">
+          </div>
+          <div>
+            <label for="AddressAddress2New-{{ section.id }}" class="block text-white/60 text-sm mb-2">{{ section.settings.address2_label | default: 'Address 2' }}</label>
+            <input type="text" id="AddressAddress2New-{{ section.id }}" name="address[address2]" value="{{ form.address2 }}" class="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors" placeholder="Address 2">
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="AddressCityNew-{{ section.id }}" class="block text-white/60 text-sm mb-2">{{ section.settings.city_label | default: 'City' }}</label>
+              <input type="text" id="AddressCityNew-{{ section.id }}" name="address[city]" value="{{ form.city }}" class="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors" placeholder="City">
+            </div>
+            <div>
+              <label for="AddressCountryNew-{{ section.id }}" class="block text-white/60 text-sm mb-2">{{ section.settings.country_label | default: 'Country' }}</label>
+              <select id="AddressCountryNew-{{ section.id }}" name="address[country]" class="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/10 text-white focus:border-white/30 focus:outline-none transition-colors appearance-none" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27rgba(255,255,255,0.5)%27 stroke-width=%272%27%3E%3Cpath d=%27m6 9 6 6 6-6%27/%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 1.25rem; padding-right: 2.5rem;">{{ form | country_option_tags }}</select>
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="AddressProvinceNew-{{ section.id }}" class="block text-white/60 text-sm mb-2">{{ section.settings.province_label | default: 'Province' }}</label>
+              <input type="text" id="AddressProvinceNew-{{ section.id }}" name="address[province]" value="{{ form.province }}" class="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors" placeholder="Province">
+            </div>
+            <div>
+              <label for="AddressZipNew-{{ section.id }}" class="block text-white/60 text-sm mb-2">{{ section.settings.zip_label | default: 'ZIP / Postal code' }}</label>
+              <input type="text" id="AddressZipNew-{{ section.id }}" name="address[zip]" value="{{ form.zip }}" class="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors" placeholder="ZIP">
+            </div>
+          </div>
+          <div>
+            <label for="AddressPhoneNew-{{ section.id }}" class="block text-white/60 text-sm mb-2">{{ section.settings.phone_label | default: 'Phone' }}</label>
+            <input type="tel" id="AddressPhoneNew-{{ section.id }}" name="address[phone]" value="{{ form.phone }}" class="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors" placeholder="Phone">
+          </div>
+          <div class="flex items-center gap-4">
+            <button type="submit" class="px-6 py-3 rounded-xl bg-white text-black font-semibold hover:bg-gray-100 transition-colors">{{ section.settings.add_button | default: 'Add address' }}</button>
+          </div>
+        {% endform %}
+      </div>
+
+      {% comment %} Existing addresses {% endcomment %}
+      {% for address in customer.addresses %}
+        <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/10">
+          <div class="flex flex-wrap items-start justify-between gap-4 mb-4">
+            <div class="text-white/70 text-sm">{{ address | format_address }}</div>
+            {% if address == customer.default_address %}<span class="px-2 py-1 rounded text-xs font-medium bg-white/10 text-white/80">{{ section.settings.default_badge | default: 'Default' }}</span>{% endif %}
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <button type="button" class="address-edit-trigger px-4 py-2 rounded-full border border-white/20 text-white hover:bg-white/10 transition-colors text-sm font-medium" data-form="edit-{{ address.id }}">{{ section.settings.edit_label | default: 'Edit' }}</button>
+            <form method="post" action="/account/addresses/{{ address.id }}" class="inline" onsubmit="return confirm('{{ section.settings.delete_confirm | default: 'Delete this address?' | escape }}');">
+              <input type="hidden" name="_method" value="delete">
+              <button type="submit" class="px-4 py-2 rounded-full border border-red-500/30 text-red-400 hover:bg-red-500/10 transition-colors text-sm font-medium">{{ section.settings.delete_label | default: 'Delete' }}</button>
+            </form>
+          </div>
+          <div id="edit-{{ address.id }}" class="address-edit-form hidden mt-6 pt-6 border-t border-white/10">
+            {% form 'customer_address', address, class: 'space-y-4' %}
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="AddressFirstName-{{ address.id }}" class="block text-white/60 text-sm mb-2">First name</label>
+                  <input type="text" id="AddressFirstName-{{ address.id }}" name="address[first_name]" value="{{ form.first_name }}" class="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors">
+                </div>
+                <div>
+                  <label for="AddressLastName-{{ address.id }}" class="block text-white/60 text-sm mb-2">Last name</label>
+                  <input type="text" id="AddressLastName-{{ address.id }}" name="address[last_name]" value="{{ form.last_name }}" class="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors">
+                </div>
+              </div>
+              <div>
+                <label for="AddressAddress1-{{ address.id }}" class="block text-white/60 text-sm mb-2">Address 1</label>
+                <input type="text" id="AddressAddress1-{{ address.id }}" name="address[address1]" value="{{ form.address1 }}" class="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors">
+              </div>
+              <div>
+                <label for="AddressAddress2-{{ address.id }}" class="block text-white/60 text-sm mb-2">Address 2</label>
+                <input type="text" id="AddressAddress2-{{ address.id }}" name="address[address2]" value="{{ form.address2 }}" class="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors">
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="AddressCity-{{ address.id }}" class="block text-white/60 text-sm mb-2">City</label>
+                  <input type="text" id="AddressCity-{{ address.id }}" name="address[city]" value="{{ form.city }}" class="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors">
+                </div>
+                <div>
+                  <label for="AddressCountry-{{ address.id }}" class="block text-white/60 text-sm mb-2">Country</label>
+                  <select id="AddressCountry-{{ address.id }}" name="address[country]" class="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/10 text-white focus:border-white/30 focus:outline-none transition-colors appearance-none" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27rgba(255,255,255,0.5)%27 stroke-width=%272%27%3E%3Cpath d=%27m6 9 6 6 6-6%27/%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 1.25rem; padding-right: 2.5rem;">{{ form | country_option_tags }}</select>
+                </div>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="AddressProvince-{{ address.id }}" class="block text-white/60 text-sm mb-2">Province</label>
+                  <input type="text" id="AddressProvince-{{ address.id }}" name="address[province]" value="{{ form.province }}" class="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors">
+                </div>
+                <div>
+                  <label for="AddressZip-{{ address.id }}" class="block text-white/60 text-sm mb-2">ZIP</label>
+                  <input type="text" id="AddressZip-{{ address.id }}" name="address[zip]" value="{{ form.zip }}" class="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors">
+                </div>
+              </div>
+              <div>
+                <label for="AddressPhone-{{ address.id }}" class="block text-white/60 text-sm mb-2">Phone</label>
+                <input type="tel" id="AddressPhone-{{ address.id }}" name="address[phone]" value="{{ form.phone }}" class="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:outline-none transition-colors">
+              </div>
+              <div class="flex items-center gap-4">
+                <label class="flex items-center gap-2 text-white/70 text-sm cursor-pointer"><input type="checkbox" name="address[default]" value="1" {% if address == customer.default_address %}checked{% endif %} class="rounded border-white/20 bg-white/5 text-white focus:ring-white/30"> Set as default</label>
+                <button type="submit" class="px-6 py-3 rounded-xl bg-white text-black font-semibold hover:bg-gray-100 transition-colors">{{ section.settings.save_label | default: 'Update' }}</button>
+              </div>
+            {% endform %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  document.querySelectorAll('.address-edit-trigger').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var id = this.getAttribute('data-form');
+      var formEl = document.getElementById(id);
+      if (formEl) {
+        formEl.classList.toggle('hidden');
+      }
+    });
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Customer addresses",
+  "tag": "section",
+  "class": "section-main-customer-addresses",
+  "settings": [
+    { "type": "text", "id": "back_label", "label": "Back link", "default": "Back to account" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Addresses" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Manage your shipping addresses." },
+    { "type": "text", "id": "add_heading", "label": "Add address heading", "default": "Add new address" },
+    { "type": "text", "id": "first_name_label", "label": "First name label", "default": "First name" },
+    { "type": "text", "id": "last_name_label", "label": "Last name label", "default": "Last name" },
+    { "type": "text", "id": "company_label", "label": "Company label", "default": "Company" },
+    { "type": "text", "id": "address1_label", "label": "Address 1 label", "default": "Address 1" },
+    { "type": "text", "id": "address2_label", "label": "Address 2 label", "default": "Address 2" },
+    { "type": "text", "id": "city_label", "label": "City label", "default": "City" },
+    { "type": "text", "id": "country_label", "label": "Country label", "default": "Country" },
+    { "type": "text", "id": "province_label", "label": "Province label", "default": "Province" },
+    { "type": "text", "id": "zip_label", "label": "ZIP label", "default": "ZIP / Postal code" },
+    { "type": "text", "id": "phone_label", "label": "Phone label", "default": "Phone" },
+    { "type": "text", "id": "add_button", "label": "Add button", "default": "Add address" },
+    { "type": "text", "id": "default_badge", "label": "Default badge", "default": "Default" },
+    { "type": "text", "id": "edit_label", "label": "Edit button", "default": "Edit" },
+    { "type": "text", "id": "delete_label", "label": "Delete button", "default": "Delete" },
+    { "type": "text", "id": "delete_confirm", "label": "Delete confirm message", "default": "Delete this address?" },
+    { "type": "text", "id": "save_label", "label": "Save button", "default": "Update" }
+  ],
+  "presets": [{ "name": "Customer addresses" }]
+}
+{% endschema %}

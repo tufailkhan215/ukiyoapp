@@ -1,57 +1,150 @@
-<section class="transformation section-container" data-reveal>
-  <h2 class="trusted-by__title">{{ section.settings.heading | default: 'Real Transformations' }}</h2>
-  <p class="trusted-by__subtitle">{{ section.settings.subtitle | default: "These aren't hypotheticals. These are actual results from real clients." }}</p>
-  <div class="transformation__columns">
-    <div class="transformation__col transformation__col--before glass-card">
-      <h3 class="transformation__col-title">{{ section.settings.before_title | default: 'BEFORE UKIYO' }}</h3>
-      <p class="transformation__col-subtitle">{{ section.settings.before_subtitle | default: 'The struggle is real (and expensive)' }}</p>
-      <ul class="transformation__list">
-        {% for block in section.blocks %}
-          {% if block.type == 'before_item' %}
-            <li {{ block.shopify_attributes }}>
-              <strong>{{ block.settings.title }}</strong>
-              <span>{{ block.settings.description }}</span>
-            </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-    </div>
-    <div class="transformation__col transformation__col--after glass-card">
-      <h3 class="transformation__col-title">{{ section.settings.after_title | default: 'AFTER UKIYO' }}</h3>
-      <p class="transformation__col-subtitle">{{ section.settings.after_subtitle | default: "Let the grown-ups handle it" }}</p>
-      <div class="transformation__stats">
-        {% for block in section.blocks %}
-          {% if block.type == 'after_stat' %}
-            <div class="transformation__stat" {{ block.shopify_attributes }}>
-              <span class="transformation__stat-value">{{ block.settings.value | default: '0' }}</span>
-              <span class="transformation__stat-label">{{ block.settings.label }}</span>
-            </div>
-          {% endif %}
-        {% endfor %}
-      </div>
-      {% if section.settings.quote != blank %}
-        <blockquote class="transformation__quote">{{ section.settings.quote }}</blockquote>
+{% comment %} Source structure and Tailwind classes from reference (TransformationSection) {% endcomment %}
+<section class="transformation-section relative py-28 lg:py-40 bg-black overflow-hidden" data-transformation>
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(255,255,255,0.02),transparent_60%)]" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="text-center mb-16">
+      {% if section.settings.strap != blank %}
+        <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-5">{{ section.settings.strap }}</span>
+      {% endif %}
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+        {{ section.settings.title_before | default: 'Real' }} <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_gradient | default: 'Transformations' }}</span>
+      </h2>
+      {% if section.settings.subtitle != blank %}
+        <p class="text-lg text-white/40 max-w-2xl mx-auto">{{ section.settings.subtitle }}</p>
       {% endif %}
     </div>
-  </div>
-  {% if section.settings.math_heading != blank %}
-    <div class="transformation__math glass-card">
-      <h3 class="transformation__math-title">{{ section.settings.math_heading }}</h3>
-      <p class="transformation__math-subtitle">{{ section.settings.math_subtitle }}</p>
-      <div class="transformation__math-grid">
+
+    {% if section.blocks.size > 0 %}
+      <div class="flex justify-center gap-4 mb-12 flex-wrap">
         {% for block in section.blocks %}
-          {% if block.type == 'math_stat' %}
-            <div class="transformation__math-stat" {{ block.shopify_attributes }}>
-              <span class="transformation__math-value">{{ block.settings.value }}</span>
-              <span class="transformation__math-label">{{ block.settings.label }}</span>
-              <span class="transformation__math-note">{{ block.settings.note }}</span>
-            </div>
-          {% endif %}
+          <button type="button" class="transformation-tab px-6 py-3 rounded-full text-sm font-medium transition-all {% if forloop.first %}bg-white text-black{% else %}bg-white/[0.03] text-white/60 border border-white/10 hover:bg-white/[0.05]{% endif %}" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+            {{ block.settings.filter_label | default: 'Client type' }}
+          </button>
         {% endfor %}
       </div>
-    </div>
-  {% endif %}
+
+      {% for block in section.blocks %}
+        <div class="transformation-content {% unless forloop.first %}hidden{% endunless %}" data-index="{{ forloop.index0 }}">
+          <div class="grid lg:grid-cols-3 gap-8">
+            {% comment %} BEFORE column {% endcomment %}
+            <div class="p-8 border border-red-500/20 bg-red-500/[0.02]">
+              <h3 class="text-red-400 font-semibold mb-6 flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-red-500" aria-hidden="true"></span>
+                {{ block.settings.before_heading | default: 'BEFORE UKIYO' }}
+              </h3>
+              <div class="flex items-center justify-between py-3 border-b border-white/[0.05] last:border-0">
+                <div class="flex items-center gap-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-red-400" aria-hidden="true"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                  <span class="text-white/50 text-sm">Monthly Revenue</span>
+                </div>
+                <span class="font-bold text-red-400">{{ block.settings.before_revenue | default: '$12K/mo' }}</span>
+              </div>
+              <div class="flex items-center justify-between py-3 border-b border-white/[0.05] last:border-0">
+                <div class="flex items-center gap-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-red-400" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg>
+                  <span class="text-white/50 text-sm">Monthly Leads</span>
+                </div>
+                <span class="font-bold text-red-400">{{ block.settings.before_leads | default: '50/month' }}</span>
+              </div>
+              <div class="flex items-center justify-between py-3 border-b border-white/[0.05] last:border-0">
+                <div class="flex items-center gap-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-red-400" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+                  <span class="text-white/50 text-sm">Conversion Rate</span>
+                </div>
+                <span class="font-bold text-red-400">{{ block.settings.before_conversion | default: '1.2%' }}</span>
+              </div>
+              <div class="flex items-center justify-between py-3 border-b border-white/[0.05] last:border-0">
+                <div class="flex items-center gap-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-red-400" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <span class="text-white/50 text-sm">Work Hours</span>
+                </div>
+                <span class="font-bold text-red-400">{{ block.settings.before_hours | default: '80hrs/week manual work' }}</span>
+              </div>
+            </div>
+
+            {% comment %} Middle: arrow + timeline {% endcomment %}
+            <div class="hidden lg:flex items-center justify-center">
+              <div class="flex flex-col items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-arrow-right w-12 h-12 text-white/20 mb-4" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                <span class="text-white/40 text-sm">{{ block.settings.timeline | default: 'In 6 months' }}</span>
+              </div>
+            </div>
+
+            {% comment %} AFTER column {% endcomment %}
+            <div class="p-8 border border-green-500/20 bg-green-500/[0.02]">
+              <h3 class="text-green-400 font-semibold mb-6 flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-green-500" aria-hidden="true"></span>
+                {{ block.settings.after_heading | default: 'AFTER UKIYO' }}
+              </h3>
+              <div class="flex items-center justify-between py-3 border-b border-white/[0.05] last:border-0">
+                <div class="flex items-center gap-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-green-400" aria-hidden="true"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                  <span class="text-white/50 text-sm">Monthly Revenue</span>
+                </div>
+                <span class="font-bold text-green-400">{{ block.settings.after_revenue | default: '$147K/mo' }}</span>
+              </div>
+              <div class="flex items-center justify-between py-3 border-b border-white/[0.05] last:border-0">
+                <div class="flex items-center gap-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-green-400" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg>
+                  <span class="text-white/50 text-sm">Monthly Leads</span>
+                </div>
+                <span class="font-bold text-green-400">{{ block.settings.after_leads | default: '2,400/month' }}</span>
+              </div>
+              <div class="flex items-center justify-between py-3 border-b border-white/[0.05] last:border-0">
+                <div class="flex items-center gap-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-green-400" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+                  <span class="text-white/50 text-sm">Conversion Rate</span>
+                </div>
+                <span class="font-bold text-green-400">{{ block.settings.after_conversion | default: '4.8%' }}</span>
+              </div>
+              <div class="flex items-center justify-between py-3 border-b border-white/[0.05] last:border-0">
+                <div class="flex items-center gap-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-green-400" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <span class="text-white/50 text-sm">Work Hours</span>
+                </div>
+                <span class="font-bold text-green-400">{{ block.settings.after_hours | default: '10hrs/week (automated)' }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-12 text-center">
+            {% if block.settings.quote != blank %}
+              <blockquote class="text-2xl text-white/60 italic max-w-2xl mx-auto">"{{ block.settings.quote }}"</blockquote>
+            {% endif %}
+            {% if block.settings.attribution != blank %}
+              <p class="text-white/30 mt-4">{{ block.settings.attribution }}</p>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
 </section>
+
+<script>
+(function() {
+  var section = document.querySelector('[data-transformation]');
+  if (!section) return;
+  var tabs = section.querySelectorAll('.transformation-tab');
+  var contents = section.querySelectorAll('.transformation-content');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var index = this.getAttribute('data-index');
+      tabs.forEach(function(t) {
+        t.classList.remove('bg-white', 'text-black');
+        t.classList.add('bg-white/[0.03]', 'text-white/60', 'border', 'border-white/10');
+      });
+      this.classList.remove('bg-white/[0.03]', 'text-white/60', 'border', 'border-white/10');
+      this.classList.add('bg-white', 'text-black');
+      contents.forEach(function(c) {
+        c.classList.toggle('hidden', c.getAttribute('data-index') !== index);
+      });
+    });
+  });
+})();
+</script>
 
 {% schema %}
 {
@@ -59,41 +152,85 @@
   "tag": "section",
   "class": "section-transformation",
   "settings": [
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Real Transformations" },
-    { "type": "textarea", "id": "subtitle", "label": "Subtitle" },
-    { "type": "text", "id": "before_title", "label": "Before column title", "default": "BEFORE UKIYO" },
-    { "type": "text", "id": "before_subtitle", "label": "Before column subtitle" },
-    { "type": "text", "id": "after_title", "label": "After column title", "default": "AFTER UKIYO" },
-    { "type": "text", "id": "after_subtitle", "label": "After column subtitle" },
-    { "type": "textarea", "id": "quote", "label": "Client quote" },
-    { "type": "text", "id": "math_heading", "label": "Math section heading (e.g. The Math Doesn't Lie)" },
-    { "type": "textarea", "id": "math_subtitle", "label": "Math section subtitle" }
+    { "type": "text", "id": "strap", "label": "Strap line", "default": "(Before & After)" },
+    { "type": "text", "id": "title_before", "label": "Title (before gradient)", "default": "Real" },
+    { "type": "text", "id": "title_gradient", "label": "Title (gradient part)", "default": "Transformations" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "These aren't hypotheticals. These are actual results from real clients." }
   ],
   "blocks": [
-    { "type": "before_item", "name": "Before item", "settings": [
-      { "type": "text", "id": "title", "label": "Title" },
-      { "type": "textarea", "id": "description", "label": "Description" }
-    ]},
-    { "type": "after_stat", "name": "After stat", "settings": [
-      { "type": "text", "id": "value", "label": "Value" },
-      { "type": "text", "id": "label", "label": "Label" }
-    ]},
-    { "type": "math_stat", "name": "Math stat", "settings": [
-      { "type": "text", "id": "value", "label": "Value" },
-      { "type": "text", "id": "label", "label": "Label" },
-      { "type": "text", "id": "note", "label": "Note (small text)" }
-    ]}
+    {
+      "type": "transformation",
+      "name": "Client transformation",
+      "settings": [
+        { "type": "text", "id": "filter_label", "label": "Filter tab label", "default": "E-Commerce Brand" },
+        { "type": "text", "id": "before_heading", "label": "Before column heading", "default": "BEFORE UKIYO" },
+        { "type": "text", "id": "after_heading", "label": "After column heading", "default": "AFTER UKIYO" },
+        { "type": "text", "id": "timeline", "label": "Timeline (e.g. In 6 months)", "default": "In 6 months" },
+        { "type": "text", "id": "before_revenue", "label": "Before: Monthly Revenue", "default": "$12K/mo" },
+        { "type": "text", "id": "before_leads", "label": "Before: Monthly Leads", "default": "50/month" },
+        { "type": "text", "id": "before_conversion", "label": "Before: Conversion Rate", "default": "1.2%" },
+        { "type": "text", "id": "before_hours", "label": "Before: Work Hours", "default": "80hrs/week manual work" },
+        { "type": "text", "id": "after_revenue", "label": "After: Monthly Revenue", "default": "$147K/mo" },
+        { "type": "text", "id": "after_leads", "label": "After: Monthly Leads", "default": "2,400/month" },
+        { "type": "text", "id": "after_conversion", "label": "After: Conversion Rate", "default": "4.8%" },
+        { "type": "text", "id": "after_hours", "label": "After: Work Hours", "default": "10hrs/week (automated)" },
+        { "type": "textarea", "id": "quote", "label": "Testimonial quote", "default": "Ukiyo transformed our entire business. We went from struggling to thriving." },
+        { "type": "text", "id": "attribution", "label": "Attribution", "default": "E-Commerce Brand • Fashion & Apparel" }
+      ]
+    }
   ],
   "presets": [
     {
       "name": "Transformation",
       "blocks": [
-        { "type": "before_item", "settings": { "title": "DIY Design Disasters", "description": "Spent watching Canva tutorials while your competitors hire professionals" } },
-        { "type": "before_item", "settings": { "title": "Money Left on Table", "description": "Revenue you're missing because your website looks like it's from 2009" } },
-        { "type": "after_stat", "settings": { "value": "0 hrs", "label": "Wasted on DIY fails" } },
-        { "type": "after_stat", "settings": { "value": "+$340%", "label": "Average revenue growth" } },
-        { "type": "after_stat", "settings": { "value": "100%", "label": "Sanity preserved" } },
-        { "type": "after_stat", "settings": { "value": "1000+ hrs", "label": "Saved annually" } }
+        {
+          "type": "transformation",
+          "settings": {
+            "filter_label": "E-Commerce Brand",
+            "before_revenue": "$12K/mo",
+            "before_leads": "50/month",
+            "before_conversion": "1.2%",
+            "before_hours": "80hrs/week manual work",
+            "after_revenue": "$147K/mo",
+            "after_leads": "2,400/month",
+            "after_conversion": "4.8%",
+            "after_hours": "10hrs/week (automated)",
+            "quote": "Ukiyo transformed our entire business. We went from struggling to thriving.",
+            "attribution": "E-Commerce Brand • Fashion & Apparel"
+          }
+        },
+        {
+          "type": "transformation",
+          "settings": {
+            "filter_label": "SaaS Startup",
+            "before_revenue": "$8K/mo",
+            "before_leads": "120/month",
+            "before_conversion": "0.8%",
+            "before_hours": "60hrs/week",
+            "after_revenue": "$89K/mo",
+            "after_leads": "1,800/month",
+            "after_conversion": "3.2%",
+            "after_hours": "15hrs/week (automated)",
+            "quote": "From chaos to clarity. Ukiyo built the systems we needed to scale.",
+            "attribution": "SaaS Startup • B2B Software"
+          }
+        },
+        {
+          "type": "transformation",
+          "settings": {
+            "filter_label": "Local Service Business",
+            "before_revenue": "$25K/mo",
+            "before_leads": "30/month",
+            "before_conversion": "2%",
+            "before_hours": "70hrs/week",
+            "after_revenue": "$92K/mo",
+            "after_leads": "450/month",
+            "after_conversion": "5.5%",
+            "after_hours": "20hrs/week (automated)",
+            "quote": "Our revenue tripled. Ukiyo gave us a real brand and a real pipeline.",
+            "attribution": "Local Service Business • Home Services"
+          }
+        }
       ]
     }
   ]

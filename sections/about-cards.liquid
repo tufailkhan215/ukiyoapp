@@ -1,0 +1,138 @@
+{% comment %} About Cards: two-column grid of cards with gradient bg, top-right glow, badge, title, paragraphs, tags. {% endcomment %}
+{% assign card_blocks = section.blocks | where: 'type', 'card' %}
+<section class="relative py-24 lg:py-32 bg-black">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
+      {% for block in card_blocks %}
+        {% assign style = block.settings.style %}
+        {% if style == 'dark' %}
+          <div class="relative p-8 rounded-3xl bg-gradient-to-br from-gray-500/5 to-gray-700/5 border border-white/10" {{ block.shopify_attributes }}>
+            <div class="absolute top-0 right-0 w-64 h-64 bg-gray-500/5 rounded-full blur-3xl" aria-hidden="true"></div>
+        {% else %}
+          <div class="relative p-8 rounded-3xl bg-gradient-to-br from-white/5 to-gray-500/5 border border-white/10" {{ block.shopify_attributes }}>
+            <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl" aria-hidden="true"></div>
+        {% endif %}
+          {% if block.settings.badge != blank %}
+            <span class="text-[10px] font-medium text-white/60 tracking-[0.3em] uppercase block mb-4">{{ block.settings.badge }}</span>
+          {% endif %}
+          {% if block.settings.title != blank %}
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">{{ block.settings.title }}</h2>
+          {% endif %}
+          {% if block.settings.paragraph_1 != blank %}
+            <p class="text-white/50 leading-relaxed mb-6">
+              {{ block.settings.paragraph_1 }}{% if block.settings.paragraph_1_highlight != blank %} <span class="text-white font-medium">{{ block.settings.paragraph_1_highlight }}</span>.{% endif %}
+            </p>
+          {% endif %}
+          {% if block.settings.paragraph_2 != blank %}
+            <p class="text-white/50 leading-relaxed">{{ block.settings.paragraph_2 }}</p>
+          {% endif %}
+          {% assign tag_lines = block.settings.tags | newline_to_br | split: '<br />' %}
+          {% if tag_lines.size > 0 %}
+            <div class="flex flex-wrap gap-2 mt-6">
+              {% for line in tag_lines %}
+                {% assign tag = line | strip %}
+                {% if tag != '' %}
+                  <span class="px-3 py-1 rounded-full bg-white/10 text-white/60 text-xs">{{ tag }}</span>
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Cards",
+  "tag": "section",
+  "class": "section-about-cards",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Card style",
+          "options": [
+            { "value": "light", "label": "Light (white/gray gradient, white glow)" },
+            { "value": "dark", "label": "Dark (gray gradient, gray glow)" }
+          ],
+          "default": "light"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge (small label above title)",
+          "default": "(Brand Development)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "UKIYO PRODUCTIONS"
+        },
+        {
+          "type": "textarea",
+          "id": "paragraph_1",
+          "label": "First paragraph (before highlight)",
+          "default": "At Ukiyo Productions, we create impactful content that drives real results. We've partnered with leaders like"
+        },
+        {
+          "type": "text",
+          "id": "paragraph_1_highlight",
+          "label": "First paragraph highlight (bold, optional)",
+          "default": "Polaroid, SXSW, Coachella, Wandrd, and Adidas"
+        },
+        {
+          "type": "textarea",
+          "id": "paragraph_2",
+          "label": "Second paragraph",
+          "default": "We blend storytelling with strategy to capture attention and drive growth."
+        },
+        {
+          "type": "textarea",
+          "id": "tags",
+          "label": "Tags (one per line)",
+          "default": "Branding\nContent\nStrategy"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Cards",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "style": "light",
+            "badge": "(Brand Development)",
+            "title": "UKIYO PRODUCTIONS",
+            "paragraph_1": "At Ukiyo Productions, we create impactful content that drives real results. We've partnered with leaders like",
+            "paragraph_1_highlight": "Polaroid, SXSW, Coachella, Wandrd, and Adidas",
+            "paragraph_2": "We blend storytelling with strategy to capture attention and drive growth.",
+            "tags": "Branding\nContent\nStrategy"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "style": "dark",
+            "badge": "(AI Solutions)",
+            "title": "AUTOMATEIQ",
+            "paragraph_1": "We leverage AI-driven automation and data optimizations to help brands work smarter and faster.",
+            "paragraph_2": "Our technology adapts to the market, keeping you ahead of the competition.",
+            "tags": "AI\nAutomation\nData"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

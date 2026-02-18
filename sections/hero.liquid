@@ -1,26 +1,60 @@
-<section class="hero liquid-marble grain-texture" id="hero">
-  <div class="hero__inner">
-    <div class="hero__subtitle-wrap">
-      <span class="hero__subtitle-line" aria-hidden="true"></span>
-      <span class="hero__subtitle">{{ section.settings.subtitle | default: 'Creative Branding Agency' }}</span>
-      <span class="hero__subtitle-line" aria-hidden="true"></span>
+{% comment %} Source structure and Tailwind classes from reference (HeroSection) {% endcomment %}
+<section class="relative min-h-[110vh] flex items-center justify-center overflow-hidden bg-black" id="hero">
+  <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black" aria-hidden="true"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30" aria-hidden="true"></div>
+  <div class="absolute inset-0 opacity-[0.02]" aria-hidden="true" style="background-image: linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px); background-size: 80px 80px;"></div>
+
+  <div class="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-12 text-center">
+    <div class="mb-10">
+      <div class="inline-flex items-center gap-4">
+        <span class="w-14 h-px bg-gradient-to-r from-transparent to-white/40" aria-hidden="true"></span>
+        <span class="text-[11px] font-medium text-white/50 tracking-[0.35em] uppercase">{{ section.settings.subtitle | default: 'Creative Branding Agency' }}</span>
+        <span class="w-14 h-px bg-gradient-to-l from-transparent to-white/40" aria-hidden="true"></span>
+      </div>
     </div>
-    <h1 class="hero__headline">
-      {{ section.settings.headline_line1 | default: 'WE BUILD BRANDS' }}
-      <span class="hero__headline-line2">{{ section.settings.headline_line2 | default: 'THAT PRINT MONEY' }}</span>
-    </h1>
-    <p class="hero__description">{{ section.settings.description | default: 'Premium brand development, AI automation, and content production for businesses ready to dominate their market.' }}</p>
-    <div class="hero__ctas">
-      {% if section.settings.cta_primary_text != blank %}
-        {% render 'button', style: 'primary', text: section.settings.cta_primary_text, url: section.settings.cta_primary_link | default: '#', shimmer: true %}
+
+    <div class="overflow-hidden mb-8">
+      <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-bold leading-[0.9] tracking-tight">
+        <span class="text-white">{{ section.settings.headline_line1 | default: 'We Create' }}</span><br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-600">{{ section.settings.headline_line2 | default: 'Exceptional' }}</span><br>
+        <span class="text-white">{{ section.settings.headline_line3 | default: 'Brand Experiences' }}</span>
+      </h1>
+    </div>
+
+    <p class="text-base md:text-lg lg:text-xl text-white/40 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
+      {{ section.settings.description | default: 'Through strategy, creativity, and cutting-edge automation—delivering impactful results that transform businesses.' }}
+    </p>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      {% if section.settings.cta_primary_text != blank and section.settings.cta_primary_link != blank %}
+        <a href="{{ section.settings.cta_primary_link }}">
+          <button type="button" class="group relative px-8 py-4 bg-white text-black rounded-full font-semibold text-base overflow-hidden">
+            <span class="relative z-10 flex items-center gap-2">
+              {{ section.settings.cta_primary_text }}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </span>
+          </button>
+        </a>
       {% endif %}
-      {% if section.settings.cta_secondary_text != blank %}
-        {% render 'button', style: 'secondary', text: section.settings.cta_secondary_text, url: section.settings.cta_secondary_link | default: '#' %}
+      {% if section.settings.cta_secondary_text != blank and section.settings.cta_secondary_link != blank %}
+        <a href="{{ section.settings.cta_secondary_link }}">
+          <button type="button" class="group px-8 py-4 border border-white/20 text-white rounded-full font-semibold text-base hover:bg-white/5 transition-all">
+            <span class="flex items-center gap-2">
+              {{ section.settings.cta_secondary_text }}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right w-5 h-5" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </span>
+          </button>
+        </a>
       {% endif %}
     </div>
-    <button type="button" class="hero__scroll scroll-indicator" data-scroll-to-next aria-label="Scroll to content">
-      {{ section.settings.scroll_label | default: 'Scroll' }}
-      {% render 'icon-scroll' %}
+  </div>
+
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
+    <button type="button" class="flex flex-col items-center gap-3 text-left cursor-pointer bg-transparent border-0 p-0 text-inherit" data-scroll-to-next aria-label="Scroll to content">
+      <span class="text-[10px] text-white/30 tracking-[0.4em] uppercase">{{ section.settings.scroll_label | default: 'Scroll' }}</span>
+      <div class="w-5 h-8 border border-white/20 rounded-full flex justify-center pt-1.5">
+        <div class="w-1 h-1.5 bg-white/50 rounded-full scroll-indicator-dot"></div>
+      </div>
     </button>
   </div>
 </section>
@@ -31,63 +65,17 @@
   "tag": "section",
   "class": "section-hero",
   "settings": [
-    {
-      "type": "text",
-      "id": "subtitle",
-      "label": "Subtitle",
-      "default": "Creative Branding Agency"
-    },
-    {
-      "type": "text",
-      "id": "headline_line1",
-      "label": "Headline line 1",
-      "default": "WE BUILD BRANDS"
-    },
-    {
-      "type": "text",
-      "id": "headline_line2",
-      "label": "Headline line 2",
-      "default": "THAT PRINT MONEY"
-    },
-    {
-      "type": "textarea",
-      "id": "description",
-      "label": "Description",
-      "default": "Premium brand development, AI automation, and content production for businesses ready to dominate their market."
-    },
-    {
-      "type": "text",
-      "id": "cta_primary_text",
-      "label": "Primary button text",
-      "default": "Start Your Project"
-    },
-    {
-      "type": "url",
-      "id": "cta_primary_link",
-      "label": "Primary button link"
-    },
-    {
-      "type": "text",
-      "id": "cta_secondary_text",
-      "label": "Secondary button text",
-      "default": "View Our Work"
-    },
-    {
-      "type": "url",
-      "id": "cta_secondary_link",
-      "label": "Secondary button link"
-    },
-    {
-      "type": "text",
-      "id": "scroll_label",
-      "label": "Scroll indicator label",
-      "default": "Scroll"
-    }
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Creative Branding Agency" },
+    { "type": "text", "id": "headline_line1", "label": "Headline line 1", "default": "We Create" },
+    { "type": "text", "id": "headline_line2", "label": "Headline line 2 (gradient)", "default": "Exceptional" },
+    { "type": "text", "id": "headline_line3", "label": "Headline line 3", "default": "Brand Experiences" },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Through strategy, creativity, and cutting-edge automation—delivering impactful results that transform businesses." },
+    { "type": "text", "id": "cta_primary_text", "label": "Primary button text", "default": "Book Discovery Call" },
+    { "type": "url", "id": "cta_primary_link", "label": "Primary button link" },
+    { "type": "text", "id": "cta_secondary_text", "label": "Secondary button text", "default": "View Case Studies" },
+    { "type": "url", "id": "cta_secondary_link", "label": "Secondary button link" },
+    { "type": "text", "id": "scroll_label", "label": "Scroll indicator label", "default": "Scroll" }
   ],
-  "presets": [
-    {
-      "name": "Hero"
-    }
-  ]
+  "presets": [{ "name": "Hero" }]
 }
 {% endschema %}

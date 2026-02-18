@@ -1,0 +1,431 @@
+{% comment %} Featured Work: strap + gradient title, filter pills, grid of project cards (4/5 aspect), popup modal with gallery. {% endcomment %}
+{% assign section_id = 'featured-work-' | append: section.id %}
+<section class="relative py-32 lg:py-40" data-testid="featured-work" data-section-id="{{ section.id }}" id="{{ section_id }}">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
+      <div>
+        {% if section.settings.strap != blank %}
+          <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-4">{{ section.settings.strap }}</span>
+        {% endif %}
+        {% if section.settings.title_before != blank or section.settings.title_gradient != blank %}
+          <h2 class="text-4xl md:text-5xl font-bold text-white">
+            {{ section.settings.title_before }}
+            {% if section.settings.title_gradient != blank %}
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_gradient }}</span>
+            {% endif %}
+          </h2>
+        {% endif %}
+      </div>
+      {% assign filter_lines = section.settings.filters_text | newline_to_br | split: '<br />' %}
+      {% if filter_lines.size > 0 %}
+        <div class="featured-work-filters flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide" role="tablist">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-funnel w-4 h-4 text-white/40 flex-shrink-0" aria-hidden="true"><path d="M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z"/></svg>
+          {% for line in filter_lines %}
+            {% assign filter_label = line | strip %}
+            {% if filter_label != '' %}
+              <button type="button" class="featured-work-filter px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 {% if forloop.first %}bg-white text-black{% else %}bg-white/5 text-white/60 border border-white/10 hover:bg-white/10{% endif %}" data-filter="{{ filter_label | escape }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}" tabindex="0">
+                {{ filter_label }}
+              </button>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="featured-work-grid grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {% for block in section.blocks %}
+        {% if block.type == 'project' %}
+          {% assign category_val = block.settings.category | strip | escape %}
+          {% comment %} Build gallery from cover + optional gallery images; count is automatic. {% endcomment %}
+          {% assign gallery_count = 0 %}
+          {% if block.settings.image != blank %}{% assign gallery_count = gallery_count | plus: 1 %}{% endif %}
+          {% if block.settings.gallery_image_2 != blank %}{% assign gallery_count = gallery_count | plus: 1 %}{% endif %}
+          {% if block.settings.gallery_image_3 != blank %}{% assign gallery_count = gallery_count | plus: 1 %}{% endif %}
+          {% if block.settings.gallery_image_4 != blank %}{% assign gallery_count = gallery_count | plus: 1 %}{% endif %}
+          {% if block.settings.gallery_image_5 != blank %}{% assign gallery_count = gallery_count | plus: 1 %}{% endif %}
+          {% if block.settings.gallery_image_6 != blank %}{% assign gallery_count = gallery_count | plus: 1 %}{% endif %}
+          {% if gallery_count == 0 %}{% assign gallery_count = 1 %}{% endif %}
+          {% assign gallery_parts = '' %}
+          {% if block.settings.image != blank %}
+            {% assign u = block.settings.image | image_url: width: 800 %}
+            {% assign gallery_parts = gallery_parts | append: '"' | append: u | append: '"' %}
+          {% endif %}
+          {% if block.settings.gallery_image_2 != blank %}
+            {% assign u = block.settings.gallery_image_2 | image_url: width: 800 %}
+            {% if gallery_parts != '' %}{% assign gallery_parts = gallery_parts | append: ',' %}{% endif %}
+            {% assign gallery_parts = gallery_parts | append: '"' | append: u | append: '"' %}
+          {% endif %}
+          {% if block.settings.gallery_image_3 != blank %}
+            {% assign u = block.settings.gallery_image_3 | image_url: width: 800 %}
+            {% if gallery_parts != '' %}{% assign gallery_parts = gallery_parts | append: ',' %}{% endif %}
+            {% assign gallery_parts = gallery_parts | append: '"' | append: u | append: '"' %}
+          {% endif %}
+          {% if block.settings.gallery_image_4 != blank %}
+            {% assign u = block.settings.gallery_image_4 | image_url: width: 800 %}
+            {% if gallery_parts != '' %}{% assign gallery_parts = gallery_parts | append: ',' %}{% endif %}
+            {% assign gallery_parts = gallery_parts | append: '"' | append: u | append: '"' %}
+          {% endif %}
+          {% if block.settings.gallery_image_5 != blank %}
+            {% assign u = block.settings.gallery_image_5 | image_url: width: 800 %}
+            {% if gallery_parts != '' %}{% assign gallery_parts = gallery_parts | append: ',' %}{% endif %}
+            {% assign gallery_parts = gallery_parts | append: '"' | append: u | append: '"' %}
+          {% endif %}
+          {% if block.settings.gallery_image_6 != blank %}
+            {% assign u = block.settings.gallery_image_6 | image_url: width: 800 %}
+            {% if gallery_parts != '' %}{% assign gallery_parts = gallery_parts | append: ',' %}{% endif %}
+            {% assign gallery_parts = gallery_parts | append: '"' | append: u | append: '"' %}
+          {% endif %}
+          {% assign gallery_images_json = '[' | append: gallery_parts | append: ']' %}
+          <button type="button" class="featured-work-card group relative aspect-[4/5] overflow-hidden rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 transition-colors cursor-pointer" data-index="{{ forloop.index0 }}" data-category="{{ category_val }}" data-gallery-images="{{ gallery_images_json | escape }}" data-gallery-count="{{ gallery_count }}" {{ block.shopify_attributes }}>
+            {% if block.settings.image != blank %}
+              <img
+                alt="{{ block.settings.title | default: 'Project' | escape }}"
+                class="absolute inset-0 w-full h-full object-cover"
+                src="{{ block.settings.image | image_url: width: 800 }}"
+                width="800"
+                height="1000"
+                loading="lazy"
+              >
+            {% else %}
+              <div class="absolute inset-0 bg-white/[0.05] flex items-center justify-center"><span class="text-white/20 text-sm">Image</span></div>
+            {% endif %}
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+            {% if block.settings.category != blank %}
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-xs text-white/80 border border-white/10">{{ block.settings.category }}</span>
+              </div>
+            {% endif %}
+            {% if gallery_count > 1 %}
+              <div class="absolute top-4 right-4">
+                <span class="px-2 py-1 bg-black/50 backdrop-blur-sm rounded-full text-xs text-white/80">1/{{ gallery_count }}</span>
+              </div>
+            {% endif %}
+            <div class="absolute bottom-0 left-0 right-0 p-6">
+              {% if block.settings.title != blank %}
+                <h3 class="text-xl font-bold text-white mb-2 leading-tight">{{ block.settings.title }}</h3>
+              {% endif %}
+              {% if block.settings.description != blank %}
+                <p class="text-white/50 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-[10px] transition-all duration-300">{{ block.settings.description }}</p>
+              {% endif %}
+            </div>
+          </button>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% comment %} Popup modal: matches source – full-screen overlay, gallery nav, category, title, description, pagination bars, save/share. {% endcomment %}
+<div id="{{ section_id }}-modal-backdrop" class="featured-work-modal-backdrop fixed inset-0 z-50 bg-black/95 backdrop-blur-xl hidden" aria-hidden="true"></div>
+<div id="{{ section_id }}-modal" class="featured-work-modal fixed inset-0 z-50 hidden flex" role="dialog" aria-modal="true" aria-labelledby="{{ section_id }}-modal-title" aria-hidden="true">
+  <button type="button" id="{{ section_id }}-modal-close" class="absolute top-6 right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors z-10" aria-label="Close">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+  </button>
+  <button type="button" id="{{ section_id }}-modal-prev" class="featured-work-modal-prev absolute left-4 md:left-8 top-1/2 -translate-y-1/2 p-3 md:p-4 rounded-full bg-white/10 hover:bg-white/20 transition-colors z-10 hidden" aria-label="Previous">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 md:w-8 md:h-8 text-white" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+  </button>
+  <button type="button" id="{{ section_id }}-modal-next" class="featured-work-modal-next absolute right-4 md:right-8 top-1/2 -translate-y-1/2 p-3 md:p-4 rounded-full bg-white/10 hover:bg-white/20 transition-colors z-10 hidden" aria-label="Next">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 md:w-8 md:h-8 text-white" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+  </button>
+  <div class="flex flex-col lg:flex-row w-full h-full items-center justify-center p-4 lg:p-12 gap-8">
+    <div class="featured-work-modal-image flex-1 flex items-center justify-center max-w-4xl">
+      <img id="{{ section_id }}-modal-img" src="" alt="" class="max-w-full max-h-[70vh] lg:max-h-[80vh] object-contain rounded-2xl">
+    </div>
+    <div class="featured-work-modal-content lg:w-80 flex-shrink-0 overflow-y-auto">
+      <div id="{{ section_id }}-modal-category"></div>
+      <h2 id="{{ section_id }}-modal-title" class="text-3xl md:text-4xl font-bold text-white mb-4"></h2>
+      <p id="{{ section_id }}-modal-description" class="text-white/50 leading-relaxed mb-6"></p>
+      <div id="{{ section_id }}-modal-pagination" class="flex items-center gap-2 mb-6"></div>
+      <div class="flex gap-3">
+        <button type="button" class="featured-work-modal-save flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-white/70 hover:bg-white/20 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
+          <span>Save</span>
+        </button>
+        <button type="button" class="featured-work-modal-share flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-white/70 hover:bg-white/20 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg>
+          <span>Share</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var section = document.getElementById('{{ section_id }}');
+  if (!section) return;
+  var backdrop = document.getElementById('{{ section_id }}-modal-backdrop');
+  var modal = document.getElementById('{{ section_id }}-modal');
+  var modalImg = document.getElementById('{{ section_id }}-modal-img');
+  var modalCategory = document.getElementById('{{ section_id }}-modal-category');
+  var modalTitle = document.getElementById('{{ section_id }}-modal-title');
+  var modalDescription = document.getElementById('{{ section_id }}-modal-description');
+  var modalPagination = document.getElementById('{{ section_id }}-modal-pagination');
+  var modalPrev = document.getElementById('{{ section_id }}-modal-prev');
+  var modalNext = document.getElementById('{{ section_id }}-modal-next');
+  var modalClose = document.getElementById('{{ section_id }}-modal-close');
+  var cards = section.querySelectorAll('.featured-work-card');
+  var currentIndex = 0;
+  var currentImageIndex = 0;
+  var projects = [];
+
+  cards.forEach(function(card, idx) {
+    var img = card.querySelector('img');
+    var category = card.getAttribute('data-category') || '';
+    var title = card.querySelector('h3') ? card.querySelector('h3').textContent.trim() : '';
+    var desc = card.querySelector('p') ? card.querySelector('p').textContent.trim() : '';
+    var galleryImagesAttr = card.getAttribute('data-gallery-images') || '';
+    var images = [];
+    if (galleryImagesAttr) {
+      try {
+        var urls = JSON.parse(galleryImagesAttr).filter(function(u) { return u && String(u).trim(); });
+        if (urls.length > 0) images = urls;
+      } catch (e) {
+        console.warn('Failed to parse gallery images:', e);
+      }
+    }
+    if (images.length === 0 && img && img.src) {
+      images = [img.src];
+    }
+    var imageCount = parseInt(card.getAttribute('data-gallery-count'), 10);
+    if (isNaN(imageCount) || imageCount < 1) {
+      imageCount = images.length > 0 ? images.length : 1;
+    }
+    projects.push({ category: category, title: title, description: desc, images: images, imageCount: imageCount });
+  });
+
+  function updatePagination() {
+    var proj = projects[currentIndex];
+    if (!proj) return;
+    modalPagination.innerHTML = '';
+    for (var i = 0; i < proj.imageCount; i++) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'h-1 rounded-full transition-all duration-300 ' + (i === currentImageIndex ? 'bg-white w-8' : 'bg-white/30 w-4 hover:bg-white/50');
+      btn.setAttribute('aria-label', 'Image ' + (i + 1) + ' of ' + proj.imageCount);
+      modalPagination.appendChild(btn);
+    }
+  }
+
+  function openModal(index) {
+    currentIndex = index;
+    currentImageIndex = 0;
+    var proj = projects[index];
+    if (!proj) return;
+    modalImg.src = proj.images[0] || '';
+    modalImg.alt = proj.title || '';
+    modalTitle.textContent = proj.title;
+    modalDescription.textContent = proj.description;
+    modalCategory.innerHTML = proj.category ? '<span class="inline-block px-3 py-1 bg-white/10 rounded-full text-xs text-white/70 uppercase tracking-wider mb-4">' + proj.category + '</span>' : '';
+    updatePagination();
+    if (proj.imageCount > 1) {
+      if (modalPrev) modalPrev.classList.remove('hidden');
+      if (modalNext) modalNext.classList.remove('hidden');
+    } else {
+      if (modalPrev) modalPrev.classList.add('hidden');
+      if (modalNext) modalNext.classList.add('hidden');
+    }
+    backdrop.classList.remove('hidden');
+    backdrop.setAttribute('aria-hidden', 'false');
+    modal.classList.remove('hidden');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (modalClose) modalClose.focus();
+  }
+
+  function closeModal() {
+    backdrop.classList.add('hidden');
+    backdrop.setAttribute('aria-hidden', 'true');
+    modal.classList.add('hidden');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    var card = cards[currentIndex];
+    if (card) card.focus();
+  }
+
+  function nextImage() {
+    var proj = projects[currentIndex];
+    if (!proj || proj.imageCount <= 1) return;
+    currentImageIndex = (currentImageIndex + 1) % proj.imageCount;
+    if (modalImg && proj.images[currentImageIndex]) {
+      modalImg.src = proj.images[currentImageIndex];
+    }
+    updatePagination();
+  }
+
+  function prevImage() {
+    var proj = projects[currentIndex];
+    if (!proj || proj.imageCount <= 1) return;
+    currentImageIndex = (currentImageIndex - 1 + proj.imageCount) % proj.imageCount;
+    if (modalImg && proj.images[currentImageIndex]) {
+      modalImg.src = proj.images[currentImageIndex];
+    }
+    updatePagination();
+  }
+
+  cards.forEach(function(card, idx) {
+    card.addEventListener('click', function() { openModal(idx); });
+  });
+
+  if (backdrop) backdrop.addEventListener('click', closeModal);
+  if (modalClose) modalClose.addEventListener('click', closeModal);
+  if (modal) {
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) closeModal();
+    });
+  }
+  if (modalPrev) modalPrev.addEventListener('click', prevImage);
+  if (modalNext) modalNext.addEventListener('click', nextImage);
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) closeModal();
+    if (e.key === 'ArrowLeft' && modal && !modal.classList.contains('hidden')) prevImage();
+    if (e.key === 'ArrowRight' && modal && !modal.classList.contains('hidden')) nextImage();
+  });
+
+  var filters = section.querySelectorAll('.featured-work-filter');
+  filters.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var filter = this.getAttribute('data-filter');
+      filters.forEach(function(b) {
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+        b.classList.remove('bg-white', 'text-black');
+        b.classList.add('bg-white/5', 'text-white/60', 'border', 'border-white/10');
+      });
+      btn.classList.add('bg-white', 'text-black');
+      btn.classList.remove('bg-white/5', 'text-white/60', 'border', 'border-white/10');
+      cards.forEach(function(card) {
+        var cat = (card.getAttribute('data-category') || '').trim();
+        var show = filter === 'All' || cat === filter;
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Featured Work",
+  "tag": "section",
+  "class": "section-featured-work",
+  "settings": [
+    {
+      "type": "text",
+      "id": "strap",
+      "label": "Strap (small label above title)",
+      "default": "(Our Work)"
+    },
+    {
+      "type": "text",
+      "id": "title_before",
+      "label": "Title (before gradient part)",
+      "default": "Featured "
+    },
+    {
+      "type": "text",
+      "id": "title_gradient",
+      "label": "Title (gradient part)",
+      "default": "Projects"
+    },
+    {
+      "type": "textarea",
+      "id": "filters_text",
+      "label": "Filter buttons (one per line, first = All)",
+      "default": "All\nBrand Partnership\nAdventure Travel\nEnergy & Lifestyle\nFashion & Lifestyle\nCulinary\nHospitality"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "project",
+      "name": "Project",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Category (for filter)",
+          "default": "Brand Partnership"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Short description"
+        },
+        {
+          "type": "header",
+          "content": "Gallery (optional extra images)"
+        },
+        {
+          "type": "paragraph",
+          "content": "Cover image above is the first slide. Add more images below to build the popup gallery. Count and badge (e.g. 1/3) are automatic."
+        },
+        {
+          "type": "image_picker",
+          "id": "gallery_image_2",
+          "label": "Gallery image 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "gallery_image_3",
+          "label": "Gallery image 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "gallery_image_4",
+          "label": "Gallery image 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "gallery_image_5",
+          "label": "Gallery image 5"
+        },
+        {
+          "type": "image_picker",
+          "id": "gallery_image_6",
+          "label": "Gallery image 6"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Work",
+      "settings": {
+        "strap": "(Our Work)",
+        "title_before": "Featured ",
+        "title_gradient": "Projects",
+        "filters_text": "All\nBrand Partnership\nAdventure Travel\nEnergy & Lifestyle\nFashion & Lifestyle\nCulinary\nHospitality"
+      },
+      "blocks": [
+        { "type": "project", "settings": { "category": "Brand Partnership", "title": "POLAROID", "description": "Nostalgic brand activation campaign bridging classic aesthetics with contemporary audiences." } },
+        { "type": "project", "settings": { "category": "Adventure Travel", "title": "WANDRD", "description": "Multi-platform content strategy capturing the spirit of adventure travel." } },
+        { "type": "project", "settings": { "category": "Energy & Lifestyle", "title": "MONSTER", "description": "High-energy brand content and experiential marketing campaigns." } },
+        { "type": "project", "settings": { "category": "Fashion & Lifestyle", "title": "POPPY.CALIFORNIA", "description": "California-inspired brand storytelling and visual identity development." } },
+        { "type": "project", "settings": { "category": "E-commerce", "title": "FURTRADERS", "description": "Complete brand refresh with content strategy and e-commerce optimization." } },
+        { "type": "project", "settings": { "category": "Lifestyle & Wellness", "title": "SUPRAMOOD", "description": "Comprehensive brand strategy with podcast series and affiliate program." } },
+        { "type": "project", "settings": { "category": "Technology", "title": "DJI", "description": "Aerial photography and drone content creation partnership." } },
+        { "type": "project", "settings": { "category": "Streetwear", "title": "CLSC", "description": "Urban streetwear brand activation and cultural marketing." } },
+        { "type": "project", "settings": { "category": "Travel & Experience", "title": "MAVERICK HELICOPTERS", "description": "Luxury travel experience content and brand storytelling." } },
+        { "type": "project", "settings": { "category": "Media & Culture", "title": "HIGHSNOBIETY", "description": "Editorial content partnership and cultural brand activation." } },
+        { "type": "project", "settings": { "category": "Culinary", "title": "JI RESTAURANT | BALI INDONESIA", "description": "Balinese fine dining experience captured through visual storytelling." } },
+        { "type": "project", "settings": { "category": "Hospitality", "title": "SATORI | MAUI", "description": "Hawaiian wellness retreat brand development and content creation." } },
+        { "type": "project", "settings": { "category": "Culinary", "title": "CHAI'BA | BALI INDONESIA", "description": "Indian-inspired cuisine brand story and visual identity." } },
+        { "type": "project", "settings": { "category": "Hospitality", "title": "TWO HANDS | AUSTIN TEXAS", "description": "Austin café brand activation and social media content strategy." } },
+        { "type": "project", "settings": { "category": "Culinary", "title": "DAKAN | CALIFORNIA", "description": "California fusion restaurant brand development and photography." } },
+        { "type": "project", "settings": { "category": "Entertainment", "title": "HARDROCK | CALIFORNIA", "description": "Iconic entertainment venue content creation and brand activation." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

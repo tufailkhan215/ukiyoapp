@@ -1,0 +1,76 @@
+{% comment %} Single article: uses global article object — image, meta, title, content. {% endcomment %}
+<article class="relative py-16 lg:py-24 overflow-hidden bg-black" {{ section.shopify_attributes }}>
+  <div class="max-w-[1080px] mx-auto px-6 lg:px-12">
+    {% if article.tags.first != blank %}
+      <div class="mb-4">
+        <span class="text-xs text-white/50 uppercase tracking-wider">{{ article.tags.first }}</span>
+      </div>
+    {% endif %}
+    <h1 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">{{ article.title }}</h1>
+    <div class="text-white/40 text-sm mb-8">
+      {{ article.published_at | date: '%B %d, %Y' }}
+      {% if article.author != blank %} • {{ article.author }}{% endif %}
+      {% if article.content != blank %} • {{ article.content | strip_html | split: ' ' | size | divided_by: 200 | at_least: 1 }} min read{% endif %}
+    </div>
+
+    {% if article.image and section.settings.show_image %}
+      <div class="relative aspect-[16/10] overflow-hidden rounded-2xl mb-10">
+        <img
+          alt="{{ article.image.alt | default: article.title | escape }}"
+          class="w-full h-full object-cover"
+          src="{{ article.image | image_url: width: 1200 }}"
+          width="1200"
+          height="750"
+          loading="eager"
+        >
+      </div>
+    {% endif %}
+
+    <div class="article-content text-white/70 leading-relaxed prose prose-invert max-w-none">
+      {{ article.content }}
+    </div>
+
+    {% if section.settings.show_author_bio and article.user != blank %}
+      <div class="mt-12 pt-8 border-t border-white/10">
+        <p class="text-white/50 text-sm">
+          {% if article.user.name != blank %}<span class="text-white/70 font-medium">{{ article.user.name }}</span>{% endif %}
+          {% if article.user.bio != blank %} — {{ article.user.bio }}{% endif %}
+        </p>
+      </div>
+    {% endif %}
+  </div>
+</article>
+
+<style>
+  .article-content h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.75rem; color: rgb(255 255 255); }
+  .article-content h3 { font-size: 1.25rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem; color: rgb(255 255 255); }
+  .article-content p { margin-bottom: 1rem; }
+  .article-content a { color: rgb(212 212 212); text-decoration: underline; }
+  .article-content ul, .article-content ol { margin: 1rem 0; padding-left: 1.5rem; }
+  .article-content img { max-width: 100%; height: auto; border-radius: 0.5rem; margin: 1rem 0; }
+</style>
+
+{% schema %}
+{
+  "name": "Article",
+  "tag": "section",
+  "class": "section-main-article",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "label": "Show featured image",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author_bio",
+      "label": "Show author bio",
+      "default": false
+    }
+  ],
+  "presets": [
+    { "name": "Article" }
+  ]
+}
+{% endschema %}

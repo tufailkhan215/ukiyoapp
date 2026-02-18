@@ -1,0 +1,269 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "shop_sub_page_intro_7qp3nq": {
+      "type": "shop-sub-page-intro",
+      "blocks": {
+        "tag_dKGfXH": {
+          "type": "tag",
+          "settings": {
+            "icon": "play",
+            "label": "On-Demand",
+            "accent": false,
+            "highlight": false
+          }
+        },
+        "tag_U84VpE": {
+          "type": "tag",
+          "settings": {
+            "icon": "users",
+            "label": "5K+ Students",
+            "accent": false,
+            "highlight": false
+          }
+        },
+        "tag_i4VcqE": {
+          "type": "tag",
+          "settings": {
+            "icon": "sparkles",
+            "label": "Free Courses Available",
+            "accent": false,
+            "highlight": true
+          }
+        }
+      },
+      "block_order": [
+        "tag_dKGfXH",
+        "tag_U84VpE",
+        "tag_i4VcqE"
+      ],
+      "name": "Shop Sub Page Intro (Courses)",
+      "settings": {
+        "back_link_text": "Back to Shop",
+        "back_link_url": "",
+        "category_label": "23 Courses",
+        "category_icon": "graduation_cap",
+        "category_icon_glow": true,
+        "title_line_1": "LEARN.",
+        "title_line_2": "BUILD. GROW.",
+        "title_line_3": "",
+        "description": "Practical, no-fluff courses from industry experts. Learn proven frameworks you can apply immediately.",
+        "color_theme": "purple",
+        "show_circle": true
+      }
+    },
+    "shop_sub_page_about_BKNMBT": {
+      "type": "shop-sub-page-about",
+      "blocks": {
+        "stat_gCttVx": {
+          "type": "stat",
+          "settings": {
+            "value": "50+",
+            "label": "Video Lessons",
+            "use_gradient": false
+          }
+        },
+        "stat_YMfWYy": {
+          "type": "stat",
+          "settings": {
+            "value": "15hrs",
+            "label": "Total Content",
+            "use_gradient": false
+          }
+        },
+        "stat_PfA9ea": {
+          "type": "stat",
+          "settings": {
+            "value": "5K+",
+            "label": "Students Enrolled",
+            "use_gradient": false
+          }
+        },
+        "stat_jjKjLL": {
+          "type": "stat",
+          "settings": {
+            "value": "4",
+            "label": "Avg Rating",
+            "use_gradient": false
+          }
+        },
+        "feature_qtYHD6": {
+          "type": "feature",
+          "settings": {
+            "icon": "play",
+            "title": "On-Demand Videos",
+            "description": "Learn at your own pace, anytime, anywhere"
+          }
+        },
+        "feature_RtF8EC": {
+          "type": "feature",
+          "settings": {
+            "icon": "book_open",
+            "title": "Downloadable Resources",
+            "description": "Templates, checklists, and swipe files included"
+          }
+        },
+        "feature_TzfnRy": {
+          "type": "feature",
+          "settings": {
+            "icon": "award",
+            "title": "Completion Certificates",
+            "description": "Showcase your new skills with verifiable credentials"
+          }
+        },
+        "category_row_y8HjGf": {
+          "type": "category_row",
+          "settings": {
+            "label": "Content Creation & Visual Media",
+            "count": "6 courses",
+            "subtext": "—",
+            "dot_color": "purple"
+          }
+        },
+        "category_row_9YkkmR": {
+          "type": "category_row",
+          "settings": {
+            "label": "Marketing & Brand",
+            "count": "3 courses",
+            "subtext": "—",
+            "dot_color": "pink"
+          }
+        },
+        "category_row_gGTXWd": {
+          "type": "category_row",
+          "settings": {
+            "label": "Scaling & Growth",
+            "count": "2 courses",
+            "subtext": "—",
+            "dot_color": "fuchsia"
+          }
+        },
+        "skill_t9dFWG": {
+          "type": "skill",
+          "settings": {
+            "label": "AI Image Generation"
+          }
+        },
+        "skill_BMhyQ7": {
+          "type": "skill",
+          "settings": {
+            "label": "Video Production"
+          }
+        },
+        "skill_aCBBaf": {
+          "type": "skill",
+          "settings": {
+            "label": "Prompt Engineering"
+          }
+        },
+        "skill_J4xdFD": {
+          "type": "skill",
+          "settings": {
+            "label": "Brand Systems"
+          }
+        },
+        "skill_hPK4tJ": {
+          "type": "skill",
+          "settings": {
+            "label": "Content Scaling"
+          }
+        }
+      },
+      "block_order": [
+        "stat_gCttVx",
+        "stat_YMfWYy",
+        "stat_PfA9ea",
+        "stat_jjKjLL",
+        "feature_qtYHD6",
+        "feature_RtF8EC",
+        "feature_TzfnRy",
+        "category_row_y8HjGf",
+        "category_row_9YkkmR",
+        "category_row_gGTXWd",
+        "skill_t9dFWG",
+        "skill_BMhyQ7",
+        "skill_aCBBaf",
+        "skill_J4xdFD",
+        "skill_hPK4tJ"
+      ],
+      "name": "Shop Sub Page About (Courses)",
+      "settings": {
+        "color_theme": "purple",
+        "inside_eyebrow": "Learning Approach",
+        "inside_heading": "Practical, Not Theoretical",
+        "inside_description": "Every course is built around real-world projects. You'll learn by doing—building actual campaigns, workflows, and assets you can use immediately in your work.",
+        "right_column_mode": "categories",
+        "steps_eyebrow": "How It Works",
+        "steps_heading": "Setup in 3 Steps",
+        "course_eyebrow": "Course Categories",
+        "course_heading": "Skills That Matter",
+        "show_cta_box": true,
+        "cta_heading": "Free courses available!",
+        "cta_subtext": "Start learning with no commitment",
+        "capability_eyebrow": "Agent Capabilities",
+        "capability_heading": "What They Can Do",
+        "show_agent_cta": false,
+        "agent_cta_heading": "Always Online",
+        "agent_cta_subtext": "Deploy once, available 24/7 without maintenance",
+        "bottom_mode": "skills",
+        "installation_eyebrow": "Installation",
+        "installation_heading": "Add to Your Store in 3 Steps",
+        "use_cases_eyebrow": "Popular Use Cases",
+        "skills_eyebrow": "What You'll Master"
+      }
+    },
+    "shop_sub_page_products_eBhcDy": {
+      "type": "shop-sub-page-products",
+      "name": "Shop Sub Page Products (Courses)",
+      "settings": {
+        "collection": "collection-3",
+        "card_style": "courses",
+        "sections_type_label": "Section",
+        "sections_cta_text": "View Details",
+        "show_active_badge": true,
+        "active_badge_text": "Active",
+        "agents_cta_text": "View Details",
+        "agents_max_tags": 3,
+        "type_label": "Course",
+        "default_duration": "2-4 hours",
+        "default_students": "1.2k",
+        "cta_text": "View Course",
+        "eyebrow": "(Browse)",
+        "title_suffix": "Products Available",
+        "show_live_badge": true,
+        "products_per_page": 24,
+        "columns": "4"
+      }
+    },
+    "shop_sub_page_cta_6m8Pwg": {
+      "type": "shop-sub-page-cta",
+      "name": "Shop Sub Page CTA",
+      "settings": {
+        "heading": "Get Unlimited Access",
+        "description": "Join membership and download everything for one monthly price.",
+        "button_text": "View Membership Plans",
+        "button_url": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "shop_sub_page_intro_7qp3nq",
+    "shop_sub_page_about_BKNMBT",
+    "shop_sub_page_products_eBhcDy",
+    "shop_sub_page_cta_6m8Pwg"
+  ]
+}

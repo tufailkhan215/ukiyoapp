@@ -1,38 +1,194 @@
-<nav class="header-nav" role="navigation" aria-label="Main">
-  <div class="header-nav__inner">
-    <div class="header-nav__bar">
-      <a href="{{ routes.root_url }}" class="header-nav__logo" aria-label="UKIYO Productions - Home">
-        <span class="header-nav__logo-main">{{ section.settings.logo_text | default: 'UKIYO' }}</span>
-        {% if section.settings.logo_subtext != blank %}
-          <span class="header-nav__logo-sub">{{ section.settings.logo_subtext }}</span>
-        {% endif %}
+{% comment %} Source structure and Tailwind classes from reference (ukiyo-prod.com) {% endcomment %}
+<nav class="ukiyo-nav fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent" role="navigation" aria-label="Main">
+  <div class="max-w-[1800px] mx-auto px-6 lg:px-12">
+    <div class="flex items-center justify-between h-20 lg:h-24">
+      <a class="relative z-50" href="{{ routes.root_url }}">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl lg:text-3xl font-bold text-white tracking-tighter">{{ section.settings.logo_text | default: 'UKIYO' }}</span>
+          {% if section.settings.logo_subtext != blank %}
+            <span class="text-[10px] text-white/50 font-light tracking-widest hidden sm:block">{{ section.settings.logo_subtext }}</span>
+          {% endif %}
+        </div>
       </a>
 
-      <div class="header-nav__desktop">
+      <div class="hidden lg:flex items-center gap-10">
         {% for link in linklists[section.settings.menu].links %}
-          <a href="{{ link.url }}" class="header-nav__link{% if link.active %} is-active{% endif %}">
-            <span class="header-nav__link-text">{{ link.title }}</span>
-            <span class="header-nav__underline" aria-hidden="true"></span>
-          </a>
+          {% assign show_chevron = false %}
+          {% if section.settings.dropdown_handles != blank %}
+            {% assign dropdown_handles = section.settings.dropdown_handles | split: ',' %}
+            {% for h in dropdown_handles %}
+              {% assign h_stripped = h | strip %}
+              {% if link.handle == h_stripped %}
+                {% assign show_chevron = true %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+
+          {% assign has_children = false %}
+          {% if link.links.size > 0 %}
+            {% assign has_children = true %}
+          {% endif %}
+
+          {% assign has_dropdown_blocks = false %}
+          {% assign has_dropdown_compact_block = false %}
+          {% assign compact_block = nil %}
+          {% for block in section.blocks %}
+            {% if block.type == 'dropdown_category' and block.settings.parent_handle == link.handle %}
+              {% assign has_dropdown_blocks = true %}
+            {% endif %}
+            {% if block.type == 'dropdown_compact' and block.settings.parent_handle == link.handle %}
+              {% assign has_dropdown_compact_block = true %}
+              {% if compact_block == nil %}{% assign compact_block = block %}{% endif %}
+            {% endif %}
+          {% endfor %}
+
+          {% comment %} Show dropdown trigger (chevron) when: mega handle, or has menu children, or has compact block {% endcomment %}
+          {% assign show_dropdown_trigger = false %}
+          {% if show_chevron %}
+            {% assign show_dropdown_trigger = true %}
+          {% endif %}
+          {% if has_dropdown_compact_block %}
+            {% assign show_dropdown_trigger = true %}
+          {% endif %}
+          {% if has_children %}
+            {% assign show_dropdown_trigger = true %}
+          {% endif %}
+
+          {% if show_dropdown_trigger %}
+            <div class="relative nav-dropdown" data-dropdown data-dropdown-handle="{{ link.handle }}">
+              <a class="group relative flex items-center gap-1 nav-dropdown-trigger" href="{{ link.url }}" data-dropdown-trigger aria-expanded="false" aria-haspopup="true">
+                <span class="text-sm font-medium tracking-wide transition-colors duration-300 {% if link.active %}text-white{% else %}text-white/60 hover:text-white{% endif %}">{{ link.title }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down w-4 h-4 text-white/40 transition-transform duration-300 nav-dropdown-chevron" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                <span class="absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-white to-gray-400 transition-[width] duration-300 group-hover:w-full {% if link.active %}w-full{% else %}w-0{% endif %}"></span>
+              </a>
+
+              {% if has_dropdown_blocks %}
+                {% comment %} Mega menu (from section blocks) {% endcomment %}
+                <div class="nav-dropdown-panel absolute top-full left-0 pt-4 opacity-0 invisible pointer-events-none transition-all duration-300" data-dropdown-panel aria-hidden="true">
+                  <div class="w-[600px] bg-black/95 backdrop-blur-xl border border-white/10 p-6 grid grid-cols-2 gap-6">
+                    {% for block in section.blocks %}
+                      {% if block.type == 'dropdown_category' and block.settings.parent_handle == link.handle %}
+                        <div {{ block.shopify_attributes }}>
+                          {% if block.settings.category_title != blank %}
+                            <span class="text-xs font-medium text-white/40 tracking-[0.2em] uppercase mb-3 block">{{ block.settings.category_title }}</span>
+                          {% endif %}
+                          <div class="space-y-2">
+                            {% if block.settings.links_text != blank %}
+                              {% assign link_lines = block.settings.links_text | newline_to_br | split: '<br />' %}
+                              {% for line in link_lines %}
+                                {% assign line_stripped = line | strip %}
+                                {% if line_stripped != '' %}
+                                  {% assign parts = line_stripped | split: '|' %}
+                                  {% assign label = parts[0] | strip %}
+                                  {% assign url = parts[1] | strip %}
+                                  {% if url == '' %}{% assign url = '#' %}{% endif %}
+                                  <a class="block text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all py-1" href="{{ url }}">{{ label }}</a>
+                                {% endif %}
+                              {% endfor %}
+                            {% endif %}
+                          </div>
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+              {% elsif has_dropdown_compact_block and compact_block != nil %}
+                {% comment %} Compact dropdown (ukiyo-prod style): header link + section label + links {% endcomment %}
+                {% assign b = compact_block %}
+                <div class="nav-dropdown-panel absolute top-full left-0 pt-4 opacity-0 invisible pointer-events-none transition-all duration-300" data-dropdown-panel aria-hidden="true">
+                  <div class="w-[280px] bg-black/95 backdrop-blur-xl border border-white/10 rounded-xl p-4" {{ b.shopify_attributes }}>
+                    {% if b.settings.header_title != blank or b.settings.header_url != blank %}
+                      <a class="block px-4 py-3 text-white font-medium hover:bg-white/5 rounded-lg transition-colors mb-2" href="{{ b.settings.header_url | default: '#' }}">{{ b.settings.header_title }}</a>
+                      <div class="h-px bg-white/10 my-2"></div>
+                    {% endif %}
+                    {% if b.settings.section_label != blank %}
+                      <span class="text-[10px] text-white/40 font-medium tracking-[0.2em] uppercase px-4 block mb-2">{{ b.settings.section_label }}</span>
+                    {% endif %}
+                    {% if b.settings.links_text != blank %}
+                      {% assign link_lines = b.settings.links_text | newline_to_br | split: '<br />' %}
+                      {% for line in link_lines %}
+                        {% assign line_stripped = line | strip %}
+                        {% if line_stripped != '' %}
+                          {% assign parts = line_stripped | split: '|' %}
+                          {% assign label = parts[0] | strip %}
+                          {% assign url = parts[1] | strip %}
+                          {% if url == '' %}{% assign url = '#' %}{% endif %}
+                          <a class="block px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-all" href="{{ url }}">{{ label }}</a>
+                        {% endif %}
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+              {% elsif has_children %}
+                {% comment %} Simple dropdown from menu children (and sub-children) {% endcomment %}
+                <div class="nav-dropdown-panel nav-simple-dropdown absolute top-full left-0 pt-2 opacity-0 invisible pointer-events-none transition-all duration-300" data-dropdown-panel aria-hidden="true">
+                  <div class="min-w-[200px] bg-black/95 backdrop-blur-xl border border-white/10 py-3 px-4 rounded-lg">
+                    <div class="space-y-0.5">
+                      {% for child_link in link.links %}
+                        <div class="nav-simple-dropdown__item">
+                          <a class="block text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all py-2 px-2 rounded" href="{{ child_link.url }}">{{ child_link.title }}</a>
+                          {% if child_link.links.size > 0 %}
+                            <div class="ml-3 mt-0.5 mb-1 space-y-0.5 border-l border-white/10 pl-3">
+                              {% for sub_link in child_link.links %}
+                                <a class="block text-sm text-white/50 hover:text-white/90 transition-all py-1" href="{{ sub_link.url }}">{{ sub_link.title }}</a>
+                              {% endfor %}
+                            </div>
+                          {% endif %}
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+          {% else %}
+            <a class="group relative" href="{{ link.url }}">
+              <span class="text-sm font-medium tracking-wide transition-colors duration-300 {% if link.active %}text-white{% else %}text-white/60 hover:text-white{% endif %}">{{ link.title }}</span>
+              <span class="absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-white to-gray-400 transition-[width] duration-300 group-hover:w-full {% if link.active %}w-full{% else %}w-0{% endif %}"></span>
+            </a>
+          {% endif %}
         {% endfor %}
       </div>
 
-      <div class="header-nav__desktop header-nav__cta-wrap">
+      <div class="hidden lg:flex items-center gap-4">
+        {% if section.settings.show_wishlist_icon %}
+          <a href="{{ section.settings.wishlist_page_url | default: '/pages/wishlist' }}" class="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 text-white/70 hover:text-white hover:bg-white/10 transition-colors" aria-label="Wishlist">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
+          </a>
+        {% endif %}
+        {% if section.settings.show_account_icon %}
+          <a href="{{ routes.account_url }}" class="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 text-white/70 hover:text-white hover:bg-white/10 transition-colors" aria-label="Account">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          </a>
+        {% endif %}
+        {% if section.settings.show_cart_icon %}
+          <button type="button" class="relative flex items-center justify-center w-10 h-10 rounded-full border border-white/20 text-white/70 hover:text-white hover:bg-white/10 transition-colors" aria-label="Cart" data-cart-drawer-trigger>
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
+            <span class="header-cart-count absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 flex items-center justify-center rounded-full bg-white text-black text-xs font-semibold" data-header-cart-count style="display: none;">{{ cart.item_count }}</span>
+          </button>
+        {% endif %}
         {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
-          <a href="{{ section.settings.cta_link }}" class="header-nav__cta btn btn--primary">
-            <span>{{ section.settings.cta_text }}</span>
-            <span class="header-nav__cta-icon" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-            </span>
+          <a href="{{ section.settings.cta_link }}">
+            <button type="button" class="group flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full text-sm font-semibold hover:bg-gray-200 transition-colors duration-300" tabindex="0">
+              {{ section.settings.cta_text }}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </button>
           </a>
         {% endif %}
       </div>
 
-      <button type="button" class="header-nav__menu-btn" aria-label="Open menu" data-drawer-trigger>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M4 12h16"/><path d="M4 18h16"/><path d="M4 6h16"/>
-        </svg>
-      </button>
+      <div class="flex lg:hidden items-center gap-1">
+        {% if section.settings.show_cart_icon %}
+          <button type="button" class="relative z-50 w-10 h-10 flex items-center justify-center text-white" aria-label="Cart" data-cart-drawer-trigger>
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
+            <span class="header-cart-count absolute top-1 right-1 min-w-[16px] h-4 px-1 flex items-center justify-center rounded-full bg-white text-black text-[10px] font-semibold" data-header-cart-count style="display: none;">{{ cart.item_count }}</span>
+          </button>
+        {% endif %}
+        <button type="button" class="relative z-50 w-12 h-12 flex items-center justify-center text-white" aria-label="Open menu" data-drawer-trigger>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu w-6 h-6" aria-hidden="true"><path d="M4 12h16"/><path d="M4 18h16"/><path d="M4 6h16"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 </nav>
@@ -42,11 +198,35 @@
   <button type="button" class="drawer__close" aria-label="Close menu" data-drawer-close>✕</button>
   <nav class="drawer__nav">
     <a href="{{ routes.root_url }}">Home</a>
+    {% if section.settings.show_wishlist_icon %}
+      <a href="{{ section.settings.wishlist_page_url | default: '/pages/wishlist' }}">Wishlist</a>
+    {% endif %}
+    {% if section.settings.show_account_icon %}
+      <a href="{{ routes.account_url }}">Account</a>
+    {% endif %}
     {% for link in linklists[section.settings.menu].links %}
-      <a href="{{ link.url }}">{{ link.title }}</a>
+      {% if link.links.size > 0 %}
+        <div class="drawer__nav-group">
+          <a href="{{ link.url }}">{{ link.title }}</a>
+          <div class="drawer__nav-children">
+            {% for child_link in link.links %}
+              <a href="{{ child_link.url }}" class="drawer__nav-child">{{ child_link.title }}</a>
+              {% if child_link.links.size > 0 %}
+                <div class="drawer__nav-sub">
+                  {% for sub_link in child_link.links %}
+                    <a href="{{ sub_link.url }}" class="drawer__nav-subchild">{{ sub_link.title }}</a>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% else %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% endif %}
     {% endfor %}
     {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
-      <a href="{{ section.settings.cta_link }}" class="btn btn--primary" style="margin-top: 1rem;">{{ section.settings.cta_text }}</a>
+      <a href="{{ section.settings.cta_link }}" class="btn btn--primary mt-4">{{ section.settings.cta_text }}</a>
     {% endif %}
   </nav>
 </aside>
@@ -56,34 +236,80 @@
   "name": "Header",
   "class": "section-header",
   "settings": [
+    { "type": "text", "id": "logo_text", "label": "Logo text", "default": "UKIYO" },
+    { "type": "text", "id": "logo_subtext", "label": "Logo subtext", "default": "PRODUCTIONS" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
+    { "type": "text", "id": "dropdown_handles", "label": "Link handles that show mega dropdown (comma-separated)", "default": "services, shop" },
+    { "type": "header", "content": "Header icons" },
+    { "type": "checkbox", "id": "show_wishlist_icon", "label": "Show wishlist icon", "default": true },
+    { "type": "url", "id": "wishlist_page_url", "label": "Wishlist page URL", "info": "Used when wishlist icon is shown. Defaults to /pages/wishlist if empty." },
+    { "type": "checkbox", "id": "show_account_icon", "label": "Show account icon", "default": true },
+    { "type": "checkbox", "id": "show_cart_icon", "label": "Show cart icon", "default": true },
+    { "type": "header", "content": "CTA" },
+    { "type": "text", "id": "cta_text", "label": "Header CTA text", "default": "Start Project" },
+    { "type": "url", "id": "cta_link", "label": "Header CTA link" }
+  ],
+  "blocks": [
     {
-      "type": "text",
-      "id": "logo_text",
-      "label": "Logo text",
-      "default": "UKIYO"
+      "type": "dropdown_category",
+      "name": "Dropdown category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "parent_handle",
+          "label": "Parent menu link handle",
+          "info": "Must match the menu link handle (e.g. services, shop).",
+          "default": "services"
+        },
+        {
+          "type": "text",
+          "id": "category_title",
+          "label": "Category title"
+        },
+        {
+          "type": "textarea",
+          "id": "links_text",
+          "label": "Links (one per line)",
+          "info": "Format: Label|URL (e.g. Company Agent Builder|/services/company-agent-builder)"
+        }
+      ]
     },
     {
-      "type": "text",
-      "id": "logo_subtext",
-      "label": "Logo subtext (e.g. PRODUCTIONS)",
-      "default": "PRODUCTIONS"
-    },
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "Menu",
-      "default": "main-menu"
-    },
-    {
-      "type": "text",
-      "id": "cta_text",
-      "label": "Header CTA text",
-      "default": "Start Project"
-    },
-    {
-      "type": "url",
-      "id": "cta_link",
-      "label": "Header CTA link"
+      "type": "dropdown_compact",
+      "name": "Dropdown (compact)",
+      "settings": [
+        {
+          "type": "text",
+          "id": "parent_handle",
+          "label": "Parent menu link handle",
+          "info": "Must match the menu link handle (e.g. shop, membership).",
+          "default": "shop"
+        },
+        {
+          "type": "text",
+          "id": "header_title",
+          "label": "Header link title",
+          "info": "Optional. Single prominent link at top (e.g. Membership Overview)."
+        },
+        {
+          "type": "url",
+          "id": "header_url",
+          "label": "Header link URL"
+        },
+        {
+          "type": "text",
+          "id": "section_label",
+          "label": "Section label",
+          "info": "Optional. Small uppercase label above the link list (e.g. Categories).",
+          "default": "Categories"
+        },
+        {
+          "type": "textarea",
+          "id": "links_text",
+          "label": "Links (one per line)",
+          "info": "Format: Label|URL (e.g. Automation Templates|/shop/automation-templates)"
+        }
+      ]
     }
   ]
 }

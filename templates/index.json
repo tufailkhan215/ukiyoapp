@@ -1,175 +1,1033 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "hero",
       "settings": {
         "subtitle": "Creative Branding Agency",
-        "headline_line1": "WE BUILD BRANDS",
-        "headline_line2": "THAT PRINT MONEY",
-        "description": "Premium brand development, AI automation, and content production for businesses ready to dominate their market.",
+        "headline_line1": "WE CREATE",
+        "headline_line2": "EXCEPTIONAL",
+        "headline_line3": "Brand Experiences",
+        "description": "hrough strategy, creativity, and cutting-edge automation delivering impactful results that transform businesses.",
         "cta_primary_text": "Start Your Project",
+        "cta_primary_link": "#",
         "cta_secondary_text": "View Our Work",
+        "cta_secondary_link": "#",
         "scroll_label": "Scroll"
-      }
-    },
-    "trusted-by": {
-      "type": "trusted-by",
-      "settings": {
-        "title_before": "Brands That Trust",
-        "title_after": "Us",
-        "subtitle": "We've partnered with some of the most recognizable brands in the world."
-      },
-      "blocks": {
-        "nike": { "type": "brand", "settings": { "name": "NIKE" } },
-        "spotify": { "type": "brand", "settings": { "name": "SPOTIFY" } },
-        "apple": { "type": "brand", "settings": { "name": "APPLE" } },
-        "adidas": { "type": "brand", "settings": { "name": "ADIDAS" } },
-        "wandrd": { "type": "brand", "settings": { "name": "WANDRD" } },
-        "coachella": { "type": "brand", "settings": { "name": "COACHELLA" } }
       }
     },
     "marquee": {
       "type": "marquee-logos",
       "blocks": {
-        "1": { "type": "logo", "settings": { "name": "APPLE" } },
-        "2": { "type": "logo", "settings": { "name": "GOOGLE" } },
-        "3": { "type": "logo", "settings": { "name": "META" } },
-        "4": { "type": "logo", "settings": { "name": "SPOTIFY" } },
-        "5": { "type": "logo", "settings": { "name": "NIKE" } }
-      }
-    },
-    "services-preview": {
-      "type": "services-preview",
+        "logo_gtXMwV": {
+          "type": "logo",
+          "settings": {
+            "name": ""
+          }
+        },
+        "logo_w86fX9": {
+          "type": "logo",
+          "settings": {
+            "name": "NOKIA"
+          }
+        },
+        "logo_rWRt8M": {
+          "type": "logo",
+          "settings": {
+            "name": "APPLE"
+          }
+        },
+        "logo_BEnFJa": {
+          "type": "logo",
+          "settings": {
+            "name": "AMAZON"
+          }
+        },
+        "logo_VRnNgD": {
+          "type": "logo",
+          "settings": {
+            "name": ""
+          }
+        },
+        "logo_debhPJ": {
+          "type": "logo",
+          "settings": {
+            "name": "AMAZON"
+          }
+        },
+        "logo_Ft3KYp": {
+          "type": "logo",
+          "settings": {
+            "name": "SPOTIFY"
+          }
+        },
+        "logo_kRbck3": {
+          "type": "logo",
+          "settings": {
+            "name": "APPLE"
+          }
+        }
+      },
+      "block_order": [
+        "logo_gtXMwV",
+        "logo_w86fX9",
+        "logo_rWRt8M",
+        "logo_BEnFJa",
+        "logo_VRnNgD",
+        "logo_debhPJ",
+        "logo_Ft3KYp",
+        "logo_kRbck3"
+      ],
       "settings": {
-        "heading": "Services that drive growth",
-        "subtitle": "We work with founders, CEOs, and leadership teams to shape defining ideas and build the strategy and systems that carry them through growth.",
-        "cta_text": "Explore all services",
-        "cta_link": "/pages/services"
+        "badge_text": "Trusted By Industry Leaders",
+        "title_before": "Brands That",
+        "title_gradient": "Trust Us",
+        "subtitle": "We've partnered with some of the most recognizable brands in the world."
       }
     },
-    "service-bundle": {
-      "type": "service-bundle",
-      "settings": {
-        "heading": "Pick Your Power Stack",
-        "subtitle": "Select the services you need. The more you bundle, the more you save—up to 70% OFF!",
-        "bundle_heading": "Your Bundle",
-        "bundle_text": "Select services to build your bundle",
-        "discount_text": "Select All (70% OFF!)",
-        "cta_text": "Get started",
-        "cta_link": "/pages/contact"
-      }
+    "big_statement_8bQy8a": {
+      "type": "big-statement",
+      "blocks": {
+        "statement_kwi4we": {
+          "type": "statement",
+          "settings": {
+            "label": "Our Philosophy",
+            "quote": "To empower bold brands with AI-driven innovation and creative excellence.",
+            "subtext": "We exist to turn ambitious ideas into market-defining realities."
+          }
+        },
+        "statement_dkKzTj": {
+          "type": "statement",
+          "settings": {
+            "label": "Our Mission",
+            "quote": "To empower bold brands with AI-driven innovation and creative excellence.",
+            "subtext": "We exist to turn ambitious ideas into market-defining realities."
+          }
+        },
+        "statement_KPGt4n": {
+          "type": "statement",
+          "settings": {
+            "label": "Our Brands",
+            "quote": "To empower bold brands with AI-driven innovation and creative excellence.",
+            "subtext": "We exist to turn ambitious ideas into market-defining realities."
+          }
+        }
+      },
+      "block_order": [
+        "statement_kwi4we",
+        "statement_dkKzTj",
+        "statement_KPGt4n"
+      ],
+      "name": "Big statement",
+      "settings": {}
     },
-    "transformation": {
+    "transformation_xNQCz7": {
       "type": "transformation",
-      "settings": {
-        "heading": "Real Transformations",
-        "subtitle": "These aren't hypotheticals. These are actual results from real clients.",
-        "before_title": "BEFORE UKIYO",
-        "before_subtitle": "The struggle is real (and expensive)",
-        "after_title": "AFTER UKIYO",
-        "after_subtitle": "Let the grown-ups handle it",
-        "quote": "We went from chaos to clarity. Now I actually have time for hobbies. — Every Ukiyo client ever",
-        "math_heading": "The Math Doesn't Lie",
-        "math_subtitle": "Average business owner's time and money wasted annually"
-      },
       "blocks": {
-        "b1": { "type": "before_item", "settings": { "title": "DIY Design Disasters", "description": "Spent watching Canva tutorials while your competitors hire professionals" } },
-        "b2": { "type": "before_item", "settings": { "title": "Money Left on Table", "description": "Revenue you're missing because your website looks like it's from 2009" } },
-        "s1": { "type": "after_stat", "settings": { "value": "0 hrs", "label": "Wasted on DIY fails" } },
-        "s2": { "type": "after_stat", "settings": { "value": "+$340%", "label": "Average revenue growth" } },
-        "s3": { "type": "after_stat", "settings": { "value": "100%", "label": "Sanity preserved" } },
-        "s4": { "type": "after_stat", "settings": { "value": "1000+ hrs", "label": "Saved annually" } }
-      }
-    },
-    "work-showcase": {
-      "type": "work-showcase",
+        "transformation_UgzTP6": {
+          "type": "transformation",
+          "settings": {
+            "filter_label": "E-Commerce Brand",
+            "before_heading": "BEFORE UKIYO",
+            "after_heading": "AFTER UKIYO",
+            "timeline": "In 6 months",
+            "before_revenue": "$12K/mo",
+            "before_leads": "50/month",
+            "before_conversion": "1.2%",
+            "before_hours": "80hrs/week manual work",
+            "after_revenue": "$147K/mo",
+            "after_leads": "2,400/month",
+            "after_conversion": "4.8%",
+            "after_hours": "10hrs/week (automated)",
+            "quote": "Ukiyo transformed our entire business. We went from struggling to thriving.",
+            "attribution": "E-Commerce Brand • Fashion & Apparel"
+          }
+        },
+        "transformation_qihCY7": {
+          "type": "transformation",
+          "settings": {
+            "filter_label": "SaaS Startup",
+            "before_heading": "BEFORE UKIYO",
+            "after_heading": "AFTER UKIYO",
+            "timeline": "In 6 months",
+            "before_revenue": "$8K/mo",
+            "before_leads": "120/month",
+            "before_conversion": "0.8%",
+            "before_hours": "60hrs/week",
+            "after_revenue": "$89K/mo",
+            "after_leads": "1,800/month",
+            "after_conversion": "3.2%",
+            "after_hours": "15hrs/week (automated)",
+            "quote": "From chaos to clarity. Ukiyo built the systems we needed to scale.",
+            "attribution": "SaaS Startup • B2B Software"
+          }
+        },
+        "transformation_Qpe74w": {
+          "type": "transformation",
+          "settings": {
+            "filter_label": "Local Service Business",
+            "before_heading": "BEFORE UKIYO",
+            "after_heading": "AFTER UKIYO",
+            "timeline": "In 6 months",
+            "before_revenue": "$25K/mo",
+            "before_leads": "30/month",
+            "before_conversion": "2%",
+            "before_hours": "70hrs/week",
+            "after_revenue": "$92K/mo",
+            "after_leads": "450/month",
+            "after_conversion": "5.5%",
+            "after_hours": "20hrs/week (automated)",
+            "quote": "Our revenue tripled. Ukiyo gave us a real brand and a real pipeline.",
+            "attribution": "Local Service Business • Home Services"
+          }
+        }
+      },
+      "block_order": [
+        "transformation_UgzTP6",
+        "transformation_qihCY7",
+        "transformation_Qpe74w"
+      ],
+      "name": "Transformation",
       "settings": {
-        "heading": "Recent case studies",
-        "cta_text": "View all projects",
-        "cta_link": "/pages/work"
+        "strap": "(Before & After)",
+        "title_before": "Real",
+        "title_gradient": "Transformations",
+        "subtitle": "These aren't hypotheticals. These are actual results from real clients."
       }
     },
-    "stats": {
+    "services_E87PUi": {
+      "type": "services",
+      "blocks": {
+        "service_8Y8tnQ": {
+          "type": "service",
+          "settings": {
+            "icon": "sparkles",
+            "title": "Brand Strategy",
+            "subtitle": "Define your edge",
+            "description": "Position your brand for category leadership with strategic foundations.",
+            "link_text": "Explore",
+            "link": "#"
+          }
+        },
+        "service_bA8K3q": {
+          "type": "service",
+          "settings": {
+            "icon": "zap",
+            "title": "AI Automations",
+            "subtitle": "Scale intelligently",
+            "description": "Streamline operations with cutting-edge AI-powered solutions.",
+            "link_text": "Explore",
+            "link": "#"
+          }
+        },
+        "service_MrKaX3": {
+          "type": "service",
+          "settings": {
+            "icon": "target",
+            "title": "Lead Generation",
+            "subtitle": "Grow consistently",
+            "description": "Data-driven strategies that convert prospects into customers.",
+            "link_text": "Explore",
+            "link": ""
+          }
+        },
+        "service_GfpBDz": {
+          "type": "service",
+          "settings": {
+            "icon": "palette",
+            "title": "Brand Identity",
+            "subtitle": "Stand out visually",
+            "description": "Distinctive visual systems that capture your brand essence.",
+            "link_text": "Explore",
+            "link": ""
+          }
+        },
+        "service_Wbm4Hz": {
+          "type": "service",
+          "settings": {
+            "icon": "camera",
+            "title": "Content Production",
+            "subtitle": "Tell your story",
+            "description": "High-quality content that resonates with modern audiences.",
+            "link_text": "Explore",
+            "link": ""
+          }
+        },
+        "service_Mgcmyy": {
+          "type": "service",
+          "settings": {
+            "icon": "trending-up",
+            "title": "Growth Marketing",
+            "subtitle": "Accelerate results",
+            "description": "Performance marketing that drives measurable business growth.",
+            "link_text": "Explore",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "service_8Y8tnQ",
+        "service_bA8K3q",
+        "service_MrKaX3",
+        "service_GfpBDz",
+        "service_Wbm4Hz",
+        "service_Mgcmyy"
+      ],
+      "name": "Services",
+      "settings": {
+        "strap": "(What We Do)",
+        "title_line1": "Services that",
+        "title_line2": "drive growth",
+        "description": "We work with founders, CEOs, and leadership teams to shape defining ideas and build the strategy and systems that carry them through growth.",
+        "explore_text": "Explore all services",
+        "explore_url": "#"
+      }
+    },
+    "value_stack_eE3PiF": {
+      "type": "value-stack",
+      "blocks": {
+        "value_item_BN9t6M": {
+          "type": "value_item",
+          "settings": {
+            "name": "AI Revenue Concierge Chatbot",
+            "desc": "Captures leads 24/7, converts DMs to sales",
+            "value": "$15,000"
+          }
+        },
+        "value_item_caiwbG": {
+          "type": "value_item",
+          "settings": {
+            "name": "Complete Brand Identity System",
+            "desc": "Logo, colors, typography, guidelines",
+            "value": "$25,000"
+          }
+        },
+        "value_item_FB8npR": {
+          "type": "value_item",
+          "settings": {
+            "name": "High-Converting Website",
+            "desc": "Custom design, SEO optimized",
+            "value": "$35,000"
+          }
+        },
+        "value_item_WKw63r": {
+          "type": "value_item",
+          "settings": {
+            "name": "Email Automation Flows",
+            "desc": "Welcome, abandoned cart, win-back",
+            "value": "$12,000"
+          }
+        },
+        "value_item_YRqKRj": {
+          "type": "value_item",
+          "settings": {
+            "name": "Content Strategy + Calendar",
+            "desc": "90-day content plan with templates",
+            "value": "$8,000"
+          }
+        },
+        "value_item_J8x9R4": {
+          "type": "value_item",
+          "settings": {
+            "name": "1:1 Strategy Sessions",
+            "desc": "Monthly calls with our strategists",
+            "value": "$5,000"
+          }
+        },
+        "roi_row_6jHBeC": {
+          "type": "roi_row",
+          "settings": {
+            "label": "AI Automation (+35%)",
+            "percentage": 35
+          }
+        },
+        "roi_row_rqkGGm": {
+          "type": "roi_row",
+          "settings": {
+            "label": "Email Flows (+25%)",
+            "percentage": 25
+          }
+        },
+        "roi_row_TzAnp9": {
+          "type": "roi_row",
+          "settings": {
+            "label": "Content Strategy (+15%)",
+            "percentage": 15
+          }
+        },
+        "roi_row_XbR4dt": {
+          "type": "roi_row",
+          "settings": {
+            "label": "Brand Refresh (+20%)",
+            "percentage": 20
+          }
+        }
+      },
+      "block_order": [
+        "value_item_BN9t6M",
+        "value_item_caiwbG",
+        "value_item_FB8npR",
+        "value_item_WKw63r",
+        "value_item_YRqKRj",
+        "value_item_J8x9R4",
+        "roi_row_6jHBeC",
+        "roi_row_rqkGGm",
+        "roi_row_TzAnp9",
+        "roi_row_XbR4dt"
+      ],
+      "name": "Value Stack",
+      "settings": {
+        "strap": "(The Value Stack)",
+        "title_before": "What You",
+        "title_gradient": "Get",
+        "subtitle": "Everything you need to 10x your brand and automate your revenue",
+        "total_value": "$100,000",
+        "investment": "$15,000",
+        "discount_text": "That's 85% OFF the total value",
+        "roi_default_revenue": "50000",
+        "roi_disclaimer": "Based on results from 150+ clients"
+      }
+    },
+    "brutal_stack_GyzaPU": {
+      "type": "brutal-stack",
+      "blocks": {
+        "service_xPdPYG": {
+          "type": "service",
+          "settings": {
+            "title": "AI Revenue Concierge Chatbot",
+            "description": "Captures leads 24/7, converts DMs to sales",
+            "price": "$15,000",
+            "roi": "+35% ROI"
+          }
+        },
+        "service_TUKTbq": {
+          "type": "service",
+          "settings": {
+            "title": "Complete Brand Identity System",
+            "description": "Logo, colors, typography, guidelines",
+            "price": "$25,000",
+            "roi": "+20% ROI"
+          }
+        },
+        "service_9CWjbY": {
+          "type": "service",
+          "settings": {
+            "title": "High-Converting Website",
+            "description": "Custom design, SEO optimized",
+            "price": "$35,000",
+            "roi": "+25% ROI"
+          }
+        },
+        "service_dzTg6b": {
+          "type": "service",
+          "settings": {
+            "title": "Email Automation Flows",
+            "description": "Welcome, abandoned cart, win-back",
+            "price": "$12,000",
+            "roi": "+25% ROI"
+          }
+        },
+        "service_8yfiPD": {
+          "type": "service",
+          "settings": {
+            "title": "Content Strategy + Calendar",
+            "description": "90-day content plan with templates",
+            "price": "$8,000",
+            "roi": "+15% ROI"
+          }
+        },
+        "service_4waeGa": {
+          "type": "service",
+          "settings": {
+            "title": "1:1 Strategy Sessions",
+            "description": "Monthly calls with our strategists",
+            "price": "$5,000",
+            "roi": "+10% ROI"
+          }
+        }
+      },
+      "block_order": [
+        "service_xPdPYG",
+        "service_TUKTbq",
+        "service_9CWjbY",
+        "service_dzTg6b",
+        "service_8yfiPD",
+        "service_4waeGa"
+      ],
+      "name": "Brutal Stack",
+      "settings": {
+        "badge": "(Build Your Bundle)",
+        "title_before": "Pick Your",
+        "title_gradient": "Power Stack",
+        "subtitle": "Select the services you need. The more you bundle, the more you save—up to",
+        "save_line": "70% OFF!",
+        "services_heading": "Select Services",
+        "select_all_text": "Select All (70% OFF!)",
+        "bundle_heading": "Your Bundle",
+        "bundle_placeholder": "Select services to build your bundle",
+        "roi_heading": "ROI Calculator",
+        "roi_revenue_label": "Your Current Monthly Revenue",
+        "roi_boost_label": "Selected Services ROI Boost",
+        "roi_increase_label": "Potential Monthly Increase:",
+        "cta_url": "",
+        "cta_text": "Lock In This Bundle"
+      }
+    },
+    "work_UHwm8D": {
+      "type": "work",
+      "blocks": {
+        "case_study_qqzVkj": {
+          "type": "case_study",
+          "settings": {
+            "layout": "featured",
+            "category": "AI & Technology",
+            "title": "Revolutionizing Customer Experience",
+            "link": "#",
+            "client": "TechVenture AI",
+            "description": "Complete brand transformation and AI automation implementation that increased customer engagement by 340%.",
+            "result_1": "340% engagement",
+            "result_2": "$2.4M revenue"
+          }
+        },
+        "case_study_KxRN6k": {
+          "type": "case_study",
+          "settings": {
+            "layout": "featured",
+            "category": "Lifestyle & Fashion",
+            "title": "Building a Premium Brand Identity",
+            "link": "#",
+            "client": "Luxe Lifestyle",
+            "description": "End-to-end branding and content strategy that positioned a startup as a market leader in luxury lifestyle.",
+            "result_1": "500K+ followers",
+            "result_2": "Featured in Vogue"
+          }
+        },
+        "case_study_aJxdEU": {
+          "type": "case_study",
+          "settings": {
+            "layout": "compact",
+            "category": "Sustainability",
+            "title": "Sustainable Growth Through Innovation",
+            "link": "#",
+            "client": "",
+            "description": "",
+            "result_1": "",
+            "result_2": ""
+          }
+        },
+        "case_study_UDM96r": {
+          "type": "case_study",
+          "settings": {
+            "layout": "compact",
+            "category": "Food & Beverage",
+            "title": "From Local to National Recognition",
+            "link": "",
+            "client": "",
+            "description": "",
+            "result_1": "",
+            "result_2": ""
+          }
+        }
+      },
+      "block_order": [
+        "case_study_qqzVkj",
+        "case_study_KxRN6k",
+        "case_study_aJxdEU",
+        "case_study_UDM96r"
+      ],
+      "name": "Work",
+      "settings": {
+        "strap": "(Selected Work)",
+        "title_line1": "Recent",
+        "title_line2": "case studies",
+        "view_all_text": "View all projects",
+        "view_all_url": ""
+      }
+    },
+    "stats_Fyj9UD": {
       "type": "stats",
-      "settings": { "heading": "Numbers that matter" },
       "blocks": {
-        "1": { "type": "stat", "settings": { "value": "$2.4M+", "label": "Revenue Generated", "description": "For clients through strategic campaigns" } },
-        "2": { "type": "stat", "settings": { "value": "500+", "label": "Projects Delivered", "description": "Successful campaigns" } },
-        "3": { "type": "stat", "settings": { "value": "98%", "label": "Client Satisfaction", "description": "Long-term partnerships" } },
-        "4": { "type": "stat", "settings": { "value": "<24hrs", "label": "Response Time", "description": "Fast turnaround" } }
+        "stat_hfWHxX": {
+          "type": "stat",
+          "settings": {
+            "value": "$50M+",
+            "label": "Revenue Generated",
+            "desc": "For clients through strategic campaigns"
+          }
+        },
+        "stat_QLWtpg": {
+          "type": "stat",
+          "settings": {
+            "value": "340%",
+            "label": "Average Growth",
+            "desc": "Monthly revenue increase"
+          }
+        },
+        "stat_z4jHpN": {
+          "type": "stat",
+          "settings": {
+            "value": "98%",
+            "label": "Client Retention",
+            "desc": "Long-term partnerships"
+          }
+        },
+        "stat_Bx6E9A": {
+          "type": "stat",
+          "settings": {
+            "value": "$500K+",
+            "label": "Annual Savings",
+            "desc": "Through AI automation"
+          }
+        }
+      },
+      "block_order": [
+        "stat_hfWHxX",
+        "stat_QLWtpg",
+        "stat_z4jHpN",
+        "stat_Bx6E9A"
+      ],
+      "name": "Stats",
+      "settings": {
+        "strap": "(Our Impact)",
+        "title_before": "Numbers that",
+        "title_gradient": "matter"
       }
     },
-    "testimonials": {
+    "business_statistics_zWJ3bN": {
+      "type": "business-statistics",
+      "blocks": {
+        "without_item_yUrpUe": {
+          "type": "without_item",
+          "settings": {
+            "icon": "clock",
+            "icon_bg": "bg-red-500",
+            "title": "DIY Design Disasters",
+            "metric": "47 hours/week",
+            "description": "Spent watching Canva tutorials while your competitors hire professionals"
+          }
+        },
+        "without_item_zFAfGL": {
+          "type": "without_item",
+          "settings": {
+            "icon": "dollar",
+            "icon_bg": "bg-orange-500",
+            "title": "Money Left on Table",
+            "metric": "$127K/year",
+            "description": "Revenue you're missing because your website looks like it's from 2009"
+          }
+        },
+        "without_item_7hBMWc": {
+          "type": "without_item",
+          "settings": {
+            "icon": "brain",
+            "icon_bg": "bg-yellow-500",
+            "title": "Mental Breakdowns",
+            "metric": "3.7 per week",
+            "description": "Crying over why Instagram keeps changing its algorithm"
+          }
+        },
+        "without_item_bkdiK3": {
+          "type": "without_item",
+          "settings": {
+            "icon": "coffee",
+            "icon_bg": "bg-amber-500",
+            "title": "Caffeine Dependency",
+            "metric": "∞ cups",
+            "description": "Needed to stay awake while editing that 'quick' video at 3am"
+          }
+        },
+        "with_item_Nzn4ck": {
+          "type": "with_item",
+          "settings": {
+            "icon": "trending_down",
+            "metric": "0 hrs",
+            "subtitle": "Wasted on DIY fails"
+          }
+        },
+        "with_item_6P6Fnb": {
+          "type": "with_item",
+          "settings": {
+            "icon": "dollar",
+            "metric": "+$340%",
+            "subtitle": "Average revenue growth"
+          }
+        },
+        "with_item_fTtL3h": {
+          "type": "with_item",
+          "settings": {
+            "icon": "brain",
+            "metric": "100%",
+            "subtitle": "Sanity preserved"
+          }
+        },
+        "with_item_Vd4K6t": {
+          "type": "with_item",
+          "settings": {
+            "icon": "clock",
+            "metric": "1000+ hrs",
+            "subtitle": "Saved annually"
+          }
+        },
+        "math_stat_VDgFJY": {
+          "type": "math_stat",
+          "settings": {
+            "value": "2,080",
+            "label": "Hours lost to DIY marketing",
+            "sublabel": "(That's 52 weeks of full-time work)",
+            "color": "red"
+          }
+        },
+        "math_stat_QrQqkK": {
+          "type": "math_stat",
+          "settings": {
+            "value": "$89K",
+            "label": "Avg. lost revenue opportunity",
+            "sublabel": "(From poor branding & no automation)",
+            "color": "orange"
+          }
+        },
+        "math_stat_hbVLWC": {
+          "type": "math_stat",
+          "settings": {
+            "value": "847",
+            "label": "Gray hairs grown prematurely",
+            "sublabel": "(Okay we made this one up, but still)",
+            "color": "yellow"
+          }
+        }
+      },
+      "block_order": [
+        "without_item_yUrpUe",
+        "without_item_zFAfGL",
+        "without_item_7hBMWc",
+        "without_item_bkdiK3",
+        "with_item_Nzn4ck",
+        "with_item_6P6Fnb",
+        "with_item_fTtL3h",
+        "with_item_Vd4K6t",
+        "math_stat_VDgFJY",
+        "math_stat_QrQqkK",
+        "math_stat_hbVLWC"
+      ],
+      "name": "Business Statistics",
+      "settings": {
+        "badge": "(Brutal Honesty Incoming)",
+        "title_before": "Businesses Are",
+        "title_gradient": "Playing With Themselves",
+        "subtitle": "...by not working with us. Here's what \"doing it yourself\" actually looks like:",
+        "without_heading": "WITHOUT UKIYO",
+        "without_subtitle": "The struggle is real (and expensive)",
+        "with_heading": "WITH UKIYO",
+        "with_subtitle": "Let the grown-ups handle it",
+        "testimonial": "\"We went from chaos to clarity. Now I actually have time for hobbies.\"",
+        "testimonial_attr": "Every Ukiyo client ever",
+        "cta_url": "/contact",
+        "cta_text": "Stop Playing With Yourself",
+        "math_heading": "The Math Doesn't Lie",
+        "math_subheading": "Average business owner's time and money wasted annually"
+      }
+    },
+    "testimonials_prH64B": {
       "type": "testimonials",
-      "settings": { "heading": "Client praise" },
       "blocks": {
-        "1": { "type": "testimonial", "settings": { "quote": "We went from chaos to clarity. Now I actually have time for hobbies.", "author_name": "Sarah Chen", "author_role": "CEO, TechVenture AI" } }
+        "testimonial_CXXQxE": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/user.png",
+            "quote": "Ukiyo transformed our entire digital presence. Their AI automation solutions saved us over $500K annually while dramatically improving customer satisfaction.",
+            "name": "Sarah Chen",
+            "role": "CEO, TechVenture AI"
+          }
+        },
+        "testimonial_LQWVCy": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/user.png",
+            "quote": "The team at Ukiyo doesn't just deliver—they exceed every expectation. Our brand went from unknown startup to industry leader in just 18 months.",
+            "name": "Marcus Williams",
+            "role": "Founder, Luxe Lifestyle"
+          }
+        },
+        "testimonial_ixkeea": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/user.png",
+            "quote": "Strategic clarity and execution that actually moves the needle. We saw 340% growth in the first year.",
+            "name": "Alex Rivera",
+            "role": "CMO, Growth Labs"
+          }
+        },
+        "testimonial_gKdwwh": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/user.png",
+            "quote": "From brand strategy to launch, Ukiyo felt like an extension of our team. Couldn't recommend them more.",
+            "name": "Jordan Lee",
+            "role": "Founder, SustainCo"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_CXXQxE",
+        "testimonial_LQWVCy",
+        "testimonial_ixkeea",
+        "testimonial_gKdwwh"
+      ],
+      "name": "Testimonials",
+      "settings": {
+        "strap": "(What Leaders Say)",
+        "title_before": "Client",
+        "title_gradient": "praise"
       }
     },
-    "guarantee": {
+    "guarantee_37PUCE": {
       "type": "guarantee",
-      "settings": {
-        "heading": "Zero Risk. All Reward.",
-        "subtitle": "We're so confident in our results that we put our money where our mouth is."
-      },
       "blocks": {
-        "1": { "type": "guarantee_item", "settings": { "title": "100% Money-Back Guarantee", "description": "If you don't see measurable results within 90 days, we'll refund every penny. No questions asked." } },
-        "2": { "type": "guarantee_item", "settings": { "title": "Unlimited Revisions", "description": "We work until you're 100% satisfied. Your vision is our mission." } },
-        "3": { "type": "guarantee_item", "settings": { "title": "On-Time Delivery", "description": "We guarantee delivery on schedule or your next month is free." } },
-        "4": { "type": "guarantee_item", "settings": { "title": "Results or We Work Free", "description": "If our strategies don't increase your revenue, we'll work for free until they do." } }
+        "guarantee_VDFQNb": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "shield",
+            "title": "Performance Promise",
+            "description": "If you don’t see measurable results within 90 days, we’ll continue working for free until you do. Your success is our priority."
+          }
+        },
+        "guarantee_mBqYnB": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "refresh_cw",
+            "title": "Unlimited Revisions",
+            "description": "We work until you're 100% satisfied. Your vision is our mission."
+          }
+        },
+        "guarantee_FtYWxL": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "clock",
+            "title": "On-Time Delivery",
+            "description": "We guarantee delivery on schedule or your next month is free."
+          }
+        },
+        "guarantee_9VgQ87": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "award",
+            "title": "90-Day Success Commitment",
+            "description": "Our iron-clad guarantee means you get results or we keep working at no extra cost until you do."
+          }
+        }
+      },
+      "block_order": [
+        "guarantee_VDFQNb",
+        "guarantee_mBqYnB",
+        "guarantee_FtYWxL",
+        "guarantee_9VgQ87"
+      ],
+      "name": "Guarantee",
+      "settings": {
+        "strap": "(Risk Reversal)",
+        "title_before": "Zero Risk.",
+        "title_gradient": "All Reward.",
+        "description": "We're so confident in our results that we put our money where our mouth is.",
+        "badge_text": "90-Day Iron-Clad Guarantee"
       }
     },
-    "lead-magnet": {
+    "lead_magnet_iCNhMM": {
       "type": "lead-magnet",
-      "settings": {
-        "heading": "Get Our $991 Value Resource Pack Free",
-        "subtitle": "The exact frameworks, templates, and strategies we use to help brands scale from $10K to $100K+ monthly.",
-        "form_heading": "Instant Download",
-        "form_note": "Join 2,847+ entrepreneurs who've downloaded this resource",
-        "button_text": "Get Free Access",
-        "cta_text": "Claim Your Spot Now",
-        "cta_link": "/pages/contact"
-      },
       "blocks": {
-        "1": { "type": "resource", "settings": { "title": "100-Point Brand Audit Checklist" } },
-        "2": { "type": "resource", "settings": { "title": "3-Part Video Training Series" } },
-        "3": { "type": "resource", "settings": { "title": "AI Automation Templates Pack" } }
+        "bonus_UfGjX4": {
+          "type": "bonus",
+          "settings": {
+            "icon": "file_text",
+            "title": "Customized Digital Report outlining our recommended solutions tailored specifically to your business needs",
+            "value": "$1000+"
+          }
+        },
+        "bonus_HxyX3J": {
+          "type": "bonus",
+          "settings": {
+            "icon": "video",
+            "title": "Exclusive Access to a Free Course — step-by-step video training to help you understand or implement the solutions",
+            "value": "$1000+"
+          }
+        },
+        "bonus_4Bbbhw": {
+          "type": "bonus",
+          "settings": {
+            "icon": "zap",
+            "title": "Special 20% Discount on any future services when you decide to work with us",
+            "value": "$1500+"
+          }
+        }
+      },
+      "block_order": [
+        "bonus_UfGjX4",
+        "bonus_HxyX3J",
+        "bonus_4Bbbhw"
+      ],
+      "name": "Lead Magnet",
+      "settings": {
+        "strap": "(Free Resources)",
+        "title_before": "Get a",
+        "title_gradient": "Free Discovery Consultation",
+        "title_after": "(Valued at $2,000)",
+        "description": "We invite you to a personalized session where we explore your biggest challenges and uncover tailored solutions to help you succeed.",
+        "privacy_text": "Why are we giving this away for free? Because we genuinely want to see you win. While we are a for-profit business, we believe in building strong, lasting relationships. That’s why our clients typically work with us for over 25+ months, because trust and results matter most.",
+        "form_action_url": "",
+        "form_heading": "Want A FREE Consultation?",
+        "email_label": "Enter your email to book a personalized session.",
+        "email_placeholder": "Email Address",
+        "button_text": "Get My Free Consultation",
+        "social_proof": "Join over 1,000 entrepreneurs who have already booked their free consultation and started transforming their business."
       }
     },
-    "urgency": {
+    "urgency_83eAUA": {
       "type": "urgency",
+      "blocks": {
+        "benefit_kDXfVm": {
+          "type": "benefit",
+          "settings": {
+            "icon": "clock",
+            "text": "Free Strategy Session ($500 value)"
+          }
+        },
+        "benefit_GjwNLT": {
+          "type": "benefit",
+          "settings": {
+            "icon": "users",
+            "text": "Priority Onboarding"
+          }
+        },
+        "benefit_h6KEhz": {
+          "type": "benefit",
+          "settings": {
+            "icon": "zap",
+            "text": "Bonus: AI Audit Report"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_kDXfVm",
+        "benefit_GjwNLT",
+        "benefit_h6KEhz"
+      ],
+      "name": "Urgency",
       "settings": {
-        "heading": "Only 3 Spots Left This Month",
-        "subtitle": "We only take on 5 new clients per month to ensure premium quality. Once spots are filled, you'll have to wait until next month.",
+        "strap": "(Limited Availability)",
+        "title_before": "Only",
+        "spots_text": "3 Spots",
+        "title_after": "Left This Month",
+        "description": "We only take on 5 new clients per month to ensure premium quality. Once spots are filled, you'll have to wait until next month.",
         "countdown_label": "Offer Expires In",
-        "note": "No credit card required • Free consultation",
+        "countdown_end": "2026-12-31 23:59:59",
+        "cta_url": "#",
+        "cta_new_tab": true,
         "cta_text": "Claim Your Spot Now",
-        "cta_link": "/pages/contact"
+        "cta_subtext": "No credit card required • Free consultation"
+      }
+    },
+    "about_4mCeyC": {
+      "type": "about",
+      "blocks": {
+        "location_BWJqxU": {
+          "type": "location",
+          "settings": {
+            "name": "Los Angeles"
+          }
+        },
+        "location_kCKqXR": {
+          "type": "location",
+          "settings": {
+            "name": "New York"
+          }
+        },
+        "location_tw9PjH": {
+          "type": "location",
+          "settings": {
+            "name": "Tokyo"
+          }
+        }
+      },
+      "block_order": [
+        "location_BWJqxU",
+        "location_kCKqXR",
+        "location_tw9PjH"
+      ],
+      "name": "About",
+      "settings": {
+        "strap": "(About Ukiyo)",
+        "title_line1": "Turning bold",
+        "title_line2": "vision into",
+        "title_gradient": "brand impact",
+        "paragraph_1": "At Ukiyo Productions, we believe exceptional brands are built on strategy, creativity, and relentless innovation.",
+        "paragraph_2": "Our team combines deep expertise in branding, content creation, and cutting-edge AI automation to help businesses scale faster.",
+        "cta_text": "Learn About Us",
+        "cta_url": "/pages/about",
+        "video_url": "",
+        "stat_1_value": "10+",
+        "stat_1_label": "Years Experience",
+        "stat_2_value": "500+",
+        "stat_2_label": "Projects Delivered"
+      }
+    },
+    "trusted-by": {
+      "type": "trusted-by",
+      "disabled": true,
+      "settings": {
+        "title_before": "Brands That Trust",
+        "title_after": "Us",
+        "subtitle": "We've partnered with some of the most recognizable brands in the world."
       }
     },
     "cta": {
       "type": "rich-text",
+      "disabled": true,
       "settings": {
         "heading": "Let's create something legendary",
         "text": "Ready to transform your brand into a market leader?",
         "button_text": "Start Your Project",
         "button_link": "/pages/contact"
       }
+    },
+    "dynamic_cta_Rq7hkB": {
+      "type": "dynamic-cta",
+      "name": "Dynamic CTA",
+      "settings": {
+        "tagline": "(Ready to Rally Around Your Big Idea?)",
+        "title_before": "Let's create",
+        "title_gradient": "something legendary",
+        "subtitle": "Ready to transform your brand into a market leader?",
+        "cta_text": "Start Your Project",
+        "cta_url": "/contact",
+        "cta_new_tab": false
+      }
     }
   },
   "order": [
     "hero",
-    "trusted-by",
     "marquee",
-    "services-preview",
-    "service-bundle",
-    "transformation",
-    "work-showcase",
-    "stats",
-    "testimonials",
-    "guarantee",
-    "lead-magnet",
-    "urgency",
-    "cta"
+    "big_statement_8bQy8a",
+    "transformation_xNQCz7",
+    "services_E87PUi",
+    "value_stack_eE3PiF",
+    "brutal_stack_GyzaPU",
+    "work_UHwm8D",
+    "stats_Fyj9UD",
+    "business_statistics_zWJ3bN",
+    "testimonials_prH64B",
+    "guarantee_37PUCE",
+    "lead_magnet_iCNhMM",
+    "urgency_83eAUA",
+    "about_4mCeyC",
+    "trusted-by",
+    "cta",
+    "dynamic_cta_Rq7hkB"
   ]
 }

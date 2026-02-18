@@ -1,15 +1,67 @@
-<section class="guarantee section-container" data-reveal>
-  <h2 class="trusted-by__title">{{ section.settings.heading | default: 'Zero Risk. All Reward.' }}</h2>
-  <p class="trusted-by__subtitle">{{ section.settings.subtitle | default: "We're so confident in our results that we put our money where our mouth is." }}</p>
-  <div class="guarantee__grid">
-    {% for block in section.blocks %}
-      {% if block.type == 'guarantee_item' %}
-        <div class="guarantee__card glass-card" {{ block.shopify_attributes }}>
-          <h3 class="guarantee__title">{{ block.settings.title | default: 'Guarantee' }}</h3>
-          <p class="guarantee__description">{{ block.settings.description }}</p>
-        </div>
+{% comment %} Source structure and Tailwind classes from reference (GuaranteeSection) {% endcomment %}
+{% assign grid_pattern = "data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E" %}
+
+<section class="relative py-28 lg:py-40 bg-black overflow-hidden">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="absolute inset-0 opacity-[0.02]" style="background-image: url('{{ grid_pattern }}');" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-[1200px] mx-auto px-6 lg:px-12">
+    <div class="text-center mb-16">
+      {% if section.settings.strap != blank %}
+        <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-5">{{ section.settings.strap }}</span>
       {% endif %}
-    {% endfor %}
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+        {{ section.settings.title_before | default: 'Zero Risk. ' }}
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_gradient | default: 'All Reward.' }}</span>
+      </h2>
+      {% if section.settings.description != blank %}
+        <p class="text-lg text-white/40 max-w-2xl mx-auto">{{ section.settings.description }}</p>
+      {% endif %}
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      {% for block in section.blocks %}
+        {% if block.type == 'guarantee' %}
+          {% assign num = forloop.index | prepend: '0' | slice: -2, 2 %}
+          <div class="group relative p-8 border border-white/[0.05] bg-white/[0.01] hover:bg-white/[0.03] hover:border-white/10 transition-all duration-500" {{ block.shopify_attributes }}>
+            <span class="absolute top-4 right-4 text-5xl font-bold text-white/[0.02] group-hover:text-white/[0.05] transition-colors duration-500" aria-hidden="true">{{ num }}</span>
+            <div class="flex items-start gap-6 relative z-10">
+              <div class="w-14 h-14 rounded-full bg-white/[0.05] flex items-center justify-center flex-shrink-0 group-hover:bg-white/10 transition-colors">
+                {% case block.settings.icon %}
+                  {% when 'shield' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white/60" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg>
+                  {% when 'refresh_cw' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white/60" aria-hidden="true"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg>
+                  {% when 'clock' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white/60" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  {% when 'award' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white/60" aria-hidden="true"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path><circle cx="12" cy="8" r="6"></circle></svg>
+                  {% else %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white/60" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg>
+                {% endcase %}
+              </div>
+              <div>
+                {% if block.settings.title != blank %}
+                  <h3 class="text-xl font-bold text-white mb-2">{{ block.settings.title }}</h3>
+                {% endif %}
+                {% if block.settings.description != blank %}
+                  <p class="text-white/40 leading-relaxed">{{ block.settings.description }}</p>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    {% if section.settings.badge_text != blank %}
+      <div class="mt-16 text-center">
+        <div class="inline-flex items-center gap-3 px-8 py-4 border border-white/20 bg-white/[0.02] rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield w-5 h-5 text-green-400" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg>
+          <span class="text-white font-medium">{{ section.settings.badge_text }}</span>
+        </div>
+      </div>
+    {% endif %}
   </div>
 </section>
 
@@ -21,35 +73,108 @@
   "settings": [
     {
       "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Zero Risk. All Reward."
+      "id": "strap",
+      "label": "Strap (small label above title)",
+      "default": "(Risk Reversal)"
+    },
+    {
+      "type": "text",
+      "id": "title_before",
+      "label": "Title (before gradient part)",
+      "default": "Zero Risk. "
+    },
+    {
+      "type": "text",
+      "id": "title_gradient",
+      "label": "Title (gradient part)",
+      "default": "All Reward."
     },
     {
       "type": "textarea",
-      "id": "subtitle",
-      "label": "Subtitle",
+      "id": "description",
+      "label": "Description below title",
       "default": "We're so confident in our results that we put our money where our mouth is."
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text (below cards)",
+      "default": "90-Day Iron-Clad Guarantee"
     }
   ],
   "blocks": [
     {
-      "type": "guarantee_item",
-      "name": "Guarantee item",
+      "type": "guarantee",
+      "name": "Guarantee card",
       "settings": [
-        { "type": "text", "id": "title", "label": "Title" },
-        { "type": "textarea", "id": "description", "label": "Description" }
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "shield", "label": "Shield" },
+            { "value": "refresh_cw", "label": "Refresh" },
+            { "value": "clock", "label": "Clock" },
+            { "value": "award", "label": "Award" }
+          ],
+          "default": "shield"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        }
       ]
     }
   ],
   "presets": [
     {
       "name": "Guarantee",
+      "settings": {
+        "strap": "(Risk Reversal)",
+        "title_before": "Zero Risk. ",
+        "title_gradient": "All Reward.",
+        "description": "We're so confident in our results that we put our money where our mouth is.",
+        "badge_text": "90-Day Iron-Clad Guarantee"
+      },
       "blocks": [
-        { "type": "guarantee_item", "settings": { "title": "100% Money-Back Guarantee", "description": "If you don't see measurable results within 90 days, we'll refund every penny. No questions asked." } },
-        { "type": "guarantee_item", "settings": { "title": "Unlimited Revisions", "description": "We work until you're 100% satisfied. Your vision is our mission." } },
-        { "type": "guarantee_item", "settings": { "title": "On-Time Delivery", "description": "We guarantee delivery on schedule or your next month is free." } },
-        { "type": "guarantee_item", "settings": { "title": "Results or We Work Free", "description": "If our strategies don't increase your revenue, we'll work for free until they do." } }
+        {
+          "type": "guarantee",
+          "settings": {
+            "icon": "shield",
+            "title": "100% Money-Back Guarantee",
+            "description": "If you don't see measurable results within 90 days, we'll refund every penny. No questions asked."
+          }
+        },
+        {
+          "type": "guarantee",
+          "settings": {
+            "icon": "refresh_cw",
+            "title": "Unlimited Revisions",
+            "description": "We work until you're 100% satisfied. Your vision is our mission."
+          }
+        },
+        {
+          "type": "guarantee",
+          "settings": {
+            "icon": "clock",
+            "title": "On-Time Delivery",
+            "description": "We guarantee delivery on schedule or your next month is free."
+          }
+        },
+        {
+          "type": "guarantee",
+          "settings": {
+            "icon": "award",
+            "title": "Results or We Work Free",
+            "description": "If our strategies don't increase your revenue, we'll work for free until they do."
+          }
+        }
       ]
     }
   ]

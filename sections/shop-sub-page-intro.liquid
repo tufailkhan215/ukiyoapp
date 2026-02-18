@@ -1,0 +1,353 @@
+{% comment %} Shop Sub Page Intro: back link, category icon+label, title (gradient line 2, optional line 3), description, feature tags. Themes: blue, purple, emerald, amber. {% endcomment %}
+{% assign tag_blocks = section.blocks | where: 'type', 'tag' %}
+{% assign color_theme = section.settings.color_theme | default: 'blue' %}
+
+<section class="relative min-h-[70vh] flex items-center overflow-hidden" {{ section.shopify_attributes }}>
+  {% if color_theme == 'purple' %}
+    <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-pink-900/10" aria-hidden="true"></div>
+    <div class="absolute top-20 right-20 w-96 h-96 rounded-full bg-purple-500/5 blur-3xl" aria-hidden="true"></div>
+  {% elsif color_theme == 'emerald' %}
+    <div class="absolute inset-0 bg-gradient-to-b from-emerald-900/10 via-black to-black" aria-hidden="true"></div>
+    <div class="absolute inset-0 opacity-20" aria-hidden="true">
+      {% assign dot_positions = "5,92|12,8|21,36|31,17|33,6|40,67|47,18|53,31|55,91|57,82|59,96|68,39|69,53|77,87|88,37|91,27|15,54|27,53|35,98|50,93" | split: "|" %}
+      {% for dot_pos in dot_positions %}
+        {% assign xy = dot_pos | split: "," %}
+        <div class="absolute w-1 h-1 bg-emerald-400 rounded-full" style="left: {{ xy[0] }}%; top: {{ xy[1] }}%; transform: scale(1.{{ forloop.index0 | modulo: 5 | plus: 1 }});"></div>
+      {% endfor %}
+    </div>
+  {% elsif color_theme == 'amber' %}
+    <div class="absolute inset-0 bg-gradient-to-br from-amber-900/10 via-black to-orange-900/5" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(rgba(251,191,36,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(251,191,36,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" aria-hidden="true"></div>
+  {% else %}
+    <div class="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-blue-500/5 via-transparent to-black" aria-hidden="true"></div>
+    {% if section.settings.show_circle %}
+      <div class="absolute top-1/4 right-1/4 w-64 h-64 border border-blue-500/10 rounded-full" style="transform: rotate(145.26deg);" aria-hidden="true"></div>
+    {% endif %}
+  {% endif %}
+
+  <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 py-32">
+    {% if section.settings.back_link_text != blank %}
+      <a class="inline-flex items-center gap-2 text-white/40 hover:text-white transition-colors mb-8 group" href="{{ section.settings.back_link_url | default: '#' }}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 group-hover:-translate-x-1 transition-transform" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+        <span>{{ section.settings.back_link_text }}</span>
+      </a>
+    {% endif %}
+
+    {% if section.settings.category_label != blank %}
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center {% if color_theme == 'emerald' %}bg-gradient-to-br from-emerald-500 to-teal-500{% if section.settings.category_icon_glow %} shadow-[0_0_40px_rgba(16,185,129,0.5)]{% endif %}{% elsif color_theme == 'amber' %}bg-gradient-to-br from-amber-500 to-orange-500{% elsif color_theme == 'purple' %}bg-gradient-to-br from-purple-500 to-pink-500{% else %}bg-gradient-to-br from-blue-500 to-cyan-500{% endif %}">
+          {% case section.settings.category_icon %}
+            {% when 'workflow' %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"></rect><path d="M7 11v4a2 2 0 0 0 2 2h4"></path><rect width="8" height="8" x="13" y="13" rx="2"></rect></svg>
+            {% when 'layers' %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white" aria-hidden="true"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"></path><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"></path><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"></path></svg>
+            {% when 'package' %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white" aria-hidden="true"><path d="m7.5 4.27 9 5.15"></path><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path><path d="m3.3 7 8.7 5 8.7-5"></path><path d="M12 22V12"></path></svg>
+            {% when 'graduation_cap' %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg>
+            {% when 'bot' %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg>
+            {% when 'panels' %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg>
+            {% else %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"></rect><path d="M7 11v4a2 2 0 0 0 2 2h4"></path><rect width="8" height="8" x="13" y="13" rx="2"></rect></svg>
+          {% endcase %}
+        </div>
+        <span class="font-medium {% if color_theme == 'emerald' %}text-emerald-400{% elsif color_theme == 'amber' %}text-amber-400{% elsif color_theme == 'purple' %}text-purple-400{% else %}text-blue-400{% endif %}">{{ section.settings.category_label }}</span>
+      </div>
+    {% endif %}
+
+    {% if section.settings.title_line_1 != blank or section.settings.title_line_2 != blank or section.settings.title_line_3 != blank %}
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[0.95] mb-6">
+        {% if section.settings.title_line_1 != blank %}
+          {{ section.settings.title_line_1 }}{% if section.settings.title_line_2 != blank or section.settings.title_line_3 != blank %}<br>{% endif %}
+        {% endif %}
+        {% if section.settings.title_line_2 != blank %}
+          <span class="text-transparent bg-clip-text {% if color_theme == 'emerald' %}bg-gradient-to-r from-emerald-400 to-teal-400{% elsif color_theme == 'amber' %}bg-gradient-to-r from-amber-400 to-orange-400{% elsif color_theme == 'purple' %}bg-gradient-to-r from-purple-400 to-pink-400{% else %}bg-gradient-to-r from-blue-400 to-cyan-400{% endif %}">{{ section.settings.title_line_2 }}</span>
+        {% endif %}
+        {% if section.settings.title_line_3 != blank %}
+          <br>{{ section.settings.title_line_3 }}
+        {% endif %}
+      </h1>
+    {% endif %}
+
+    {% if section.settings.description != blank %}
+      <p class="text-xl text-white/50 max-w-2xl mb-8">{{ section.settings.description }}</p>
+    {% endif %}
+
+    {% if tag_blocks.size > 0 %}
+      <div class="flex flex-wrap gap-4">
+        {% for block in tag_blocks %}
+          {% assign tag_highlight = block.settings.highlight %}
+          {% assign tag_accent = block.settings.accent %}
+          {% assign tag_icon_class = 'w-4 h-4 shrink-0 ' %}
+          {% if tag_highlight %}
+            {% assign tag_icon_class = tag_icon_class | append: 'text-emerald-400' %}
+          {% elsif tag_accent or color_theme == 'emerald' %}
+            {% assign tag_icon_class = tag_icon_class | append: 'text-emerald-400' %}
+          {% elsif color_theme == 'amber' %}
+            {% assign tag_icon_class = tag_icon_class | append: 'text-amber-400' %}
+          {% elsif color_theme == 'purple' %}
+            {% assign tag_icon_class = tag_icon_class | append: 'text-purple-400' %}
+          {% else %}
+            {% assign tag_icon_class = tag_icon_class | append: 'text-blue-400' %}
+          {% endif %}
+          <div class="flex items-center gap-2 px-4 py-2 rounded-full {% if tag_highlight %}bg-emerald-500/20 border border-emerald-500/30{% elsif tag_accent %}bg-emerald-500/10 border border-emerald-500/20{% else %}bg-white/5 border border-white/10{% endif %}" {{ block.shopify_attributes }}>
+            {% if block.settings.icon == 'pulse' %}
+              <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse shrink-0" aria-hidden="true"></span>
+            {% else %}
+            {% case block.settings.icon %}
+              {% when 'zap' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="{{ tag_icon_class }}" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
+              {% when 'download' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="{{ tag_icon_class }}" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
+              {% when 'star' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="{{ tag_icon_class }}" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+              {% when 'shield' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="{{ tag_icon_class }}" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              {% when 'clock' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="{{ tag_icon_class }}" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              {% when 'play' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="{{ tag_icon_class }}" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              {% when 'users' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="{{ tag_icon_class }}" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>
+              {% when 'sparkles' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="{{ tag_icon_class }}" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path><path d="M20 3v4"></path><path d="M22 5h-4"></path><path d="M4 17v2"></path><path d="M5 18H3"></path></svg>
+              {% when 'panels' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="{{ tag_icon_class }}" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg>
+              {% else %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="{{ tag_icon_class }}" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
+            {% endcase %}
+            {% endif %}
+            {% if block.settings.label != blank %}
+              <span class="text-sm {% if tag_highlight or tag_accent %}text-emerald-400{% else %}text-white/70{% endif %}">{{ block.settings.label }}</span>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shop Sub Page Intro",
+  "tag": "section",
+  "class": "section-shop-sub-page-intro",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Back link"
+    },
+    {
+      "type": "text",
+      "id": "back_link_text",
+      "label": "Back link text",
+      "default": "Back to Shop"
+    },
+    {
+      "type": "url",
+      "id": "back_link_url",
+      "label": "Back link URL"
+    },
+    {
+      "type": "header",
+      "content": "Category"
+    },
+    {
+      "type": "text",
+      "id": "category_label",
+      "label": "Category label",
+      "default": "18 Templates"
+    },
+    {
+      "type": "select",
+      "id": "category_icon",
+      "label": "Category icon",
+      "options": [
+        { "value": "workflow", "label": "Workflow" },
+        { "value": "layers", "label": "Layers" },
+        { "value": "package", "label": "Package" },
+        { "value": "graduation_cap", "label": "Graduation cap (Courses)" },
+        { "value": "bot", "label": "Bot (AI Agents)" },
+        { "value": "panels", "label": "Panels (Sections)" }
+      ],
+      "default": "workflow"
+    },
+    {
+      "type": "checkbox",
+      "id": "category_icon_glow",
+      "label": "Category icon glow (Emerald theme)",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "text",
+      "id": "title_line_1",
+      "label": "Title line 1 (white)",
+      "default": "AUTOMATION"
+    },
+    {
+      "type": "text",
+      "id": "title_line_2",
+      "label": "Title line 2 (gradient)",
+      "default": "TEMPLATES"
+    },
+    {
+      "type": "text",
+      "id": "title_line_3",
+      "label": "Title line 3 (white, optional)",
+      "info": "e.g. READY TO DEPLOY — shown on new line after line 2"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Pre-built Make.com automation systems. Download, import, and start automating in minutes—not months."
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "select",
+      "id": "color_theme",
+      "label": "Color theme",
+      "options": [
+        { "value": "blue", "label": "Blue / Cyan" },
+        { "value": "purple", "label": "Purple / Pink" },
+        { "value": "emerald", "label": "Emerald / Teal" },
+        { "value": "amber", "label": "Amber / Orange" }
+      ],
+      "default": "blue",
+      "info": "Blue: grid + circle. Purple: blur orb. Emerald: dots. Amber: 40px grid."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_circle",
+      "label": "Show decorative circle (Blue theme only)",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tag",
+      "name": "Feature tag",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "zap", "label": "Lightning" },
+            { "value": "download", "label": "Download" },
+            { "value": "star", "label": "Star" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "clock", "label": "Clock" },
+            { "value": "play", "label": "Play" },
+            { "value": "users", "label": "Users" },
+            { "value": "sparkles", "label": "Sparkles" },
+            { "value": "panels", "label": "Panels (Sections)" },
+            { "value": "pulse", "label": "Pulse dot (Always Online)" }
+          ],
+          "default": "zap"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Instant Setup"
+        },
+        {
+          "type": "checkbox",
+          "id": "accent",
+          "label": "Accent style (emerald tint)",
+          "default": false,
+          "info": "Softer emerald pill, e.g. Always Online"
+        },
+        {
+          "type": "checkbox",
+          "id": "highlight",
+          "label": "Highlight style (emerald)",
+          "default": false,
+          "info": "Use for a standout tag, e.g. Free Courses Available"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop Sub Page Intro",
+      "settings": {
+        "back_link_text": "Back to Shop",
+        "category_label": "18 Templates",
+        "category_icon": "workflow",
+        "title_line_1": "AUTOMATION",
+        "title_line_2": "TEMPLATES",
+        "description": "Pre-built Make.com automation systems. Download, import, and start automating in minutes—not months.",
+        "color_theme": "blue"
+      },
+      "blocks": [
+        { "type": "tag", "settings": { "icon": "zap", "label": "Instant Setup" } },
+        { "type": "tag", "settings": { "icon": "download", "label": "Lifetime Access" } },
+        { "type": "tag", "settings": { "icon": "star", "label": "5-Star Rated" } }
+      ]
+    },
+    {
+      "name": "Shop Sub Page Intro (Courses)",
+      "settings": {
+        "back_link_text": "Back to Shop",
+        "category_label": "23 Courses",
+        "category_icon": "graduation_cap",
+        "title_line_1": "LEARN.",
+        "title_line_2": "BUILD. GROW.",
+        "description": "Practical, no-fluff courses from industry experts. Learn proven frameworks you can apply immediately.",
+        "color_theme": "purple"
+      },
+      "blocks": [
+        { "type": "tag", "settings": { "icon": "play", "label": "On-Demand" } },
+        { "type": "tag", "settings": { "icon": "users", "label": "5K+ Students" } },
+        { "type": "tag", "settings": { "icon": "sparkles", "label": "Free Courses Available", "highlight": true } }
+      ]
+    },
+    {
+      "name": "Shop Sub Page Intro (AI Agents)",
+      "settings": {
+        "back_link_text": "Back to Shop",
+        "category_label": "21 AI Agents",
+        "category_icon": "bot",
+        "category_icon_glow": true,
+        "title_line_1": "AI ",
+        "title_line_2": "AGENTS",
+        "title_line_3": "READY TO DEPLOY",
+        "description": "Pre-trained AI assistants for your business. Deploy intelligent automation that works 24/7.",
+        "color_theme": "emerald"
+      },
+      "blocks": [
+        { "type": "tag", "settings": { "icon": "pulse", "label": "Always Online", "accent": true } },
+        { "type": "tag", "settings": { "icon": "zap", "label": "GPT-4 Powered" } }
+      ]
+    },
+    {
+      "name": "Shop Sub Page Intro (Sections)",
+      "settings": {
+        "back_link_text": "Back to Shop",
+        "category_label": "58+ Sections",
+        "category_icon": "panels",
+        "title_line_1": "SHOPIFY",
+        "title_line_2": "SECTIONS",
+        "description": "Premium Shopify 2.0 sections. Drag, drop, and customize—no coding required.",
+        "color_theme": "amber"
+      },
+      "blocks": [
+        { "type": "tag", "settings": { "icon": "panels", "label": "Shopify 2.0" } },
+        { "type": "tag", "settings": { "icon": "sparkles", "label": "No Code" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

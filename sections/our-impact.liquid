@@ -1,0 +1,297 @@
+{% comment %} Our Impact: badge, gradient title, concentric circles bg, 4 stat cards (gradient per card), partnership badges, CTA. {% endcomment %}
+{% assign stat_blocks = section.blocks | where: 'type', 'stat' %}
+{% assign badge_blocks = section.blocks | where: 'type', 'partnership_badge' %}
+
+<section class="relative py-28 lg:py-36 bg-black overflow-hidden" data-testid="work-infographics">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  <div class="absolute inset-0" aria-hidden="true">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] our-impact-circles">
+      <div class="absolute inset-0 rounded-full border border-white/[0.03]"></div>
+      <div class="absolute inset-12 rounded-full border border-white/[0.02]"></div>
+      <div class="absolute inset-24 rounded-full border border-white/[0.015]"></div>
+    </div>
+  </div>
+  <div class="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-12">
+    <div class="text-center mb-20">
+      {% if section.settings.badge != blank %}
+        <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-5">{{ section.settings.badge }}</span>
+      {% endif %}
+      {% if section.settings.title_before != blank or section.settings.title_gradient != blank %}
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+          {{ section.settings.title_before }}
+          {% if section.settings.title_gradient != blank %}
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_gradient }}</span>
+          {% endif %}
+        </h2>
+      {% endif %}
+      {% if section.settings.subtitle != blank %}
+        <p class="text-white/40 max-w-xl mx-auto text-lg">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+      {% for block in stat_blocks %}
+        {% assign g = block.settings.gradient %}
+        <div class="group relative" {{ block.shopify_attributes }}>
+          <div class="relative h-full p-8 glass-card rounded-2xl overflow-hidden">
+            {% if g == 'green_emerald' %}
+              <div class="absolute inset-0 bg-gradient-to-br from-green-400 to-emerald-600 opacity-0 group-hover:opacity-5 transition-opacity duration-500 blur-xl" aria-hidden="true"></div>
+              <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-400 to-emerald-600" aria-hidden="true"></div>
+            {% elsif g == 'blue_indigo' %}
+              <div class="absolute inset-0 bg-gradient-to-br from-blue-400 to-indigo-600 opacity-0 group-hover:opacity-5 transition-opacity duration-500 blur-xl" aria-hidden="true"></div>
+              <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-indigo-600" aria-hidden="true"></div>
+            {% elsif g == 'purple_violet' %}
+              <div class="absolute inset-0 bg-gradient-to-br from-purple-400 to-violet-600 opacity-0 group-hover:opacity-5 transition-opacity duration-500 blur-xl" aria-hidden="true"></div>
+              <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-400 to-violet-600" aria-hidden="true"></div>
+            {% elsif g == 'orange_red' %}
+              <div class="absolute inset-0 bg-gradient-to-br from-orange-400 to-red-600 opacity-0 group-hover:opacity-5 transition-opacity duration-500 blur-xl" aria-hidden="true"></div>
+              <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-400 to-red-600" aria-hidden="true"></div>
+            {% else %}
+              <div class="absolute inset-0 bg-gradient-to-br from-green-400 to-emerald-600 opacity-0 group-hover:opacity-5 transition-opacity duration-500 blur-xl" aria-hidden="true"></div>
+              <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-400 to-emerald-600" aria-hidden="true"></div>
+            {% endif %}
+            <div class="relative z-10">
+              {% if g == 'green_emerald' %}
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center mb-6 opacity-80 group-hover:opacity-100 transition-opacity">
+              {% elsif g == 'blue_indigo' %}
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center mb-6 opacity-80 group-hover:opacity-100 transition-opacity">
+              {% elsif g == 'purple_violet' %}
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-400 to-violet-600 flex items-center justify-center mb-6 opacity-80 group-hover:opacity-100 transition-opacity">
+              {% elsif g == 'orange_red' %}
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-400 to-red-600 flex items-center justify-center mb-6 opacity-80 group-hover:opacity-100 transition-opacity">
+              {% else %}
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center mb-6 opacity-80 group-hover:opacity-100 transition-opacity">
+              {% endif %}
+                {% case block.settings.icon %}
+                  {% when 'dollar_sign' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-white" aria-hidden="true"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                  {% when 'trending_up' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-white" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+                  {% when 'users' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-white" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                  {% when 'clock' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-white" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  {% else %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-7 h-7 text-white"><circle cx="12" cy="12" r="10"></circle></svg>
+                {% endcase %}
+              </div>
+              {% if block.settings.metric != blank %}
+                <div class="text-4xl lg:text-5xl font-black text-white mb-2">{{ block.settings.metric }}</div>
+              {% endif %}
+              {% if block.settings.title != blank %}
+                <h3 class="text-lg font-semibold text-white mb-1">{{ block.settings.title }}</h3>
+              {% endif %}
+              {% if block.settings.description != blank %}
+                <p class="text-sm text-white/40">{{ block.settings.description }}</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if badge_blocks.size > 0 %}
+      <div class="flex flex-wrap justify-center gap-4">
+        {% for block in badge_blocks %}
+          <div class="flex items-center gap-3 px-5 py-3 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-sm" {{ block.shopify_attributes }}>
+            {% case block.settings.icon %}
+              {% when 'award' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white/60" aria-hidden="true"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path><circle cx="12" cy="8" r="6"></circle></svg>
+              {% when 'target' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white/60" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+              {% when 'zap' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white/60" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
+              {% when 'chart_column' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white/60" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg>
+              {% else %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-white/60"><circle cx="12" cy="12" r="10"></circle></svg>
+            {% endcase %}
+            {% if block.settings.label != blank %}
+              <span class="text-sm font-medium text-white/70">{{ block.settings.label }}</span>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="relative mt-20 pt-20">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-20 bg-gradient-to-b from-white/10 to-transparent" aria-hidden="true"></div>
+      <div class="text-center">
+        {% if section.settings.cta_heading != blank %}
+          <p class="text-white/30 text-sm uppercase tracking-wider mb-2">{{ section.settings.cta_heading }}</p>
+        {% endif %}
+        {% if section.settings.cta_text != blank and section.settings.cta_url != blank %}
+          <a href="{{ section.settings.cta_url }}" class="inline-flex items-center gap-2 text-white font-medium hover:text-white/80 transition-colors" {% if section.settings.cta_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+            <span>{{ section.settings.cta_text }}</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        {% elsif section.settings.cta_text != blank %}
+          <span class="inline-flex items-center gap-2 text-white font-medium"><span>{{ section.settings.cta_text }}</span><span aria-hidden="true">→</span></span>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% comment %} Rotate circles for subtle motion (optional, can be overridden in CSS). {% endcomment %}
+<style>
+  .our-impact-circles { transform: translate(-50%, -50%) rotate(24.618deg); }
+</style>
+
+{% schema %}
+{
+  "name": "Our Impact",
+  "tag": "section",
+  "class": "section-our-impact",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge (small label above title)",
+      "default": "(Our Impact)"
+    },
+    {
+      "type": "text",
+      "id": "title_before",
+      "label": "Title (before gradient word)",
+      "default": "Numbers That "
+    },
+    {
+      "type": "text",
+      "id": "title_gradient",
+      "label": "Title (gradient word)",
+      "default": "Matter"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Real results from real partnerships. Here's what we've achieved together."
+    },
+    {
+      "type": "text",
+      "id": "cta_heading",
+      "label": "CTA heading (above link)",
+      "default": "Ready to add your brand to this list?"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA link text",
+      "default": "Let's talk"
+    },
+    {
+      "type": "text",
+      "id": "cta_url",
+      "label": "CTA URL",
+      "default": "/contact"
+    },
+    {
+      "type": "checkbox",
+      "id": "cta_new_tab",
+      "label": "Open CTA link in new tab",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat card",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "select",
+          "id": "gradient",
+          "label": "Card accent gradient",
+          "options": [
+            { "value": "green_emerald", "label": "Green / Emerald" },
+            { "value": "blue_indigo", "label": "Blue / Indigo" },
+            { "value": "purple_violet", "label": "Purple / Violet" },
+            { "value": "orange_red", "label": "Orange / Red" }
+          ],
+          "default": "green_emerald"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "dollar_sign", "label": "Dollar" },
+            { "value": "trending_up", "label": "Trending up" },
+            { "value": "users", "label": "Users" },
+            { "value": "clock", "label": "Clock" }
+          ],
+          "default": "dollar_sign"
+        },
+        {
+          "type": "text",
+          "id": "metric",
+          "label": "Metric (big number)",
+          "default": "$50M+"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card title",
+          "default": "Revenue Generated"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Short description",
+          "default": "For clients through strategic campaigns"
+        }
+      ]
+    },
+    {
+      "type": "partnership_badge",
+      "name": "Partnership badge",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "award", "label": "Award" },
+            { "value": "target", "label": "Target" },
+            { "value": "zap", "label": "Zap" },
+            { "value": "chart_column", "label": "Chart column" }
+          ],
+          "default": "award"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Featured at SXSW 2024"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Our Impact",
+      "settings": {
+        "badge": "(Our Impact)",
+        "title_before": "Numbers That ",
+        "title_gradient": "Matter",
+        "subtitle": "Real results from real partnerships. Here's what we've achieved together.",
+        "cta_heading": "Ready to add your brand to this list?",
+        "cta_text": "Let's talk",
+        "cta_url": "/contact"
+      },
+      "blocks": [
+        { "type": "stat", "settings": { "gradient": "green_emerald", "icon": "dollar_sign", "metric": "$50M+", "title": "Revenue Generated", "description": "For clients through strategic campaigns" } },
+        { "type": "stat", "settings": { "gradient": "blue_indigo", "icon": "trending_up", "metric": "340%", "title": "Average Growth", "description": "Monthly revenue increase" } },
+        { "type": "stat", "settings": { "gradient": "purple_violet", "icon": "users", "metric": "500K+", "title": "Audience Reached", "description": "Through combined campaigns" } },
+        { "type": "stat", "settings": { "gradient": "orange_red", "icon": "clock", "metric": "1000+", "title": "Hours Saved", "description": "Monthly through automation" } },
+        { "type": "partnership_badge", "settings": { "icon": "award", "label": "Featured at SXSW 2024" } },
+        { "type": "partnership_badge", "settings": { "icon": "target", "label": "Coachella Brand Partner" } },
+        { "type": "partnership_badge", "settings": { "icon": "zap", "label": "Polaroid Collaboration" } },
+        { "type": "partnership_badge", "settings": { "icon": "chart_column", "label": "50+ Brands Transformed" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
