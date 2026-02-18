@@ -42,8 +42,8 @@
             "type": "dropdown_category",
             "settings": {
               "parent_handle": "services",
-              "category_title": "Category title 2",
-              "links_text": "Links1|#\nLinks2|#\nLinks3|#"
+              "category_title": "AI Automations",
+              "links_text": "AI Revenue Concierge|#"
             }
           },
           "dropdown_category_iCYpNb": {
