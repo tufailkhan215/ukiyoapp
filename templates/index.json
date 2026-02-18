@@ -477,7 +477,7 @@
         "roi_heading": "ROI Calculator",
         "roi_revenue_label": "Your Current Monthly Revenue",
         "roi_boost_label": "Selected Services ROI Boost",
-        "roi_increase_label": "Potential Monthly Increase:",
+        "roi_increase_label": "Potential Annual Recurring Revenue (ARR) Increase:",
         "cta_url": "",
         "cta_text": "Lock In This Bundle"
       }
