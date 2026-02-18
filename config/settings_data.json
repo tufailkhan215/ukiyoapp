@@ -25,9 +25,9 @@
             "settings": {
               "parent_handle": "shop",
               "header_title": "Membership Overview",
-              "header_url": "#",
+              "header_url": "shopify://pages/membership",
               "section_label": "Categories",
-              "links_text": "Automation Templates|/pages/automation-templates\nCourses|#\nAI Agents|#\nShopify Sections|#"
+              "links_text": "Automation Templates|/pages/automation-templates\nCourses|/pages/courses-1\nAI Agents|/pages/ai-agents\nShopify Sections|/pages/shopify-sections"
             }
           },
           "dropdown_category_TLpWTd": {
