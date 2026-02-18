@@ -571,9 +571,9 @@
         "stat_QLWtpg": {
           "type": "stat",
           "settings": {
-            "value": "340%",
-            "label": "Average Growth",
-            "desc": "Monthly revenue increase"
+            "value": "+200%",
+            "label": "Average Growth YOY",
+            "desc": "Annual Recurring Revenue increase"
           }
         },
         "stat_z4jHpN": {
@@ -746,16 +746,16 @@
         "testimonial_CXXQxE": {
           "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/user.png",
+            "image": "shopify://shop_images/avelailuna_Generate_a_30-year-old_woman_with_blonde_curly_hair__2ebe4de4-9576-4f11-97c6-1446b1e72945.png",
             "quote": "Ukiyo transformed our entire digital presence. Their AI automation solutions saved us over $500K annually while dramatically improving customer satisfaction.",
-            "name": "Sarah Chen",
-            "role": "CEO, TechVenture AI"
+            "name": "Sarah. C",
+            "role": "CEO & Director of Sales"
           }
         },
         "testimonial_LQWVCy": {
           "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/user.png",
+            "image": "shopify://shop_images/u6852356784_Woman_holding_a_cup_of_herbal_tea_on_a_beach_terr_c1aec5ae-f3c0-44b4-858b-e6dace59f8a9_3.png",
             "quote": "The team at Ukiyo doesn't just deliver—they exceed every expectation. Our brand went from unknown startup to industry leader in just 18 months.",
             "name": "Marcus Williams",
             "role": "Founder, Luxe Lifestyle"
