@@ -20,6 +20,22 @@
       "header": {
         "type": "header",
         "blocks": {
+          "dropdown_category_TNDVkY": {
+            "type": "dropdown_category",
+            "settings": {
+              "parent_handle": "services",
+              "category_title": "Growth Marketing",
+              "links_text": "Klaviyo Flows Services|#\nPaid Ads Creative System|#\nVirtual Assistance|#"
+            }
+          },
+          "dropdown_category_w8tCki": {
+            "type": "dropdown_category",
+            "settings": {
+              "parent_handle": "services",
+              "category_title": "Content Production",
+              "links_text": ""
+            }
+          },
           "dropdown_compact_HzXHHz": {
             "type": "dropdown_compact",
             "settings": {
@@ -64,6 +80,8 @@
           }
         },
         "block_order": [
+          "dropdown_category_TNDVkY",
+          "dropdown_category_w8tCki",
           "dropdown_compact_HzXHHz",
           "dropdown_category_TLpWTd",
           "dropdown_category_FwQj3T",
