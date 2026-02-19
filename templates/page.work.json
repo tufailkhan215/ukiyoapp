@@ -247,7 +247,7 @@
         "project_fAHDzT": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/DSCF9760.webp",
+            "image": "shopify://shop_images/29.webp",
             "category": "Culinary",
             "title": "JI RESTAURANT | BALI INDONESIA",
             "description": "Balinese fine dining experience captured through visual storytelling."
@@ -265,6 +265,7 @@
         "project_ReWfVG": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/indian1_1.webp",
             "category": "Culinary",
             "title": "CHAI'BA | BALI INDONESIA",
             "description": "Indian-inspired cuisine brand story and visual identity."
@@ -273,6 +274,7 @@
         "project_Mitqyd": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/DSCF9760.webp",
             "category": "Hospitality",
             "title": "TWO HANDS | AUSTIN TEXAS",
             "description": "Austin café brand activation and social media content strategy."
@@ -281,6 +283,7 @@
         "project_PGNpBH": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-03-19_at_7.05.32_AM.webp",
             "category": "Culinary",
             "title": "DAKAN | CALIFORNIA",
             "description": "California fusion restaurant brand development and photography."
