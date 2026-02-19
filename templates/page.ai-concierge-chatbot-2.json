@@ -225,9 +225,9 @@
           "type": "box",
           "settings": {
             "icon": "trending_down",
-            "title": "Missed Opportunities",
-            "metric": "$50K+",
-            "description": "Lost annually from slow response times",
+            "title": "Lead Leakage",
+            "metric": "50%",
+            "description": "Website visitors leave without engaging",
             "phrase": ""
           }
         }
@@ -253,10 +253,10 @@
           "type": "box",
           "settings": {
             "icon": "zap",
-            "title": "24/7 Availability",
+            "title": "Instant Response",
             "metric": "",
             "description": "",
-            "phrase": "Never miss a customer"
+            "phrase": "<3 second response time"
           }
         },
         "box_MrqLQm": {
