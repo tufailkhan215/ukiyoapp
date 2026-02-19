@@ -136,6 +136,19 @@
         "cta_secondary_url": "/pages/work"
       }
     },
+    "two_column_text_C8d8mg": {
+      "type": "two-column-text",
+      "name": "Two Column Text",
+      "settings": {
+        "layout": "overview",
+        "strap": "(Overview)",
+        "title_before": "What is AI Concierge",
+        "title_gradient": "Chatbot?",
+        "paragraph_1": "<p>An intelligent AI chatbot that engages visitors on your website and Instagram DMs, qualifying leads and driving revenue while you sleep.</p>",
+        "paragraph_2": "<p>The AI Revenue Concierge is your always-on sales assistant that lives on your website and Instagram. It doesn't just answer questions, it understands buying intent, qualifies leads, recommends products, handles objections, and guides prospects through to purchase. With natural language processing that feels genuinely human, your visitors get instant, helpful responses that move them closer to becoming customers.</p>",
+        "title_included": "Everything You Need to Launch Your AI Agent"
+      }
+    },
     "stats_YdmTqx": {
       "type": "stats",
       "blocks": {
@@ -183,19 +196,6 @@
         "strap": "(Our Impact)",
         "title_before": "Numbers that",
         "title_gradient": "matter"
-      }
-    },
-    "two_column_text_C8d8mg": {
-      "type": "two-column-text",
-      "name": "Two Column Text",
-      "settings": {
-        "layout": "overview",
-        "strap": "(Overview)",
-        "title_before": "What is",
-        "title_gradient": "Company Agent Builder?",
-        "paragraph_1": "<p>Create custom AI agents that understand your company inside and out. From customer service to sales, your brand voice stays consistent across every interaction.</p>",
-        "paragraph_2": "<p>In an era where customer expectations are at an all-time high, having a consistent brand voice across every touchpoint is crucial. Our Company Agent Builder service creates bespoke AI agents trained on your brand guidelines, tone of voice, product knowledge, and company values. These agents become extensions of your team, handling everything from customer inquiries to lead qualification with the precision and personality your brand deserves.</p>",
-        "title_included": "Everything You Need to Launch Your AI Agent"
       }
     },
     "icon_boxes_Fwkywn": {
@@ -985,6 +985,7 @@
     },
     "hard_truth_dxy9GA": {
       "type": "hard-truth",
+      "disabled": true,
       "name": "FCK AROUND AND FIND OUT",
       "settings": {
         "badge": "(The Hard Truth)",
@@ -1091,8 +1092,8 @@
     "services_intro_C3pYy7",
     "services_category_grid_nxbLPE",
     "service_details_intro_yGMBf3",
-    "stats_YdmTqx",
     "two_column_text_C8d8mg",
+    "stats_YdmTqx",
     "icon_boxes_Fwkywn",
     "icon_boxes_TzdEHE",
     "rich_text_EEHbYG",
