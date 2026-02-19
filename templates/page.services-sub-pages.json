@@ -142,33 +142,33 @@
         "stat_6RCYkx": {
           "type": "stat",
           "settings": {
-            "value": "$50M+",
-            "label": "Revenue Generated",
-            "desc": "For clients through strategic campaigns"
+            "value": "24/7",
+            "label": "Availability",
+            "desc": "Always-on brand representation"
           }
         },
         "stat_e3UaEi": {
           "type": "stat",
           "settings": {
-            "value": "340%",
-            "label": "Average Growth",
-            "desc": "Monthly revenue increase"
+            "value": "90%",
+            "label": "Query Resolution",
+            "desc": "First-contact resolution rate"
           }
         },
         "stat_Wz73LD": {
           "type": "stat",
           "settings": {
-            "value": "98%",
-            "label": "Client Retention",
-            "desc": "Long-term partnerships"
+            "value": "40%",
+            "label": "Cost Reduction",
+            "desc": "In customer service operations"
           }
         },
         "stat_jhKtEa": {
           "type": "stat",
           "settings": {
-            "value": "$500K+",
-            "label": "Annual Savings",
-            "desc": "Through AI automation"
+            "value": "1000+",
+            "label": "Hours Saved",
+            "desc": "Monthly staff hours freed up"
           }
         }
       },
@@ -907,7 +907,12 @@
             "icon": "bot",
             "label": "OpenAI",
             "gradient": "emerald_teal",
-            "url": ""
+            "url": "",
+            "popup_tagline": "Professional Tool",
+            "popup_description": "Industry-leading tool used in our workflow to deliver exceptional results for your project.",
+            "popup_bullet_1": "Industry Standard",
+            "popup_bullet_2": "Enterprise Ready",
+            "popup_bullet_3": "Fully Supported"
           }
         },
         "tech_GJUEV6": {
@@ -916,7 +921,12 @@
             "icon": "bot",
             "label": "Claude",
             "gradient": "orange_amber",
-            "url": ""
+            "url": "",
+            "popup_tagline": "Professional Tool",
+            "popup_description": "Industry-leading tool used in our workflow to deliver exceptional results for your project.",
+            "popup_bullet_1": "Industry Standard",
+            "popup_bullet_2": "Enterprise Ready",
+            "popup_bullet_3": "Fully Supported"
           }
         },
         "tech_LkKhg3": {
@@ -925,7 +935,12 @@
             "icon": "code",
             "label": "Langchain",
             "gradient": "green_emerald",
-            "url": ""
+            "url": "",
+            "popup_tagline": "Professional Tool",
+            "popup_description": "Industry-leading tool used in our workflow to deliver exceptional results for your project.",
+            "popup_bullet_1": "Industry Standard",
+            "popup_bullet_2": "Enterprise Ready",
+            "popup_bullet_3": "Fully Supported"
           }
         },
         "tech_Wxnr9D": {
@@ -934,7 +949,12 @@
             "icon": "zap",
             "label": "Zapier",
             "gradient": "orange_red",
-            "url": ""
+            "url": "",
+            "popup_tagline": "Professional Tool",
+            "popup_description": "Industry-leading tool used in our workflow to deliver exceptional results for your project.",
+            "popup_bullet_1": "Industry Standard",
+            "popup_bullet_2": "Enterprise Ready",
+            "popup_bullet_3": "Fully Supported"
           }
         },
         "tech_xcw84U": {
@@ -943,7 +963,12 @@
             "icon": "zap",
             "label": "Make",
             "gradient": "purple_violet",
-            "url": ""
+            "url": "",
+            "popup_tagline": "Professional Tool",
+            "popup_description": "Industry-leading tool used in our workflow to deliver exceptional results for your project.",
+            "popup_bullet_1": "Industry Standard",
+            "popup_bullet_2": "Enterprise Ready",
+            "popup_bullet_3": "Fully Supported"
           }
         }
       },
