@@ -330,6 +330,7 @@
       "blocks": {
         "project_Etci3j": {
           "type": "project",
+          "disabled": true,
           "settings": {
             "layout": "wide",
             "category": "AI & Automation",
@@ -337,11 +338,12 @@
             "title": "Revolutionizing Customer Experience with AI",
             "description": "Complete brand transformation and AI automation implementation that increased customer engagement by 340%.",
             "results_text": "340% engagement\n$2.4M revenue\n85% automation",
-            "url": "/work/techventure-ai-transformation"
+            "url": ""
           }
         },
         "project_cNCDhE": {
           "type": "project",
+          "disabled": true,
           "settings": {
             "layout": "default",
             "category": "Branding",
@@ -427,7 +429,7 @@
             "title": "Streetwear Meets Performance",
             "description": "Collaborative campaign merging streetwear culture with athletic performance branding.",
             "results_text": "Limited edition\nSold out\nCultural impact",
-            "url": "/work/adidas-collaboration"
+            "url": ""
           }
         }
       },
@@ -441,6 +443,7 @@
         "project_QxDA3B",
         "project_AHaAqE"
       ],
+      "disabled": true,
       "name": "Featured Projects",
       "settings": {
         "strap": "(Case Studies)",
@@ -496,7 +499,7 @@
           "type": "partnership_badge",
           "settings": {
             "icon": "award",
-            "label": "Featured at SXSW 2024"
+            "label": "Featured at SXSW / ARTBASEL 2024"
           }
         },
         "partnership_badge_EWmQNe": {
@@ -539,8 +542,8 @@
         "subtitle": "Real results from real partnerships. Here's what we've achieved together.",
         "cta_heading": "Ready to add your brand to this list?",
         "cta_text": "Let's talk",
-        "cta_url": "/contact",
-        "cta_new_tab": false
+        "cta_url": "https://tidycal.com/salesautomateiq/consultation",
+        "cta_new_tab": true
       }
     },
     "services_cta_nPTw36": {
