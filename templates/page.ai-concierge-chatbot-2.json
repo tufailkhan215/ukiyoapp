@@ -160,15 +160,15 @@
           "settings": {
             "value": "78%",
             "label": "Lead Capture",
-            "desc": "Of engaged visitors provide contact info"
+            "desc": "Engaged visitors provide contact info"
           }
         },
         "stat_jhKtEa": {
           "type": "stat",
           "settings": {
-            "value": "1000+",
-            "label": "Hours Saved",
-            "desc": "Monthly staff hours freed up"
+            "value": "$150K",
+            "label": "Average Savings Yearly",
+            "desc": "This branded chatbot saves the company 3-5 sales reps while converting sales"
           }
         }
       },
