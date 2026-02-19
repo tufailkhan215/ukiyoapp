@@ -185,6 +185,10 @@
         "placeholder_text": "Set TidyCal path in section settings (e.g. salesautomateiq/consultation)."
       }
     },
+    "177146424609ae6256": {
+      "type": "_blocks",
+      "settings": {}
+    },
     "marquee_logos_p6q6xL": {
       "type": "marquee-logos",
       "blocks": {
@@ -263,6 +267,7 @@
     "about_stats_hBLCWr",
     "contact_form_8JmRJE",
     "contact_prefer_to_talk_xyijFn",
+    "177146424609ae6256",
     "marquee_logos_p6q6xL"
   ]
 }
