@@ -210,7 +210,7 @@
             "title": "Automation Templates",
             "description": "Pre-built automation systems for Make.com. Download once, open START_HERE, and start generating assets today.",
             "item_count": "8+ items",
-            "url": "/shop/automation-templates"
+            "url": "shopify://pages/automation-templates"
           }
         },
         "category_6PpBqJ": {
@@ -220,7 +220,7 @@
             "title": "Courses",
             "description": "Practical, on-demand courses with structured learning paths. Learn proven frameworks and skills you can apply immediately.",
             "item_count": "15+ items",
-            "url": "/shop/courses"
+            "url": "shopify://pages/courses"
           }
         },
         "category_kqVgF3": {
