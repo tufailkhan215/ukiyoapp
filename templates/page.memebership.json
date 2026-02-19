@@ -62,7 +62,7 @@
         "badge": "(Membership)",
         "title_line1": "UNLIMITED",
         "title_line2": "DIGITAL ASSETS",
-        "description": "One subscription. Complete access to automation templates, courses, AI agents, and Shopify sections.",
+        "description": "One subscription grants you full access to automation templates, courses, AI agents, and Shopify sections. We regularly add new products exclusively for our members, ensuring you always have fresh resources to grow your business.",
         "value_label": "Total Library Value",
         "value_text": "$10,000+"
       }
@@ -405,15 +405,15 @@
       ],
       "name": "Featured Products v1",
       "settings": {
-        "content_source": "blocks",
-        "collection": "",
+        "content_source": "collection",
+        "collection": "make-com-automation-templates",
         "products_to_show": 4,
         "products_per_row": "4",
         "badge": "(Featured)",
         "heading": "Automation Templates",
         "view_all_text": "View All",
         "view_all_url": "/shop/automation-templates",
-        "show_membership_label": false,
+        "show_membership_label": true,
         "membership_label_collection": "Included in membership"
       }
     },
@@ -466,13 +466,73 @@
       "name": "Featured Products v1",
       "settings": {
         "content_source": "collection",
-        "collection": "frontpage",
+        "collection": "gpt-models",
         "products_to_show": 4,
         "products_per_row": "4",
         "badge": "(Featured)",
-        "heading": "Automation Templates",
+        "heading": "Specialized AI Agents",
         "view_all_text": "View All",
-        "view_all_url": "/shop/automation-templates",
+        "view_all_url": "shopify://collections/gpt-models",
+        "show_membership_label": true,
+        "membership_label_collection": "Included in membership"
+      }
+    },
+    "featured_products_v1_6tNgik": {
+      "type": "featured-products-v1",
+      "blocks": {
+        "product_CPNhGP": {
+          "type": "product",
+          "settings": {
+            "title": "Work and Personal Productivity Automation Templates",
+            "price": "$99",
+            "url": "#",
+            "membership_label": "Included in membership"
+          }
+        },
+        "product_VhpTnR": {
+          "type": "product",
+          "settings": {
+            "title": "Ultimate AI Avatar Bot Template",
+            "price": "$99",
+            "url": "#",
+            "membership_label": "Included in membership"
+          }
+        },
+        "product_BBVrn7": {
+          "type": "product",
+          "settings": {
+            "title": "Twitter Automation Templates",
+            "price": "$99",
+            "url": "#",
+            "membership_label": "Included in membership"
+          }
+        },
+        "product_tgQTXP": {
+          "type": "product",
+          "settings": {
+            "title": "Social Assistant News Bot Template",
+            "price": "$99",
+            "url": "#",
+            "membership_label": "Included in membership"
+          }
+        }
+      },
+      "block_order": [
+        "product_CPNhGP",
+        "product_VhpTnR",
+        "product_BBVrn7",
+        "product_tgQTXP"
+      ],
+      "name": "Featured Products v1",
+      "settings": {
+        "content_source": "collection",
+        "collection": "courses",
+        "products_to_show": 4,
+        "products_per_row": "4",
+        "badge": "(Featured)",
+        "heading": "Courses",
+        "view_all_text": "View All",
+        "view_all_url": "shopify://collections/courses",
         "show_membership_label": true,
         "membership_label_collection": "Included in membership"
       }
@@ -597,6 +657,7 @@
     "membership_deep_dive_adfgYV",
     "featured_products_v1_TXqf7K",
     "featured_products_v1_GHt7zc",
+    "featured_products_v1_6tNgik",
     "faq_qzK68R",
     "social_proof_ARJX37"
   ]
