@@ -205,9 +205,9 @@
           "type": "box",
           "settings": {
             "icon": "clock",
-            "title": "Time Drain",
-            "metric": "40hrs/week",
-            "description": "Average time spent on repetitive customer inquiries",
+            "title": "Slow Response",
+            "metric": "90%",
+            "description": "Leads expect response within 5 minutes",
             "phrase": ""
           }
         },
@@ -215,9 +215,9 @@
           "type": "box",
           "settings": {
             "icon": "users",
-            "title": "Inconsistent Voice",
-            "metric": "67%",
-            "description": "Of customers notice brand voice inconsistencies",
+            "title": "Cart Abandonment",
+            "metric": "70%",
+            "description": "Average e-commerce cart abandonment rate",
             "phrase": ""
           }
         },
