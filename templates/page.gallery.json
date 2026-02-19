@@ -149,21 +149,16 @@
         "project_warRxE": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/elmurorosa_drone_shot_of_tropical_island_--ar_916_--style_raw_a4bea9bc-922d-4f57-b454-57f5fe4564c6.webp",
+            "image": "shopify://shop_images/DSCF7109_3532ce56-01d4-42c1-ba19-6401dd0bff36.webp",
             "category": "Brand Partnership",
             "title": "POLAROID",
-            "description": "Nostalgic brand activation campaign bridging classic aesthetics with contemporary audiences.",
-            "gallery_image_2": "shopify://shop_images/IMG_9657_1.webp",
-            "gallery_image_3": "shopify://shop_images/DSCF8277.webp",
-            "gallery_image_4": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge.webp",
-            "gallery_image_5": "shopify://shop_images/IMG_6776.webp",
-            "gallery_image_6": "shopify://shop_images/FurTraders_mag_article_samples-02_2.webp"
+            "description": "Nostalgic brand activation campaign bridging classic aesthetics with contemporary audiences."
           }
         },
         "project_fkgVcn": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/IMG_9657_1.webp",
+            "image": "shopify://shop_images/25930044-A454-4EE9-BF1C-43FA0D5EA00E_320f78e7-5c14-49d3-88e9-9ddef7f7ac25.jpg",
             "category": "Adventure Travel",
             "title": "WANDRD",
             "description": "Multi-platform content strategy capturing the spirit of adventure travel."
@@ -172,18 +167,16 @@
         "project_pGHgW3": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/DSCF8277.webp",
+            "image": "shopify://shop_images/IMG_3161.webp",
             "category": "Energy & Lifestyle",
             "title": "MONSTER",
-            "description": "High-energy brand content and experiential marketing campaigns.",
-            "gallery_image_2": "shopify://shop_images/photo-1522071820081-009f0129c71c.jpg",
-            "gallery_image_3": "shopify://shop_images/DSCF7109_3532ce56-01d4-42c1-ba19-6401dd0bff36.webp"
+            "description": "High-energy brand content and experiential marketing campaigns."
           }
         },
         "project_CEzc6k": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/DSC_29323129.webp",
+            "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge.webp",
             "category": "Fashion & Lifestyle",
             "title": "POPPY.CALIFORNIA",
             "description": "California-inspired brand storytelling and visual identity development.",
@@ -193,6 +186,7 @@
         "project_8X3U8C": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/7ee553585c4b70132ae17d870bb3c04d-xxlarge.webp",
             "category": "E-commerce",
             "title": "FURTRADERS",
             "description": "Complete brand refresh with content strategy and e-commerce optimization."
@@ -201,6 +195,7 @@
         "project_eCFeyf": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/5fec0ac657f0b96ee14ef5886cb9b06e-xxlarge.webp",
             "category": "Lifestyle & Wellness",
             "title": "SUPRAMOOD",
             "description": "Comprehensive brand strategy with podcast series and affiliate program."
@@ -209,6 +204,7 @@
         "project_4JEiKE": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/elmurorosa_drone_shot_of_tropical_island_--ar_916_--style_raw_a4bea9bc-922d-4f57-b454-57f5fe4564c6.webp",
             "category": "Technology",
             "title": "DJI",
             "description": "Aerial photography and drone content creation partnership."
@@ -217,6 +213,7 @@
         "project_6wjDen": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/DSC_29323129.webp",
             "category": "Streetwear",
             "title": "CLSC",
             "description": "Urban streetwear brand activation and cultural marketing."
@@ -225,6 +222,7 @@
         "project_aFJW6k": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/IMG_6776.webp",
             "category": "Travel & Experience",
             "title": "MAVERICK HELICOPTERS",
             "description": "Luxury travel experience content and brand storytelling."
@@ -233,6 +231,7 @@
         "project_K7F8W8": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/IMG_9657_1.webp",
             "category": "Media & Culture",
             "title": "HIGHSNOBIETY",
             "description": "Editorial content partnership and cultural brand activation."
@@ -241,6 +240,7 @@
         "project_h7PziW": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/DSCF9760.webp",
             "category": "Culinary",
             "title": "JI RESTAURANT | BALI INDONESIA",
             "description": "Balinese fine dining experience captured through visual storytelling."
@@ -249,6 +249,7 @@
         "project_WgiL8G": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/DSCF9519_1.webp",
             "category": "Hospitality",
             "title": "SATORI | MAUI",
             "description": "Hawaiian wellness retreat brand development and content creation."
