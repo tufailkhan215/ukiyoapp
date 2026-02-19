@@ -221,7 +221,7 @@
       "name": "Shop Sub Page Products",
       "settings": {
         "collection": "make-com-automation-templates",
-        "card_style": "courses",
+        "card_style": "default",
         "sections_type_label": "Section",
         "sections_cta_text": "View Details",
         "show_active_badge": true,
