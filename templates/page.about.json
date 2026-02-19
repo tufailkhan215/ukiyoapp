@@ -28,6 +28,7 @@
     },
     "text_marquee_Hxikpp": {
       "type": "text-marquee",
+      "custom_css": [],
       "name": "Text Marquee",
       "settings": {
         "text": "UKIYO PRODUCTIONS",
