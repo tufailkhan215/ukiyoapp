@@ -87,7 +87,7 @@
         "stat_k9Na3w": {
           "type": "stat",
           "settings": {
-            "value": "5min",
+            "value": "10min",
             "label": "Avg Setup Time",
             "use_gradient": false
           }
@@ -97,7 +97,7 @@
           "settings": {
             "value": "99%",
             "label": "Uptime Rate",
-            "use_gradient": false
+            "use_gradient": true
           }
         },
         "feature_6ayyDM": {
