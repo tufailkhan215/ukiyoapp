@@ -268,7 +268,7 @@
             "description": "Pre-built Make.com blueprints for common business workflows. Import, connect your apps, and start automating in minutes.",
             "features": "Lead Generation\nSocial Media\nEmail Marketing\nContent Pipeline",
             "link_text": "View All Templates",
-            "link_url": "/shop/automation-templates",
+            "link_url": "shopify://pages/automation-templates",
             "stat1_value": "50+",
             "stat1_label": "Scenarios",
             "stat1_color": "accent",
