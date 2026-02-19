@@ -229,7 +229,7 @@
       "type": "shop-sub-page-products",
       "name": "Shop Sub Page Products (Courses)",
       "settings": {
-        "collection": "collection-3",
+        "collection": "courses",
         "card_style": "courses",
         "sections_type_label": "Section",
         "sections_cta_text": "View Details",
