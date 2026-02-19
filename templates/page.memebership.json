@@ -543,29 +543,29 @@
         "faq_wFRxLa": {
           "type": "faq",
           "settings": {
-            "question": "How long does it take to build and deploy a company agent?",
-            "answer": "Typically 2-4 weeks depending on complexity. Starter packages can be live in as little as 10 business days, while Enterprise solutions with multiple integrations may take 4-6 weeks."
+            "question": "How does membership work?",
+            "answer": "Choose a plan and get instant access to download any asset. No limits."
           }
         },
         "faq_YzR8p8": {
           "type": "faq",
           "settings": {
-            "question": "Can the AI agent handle complex customer inquiries?",
-            "answer": "Yes. Our agents are trained on your brand guidelines and knowledge base, and can handle multi-turn conversations. For highly complex or sensitive issues, we support seamless human handoff."
+            "question": "Can I download everything at once?",
+            "answer": "Yes! No download limits. Download as many assets as you want."
           }
         },
         "faq_hUCyQP": {
           "type": "faq",
           "settings": {
             "question": "What platforms can the agent be deployed on?",
-            "answer": "Website chat, Instagram DMs, Facebook Messenger, email, and SMS. Enterprise plans can include custom integrations and additional channels."
+            "answer": "You keep everything downloaded. Just lose access to new downloads."
           }
         },
         "faq_UeHYHE": {
           "type": "faq",
           "settings": {
-            "question": "How do you train the AI on our brand voice?",
-            "answer": "We use your existing content, tone guidelines, and sample conversations in a discovery workshop, then calibrate the agent so responses stay consistent with your brand."
+            "question": "Do you add new content?",
+            "answer": "Yes! We add new templates, courses, and agents regularly."
           }
         },
         "faq_AaRpNn": {
@@ -590,6 +590,67 @@
         "faq_UeHYHE",
         "faq_AaRpNn",
         "faq_7ctc3p"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "strap": "(FAQ)",
+        "title_before": "Frequently Asked",
+        "title_gradient": "Questions"
+      }
+    },
+    "faq_TH6wnX": {
+      "type": "faq",
+      "blocks": {
+        "faq_xCqQQi": {
+          "type": "faq",
+          "settings": {
+            "question": "How long does it take to build and deploy a company agent?",
+            "answer": "Typically 2-4 weeks depending on complexity. Starter packages can be live in as little as 10 business days, while Enterprise solutions with multiple integrations may take 4-6 weeks."
+          }
+        },
+        "faq_R73jyX": {
+          "type": "faq",
+          "settings": {
+            "question": "Can the AI agent handle complex customer inquiries?",
+            "answer": "Yes. Our agents are trained on your brand guidelines and knowledge base, and can handle multi-turn conversations. For highly complex or sensitive issues, we support seamless human handoff."
+          }
+        },
+        "faq_NyEUeq": {
+          "type": "faq",
+          "settings": {
+            "question": "What platforms can the agent be deployed on?",
+            "answer": "Website chat, Instagram DMs, Facebook Messenger, email, and SMS. Enterprise plans can include custom integrations and additional channels."
+          }
+        },
+        "faq_cWx4hr": {
+          "type": "faq",
+          "settings": {
+            "question": "How do you train the AI on our brand voice?",
+            "answer": "We use your existing content, tone guidelines, and sample conversations in a discovery workshop, then calibrate the agent so responses stay consistent with your brand."
+          }
+        },
+        "faq_cBM6yA": {
+          "type": "faq",
+          "settings": {
+            "question": "What happens if the AI gives incorrect information?",
+            "answer": "Agents are trained on your approved knowledge base and can be set to escalate uncertain queries to humans. We also provide ongoing monitoring and optimization to improve accuracy."
+          }
+        },
+        "faq_peFLVf": {
+          "type": "faq",
+          "settings": {
+            "question": "Can we update the agent's knowledge base ourselves?",
+            "answer": "Yes. Depending on your plan, you get access to a dashboard to add or edit FAQs and content. We can also handle updates as part of ongoing support."
+          }
+        }
+      },
+      "block_order": [
+        "faq_xCqQQi",
+        "faq_R73jyX",
+        "faq_NyEUeq",
+        "faq_cWx4hr",
+        "faq_cBM6yA",
+        "faq_peFLVf"
       ],
       "name": "FAQ",
       "settings": {
@@ -659,6 +720,7 @@
     "featured_products_v1_GHt7zc",
     "featured_products_v1_6tNgik",
     "faq_qzK68R",
+    "faq_TH6wnX",
     "social_proof_ARJX37"
   ]
 }
