@@ -234,7 +234,7 @@
       "type": "shop-sub-page-products",
       "name": "Shop Sub Page Products (AI Agents)",
       "settings": {
-        "collection": "collection-2",
+        "collection": "gpt-models",
         "card_style": "agents",
         "sections_type_label": "Section",
         "sections_cta_text": "View Details",
