@@ -115,6 +115,7 @@
         "category_Cqwea9": {
           "type": "category",
           "settings": {
+            "image": "shopify://shop_images/MJJ06476_1_5dfdb4bf-4b69-4ee3-9c5e-3d00edf1460f.jpg",
             "title": "Culinary Hub",
             "description": "Dive into a world of culinary delights through our expertly curated food blog. From mouth-watering recipes and restaurant reviews to chef interviews.",
             "url": "",
@@ -124,6 +125,7 @@
         "category_fn3b7x": {
           "type": "category",
           "settings": {
+            "image": "shopify://shop_images/IMG_9659_80x80_c9fe1faa-bdb4-4049-9030-bfa07996f15a.jpg",
             "title": "Travel & Experiences",
             "description": "Discover the beauty of the world! Breathtaking destinations, unique adventures, and cultural experiences that inspire wanderlust.",
             "url": "",
@@ -157,6 +159,7 @@
         "featured_rzRtth": {
           "type": "featured",
           "settings": {
+            "image": "shopify://shop_images/57443_ardriftclub_a_close-up_of_the_top_of_a_cheetahs_head_from_the_79f6e5a7-4e29-48b3-9f71-f5796b3e571f_0.png",
             "category_tag": "AI & Technology",
             "meta": "Jan 15, 2025 • 8 min read",
             "title": "The Future of AI in Brand Marketing: A Complete Guide",

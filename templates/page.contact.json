@@ -78,8 +78,8 @@
           "settings": {
             "gradient": "white_gray4",
             "icon": "trending_up",
-            "stat": "500K+",
-            "label": "Average yearly savings"
+            "stat": "Brand Strategy",
+            "label": "Comprehensive brand development from positioning to visual identity."
           }
         },
         "stat_LBR37j": {
@@ -87,8 +87,8 @@
           "settings": {
             "gradient": "white_gray4",
             "icon": "trending_up",
-            "stat": "500K+",
-            "label": "Average yearly savings"
+            "stat": "AI Automation",
+            "label": "Custom workflows and AI solutions to scale your operations."
           }
         },
         "stat_ByHPUw": {
@@ -96,8 +96,8 @@
           "settings": {
             "gradient": "gray3_gray5",
             "icon": "zap",
-            "stat": "340%",
-            "label": "Revenue growth"
+            "stat": "Content Production",
+            "label": "High-impact content from photography to full video production."
           }
         },
         "stat_UqzLkd": {
@@ -126,12 +126,13 @@
         "stat_UqzLkd",
         "stat_CfPqRP"
       ],
+      "disabled": true,
       "name": "About Stats",
       "settings": {
         "background_color": "rgba(0,0,0,0)",
-        "badge": "(Our Impact)",
-        "title_before": "Numbers That",
-        "title_gradient": "Matter"
+        "badge": "(How We Can Help)",
+        "title_before": "Our",
+        "title_gradient": "Services"
       }
     },
     "contact_form_8JmRJE": {
@@ -179,7 +180,7 @@
         "heading": "Prefer to Talk?",
         "description": "Schedule a free 30-minute consultation to discuss your project goals and how we can help bring your vision to life.",
         "tidycal_path": "salesautomateiq/consultation",
-        "tidycal_script_url": "",
+        "tidycal_script_url": "https://tidycal.com/salesautomateiq",
         "embed_min_height": 600,
         "placeholder_text": "Set TidyCal path in section settings (e.g. salesautomateiq/consultation)."
       }
