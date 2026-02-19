@@ -490,8 +490,8 @@
         "title_gradient": "something legendary",
         "subtitle": "Ready to transform your brand into a market leader?",
         "cta_text": "Start Your Project",
-        "cta_url": "/contact",
-        "cta_new_tab": false
+        "cta_url": "https://tidycal.com/salesautomateiq/consultation",
+        "cta_new_tab": true
       }
     }
   },
