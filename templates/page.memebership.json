@@ -21,24 +21,24 @@
           "type": "category",
           "settings": {
             "label": "Templates",
-            "count": "8+",
-            "show_count": false
+            "count": "50+",
+            "show_count": true
           }
         },
         "category_fjmRMC": {
           "type": "category",
           "settings": {
             "label": "Courses",
-            "count": "11+",
-            "show_count": false
+            "count": "20+",
+            "show_count": true
           }
         },
         "category_iMarec": {
           "type": "category",
           "settings": {
-            "label": "AI Agents",
-            "count": "10+",
-            "show_count": false
+            "label": "Specialized AI Agents",
+            "count": "20+",
+            "show_count": true
           }
         },
         "category_Xx3wQC": {
@@ -46,7 +46,7 @@
           "settings": {
             "label": "Sections",
             "count": "86+",
-            "show_count": false
+            "show_count": true
           }
         }
       },
@@ -64,7 +64,7 @@
         "title_line2": "DIGITAL ASSETS",
         "description": "One subscription. Complete access to automation templates, courses, AI agents, and Shopify sections.",
         "value_label": "Total Library Value",
-        "value_text": "$2,500+"
+        "value_text": "$10,000+"
       }
     },
     "membership_everything_you_need_rjArma": {
@@ -413,7 +413,8 @@
         "heading": "Automation Templates",
         "view_all_text": "View All",
         "view_all_url": "/shop/automation-templates",
-        "show_membership_label": false
+        "show_membership_label": false,
+        "membership_label_collection": "Included in membership"
       }
     },
     "featured_products_v1_GHt7zc": {
@@ -472,7 +473,8 @@
         "heading": "Automation Templates",
         "view_all_text": "View All",
         "view_all_url": "/shop/automation-templates",
-        "show_membership_label": true
+        "show_membership_label": true,
+        "membership_label_collection": "Included in membership"
       }
     },
     "faq_qzK68R": {
