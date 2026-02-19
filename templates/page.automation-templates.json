@@ -220,7 +220,7 @@
       "type": "shop-sub-page-products",
       "name": "Shop Sub Page Products",
       "settings": {
-        "collection": "frontpage",
+        "collection": "make-com-automation-templates",
         "card_style": "default",
         "sections_type_label": "Section",
         "sections_cta_text": "View Details",
@@ -239,14 +239,73 @@
         "columns": "4"
       }
     },
+    "membership_pricing_plan_zU9xMh": {
+      "type": "membership-pricing-plan",
+      "blocks": {
+        "plan_EQ7Gnw": {
+          "type": "plan",
+          "settings": {
+            "highlight": false,
+            "highlight_label": "Most Popular",
+            "title": "Monthly",
+            "description": "Perfect for trying out our library",
+            "price": "$100",
+            "price_suffix": "/month",
+            "features": "Access to all Automation Templates\nAccess to all Courses\nAccess to all AI Agents\nAccess to all Shopify Sections",
+            "cta_text": "Get Started",
+            "cta_url": "/contact"
+          }
+        },
+        "plan_Dm8W6q": {
+          "type": "plan",
+          "settings": {
+            "highlight": true,
+            "highlight_label": "Most Popular",
+            "title": "Quarterly",
+            "description": "Most popular choice",
+            "price": "$350",
+            "price_suffix": "/quarter",
+            "features": "Everything in Monthly\nPriority support\nEarly access to new releases\nQuarterly strategy call",
+            "cta_text": "Get Started",
+            "cta_url": "/contact"
+          }
+        },
+        "plan_bfgwYB": {
+          "type": "plan",
+          "settings": {
+            "highlight": false,
+            "highlight_label": "Most Popular",
+            "title": "Annual",
+            "description": "Best value for committed builders",
+            "price": "$1200",
+            "price_suffix": "/year",
+            "features": "Everything in Quarterly\n1-on-1 onboarding session\nCustom template requests\nLifetime updates guarantee",
+            "cta_text": "Get Started",
+            "cta_url": "/contact"
+          }
+        }
+      },
+      "block_order": [
+        "plan_EQ7Gnw",
+        "plan_Dm8W6q",
+        "plan_bfgwYB"
+      ],
+      "name": "Pricing Plan",
+      "settings": {
+        "badge": "(Pricing)",
+        "heading": "Get Unlimited Access",
+        "subtitle": "Join membership and download everything for one monthly price."
+      }
+    },
     "shop_sub_page_cta_EUHFUp": {
       "type": "shop-sub-page-cta",
+      "disabled": true,
       "name": "Shop Sub Page CTA",
       "settings": {
         "heading": "Get Unlimited Access",
         "description": "Join membership and download everything for one monthly price.",
         "button_text": "View Membership Plans",
-        "button_url": ""
+        "button_url": "shopify://pages/membership"
       }
     }
   },
@@ -255,6 +314,7 @@
     "shop_sub_page_intro_8gU98D",
     "shop_sub_page_about_VMWH9r",
     "shop_sub_page_products_yweFaV",
+    "membership_pricing_plan_zU9xMh",
     "shop_sub_page_cta_EUHFUp"
   ]
 }
