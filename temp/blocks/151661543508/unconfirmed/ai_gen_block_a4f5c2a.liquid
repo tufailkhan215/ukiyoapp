@@ -1,6 +1,1100 @@
+{% doc %}
+  @prompt
+    
+    SECTION GOAL (match layout + hierarchy):
+    - Full-width section with a centered header:
+      - Small eyebrow text above the title in uppercase with wide letter spacing, shown like: (HOW WE CAN HELP)
+      - Big bold heading: Our Services
+    - Below the header: a 4-card services grid (desktop = 4 columns).
+    - Each card has:
+      - A rounded-square icon badge at the top-left
+      - Service title
+      - Short description
+    - Style should feel modern/minimal with soft rounded corners and subtle borders/shadows (light theme version of the screenshot).
+    
+    DESIGN SPECS (WHITE THEME):
+    - Section background: #FFFFFF
+    - Container max-width: 1200–1280px; centered
+    - Section padding: ~80–96px top/bottom
+    - Eyebrow:
+      - text-transform: uppercase
+      - letter-spacing: 0.22em
+      - font-size: 12–13px
+      - color: #6B7280
+      - displayed with parentheses around the text
+      - margin-bottom: 10–14px
+    - Heading (h2):
+      - font-weight: 700
+      - size: clamp(32px, 4vw, 54px)
+      - color: #111827
+      - margin-bottom: 44–56px
+    
+    CARDS (match proportions + spacing):
+    - Grid:
+      - desktop: 4 columns
+      - tablet: 2 columns
+      - mobile: 1 column
+      - gap: 20–28px
+    - Card:
+      - background: #FFFFFF (or #F9FAFB for subtle contrast — pick what looks best)
+      - border: 1px solid #E5E7EB
+      - border-radius: 22–26px
+      - padding: 26–30px
+      - min-height similar to screenshot, and all cards equal height
+      - subtle shadow: 0 10px 30px rgba(17,24,39,0.08) (light and soft)
+      - hover: slightly lift (translateY(-2px)) + slightly stronger shadow
+    - Icon badge:
+      - size: 52px
+      - border-radius: 14px
+      - background: #F3F4F6
+      - icon stroke/fill: #111827
+      - spacing under icon: 16–18px
+    - Card title:
+      - font-size: 18–20px
+      - font-weight: 600–700
+      - color: #111827
+      - margin-bottom: 8–10px
+    - Card description:
+      - font-size: 14–16px
+      - line-height: 1.55
+      - color: #6B7280
+    
+    CONTENT (default 4 cards exactly like screenshot):
+    1) Brand Strategy
+       Comprehensive brand development from positioning to visual identity.
+    2) AI Automation
+       Custom workflows and AI solutions to scale your operations.
+    3) Content Production
+       High-impact content from photography to full video production.
+    4) Growth Marketing
+       Data-driven campaigns that drive real business results.
+    
+    ICONS:
+    - Use inline SVGs (no external libraries) for these 4 default icons:
+      - globe
+      - bolt
+      - document/page
+      - users/group
+    - Add a block setting to choose icon type (select: globe, bolt, document, users), plus optional “Custom SVG” textarea that overrides the icon if provided.
+    
+    SHOPIFY REQUIREMENTS:
+    - Output: COMPLETE section code only (no explanation), including:
+      - Liquid markup
+      - Scoped CSS inside the section (use a unique wrapper class like .services-grid-section)
+      - JSON schema with:
+        - Section settings: eyebrow_text, heading_text, background_color (default #fff), heading_color, eyebrow_color
+        - Block settings: title, description, icon_select, custom_svg, link_url (optional)
+        - Presets: include 4 default blocks with the text above
+    - Accessible, semantic HTML:
+      - <section> with aria-label
+      - Use a list for cards (ul/li)
+      - If link_url is set, make the whole card clickable but keep focus styles visible
+    
+    Make it look as close as possible to the screenshot’s spacing and “card row” feel—just converted to a bright white, clean, modern aesthetic.
+    , can you make this on mobile a carrousel view than staggered. also add a way to add a background if wanted to, it can barely fit via mobile. please format this that it does
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .services-grid-section-{{ ai_gen_id }} {
+    display: block;
+    background-color: {{ block.settings.background_color }};
+    padding: 80px 20px;
+    width: 100%;
+    {% if block.settings.background_image %}
+      background-image: url('{{ block.settings.background_image | image_url: width: 2000 }}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    {% endif %}
+  }
+
+  .services-grid-container-{{ ai_gen_id }} {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .services-grid-header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: 52px;
+  }
+
+  .services-grid-eyebrow-{{ ai_gen_id }} {
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 13px;
+    color: {{ block.settings.eyebrow_color }};
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .services-grid-heading-{{ ai_gen_id }} {
+    font-weight: 700;
+    font-size: clamp(32px, 4vw, 54px);
+    color: {{ block.settings.heading_color }};
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .services-grid-list-{{ ai_gen_id }} {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .services-grid-card-{{ ai_gen_id }} {
+    background: {{ block.settings.card_background }};
+    border: 1px solid {{ block.settings.card_border_color }};
+    border-radius: 24px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+  }
+
+  .services-grid-card-{{ ai_gen_id }}:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(17, 24, 39, 0.12);
+  }
+
+  .services-grid-card-link-{{ ai_gen_id }} {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .services-grid-icon-badge-{{ ai_gen_id }} {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: {{ block.settings.icon_background }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    flex-shrink: 0;
+  }
+
+  .services-grid-icon-badge-{{ ai_gen_id }} svg {
+    width: 26px;
+    height: 26px;
+    stroke: {{ block.settings.icon_color }};
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .services-grid-card-title-{{ ai_gen_id }} {
+    font-size: 19px;
+    font-weight: 700;
+    color: {{ block.settings.card_title_color }};
+    margin: 0 0 10px 0;
+    line-height: 1.3;
+  }
+
+  .services-grid-card-description-{{ ai_gen_id }} {
+    font-size: 15px;
+    line-height: 1.55;
+    color: {{ block.settings.card_description_color }};
+    margin: 0;
+  }
+
+  .services-grid-carousel-wrapper-{{ ai_gen_id }} {
+    display: none;
+  }
+
+  .services-grid-carousel-dots-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .services-grid-carousel-dot-{{ ai_gen_id }} {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: {{ block.settings.card_border_color }};
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .services-grid-carousel-dot-{{ ai_gen_id }}.active {
+    background: {{ block.settings.heading_color }};
+  }
+
+  @media screen and (max-width: 989px) {
+    .services-grid-list-{{ ai_gen_id }} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .services-grid-section-{{ ai_gen_id }} {
+      padding: 60px 16px;
+    }
+
+    .services-grid-container-{{ ai_gen_id }} {
+      padding: 0;
+    }
+
+    .services-grid-list-{{ ai_gen_id }} {
+      display: none;
+    }
+
+    .services-grid-carousel-wrapper-{{ ai_gen_id }} {
+      display: block;
+      overflow: visible;
+      position: relative;
+      width: 100%;
+    }
+
+    .services-grid-carousel-track-{{ ai_gen_id }} {
+      display: flex;
+      transition: transform 0.3s ease;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .services-grid-carousel-slide-{{ ai_gen_id }} {
+      min-width: 100%;
+      flex-shrink: 0;
+    }
+
+    .services-grid-header-{{ ai_gen_id }} {
+      margin-bottom: 32px;
+    }
+
+    .services-grid-card-{{ ai_gen_id }} {
+      padding: 24px;
+    }
+  }
+{% endstyle %}
+
+<services-grid-{{ ai_gen_id }} class="services-grid-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="services-grid-container-{{ ai_gen_id }}">
+    <div class="services-grid-header-{{ ai_gen_id }}">
+      {% if block.settings.eyebrow_text != blank %}
+        <div class="services-grid-eyebrow-{{ ai_gen_id }}">({{ block.settings.eyebrow_text }})</div>
+      {% endif %}
+      {% if block.settings.heading_text != blank %}
+        <h2 class="services-grid-heading-{{ ai_gen_id }}">{{ block.settings.heading_text }}</h2>
+      {% endif %}
+    </div>
+
+    <ul class="services-grid-list-{{ ai_gen_id }}">
+      <li class="services-grid-card-{{ ai_gen_id }}">
+        {% if block.settings.card_1_link != blank %}
+          <a href="{{ block.settings.card_1_link }}" class="services-grid-card-link-{{ ai_gen_id }}" aria-label="{{ block.settings.card_1_title }}">
+        {% else %}
+          <div class="services-grid-card-link-{{ ai_gen_id }}">
+        {% endif %}
+          
+          <div class="services-grid-icon-badge-{{ ai_gen_id }}">
+            {% if block.settings.card_1_custom_svg != blank %}
+              {{ block.settings.card_1_custom_svg }}
+            {% else %}
+              {% case block.settings.card_1_icon %}
+                {% when 'globe' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  </svg>
+                {% when 'bolt' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                  </svg>
+                {% when 'document' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                  </svg>
+                {% when 'users' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+              {% endcase %}
+            {% endif %}
+          </div>
+
+          <h3 class="services-grid-card-title-{{ ai_gen_id }}">{{ block.settings.card_1_title }}</h3>
+          <p class="services-grid-card-description-{{ ai_gen_id }}">{{ block.settings.card_1_description }}</p>
+
+        {% if block.settings.card_1_link != blank %}
+          </a>
+        {% else %}
+          </div>
+        {% endif %}
+      </li>
+
+      <li class="services-grid-card-{{ ai_gen_id }}">
+        {% if block.settings.card_2_link != blank %}
+          <a href="{{ block.settings.card_2_link }}" class="services-grid-card-link-{{ ai_gen_id }}" aria-label="{{ block.settings.card_2_title }}">
+        {% else %}
+          <div class="services-grid-card-link-{{ ai_gen_id }}">
+        {% endif %}
+          
+          <div class="services-grid-icon-badge-{{ ai_gen_id }}">
+            {% if block.settings.card_2_custom_svg != blank %}
+              {{ block.settings.card_2_custom_svg }}
+            {% else %}
+              {% case block.settings.card_2_icon %}
+                {% when 'globe' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  </svg>
+                {% when 'bolt' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                  </svg>
+                {% when 'document' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                  </svg>
+                {% when 'users' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+              {% endcase %}
+            {% endif %}
+          </div>
+
+          <h3 class="services-grid-card-title-{{ ai_gen_id }}">{{ block.settings.card_2_title }}</h3>
+          <p class="services-grid-card-description-{{ ai_gen_id }}">{{ block.settings.card_2_description }}</p>
+
+        {% if block.settings.card_2_link != blank %}
+          </a>
+        {% else %}
+          </div>
+        {% endif %}
+      </li>
+
+      <li class="services-grid-card-{{ ai_gen_id }}">
+        {% if block.settings.card_3_link != blank %}
+          <a href="{{ block.settings.card_3_link }}" class="services-grid-card-link-{{ ai_gen_id }}" aria-label="{{ block.settings.card_3_title }}">
+        {% else %}
+          <div class="services-grid-card-link-{{ ai_gen_id }}">
+        {% endif %}
+          
+          <div class="services-grid-icon-badge-{{ ai_gen_id }}">
+            {% if block.settings.card_3_custom_svg != blank %}
+              {{ block.settings.card_3_custom_svg }}
+            {% else %}
+              {% case block.settings.card_3_icon %}
+                {% when 'globe' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  </svg>
+                {% when 'bolt' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                  </svg>
+                {% when 'document' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                  </svg>
+                {% when 'users' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+              {% endcase %}
+            {% endif %}
+          </div>
+
+          <h3 class="services-grid-card-title-{{ ai_gen_id }}">{{ block.settings.card_3_title }}</h3>
+          <p class="services-grid-card-description-{{ ai_gen_id }}">{{ block.settings.card_3_description }}</p>
+
+        {% if block.settings.card_3_link != blank %}
+          </a>
+        {% else %}
+          </div>
+        {% endif %}
+      </li>
+
+      <li class="services-grid-card-{{ ai_gen_id }}">
+        {% if block.settings.card_4_link != blank %}
+          <a href="{{ block.settings.card_4_link }}" class="services-grid-card-link-{{ ai_gen_id }}" aria-label="{{ block.settings.card_4_title }}">
+        {% else %}
+          <div class="services-grid-card-link-{{ ai_gen_id }}">
+        {% endif %}
+          
+          <div class="services-grid-icon-badge-{{ ai_gen_id }}">
+            {% if block.settings.card_4_custom_svg != blank %}
+              {{ block.settings.card_4_custom_svg }}
+            {% else %}
+              {% case block.settings.card_4_icon %}
+                {% when 'globe' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  </svg>
+                {% when 'bolt' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                  </svg>
+                {% when 'document' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                  </svg>
+                {% when 'users' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+              {% endcase %}
+            {% endif %}
+          </div>
+
+          <h3 class="services-grid-card-title-{{ ai_gen_id }}">{{ block.settings.card_4_title }}</h3>
+          <p class="services-grid-card-description-{{ ai_gen_id }}">{{ block.settings.card_4_description }}</p>
+
+        {% if block.settings.card_4_link != blank %}
+          </a>
+        {% else %}
+          </div>
+        {% endif %}
+      </li>
+    </ul>
+
+    <div class="services-grid-carousel-wrapper-{{ ai_gen_id }}">
+      <div class="services-grid-carousel-track-{{ ai_gen_id }}">
+        <div class="services-grid-carousel-slide-{{ ai_gen_id }}">
+          <div class="services-grid-card-{{ ai_gen_id }}">
+            {% if block.settings.card_1_link != blank %}
+              <a href="{{ block.settings.card_1_link }}" class="services-grid-card-link-{{ ai_gen_id }}" aria-label="{{ block.settings.card_1_title }}">
+            {% else %}
+              <div class="services-grid-card-link-{{ ai_gen_id }}">
+            {% endif %}
+              
+              <div class="services-grid-icon-badge-{{ ai_gen_id }}">
+                {% if block.settings.card_1_custom_svg != blank %}
+                  {{ block.settings.card_1_custom_svg }}
+                {% else %}
+                  {% case block.settings.card_1_icon %}
+                    {% when 'globe' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                      </svg>
+                    {% when 'bolt' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                      </svg>
+                    {% when 'document' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                      </svg>
+                    {% when 'users' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                      </svg>
+                  {% endcase %}
+                {% endif %}
+              </div>
+
+              <h3 class="services-grid-card-title-{{ ai_gen_id }}">{{ block.settings.card_1_title }}</h3>
+              <p class="services-grid-card-description-{{ ai_gen_id }}">{{ block.settings.card_1_description }}</p>
+
+            {% if block.settings.card_1_link != blank %}
+              </a>
+            {% else %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="services-grid-carousel-slide-{{ ai_gen_id }}">
+          <div class="services-grid-card-{{ ai_gen_id }}">
+            {% if block.settings.card_2_link != blank %}
+              <a href="{{ block.settings.card_2_link }}" class="services-grid-card-link-{{ ai_gen_id }}" aria-label="{{ block.settings.card_2_title }}">
+            {% else %}
+              <div class="services-grid-card-link-{{ ai_gen_id }}">
+            {% endif %}
+              
+              <div class="services-grid-icon-badge-{{ ai_gen_id }}">
+                {% if block.settings.card_2_custom_svg != blank %}
+                  {{ block.settings.card_2_custom_svg }}
+                {% else %}
+                  {% case block.settings.card_2_icon %}
+                    {% when 'globe' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                      </svg>
+                    {% when 'bolt' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                      </svg>
+                    {% when 'document' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                      </svg>
+                    {% when 'users' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                      </svg>
+                  {% endcase %}
+                {% endif %}
+              </div>
+
+              <h3 class="services-grid-card-title-{{ ai_gen_id }}">{{ block.settings.card_2_title }}</h3>
+              <p class="services-grid-card-description-{{ ai_gen_id }}">{{ block.settings.card_2_description }}</p>
+
+            {% if block.settings.card_2_link != blank %}
+              </a>
+            {% else %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="services-grid-carousel-slide-{{ ai_gen_id }}">
+          <div class="services-grid-card-{{ ai_gen_id }}">
+            {% if block.settings.card_3_link != blank %}
+              <a href="{{ block.settings.card_3_link }}" class="services-grid-card-link-{{ ai_gen_id }}" aria-label="{{ block.settings.card_3_title }}">
+            {% else %}
+              <div class="services-grid-card-link-{{ ai_gen_id }}">
+            {% endif %}
+              
+              <div class="services-grid-icon-badge-{{ ai_gen_id }}">
+                {% if block.settings.card_3_custom_svg != blank %}
+                  {{ block.settings.card_3_custom_svg }}
+                {% else %}
+                  {% case block.settings.card_3_icon %}
+                    {% when 'globe' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                      </svg>
+                    {% when 'bolt' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                      </svg>
+                    {% when 'document' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                      </svg>
+                    {% when 'users' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                      </svg>
+                  {% endcase %}
+                {% endif %}
+              </div>
+
+              <h3 class="services-grid-card-title-{{ ai_gen_id }}">{{ block.settings.card_3_title }}</h3>
+              <p class="services-grid-card-description-{{ ai_gen_id }}">{{ block.settings.card_3_description }}</p>
+
+            {% if block.settings.card_3_link != blank %}
+              </a>
+            {% else %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="services-grid-carousel-slide-{{ ai_gen_id }}">
+          <div class="services-grid-card-{{ ai_gen_id }}">
+            {% if block.settings.card_4_link != blank %}
+              <a href="{{ block.settings.card_4_link }}" class="services-grid-card-link-{{ ai_gen_id }}" aria-label="{{ block.settings.card_4_title }}">
+            {% else %}
+              <div class="services-grid-card-link-{{ ai_gen_id }}">
+            {% endif %}
+              
+              <div class="services-grid-icon-badge-{{ ai_gen_id }}">
+                {% if block.settings.card_4_custom_svg != blank %}
+                  {{ block.settings.card_4_custom_svg }}
+                {% else %}
+                  {% case block.settings.card_4_icon %}
+                    {% when 'globe' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                      </svg>
+                    {% when 'bolt' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                      </svg>
+                    {% when 'document' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                      </svg>
+                    {% when 'users' %}
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                      </svg>
+                  {% endcase %}
+                {% endif %}
+              </div>
+
+              <h3 class="services-grid-card-title-{{ ai_gen_id }}">{{ block.settings.card_4_title }}</h3>
+              <p class="services-grid-card-description-{{ ai_gen_id }}">{{ block.settings.card_4_description }}</p>
+
+            {% if block.settings.card_4_link != blank %}
+              </a>
+            {% else %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="services-grid-carousel-dots-{{ ai_gen_id }}">
+        <button class="services-grid-carousel-dot-{{ ai_gen_id }} active" data-index="0" aria-label="Go to slide 1"></button>
+        <button class="services-grid-carousel-dot-{{ ai_gen_id }}" data-index="1" aria-label="Go to slide 2"></button>
+        <button class="services-grid-carousel-dot-{{ ai_gen_id }}" data-index="2" aria-label="Go to slide 3"></button>
+        <button class="services-grid-carousel-dot-{{ ai_gen_id }}" data-index="3" aria-label="Go to slide 4"></button>
+      </div>
+    </div>
+  </div>
+</services-grid-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ServicesGrid{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.currentSlide = 0;
+        this.totalSlides = 4;
+      }
+
+      connectedCallback() {
+        this.track = this.querySelector('.services-grid-carousel-track-{{ ai_gen_id }}');
+        this.dots = this.querySelectorAll('.services-grid-carousel-dot-{{ ai_gen_id }}');
+        
+        if (this.track && this.dots.length > 0) {
+          this.setupCarousel();
+        }
+      }
+
+      setupCarousel() {
+        this.dots.forEach((dot) => {
+          dot.addEventListener('click', (e) => {
+            const index = parseInt(e.target.dataset.index);
+            this.goToSlide(index);
+          });
+        });
+
+        let startX = 0;
+        let currentX = 0;
+        let isDragging = false;
+
+        this.track.addEventListener('touchstart', (e) => {
+          startX = e.touches[0].clientX;
+          isDragging = true;
+        });
+
+        this.track.addEventListener('touchmove', (e) => {
+          if (!isDragging) return;
+          currentX = e.touches[0].clientX;
+        });
+
+        this.track.addEventListener('touchend', () => {
+          if (!isDragging) return;
+          isDragging = false;
+          
+          const diff = startX - currentX;
+          
+          if (diff > 50 && this.currentSlide < this.totalSlides - 1) {
+            this.goToSlide(this.currentSlide + 1);
+          } else if (diff < -50 && this.currentSlide > 0) {
+            this.goToSlide(this.currentSlide - 1);
+          }
+        });
+      }
+
+      goToSlide(index) {
+        this.currentSlide = index;
+        const slideWidth = this.track.querySelector('.services-grid-carousel-slide-{{ ai_gen_id }}').offsetWidth;
+        const gap = 16;
+        this.track.style.transform = `translateX(-${index * (slideWidth + gap)}px)`;
+        
+        this.dots.forEach((dot, i) => {
+          if (i === index) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      }
+    }
+
+    customElements.define('services-grid-{{ ai_gen_id }}', ServicesGrid{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Services grid",
+  "tag": null,
+  "class": "services-grid-block",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow text",
+      "default": "HOW WE CAN HELP"
+    },
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading",
+      "default": "Our Services"
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow",
+      "default": "#6B7280"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading",
+      "default": "#111827"
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#F9FAFB"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border",
+      "default": "#E5E7EB"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card title",
+      "default": "#111827"
+    },
+    {
+      "type": "color",
+      "id": "card_description_color",
+      "label": "Card description",
+      "default": "#6B7280"
+    },
+    {
+      "type": "color",
+      "id": "icon_background",
+      "label": "Icon background",
+      "default": "#F3F4F6"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#111827"
+    },
+    {
+      "type": "header",
+      "content": "Card 1"
+    },
+    {
+      "type": "text",
+      "id": "card_1_title",
+      "label": "Title",
+      "default": "Brand Strategy"
+    },
+    {
+      "type": "textarea",
+      "id": "card_1_description",
+      "label": "Description",
+      "default": "Comprehensive brand development from positioning to visual identity."
+    },
+    {
+      "type": "select",
+      "id": "card_1_icon",
+      "label": "Icon",
+      "options": [
+        {
+          "value": "globe",
+          "label": "Globe"
+        },
+        {
+          "value": "bolt",
+          "label": "Bolt"
+        },
+        {
+          "value": "document",
+          "label": "Document"
+        },
+        {
+          "value": "users",
+          "label": "Users"
+        }
+      ],
+      "default": "globe"
+    },
+    {
+      "type": "html",
+      "id": "card_1_custom_svg",
+      "label": "Custom SVG"
+    },
+    {
+      "type": "url",
+      "id": "card_1_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Card 2"
+    },
+    {
+      "type": "text",
+      "id": "card_2_title",
+      "label": "Title",
+      "default": "AI Automation"
+    },
+    {
+      "type": "textarea",
+      "id": "card_2_description",
+      "label": "Description",
+      "default": "Custom workflows and AI solutions to scale your operations."
+    },
+    {
+      "type": "select",
+      "id": "card_2_icon",
+      "label": "Icon",
+      "options": [
+        {
+          "value": "globe",
+          "label": "Globe"
+        },
+        {
+          "value": "bolt",
+          "label": "Bolt"
+        },
+        {
+          "value": "document",
+          "label": "Document"
+        },
+        {
+          "value": "users",
+          "label": "Users"
+        }
+      ],
+      "default": "bolt"
+    },
+    {
+      "type": "html",
+      "id": "card_2_custom_svg",
+      "label": "Custom SVG"
+    },
+    {
+      "type": "url",
+      "id": "card_2_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Card 3"
+    },
+    {
+      "type": "text",
+      "id": "card_3_title",
+      "label": "Title",
+      "default": "Content Production"
+    },
+    {
+      "type": "textarea",
+      "id": "card_3_description",
+      "label": "Description",
+      "default": "High-impact content from photography to full video production."
+    },
+    {
+      "type": "select",
+      "id": "card_3_icon",
+      "label": "Icon",
+      "options": [
+        {
+          "value": "globe",
+          "label": "Globe"
+        },
+        {
+          "value": "bolt",
+          "label": "Bolt"
+        },
+        {
+          "value": "document",
+          "label": "Document"
+        },
+        {
+          "value": "users",
+          "label": "Users"
+        }
+      ],
+      "default": "document"
+    },
+    {
+      "type": "html",
+      "id": "card_3_custom_svg",
+      "label": "Custom SVG"
+    },
+    {
+      "type": "url",
+      "id": "card_3_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Card 4"
+    },
+    {
+      "type": "text",
+      "id": "card_4_title",
+      "label": "Title",
+      "default": "Growth Marketing"
+    },
+    {
+      "type": "textarea",
+      "id": "card_4_description",
+      "label": "Description",
+      "default": "Data-driven campaigns that drive real business results."
+    },
+    {
+      "type": "select",
+      "id": "card_4_icon",
+      "label": "Icon",
+      "options": [
+        {
+          "value": "globe",
+          "label": "Globe"
+        },
+        {
+          "value": "bolt",
+          "label": "Bolt"
+        },
+        {
+          "value": "document",
+          "label": "Document"
+        },
+        {
+          "value": "users",
+          "label": "Users"
+        }
+      ],
+      "default": "users"
+    },
+    {
+      "type": "html",
+      "id": "card_4_custom_svg",
+      "label": "Custom SVG"
+    },
+    {
+      "type": "url",
+      "id": "card_4_link",
+      "label": "Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Services grid"
+    }
+  ]
+}
 {% endschema %}
