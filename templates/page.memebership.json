@@ -310,7 +310,7 @@
             "description": "Purpose-built AI assistants for specific tasks. Pre-trained with domain knowledge and optimized prompts for immediate deployment.",
             "features": "Customer Support\nSales Outreach\nSEO Strategy\nCourse Creation",
             "link_text": "View All Agents",
-            "link_url": "shopify://pages/gpt-models",
+            "link_url": "shopify://pages/ai-agents",
             "stat1_value": "10",
             "stat1_label": "Specialists",
             "stat1_color": "accent",
@@ -557,8 +557,8 @@
         "faq_hUCyQP": {
           "type": "faq",
           "settings": {
-            "question": "What platforms can the agent be deployed on?",
-            "answer": "You keep everything downloaded. Just lose access to new downloads."
+            "question": "What happens when I cancel?",
+            "answer": "You retain access to all previously downloaded content but lose the ability to download any new releases each month."
           }
         },
         "faq_UeHYHE": {
@@ -570,6 +570,7 @@
         },
         "faq_AaRpNn": {
           "type": "faq",
+          "disabled": true,
           "settings": {
             "question": "What happens if the AI gives incorrect information?",
             "answer": "Agents are trained on your approved knowledge base and can be set to escalate uncertain queries to humans. We also provide ongoing monitoring and optimization to improve accuracy."
@@ -577,6 +578,7 @@
         },
         "faq_7ctc3p": {
           "type": "faq",
+          "disabled": true,
           "settings": {
             "question": "Can we update the agent's knowledge base ourselves?",
             "answer": "Yes. Depending on your plan, you get access to a dashboard to add or edit FAQs and content. We can also handle updates as part of ongoing support."
@@ -652,6 +654,7 @@
         "faq_cBM6yA",
         "faq_peFLVf"
       ],
+      "disabled": true,
       "name": "FAQ",
       "settings": {
         "strap": "(FAQ)",
