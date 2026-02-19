@@ -180,7 +180,7 @@
         "heading": "Prefer to Talk?",
         "description": "Schedule a free 30-minute consultation to discuss your project goals and how we can help bring your vision to life.",
         "tidycal_path": "salesautomateiq/consultation",
-        "tidycal_script_url": "https://tidycal.com/salesautomateiq/consultation",
+        "tidycal_script_url": "",
         "embed_min_height": 600,
         "placeholder_text": "Set TidyCal path in section settings (e.g. salesautomateiq/consultation)."
       }
