@@ -53,7 +53,7 @@
       "name": "Shop Sub Page Intro",
       "settings": {
         "back_link_text": "Back to Shop",
-        "back_link_url": "",
+        "back_link_url": "https://ukiyoprod.com/pages/membership",
         "category_label": "18 Templates",
         "category_icon": "workflow",
         "category_icon_glow": true,
@@ -230,7 +230,7 @@
         "agents_max_tags": 3,
         "type_label": "Course",
         "default_duration": "2-4 hours",
-        "default_students": "1.2k",
+        "default_students": "200+",
         "cta_text": "View Course",
         "eyebrow": "(Browse)",
         "title_suffix": "Products Available",
