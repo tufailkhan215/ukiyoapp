@@ -92,6 +92,7 @@
       ],
       "name": "About Stats",
       "settings": {
+        "background_color": "#000000",
         "badge": "(Our Impact)",
         "title_before": "Numbers That",
         "title_gradient": "Matter"
@@ -194,16 +195,16 @@
             "icon": "trending_up",
             "metric": "$100K+",
             "card_title": "Revenue Growth",
-            "description": "Scaled monthly sales from $2k to $100k+ for multiple clients."
+            "description": "Boosted sales for multiple clients from $2K to $200K+"
           }
         },
         "card_JHTGqm": {
           "type": "card",
           "settings": {
             "icon": "workflow",
-            "metric": "1000hrs",
+            "metric": "1000+ HRS",
             "card_title": "Workflow Optimization",
-            "description": "Freed an average of 1000 monthly staff hours."
+            "description": "Freed up an average of 1,000 staff hours each month through improved processes."
           }
         },
         "card_hVRY9D": {
@@ -212,16 +213,16 @@
             "icon": "target",
             "metric": "+30%",
             "card_title": "Brand Elevation",
-            "description": "Rebranded organizations with 30% rise in engagement."
+            "description": "Rebranded organizations, achieving a 30% increase in engagement and, most importantly, a significant boost in sales."
           }
         },
         "card_8TfyGx": {
           "type": "card",
           "settings": {
             "icon": "globe",
-            "metric": "50+",
+            "metric": "1000+",
             "card_title": "Web Ecosystems",
-            "description": "50+ custom websites with 35% increase in lead capture."
+            "description": "500+ custom websites with 35% increase in lead capture."
           }
         },
         "card_ep4tDw": {
