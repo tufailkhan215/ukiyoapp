@@ -228,7 +228,7 @@
       "type": "shop-sub-page-products",
       "name": "Shop Sub Page Products (Sections)",
       "settings": {
-        "collection": "frontpage",
+        "collection": "individual-sections",
         "card_style": "sections",
         "sections_type_label": "Section",
         "sections_cta_text": "View Details",
