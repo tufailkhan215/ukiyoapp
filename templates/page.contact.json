@@ -135,6 +135,52 @@
         "title_gradient": "Services"
       }
     },
+    "1771464952e166b3bd": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_82c6c13_dQ36tp": {
+          "type": "ai_gen_block_82c6c13",
+          "settings": {
+            "eyebrow_text": "HOW WE CAN HELP",
+            "heading_text": "Our Services",
+            "background_color": "#FFFFFF",
+            "eyebrow_color": "#6B7280",
+            "heading_color": "#111827",
+            "card_background": "#F9FAFB",
+            "card_border_color": "#E5E7EB",
+            "card_title_color": "#111827",
+            "card_description_color": "#6B7280",
+            "icon_background": "#F3F4F6",
+            "icon_color": "#111827",
+            "card_1_title": "Brand Strategy",
+            "card_1_description": "Comprehensive brand development from positioning to visual identity.",
+            "card_1_icon": "globe",
+            "card_1_custom_svg": "",
+            "card_1_link": "",
+            "card_2_title": "AI Automation",
+            "card_2_description": "Custom workflows and AI solutions to scale your operations.",
+            "card_2_icon": "bolt",
+            "card_2_custom_svg": "",
+            "card_2_link": "",
+            "card_3_title": "Content Production",
+            "card_3_description": "High-impact content from photography to full video production.",
+            "card_3_icon": "document",
+            "card_3_custom_svg": "",
+            "card_3_link": "",
+            "card_4_title": "Growth Marketing",
+            "card_4_description": "Data-driven campaigns that drive real business results.",
+            "card_4_icon": "users",
+            "card_4_custom_svg": "",
+            "card_4_link": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_82c6c13_dQ36tp"
+      ],
+      "settings": {}
+    },
     "contact_form_8JmRJE": {
       "type": "contact-form",
       "name": "Contact form",
@@ -174,6 +220,7 @@
     },
     "contact_prefer_to_talk_xyijFn": {
       "type": "contact-prefer-to-talk",
+      "disabled": true,
       "name": "Prefer to Talk",
       "settings": {
         "background_color": "rgba(0,0,0,0)",
@@ -187,6 +234,7 @@
     },
     "177146424609ae6256": {
       "type": "_blocks",
+      "custom_css": [],
       "settings": {}
     },
     "marquee_logos_p6q6xL": {
@@ -265,6 +313,7 @@
     "main",
     "contact_intro_BTX3N8",
     "about_stats_hBLCWr",
+    "1771464952e166b3bd",
     "contact_form_8JmRJE",
     "contact_prefer_to_talk_xyijFn",
     "177146424609ae6256",
