@@ -73,14 +73,14 @@
         "image_tafkyV": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/elmurorosa_drone_shot_of_tropical_island_--ar_916_--style_raw_a4bea9bc-922d-4f57-b454-57f5fe4564c6.webp",
+            "image": "shopify://shop_images/u6852356784_mountain_silhouette_for_logo_on_white_background._e750f411-68dc-44b3-8ccf-af81edc0cc1c_2.png",
             "title": "Logo Design"
           }
         },
         "image_HHAFGQ": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/DSCF8277.webp",
+            "image": "shopify://shop_images/hands-hold-open-a-black-plastic-envelope-on-couch.jpg",
             "title": "Packaging"
           }
         },
@@ -101,21 +101,21 @@
         "image_hHhATi": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/FurTraders_mag_article_samples-02_2.webp",
+            "image": "shopify://shop_images/IMG_9659_80x80_c9fe1faa-bdb4-4049-9030-bfa07996f15a.jpg",
             "title": "Brand Strategy"
           }
         },
         "image_4kLiJa": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/IMG_3161.webp",
+            "image": "shopify://shop_images/57443_ardriftclub_a_close-up_of_the_top_of_a_cheetahs_head_from_the_79f6e5a7-4e29-48b3-9f71-f5796b3e571f_0.png",
             "title": "Creative Direction"
           }
         },
         "image_YMKhVT": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/photo-1522071820081-009f0129c71c.jpg",
+            "image": "shopify://shop_images/Untitled_design_1.png",
             "title": "Digital Assets"
           }
         }
@@ -153,7 +153,6 @@
             "description": "Nostalgic brand activation campaign bridging classic aesthetics with contemporary audiences.",
             "gallery_image_2": "shopify://shop_images/IMG_6776.webp",
             "gallery_image_3": "shopify://shop_images/IMG_9657_1.webp",
-            "gallery_image_4": "shopify://shop_images/DSCF8277.webp",
             "gallery_image_5": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge.webp"
           }
         },
@@ -171,7 +170,6 @@
         "project_7V6yPh": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/DSCF8277.webp",
             "category": "Energy & Lifestyle",
             "title": "MONSTER",
             "description": "High-energy brand content and experiential marketing campaigns.",
@@ -320,7 +318,6 @@
           "type": "project",
           "settings": {
             "layout": "wide",
-            "image": "shopify://shop_images/DSCF8277.webp",
             "category": "AI & Automation",
             "client": "TechVenture AI",
             "title": "Revolutionizing Customer Experience with AI",
@@ -333,7 +330,6 @@
           "type": "project",
           "settings": {
             "layout": "default",
-            "image": "shopify://shop_images/FurTraders_mag_article_samples-02_2.webp",
             "category": "Branding",
             "client": "Luxe Lifestyle",
             "title": "Building a Premium Brand Identity",
@@ -439,17 +435,6 @@
         "filters_text": "All\nBranding\nAI & Automation\nWeb Development\nContent Production\nCase Studies"
       }
     },
-    "services_cta_nPTw36": {
-      "type": "services-cta",
-      "name": "Services CTA",
-      "settings": {
-        "heading": "Ready to Build Your AI-Powered Brand Agent?",
-        "description": "Book a free consultation to discuss how we can automate your customer interactions while maintaining your unique brand voice.",
-        "cta_text": "Book Free Consultation",
-        "cta_url": "",
-        "cta_new_tab": true
-      }
-    },
     "our_impact_aMV3jN": {
       "type": "our-impact",
       "blocks": {
@@ -542,6 +527,17 @@
         "cta_text": "Let's talk",
         "cta_url": "/contact",
         "cta_new_tab": false
+      }
+    },
+    "services_cta_nPTw36": {
+      "type": "services-cta",
+      "name": "Services CTA",
+      "settings": {
+        "heading": "Ready to Build Your AI-Powered Brand Agent?",
+        "description": "Book a free consultation to discuss how we can automate your customer interactions while maintaining your unique brand voice.",
+        "cta_text": "Book Free Consultation",
+        "cta_url": "",
+        "cta_new_tab": true
       }
     }
   },
