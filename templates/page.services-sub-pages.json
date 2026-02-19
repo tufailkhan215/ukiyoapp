@@ -178,6 +178,7 @@
         "stat_Wz73LD",
         "stat_jhKtEa"
       ],
+      "disabled": true,
       "name": "Stats",
       "settings": {
         "strap": "(Our Impact)",
@@ -185,8 +186,105 @@
         "title_gradient": "matter"
       }
     },
+    "icon_boxes_Fwkywn": {
+      "type": "icon-boxes",
+      "blocks": {
+        "box_WB7mkd": {
+          "type": "box",
+          "settings": {
+            "icon": "clock",
+            "title": "Time Drain",
+            "metric": "40hrs/week",
+            "description": "Average time spent on repetitive customer inquiries",
+            "phrase": ""
+          }
+        },
+        "box_TkbD4x": {
+          "type": "box",
+          "settings": {
+            "icon": "users",
+            "title": "Inconsistent Voice",
+            "metric": "67%",
+            "description": "Of customers notice brand voice inconsistencies",
+            "phrase": ""
+          }
+        },
+        "box_pXAFhe": {
+          "type": "box",
+          "settings": {
+            "icon": "trending_down",
+            "title": "Missed Opportunities",
+            "metric": "$50K+",
+            "description": "Lost annually from slow response times",
+            "phrase": ""
+          }
+        }
+      },
+      "block_order": [
+        "box_WB7mkd",
+        "box_TkbD4x",
+        "box_pXAFhe"
+      ],
+      "name": "Icon Boxes (Challenge)",
+      "settings": {
+        "variant": "challenge",
+        "badge": "(The Challenge)",
+        "title_before": "Problems We",
+        "title_gradient": "Solve",
+        "subtitle": "These common pain points are holding businesses back. We fix them."
+      }
+    },
+    "icon_boxes_TzdEHE": {
+      "type": "icon-boxes",
+      "blocks": {
+        "box_Qb4yCY": {
+          "type": "box",
+          "settings": {
+            "icon": "zap",
+            "title": "24/7 Availability",
+            "metric": "",
+            "description": "",
+            "phrase": "Never miss a customer"
+          }
+        },
+        "box_MrqLQm": {
+          "type": "box",
+          "settings": {
+            "icon": "message_square",
+            "title": "Consistent Messaging",
+            "metric": "",
+            "description": "",
+            "phrase": "Perfect brand voice every time"
+          }
+        },
+        "box_bmGBXq": {
+          "type": "box",
+          "settings": {
+            "icon": "trending_up",
+            "title": "Scale Instantly",
+            "metric": "",
+            "description": "",
+            "phrase": "Handle 1000s of conversations"
+          }
+        }
+      },
+      "block_order": [
+        "box_Qb4yCY",
+        "box_MrqLQm",
+        "box_bmGBXq"
+      ],
+      "name": "Icon Boxes (Solution)",
+      "settings": {
+        "variant": "solution",
+        "badge": "(The Solution)",
+        "title_before": "How We",
+        "title_gradient": "Deliver",
+        "subtitle": "Proven strategies that get real results for your business."
+      }
+    },
     "rich_text_EEHbYG": {
       "type": "rich-text",
+      "disabled": true,
       "name": "Rich text",
       "settings": {
         "heading": "(Our Approach)",
@@ -266,18 +364,6 @@
           "settings": {
             "text": "Dedicated support team"
           }
-        },
-        "feature_ddBgBz": {
-          "type": "feature",
-          "settings": {
-            "text": "Text"
-          }
-        },
-        "feature_tdgJiQ": {
-          "type": "feature",
-          "settings": {
-            "text": "Text"
-          }
         }
       },
       "block_order": [
@@ -288,9 +374,7 @@
         "feature_3UUBba",
         "feature_zHPdUx",
         "feature_FpyCGk",
-        "feature_TUayC4",
-        "feature_ddBgBz",
-        "feature_tdgJiQ"
+        "feature_TUayC4"
       ],
       "name": "Two Column Text (What's Included)",
       "settings": {
@@ -493,8 +577,8 @@
       "name": "Service Testimonial",
       "settings": {
         "quote": "\"The Company Agent Builder transformed how we interact with customers. Our brand voice is now perfectly consistent 24/7, and we've seen a 40% reduction in support costs while improving customer satisfaction.\"",
-        "author_name": "Sarah Chen",
-        "author_role": "CEO, TechVenture AI"
+        "author_name": "Hannah M.",
+        "author_role": "CEO and Lead Strategist"
       }
     },
     "use_cases_q3tjXM": {
@@ -706,102 +790,6 @@
         "title_gradient": "Like"
       }
     },
-    "icon_boxes_Fwkywn": {
-      "type": "icon-boxes",
-      "blocks": {
-        "box_WB7mkd": {
-          "type": "box",
-          "settings": {
-            "icon": "clock",
-            "title": "Time Drain",
-            "metric": "40hrs/week",
-            "description": "Average time spent on repetitive customer inquiries",
-            "phrase": ""
-          }
-        },
-        "box_TkbD4x": {
-          "type": "box",
-          "settings": {
-            "icon": "users",
-            "title": "Inconsistent Voice",
-            "metric": "67%",
-            "description": "Of customers notice brand voice inconsistencies",
-            "phrase": ""
-          }
-        },
-        "box_pXAFhe": {
-          "type": "box",
-          "settings": {
-            "icon": "trending_down",
-            "title": "Missed Opportunities",
-            "metric": "$50K+",
-            "description": "Lost annually from slow response times",
-            "phrase": ""
-          }
-        }
-      },
-      "block_order": [
-        "box_WB7mkd",
-        "box_TkbD4x",
-        "box_pXAFhe"
-      ],
-      "name": "Icon Boxes (Challenge)",
-      "settings": {
-        "variant": "challenge",
-        "badge": "(The Challenge)",
-        "title_before": "Problems We",
-        "title_gradient": "Solve",
-        "subtitle": "These common pain points are holding businesses back. We fix them."
-      }
-    },
-    "icon_boxes_TzdEHE": {
-      "type": "icon-boxes",
-      "blocks": {
-        "box_Qb4yCY": {
-          "type": "box",
-          "settings": {
-            "icon": "zap",
-            "title": "24/7 Availability",
-            "metric": "",
-            "description": "",
-            "phrase": "Never miss a customer"
-          }
-        },
-        "box_MrqLQm": {
-          "type": "box",
-          "settings": {
-            "icon": "message_square",
-            "title": "Consistent Messaging",
-            "metric": "",
-            "description": "",
-            "phrase": "Perfect brand voice every time"
-          }
-        },
-        "box_bmGBXq": {
-          "type": "box",
-          "settings": {
-            "icon": "trending_up",
-            "title": "Scale Instantly",
-            "metric": "",
-            "description": "",
-            "phrase": "Handle 1000s of conversations"
-          }
-        }
-      },
-      "block_order": [
-        "box_Qb4yCY",
-        "box_MrqLQm",
-        "box_bmGBXq"
-      ],
-      "name": "Icon Boxes (Solution)",
-      "settings": {
-        "variant": "solution",
-        "badge": "(The Solution)",
-        "title_before": "How We",
-        "title_gradient": "Deliver",
-        "subtitle": "Proven strategies that get real results for your business."
-      }
-    },
     "icon_boxes_1_p3ApL6": {
       "type": "icon-boxes-1",
       "blocks": {
@@ -841,6 +829,7 @@
         "box_UcUKkm",
         "box_RHtcP4"
       ],
+      "disabled": true,
       "name": "Icon Boxes (Stats) – Challenge",
       "settings": {
         "variant": "challenge",
@@ -889,6 +878,7 @@
         "box_d9nhqQ",
         "box_mw3gWG"
       ],
+      "disabled": true,
       "name": "Icon Boxes (Stats) – Solution",
       "settings": {
         "variant": "solution",
@@ -1103,9 +1093,11 @@
     "services_category_grid_nxbLPE",
     "service_details_intro_yGMBf3",
     "stats_YdmTqx",
+    "two_column_text_C8d8mg",
+    "icon_boxes_Fwkywn",
+    "icon_boxes_TzdEHE",
     "rich_text_EEHbYG",
     "services_rich_text_VBT9G7",
-    "two_column_text_C8d8mg",
     "two_column_text_zCXJVY",
     "services_key_features_qwLJ4x",
     "services_timeline_jcmmxh",
@@ -1113,14 +1105,12 @@
     "service_testimonial_ekeHMB",
     "use_cases_q3tjXM",
     "faq_RzHXCd",
-    "related_services_UtrJkF",
-    "icon_boxes_Fwkywn",
-    "icon_boxes_TzdEHE",
     "icon_boxes_1_p3ApL6",
     "icon_boxes_1_6xtMCE",
     "tech_stack_YRcfBE",
     "project_timeline_Cq98KA",
     "hard_truth_dxy9GA",
-    "services_cta_dUgeXW"
+    "services_cta_dUgeXW",
+    "related_services_UtrJkF"
   ]
 }
