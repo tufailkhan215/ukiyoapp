@@ -605,7 +605,7 @@
           "type": "stat",
           "settings": {
             "icon": "users",
-            "value": "2847+",
+            "value": "500+",
             "label": "Happy Customers"
           }
         },
@@ -613,7 +613,7 @@
           "type": "stat",
           "settings": {
             "icon": "download",
-            "value": "15234+",
+            "value": "700+",
             "label": "Downloads"
           }
         },
@@ -629,8 +629,8 @@
           "type": "testimonial",
           "settings": {
             "quote": "Absolutely incredible quality. We've tried many solutions but nothing comes close to this level of polish.",
-            "author_name": "Michael Torres",
-            "author_title": "Marketing Director, GrowthCo",
+            "author_name": "Mike T.",
+            "author_title": "Marketing Director",
             "rating": 5
           }
         }
