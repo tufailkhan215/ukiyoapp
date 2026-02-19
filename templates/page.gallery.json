@@ -277,6 +277,18 @@
         "filters_text": "All\nBrand partnership\nAdventure travel\nEnergy & lifestyle\nFashion & lifestyle"
       }
     },
+    "gallery_featured_cta_GkryRU": {
+      "type": "gallery-featured-cta",
+      "name": "Gallery Featured CTA",
+      "settings": {
+        "show_icon": true,
+        "heading": "Want to Be Featured?",
+        "description": "We're always looking for exciting brands and projects to collaborate with. Let's create something extraordinary together.",
+        "button_text": "Start a Collaboration",
+        "button_url": "/contact",
+        "button_new_tab": false
+      }
+    },
     "trusted_by_v2_mzPTDC": {
       "type": "trusted-by-v2",
       "blocks": {
@@ -330,18 +342,6 @@
         "badge": "(Trusted By)",
         "title": "Brands We've Elevated"
       }
-    },
-    "gallery_featured_cta_GkryRU": {
-      "type": "gallery-featured-cta",
-      "name": "Gallery Featured CTA",
-      "settings": {
-        "show_icon": true,
-        "heading": "Want to Be Featured?",
-        "description": "We're always looking for exciting brands and projects to collaborate with. Let's create something extraordinary together.",
-        "button_text": "Start a Collaboration",
-        "button_url": "/contact",
-        "button_new_tab": false
-      }
     }
   },
   "order": [
@@ -349,8 +349,8 @@
     "gallery_intro_F3mGTE",
     "gallery_stats_cdWYPB",
     "gallery_icons_stats_wVmBPV",
-    "gallery_featured_projects_xwFzEr",
     "trusted_by_v2_mzPTDC",
+    "gallery_featured_projects_xwFzEr",
     "gallery_featured_cta_GkryRU"
   ]
 }
