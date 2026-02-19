@@ -238,6 +238,7 @@
         "project_jqN7Vf": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/IMG_9657_1.webp",
             "category": "Media & Culture",
             "title": "HIGHSNOBIETY",
             "description": "Editorial content partnership and cultural brand activation."
@@ -246,6 +247,7 @@
         "project_fAHDzT": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/DSCF9760.webp",
             "category": "Culinary",
             "title": "JI RESTAURANT | BALI INDONESIA",
             "description": "Balinese fine dining experience captured through visual storytelling."
@@ -254,6 +256,7 @@
         "project_agJeiy": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/DSCF9519_1.webp",
             "category": "Hospitality",
             "title": "SATORI | MAUI",
             "description": "Hawaiian wellness retreat brand development and content creation."
