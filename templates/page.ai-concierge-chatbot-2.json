@@ -142,25 +142,25 @@
         "stat_6RCYkx": {
           "type": "stat",
           "settings": {
-            "value": "24/7",
-            "label": "Availability",
-            "desc": "Always-on brand representation"
+            "value": "35%",
+            "label": "Conversion Lift",
+            "desc": "Increase in visitor-to-customer rate"
           }
         },
         "stat_e3UaEi": {
           "type": "stat",
           "settings": {
-            "value": "90%",
-            "label": "Query Resolution",
-            "desc": "First-contact resolution rate"
+            "value": "<3s",
+            "label": "Response Time",
+            "desc": "Average time to first response"
           }
         },
         "stat_Wz73LD": {
           "type": "stat",
           "settings": {
-            "value": "40%",
-            "label": "Cost Reduction",
-            "desc": "In customer service operations"
+            "value": "78%",
+            "label": "Lead Capture",
+            "desc": "Of engaged visitors provide contact info"
           }
         },
         "stat_jhKtEa": {
@@ -178,7 +178,6 @@
         "stat_Wz73LD",
         "stat_jhKtEa"
       ],
-      "disabled": true,
       "name": "Stats",
       "settings": {
         "strap": "(Our Impact)",
