@@ -518,14 +518,14 @@
         "plan_HyVafM": {
           "type": "plan",
           "settings": {
-            "name": "Starter",
-            "description": "Perfect for small businesses getting started with AI automation",
-            "price": "$2,500",
+            "name": "Essential",
+            "description": "Perfect for small businesses and startups",
+            "price": "$1,500",
             "period": "/ one-time setup",
             "badge": "Most Popular",
-            "features_text": "Single AI agent\nWebsite deployment\nBasic knowledge base (up to 50 FAQs)\nStandard response templates\nEmail support\n30-day optimization period",
+            "features_text": "AI chatbot for website OR Instagram\nUp to 1,000 conversations/month\nBasic lead capture\nStandard response templates\nEmail notifications\nMonthly reporting",
             "cta_text": "Get Started",
-            "cta_url": "#",
+            "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
           }
         },
@@ -539,7 +539,7 @@
             "badge": "Most Popular",
             "features_text": "Advanced AI agent with personality\nWebsite + Instagram DM deployment\nComprehensive knowledge base (unlimited)\nCustom conversation flows\nCRM integration\nAnalytics dashboard\nPriority support\n90-day optimization period",
             "cta_text": "Get Started",
-            "cta_url": "#",
+            "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
           }
         },
@@ -553,7 +553,7 @@
             "badge": "",
             "features_text": "Multiple AI agents\nAll channels (Web, IG, FB, Email, SMS)\nAdvanced integrations (Shopify, HubSpot, etc.)\nCustom training & fine-tuning\nDedicated account manager\nWhite-glove onboarding\n24/7 priority support\nQuarterly strategy reviews",
             "cta_text": "Get Started",
-            "cta_url": "",
+            "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
           }
         }
