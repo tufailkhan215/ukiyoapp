@@ -705,29 +705,29 @@
         "faq_imN7DG": {
           "type": "faq",
           "settings": {
-            "question": "What platforms can the agent be deployed on?",
-            "answer": "Website chat, Instagram DMs, Facebook Messenger, email, and SMS. Enterprise plans can include custom integrations and additional channels."
+            "question": "Can it integrate with my existing tools?",
+            "answer": "Yes! We integrate with popular CRMs (HubSpot, Salesforce), e-commerce platforms (Shopify, WooCommerce), and scheduling tools (Calendly, TidyCal)."
           }
         },
         "faq_RHcRGW": {
           "type": "faq",
           "settings": {
-            "question": "How do you train the AI on our brand voice?",
-            "answer": "We use your existing content, tone guidelines, and sample conversations in a discovery workshop, then calibrate the agent so responses stay consistent with your brand."
+            "question": "What happens when the AI can't answer a question?",
+            "answer": "The system gracefully escalates to a human agent, collecting context so your team can pick up seamlessly. You can set escalation rules based on topic, sentiment, or customer value."
           }
         },
         "faq_MgjXXd": {
           "type": "faq",
           "settings": {
-            "question": "What happens if the AI gives incorrect information?",
-            "answer": "Agents are trained on your approved knowledge base and can be set to escalate uncertain queries to humans. We also provide ongoing monitoring and optimization to improve accuracy."
+            "question": "How quickly can we see results?",
+            "answer": "Most clients see measurable improvements within the first 30 days. Full optimization typically takes 60-90 days as the AI learns from real interactions."
           }
         },
         "faq_cXrfCF": {
           "type": "faq",
           "settings": {
-            "question": "Can we update the agent's knowledge base ourselves?",
-            "answer": "Yes. Depending on your plan, you get access to a dashboard to add or edit FAQs and content. We can also handle updates as part of ongoing support."
+            "question": "Do you offer Instagram DM automation specifically?",
+            "answer": "Absolutely! Instagram DM automation is a core feature. We can automate responses to story replies, DM inquiries, and comment responses."
           }
         }
       },
