@@ -865,7 +865,7 @@
           "type": "tech",
           "settings": {
             "icon": "bot",
-            "label": "Claude",
+            "label": "Shopify",
             "gradient": "orange_amber",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -893,7 +893,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Zapier",
+            "label": "Klaviyo",
             "gradient": "orange_red",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -905,6 +905,7 @@
         },
         "tech_xcw84U": {
           "type": "tech",
+          "disabled": true,
           "settings": {
             "icon": "zap",
             "label": "Make",
