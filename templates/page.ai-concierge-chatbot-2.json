@@ -402,22 +402,22 @@
         "feature_CGK8jh": {
           "type": "feature",
           "settings": {
-            "title": "Multi-Channel Deployment",
-            "description": "Deploy across website, email, social media, Instagram DMs, and messaging platforms seamlessly"
+            "title": "Intent Recognition",
+            "description": "AI understands what visitors really want and guides them to the right solution"
           }
         },
         "feature_WRfYgM": {
           "type": "feature",
           "settings": {
-            "title": "Knowledge Base Integration",
-            "description": "Connected to your products, services, FAQs, and company information for accurate responses"
+            "title": "Product Recommendations",
+            "description": "Smart suggestions based on conversation context, browsing history, and preferences"
           }
         },
         "feature_Nz6XTd": {
           "type": "feature",
           "settings": {
-            "title": "Continuous Learning",
-            "description": "Agents improve over time based on interactions, feedback, and new information"
+            "title": "Lead Qualification",
+            "description": "Automatically scores and routes high-value leads to your sales team"
           }
         },
         "feature_aYey6f": {
@@ -430,8 +430,8 @@
         "feature_wBVcMj": {
           "type": "feature",
           "settings": {
-            "title": "Analytics Dashboard",
-            "description": "Real-time insights into agent performance, customer satisfaction, and conversation trends"
+            "title": "Appointment Booking",
+            "description": "Integrated scheduling for calls, demos, and consultations"
           }
         }
       },
