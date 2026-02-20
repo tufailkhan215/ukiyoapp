@@ -9,11 +9,6 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
-      "disabled": true,
-      "settings": {}
-    },
     "services_hero_Hfxecm": {
       "type": "services-hero",
       "disabled": true,
@@ -25,20 +20,6 @@
         "title_line2": "Your Flag",
         "description": "We work with founders, CEOs, and leadership teams to shape defining ideas and build strategy and design systems for growth at scale.",
         "scroll_text": "(Scroll to explore)"
-      }
-    },
-    "services_intro_C3pYy7": {
-      "type": "services-intro",
-      "disabled": true,
-      "name": "Services Intro",
-      "settings": {
-        "strap": "(What We Do)",
-        "title_before": "Brand strategy, identity, and experience built for",
-        "title_gradient": "growth at scale.",
-        "paragraph_1": "Our work spans brand strategy, identity, and experience, delivered as a single integrated system. We lead engagements from positioning through messaging, identity design, digital experiences, and brand systems.",
-        "paragraph_2": "The focus is practical by design: building brands that can be applied consistently across product, marketing, and communications.",
-        "cta_text": "Book a Discovery Call",
-        "cta_url": "/pages/contact"
       }
     },
     "services_category_grid_nxbLPE": {
@@ -192,10 +173,10 @@
       "settings": {
         "layout": "overview",
         "strap": "(Overview)",
-        "title_before": "What is",
-        "title_gradient": "Company Agent Builder?",
-        "paragraph_1": "<p>Create custom AI agents that understand your company inside and out. From customer service to sales, your brand voice stays consistent across every interaction.</p>",
-        "paragraph_2": "<p>In an era where customer expectations are at an all-time high, having a consistent brand voice across every touchpoint is crucial. Our Company Agent Builder service creates bespoke AI agents trained on your brand guidelines, tone of voice, product knowledge, and company values. These agents become extensions of your team, handling everything from customer inquiries to lead qualification with the precision and personality your brand deserves.</p>",
+        "title_before": "What is AI",
+        "title_gradient": "Concierge Chatbot?",
+        "paragraph_1": "<p>An intelligent AI chatbot that engages visitors on your website and Instagram DMs, qualifying leads and driving revenue while you sleep.</p>",
+        "paragraph_2": "<p>The AI Revenue Concierge is your always-on sales assistant that lives on your website and Instagram. It doesn't just answer questions it understands buying intent, qualifies leads, recommends products, handles objections, and guides prospects through to purchase. With natural language processing that feels genuinely human, your visitors get instant, helpful responses that move them closer to becoming customers.</p>",
         "title_included": "Everything You Need to Launch Your AI Agent"
       }
     },
@@ -989,6 +970,7 @@
     },
     "hard_truth_dxy9GA": {
       "type": "hard-truth",
+      "disabled": true,
       "name": "Hard Truth",
       "settings": {
         "badge": "(The Hard Truth)",
@@ -1090,9 +1072,7 @@
     }
   },
   "order": [
-    "main",
     "services_hero_Hfxecm",
-    "services_intro_C3pYy7",
     "services_category_grid_nxbLPE",
     "service_details_intro_yGMBf3",
     "stats_YdmTqx",
