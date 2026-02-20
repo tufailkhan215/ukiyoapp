@@ -456,43 +456,43 @@
         "step_VWnEJa": {
           "type": "step",
           "settings": {
-            "title": "Discovery Workshop",
-            "description": "Deep dive into your brand voice, values, customer journey, and business objectives"
+            "title": "Revenue Audit",
+            "description": "Analyze your current conversion funnel, identify leaks, and map opportunities"
           }
         },
         "step_GejF3z": {
           "type": "step",
           "settings": {
-            "title": "Knowledge Mapping",
-            "description": "Document all products, services, FAQs, policies, and brand guidelines comprehensively"
+            "title": "Conversation Design",
+            "description": "Map out optimal conversation flows for different visitor intents and journeys"
           }
         },
         "step_MxmXGH": {
           "type": "step",
           "settings": {
-            "title": "Agent Development",
-            "description": "Build and train your custom AI agent with your unique brand DNA and personality"
+            "title": "AI Training",
+            "description": "Train the chatbot on your products, services, FAQs, and sales process"
           }
         },
         "step_NfX4qg": {
           "type": "step",
           "settings": {
-            "title": "Testing & Refinement",
-            "description": "Rigorous testing across scenarios, edge cases, and real customer interactions"
+            "title": "Integration",
+            "description": "Connect to your website, Instagram, CRM, and e-commerce platform"
           }
         },
         "step_78eaHH": {
           "type": "step",
           "settings": {
-            "title": "Deployment & Integration",
-            "description": "Launch across your chosen channels with full monitoring and support"
+            "title": "Launch & Test",
+            "description": "Go live with A/B testing and real-time optimization"
           }
         },
         "step_zEyLVB": {
           "type": "step",
           "settings": {
-            "title": "Continuous Optimization",
-            "description": "Ongoing improvement based on real interactions, feedback, and performance data"
+            "title": "Scale & Optimize",
+            "description": "Continuous improvement for maximum ROI based on performance data"
           }
         }
       },
