@@ -564,6 +564,10 @@
         "author_role": "CMO | TECH SOLUTIONS"
       }
     },
+    "17715474998453bd5d": {
+      "type": "_blocks",
+      "settings": {}
+    },
     "use_cases_q3tjXM": {
       "type": "use-cases",
       "blocks": {
@@ -856,20 +860,6 @@
             "popup_bullet_3": "Fully Supported"
           }
         },
-        "tech_LkKhg3": {
-          "type": "tech",
-          "settings": {
-            "icon": "code",
-            "label": "Langchain",
-            "gradient": "green_emerald",
-            "url": "",
-            "popup_tagline": "Professional Tool",
-            "popup_description": "Industry-leading tool used in our workflow to deliver exceptional results for your project.",
-            "popup_bullet_1": "Industry Standard",
-            "popup_bullet_2": "Enterprise Ready",
-            "popup_bullet_3": "Fully Supported"
-          }
-        },
         "tech_Wxnr9D": {
           "type": "tech",
           "settings": {
@@ -903,7 +893,6 @@
       "block_order": [
         "tech_hNTBrh",
         "tech_GJUEV6",
-        "tech_LkKhg3",
         "tech_Wxnr9D",
         "tech_xcw84U"
       ],
@@ -1086,6 +1075,7 @@
     "services_timeline_jcmmxh",
     "services_plan_URffPE",
     "service_testimonial_ekeHMB",
+    "17715474998453bd5d",
     "use_cases_q3tjXM",
     "faq_RzHXCd",
     "icon_boxes_1_p3ApL6",
