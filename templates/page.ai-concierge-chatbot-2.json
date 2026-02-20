@@ -942,7 +942,7 @@
           "settings": {
             "number": "",
             "label": "Week 1",
-            "title": "Discovery & Brand Training"
+            "title": "Funnel Audit & Strategy"
           }
         },
         "step_tiReLw": {
@@ -950,7 +950,7 @@
           "settings": {
             "number": "",
             "label": "Week 2",
-            "title": "Agent Development"
+            "title": "Chatbot Development"
           }
         },
         "step_CJxzWT": {
@@ -958,7 +958,7 @@
           "settings": {
             "number": "",
             "label": "Week 3",
-            "title": "Testing & Refinement"
+            "title": "Integration & Testing"
           }
         },
         "step_AjFwPY": {
@@ -966,7 +966,7 @@
           "settings": {
             "number": "",
             "label": "Week 4",
-            "title": "Launch & Monitor"
+            "title": "Launch & Optimize"
           }
         }
       },
