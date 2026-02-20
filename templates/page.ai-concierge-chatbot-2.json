@@ -851,7 +851,7 @@
           "type": "tech",
           "settings": {
             "icon": "bot",
-            "label": "OpenAI",
+            "label": "Manychat",
             "gradient": "emerald_teal",
             "url": "",
             "popup_tagline": "Professional Tool",
