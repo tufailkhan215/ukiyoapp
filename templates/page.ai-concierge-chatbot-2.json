@@ -312,8 +312,8 @@
       "type": "services-rich-text",
       "name": "Services Rich Text",
       "settings": {
-        "strap": "Dual-Platform Deployment",
-        "body": "<p>Seamless presence on website chat and Instagram DMs with unified conversation history</p>"
+        "strap": "(Our Approach)",
+        "body": "<p>We leverage AI-driven funnels and automated follow-up sequences that rapidly scale monthly sales. Our technology adapts to the market, keeping you ahead of the competition with tools to make informed decisions that drive results.</p>"
       }
     },
     "two_column_text_zCXJVY": {
@@ -691,15 +691,15 @@
         "faq_7d93ic": {
           "type": "faq",
           "settings": {
-            "question": "How long does it take to build and deploy a company agent?",
-            "answer": "Typically 2-4 weeks depending on complexity. Starter packages can be live in as little as 10 business days, while Enterprise solutions with multiple integrations may take 4-6 weeks."
+            "question": "How is this different from a regular chatbot?",
+            "answer": "Our AI Concierge Chatbot uses advanced natural language processing to understand context, intent, and sentiment. It doesn't just answer questions, it actively guides visitors toward conversion with personalized recommendations and strategic follow-ups."
           }
         },
         "faq_Lh88e7": {
           "type": "faq",
           "settings": {
-            "question": "Can the AI agent handle complex customer inquiries?",
-            "answer": "Yes. Our agents are trained on your brand guidelines and knowledge base, and can handle multi-turn conversations. For highly complex or sensitive issues, we support seamless human handoff."
+            "question": "Will the chatbot sound robotic?",
+            "answer": "No! We train the AI on your brand voice and customize responses to sound natural and on-brand. Most visitors can't tell they're talking to AI."
           }
         },
         "faq_imN7DG": {
