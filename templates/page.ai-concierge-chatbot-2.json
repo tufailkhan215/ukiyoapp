@@ -523,7 +523,7 @@
             "price": "$1,500",
             "period": "/ one-time setup",
             "badge": "Most Popular",
-            "features_text": "AI chatbot for website OR Instagram\nUp to 1,000 conversations/month\nBasic lead capture\nStandard response templates\nEmail notifications\nMonthly reporting",
+            "features_text": "AI chatbot for website OR Instagram\nUp to 1,000 conversations/month\nBasic lead capture\nStandard response templates\nEmail notifications",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -533,11 +533,11 @@
           "type": "plan",
           "settings": {
             "name": "Professional",
-            "description": "Ideal for growing businesses ready to scale their customer experience",
-            "price": "$5,000",
+            "description": "Ideal for growing e-commerce and service businesses",
+            "price": "$2,500",
             "period": "/ one-time setup",
             "badge": "Most Popular",
-            "features_text": "Advanced AI agent with personality\nWebsite + Instagram DM deployment\nComprehensive knowledge base (unlimited)\nCustom conversation flows\nCRM integration\nAnalytics dashboard\nPriority support\n90-day optimization period",
+            "features_text": "AI chatbot for Website + Instagram\nUp to 5,000 conversations/month\nAdvanced lead scoring\nProduct recommendations\nCart abandonment recovery\nCRM integration\nAppointment booking",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -547,11 +547,11 @@
           "type": "plan",
           "settings": {
             "name": "Enterprise",
-            "description": "For established brands requiring complete AI ecosystem",
-            "price": "$12,000",
+            "description": "For high-volume businesses requiring advanced features",
+            "price": "$5,000",
             "period": "/ one-time setup",
             "badge": "",
-            "features_text": "Multiple AI agents\nAll channels (Web, IG, FB, Email, SMS)\nAdvanced integrations (Shopify, HubSpot, etc.)\nCustom training & fine-tuning\nDedicated account manager\nWhite-glove onboarding\n24/7 priority support\nQuarterly strategy reviews",
+            "features_text": "All platforms (Web, IG, FB, SMS)\nUnlimited conversations\nCustom AI training\nAdvanced analytics & reporting\nMulti-language support\nAPI access\nDedicated success manager\nCustom integrations",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
