@@ -836,8 +836,8 @@
         "tech_hNTBrh": {
           "type": "tech",
           "settings": {
-            "icon": "bot",
-            "label": "Apollo.io",
+            "icon": "zap",
+            "label": "Figma",
             "gradient": "emerald_teal",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -851,7 +851,35 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "LinkedIn Sales Navigator",
+            "label": "Adobe Creative Suite",
+            "gradient": "orange_amber",
+            "url": "",
+            "popup_tagline": "Professional Tool",
+            "popup_description": "Industry-leading tool used in our workflow to deliver exceptional results for your project.",
+            "popup_bullet_1": "Industry Standard",
+            "popup_bullet_2": "Enterprise Ready",
+            "popup_bullet_3": "Fully Supported"
+          }
+        },
+        "tech_HVdtqP": {
+          "type": "tech",
+          "settings": {
+            "icon": "zap",
+            "label": "Canva Pro",
+            "gradient": "orange_amber",
+            "url": "",
+            "popup_tagline": "Professional Tool",
+            "popup_description": "Industry-leading tool used in our workflow to deliver exceptional results for your project.",
+            "popup_bullet_1": "Industry Standard",
+            "popup_bullet_2": "Enterprise Ready",
+            "popup_bullet_3": "Fully Supported"
+          }
+        },
+        "tech_8U676K": {
+          "type": "tech",
+          "settings": {
+            "icon": "zap",
+            "label": "Lottie",
             "gradient": "orange_amber",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -864,8 +892,8 @@
         "tech_Wxnr9D": {
           "type": "tech",
           "settings": {
-            "icon": "code",
-            "label": "Notion",
+            "icon": "zap",
+            "label": "Spline",
             "gradient": "orange_red",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -894,6 +922,8 @@
       "block_order": [
         "tech_hNTBrh",
         "tech_GJUEV6",
+        "tech_HVdtqP",
+        "tech_8U676K",
         "tech_Wxnr9D",
         "tech_xcw84U"
       ],
@@ -914,7 +944,7 @@
           "settings": {
             "number": "",
             "label": "Week 1-2",
-            "title": "Partner Research & Mapping"
+            "title": "Discovery & Research"
           }
         },
         "step_tiReLw": {
@@ -922,23 +952,23 @@
           "settings": {
             "number": "",
             "label": "Week 2-3",
-            "title": "Outreach & Conversations"
+            "title": "Concept Development"
           }
         },
         "step_CJxzWT": {
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 5-6",
-            "title": "Negotiation & Contracts"
+            "label": "Week 4-5",
+            "title": "Design Execution"
           }
         },
         "step_AjFwPY": {
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Ongoing",
-            "title": "Relationship Management"
+            "label": "Week 6",
+            "title": "Delivery & Handoff"
           }
         }
       },
@@ -1007,8 +1037,8 @@
       "type": "services-cta",
       "name": "Services CTA",
       "settings": {
-        "heading": "Ready to Build Strategic Partnerships?",
-        "description": "Let's discuss how we can help you identify and secure partnerships that amplify your brand reach.",
+        "heading": "Ready to Transform Your Brand?",
+        "description": "Let's create a visual identity that captures your essence and commands attention in your market.",
         "cta_text": "Book Free Consultation",
         "cta_url": "https://tidycal.com/salesautomateiq/consultation",
         "cta_new_tab": true
@@ -1020,9 +1050,9 @@
         "service_6YFJpa": {
           "type": "service",
           "settings": {
-            "title": "AI Revenue Concierge Chatbot",
-            "description": "An intelligent AI chatbot that engages visitors on your website and Instagram DMs, qualifying leads and driving revenue while you sleep.",
-            "url": "/services/ai-revenue-concierge",
+            "title": "Website & Web Development",
+            "description": "Custom website design and development that combines stunning visuals with performance-driven architecture.",
+            "url": "services/web-development",
             "cta_text": "Learn more",
             "open_new_tab": false
           }
@@ -1030,9 +1060,9 @@
         "service_Ez33Vi": {
           "type": "service",
           "settings": {
-            "title": "Klaviyo Flows Services",
-            "description": "Expert Klaviyo flow setup and optimization that converts subscribers into customers on autopilot.",
-            "url": "/services/klaviyo-flows",
+            "title": "Monthly Content Calendar",
+            "description": "Done-for-you monthly content planning and creation that keeps your brand visible and engaging across all",
+            "url": "services/monthly-content-calendar",
             "cta_text": "Learn more",
             "open_new_tab": false
           }
@@ -1040,9 +1070,9 @@
         "service_J37i6X": {
           "type": "service",
           "settings": {
-            "title": "Virtual Assistance & Admin Support",
-            "description": "Professional virtual assistance that handles your administrative tasks so you can focus on what moves the needle.",
-            "url": "/services/virtual-assistance",
+            "title": "Paid Ads Creative System",
+            "description": "High-performance ad creative designed to stop thumbs, capture attention, and drive measurable",
+            "url": "services/paid-ads-creative",
             "cta_text": "Learn more",
             "open_new_tab": false
           }
