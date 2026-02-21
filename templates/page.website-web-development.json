@@ -573,10 +573,10 @@
       "type": "service-testimonial",
       "name": "Service Testimonial",
       "settings": {
-        "quote": "\"The brand identity they created elevated our entire business. We're now seen as the premium option in our market and our customer engagement has increased 30%.\"",
-        "author_image": "shopify://shop_images/2_bc8b2b35-4884-4912-8eaf-9aab743d58f2.png",
-        "author_name": "David Park",
-        "author_role": "Director of Marketing, Urban Eats"
+        "quote": "\"Our new website generated more leads in the first month than our old site did in a year. The design perfectly captures our brand and the performance is incredible.\"",
+        "author_image": "shopify://shop_images/3.png",
+        "author_name": "Jennifer Liu",
+        "author_role": "VP of Growth, Fintech Pro"
       }
     },
     "17715474998453bd5d": {
