@@ -451,43 +451,43 @@
         "step_VWnEJa": {
           "type": "step",
           "settings": {
-            "title": "Strategy & Planning",
-            "description": "Define goals, audience, sitemap, and success metrics"
+            "title": "Discovery",
+            "description": "Define app goals, user needs, and technical requirements"
           }
         },
         "step_GejF3z": {
           "type": "step",
           "settings": {
-            "title": "Wireframing",
-            "description": "Plan the structure, user flows, and experience architecture"
+            "title": "Prototyping",
+            "description": "Create interactive prototypes for validation and feedback"
           }
         },
         "step_MxmXGH": {
           "type": "step",
           "settings": {
             "title": "Design",
-            "description": "Create the visual design, interactions, and brand application"
+            "description": "Craft beautiful, intuitive interfaces following platform guidelines"
           }
         },
         "step_NfX4qg": {
           "type": "step",
           "settings": {
             "title": "Development",
-            "description": "Build with clean, scalable code and modern frameworks"
+            "description": "Build with modern frameworks and best practices"
           }
         },
         "step_78eaHH": {
           "type": "step",
           "settings": {
-            "title": "Testing & QA",
-            "description": "Rigorous testing across devices, browsers, and scenarios"
+            "title": "Testing",
+            "description": "Comprehensive QA, beta testing, and performance optimization"
           }
         },
         "step_zEyLVB": {
           "type": "step",
           "settings": {
-            "title": "Launch & Support",
-            "description": "Deploy with monitoring and provide ongoing maintenance"
+            "title": "Launch",
+            "description": "App Store submission, launch strategy, and marketing support"
           }
         }
       },
