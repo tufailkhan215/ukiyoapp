@@ -691,43 +691,43 @@
         "faq_7d93ic": {
           "type": "faq",
           "settings": {
-            "question": "How long does a complete brand identity project take?",
-            "answer": "Essentials packages take 2-3 weeks, Professional packages 4-6 weeks, and Enterprise projects 8-12 weeks depending on complexity and feedback cycles."
+            "question": "Should I build native or cross-platform?",
+            "answer": "It depends on your needs. Cross-platform (React Native/Flutter) is cost-effective for most apps. Native development is best for performance-intensive apps or when you need deep platform integration."
           }
         },
         "faq_Lh88e7": {
           "type": "faq",
           "settings": {
-            "question": "What if I don't like the initial concepts?",
-            "answer": "We offer multiple concepts and revision rounds. If the initial direction doesn't resonate, we'll explore new approaches until we find the perfect fit for your brand."
+            "question": "How long does app development take?",
+            "answer": "MVP apps take 2-3 months, Professional apps 4-6 months, and Enterprise apps 6-12 months depending on complexity and features."
           }
         },
         "faq_imN7DG": {
           "type": "faq",
           "settings": {
-            "question": "Do I own the final designs?",
-            "answer": "Yes! Upon final payment, you receive full ownership of all designs, source files, and assets. We retain the right to showcase the work in our portfolio."
+            "question": "Do you handle App Store submission?",
+            "answer": "Yes! We handle the entire submission process including screenshots, descriptions, and responding to any Apple or Google feedback."
           }
         },
         "faq_RHcRGW": {
           "type": "faq",
           "settings": {
-            "question": "Can you work with our existing brand elements?",
-            "answer": "Absolutely! We can refresh and build upon existing elements or start completely fresh—whatever serves your brand best."
+            "question": "Can you integrate with our existing systems?",
+            "answer": "Absolutely. We can integrate with any existing backend, CRM, payment processor, or third-party service via API."
           }
         },
         "faq_MgjXXd": {
           "type": "faq",
           "settings": {
-            "question": "What file formats do you deliver?",
-            "answer": "We provide all standard formats including AI, EPS, PDF, PNG, JPG, and SVG. We also include web-optimized versions and favicon files."
+            "question": "What about app updates and maintenance?",
+            "answer": "We offer ongoing support packages for updates, bug fixes, new features, and adapting to OS updates."
           }
         },
         "faq_cXrfCF": {
           "type": "faq",
           "settings": {
-            "question": "Do you offer ongoing design support?",
-            "answer": "Yes! We offer monthly retainer packages for ongoing design needs including social graphics, marketing materials, and asset creation."
+            "question": "Do you provide app marketing support?",
+            "answer": "We offer App Store Optimization (ASO) and can coordinate with our marketing team for launch campaigns."
           }
         }
       },
