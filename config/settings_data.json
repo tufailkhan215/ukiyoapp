@@ -59,15 +59,7 @@
             "settings": {
               "parent_handle": "services",
               "category_title": "Digital Experience",
-              "links_text": "Website & Web Development|pages/website-web-development-services"
-            }
-          },
-          "dropdown_category_JpVCVR": {
-            "type": "dropdown_category",
-            "settings": {
-              "parent_handle": "services",
-              "category_title": "Digital Experience",
-              "links_text": "Mobile & App Development|pages/mobile-app-development-services"
+              "links_text": "Website & Web Development|pages/website-web-development-services\n\nMobile & App Development|pages/mobile-app-development-services"
             }
           },
           "dropdown_category_w8tCki": {
@@ -93,7 +85,6 @@
           "dropdown_category_FwQj3T",
           "dropdown_category_iCYpNb",
           "dropdown_category_3UYqiR",
-          "dropdown_category_JpVCVR",
           "dropdown_category_w8tCki",
           "dropdown_category_TNDVkY"
         ],
