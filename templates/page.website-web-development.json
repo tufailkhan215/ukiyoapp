@@ -107,9 +107,9 @@
         "back_link_url": "/pages/services",
         "category_label": "Brand Strategy",
         "category_icon": "sparkles",
-        "title": "Graphic Design & Brand Identity",
-        "subtitle": "Strategic Alliances That Amplify Growth",
-        "description": "Build powerful partnerships that multiply your reach and revenue",
+        "title": "Website & Web Development",
+        "subtitle": "Digital Experiences That Convert",
+        "description": "Websites that work as hard as you do",
         "cta_primary_text": "Book Free Consultation",
         "cta_primary_url": "#",
         "cta_primary_new_tab": true,
@@ -174,9 +174,9 @@
         "layout": "overview",
         "strap": "(Overview)",
         "title_before": "What is ",
-        "title_gradient": "Graphic Design & Brand Identity?",
-        "paragraph_1": "<p>Comprehensive brand identity design that creates cohesive, memorable visual systems across all touchpoints.</p>",
-        "paragraph_2": "<p>Your brand identity is more than a logo—it's the complete visual language that communicates who you are before you say a word. Our Graphic Design & Brand Identity service creates comprehensive visual systems that work seamlessly across digital and print, ensuring every touchpoint reinforces your brand story. From strategic logo design to complete brand guidelines, we build identities that are distinctive, scalable, and built to last.</p>",
+        "title_gradient": "Website & Web Development?",
+        "paragraph_1": "<p>Custom website design and development that combines stunning visuals with performance-driven architecture.</p>",
+        "paragraph_2": "<p>Your website is your most important digital asset it's where first impressions are made and business happens. Our Website & Web Development service creates custom digital experiences that look stunning, load fast, and convert visitors into customers. We combine award-winning design with modern development practices to build websites that are as beautiful as they are functional.</p>",
         "title_included": "Everything You Need to Launch Your AI Agent"
       }
     },
@@ -294,7 +294,7 @@
       "name": "Services Rich Text",
       "settings": {
         "strap": "(Our Approach)",
-        "body": "<p>We create impactful content that drives real results. Our team blends storytelling with strategy to capture attention and drive growth. We focus on design that converts, not vanity metrics.</p>"
+        "body": "<p>We build effective online ecosystems that boost credibility and drive growth. Our websites integrate with AI-driven analytics and CRM platforms leading to increased lead capture and a seamless customer experience.</p>"
       }
     },
     "two_column_text_zCXJVY": {
@@ -303,49 +303,61 @@
         "feature_VD783b": {
           "type": "feature",
           "settings": {
-            "text": "Discovery & strategy workshop"
+            "text": "Custom UI/UX design"
           }
         },
         "feature_rVJdJK": {
           "type": "feature",
           "settings": {
-            "text": "Business card & letterhead design"
+            "text": "Mobile-responsive development"
           }
         },
         "feature_DpUeXd": {
           "type": "feature",
           "settings": {
-            "text": "Logo design (3 concepts, unlimited revisions)"
+            "text": "Content management system"
           }
         },
         "feature_cKMdiL": {
           "type": "feature",
           "settings": {
-            "text": "Competitive analysis & positioning"
+            "text": "SEO optimization"
           }
         },
         "feature_3UUBba": {
           "type": "feature",
           "settings": {
-            "text": "Typography system"
+            "text": "Speed optimization"
           }
         },
         "feature_zHPdUx": {
           "type": "feature",
           "settings": {
-            "text": "Color palette development"
+            "text": "Contact forms & lead capture"
           }
         },
         "feature_FpyCGk": {
           "type": "feature",
           "settings": {
-            "text": "Brand guidelines document"
+            "text": "Analytics integration"
+          }
+        },
+        "feature_BUxiQB": {
+          "type": "feature",
+          "settings": {
+            "text": "SSL security certificate"
           }
         },
         "feature_TUayC4": {
           "type": "feature",
           "settings": {
-            "text": "Visual element library"
+            "text": "Hosting setup assistance"
+          }
+        },
+        "feature_LnXAf6": {
+          "type": "feature",
+          "settings": {
+            "text": "30-day post-launch support"
           }
         }
       },
@@ -357,7 +369,9 @@
         "feature_3UUBba",
         "feature_zHPdUx",
         "feature_FpyCGk",
-        "feature_TUayC4"
+        "feature_BUxiQB",
+        "feature_TUayC4",
+        "feature_LnXAf6"
       ],
       "name": "Two Column Text (What's Included)",
       "settings": {
@@ -367,7 +381,7 @@
         "title_gradient": "AI Agent",
         "paragraph_1": "<p>Create custom AI agents that understand your company inside and out. From customer service to sales, your brand voice stays consistent across every interaction.</p>",
         "paragraph_2": "<p>In an era where customer expectations are at an all-time high, having a consistent brand voice across every touchpoint is crucial. Our Company Agent Builder service creates bespoke AI agents trained on your brand guidelines, tone of voice, product knowledge, and company values. These agents become extensions of your team, handling everything from customer inquiries to lead qualification with the precision and personality your brand deserves.</p>",
-        "title_included": "Complete Brand Identity Package"
+        "title_included": "Complete Website Solution"
       }
     },
     "services_key_features_qwLJ4x": {
