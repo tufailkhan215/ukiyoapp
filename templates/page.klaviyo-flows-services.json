@@ -107,9 +107,9 @@
         "back_link_url": "/pages/services",
         "category_label": "Brand Strategy",
         "category_icon": "sparkles",
-        "title": "Website & Web Development",
-        "subtitle": "Digital Experiences That Convert",
-        "description": "Websites that work as hard as you do",
+        "title": "Klaviyo Flows Services",
+        "subtitle": "Email Automation That Prints Money",
+        "description": "Turn your email list into a revenue engine",
         "cta_primary_text": "Book Free Consultation",
         "cta_primary_url": "#",
         "cta_primary_new_tab": true,
@@ -174,9 +174,9 @@
         "layout": "overview",
         "strap": "(Overview)",
         "title_before": "What is ",
-        "title_gradient": "Website & Web Development?",
-        "paragraph_1": "<p>Custom website design and development that combines stunning visuals with performance-driven architecture.</p>",
-        "paragraph_2": "<p>Your website is your most important digital asset it's where first impressions are made and business happens. Our Website & Web Development service creates custom digital experiences that look stunning, load fast, and convert visitors into customers. We combine award-winning design with modern development practices to build websites that are as beautiful as they are functional.</p>",
+        "title_gradient": "Klaviyo Flows Services?",
+        "paragraph_1": "<p>Expert Klaviyo flow setup and optimization that converts subscribers into customers on autopilot.</p>",
+        "paragraph_2": "<p>Email marketing has the highest ROI of any marketing channel but only when done right. Our Klaviyo Flows Services set up sophisticated email automation that nurtures leads, recovers abandoned carts, and maximizes customer lifetime value. We build flows that feel personal and timely, delivering the right message at the right moment to drive conversions.</p>",
         "title_included": "Everything You Need to Launch Your AI Agent"
       }
     },
@@ -294,7 +294,7 @@
       "name": "Services Rich Text",
       "settings": {
         "strap": "(Our Approach)",
-        "body": "<p>We build effective online ecosystems that boost credibility and drive growth. Our websites integrate with AI-driven analytics and CRM platforms leading to increased lead capture and a seamless customer experience.</p>"
+        "body": "<p>Targeted campaigns with personalized messages resonate with your audience for higher open rates. Automated workflows with timely follow-ups and reminders nurture leads without manual effort. Detailed analytics refine strategies and increase campaign effectiveness.</p>"
       }
     },
     "two_column_text_zCXJVY": {
@@ -303,49 +303,49 @@
         "feature_VD783b": {
           "type": "feature",
           "settings": {
-            "text": "Custom UI/UX design"
+            "text": "Klaviyo account audit/setup"
           }
         },
         "feature_rVJdJK": {
           "type": "feature",
           "settings": {
-            "text": "Mobile-responsive development"
+            "text": "Email template design"
           }
         },
         "feature_DpUeXd": {
           "type": "feature",
           "settings": {
-            "text": "Content management system"
+            "text": "Flow strategy & mapping"
           }
         },
         "feature_cKMdiL": {
           "type": "feature",
           "settings": {
-            "text": "SEO optimization"
+            "text": "Welcome series (5-7 emails)"
           }
         },
         "feature_3UUBba": {
           "type": "feature",
           "settings": {
-            "text": "Speed optimization"
+            "text": "Abandoned cart flow"
           }
         },
         "feature_zHPdUx": {
           "type": "feature",
           "settings": {
-            "text": "Contact forms & lead capture"
+            "text": "Browse abandonment flow"
           }
         },
         "feature_FpyCGk": {
           "type": "feature",
           "settings": {
-            "text": "Analytics integration"
+            "text": "Post-purchase flow"
           }
         },
         "feature_BUxiQB": {
           "type": "feature",
           "settings": {
-            "text": "SSL security certificate"
+            "text": "Win-back flow"
           }
         },
         "feature_TUayC4": {
@@ -354,10 +354,16 @@
             "text": "Hosting setup assistance"
           }
         },
+        "feature_pa3qDe": {
+          "type": "feature",
+          "settings": {
+            "text": "A/B testing framework"
+          }
+        },
         "feature_LnXAf6": {
           "type": "feature",
           "settings": {
-            "text": "30-day post-launch support"
+            "text": "Segmentation setup"
           }
         }
       },
@@ -371,6 +377,7 @@
         "feature_FpyCGk",
         "feature_BUxiQB",
         "feature_TUayC4",
+        "feature_pa3qDe",
         "feature_LnXAf6"
       ],
       "name": "Two Column Text (What's Included)",
@@ -390,43 +397,43 @@
         "feature_cVUqcy": {
           "type": "feature",
           "settings": {
-            "title": "Custom Design",
-            "description": "Unique designs that reflect your brand perfectly—no templates"
+            "title": "Welcome Series",
+            "description": "Convert new subscribers into first-time buyers with strategic onboarding"
           }
         },
         "feature_CGK8jh": {
           "type": "feature",
           "settings": {
-            "title": "Responsive Development",
-            "description": "Flawless experience across all devices and screen sizes"
+            "title": "Abandoned Cart",
+            "description": "Recover lost sales with smart, personalized sequences"
           }
         },
         "feature_WRfYgM": {
           "type": "feature",
           "settings": {
-            "title": "Performance Optimization",
-            "description": "Lightning-fast load times and smooth interactions"
+            "title": "Post-Purchase",
+            "description": "Drive reviews, upsells, and repeat purchases automatically"
           }
         },
         "feature_Nz6XTd": {
           "type": "feature",
           "settings": {
-            "title": "SEO Foundation",
-            "description": "Built for search engine visibility from day one"
+            "title": "Win-Back Flows",
+            "description": "Re-engage lapsed customers with targeted reactivation campaigns"
           }
         },
         "feature_aYey6f": {
           "type": "feature",
           "settings": {
-            "title": "CMS Integration",
-            "description": "Easy content management with Shopify, WordPress, or custom solutions"
+            "title": "Browse Abandonment",
+            "description": "Follow up with interested window shoppers who didn't add to cart"
           }
         },
         "feature_wBVcMj": {
           "type": "feature",
           "settings": {
-            "title": "Analytics Setup",
-            "description": "Track what matters with proper instrumentation and dashboards"
+            "title": "VIP Programs",
+            "description": "Reward your best customers and increase loyalty"
           }
         }
       },
@@ -451,43 +458,43 @@
         "step_VWnEJa": {
           "type": "step",
           "settings": {
-            "title": "Strategy & Planning",
-            "description": "Define goals, audience, sitemap, and success metrics"
+            "title": "Audit",
+            "description": "Review current email setup, flows, and performance metrics"
           }
         },
         "step_GejF3z": {
           "type": "step",
           "settings": {
-            "title": "Wireframing",
-            "description": "Plan the structure, user flows, and experience architecture"
+            "title": "Strategy",
+            "description": "Plan flow architecture, triggers, and messaging strategy"
           }
         },
         "step_MxmXGH": {
           "type": "step",
           "settings": {
             "title": "Design",
-            "description": "Create the visual design, interactions, and brand application"
+            "description": "Create on-brand email templates that convert"
           }
         },
         "step_NfX4qg": {
           "type": "step",
           "settings": {
-            "title": "Development",
-            "description": "Build with clean, scalable code and modern frameworks"
+            "title": "Build",
+            "description": "Set up flows with proper triggers, logic, and personalization"
           }
         },
         "step_78eaHH": {
           "type": "step",
           "settings": {
-            "title": "Testing & QA",
-            "description": "Rigorous testing across devices, browsers, and scenarios"
+            "title": "Test",
+            "description": "QA all flows, integrations, and edge cases"
           }
         },
         "step_zEyLVB": {
           "type": "step",
           "settings": {
-            "title": "Launch & Support",
-            "description": "Deploy with monitoring and provide ongoing maintenance"
+            "title": "Optimize",
+            "description": "A/B test and improve performance continuously"
           }
         }
       },
@@ -513,12 +520,12 @@
         "plan_HyVafM": {
           "type": "plan",
           "settings": {
-            "name": "Starter",
-            "description": "Perfect for small businesses and portfolios",
-            "price": "$5,000",
+            "name": "Foundation",
+            "description": "Essential flows to start generating revenue",
+            "price": "$2,000",
             "period": "/ one-time",
             "badge": "",
-            "features_text": "Up to 5 pages\nMobile-responsive design\nBasic CMS (WordPress/Shopify)\nContact form\nGoogle Analytics\n2 rounds of revisions\n30-day support",
+            "features_text": "Klaviyo setup/migration\nWelcome series (5 emails)\nAbandoned cart flow\n2 email templates\nBasic segmentation\n30-day support",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -527,12 +534,12 @@
         "plan_FrHA6H": {
           "type": "plan",
           "settings": {
-            "name": "Professional",
-            "description": "Ideal for growing businesses",
-            "price": "$15,000",
+            "name": "Growth",
+            "description": "Complete automation system",
+            "price": "$4,500",
             "period": "/ one-time",
             "badge": "Most Popular",
-            "features_text": "Up to 15 pages\nCustom UI/UX design\nAdvanced CMS customization\nBlog functionality\nLead capture forms\nAdvanced SEO optimization\nCRM integration\nPerformance optimization",
+            "features_text": "Everything in Foundation\nBrowse abandonment flow\nWin-back flow\n5 email templates\nAdvanced segmentation\nA/B testing setup\n60-day optimization",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -541,12 +548,12 @@
         "plan_qWaeyc": {
           "type": "plan",
           "settings": {
-            "name": "Enterprise",
-            "description": "For complex web applications",
-            "price": "$35,000+",
-            "period": "/ per month",
+            "name": "Scale",
+            "description": "Advanced automation ecosystem",
+            "price": "$8,000",
+            "period": "/ one-time",
             "badge": "",
-            "features_text": "Unlimited pages\nCustom web application\nE-commerce functionality\nCustom integrations\nUser authentication\nDatabase development\nAPI development\nAdvanced analytics dashboard",
+            "features_text": "Everything in Growth\nVIP/loyalty flows\nSunset flow\nReview request flow\nBirthday/anniversary flows\nCustom template library\nSMS integration\nCustom reporting",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -564,19 +571,19 @@
         "title_before": "Choose Your",
         "title_gradient": "Plan",
         "description": "Select the package that best fits your needs. All plans include our signature quality and support.",
-        "footer_before": "for Hosting, maintenance, and updates",
-        "footer_highlight": "$500/mo",
-        "footer_after": "for Hosting, maintenance, and updates"
+        "footer_before": "Need ongoing support? Add",
+        "footer_highlight": "$750/mo",
+        "footer_after": "for Ongoing campaign management and optimization"
       }
     },
     "service_testimonial_ekeHMB": {
       "type": "service-testimonial",
       "name": "Service Testimonial",
       "settings": {
-        "quote": "\"Our new website generated more leads in the first month than our old site did in a year. The design perfectly captures our brand and the performance is incredible.\"",
-        "author_image": "shopify://shop_images/3.png",
-        "author_name": "Jennifer Liu",
-        "author_role": "VP of Growth, Fintech Pro"
+        "quote": "\"Our Klaviyo flows now generate 30% of our revenue completely on autopilot. The abandoned cart flow alone pays for the entire service every month.\"",
+        "author_image": "shopify://shop_images/6.png",
+        "author_name": "Marcus Williams",
+        "author_role": "Founder, Luxe Lifestyle"
       }
     },
     "17715474998453bd5d": {
