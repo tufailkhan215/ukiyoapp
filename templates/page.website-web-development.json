@@ -390,43 +390,43 @@
         "feature_cVUqcy": {
           "type": "feature",
           "settings": {
-            "title": "Logo Design System",
-            "description": "Primary, secondary, and responsive logo variations for all applications"
+            "title": "Custom Design",
+            "description": "Unique designs that reflect your brand perfectly—no templates"
           }
         },
         "feature_CGK8jh": {
           "type": "feature",
           "settings": {
-            "title": "Color Architecture",
-            "description": "Strategic palette with primary, secondary, and accent colors with usage guidelines"
+            "title": "Responsive Development",
+            "description": "Flawless experience across all devices and screen sizes"
           }
         },
         "feature_WRfYgM": {
           "type": "feature",
           "settings": {
-            "title": "Typography System",
-            "description": "Curated fonts with hierarchy, pairing rules, and web/print specifications"
+            "title": "Performance Optimization",
+            "description": "Lightning-fast load times and smooth interactions"
           }
         },
         "feature_Nz6XTd": {
           "type": "feature",
           "settings": {
-            "title": "Visual Elements",
-            "description": "Patterns, icons, illustrations, and photography style guidelines"
+            "title": "SEO Foundation",
+            "description": "Built for search engine visibility from day one"
           }
         },
         "feature_aYey6f": {
           "type": "feature",
           "settings": {
-            "title": "Brand Guidelines",
-            "description": "Comprehensive documentation ensuring consistent brand application"
+            "title": "CMS Integration",
+            "description": "Easy content management with Shopify, WordPress, or custom solutions"
           }
         },
         "feature_wBVcMj": {
           "type": "feature",
           "settings": {
-            "title": "Asset Library",
-            "description": "Complete set of production-ready files in all formats"
+            "title": "Analytics Setup",
+            "description": "Track what matters with proper instrumentation and dashboards"
           }
         }
       },
@@ -451,43 +451,43 @@
         "step_VWnEJa": {
           "type": "step",
           "settings": {
-            "title": "Brand Discovery",
-            "description": "Deep dive into your vision, values, audience, and competitive landscape"
+            "title": "Strategy & Planning",
+            "description": "Define goals, audience, sitemap, and success metrics"
           }
         },
         "step_GejF3z": {
           "type": "step",
           "settings": {
-            "title": "Competitive Analysis",
-            "description": "Research the visual landscape in your space to find differentiation opportunities"
+            "title": "Wireframing",
+            "description": "Plan the structure, user flows, and experience architecture"
           }
         },
         "step_MxmXGH": {
           "type": "step",
           "settings": {
-            "title": "Concept Development",
-            "description": "Explore multiple creative directions with mood boards and initial concepts"
+            "title": "Design",
+            "description": "Create the visual design, interactions, and brand application"
           }
         },
         "step_NfX4qg": {
           "type": "step",
           "settings": {
-            "title": "Design Refinement",
-            "description": "Iterate on the chosen direction to achieve perfection in every detail"
+            "title": "Development",
+            "description": "Build with clean, scalable code and modern frameworks"
           }
         },
         "step_78eaHH": {
           "type": "step",
           "settings": {
-            "title": "System Extension",
-            "description": "Build out the complete visual system across all touchpoints"
+            "title": "Testing & QA",
+            "description": "Rigorous testing across devices, browsers, and scenarios"
           }
         },
         "step_zEyLVB": {
           "type": "step",
           "settings": {
-            "title": "Guidelines & Handoff",
-            "description": "Document everything and deliver production-ready assets"
+            "title": "Launch & Support",
+            "description": "Deploy with monitoring and provide ongoing maintenance"
           }
         }
       },
@@ -513,12 +513,12 @@
         "plan_HyVafM": {
           "type": "plan",
           "settings": {
-            "name": "Essentials",
-            "description": "Perfect for startups and small businesses",
-            "price": "$3,500",
+            "name": "Starter",
+            "description": "Perfect for small businesses and portfolios",
+            "price": "$5,000",
             "period": "/ one-time",
             "badge": "",
-            "features_text": "Logo design (2 concepts)\nColor palette (5 colors)\nTypography selection\nBasic brand guidelines (PDF)\nSocial media profile graphics\nBusiness card design\n2 rounds of revisions",
+            "features_text": "Up to 5 pages\nMobile-responsive design\nBasic CMS (WordPress/Shopify)\nContact form\nGoogle Analytics\n2 rounds of revisions\n30-day support",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -528,11 +528,11 @@
           "type": "plan",
           "settings": {
             "name": "Professional",
-            "description": "Complete identity for growing brands",
-            "price": "$8,000",
+            "description": "Ideal for growing businesses",
+            "price": "$15,000",
             "period": "/ one-time",
             "badge": "Most Popular",
-            "features_text": "Logo design system (3 concepts)\nComprehensive color architecture\nCustom typography system\nIcon set (20 custom icons)\nPattern & texture library\nFull brand guidelines (50+ pages)\nSocial media kit (all platforms)\nStationery suite",
+            "features_text": "Up to 15 pages\nCustom UI/UX design\nAdvanced CMS customization\nBlog functionality\nLead capture forms\nAdvanced SEO optimization\nCRM integration\nPerformance optimization",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -541,12 +541,12 @@
         "plan_qWaeyc": {
           "type": "plan",
           "settings": {
-            "name": "Scale",
-            "description": "For brands building a partnership ecosystem",
-            "price": "$7,500",
+            "name": "Enterprise",
+            "description": "For complex web applications",
+            "price": "$35,000+",
             "period": "/ per month",
             "badge": "",
-            "features_text": "Everything in Professional\nBrand strategy & positioning\nCompetitive audit report\nBrand voice & messaging guide\nMotion graphics guidelines\nEnvironmental design concepts\nPackaging design templates\nBrand launch strategy",
+            "features_text": "Unlimited pages\nCustom web application\nE-commerce functionality\nCustom integrations\nUser authentication\nDatabase development\nAPI development\nAdvanced analytics dashboard",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -564,9 +564,9 @@
         "title_before": "Choose Your",
         "title_gradient": "Plan",
         "description": "Select the package that best fits your needs. All plans include our signature quality and support.",
-        "footer_before": "Need ongoing support? Add",
-        "footer_highlight": "$1,500/mo",
-        "footer_after": "for Ongoing design support and asset creation"
+        "footer_before": "for Hosting, maintenance, and updates",
+        "footer_highlight": "$500/mo",
+        "footer_after": "for Hosting, maintenance, and updates"
       }
     },
     "service_testimonial_ekeHMB": {
