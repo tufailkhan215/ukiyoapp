@@ -559,9 +559,10 @@
       "type": "service-testimonial",
       "name": "Service Testimonial",
       "settings": {
-        "quote": "\"Our Instagram DMs went from a time-sink to our highest-converting channel. The AI handles 80% of inquiries perfectly and our sales have tripled.\"",
-        "author_name": "Emily R.",
-        "author_role": "CMO | TECH SOLUTIONS"
+        "quote": "\"They identified partnership opportunities we never would have found on our own. The Coachella collaboration alone 10x'd our brand awareness.\"",
+        "author_image": "shopify://shop_images/Screenshot_2026-02-21_064906.png",
+        "author_name": "Marcus Williams",
+        "author_role": "Founder, Luxe Lifestyle"
       }
     },
     "17715474998453bd5d": {
@@ -574,19 +575,19 @@
         "use_case_rT9VqK": {
           "type": "use_case",
           "settings": {
-            "title": "Customer Support Automation",
-            "tagline": "Never Miss a Customer Question Again",
-            "url": "#",
-            "cta_text": "Explore",
+            "title": "Co-Marketing Campaigns",
+            "tagline": "Transform Your Business",
+            "url": "https://tidycal.com/salesautomateiq",
+            "cta_text": "Key Benefits",
             "open_new_tab": false
           }
         },
         "use_case_4bwBcy": {
           "type": "use_case",
           "settings": {
-            "title": "Sales Lead Qualification",
-            "tagline": "Only Talk to Ready-to-Buy Prospects",
-            "url": "#",
+            "title": "Product Integrations",
+            "tagline": "Transform Your Business",
+            "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
           }
@@ -594,9 +595,9 @@
         "use_case_GD64Xa": {
           "type": "use_case",
           "settings": {
-            "title": "Product Recommendations",
-            "tagline": "Show Customers Exactly What They Want",
-            "url": "",
+            "title": "Affiliate Programs",
+            "tagline": "Transform Your Business",
+            "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
           }
@@ -604,9 +605,9 @@
         "use_case_xAVNaF": {
           "type": "use_case",
           "settings": {
-            "title": "Appointment Scheduling",
-            "tagline": "Fill Your Calendar on Autopilot",
-            "url": "",
+            "title": "Influencer Partnerships",
+            "tagline": "Transform Your Business",
+            "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
           }
@@ -614,9 +615,9 @@
         "use_case_Dimqy4": {
           "type": "use_case",
           "settings": {
-            "title": "FAQ & Knowledge Base",
-            "tagline": "Instant Answers, Zero Wait Time",
-            "url": "",
+            "title": "White-Label Arrangements",
+            "tagline": "Transform Your Business",
+            "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
           }
@@ -624,8 +625,8 @@
         "use_case_JfAcB9": {
           "type": "use_case",
           "settings": {
-            "title": "Onboarding Assistance",
-            "tagline": "Guide Every Customer to Success",
+            "title": "Joint Ventures",
+            "tagline": "Transform Your Business",
             "url": "",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -634,9 +635,9 @@
         "use_case_NweVV6": {
           "type": "use_case",
           "settings": {
-            "title": "Order Status Updates",
-            "tagline": "Proactive Communication, Happy Customers",
-            "url": "",
+            "title": "Brand Collaborations",
+            "tagline": "Transform Your Business",
+            "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
           }
@@ -644,9 +645,9 @@
         "use_case_HRYHLh": {
           "type": "use_case",
           "settings": {
-            "title": "Feedback Collection",
-            "tagline": "Capture Insights at the Perfect Moment",
-            "url": "",
+            "title": "Event Sponsorships",
+            "tagline": "Transform Your Business",
+            "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
           }
@@ -676,43 +677,43 @@
         "faq_7d93ic": {
           "type": "faq",
           "settings": {
-            "question": "How is this different from a regular chatbot?",
-            "answer": "Our AI Concierge Chatbot uses advanced natural language processing to understand context, intent, and sentiment. It doesn't just answer questions, it actively guides visitors toward conversion with personalized recommendations and strategic follow-ups."
+            "question": "What types of partnerships do you help facilitate?",
+            "answer": "We help with co-marketing campaigns, affiliate programs, influencer partnerships, brand collaborations, event sponsorships, product integrations, white-label arrangements, and strategic joint ventures."
           }
         },
         "faq_Lh88e7": {
           "type": "faq",
           "settings": {
-            "question": "Will the chatbot sound robotic?",
-            "answer": "No! We train the AI on your brand voice and customize responses to sound natural and on-brand. Most visitors can't tell they're talking to AI."
+            "question": "How do you find the right partners for our brand?",
+            "answer": "We use a combination of AI-powered research, industry databases, and our network to identify partners that align with your brand values, target audience, and business objectives."
           }
         },
         "faq_imN7DG": {
           "type": "faq",
           "settings": {
-            "question": "What platforms can the agent be deployed on?",
-            "answer": "Website chat, Instagram DMs, Facebook Messenger, email, and SMS. Enterprise plans can include custom integrations and additional channels."
+            "question": "Do you handle partnership negotiations?",
+            "answer": "Yes! Our Growth and Scale tiers include negotiation support. We help structure terms, review contracts, and ensure agreements are mutually beneficial."
           }
         },
         "faq_RHcRGW": {
           "type": "faq",
           "settings": {
-            "question": "What happens when the AI can't answer a question?",
-            "answer": "The system gracefully escalates to a human agent, collecting context so your team can pick up seamlessly. You can set escalation rules based on topic, sentiment, or customer value."
+            "question": "How long does it take to secure a partnership?",
+            "answer": "Timeline varies by partnership complexity. Simple collaborations can be secured in 2-4 weeks, while larger strategic partnerships may take 2-3 months to finalize."
           }
         },
         "faq_MgjXXd": {
           "type": "faq",
           "settings": {
-            "question": "How quickly can we see results?",
-            "answer": "Most clients see measurable improvements within the first 30 days. Full optimization typically takes 60-90 days as the AI learns from real interactions."
+            "question": "Can you help with influencer partnerships specifically?",
+            "answer": "Absolutely! Influencer partnerships are a key specialty. We handle discovery, vetting, outreach, negotiation, and campaign management."
           }
         },
         "faq_cXrfCF": {
           "type": "faq",
           "settings": {
-            "question": "Do you offer Instagram DM automation specifically?",
-            "answer": "Absolutely! Instagram DM automation is a core feature. We can automate responses to story replies, DM inquiries, and comment responses."
+            "question": "What industries do you work with?",
+            "answer": "We work across industries including tech, fashion, lifestyle, food & beverage, health & wellness, entertainment, and B2B services."
           }
         }
       },
