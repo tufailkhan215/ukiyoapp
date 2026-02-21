@@ -107,9 +107,9 @@
         "back_link_url": "/pages/services",
         "category_label": "Brand Strategy",
         "category_icon": "sparkles",
-        "title": "Website & Web Development",
-        "subtitle": "Digital Experiences That Convert",
-        "description": "Websites that work as hard as you do",
+        "title": "Mobile & App Development",
+        "subtitle": "Apps That Users Love",
+        "description": "Pocket-sized experiences, enterprise-grade quality",
         "cta_primary_text": "Book Free Consultation",
         "cta_primary_url": "#",
         "cta_primary_new_tab": true,
@@ -174,9 +174,9 @@
         "layout": "overview",
         "strap": "(Overview)",
         "title_before": "What is ",
-        "title_gradient": "Website & Web Development?",
-        "paragraph_1": "<p>Custom website design and development that combines stunning visuals with performance-driven architecture.</p>",
-        "paragraph_2": "<p>Your website is your most important digital asset it's where first impressions are made and business happens. Our Website & Web Development service creates custom digital experiences that look stunning, load fast, and convert visitors into customers. We combine award-winning design with modern development practices to build websites that are as beautiful as they are functional.</p>",
+        "title_gradient": "Mobile & App Development?",
+        "paragraph_1": "<p>Native and cross-platform mobile app development that delivers seamless user experiences and business results.</p>",
+        "paragraph_2": "<p>Mobile is where your customers are. Our Mobile & App Development service creates native and cross-platform applications that users love to use. From concept to App Store, we handle every aspect of mobile development with a focus on user experience, performance, and business outcomes.</p>",
         "title_included": "Everything You Need to Launch Your AI Agent"
       }
     },
@@ -294,7 +294,7 @@
       "name": "Services Rich Text",
       "settings": {
         "strap": "(Our Approach)",
-        "body": "<p>We build effective online ecosystems that boost credibility and drive growth. Our websites integrate with AI-driven analytics and CRM platforms leading to increased lead capture and a seamless customer experience.</p>"
+        "body": "<p>We create digital product innovations that delight users and unlock business potential. Our responsive app development combines rapid prototyping with comprehensive technology development for continuous optimization.</p>"
       }
     },
     "two_column_text_zCXJVY": {
@@ -303,37 +303,37 @@
         "feature_VD783b": {
           "type": "feature",
           "settings": {
-            "text": "Custom UI/UX design"
+            "text": "Product strategy & roadmap"
           }
         },
         "feature_rVJdJK": {
           "type": "feature",
           "settings": {
-            "text": "Mobile-responsive development"
+            "text": "UI/UX design & prototyping"
           }
         },
         "feature_DpUeXd": {
           "type": "feature",
           "settings": {
-            "text": "Content management system"
+            "text": "Native or cross-platform development"
           }
         },
         "feature_cKMdiL": {
           "type": "feature",
           "settings": {
-            "text": "SEO optimization"
+            "text": "Backend API development"
           }
         },
         "feature_3UUBba": {
           "type": "feature",
           "settings": {
-            "text": "Speed optimization"
+            "text": "User authentication system"
           }
         },
         "feature_zHPdUx": {
           "type": "feature",
           "settings": {
-            "text": "Contact forms & lead capture"
+            "text": "Push notification setup"
           }
         },
         "feature_FpyCGk": {
@@ -345,19 +345,19 @@
         "feature_BUxiQB": {
           "type": "feature",
           "settings": {
-            "text": "SSL security certificate"
+            "text": "App Store optimization"
           }
         },
         "feature_TUayC4": {
           "type": "feature",
           "settings": {
-            "text": "Hosting setup assistance"
+            "text": "Submission & approval support"
           }
         },
         "feature_LnXAf6": {
           "type": "feature",
           "settings": {
-            "text": "30-day post-launch support"
+            "text": "Post-launch bug fixes"
           }
         }
       },
@@ -381,7 +381,7 @@
         "title_gradient": "AI Agent",
         "paragraph_1": "<p>Create custom AI agents that understand your company inside and out. From customer service to sales, your brand voice stays consistent across every interaction.</p>",
         "paragraph_2": "<p>In an era where customer expectations are at an all-time high, having a consistent brand voice across every touchpoint is crucial. Our Company Agent Builder service creates bespoke AI agents trained on your brand guidelines, tone of voice, product knowledge, and company values. These agents become extensions of your team, handling everything from customer inquiries to lead qualification with the precision and personality your brand deserves.</p>",
-        "title_included": "Complete Website Solution"
+        "title_included": "Complete Mobile Solution"
       }
     },
     "services_key_features_qwLJ4x": {
@@ -390,43 +390,43 @@
         "feature_cVUqcy": {
           "type": "feature",
           "settings": {
-            "title": "Custom Design",
-            "description": "Unique designs that reflect your brand perfectly—no templates"
+            "title": "Native Development",
+            "description": "iOS (Swift) and Android (Kotlin) for optimal performance"
           }
         },
         "feature_CGK8jh": {
           "type": "feature",
           "settings": {
-            "title": "Responsive Development",
-            "description": "Flawless experience across all devices and screen sizes"
+            "title": "Cross-Platform",
+            "description": "React Native and Flutter for cost-efficient development"
           }
         },
         "feature_WRfYgM": {
           "type": "feature",
           "settings": {
-            "title": "Performance Optimization",
-            "description": "Lightning-fast load times and smooth interactions"
+            "title": "Intuitive interfaces",
+            "description": "Intuitive interfaces that delight users and drive engagement"
           }
         },
         "feature_Nz6XTd": {
           "type": "feature",
           "settings": {
-            "title": "SEO Foundation",
-            "description": "Built for search engine visibility from day one"
+            "title": "Backend Integration",
+            "description": "Robust APIs and cloud infrastructure for scalability"
           }
         },
         "feature_aYey6f": {
           "type": "feature",
           "settings": {
-            "title": "CMS Integration",
-            "description": "Easy content management with Shopify, WordPress, or custom solutions"
+            "title": "Push Notifications",
+            "description": "Engage users with timely, relevant messages"
           }
         },
         "feature_wBVcMj": {
           "type": "feature",
           "settings": {
-            "title": "Analytics Setup",
-            "description": "Track what matters with proper instrumentation and dashboards"
+            "title": "Analytics & Tracking",
+            "description": "Understand user behavior and optimize continuously"
           }
         }
       },
