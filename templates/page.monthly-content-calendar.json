@@ -1064,9 +1064,9 @@
         "service_6YFJpa": {
           "type": "service",
           "settings": {
-            "title": "Website & Web Development",
-            "description": "Custom website design and development that combines stunning visuals with performance-driven architecture.",
-            "url": "services/web-development",
+            "title": "Pinterest SEO Services",
+            "description": "Strategic Pinterest optimization that drives massive organic traffic through visual search and discovery.",
+            "url": "services/pinterest-seo",
             "cta_text": "Learn more",
             "open_new_tab": false
           }
@@ -1074,9 +1074,9 @@
         "service_Ez33Vi": {
           "type": "service",
           "settings": {
-            "title": "Monthly Content Calendar",
-            "description": "Done-for-you monthly content planning and creation that keeps your brand visible and engaging across all",
-            "url": "services/monthly-content-calendar",
+            "title": "SEO Blog Services",
+            "description": "Data-driven SEO blog content that ranks on Google and drives qualified organic traffic to your business.",
+            "url": "services/seo-blog",
             "cta_text": "Learn more",
             "open_new_tab": false
           }
