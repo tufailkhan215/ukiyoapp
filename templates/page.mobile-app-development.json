@@ -564,19 +564,19 @@
         "title_before": "Choose Your",
         "title_gradient": "Plan",
         "description": "Select the package that best fits your needs. All plans include our signature quality and support.",
-        "footer_before": "for Hosting, maintenance, and updates",
-        "footer_highlight": "$500/mo",
-        "footer_after": "for Hosting, maintenance, and updates"
+        "footer_before": "Need ongoing support? Add",
+        "footer_highlight": "$2,000/mo",
+        "footer_after": "for Ongoing development, updates, and support"
       }
     },
     "service_testimonial_ekeHMB": {
       "type": "service-testimonial",
       "name": "Service Testimonial",
       "settings": {
-        "quote": "\"Our new website generated more leads in the first month than our old site did in a year. The design perfectly captures our brand and the performance is incredible.\"",
-        "author_image": "shopify://shop_images/3.png",
-        "author_name": "Jennifer Liu",
-        "author_role": "VP of Growth, Fintech Pro"
+        "quote": "\"They turned our idea into an app that our users can't put down. The engagement metrics exceeded all expectations—65% daily active users!\"",
+        "author_image": "shopify://shop_images/4.png",
+        "author_name": "Alex Rivera",
+        "author_role": "Founder, FitLife App"
       }
     },
     "17715474998453bd5d": {
@@ -589,7 +589,7 @@
         "use_case_rT9VqK": {
           "type": "use_case",
           "settings": {
-            "title": "New Brand Launch",
+            "title": "Consumer Apps",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -599,7 +599,7 @@
         "use_case_4bwBcy": {
           "type": "use_case",
           "settings": {
-            "title": "Brand Refresh",
+            "title": "Enterprise Solutions",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -609,7 +609,7 @@
         "use_case_GD64Xa": {
           "type": "use_case",
           "settings": {
-            "title": "Merger Rebrand",
+            "title": "E-commerce Mobile",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -619,7 +619,7 @@
         "use_case_xAVNaF": {
           "type": "use_case",
           "settings": {
-            "title": "Product Line Branding",
+            "title": "Social Platforms",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -629,7 +629,7 @@
         "use_case_Dimqy4": {
           "type": "use_case",
           "settings": {
-            "title": "Event Branding",
+            "title": "Fitness & Health",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -639,7 +639,7 @@
         "use_case_JfAcB9": {
           "type": "use_case",
           "settings": {
-            "title": "Personal Branding",
+            "title": "On-Demand Services",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -649,7 +649,7 @@
         "use_case_NweVV6": {
           "type": "use_case",
           "settings": {
-            "title": "Startup Identity",
+            "title": "Booking Apps",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -659,7 +659,7 @@
         "use_case_HRYHLh": {
           "type": "use_case",
           "settings": {
-            "title": "Corporate Rebrand",
+            "title": "Loyalty Programs",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
