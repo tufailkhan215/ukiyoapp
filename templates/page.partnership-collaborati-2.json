@@ -107,8 +107,8 @@
         "back_link_url": "/pages/services",
         "category_label": "Brand Strategy",
         "category_icon": "sparkles",
-        "title": "Company Agent Builder",
-        "subtitle": "Your Brand's AI-Powered Strategic Partner",
+        "title": "Partnership & Collaboration Engine",
+        "subtitle": "Strategic Alliances That Amplify GrowthBuild powerful partnerships that multiply your reach and revenue",
         "description": "Build intelligent agents that embody your brand values and work 24/7",
         "cta_primary_text": "Book Free Consultation",
         "cta_primary_url": "#",
@@ -173,10 +173,10 @@
       "settings": {
         "layout": "overview",
         "strap": "(Overview)",
-        "title_before": "What is AI",
-        "title_gradient": "Concierge Chatbot?",
-        "paragraph_1": "<p>An intelligent AI chatbot that engages visitors on your website and Instagram DMs, qualifying leads and driving revenue while you sleep.</p>",
-        "paragraph_2": "<p>The AI Revenue Concierge is your always-on sales assistant that lives on your website and Instagram. It doesn't just answer questions it understands buying intent, qualifies leads, recommends products, handles objections, and guides prospects through to purchase. With natural language processing that feels genuinely human, your visitors get instant, helpful responses that move them closer to becoming customers.</p>",
+        "title_before": "What is ",
+        "title_gradient": "Partnership & Collaboration Engine?",
+        "paragraph_1": "<p>Identify, nurture, and manage strategic partnerships that align with your brand values and accelerate growth through collaborative opportunities.</p>",
+        "paragraph_2": "<p>In today's interconnected business landscape, the right partnerships can be transformative. Our Partnership & Collaboration Engine is a comprehensive service that helps you identify potential partners, evaluate strategic fit, negotiate terms, and manage ongoing relationships. We leverage data-driven insights and relationship intelligence to build a partnership portfolio that amplifies your brand reach and creates mutual value.</p>",
         "title_included": "Everything You Need to Launch Your AI Agent"
       }
     },
@@ -294,7 +294,7 @@
       "name": "Services Rich Text",
       "settings": {
         "strap": "(Our Approach)",
-        "body": "<p>We leverage AI-driven funnels and automated follow-up sequences that rapidly scale monthly sales. Our technology adapts to the market, keeping you ahead of the competition with tools to make informed decisions that drive results.</p>"
+        "body": "<p>Our team has successfully partnered with industry leaders across the globe, delivering impactful activations and collaborations. Through our work, we have built strong relationships that enhance brand visibility and drive results.</p>"
       }
     },
     "two_column_text_zCXJVY": {
@@ -303,49 +303,49 @@
         "feature_VD783b": {
           "type": "feature",
           "settings": {
-            "text": "Custom AI chatbot development"
+            "text": "Partnership opportunity research & identification"
           }
         },
         "feature_rVJdJK": {
           "type": "feature",
           "settings": {
-            "text": "Website widget + Instagram integration"
+            "text": "Brand alignment analysis"
           }
         },
         "feature_DpUeXd": {
           "type": "feature",
           "settings": {
-            "text": "Product catalog integration"
+            "text": "Outreach strategy & templates"
           }
         },
         "feature_cKMdiL": {
           "type": "feature",
           "settings": {
-            "text": "Lead scoring system"
+            "text": "Negotiation support & contract review"
           }
         },
         "feature_3UUBba": {
           "type": "feature",
           "settings": {
-            "text": "Automated follow-up sequences"
+            "text": "Campaign co-creation assistance"
           }
         },
         "feature_zHPdUx": {
           "type": "feature",
           "settings": {
-            "text": "Real-time analytics dashboard"
+            "text": "Performance tracking & reporting"
           }
         },
         "feature_FpyCGk": {
           "type": "feature",
           "settings": {
-            "text": "Appointment scheduling integration"
+            "text": "Quarterly partnership reviews"
           }
         },
         "feature_TUayC4": {
           "type": "feature",
           "settings": {
-            "text": "Dedicated support team"
+            "text": "Relationship nurturing playbooks"
           }
         }
       },
@@ -367,7 +367,7 @@
         "title_gradient": "AI Agent",
         "paragraph_1": "<p>Create custom AI agents that understand your company inside and out. From customer service to sales, your brand voice stays consistent across every interaction.</p>",
         "paragraph_2": "<p>In an era where customer expectations are at an all-time high, having a consistent brand voice across every touchpoint is crucial. Our Company Agent Builder service creates bespoke AI agents trained on your brand guidelines, tone of voice, product knowledge, and company values. These agents become extensions of your team, handling everything from customer inquiries to lead qualification with the precision and personality your brand deserves.</p>",
-        "title_included": "Complete Revenue Automation System"
+        "title_included": "Complete Partnership Management"
       }
     },
     "services_key_features_qwLJ4x": {
@@ -376,43 +376,43 @@
         "feature_cVUqcy": {
           "type": "feature",
           "settings": {
-            "title": "Brand Voice Training",
-            "description": "AI agents trained on your unique tone, values, and messaging guidelines for consistent communication"
+            "title": "Partner Discovery",
+            "description": "AI-powered identification of ideal partnership opportunities aligned with your brand"
           }
         },
         "feature_CGK8jh": {
           "type": "feature",
           "settings": {
-            "title": "Intent Recognition",
-            "description": "AI understands what visitors really want and guides them to the right solution"
+            "title": "Strategic Fit Analysis",
+            "description": "Deep evaluation of brand alignment, audience overlap, and value potential"
           }
         },
         "feature_WRfYgM": {
           "type": "feature",
           "settings": {
-            "title": "Product Recommendations",
-            "description": "Smart suggestions based on conversation context, browsing history, and preferences"
+            "title": "Negotiation Support",
+            "description": "Expert guidance through partnership terms, contracts, and agreements"
           }
         },
         "feature_Nz6XTd": {
           "type": "feature",
           "settings": {
-            "title": "Lead Qualification",
-            "description": "Automatically scores and routes high-value leads to your sales team"
+            "title": "Collaboration Framework",
+            "description": "Structured approach to joint initiatives, campaigns, and content creation"
           }
         },
         "feature_aYey6f": {
           "type": "feature",
           "settings": {
-            "title": "Human Handoff",
-            "description": "Seamless escalation to human agents when complex situations require personal touch"
+            "title": "Relationship Management",
+            "description": "Ongoing nurturing and optimization of partnership portfolio"
           }
         },
         "feature_wBVcMj": {
           "type": "feature",
           "settings": {
-            "title": "Appointment Booking",
-            "description": "Integrated scheduling for calls, demos, and consultations"
+            "title": "Performance Tracking",
+            "description": "Clear metrics and reporting on partnership outcomes and ROI"
           }
         }
       },
@@ -437,43 +437,43 @@
         "step_VWnEJa": {
           "type": "step",
           "settings": {
-            "title": "Revenue Audit",
-            "description": "Analyze your current conversion funnel, identify leaks, and map opportunities"
+            "title": "Opportunity Mapping",
+            "description": "Define your ideal partner profile, objectives, and success criteria"
           }
         },
         "step_GejF3z": {
           "type": "step",
           "settings": {
-            "title": "Conversation Design",
-            "description": "Map out optimal conversation flows for different visitor intents and journeys"
+            "title": "Partner Research",
+            "description": "AI-driven discovery of potential partners in your space and adjacent markets"
           }
         },
         "step_MxmXGH": {
           "type": "step",
           "settings": {
-            "title": "AI Training",
-            "description": "Train the chatbot on your products, services, FAQs, and sales process"
+            "title": "Outreach Strategy",
+            "description": "Craft compelling partnership proposals that highlight mutual value"
           }
         },
         "step_NfX4qg": {
           "type": "step",
           "settings": {
-            "title": "Integration",
-            "description": "Connect to your website, Instagram, CRM, and e-commerce platform"
+            "title": "Negotiation",
+            "description": "Structure win-win partnership terms with clear expectations"
           }
         },
         "step_78eaHH": {
           "type": "step",
           "settings": {
-            "title": "Launch & Test",
-            "description": "Go live with A/B testing and real-time optimization"
+            "title": "Launch Planning",
+            "description": "Develop joint go-to-market strategy and activation timeline"
           }
         },
         "step_zEyLVB": {
           "type": "step",
           "settings": {
-            "title": "Scale & Optimize",
-            "description": "Continuous improvement for maximum ROI based on performance data"
+            "title": "Ongoing Management",
+            "description": "Nurture relationships and optimize for long-term success"
           }
         }
       },
@@ -499,12 +499,12 @@
         "plan_HyVafM": {
           "type": "plan",
           "settings": {
-            "name": "Essential",
-            "description": "Perfect for small businesses and startups",
+            "name": "Discovery",
+            "description": "For brands starting their partnership journey",
             "price": "$1,500",
-            "period": "/ one-time setup",
-            "badge": "Most Popular",
-            "features_text": "AI chatbot for website OR Instagram\nUp to 1,000 conversations/month\nBasic lead capture\nStandard response templates\nEmail notifications",
+            "period": "/ per month",
+            "badge": "",
+            "features_text": "Partner opportunity research\nUp to 10 partner prospects/month\nBasic outreach templates\nMonthly strategy call\nPerformance tracking spreadsheet",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -513,12 +513,12 @@
         "plan_FrHA6H": {
           "type": "plan",
           "settings": {
-            "name": "Professional",
-            "description": "Ideal for growing e-commerce and service businesses",
-            "price": "$2,500",
-            "period": "/ one-time setup",
+            "name": "Growth",
+            "description": "For brands ready to scale their partnership program",
+            "price": "$3,500",
+            "period": "/ per month",
             "badge": "Most Popular",
-            "features_text": "AI chatbot for Website + Instagram\nUp to 5,000 conversations/month\nAdvanced lead scoring\nProduct recommendations\nCart abandonment recovery\nCRM integration\nAppointment booking",
+            "features_text": "Comprehensive partner discovery\nUp to 25 partner prospects/month\nCustom outreach campaigns\nCustom outreach campaigns\nNegotiation support\nCampaign co-creation assistance\nBi-weekly strategy calls\nAnalytics dashboard\nDedicated partnership manager",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -527,12 +527,12 @@
         "plan_qWaeyc": {
           "type": "plan",
           "settings": {
-            "name": "Enterprise",
-            "description": "For high-volume businesses requiring advanced features",
-            "price": "$5,000",
-            "period": "/ one-time setup",
+            "name": "Scale",
+            "description": "For brands building a partnership ecosystem",
+            "price": "$7,500",
+            "period": "/ per month",
             "badge": "",
-            "features_text": "All platforms (Web, IG, FB, SMS)\nUnlimited conversations\nCustom AI training\nAdvanced analytics & reporting\nMulti-language support\nAPI access\nDedicated success manager\nCustom integrations",
+            "features_text": "Full-service partnership management\nUnlimited partner prospects\nContract negotiation & review\nJoint campaign management\nInfluencer coordination\nEvent partnership support\nWeekly strategy sessions\nExecutive reporting",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -550,9 +550,9 @@
         "title_before": "Choose Your",
         "title_gradient": "Plan",
         "description": "Select the package that best fits your needs. All plans include our signature quality and support.",
-        "footer_before": "Need ongoing support? Add",
-        "footer_highlight": "$500/mo",
-        "footer_after": "for Ongoing optimization, updates, and support"
+        "footer_before": "",
+        "footer_highlight": "",
+        "footer_after": ""
       }
     },
     "service_testimonial_ekeHMB": {
