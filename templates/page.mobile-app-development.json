@@ -513,12 +513,12 @@
         "plan_HyVafM": {
           "type": "plan",
           "settings": {
-            "name": "Starter",
-            "description": "Perfect for small businesses and portfolios",
-            "price": "$5,000",
+            "name": "MVP",
+            "description": "Launch your minimum viable product",
+            "price": "$15,000",
             "period": "/ one-time",
             "badge": "",
-            "features_text": "Up to 5 pages\nMobile-responsive design\nBasic CMS (WordPress/Shopify)\nContact form\nGoogle Analytics\n2 rounds of revisions\n30-day support",
+            "features_text": "Single platform (iOS or Android)\nUp to 10 screens\nBasic UI/UX design\nUser authentication\nBasic backend integration\nPush notifications\nAnalytics setup\nApp Store submission",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -528,11 +528,11 @@
           "type": "plan",
           "settings": {
             "name": "Professional",
-            "description": "Ideal for growing businesses",
-            "price": "$15,000",
+            "description": "Full-featured app for both platforms",
+            "price": "$35,000",
             "period": "/ one-time",
             "badge": "Most Popular",
-            "features_text": "Up to 15 pages\nCustom UI/UX design\nAdvanced CMS customization\nBlog functionality\nLead capture forms\nAdvanced SEO optimization\nCRM integration\nPerformance optimization",
+            "features_text": "iOS + Android (cross-platform)\nUp to 25 screens\nCustom UI/UX design\nAdvanced user features\nCustom backend & API\nThird-party integrations\nAdmin dashboard\nBeta testing program",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -542,11 +542,11 @@
           "type": "plan",
           "settings": {
             "name": "Enterprise",
-            "description": "For complex web applications",
-            "price": "$35,000+",
+            "description": "Complex apps with advanced features",
+            "price": "$75,000+",
             "period": "/ per month",
             "badge": "",
-            "features_text": "Unlimited pages\nCustom web application\nE-commerce functionality\nCustom integrations\nUser authentication\nDatabase development\nAPI development\nAdvanced analytics dashboard",
+            "features_text": "Native iOS + Android\nUnlimited screens\nPremium UI/UX design\nComplex business logic\nScalable cloud infrastructure\nPayment processing\nReal-time features\nMachine learning integration",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
