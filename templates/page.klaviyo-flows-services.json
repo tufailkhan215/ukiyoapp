@@ -858,7 +858,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Figma",
+            "label": "Klaviyo",
             "gradient": "emerald_teal",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -872,7 +872,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Adobe Creative Suite",
+            "label": "Shopify",
             "gradient": "orange_amber",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -886,7 +886,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Canva Pro",
+            "label": "Figma",
             "gradient": "orange_amber",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -900,7 +900,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Lottie",
+            "label": "Litmus",
             "gradient": "orange_amber",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -914,7 +914,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Spline",
+            "label": "Customer.io",
             "gradient": "orange_red",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -964,32 +964,32 @@
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 1-2",
-            "title": "Discovery & Research"
+            "label": "Week 1",
+            "title": "Audit & Strategy"
           }
         },
         "step_tiReLw": {
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 2-3",
-            "title": "Concept Development"
+            "label": "Week 2",
+            "title": "Flow Design & Copy"
           }
         },
         "step_CJxzWT": {
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 4-5",
-            "title": "Design Execution"
+            "label": "Week 3",
+            "title": "Build & Test"
           }
         },
         "step_AjFwPY": {
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 6",
-            "title": "Delivery & Handoff"
+            "label": "Week 4",
+            "title": "Launch & Monitor"
           }
         }
       },
@@ -1058,8 +1058,8 @@
       "type": "services-cta",
       "name": "Services CTA",
       "settings": {
-        "heading": "Ready to Transform Your Brand?",
-        "description": "Let's create a visual identity that captures your essence and commands attention in your market.",
+        "heading": "Ready to Turn Email into Revenue?",
+        "description": "Let's build an email automation system that generates sales while you sleep.",
         "cta_text": "Book Free Consultation",
         "cta_url": "https://tidycal.com/salesautomateiq/consultation",
         "cta_new_tab": true
