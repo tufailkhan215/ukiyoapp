@@ -958,31 +958,31 @@
           "settings": {
             "number": "",
             "label": "Week 1-2",
-            "title": "Discovery & Research"
+            "title": "Discovery & Planning"
           }
         },
         "step_tiReLw": {
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 2-3",
-            "title": "Concept Development"
+            "label": "Week 3-6",
+            "title": "Design & Prototyping"
           }
         },
         "step_CJxzWT": {
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 4-5",
-            "title": "Design Execution"
+            "label": "Week 7-12",
+            "title": "Development"
           }
         },
         "step_AjFwPY": {
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 6",
-            "title": "Delivery & Handoff"
+            "label": "Week 13-14",
+            "title": "Testing & App Store"
           }
         }
       },
