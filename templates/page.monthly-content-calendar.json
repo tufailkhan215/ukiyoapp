@@ -691,43 +691,43 @@
         "faq_7d93ic": {
           "type": "faq",
           "settings": {
-            "question": "How long does a complete brand identity project take?",
-            "answer": "Essentials packages take 2-3 weeks, Professional packages 4-6 weeks, and Enterprise projects 8-12 weeks depending on complexity and feedback cycles."
+            "question": "How far in advance do you plan content?",
+            "answer": "We plan one month at a time, delivering your complete content calendar and assets by the 25th of the prior month. This allows time for review and revisions."
           }
         },
         "faq_Lh88e7": {
           "type": "faq",
           "settings": {
-            "question": "What if I don't like the initial concepts?",
-            "answer": "We offer multiple concepts and revision rounds. If the initial direction doesn't resonate, we'll explore new approaches until we find the perfect fit for your brand."
+            "question": "Can you match our existing brand style?",
+            "answer": "Absolutely! We start with your brand guidelines and create content that seamlessly matches your visual identity and voice."
           }
         },
         "faq_imN7DG": {
           "type": "faq",
           "settings": {
-            "question": "Do I own the final designs?",
-            "answer": "Yes! Upon final payment, you receive full ownership of all designs, source files, and assets. We retain the right to showcase the work in our portfolio."
+            "question": "Do you post the content or just create it?",
+            "answer": "Both options are available. We can deliver content for your team to post, or manage posting entirely through scheduling tools."
           }
         },
         "faq_RHcRGW": {
           "type": "faq",
           "settings": {
-            "question": "Can you work with our existing brand elements?",
-            "answer": "Absolutely! We can refresh and build upon existing elements or start completely fresh—whatever serves your brand best."
+            "question": "What if I need last-minute content?",
+            "answer": "We include a flexible content slot each month for timely topics. Additional rush content can be added for an extra fee."
           }
         },
         "faq_MgjXXd": {
           "type": "faq",
           "settings": {
-            "question": "What file formats do you deliver?",
-            "answer": "We provide all standard formats including AI, EPS, PDF, PNG, JPG, and SVG. We also include web-optimized versions and favicon files."
+            "question": "Do you create video content?",
+            "answer": "Yes! Growth and Scale packages include video reels. We handle editing, captions, trending sounds, and formatting for each platform."
           }
         },
         "faq_cXrfCF": {
           "type": "faq",
           "settings": {
-            "question": "Do you offer ongoing design support?",
-            "answer": "Yes! We offer monthly retainer packages for ongoing design needs including social graphics, marketing materials, and asset creation."
+            "question": "Can you handle engagement and comments?",
+            "answer": "Community management is included in our Scale package. We monitor comments, respond on your behalf, and flag important conversations."
           }
         }
       },
@@ -851,7 +851,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Figma",
+            "label": "Later",
             "gradient": "emerald_teal",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -865,7 +865,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Adobe Creative Suite",
+            "label": "Canva",
             "gradient": "orange_amber",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -879,7 +879,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Canva Pro",
+            "label": "CapCut",
             "gradient": "orange_amber",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -893,7 +893,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Lottie",
+            "label": "Notion",
             "gradient": "orange_amber",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -907,7 +907,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Spline",
+            "label": "ChatGPT",
             "gradient": "orange_red",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -957,32 +957,32 @@
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 1-2",
-            "title": "Discovery & Research"
+            "label": "Week 1",
+            "title": "Strategy & Planning"
           }
         },
         "step_tiReLw": {
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 2-3",
-            "title": "Concept Development"
+            "label": "Week 2",
+            "title": "Content Creation"
           }
         },
         "step_CJxzWT": {
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 4-5",
-            "title": "Design Execution"
+            "label": "Week 3",
+            "title": "Review & Schedule"
           }
         },
         "step_AjFwPY": {
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 6",
-            "title": "Delivery & Handoff"
+            "label": "Week 4",
+            "title": "Publish & Analyze"
           }
         }
       },
