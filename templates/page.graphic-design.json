@@ -107,7 +107,7 @@
         "back_link_url": "/pages/services",
         "category_label": "Brand Strategy",
         "category_icon": "sparkles",
-        "title": "Partnership & Collaboration Engine",
+        "title": "Graphic Design & Brand Identity",
         "subtitle": "Strategic Alliances That Amplify Growth",
         "description": "Build powerful partnerships that multiply your reach and revenue",
         "cta_primary_text": "Book Free Consultation",
@@ -174,9 +174,9 @@
         "layout": "overview",
         "strap": "(Overview)",
         "title_before": "What is ",
-        "title_gradient": "Partnership & Collaboration Engine?",
-        "paragraph_1": "<p>Identify, nurture, and manage strategic partnerships that align with your brand values and accelerate growth through collaborative opportunities.</p>",
-        "paragraph_2": "<p>In today's interconnected business landscape, the right partnerships can be transformative. Our Partnership & Collaboration Engine is a comprehensive service that helps you identify potential partners, evaluate strategic fit, negotiate terms, and manage ongoing relationships. We leverage data-driven insights and relationship intelligence to build a partnership portfolio that amplifies your brand reach and creates mutual value.</p>",
+        "title_gradient": "Graphic Design & Brand Identity?",
+        "paragraph_1": "<p>Comprehensive brand identity design that creates cohesive, memorable visual systems across all touchpoints.</p>",
+        "paragraph_2": "<p>Your brand identity is more than a logo—it's the complete visual language that communicates who you are before you say a word. Our Graphic Design & Brand Identity service creates comprehensive visual systems that work seamlessly across digital and print, ensuring every touchpoint reinforces your brand story. From strategic logo design to complete brand guidelines, we build identities that are distinctive, scalable, and built to last.</p>",
         "title_included": "Everything You Need to Launch Your AI Agent"
       }
     },
@@ -294,7 +294,7 @@
       "name": "Services Rich Text",
       "settings": {
         "strap": "(Our Approach)",
-        "body": "<p>Our team has successfully partnered with industry leaders across the globe, delivering impactful activations and collaborations. Through our work, we have built strong relationships that enhance brand visibility and drive results.</p>"
+        "body": "<p>We create impactful content that drives real results. Our team blends storytelling with strategy to capture attention and drive growth. We focus on design that converts, not vanity metrics.</p>"
       }
     },
     "two_column_text_zCXJVY": {
@@ -303,49 +303,49 @@
         "feature_VD783b": {
           "type": "feature",
           "settings": {
-            "text": "Partnership opportunity research & identification"
+            "text": "Discovery & strategy workshop"
           }
         },
         "feature_rVJdJK": {
           "type": "feature",
           "settings": {
-            "text": "Brand alignment analysis"
+            "text": "Business card & letterhead design"
           }
         },
         "feature_DpUeXd": {
           "type": "feature",
           "settings": {
-            "text": "Outreach strategy & templates"
+            "text": "Logo design (3 concepts, unlimited revisions)"
           }
         },
         "feature_cKMdiL": {
           "type": "feature",
           "settings": {
-            "text": "Negotiation support & contract review"
+            "text": "Competitive analysis & positioning"
           }
         },
         "feature_3UUBba": {
           "type": "feature",
           "settings": {
-            "text": "Campaign co-creation assistance"
+            "text": "Typography system"
           }
         },
         "feature_zHPdUx": {
           "type": "feature",
           "settings": {
-            "text": "Performance tracking & reporting"
+            "text": "Color palette development"
           }
         },
         "feature_FpyCGk": {
           "type": "feature",
           "settings": {
-            "text": "Quarterly partnership reviews"
+            "text": "Brand guidelines document"
           }
         },
         "feature_TUayC4": {
           "type": "feature",
           "settings": {
-            "text": "Relationship nurturing playbooks"
+            "text": "Visual element library"
           }
         }
       },
@@ -367,7 +367,7 @@
         "title_gradient": "AI Agent",
         "paragraph_1": "<p>Create custom AI agents that understand your company inside and out. From customer service to sales, your brand voice stays consistent across every interaction.</p>",
         "paragraph_2": "<p>In an era where customer expectations are at an all-time high, having a consistent brand voice across every touchpoint is crucial. Our Company Agent Builder service creates bespoke AI agents trained on your brand guidelines, tone of voice, product knowledge, and company values. These agents become extensions of your team, handling everything from customer inquiries to lead qualification with the precision and personality your brand deserves.</p>",
-        "title_included": "Complete Partnership Management"
+        "title_included": "Complete Brand Identity Package"
       }
     },
     "services_key_features_qwLJ4x": {
@@ -376,43 +376,43 @@
         "feature_cVUqcy": {
           "type": "feature",
           "settings": {
-            "title": "Partner Discovery",
-            "description": "AI-powered identification of ideal partnership opportunities aligned with your brand"
+            "title": "Logo Design System",
+            "description": "Primary, secondary, and responsive logo variations for all applications"
           }
         },
         "feature_CGK8jh": {
           "type": "feature",
           "settings": {
-            "title": "Strategic Fit Analysis",
-            "description": "Deep evaluation of brand alignment, audience overlap, and value potential"
+            "title": "Color Architecture",
+            "description": "Strategic palette with primary, secondary, and accent colors with usage guidelines"
           }
         },
         "feature_WRfYgM": {
           "type": "feature",
           "settings": {
-            "title": "Negotiation Support",
-            "description": "Expert guidance through partnership terms, contracts, and agreements"
+            "title": "Typography System",
+            "description": "Curated fonts with hierarchy, pairing rules, and web/print specifications"
           }
         },
         "feature_Nz6XTd": {
           "type": "feature",
           "settings": {
-            "title": "Collaboration Framework",
-            "description": "Structured approach to joint initiatives, campaigns, and content creation"
+            "title": "Visual Elements",
+            "description": "Patterns, icons, illustrations, and photography style guidelines"
           }
         },
         "feature_aYey6f": {
           "type": "feature",
           "settings": {
-            "title": "Relationship Management",
-            "description": "Ongoing nurturing and optimization of partnership portfolio"
+            "title": "Brand Guidelines",
+            "description": "Comprehensive documentation ensuring consistent brand application"
           }
         },
         "feature_wBVcMj": {
           "type": "feature",
           "settings": {
-            "title": "Performance Tracking",
-            "description": "Clear metrics and reporting on partnership outcomes and ROI"
+            "title": "Asset Library",
+            "description": "Complete set of production-ready files in all formats"
           }
         }
       },
@@ -437,43 +437,43 @@
         "step_VWnEJa": {
           "type": "step",
           "settings": {
-            "title": "Opportunity Mapping",
-            "description": "Define your ideal partner profile, objectives, and success criteria"
+            "title": "Brand Discovery",
+            "description": "Deep dive into your vision, values, audience, and competitive landscape"
           }
         },
         "step_GejF3z": {
           "type": "step",
           "settings": {
-            "title": "Partner Research",
-            "description": "AI-driven discovery of potential partners in your space and adjacent markets"
+            "title": "Competitive Analysis",
+            "description": "Research the visual landscape in your space to find differentiation opportunities"
           }
         },
         "step_MxmXGH": {
           "type": "step",
           "settings": {
-            "title": "Outreach Strategy",
-            "description": "Craft compelling partnership proposals that highlight mutual value"
+            "title": "Concept Development",
+            "description": "Explore multiple creative directions with mood boards and initial concepts"
           }
         },
         "step_NfX4qg": {
           "type": "step",
           "settings": {
-            "title": "Negotiation",
-            "description": "Structure win-win partnership terms with clear expectations"
+            "title": "Design Refinement",
+            "description": "Iterate on the chosen direction to achieve perfection in every detail"
           }
         },
         "step_78eaHH": {
           "type": "step",
           "settings": {
-            "title": "Launch Planning",
-            "description": "Develop joint go-to-market strategy and activation timeline"
+            "title": "System Extension",
+            "description": "Build out the complete visual system across all touchpoints"
           }
         },
         "step_zEyLVB": {
           "type": "step",
           "settings": {
-            "title": "Ongoing Management",
-            "description": "Nurture relationships and optimize for long-term success"
+            "title": "Guidelines & Handoff",
+            "description": "Document everything and deliver production-ready assets"
           }
         }
       },
@@ -499,12 +499,12 @@
         "plan_HyVafM": {
           "type": "plan",
           "settings": {
-            "name": "Discovery",
-            "description": "For brands starting their partnership journey",
-            "price": "$1,500",
-            "period": "/ per month",
+            "name": "Essentials",
+            "description": "Perfect for startups and small businesses",
+            "price": "$3,500",
+            "period": "/ one-time",
             "badge": "",
-            "features_text": "Partner opportunity research\nUp to 10 partner prospects/month\nBasic outreach templates\nMonthly strategy call\nPerformance tracking spreadsheet",
+            "features_text": "Logo design (2 concepts)\nColor palette (5 colors)\nTypography selection\nBasic brand guidelines (PDF)\nSocial media profile graphics\nBusiness card design\n2 rounds of revisions",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -513,12 +513,12 @@
         "plan_FrHA6H": {
           "type": "plan",
           "settings": {
-            "name": "Growth",
-            "description": "For brands ready to scale their partnership program",
-            "price": "$3,500",
-            "period": "/ per month",
+            "name": "Professional",
+            "description": "Complete identity for growing brands",
+            "price": "$8,000",
+            "period": "/ one-time",
             "badge": "Most Popular",
-            "features_text": "Comprehensive partner discovery\nUp to 25 partner prospects/month\nCustom outreach campaigns\nCustom outreach campaigns\nNegotiation support\nCampaign co-creation assistance\nBi-weekly strategy calls\nAnalytics dashboard\nDedicated partnership manager",
+            "features_text": "Logo design system (3 concepts)\nComprehensive color architecture\nCustom typography system\nIcon set (20 custom icons)\nPattern & texture library\nFull brand guidelines (50+ pages)\nSocial media kit (all platforms)\nStationery suite",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -532,7 +532,7 @@
             "price": "$7,500",
             "period": "/ per month",
             "badge": "",
-            "features_text": "Full-service partnership management\nUnlimited partner prospects\nContract negotiation & review\nJoint campaign management\nInfluencer coordination\nEvent partnership support\nWeekly strategy sessions\nExecutive reporting",
+            "features_text": "Everything in Professional\nBrand strategy & positioning\nCompetitive audit report\nBrand voice & messaging guide\nMotion graphics guidelines\nEnvironmental design concepts\nPackaging design templates\nBrand launch strategy",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -550,19 +550,19 @@
         "title_before": "Choose Your",
         "title_gradient": "Plan",
         "description": "Select the package that best fits your needs. All plans include our signature quality and support.",
-        "footer_before": "",
-        "footer_highlight": "",
-        "footer_after": ""
+        "footer_before": "Need ongoing support? Add",
+        "footer_highlight": "$1,500/mo",
+        "footer_after": "for Ongoing design support and asset creation"
       }
     },
     "service_testimonial_ekeHMB": {
       "type": "service-testimonial",
       "name": "Service Testimonial",
       "settings": {
-        "quote": "\"They identified partnership opportunities we never would have found on our own. The Coachella collaboration alone 10x'd our brand awareness.\"",
-        "author_image": "shopify://shop_images/Screenshot_2026-02-21_064906.png",
-        "author_name": "Marcus Williams",
-        "author_role": "Founder, Luxe Lifestyle"
+        "quote": "\"The brand identity they created elevated our entire business. We're now seen as the premium option in our market and our customer engagement has increased 30%.\"",
+        "author_image": "shopify://shop_images/2_bc8b2b35-4884-4912-8eaf-9aab743d58f2.png",
+        "author_name": "David Park",
+        "author_role": "Director of Marketing, Urban Eats"
       }
     },
     "17715474998453bd5d": {
@@ -575,17 +575,17 @@
         "use_case_rT9VqK": {
           "type": "use_case",
           "settings": {
-            "title": "Co-Marketing Campaigns",
+            "title": "New Brand Launch",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
-            "cta_text": "Key Benefits",
+            "cta_text": "Explore",
             "open_new_tab": false
           }
         },
         "use_case_4bwBcy": {
           "type": "use_case",
           "settings": {
-            "title": "Product Integrations",
+            "title": "Brand Refresh",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -595,7 +595,7 @@
         "use_case_GD64Xa": {
           "type": "use_case",
           "settings": {
-            "title": "Affiliate Programs",
+            "title": "Merger Rebrand",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -605,7 +605,7 @@
         "use_case_xAVNaF": {
           "type": "use_case",
           "settings": {
-            "title": "Influencer Partnerships",
+            "title": "Product Line Branding",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -615,7 +615,7 @@
         "use_case_Dimqy4": {
           "type": "use_case",
           "settings": {
-            "title": "White-Label Arrangements",
+            "title": "Event Branding",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -625,9 +625,9 @@
         "use_case_JfAcB9": {
           "type": "use_case",
           "settings": {
-            "title": "Joint Ventures",
+            "title": "Personal Branding",
             "tagline": "Transform Your Business",
-            "url": "",
+            "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
           }
@@ -635,7 +635,7 @@
         "use_case_NweVV6": {
           "type": "use_case",
           "settings": {
-            "title": "Brand Collaborations",
+            "title": "Startup Identity",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -645,7 +645,7 @@
         "use_case_HRYHLh": {
           "type": "use_case",
           "settings": {
-            "title": "Event Sponsorships",
+            "title": "Corporate Rebrand",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
