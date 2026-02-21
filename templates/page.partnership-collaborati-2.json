@@ -913,32 +913,32 @@
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 1",
-            "title": "Funnel Audit & Strategy"
+            "label": "Week 1-2",
+            "title": "Partner Research & Mapping"
           }
         },
         "step_tiReLw": {
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 2",
-            "title": "Chatbot Development"
+            "label": "Week 2-3",
+            "title": "Outreach & Conversations"
           }
         },
         "step_CJxzWT": {
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 3",
-            "title": "Integration & Testing"
+            "label": "Week 5-6",
+            "title": "Negotiation & Contracts"
           }
         },
         "step_AjFwPY": {
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 4",
-            "title": "Launch & Optimize"
+            "label": "Ongoing",
+            "title": "Relationship Management"
           }
         }
       },
@@ -1007,8 +1007,8 @@
       "type": "services-cta",
       "name": "Services CTA",
       "settings": {
-        "heading": "Ready to Build Your AI-Powered Brand Agent?",
-        "description": "Book a free consultation to discuss how we can automate your customer interactions while maintaining your unique brand voice.",
+        "heading": "Ready to Build Strategic Partnerships?",
+        "description": "Let's discuss how we can help you identify and secure partnerships that amplify your brand reach.",
         "cta_text": "Book Free Consultation",
         "cta_url": "https://tidycal.com/salesautomateiq/consultation",
         "cta_new_tab": true
