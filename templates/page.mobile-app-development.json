@@ -1051,8 +1051,8 @@
       "type": "services-cta",
       "name": "Services CTA",
       "settings": {
-        "heading": "Ready to Transform Your Brand?",
-        "description": "Let's create a visual identity that captures your essence and commands attention in your market.",
+        "heading": "Ready to Build Your App?",
+        "description": "Let's create a mobile experience that users will love and that drives real business results.",
         "cta_text": "Book Free Consultation",
         "cta_url": "https://tidycal.com/salesautomateiq/consultation",
         "cta_new_tab": true
@@ -1074,8 +1074,8 @@
         "service_Ez33Vi": {
           "type": "service",
           "settings": {
-            "title": "Monthly Content Calendar",
-            "description": "Done-for-you monthly content planning and creation that keeps your brand visible and engaging across all",
+            "title": "AI Revenue Concierge Chatbot",
+            "description": "An intelligent AI chatbot that engages visitors on your website and Instagram DMs, qualifying leads and",
             "url": "services/monthly-content-calendar",
             "cta_text": "Learn more",
             "open_new_tab": false
@@ -1084,8 +1084,8 @@
         "service_J37i6X": {
           "type": "service",
           "settings": {
-            "title": "Paid Ads Creative System",
-            "description": "High-performance ad creative designed to stop thumbs, capture attention, and drive measurable",
+            "title": "Graphic Design & Brand Identity",
+            "description": "Comprehensive brand identity design that creates cohesive, memorable visual systems across all",
             "url": "services/paid-ads-creative",
             "cta_text": "Learn more",
             "open_new_tab": false
