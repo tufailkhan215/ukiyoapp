@@ -451,43 +451,43 @@
         "step_VWnEJa": {
           "type": "step",
           "settings": {
-            "title": "Strategy & Planning",
-            "description": "Define goals, audience, sitemap, and success metrics"
+            "title": "Strategy Session",
+            "description": "Align on goals, themes, content pillars, and brand voice"
           }
         },
         "step_GejF3z": {
           "type": "step",
           "settings": {
-            "title": "Wireframing",
-            "description": "Plan the structure, user flows, and experience architecture"
+            "title": "Calendar Planning",
+            "description": "Map out the month with strategic timing and platform mix"
           }
         },
         "step_MxmXGH": {
           "type": "step",
           "settings": {
-            "title": "Design",
-            "description": "Create the visual design, interactions, and brand application"
+            "title": "Content Creation",
+            "description": "Produce all graphics, videos, captions, and hashtags"
           }
         },
         "step_NfX4qg": {
           "type": "step",
           "settings": {
-            "title": "Development",
-            "description": "Build with clean, scalable code and modern frameworks"
+            "title": "Review & Approval",
+            "description": "You review everything and request any changes needed"
           }
         },
         "step_78eaHH": {
           "type": "step",
           "settings": {
-            "title": "Testing & QA",
-            "description": "Rigorous testing across devices, browsers, and scenarios"
+            "title": "Scheduling",
+            "description": "Load content into your scheduling tool or post directly"
           }
         },
         "step_zEyLVB": {
           "type": "step",
           "settings": {
-            "title": "Launch & Support",
-            "description": "Deploy with monitoring and provide ongoing maintenance"
+            "title": "Reporting",
+            "description": "Monthly performance review with optimization insights"
           }
         }
       },
@@ -514,11 +514,11 @@
           "type": "plan",
           "settings": {
             "name": "Starter",
-            "description": "Perfect for small businesses and portfolios",
-            "price": "$5,000",
-            "period": "/ one-time",
+            "description": "Perfect for small businesses",
+            "price": "$1,200",
+            "period": "/ per month",
             "badge": "",
-            "features_text": "Up to 5 pages\nMobile-responsive design\nBasic CMS (WordPress/Shopify)\nContact form\nGoogle Analytics\n2 rounds of revisions\n30-day support",
+            "features_text": "12 posts per month\nSingle platform focus\nStatic graphics only\nCaption writing\nHashtag research\nBasic scheduling\nMonthly report",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -527,12 +527,12 @@
         "plan_FrHA6H": {
           "type": "plan",
           "settings": {
-            "name": "Professional",
-            "description": "Ideal for growing businesses",
-            "price": "$15,000",
-            "period": "/ one-time",
+            "name": "Growth",
+            "description": "Ideal for growing brands",
+            "price": "$2,500",
+            "period": "/ per month",
             "badge": "Most Popular",
-            "features_text": "Up to 15 pages\nCustom UI/UX design\nAdvanced CMS customization\nBlog functionality\nLead capture forms\nAdvanced SEO optimization\nCRM integration\nPerformance optimization",
+            "features_text": "24 posts per month\n2 platforms\nStatic + Story graphics\n4 video reels\nCaption + hashtags\nTrend integration\nContent scheduling\nBi-weekly strategy calls",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -541,12 +541,12 @@
         "plan_qWaeyc": {
           "type": "plan",
           "settings": {
-            "name": "Enterprise",
-            "description": "For complex web applications",
-            "price": "$35,000+",
+            "name": "Scale",
+            "description": "Full content management",
+            "price": "$5,000",
             "period": "/ per month",
             "badge": "",
-            "features_text": "Unlimited pages\nCustom web application\nE-commerce functionality\nCustom integrations\nUser authentication\nDatabase development\nAPI development\nAdvanced analytics dashboard",
+            "features_text": "40+ posts per month\nAll platforms\nFull graphic suite\n8+ video reels\nBlog content (2 posts)\nCommunity management\nInfluencer coordination\nWeekly strategy calls",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -564,19 +564,19 @@
         "title_before": "Choose Your",
         "title_gradient": "Plan",
         "description": "Select the package that best fits your needs. All plans include our signature quality and support.",
-        "footer_before": "for Hosting, maintenance, and updates",
-        "footer_highlight": "$500/mo",
-        "footer_after": "for Hosting, maintenance, and updates"
+        "footer_before": "",
+        "footer_highlight": "",
+        "footer_after": ""
       }
     },
     "service_testimonial_ekeHMB": {
       "type": "service-testimonial",
       "name": "Service Testimonial",
       "settings": {
-        "quote": "\"Our new website generated more leads in the first month than our old site did in a year. The design perfectly captures our brand and the performance is incredible.\"",
-        "author_image": "shopify://shop_images/3.png",
-        "author_name": "Jennifer Liu",
-        "author_role": "VP of Growth, Fintech Pro"
+        "quote": "\"We went from struggling to post twice a week to having a month of premium content ready to go. Our engagement tripled and we finally have consistent brand presence.\"",
+        "author_image": "shopify://shop_images/5.png",
+        "author_name": "Sarah Chen",
+        "author_role": "CEO, Bloom Wellness"
       }
     },
     "17715474998453bd5d": {
@@ -589,7 +589,7 @@
         "use_case_rT9VqK": {
           "type": "use_case",
           "settings": {
-            "title": "New Brand Launch",
+            "title": "Instagram Marketing",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -599,7 +599,7 @@
         "use_case_4bwBcy": {
           "type": "use_case",
           "settings": {
-            "title": "Brand Refresh",
+            "title": "TikTok Growth",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -609,7 +609,7 @@
         "use_case_GD64Xa": {
           "type": "use_case",
           "settings": {
-            "title": "Merger Rebrand",
+            "title": "LinkedIn Thought Leadership",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -619,7 +619,7 @@
         "use_case_xAVNaF": {
           "type": "use_case",
           "settings": {
-            "title": "Product Line Branding",
+            "title": "Twitter/X Presence",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -629,7 +629,7 @@
         "use_case_Dimqy4": {
           "type": "use_case",
           "settings": {
-            "title": "Event Branding",
+            "title": "Facebook Engagement",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -639,7 +639,7 @@
         "use_case_JfAcB9": {
           "type": "use_case",
           "settings": {
-            "title": "Personal Branding",
+            "title": "Pinterest Traffic",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -649,7 +649,7 @@
         "use_case_NweVV6": {
           "type": "use_case",
           "settings": {
-            "title": "Startup Identity",
+            "title": "YouTube Shorts",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -659,7 +659,7 @@
         "use_case_HRYHLh": {
           "type": "use_case",
           "settings": {
-            "title": "Corporate Rebrand",
+            "title": "Multi-Platform Strategy",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
