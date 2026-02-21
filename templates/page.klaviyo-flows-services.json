@@ -596,7 +596,7 @@
         "use_case_rT9VqK": {
           "type": "use_case",
           "settings": {
-            "title": "New Brand Launch",
+            "title": "E-commerce Stores",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -606,7 +606,7 @@
         "use_case_4bwBcy": {
           "type": "use_case",
           "settings": {
-            "title": "Brand Refresh",
+            "title": "D2C Brands",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -616,7 +616,7 @@
         "use_case_GD64Xa": {
           "type": "use_case",
           "settings": {
-            "title": "Merger Rebrand",
+            "title": "Subscription Businesses",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -626,7 +626,7 @@
         "use_case_xAVNaF": {
           "type": "use_case",
           "settings": {
-            "title": "Product Line Branding",
+            "title": "B2B Companies",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -636,7 +636,7 @@
         "use_case_Dimqy4": {
           "type": "use_case",
           "settings": {
-            "title": "Event Branding",
+            "title": "Course Creators",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -646,7 +646,7 @@
         "use_case_JfAcB9": {
           "type": "use_case",
           "settings": {
-            "title": "Personal Branding",
+            "title": "Service Businesses",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -656,7 +656,7 @@
         "use_case_NweVV6": {
           "type": "use_case",
           "settings": {
-            "title": "Startup Identity",
+            "title": "Retail Brands",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -666,7 +666,7 @@
         "use_case_HRYHLh": {
           "type": "use_case",
           "settings": {
-            "title": "Corporate Rebrand",
+            "title": "SaaS Companies",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -698,43 +698,43 @@
         "faq_7d93ic": {
           "type": "faq",
           "settings": {
-            "question": "How long does a complete brand identity project take?",
-            "answer": "Essentials packages take 2-3 weeks, Professional packages 4-6 weeks, and Enterprise projects 8-12 weeks depending on complexity and feedback cycles."
+            "question": "Do you only work with Klaviyo?",
+            "answer": "While Klaviyo is our specialty, we also work with Mailchimp, ActiveCampaign, and other ESP platforms. Klaviyo is our recommendation for e-commerce due to its powerful segmentation and integrations."
           }
         },
         "faq_Lh88e7": {
           "type": "faq",
           "settings": {
-            "question": "What if I don't like the initial concepts?",
-            "answer": "We offer multiple concepts and revision rounds. If the initial direction doesn't resonate, we'll explore new approaches until we find the perfect fit for your brand."
+            "question": "Can you migrate from another email platform?",
+            "answer": "Yes! We handle full migrations from any platform, including list import, flow recreation, and template conversion."
           }
         },
         "faq_imN7DG": {
           "type": "faq",
           "settings": {
-            "question": "Do I own the final designs?",
-            "answer": "Yes! Upon final payment, you receive full ownership of all designs, source files, and assets. We retain the right to showcase the work in our portfolio."
+            "question": "How long does setup take?",
+            "answer": "Foundation setup takes 2-3 weeks, Growth takes 3-4 weeks, and Scale takes 4-6 weeks depending on complexity."
           }
         },
         "faq_RHcRGW": {
           "type": "faq",
           "settings": {
-            "question": "Can you work with our existing brand elements?",
-            "answer": "Absolutely! We can refresh and build upon existing elements or start completely fresh—whatever serves your brand best."
+            "question": "Will flows work with my Shopify store?",
+            "answer": "Absolutely! Klaviyo integrates seamlessly with Shopify, WooCommerce, BigCommerce, and other platforms. We'll set up all necessary integrations."
           }
         },
         "faq_MgjXXd": {
           "type": "faq",
           "settings": {
-            "question": "What file formats do you deliver?",
-            "answer": "We provide all standard formats including AI, EPS, PDF, PNG, JPG, and SVG. We also include web-optimized versions and favicon files."
+            "question": "Do you write the email copy?",
+            "answer": "Yes! We write all email copy, design templates, and set up automation logic. Everything is custom to your brand."
           }
         },
         "faq_cXrfCF": {
           "type": "faq",
           "settings": {
-            "question": "Do you offer ongoing design support?",
-            "answer": "Yes! We offer monthly retainer packages for ongoing design needs including social graphics, marketing materials, and asset creation."
+            "question": "What results can I expect?",
+            "answer": "Most clients see 15-30% of total revenue coming from email within 90 days of implementing our flows. Cart recovery alone typically generates 5-10% of monthly revenue."
           }
         }
       },
