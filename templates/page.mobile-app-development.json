@@ -850,8 +850,8 @@
         "tech_hNTBrh": {
           "type": "tech",
           "settings": {
-            "icon": "zap",
-            "label": "Figma",
+            "icon": "code",
+            "label": "React Native",
             "gradient": "emerald_teal",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -864,8 +864,8 @@
         "tech_GJUEV6": {
           "type": "tech",
           "settings": {
-            "icon": "zap",
-            "label": "Adobe Creative Suite",
+            "icon": "code",
+            "label": "Flutter",
             "gradient": "orange_amber",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -878,8 +878,8 @@
         "tech_HVdtqP": {
           "type": "tech",
           "settings": {
-            "icon": "zap",
-            "label": "Canva Pro",
+            "icon": "code",
+            "label": "Swift",
             "gradient": "orange_amber",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -892,8 +892,8 @@
         "tech_8U676K": {
           "type": "tech",
           "settings": {
-            "icon": "zap",
-            "label": "Lottie",
+            "icon": "code",
+            "label": "Kotlin",
             "gradient": "orange_amber",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -906,8 +906,8 @@
         "tech_Wxnr9D": {
           "type": "tech",
           "settings": {
-            "icon": "zap",
-            "label": "Spline",
+            "icon": "code",
+            "label": "Firebase",
             "gradient": "orange_red",
             "url": "",
             "popup_tagline": "Professional Tool",
