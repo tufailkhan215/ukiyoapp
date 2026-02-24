@@ -107,9 +107,9 @@
         "back_link_url": "/pages/services",
         "category_label": "Brand Strategy",
         "category_icon": "sparkles",
-        "title": "Website & Web Development",
-        "subtitle": "Digital Experiences That Convert",
-        "description": "Websites that work as hard as you do",
+        "title": "Pinterest SEO Services",
+        "subtitle": "Visual Search Domination",
+        "description": "Turn Pinterest into your traffic machine",
         "cta_primary_text": "Book Free Consultation",
         "cta_primary_url": "#",
         "cta_primary_new_tab": true,
@@ -174,9 +174,9 @@
         "layout": "overview",
         "strap": "(Overview)",
         "title_before": "What is ",
-        "title_gradient": "Website & Web Development?",
-        "paragraph_1": "<p>Custom website design and development that combines stunning visuals with performance-driven architecture.</p>",
-        "paragraph_2": "<p>Your website is your most important digital asset it's where first impressions are made and business happens. Our Website & Web Development service creates custom digital experiences that look stunning, load fast, and convert visitors into customers. We combine award-winning design with modern development practices to build websites that are as beautiful as they are functional.</p>",
+        "title_gradient": "Pinterest SEO Services?",
+        "paragraph_1": "<p>Strategic Pinterest optimization that drives massive organic traffic through visual search and discovery.</p>",
+        "paragraph_2": "<p>Pinterest is a sleeping giant for organic traffic—a visual search engine with over 450 million monthly users actively looking for inspiration and products. Our Pinterest SEO Services transform your Pinterest presence from an afterthought into a powerful traffic driver. We optimize your profile, boards, and pins for maximum visibility, create fresh pin designs, and implement a strategy that compounds over time.</p>",
         "title_included": "Everything You Need to Launch Your AI Agent"
       }
     },
@@ -294,7 +294,7 @@
       "name": "Services Rich Text",
       "settings": {
         "strap": "(Our Approach)",
-        "body": "<p>We build effective online ecosystems that boost credibility and drive growth. Our websites integrate with AI-driven analytics and CRM platforms leading to increased lead capture and a seamless customer experience.</p>"
+        "body": "<p>We handle your brand's entire online presence crafting killer strategies and engaging content so you don't have to. Pinterest drives long-term, compounding traffic unlike any other platform.</p>"
       }
     },
     "two_column_text_zCXJVY": {
@@ -303,61 +303,61 @@
         "feature_VD783b": {
           "type": "feature",
           "settings": {
-            "text": "Custom UI/UX design"
+            "text": "Pinterest audit & strategy"
           }
         },
         "feature_rVJdJK": {
           "type": "feature",
           "settings": {
-            "text": "Mobile-responsive development"
+            "text": "Profile & board optimization"
           }
         },
         "feature_DpUeXd": {
           "type": "feature",
           "settings": {
-            "text": "Content management system"
+            "text": "Keyword research & mapping"
           }
         },
         "feature_cKMdiL": {
           "type": "feature",
           "settings": {
-            "text": "SEO optimization"
+            "text": "Pin design (30-100 pins/month)"
           }
         },
         "feature_3UUBba": {
           "type": "feature",
           "settings": {
-            "text": "Speed optimization"
+            "text": "Pin description writing"
           }
         },
         "feature_zHPdUx": {
           "type": "feature",
           "settings": {
-            "text": "Contact forms & lead capture"
+            "text": "Strategic scheduling"
           }
         },
         "feature_FpyCGk": {
           "type": "feature",
           "settings": {
-            "text": "Analytics integration"
+            "text": "Rich pins setup"
           }
         },
         "feature_BUxiQB": {
           "type": "feature",
           "settings": {
-            "text": "SSL security certificate"
+            "text": "Competitor analysis"
           }
         },
         "feature_TUayC4": {
           "type": "feature",
           "settings": {
-            "text": "Hosting setup assistance"
+            "text": "Monthly analytics report"
           }
         },
         "feature_LnXAf6": {
           "type": "feature",
           "settings": {
-            "text": "30-day post-launch support"
+            "text": "Ongoing optimization"
           }
         }
       },
@@ -390,43 +390,43 @@
         "feature_cVUqcy": {
           "type": "feature",
           "settings": {
-            "title": "Custom Design",
-            "description": "Unique designs that reflect your brand perfectly—no templates"
+            "title": "Profile Optimization",
+            "description": "SEO-optimized profile, boards, and sections for maximum discoverability"
           }
         },
         "feature_CGK8jh": {
           "type": "feature",
           "settings": {
-            "title": "Responsive Development",
-            "description": "Flawless experience across all devices and screen sizes"
+            "title": "Keyword Research",
+            "description": "Pinterest-specific keyword strategy using platform search data"
           }
         },
         "feature_WRfYgM": {
           "type": "feature",
           "settings": {
-            "title": "Performance Optimization",
-            "description": "Lightning-fast load times and smooth interactions"
+            "title": "Pin Design",
+            "description": "Click-worthy graphics optimized for Pinterest's visual algorithm"
           }
         },
         "feature_Nz6XTd": {
           "type": "feature",
           "settings": {
-            "title": "SEO Foundation",
-            "description": "Built for search engine visibility from day one"
+            "title": "Fresh Pin Strategy",
+            "description": "Consistent new content to fuel the algorithm and grow reach"
           }
         },
         "feature_aYey6f": {
           "type": "feature",
           "settings": {
-            "title": "CMS Integration",
-            "description": "Easy content management with Shopify, WordPress, or custom solutions"
+            "title": "Rich Pins Setup",
+            "description": "Enhanced pins with real-time data from your website"
           }
         },
         "feature_wBVcMj": {
           "type": "feature",
           "settings": {
-            "title": "Analytics Setup",
-            "description": "Track what matters with proper instrumentation and dashboards"
+            "title": "Analytics & Reporting",
+            "description": "Track growth, clicks, and optimize continuously"
           }
         }
       },
@@ -451,43 +451,43 @@
         "step_VWnEJa": {
           "type": "step",
           "settings": {
-            "title": "Strategy & Planning",
-            "description": "Define goals, audience, sitemap, and success metrics"
+            "title": "Pinterest Audit",
+            "description": "Analyze current presence, competitors, and opportunities"
           }
         },
         "step_GejF3z": {
           "type": "step",
           "settings": {
-            "title": "Wireframing",
-            "description": "Plan the structure, user flows, and experience architecture"
+            "title": "Keyword Strategy",
+            "description": "Research high-volume, relevant Pinterest keywords"
           }
         },
         "step_MxmXGH": {
           "type": "step",
           "settings": {
-            "title": "Design",
-            "description": "Create the visual design, interactions, and brand application"
+            "title": "Profile Optimization",
+            "description": "Restructure profile, boards, and sections for SEO"
           }
         },
         "step_NfX4qg": {
           "type": "step",
           "settings": {
-            "title": "Development",
-            "description": "Build with clean, scalable code and modern frameworks"
+            "title": "Content Creation",
+            "description": "Design fresh pins with optimized titles and descriptions"
           }
         },
         "step_78eaHH": {
           "type": "step",
           "settings": {
-            "title": "Testing & QA",
-            "description": "Rigorous testing across devices, browsers, and scenarios"
+            "title": "Publishing Strategy",
+            "description": "Implement consistent pinning schedule for algorithm favor"
           }
         },
         "step_zEyLVB": {
           "type": "step",
           "settings": {
-            "title": "Launch & Support",
-            "description": "Deploy with monitoring and provide ongoing maintenance"
+            "title": "Optimization",
+            "description": "Analyze data and refine strategy monthly"
           }
         }
       },
@@ -513,12 +513,12 @@
         "plan_HyVafM": {
           "type": "plan",
           "settings": {
-            "name": "Starter",
-            "description": "Perfect for small businesses and portfolios",
-            "price": "$5,000",
-            "period": "/ one-time",
+            "name": "Foundation",
+            "description": "Get started with Pinterest SEO",
+            "price": "$800",
+            "period": "/ per month",
             "badge": "",
-            "features_text": "Up to 5 pages\nMobile-responsive design\nBasic CMS (WordPress/Shopify)\nContact form\nGoogle Analytics\n2 rounds of revisions\n30-day support",
+            "features_text": "Profile optimization\nBoard restructuring\n30 fresh pins/month\nBasic keyword optimization\nMonthly reporting\nEmail support",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
