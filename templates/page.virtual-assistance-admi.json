@@ -1,0 +1,1134 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "services_hero_Hfxecm": {
+      "type": "services-hero",
+      "disabled": true,
+      "name": "Services Hero",
+      "settings": {
+        "watermark": "SERVICES",
+        "strap": "Our Services",
+        "title_line1": "Let's Plant",
+        "title_line2": "Your Flag",
+        "description": "We work with founders, CEOs, and leadership teams to shape defining ideas and build strategy and design systems for growth at scale.",
+        "scroll_text": "(Scroll to explore)"
+      }
+    },
+    "services_category_grid_nxbLPE": {
+      "type": "services-category-grid",
+      "blocks": {
+        "category_VwPgaM": {
+          "type": "category",
+          "settings": {
+            "icon": "sparkles",
+            "title": "Brand Strategy",
+            "description": "Define your edge and steer your company into the future",
+            "links_text": "Company Agent Builder|/services/company-agent-builder|From $5,000\nPartnership & Collaboration Engine|/services/partnership-collaboration|From $3,500"
+          }
+        },
+        "category_PpaMwh": {
+          "type": "category",
+          "settings": {
+            "icon": "zap",
+            "title": "AI Automations",
+            "description": "Streamline operations with intelligent solutions",
+            "links_text": "AI Revenue Concierge Chatbot|/services/ai-revenue-concierge|From $2,500"
+          }
+        },
+        "category_pygQfL": {
+          "type": "category",
+          "settings": {
+            "icon": "palette",
+            "title": "Brand Identity",
+            "description": "Stand out visually with distinctive design systems",
+            "links_text": "Graphic Design & Brand Identity|/services/graphic-design|From $8,000"
+          }
+        },
+        "category_XrHHgT": {
+          "type": "category",
+          "settings": {
+            "icon": "globe",
+            "title": "Digital Experience",
+            "description": "Captivate audiences with immersive experiences",
+            "links_text": "Website & Web Development|/services/web-development|From $15,000\nMobile & App Development|/services/mobile-app-development|From $25,000"
+          }
+        },
+        "category_ayXYEP": {
+          "type": "category",
+          "settings": {
+            "icon": "film",
+            "title": "Content Production",
+            "description": "Visual storytelling that resonates",
+            "links_text": "Monthly Content Calendar|/services/monthly-content-calendar|From $2,000\nPinterest SEO Services|/services/pinterest-seo|From $1,500\nSEO Blog Services|/services/seo-blog|From $3,000"
+          }
+        },
+        "category_XAQBt7": {
+          "type": "category",
+          "settings": {
+            "icon": "trending-up",
+            "title": "Growth Marketing",
+            "description": "Data-driven strategies for sustainable growth",
+            "links_text": "Klaviyo Flows Services|/services/klaviyo-flows|From $3,500\nPaid Ads Creative System|/services/paid-ads-creative|From $4,000\nVirtual Assistance & Admin|/services/virtual-assistance|From $1,500"
+          }
+        }
+      },
+      "block_order": [
+        "category_VwPgaM",
+        "category_PpaMwh",
+        "category_pygQfL",
+        "category_XrHHgT",
+        "category_ayXYEP",
+        "category_XAQBt7"
+      ],
+      "disabled": true,
+      "name": "Services Category Grid",
+      "settings": {
+        "strap": "(Our Services)",
+        "title_before": "Everything You",
+        "title_gradient": "Need to Grow",
+        "description": "12 specialized services across 6 categories, each designed to accelerate your business growth."
+      }
+    },
+    "service_details_intro_yGMBf3": {
+      "type": "service-details-intro",
+      "name": "Service Details Intro",
+      "settings": {
+        "enable_canvas_glow": true,
+        "enable_dots": true,
+        "back_link_text": "Back to Services",
+        "back_link_url": "/pages/services",
+        "category_label": "Brand Strategy",
+        "category_icon": "sparkles",
+        "title": "Pinterest SEO Services",
+        "subtitle": "Visual Search Domination",
+        "description": "Turn Pinterest into your traffic machine",
+        "cta_primary_text": "Book Free Consultation",
+        "cta_primary_url": "#",
+        "cta_primary_new_tab": true,
+        "cta_secondary_text": "View Case Studies",
+        "cta_secondary_url": "/pages/work"
+      }
+    },
+    "stats_YdmTqx": {
+      "type": "stats",
+      "blocks": {
+        "stat_6RCYkx": {
+          "type": "stat",
+          "settings": {
+            "value": "24/7",
+            "label": "Availability",
+            "desc": "Always-on brand representation"
+          }
+        },
+        "stat_e3UaEi": {
+          "type": "stat",
+          "settings": {
+            "value": "90%",
+            "label": "Query Resolution",
+            "desc": "First-contact resolution rate"
+          }
+        },
+        "stat_Wz73LD": {
+          "type": "stat",
+          "settings": {
+            "value": "40%",
+            "label": "Cost Reduction",
+            "desc": "In customer service operations"
+          }
+        },
+        "stat_jhKtEa": {
+          "type": "stat",
+          "settings": {
+            "value": "1000+",
+            "label": "Hours Saved",
+            "desc": "Monthly staff hours freed up"
+          }
+        }
+      },
+      "block_order": [
+        "stat_6RCYkx",
+        "stat_e3UaEi",
+        "stat_Wz73LD",
+        "stat_jhKtEa"
+      ],
+      "disabled": true,
+      "name": "Stats",
+      "settings": {
+        "strap": "(Our Impact)",
+        "title_before": "Numbers that",
+        "title_gradient": "matter"
+      }
+    },
+    "two_column_text_C8d8mg": {
+      "type": "two-column-text",
+      "name": "Two Column Text",
+      "settings": {
+        "layout": "overview",
+        "strap": "(Overview)",
+        "title_before": "What is ",
+        "title_gradient": "Pinterest SEO Services?",
+        "paragraph_1": "<p>Strategic Pinterest optimization that drives massive organic traffic through visual search and discovery.</p>",
+        "paragraph_2": "<p>Pinterest is a sleeping giant for organic traffic—a visual search engine with over 450 million monthly users actively looking for inspiration and products. Our Pinterest SEO Services transform your Pinterest presence from an afterthought into a powerful traffic driver. We optimize your profile, boards, and pins for maximum visibility, create fresh pin designs, and implement a strategy that compounds over time.</p>",
+        "title_included": "Everything You Need to Launch Your AI Agent"
+      }
+    },
+    "icon_boxes_Fwkywn": {
+      "type": "icon-boxes",
+      "blocks": {
+        "box_WB7mkd": {
+          "type": "box",
+          "settings": {
+            "icon": "clock",
+            "title": "Time Drain",
+            "metric": "40hrs/week",
+            "description": "Average time spent on repetitive customer inquiries",
+            "phrase": ""
+          }
+        },
+        "box_TkbD4x": {
+          "type": "box",
+          "settings": {
+            "icon": "users",
+            "title": "Inconsistent Voice",
+            "metric": "67%",
+            "description": "Of customers notice brand voice inconsistencies",
+            "phrase": ""
+          }
+        },
+        "box_pXAFhe": {
+          "type": "box",
+          "settings": {
+            "icon": "trending_down",
+            "title": "Missed Opportunities",
+            "metric": "$50K+",
+            "description": "Lost annually from slow response times",
+            "phrase": ""
+          }
+        }
+      },
+      "block_order": [
+        "box_WB7mkd",
+        "box_TkbD4x",
+        "box_pXAFhe"
+      ],
+      "disabled": true,
+      "name": "Icon Boxes (Challenge)",
+      "settings": {
+        "variant": "challenge",
+        "badge": "(The Challenge)",
+        "title_before": "Problems We",
+        "title_gradient": "Solve",
+        "subtitle": "These common pain points are holding businesses back. We fix them."
+      }
+    },
+    "icon_boxes_TzdEHE": {
+      "type": "icon-boxes",
+      "blocks": {
+        "box_Qb4yCY": {
+          "type": "box",
+          "settings": {
+            "icon": "zap",
+            "title": "24/7 Availability",
+            "metric": "",
+            "description": "",
+            "phrase": "Never miss a customer"
+          }
+        },
+        "box_MrqLQm": {
+          "type": "box",
+          "settings": {
+            "icon": "message_square",
+            "title": "Consistent Messaging",
+            "metric": "",
+            "description": "",
+            "phrase": "Perfect brand voice every time"
+          }
+        },
+        "box_bmGBXq": {
+          "type": "box",
+          "settings": {
+            "icon": "trending_up",
+            "title": "Scale Instantly",
+            "metric": "",
+            "description": "",
+            "phrase": "Handle 1000s of conversations"
+          }
+        }
+      },
+      "block_order": [
+        "box_Qb4yCY",
+        "box_MrqLQm",
+        "box_bmGBXq"
+      ],
+      "disabled": true,
+      "name": "Icon Boxes (Solution)",
+      "settings": {
+        "variant": "solution",
+        "badge": "(The Solution)",
+        "title_before": "How We",
+        "title_gradient": "Deliver",
+        "subtitle": "Proven strategies that get real results for your business."
+      }
+    },
+    "rich_text_EEHbYG": {
+      "type": "rich-text",
+      "disabled": true,
+      "name": "Rich text",
+      "settings": {
+        "heading": "(Our Approach)",
+        "text": "We leverage AI-driven automation and data optimizations to help brands work smarter and faster. Say goodbye to tedious tasks and hello to real-time insights that fuel your growth.",
+        "button_text": "Button",
+        "button_link": "#"
+      }
+    },
+    "services_rich_text_VBT9G7": {
+      "type": "services-rich-text",
+      "name": "Services Rich Text",
+      "settings": {
+        "strap": "(Our Approach)",
+        "body": "<p>We handle your brand's entire online presence crafting killer strategies and engaging content so you don't have to. Pinterest drives long-term, compounding traffic unlike any other platform.</p>"
+      }
+    },
+    "two_column_text_zCXJVY": {
+      "type": "two-column-text",
+      "blocks": {
+        "feature_VD783b": {
+          "type": "feature",
+          "settings": {
+            "text": "Pinterest audit & strategy"
+          }
+        },
+        "feature_rVJdJK": {
+          "type": "feature",
+          "settings": {
+            "text": "Profile & board optimization"
+          }
+        },
+        "feature_DpUeXd": {
+          "type": "feature",
+          "settings": {
+            "text": "Keyword research & mapping"
+          }
+        },
+        "feature_cKMdiL": {
+          "type": "feature",
+          "settings": {
+            "text": "Pin design (30-100 pins/month)"
+          }
+        },
+        "feature_3UUBba": {
+          "type": "feature",
+          "settings": {
+            "text": "Pin description writing"
+          }
+        },
+        "feature_zHPdUx": {
+          "type": "feature",
+          "settings": {
+            "text": "Strategic scheduling"
+          }
+        },
+        "feature_FpyCGk": {
+          "type": "feature",
+          "settings": {
+            "text": "Rich pins setup"
+          }
+        },
+        "feature_BUxiQB": {
+          "type": "feature",
+          "settings": {
+            "text": "Competitor analysis"
+          }
+        },
+        "feature_TUayC4": {
+          "type": "feature",
+          "settings": {
+            "text": "Monthly analytics report"
+          }
+        },
+        "feature_LnXAf6": {
+          "type": "feature",
+          "settings": {
+            "text": "Ongoing optimization"
+          }
+        }
+      },
+      "block_order": [
+        "feature_VD783b",
+        "feature_rVJdJK",
+        "feature_DpUeXd",
+        "feature_cKMdiL",
+        "feature_3UUBba",
+        "feature_zHPdUx",
+        "feature_FpyCGk",
+        "feature_BUxiQB",
+        "feature_TUayC4",
+        "feature_LnXAf6"
+      ],
+      "name": "Two Column Text (What's Included)",
+      "settings": {
+        "layout": "included",
+        "strap": "(What's Included)",
+        "title_before": "Everything You Need to Launch Your",
+        "title_gradient": "AI Agent",
+        "paragraph_1": "<p>Create custom AI agents that understand your company inside and out. From customer service to sales, your brand voice stays consistent across every interaction.</p>",
+        "paragraph_2": "<p>In an era where customer expectations are at an all-time high, having a consistent brand voice across every touchpoint is crucial. Our Company Agent Builder service creates bespoke AI agents trained on your brand guidelines, tone of voice, product knowledge, and company values. These agents become extensions of your team, handling everything from customer inquiries to lead qualification with the precision and personality your brand deserves.</p>",
+        "title_included": "Complete Pinterest Management"
+      }
+    },
+    "services_key_features_qwLJ4x": {
+      "type": "services-key-features",
+      "blocks": {
+        "feature_cVUqcy": {
+          "type": "feature",
+          "settings": {
+            "title": "Profile Optimization",
+            "description": "SEO-optimized profile, boards, and sections for maximum discoverability"
+          }
+        },
+        "feature_CGK8jh": {
+          "type": "feature",
+          "settings": {
+            "title": "Keyword Research",
+            "description": "Pinterest-specific keyword strategy using platform search data"
+          }
+        },
+        "feature_WRfYgM": {
+          "type": "feature",
+          "settings": {
+            "title": "Pin Design",
+            "description": "Click-worthy graphics optimized for Pinterest's visual algorithm"
+          }
+        },
+        "feature_Nz6XTd": {
+          "type": "feature",
+          "settings": {
+            "title": "Fresh Pin Strategy",
+            "description": "Consistent new content to fuel the algorithm and grow reach"
+          }
+        },
+        "feature_aYey6f": {
+          "type": "feature",
+          "settings": {
+            "title": "Rich Pins Setup",
+            "description": "Enhanced pins with real-time data from your website"
+          }
+        },
+        "feature_wBVcMj": {
+          "type": "feature",
+          "settings": {
+            "title": "Analytics & Reporting",
+            "description": "Track growth, clicks, and optimize continuously"
+          }
+        }
+      },
+      "block_order": [
+        "feature_cVUqcy",
+        "feature_CGK8jh",
+        "feature_WRfYgM",
+        "feature_Nz6XTd",
+        "feature_aYey6f",
+        "feature_wBVcMj"
+      ],
+      "name": "Services Key Features",
+      "settings": {
+        "strap": "(Key Features)",
+        "title_before": "What You",
+        "title_gradient": "Get"
+      }
+    },
+    "services_timeline_jcmmxh": {
+      "type": "services-timeline",
+      "blocks": {
+        "step_VWnEJa": {
+          "type": "step",
+          "settings": {
+            "title": "Pinterest Audit",
+            "description": "Analyze current presence, competitors, and opportunities"
+          }
+        },
+        "step_GejF3z": {
+          "type": "step",
+          "settings": {
+            "title": "Keyword Strategy",
+            "description": "Research high-volume, relevant Pinterest keywords"
+          }
+        },
+        "step_MxmXGH": {
+          "type": "step",
+          "settings": {
+            "title": "Profile Optimization",
+            "description": "Restructure profile, boards, and sections for SEO"
+          }
+        },
+        "step_NfX4qg": {
+          "type": "step",
+          "settings": {
+            "title": "Content Creation",
+            "description": "Design fresh pins with optimized titles and descriptions"
+          }
+        },
+        "step_78eaHH": {
+          "type": "step",
+          "settings": {
+            "title": "Publishing Strategy",
+            "description": "Implement consistent pinning schedule for algorithm favor"
+          }
+        },
+        "step_zEyLVB": {
+          "type": "step",
+          "settings": {
+            "title": "Optimization",
+            "description": "Analyze data and refine strategy monthly"
+          }
+        }
+      },
+      "block_order": [
+        "step_VWnEJa",
+        "step_GejF3z",
+        "step_MxmXGH",
+        "step_NfX4qg",
+        "step_78eaHH",
+        "step_zEyLVB"
+      ],
+      "name": "Services Timeline",
+      "settings": {
+        "strap": "(Our Process)",
+        "title_before": "How We",
+        "title_gradient": "Deliver",
+        "subtitle": "Our proven process ensures exceptional results every time."
+      }
+    },
+    "services_plan_URffPE": {
+      "type": "services-plan",
+      "blocks": {
+        "plan_HyVafM": {
+          "type": "plan",
+          "settings": {
+            "name": "Foundation",
+            "description": "Get started with Pinterest SEO",
+            "price": "$800",
+            "period": "/ per month",
+            "badge": "",
+            "features_text": "Profile optimization\nBoard restructuring\n30 fresh pins/month\nBasic keyword optimization\nMonthly reporting\nEmail support",
+            "cta_text": "Get Started",
+            "cta_url": "https://tidycal.com/dashboard/booking-types",
+            "cta_new_tab": true
+          }
+        },
+        "plan_FrHA6H": {
+          "type": "plan",
+          "settings": {
+            "name": "Growth",
+            "description": "Scale your Pinterest traffic",
+            "price": "$1,500",
+            "period": "/ per month",
+            "badge": "Most Popular",
+            "features_text": "Everything in Foundation\n60 fresh pins/month\nAdvanced keyword strategy\nIdea pins (video)\nRich pins setup\nCompetitor monitoring\nBi-weekly optimization\nPriority support",
+            "cta_text": "Get Started",
+            "cta_url": "https://tidycal.com/dashboard/booking-types",
+            "cta_new_tab": true
+          }
+        },
+        "plan_qWaeyc": {
+          "type": "plan",
+          "settings": {
+            "name": "Dominate",
+            "description": "Full Pinterest domination",
+            "price": "$3,000",
+            "period": "/ per month",
+            "badge": "",
+            "features_text": "Everything in Growth\n100+ fresh pins/month\nMultiple pin designs per URL\nPinterest ads management\nInfluencer outreach\nWeekly strategy calls\nAdvanced analytics\nDedicated manager",
+            "cta_text": "Get Started",
+            "cta_url": "https://tidycal.com/dashboard/booking-types",
+            "cta_new_tab": true
+          }
+        }
+      },
+      "block_order": [
+        "plan_HyVafM",
+        "plan_FrHA6H",
+        "plan_qWaeyc"
+      ],
+      "name": "Services Plan",
+      "settings": {
+        "strap": "(Investment)",
+        "title_before": "Choose Your",
+        "title_gradient": "Plan",
+        "description": "Select the package that best fits your needs. All plans include our signature quality and support.",
+        "footer_before": "",
+        "footer_highlight": "",
+        "footer_after": ""
+      }
+    },
+    "service_testimonial_ekeHMB": {
+      "type": "service-testimonial",
+      "name": "Service Testimonial",
+      "settings": {
+        "quote": "\"Pinterest went from our smallest traffic source to our largest in 6 months. The ROI is incredible organic traffic that keeps growing month after month.\"",
+        "author_image": "shopify://shop_images/1.png",
+        "author_name": "Emily Rodriguez",
+        "author_role": "CMO, Home & Garden Co."
+      }
+    },
+    "17715474998453bd5d": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "use_cases_q3tjXM": {
+      "type": "use-cases",
+      "blocks": {
+        "use_case_rT9VqK": {
+          "type": "use_case",
+          "settings": {
+            "title": "E-commerce Traffic",
+            "tagline": "Transform Your Business",
+            "url": "https://tidycal.com/salesautomateiq",
+            "cta_text": "Explore",
+            "open_new_tab": false
+          }
+        },
+        "use_case_4bwBcy": {
+          "type": "use_case",
+          "settings": {
+            "title": "Blog Promotion",
+            "tagline": "Transform Your Business",
+            "url": "https://tidycal.com/salesautomateiq",
+            "cta_text": "Explore",
+            "open_new_tab": false
+          }
+        },
+        "use_case_GD64Xa": {
+          "type": "use_case",
+          "settings": {
+            "title": "Lead Generation",
+            "tagline": "Transform Your Business",
+            "url": "https://tidycal.com/salesautomateiq",
+            "cta_text": "Explore",
+            "open_new_tab": false
+          }
+        },
+        "use_case_xAVNaF": {
+          "type": "use_case",
+          "settings": {
+            "title": "Recipe & Food Sites",
+            "tagline": "Transform Your Business",
+            "url": "https://tidycal.com/salesautomateiq",
+            "cta_text": "Explore",
+            "open_new_tab": false
+          }
+        },
+        "use_case_Dimqy4": {
+          "type": "use_case",
+          "settings": {
+            "title": "Home & DIY Brands",
+            "tagline": "Transform Your Business",
+            "url": "https://tidycal.com/salesautomateiq",
+            "cta_text": "Explore",
+            "open_new_tab": false
+          }
+        },
+        "use_case_JfAcB9": {
+          "type": "use_case",
+          "settings": {
+            "title": "Fashion & Beauty",
+            "tagline": "Transform Your Business",
+            "url": "https://tidycal.com/salesautomateiq",
+            "cta_text": "Explore",
+            "open_new_tab": false
+          }
+        },
+        "use_case_NweVV6": {
+          "type": "use_case",
+          "settings": {
+            "title": "Travel & Lifestyle",
+            "tagline": "Transform Your Business",
+            "url": "https://tidycal.com/salesautomateiq",
+            "cta_text": "Explore",
+            "open_new_tab": false
+          }
+        },
+        "use_case_HRYHLh": {
+          "type": "use_case",
+          "settings": {
+            "title": "B2B Services",
+            "tagline": "Transform Your Business",
+            "url": "https://tidycal.com/salesautomateiq",
+            "cta_text": "Explore",
+            "open_new_tab": false
+          }
+        }
+      },
+      "block_order": [
+        "use_case_rT9VqK",
+        "use_case_4bwBcy",
+        "use_case_GD64Xa",
+        "use_case_xAVNaF",
+        "use_case_Dimqy4",
+        "use_case_JfAcB9",
+        "use_case_NweVV6",
+        "use_case_HRYHLh"
+      ],
+      "name": "Use Cases",
+      "settings": {
+        "strap": "(Perfect For)",
+        "title_before": "Use",
+        "title_gradient": "Cases",
+        "description": "Click any use case to see how it transforms your business"
+      }
+    },
+    "faq_RzHXCd": {
+      "type": "faq",
+      "blocks": {
+        "faq_7d93ic": {
+          "type": "faq",
+          "settings": {
+            "question": "How long before I see results?",
+            "answer": "Pinterest is a long-term strategy. Most clients see noticeable traffic increases within 3-4 months, with significant growth at 6+ months. The beauty is that pins continue driving traffic for years."
+          }
+        },
+        "faq_Lh88e7": {
+          "type": "faq",
+          "settings": {
+            "question": "Do I need a business account?",
+            "answer": "Yes, a Pinterest Business account is required. We'll help you set one up or convert your personal account if needed."
+          }
+        },
+        "faq_imN7DG": {
+          "type": "faq",
+          "settings": {
+            "question": "What makes Pinterest different from other social platforms?",
+            "answer": "Pinterest is a search engine, not just social media. Content has a much longer lifespan pins can drive traffic for 2+ years compared to hours on Instagram or Twitter."
+          }
+        },
+        "faq_RHcRGW": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you create the pin images?",
+            "answer": "Yes! Our design team creates scroll-stopping pin graphics optimized for Pinterest's visual algorithm and user behavior."
+          }
+        },
+        "faq_MgjXXd": {
+          "type": "faq",
+          "settings": {
+            "question": "Can Pinterest work for B2B businesses?",
+            "answer": "Absolutely! B2B brands in design, marketing, coaching, SaaS, and professional services see great results on Pinterest."
+          }
+        },
+        "faq_cXrfCF": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you manage Pinterest ads?",
+            "answer": "Yes, our Dominate tier includes Pinterest advertising management for accelerated growth."
+          }
+        }
+      },
+      "block_order": [
+        "faq_7d93ic",
+        "faq_Lh88e7",
+        "faq_imN7DG",
+        "faq_RHcRGW",
+        "faq_MgjXXd",
+        "faq_cXrfCF"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "strap": "(FAQ)",
+        "title_before": "Frequently Asked",
+        "title_gradient": "Questions"
+      }
+    },
+    "icon_boxes_1_p3ApL6": {
+      "type": "icon-boxes-1",
+      "blocks": {
+        "box_8xtQqU": {
+          "type": "box",
+          "settings": {
+            "icon": "search",
+            "metric": "80%",
+            "title": "Finding Partners",
+            "description": "Of brands struggle to find aligned partners",
+            "phrase": ""
+          }
+        },
+        "box_UcUKkm": {
+          "type": "box",
+          "settings": {
+            "icon": "handshake",
+            "metric": "60%",
+            "title": "Negotiation",
+            "description": "Of partnership deals fail in negotiation",
+            "phrase": ""
+          }
+        },
+        "box_RHtcP4": {
+          "type": "box",
+          "settings": {
+            "icon": "chart_column",
+            "metric": "45%",
+            "title": "ROI Tracking",
+            "description": "Can't accurately measure partnership ROI",
+            "phrase": ""
+          }
+        }
+      },
+      "block_order": [
+        "box_8xtQqU",
+        "box_UcUKkm",
+        "box_RHtcP4"
+      ],
+      "disabled": true,
+      "name": "Icon Boxes (Stats) – Challenge",
+      "settings": {
+        "variant": "challenge",
+        "badge": "(The Challenge)",
+        "title_before": "Problems We",
+        "title_gradient": "Solve",
+        "subtitle": "These common pain points are holding businesses back. We fix them."
+      }
+    },
+    "icon_boxes_1_6xtMCE": {
+      "type": "icon-boxes-1",
+      "blocks": {
+        "box_36qM34": {
+          "type": "box",
+          "settings": {
+            "icon": "target",
+            "metric": "",
+            "title": "AI-Powered Discovery",
+            "description": "",
+            "phrase": "Perfect partner matches"
+          }
+        },
+        "box_d9nhqQ": {
+          "type": "box",
+          "settings": {
+            "icon": "file_text",
+            "metric": "",
+            "title": "Expert Negotiation",
+            "description": "",
+            "phrase": "Win-win deal structures"
+          }
+        },
+        "box_mw3gWG": {
+          "type": "box",
+          "settings": {
+            "icon": "trending_up",
+            "metric": "",
+            "title": "Performance Tracking",
+            "description": "",
+            "phrase": "Clear ROI dashboards"
+          }
+        }
+      },
+      "block_order": [
+        "box_36qM34",
+        "box_d9nhqQ",
+        "box_mw3gWG"
+      ],
+      "disabled": true,
+      "name": "Icon Boxes (Stats) – Solution",
+      "settings": {
+        "variant": "solution",
+        "badge": "(The Solution)",
+        "title_before": "How We",
+        "title_gradient": "Deliver",
+        "subtitle": "Proven strategies that get real results for your business."
+      }
+    },
+    "tech_stack_YRcfBE": {
+      "type": "tech-stack",
+      "blocks": {
+        "tech_hNTBrh": {
+          "type": "tech",
+          "settings": {
+            "icon": "zap",
+            "label": "Tailwind",
+            "gradient": "emerald_teal",
+            "url": "",
+            "popup_tagline": "Professional Tool",
+            "popup_description": "Industry-leading tool used in our workflow to deliver exceptional results for your project.",
+            "popup_bullet_1": "Industry Standard",
+            "popup_bullet_2": "Enterprise Ready",
+            "popup_bullet_3": "Fully Supported"
+          }
+        },
+        "tech_GJUEV6": {
+          "type": "tech",
+          "settings": {
+            "icon": "zap",
+            "label": "Pinterest Analytics",
+            "gradient": "orange_amber",
+            "url": "",
+            "popup_tagline": "Professional Tool",
+            "popup_description": "Industry-leading tool used in our workflow to deliver exceptional results for your project.",
+            "popup_bullet_1": "Industry Standard",
+            "popup_bullet_2": "Enterprise Ready",
+            "popup_bullet_3": "Fully Supported"
+          }
+        },
+        "tech_HVdtqP": {
+          "type": "tech",
+          "settings": {
+            "icon": "zap",
+            "label": "Canva",
+            "gradient": "orange_amber",
+            "url": "",
+            "popup_tagline": "Professional Tool",
+            "popup_description": "Industry-leading tool used in our workflow to deliver exceptional results for your project.",
+            "popup_bullet_1": "Industry Standard",
+            "popup_bullet_2": "Enterprise Ready",
+            "popup_bullet_3": "Fully Supported"
+          }
+        },
+        "tech_8U676K": {
+          "type": "tech",
+          "settings": {
+            "icon": "zap",
+            "label": "SEMrush",
+            "gradient": "orange_amber",
+            "url": "",
+            "popup_tagline": "Professional Tool",
+            "popup_description": "Industry-leading tool used in our workflow to deliver exceptional results for your project.",
+            "popup_bullet_1": "Industry Standard",
+            "popup_bullet_2": "Enterprise Ready",
+            "popup_bullet_3": "Fully Supported"
+          }
+        },
+        "tech_Wxnr9D": {
+          "type": "tech",
+          "settings": {
+            "icon": "zap",
+            "label": "Keyword Tool",
+            "gradient": "orange_red",
+            "url": "",
+            "popup_tagline": "Professional Tool",
+            "popup_description": "Industry-leading tool used in our workflow to deliver exceptional results for your project.",
+            "popup_bullet_1": "Industry Standard",
+            "popup_bullet_2": "Enterprise Ready",
+            "popup_bullet_3": "Fully Supported"
+          }
+        },
+        "tech_xcw84U": {
+          "type": "tech",
+          "disabled": true,
+          "settings": {
+            "icon": "zap",
+            "label": "Make",
+            "gradient": "purple_violet",
+            "url": "",
+            "popup_tagline": "Professional Tool",
+            "popup_description": "Industry-leading tool used in our workflow to deliver exceptional results for your project.",
+            "popup_bullet_1": "Industry Standard",
+            "popup_bullet_2": "Enterprise Ready",
+            "popup_bullet_3": "Fully Supported"
+          }
+        }
+      },
+      "block_order": [
+        "tech_hNTBrh",
+        "tech_GJUEV6",
+        "tech_HVdtqP",
+        "tech_8U676K",
+        "tech_Wxnr9D",
+        "tech_xcw84U"
+      ],
+      "name": "Tech Stack",
+      "settings": {
+        "badge": "(Powered By)",
+        "title_before": "Tech",
+        "title_gradient": "Stack",
+        "subtitle": "Industry-leading tools that power your success. Click to learn more.",
+        "footer_text": "Click on any tool to learn more"
+      }
+    },
+    "project_timeline_Cq98KA": {
+      "type": "project-timeline",
+      "blocks": {
+        "step_Fnqghz": {
+          "type": "step",
+          "settings": {
+            "number": "",
+            "label": "Week 1",
+            "title": "Audit & Keyword Research"
+          }
+        },
+        "step_tiReLw": {
+          "type": "step",
+          "settings": {
+            "number": "",
+            "label": "Week 2",
+            "title": "Profile Optimization"
+          }
+        },
+        "step_CJxzWT": {
+          "type": "step",
+          "settings": {
+            "number": "",
+            "label": "Week 3-4",
+            "title": "Pin Creation & Scheduling"
+          }
+        },
+        "step_AjFwPY": {
+          "type": "step",
+          "settings": {
+            "number": "",
+            "label": "Ongoing",
+            "title": "Monitor & Optimize"
+          }
+        }
+      },
+      "block_order": [
+        "step_Fnqghz",
+        "step_tiReLw",
+        "step_CJxzWT",
+        "step_AjFwPY"
+      ],
+      "name": "Project Timeline",
+      "settings": {
+        "badge": "(Delivery)",
+        "title_before": "Project",
+        "title_gradient": "Timeline",
+        "subtitle": "A clear roadmap from kickoff to launch. No surprises, just results.",
+        "guarantee_title": "On-Time Guarantee",
+        "guarantee_subtitle": "Or your next month is free"
+      }
+    },
+    "hard_truth_dxy9GA": {
+      "type": "hard-truth",
+      "disabled": true,
+      "name": "Hard Truth",
+      "settings": {
+        "badge": "(The Hard Truth)",
+        "title_line1": "F*CK AROUND",
+        "title_line2": "& FIND OUT",
+        "subtitle": "The real cost of \"saving money\" on your brand.",
+        "subtitle_bold": "Spoiler: it's expensive.",
+        "budget_label": "F*ck Around",
+        "budget_title": "The \"Budget\" Route",
+        "budget_cost": "$500 - $2K",
+        "budget_time": "2 weeks",
+        "budget_bullets": "Generic template that looks like everyone else\nDeveloper ghosts you after 3 revisions\nSite breaks on mobile (discovered by your biggest client)\nSEO? Never heard of her\nYou rebuild it in 6 months anyway",
+        "budget_foot_label": "True Cost",
+        "budget_foot_value": "$15K+ (time wasted, lost clients, rebuild)",
+        "investment_label": "Do It Right",
+        "investment_title": "The \"Investment\" Route",
+        "investment_cost": "$5K - $25K+",
+        "investment_time": "4-8 weeks",
+        "investment_bullets": "Custom design that makes competitors jealous\nActually converts visitors into customers\nWorks flawlessly on every device\nSEO optimized from day one\nScales with your business for years",
+        "investment_foot_label": "Return",
+        "investment_foot_value": "ROI: 300-1000% in first year",
+        "math_heading": "The Math Don't Lie",
+        "math_budget_amount": "$1,500",
+        "math_budget_label": "Initial \"savings\"",
+        "math_budget_breakdown": "+ $5K lost clients\n+ $3K fixes\n+ $8K rebuild",
+        "math_budget_total": "$17,500 total",
+        "math_investment_amount": "$10,000",
+        "math_investment_label": "Quality investment",
+        "math_investment_breakdown": "+ $0 fixes\n+ $0 rebuilds\n+ $50K new business",
+        "math_investment_total": "$40K profit",
+        "quote": "\"Cheap work ain't good, good work ain't cheap.\"",
+        "quote_attr": "— Every experienced business owner ever",
+        "six_months_heading": "6 Months Later...",
+        "six_months_budget_title": "The \"Budget\" Client",
+        "six_months_budget_bullets": "On their 3rd designer\nLost 2 major deals due to \"unprofessional website\"\nStill explaining why the contact form doesn't work\nConsidering just using a Wix template",
+        "six_months_investment_title": "The \"Investment\" Client",
+        "six_months_investment_bullets": "Closed 15 new clients directly from website\nFeatured in industry publication\nCompetitors asking \"who did your branding?\"\nPlanning expansion into new market",
+        "cta_heading": "Ready to do it right the first time?",
+        "cta_text": "Let's Talk",
+        "cta_url": "https://tidycal.com/salesautomateiq"
+      }
+    },
+    "services_cta_dUgeXW": {
+      "type": "services-cta",
+      "name": "Services CTA",
+      "settings": {
+        "heading": "Ready to Dominate Pinterest?",
+        "description": "Let's turn Pinterest into your biggest source of organic traffic.",
+        "cta_text": "Book Free Consultation",
+        "cta_url": "https://tidycal.com/salesautomateiq/consultation",
+        "cta_new_tab": true
+      }
+    },
+    "related_services_UtrJkF": {
+      "type": "related-services",
+      "blocks": {
+        "service_6YFJpa": {
+          "type": "service",
+          "settings": {
+            "title": "Website & Web Development",
+            "description": "Custom website design and development that combines stunning visuals with performance-driven architecture.",
+            "url": "services/web-development",
+            "cta_text": "Learn more",
+            "open_new_tab": false
+          }
+        },
+        "service_Ez33Vi": {
+          "type": "service",
+          "settings": {
+            "title": "Monthly Content Calendar",
+            "description": "Done-for-you monthly content planning and creation that keeps your brand visible and engaging across all",
+            "url": "services/monthly-content-calendar",
+            "cta_text": "Learn more",
+            "open_new_tab": false
+          }
+        },
+        "service_J37i6X": {
+          "type": "service",
+          "settings": {
+            "title": "Paid Ads Creative System",
+            "description": "High-performance ad creative designed to stop thumbs, capture attention, and drive measurable",
+            "url": "services/paid-ads-creative",
+            "cta_text": "Learn more",
+            "open_new_tab": false
+          }
+        }
+      },
+      "block_order": [
+        "service_6YFJpa",
+        "service_Ez33Vi",
+        "service_J37i6X"
+      ],
+      "name": "Related Services",
+      "settings": {
+        "strap": "(Related Services)",
+        "title_before": "You Might Also",
+        "title_gradient": "Like"
+      }
+    }
+  },
+  "order": [
+    "services_hero_Hfxecm",
+    "services_category_grid_nxbLPE",
+    "service_details_intro_yGMBf3",
+    "stats_YdmTqx",
+    "two_column_text_C8d8mg",
+    "icon_boxes_Fwkywn",
+    "icon_boxes_TzdEHE",
+    "rich_text_EEHbYG",
+    "services_rich_text_VBT9G7",
+    "two_column_text_zCXJVY",
+    "services_key_features_qwLJ4x",
+    "services_timeline_jcmmxh",
+    "services_plan_URffPE",
+    "service_testimonial_ekeHMB",
+    "17715474998453bd5d",
+    "use_cases_q3tjXM",
+    "faq_RzHXCd",
+    "icon_boxes_1_p3ApL6",
+    "icon_boxes_1_6xtMCE",
+    "tech_stack_YRcfBE",
+    "project_timeline_Cq98KA",
+    "hard_truth_dxy9GA",
+    "services_cta_dUgeXW",
+    "related_services_UtrJkF"
+  ]
+}
