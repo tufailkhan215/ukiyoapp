@@ -691,43 +691,43 @@
         "faq_7d93ic": {
           "type": "faq",
           "settings": {
-            "question": "How long before I see results?",
-            "answer": "Pinterest is a long-term strategy. Most clients see noticeable traffic increases within 3-4 months, with significant growth at 6+ months. The beauty is that pins continue driving traffic for years."
+            "question": "Where are your VAs located?",
+            "answer": "We have VAs across multiple time zones including US, Philippines, and Latin America. We'll match you with a VA whose hours align with your needs."
           }
         },
         "faq_Lh88e7": {
           "type": "faq",
           "settings": {
-            "question": "Do I need a business account?",
-            "answer": "Yes, a Pinterest Business account is required. We'll help you set one up or convert your personal account if needed."
+            "question": "How do we communicate?",
+            "answer": "We adapt to your preferred tools Slack, email, WhatsApp, or project management platforms like Asana or Monday.com."
           }
         },
         "faq_imN7DG": {
           "type": "faq",
           "settings": {
-            "question": "What makes Pinterest different from other social platforms?",
-            "answer": "Pinterest is a search engine, not just social media. Content has a much longer lifespan pins can drive traffic for 2+ years compared to hours on Instagram or Twitter."
+            "question": "What if I'm not happy with my VA?",
+            "answer": "We offer a 14-day trial period and will reassign you to a better match if the fit isn't right. Client satisfaction is our priority."
           }
         },
         "faq_RHcRGW": {
           "type": "faq",
           "settings": {
-            "question": "Do you create the pin images?",
-            "answer": "Yes! Our design team creates scroll-stopping pin graphics optimized for Pinterest's visual algorithm and user behavior."
+            "question": "Can the VA access my accounts securely?",
+            "answer": "Yes, we use password managers and follow strict security protocols. All VAs sign NDAs and undergo background checks."
           }
         },
         "faq_MgjXXd": {
           "type": "faq",
           "settings": {
-            "question": "Can Pinterest work for B2B businesses?",
-            "answer": "Absolutely! B2B brands in design, marketing, coaching, SaaS, and professional services see great results on Pinterest."
+            "question": "What tasks are outside scope?",
+            "answer": "We don't handle tasks requiring professional licenses (legal, accounting, medical) or highly specialized technical work. We can refer you to specialists if needed."
           }
         },
         "faq_cXrfCF": {
           "type": "faq",
           "settings": {
-            "question": "Do you manage Pinterest ads?",
-            "answer": "Yes, our Dominate tier includes Pinterest advertising management for accelerated growth."
+            "question": "Can I increase hours during busy periods?",
+            "answer": "Absolutely! Additional hours can be added at $35/hour with 24-48 hours notice, subject to VA availability."
           }
         }
       },
@@ -851,7 +851,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Tailwind",
+            "label": "Notion",
             "gradient": "emerald_teal",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -865,7 +865,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Pinterest Analytics",
+            "label": "Slack",
             "gradient": "orange_amber",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -879,7 +879,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Canva",
+            "label": "Asana",
             "gradient": "orange_amber",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -893,7 +893,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "SEMrush",
+            "label": "Calendly",
             "gradient": "orange_amber",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -907,7 +907,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Keyword Tool",
+            "label": "Loom",
             "gradient": "orange_red",
             "url": "",
             "popup_tagline": "Professional Tool",
