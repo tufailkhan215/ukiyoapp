@@ -107,9 +107,9 @@
         "back_link_url": "/pages/services",
         "category_label": "Brand Strategy",
         "category_icon": "sparkles",
-        "title": "Website & Web Development",
-        "subtitle": "Digital Experiences That Convert",
-        "description": "Websites that work as hard as you do",
+        "title": "Paid Ads Creative System",
+        "subtitle": "Scroll-Stopping Ads at Scale",
+        "description": "Creative that converts, at any budget",
         "cta_primary_text": "Book Free Consultation",
         "cta_primary_url": "#",
         "cta_primary_new_tab": true,
@@ -174,9 +174,9 @@
         "layout": "overview",
         "strap": "(Overview)",
         "title_before": "What is ",
-        "title_gradient": "Website & Web Development?",
-        "paragraph_1": "<p>Custom website design and development that combines stunning visuals with performance-driven architecture.</p>",
-        "paragraph_2": "<p>Your website is your most important digital asset it's where first impressions are made and business happens. Our Website & Web Development service creates custom digital experiences that look stunning, load fast, and convert visitors into customers. We combine award-winning design with modern development practices to build websites that are as beautiful as they are functional.</p>",
+        "title_gradient": "Paid Ads Creative System?",
+        "paragraph_1": "<p>High-performance ad creative designed to stop thumbs, capture attention, and drive measurable results.</p>",
+        "paragraph_2": "<p>In paid advertising, creative is the biggest lever for performance. Our Paid Ads Creative System produces thumb-stopping ad creative that captures attention and drives conversions across Meta, TikTok, Google, and beyond. We combine data-driven insights with creative excellence to produce ads that perform and a system for continuous testing and iteration.</p>",
         "title_included": "Everything You Need to Launch Your AI Agent"
       }
     },
@@ -294,7 +294,7 @@
       "name": "Services Rich Text",
       "settings": {
         "strap": "(Our Approach)",
-        "body": "<p>We build effective online ecosystems that boost credibility and drive growth. Our websites integrate with AI-driven analytics and CRM platforms leading to increased lead capture and a seamless customer experience.</p>"
+        "body": "<p>Strategic campaign planning with launch and activation strategies that work. Multichannel marketing ecosystems with performance and conversion marketing that drives real results, not vanity metrics.</p>"
       }
     },
     "two_column_text_zCXJVY": {
@@ -303,61 +303,61 @@
         "feature_VD783b": {
           "type": "feature",
           "settings": {
-            "text": "Custom UI/UX design"
+            "text": "Creative strategy & brief"
           }
         },
         "feature_rVJdJK": {
           "type": "feature",
           "settings": {
-            "text": "Mobile-responsive development"
+            "text": "Competitor analysis"
           }
         },
         "feature_DpUeXd": {
           "type": "feature",
           "settings": {
-            "text": "Content management system"
+            "text": "Static ad designs"
           }
         },
         "feature_cKMdiL": {
           "type": "feature",
           "settings": {
-            "text": "SEO optimization"
+            "text": "Video ad production"
           }
         },
         "feature_3UUBba": {
           "type": "feature",
           "settings": {
-            "text": "Speed optimization"
+            "text": "UGC-style content"
           }
         },
         "feature_zHPdUx": {
           "type": "feature",
           "settings": {
-            "text": "Contact forms & lead capture"
+            "text": "Platform-specific sizing"
           }
         },
         "feature_FpyCGk": {
           "type": "feature",
           "settings": {
-            "text": "Analytics integration"
+            "text": "Copy variations"
           }
         },
         "feature_BUxiQB": {
           "type": "feature",
           "settings": {
-            "text": "SSL security certificate"
+            "text": "A/B testing framework"
           }
         },
         "feature_TUayC4": {
           "type": "feature",
           "settings": {
-            "text": "Hosting setup assistance"
+            "text": "Performance tracking"
           }
         },
         "feature_LnXAf6": {
           "type": "feature",
           "settings": {
-            "text": "30-day post-launch support"
+            "text": "Monthly creative refresh"
           }
         }
       },
@@ -381,7 +381,7 @@
         "title_gradient": "AI Agent",
         "paragraph_1": "<p>Create custom AI agents that understand your company inside and out. From customer service to sales, your brand voice stays consistent across every interaction.</p>",
         "paragraph_2": "<p>In an era where customer expectations are at an all-time high, having a consistent brand voice across every touchpoint is crucial. Our Company Agent Builder service creates bespoke AI agents trained on your brand guidelines, tone of voice, product knowledge, and company values. These agents become extensions of your team, handling everything from customer inquiries to lead qualification with the precision and personality your brand deserves.</p>",
-        "title_included": "Complete Website Solution"
+        "title_included": "Complete Creative Solution"
       }
     },
     "services_key_features_qwLJ4x": {
@@ -390,43 +390,43 @@
         "feature_cVUqcy": {
           "type": "feature",
           "settings": {
-            "title": "Custom Design",
-            "description": "Unique designs that reflect your brand perfectly—no templates"
+            "title": "Static Ads",
+            "description": "Eye-catching images optimized for each platform's best practices"
           }
         },
         "feature_CGK8jh": {
           "type": "feature",
           "settings": {
-            "title": "Responsive Development",
-            "description": "Flawless experience across all devices and screen sizes"
+            "title": "Video Ads",
+            "description": "Scroll-stopping video in various formats (6s, 15s, 30s, 60s)"
           }
         },
         "feature_WRfYgM": {
           "type": "feature",
           "settings": {
-            "title": "Performance Optimization",
-            "description": "Lightning-fast load times and smooth interactions"
+            "title": "UGC-Style",
+            "description": "Authentic creator-style content that converts better than polished ads"
           }
         },
         "feature_Nz6XTd": {
           "type": "feature",
           "settings": {
-            "title": "SEO Foundation",
-            "description": "Built for search engine visibility from day one"
+            "title": "Testing Framework",
+            "description": "Systematic approach to creative testing for continuous improvement"
           }
         },
         "feature_aYey6f": {
           "type": "feature",
           "settings": {
-            "title": "CMS Integration",
-            "description": "Easy content management with Shopify, WordPress, or custom solutions"
+            "title": "Platform Optimization",
+            "description": "Tailored creative for Meta, TikTok, Google, YouTube, and more"
           }
         },
         "feature_wBVcMj": {
           "type": "feature",
           "settings": {
-            "title": "Analytics Setup",
-            "description": "Track what matters with proper instrumentation and dashboards"
+            "title": "Performance Analysis",
+            "description": "Data-driven iteration based on actual results"
           }
         }
       },
