@@ -691,43 +691,43 @@
         "faq_7d93ic": {
           "type": "faq",
           "settings": {
-            "question": "How long before I see results?",
-            "answer": "Pinterest is a long-term strategy. Most clients see noticeable traffic increases within 3-4 months, with significant growth at 6+ months. The beauty is that pins continue driving traffic for years."
+            "question": "How long until articles start ranking?",
+            "answer": "New articles typically start showing ranking signals within 2-4 weeks. Competitive keywords may take 3-6 months to reach page one. We focus on a mix of quick wins and long-term targets."
           }
         },
         "faq_Lh88e7": {
           "type": "faq",
           "settings": {
-            "question": "Do I need a business account?",
-            "answer": "Yes, a Pinterest Business account is required. We'll help you set one up or convert your personal account if needed."
+            "question": "Do you write for any industry?",
+            "answer": "We have experience across many industries. For highly technical topics, we work with subject matter experts to ensure accuracy and depth."
           }
         },
         "faq_imN7DG": {
           "type": "faq",
           "settings": {
-            "question": "What makes Pinterest different from other social platforms?",
-            "answer": "Pinterest is a search engine, not just social media. Content has a much longer lifespan pins can drive traffic for 2+ years compared to hours on Instagram or Twitter."
+            "question": "What if an article doesn't rank?",
+            "answer": "We monitor all articles and continuously optimize. If an article underperforms, we'll update and improve it as part of our content refresh process."
           }
         },
         "faq_RHcRGW": {
           "type": "faq",
           "settings": {
-            "question": "Do you create the pin images?",
-            "answer": "Yes! Our design team creates scroll-stopping pin graphics optimized for Pinterest's visual algorithm and user behavior."
+            "question": "Do you handle publishing?",
+            "answer": "Yes! We can publish directly to your CMS (WordPress, Shopify, etc.) or deliver finished articles for your team to publish."
           }
         },
         "faq_MgjXXd": {
           "type": "faq",
           "settings": {
-            "question": "Can Pinterest work for B2B businesses?",
-            "answer": "Absolutely! B2B brands in design, marketing, coaching, SaaS, and professional services see great results on Pinterest."
+            "question": "How do you choose keywords?",
+            "answer": "We analyze search volume, keyword difficulty, business relevance, and conversion potential. We target a mix of high-volume and long-tail keywords for balanced growth."
           }
         },
         "faq_cXrfCF": {
           "type": "faq",
           "settings": {
-            "question": "Do you manage Pinterest ads?",
-            "answer": "Yes, our Dominate tier includes Pinterest advertising management for accelerated growth."
+            "question": "Is link building included?",
+            "answer": "Our Authority package includes outreach for link building. Starter and Growth packages focus on on-page SEO and internal linking."
           }
         }
       },
@@ -851,7 +851,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Tailwind",
+            "label": "Ahrefs",
             "gradient": "emerald_teal",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -865,7 +865,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Pinterest Analytics",
+            "label": "Surfer SEO",
             "gradient": "orange_amber",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -879,7 +879,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Canva",
+            "label": "Clearscope",
             "gradient": "orange_amber",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -893,7 +893,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "SEMrush",
+            "label": "WordPress",
             "gradient": "orange_amber",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -907,7 +907,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Keyword Tool",
+            "label": "Yoast",
             "gradient": "orange_red",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -958,7 +958,7 @@
           "settings": {
             "number": "",
             "label": "Week 1",
-            "title": "Audit & Keyword Research"
+            "title": "Keyword & Topic Research"
           }
         },
         "step_tiReLw": {
@@ -966,23 +966,23 @@
           "settings": {
             "number": "",
             "label": "Week 2",
-            "title": "Profile Optimization"
+            "title": "Content Outline & Strategy"
           }
         },
         "step_CJxzWT": {
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 3-4",
-            "title": "Pin Creation & Scheduling"
+            "label": "Week 3",
+            "title": "Writing & Optimization"
           }
         },
         "step_AjFwPY": {
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Ongoing",
-            "title": "Monitor & Optimize"
+            "label": "Week 4",
+            "title": "Publish & Promote"
           }
         }
       },
@@ -1051,8 +1051,8 @@
       "type": "services-cta",
       "name": "Services CTA",
       "settings": {
-        "heading": "Ready to Dominate Pinterest?",
-        "description": "Let's turn Pinterest into your biggest source of organic traffic.",
+        "heading": "Ready to Rank on Google?",
+        "description": "Let's create SEO content that drives qualified organic traffic to your business.",
         "cta_text": "Book Free Consultation",
         "cta_url": "https://tidycal.com/salesautomateiq/consultation",
         "cta_new_tab": true
