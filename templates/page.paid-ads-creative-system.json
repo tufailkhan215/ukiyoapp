@@ -957,32 +957,32 @@
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 1-2",
-            "title": "Discovery & Research"
+            "label": "Week 1",
+            "title": "Account Audit & Strategy"
           }
         },
         "step_tiReLw": {
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 2-3",
-            "title": "Concept Development"
+            "label": "Week 2",
+            "title": "Creative Development"
           }
         },
         "step_CJxzWT": {
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 4-5",
-            "title": "Design Execution"
+            "label": "Week 3",
+            "title": "Launch & Test"
           }
         },
         "step_AjFwPY": {
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 6",
-            "title": "Delivery & Handoff"
+            "label": "Week 4",
+            "title": "Optimize & Scale"
           }
         }
       },
@@ -1051,8 +1051,8 @@
       "type": "services-cta",
       "name": "Services CTA",
       "settings": {
-        "heading": "Ready to Transform Your Brand?",
-        "description": "Let's create a visual identity that captures your essence and commands attention in your market.",
+        "heading": "Ready for Creative That Converts?",
+        "description": "Let's build a creative system that drives consistent, profitable ad performance.",
         "cta_text": "Book Free Consultation",
         "cta_url": "https://tidycal.com/salesautomateiq/consultation",
         "cta_new_tab": true
