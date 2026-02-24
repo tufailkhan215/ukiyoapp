@@ -527,12 +527,12 @@
         "plan_FrHA6H": {
           "type": "plan",
           "settings": {
-            "name": "Professional",
-            "description": "Ideal for growing businesses",
-            "price": "$15,000",
-            "period": "/ one-time",
+            "name": "Growth",
+            "description": "Scale your Pinterest traffic",
+            "price": "$1,500",
+            "period": "/ per month",
             "badge": "Most Popular",
-            "features_text": "Up to 15 pages\nCustom UI/UX design\nAdvanced CMS customization\nBlog functionality\nLead capture forms\nAdvanced SEO optimization\nCRM integration\nPerformance optimization",
+            "features_text": "Everything in Foundation\n60 fresh pins/month\nAdvanced keyword strategy\nIdea pins (video)\nRich pins setup\nCompetitor monitoring\nBi-weekly optimization\nPriority support",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -541,12 +541,12 @@
         "plan_qWaeyc": {
           "type": "plan",
           "settings": {
-            "name": "Enterprise",
-            "description": "For complex web applications",
-            "price": "$35,000+",
+            "name": "Dominate",
+            "description": "Full Pinterest domination",
+            "price": "$3,000",
             "period": "/ per month",
             "badge": "",
-            "features_text": "Unlimited pages\nCustom web application\nE-commerce functionality\nCustom integrations\nUser authentication\nDatabase development\nAPI development\nAdvanced analytics dashboard",
+            "features_text": "Everything in Growth\n100+ fresh pins/month\nMultiple pin designs per URL\nPinterest ads management\nInfluencer outreach\nWeekly strategy calls\nAdvanced analytics\nDedicated manager",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -573,10 +573,10 @@
       "type": "service-testimonial",
       "name": "Service Testimonial",
       "settings": {
-        "quote": "\"Our new website generated more leads in the first month than our old site did in a year. The design perfectly captures our brand and the performance is incredible.\"",
-        "author_image": "shopify://shop_images/3.png",
-        "author_name": "Jennifer Liu",
-        "author_role": "VP of Growth, Fintech Pro"
+        "quote": "\"Pinterest went from our smallest traffic source to our largest in 6 months. The ROI is incredible organic traffic that keeps growing month after month.\"",
+        "author_image": "shopify://shop_images/1.png",
+        "author_name": "Emily Rodriguez",
+        "author_role": "CMO, Home & Garden Co."
       }
     },
     "17715474998453bd5d": {
@@ -589,7 +589,7 @@
         "use_case_rT9VqK": {
           "type": "use_case",
           "settings": {
-            "title": "New Brand Launch",
+            "title": "E-commerce Traffic",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -599,7 +599,7 @@
         "use_case_4bwBcy": {
           "type": "use_case",
           "settings": {
-            "title": "Brand Refresh",
+            "title": "Blog Promotion",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -609,7 +609,7 @@
         "use_case_GD64Xa": {
           "type": "use_case",
           "settings": {
-            "title": "Merger Rebrand",
+            "title": "Lead Generation",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -619,7 +619,7 @@
         "use_case_xAVNaF": {
           "type": "use_case",
           "settings": {
-            "title": "Product Line Branding",
+            "title": "Recipe & Food Sites",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -629,7 +629,7 @@
         "use_case_Dimqy4": {
           "type": "use_case",
           "settings": {
-            "title": "Event Branding",
+            "title": "Home & DIY Brands",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -639,7 +639,7 @@
         "use_case_JfAcB9": {
           "type": "use_case",
           "settings": {
-            "title": "Personal Branding",
+            "title": "Fashion & Beauty",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -649,7 +649,7 @@
         "use_case_NweVV6": {
           "type": "use_case",
           "settings": {
-            "title": "Startup Identity",
+            "title": "Travel & Lifestyle",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -659,7 +659,7 @@
         "use_case_HRYHLh": {
           "type": "use_case",
           "settings": {
-            "title": "Corporate Rebrand",
+            "title": "B2B Services",
             "tagline": "Transform Your Business",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
@@ -691,43 +691,43 @@
         "faq_7d93ic": {
           "type": "faq",
           "settings": {
-            "question": "How long does a complete brand identity project take?",
-            "answer": "Essentials packages take 2-3 weeks, Professional packages 4-6 weeks, and Enterprise projects 8-12 weeks depending on complexity and feedback cycles."
+            "question": "How long before I see results?",
+            "answer": "Pinterest is a long-term strategy. Most clients see noticeable traffic increases within 3-4 months, with significant growth at 6+ months. The beauty is that pins continue driving traffic for years."
           }
         },
         "faq_Lh88e7": {
           "type": "faq",
           "settings": {
-            "question": "What if I don't like the initial concepts?",
-            "answer": "We offer multiple concepts and revision rounds. If the initial direction doesn't resonate, we'll explore new approaches until we find the perfect fit for your brand."
+            "question": "Do I need a business account?",
+            "answer": "Yes, a Pinterest Business account is required. We'll help you set one up or convert your personal account if needed."
           }
         },
         "faq_imN7DG": {
           "type": "faq",
           "settings": {
-            "question": "Do I own the final designs?",
-            "answer": "Yes! Upon final payment, you receive full ownership of all designs, source files, and assets. We retain the right to showcase the work in our portfolio."
+            "question": "What makes Pinterest different from other social platforms?",
+            "answer": "Pinterest is a search engine, not just social media. Content has a much longer lifespan pins can drive traffic for 2+ years compared to hours on Instagram or Twitter."
           }
         },
         "faq_RHcRGW": {
           "type": "faq",
           "settings": {
-            "question": "Can you work with our existing brand elements?",
-            "answer": "Absolutely! We can refresh and build upon existing elements or start completely fresh—whatever serves your brand best."
+            "question": "Do you create the pin images?",
+            "answer": "Yes! Our design team creates scroll-stopping pin graphics optimized for Pinterest's visual algorithm and user behavior."
           }
         },
         "faq_MgjXXd": {
           "type": "faq",
           "settings": {
-            "question": "What file formats do you deliver?",
-            "answer": "We provide all standard formats including AI, EPS, PDF, PNG, JPG, and SVG. We also include web-optimized versions and favicon files."
+            "question": "Can Pinterest work for B2B businesses?",
+            "answer": "Absolutely! B2B brands in design, marketing, coaching, SaaS, and professional services see great results on Pinterest."
           }
         },
         "faq_cXrfCF": {
           "type": "faq",
           "settings": {
-            "question": "Do you offer ongoing design support?",
-            "answer": "Yes! We offer monthly retainer packages for ongoing design needs including social graphics, marketing materials, and asset creation."
+            "question": "Do you manage Pinterest ads?",
+            "answer": "Yes, our Dominate tier includes Pinterest advertising management for accelerated growth."
           }
         }
       },
@@ -851,7 +851,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Figma",
+            "label": "Tailwind",
             "gradient": "emerald_teal",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -865,7 +865,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Adobe Creative Suite",
+            "label": "Pinterest Analytics",
             "gradient": "orange_amber",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -879,7 +879,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Canva Pro",
+            "label": "Canva",
             "gradient": "orange_amber",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -893,7 +893,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Lottie",
+            "label": "SEMrush",
             "gradient": "orange_amber",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -907,7 +907,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Spline",
+            "label": "Keyword Tool",
             "gradient": "orange_red",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -957,32 +957,32 @@
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 1-2",
-            "title": "Discovery & Research"
+            "label": "Week 1",
+            "title": "Audit & Keyword Research"
           }
         },
         "step_tiReLw": {
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 2-3",
-            "title": "Concept Development"
+            "label": "Week 2",
+            "title": "Profile Optimization"
           }
         },
         "step_CJxzWT": {
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 4-5",
-            "title": "Design Execution"
+            "label": "Week 3-4",
+            "title": "Pin Creation & Scheduling"
           }
         },
         "step_AjFwPY": {
           "type": "step",
           "settings": {
             "number": "",
-            "label": "Week 6",
-            "title": "Delivery & Handoff"
+            "label": "Ongoing",
+            "title": "Monitor & Optimize"
           }
         }
       },
@@ -1051,8 +1051,8 @@
       "type": "services-cta",
       "name": "Services CTA",
       "settings": {
-        "heading": "Ready to Transform Your Brand?",
-        "description": "Let's create a visual identity that captures your essence and commands attention in your market.",
+        "heading": "Ready to Dominate Pinterest?",
+        "description": "Let's turn Pinterest into your biggest source of organic traffic.",
         "cta_text": "Book Free Consultation",
         "cta_url": "https://tidycal.com/salesautomateiq/consultation",
         "cta_new_tab": true
