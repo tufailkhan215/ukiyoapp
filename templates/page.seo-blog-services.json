@@ -107,9 +107,9 @@
         "back_link_url": "/pages/services",
         "category_label": "Brand Strategy",
         "category_icon": "sparkles",
-        "title": "Pinterest SEO Services",
-        "subtitle": "Visual Search Domination",
-        "description": "Turn Pinterest into your traffic machine",
+        "title": "SEO Blog Services",
+        "subtitle": "Content That Ranks and Converts",
+        "description": "Dominate search results with strategic content",
         "cta_primary_text": "Book Free Consultation",
         "cta_primary_url": "#",
         "cta_primary_new_tab": true,
@@ -174,9 +174,9 @@
         "layout": "overview",
         "strap": "(Overview)",
         "title_before": "What is ",
-        "title_gradient": "Pinterest SEO Services?",
-        "paragraph_1": "<p>Strategic Pinterest optimization that drives massive organic traffic through visual search and discovery.</p>",
-        "paragraph_2": "<p>Pinterest is a sleeping giant for organic traffic—a visual search engine with over 450 million monthly users actively looking for inspiration and products. Our Pinterest SEO Services transform your Pinterest presence from an afterthought into a powerful traffic driver. We optimize your profile, boards, and pins for maximum visibility, create fresh pin designs, and implement a strategy that compounds over time.</p>",
+        "title_gradient": "SEO Blog Services?",
+        "paragraph_1": "<p>Data-driven SEO blog content that ranks on Google and drives qualified organic traffic to your business.</p>",
+        "paragraph_2": "<p>Organic search traffic is the gift that keeps on giving—but only if you have the right content strategy. Our SEO Blog Services combine data-driven keyword research with expert content creation to publish articles that rank on page one and drive qualified traffic. We handle everything from topic ideation to writing, optimization, and performance tracking.</p>",
         "title_included": "Everything You Need to Launch Your AI Agent"
       }
     },
@@ -294,7 +294,7 @@
       "name": "Services Rich Text",
       "settings": {
         "strap": "(Our Approach)",
-        "body": "<p>We handle your brand's entire online presence crafting killer strategies and engaging content so you don't have to. Pinterest drives long-term, compounding traffic unlike any other platform.</p>"
+        "body": "<p>We deploy AI-enhanced content strategies at scale fueling exponential growth in both leads and audience engagement. Content updates with fresh visuals and engaging copy keep your site current and ranking.</p>"
       }
     },
     "two_column_text_zCXJVY": {
@@ -303,61 +303,61 @@
         "feature_VD783b": {
           "type": "feature",
           "settings": {
-            "text": "Pinterest audit & strategy"
+            "text": "Keyword research & strategy"
           }
         },
         "feature_rVJdJK": {
           "type": "feature",
           "settings": {
-            "text": "Profile & board optimization"
+            "text": "Content calendar planning"
           }
         },
         "feature_DpUeXd": {
           "type": "feature",
           "settings": {
-            "text": "Keyword research & mapping"
+            "text": "Expert article writing"
           }
         },
         "feature_cKMdiL": {
           "type": "feature",
           "settings": {
-            "text": "Pin design (30-100 pins/month)"
+            "text": "On-page SEO optimization"
           }
         },
         "feature_3UUBba": {
           "type": "feature",
           "settings": {
-            "text": "Pin description writing"
+            "text": "Custom graphics & images"
           }
         },
         "feature_zHPdUx": {
           "type": "feature",
           "settings": {
-            "text": "Strategic scheduling"
+            "text": "Internal linking strategy"
           }
         },
         "feature_FpyCGk": {
           "type": "feature",
           "settings": {
-            "text": "Rich pins setup"
+            "text": "Meta descriptions & titles"
           }
         },
         "feature_BUxiQB": {
           "type": "feature",
           "settings": {
-            "text": "Competitor analysis"
+            "text": "Schema markup"
           }
         },
         "feature_TUayC4": {
           "type": "feature",
           "settings": {
-            "text": "Monthly analytics report"
+            "text": "CMS publishing"
           }
         },
         "feature_LnXAf6": {
           "type": "feature",
           "settings": {
-            "text": "Ongoing optimization"
+            "text": "Monthly ranking reports"
           }
         }
       },
@@ -381,7 +381,7 @@
         "title_gradient": "AI Agent",
         "paragraph_1": "<p>Create custom AI agents that understand your company inside and out. From customer service to sales, your brand voice stays consistent across every interaction.</p>",
         "paragraph_2": "<p>In an era where customer expectations are at an all-time high, having a consistent brand voice across every touchpoint is crucial. Our Company Agent Builder service creates bespoke AI agents trained on your brand guidelines, tone of voice, product knowledge, and company values. These agents become extensions of your team, handling everything from customer inquiries to lead qualification with the precision and personality your brand deserves.</p>",
-        "title_included": "Complete Pinterest Management"
+        "title_included": "Complete SEO Content Service"
       }
     },
     "services_key_features_qwLJ4x": {
@@ -390,43 +390,43 @@
         "feature_cVUqcy": {
           "type": "feature",
           "settings": {
-            "title": "Profile Optimization",
-            "description": "SEO-optimized profile, boards, and sections for maximum discoverability"
+            "title": "Keyword Research",
+            "description": "Find high-value, rankable opportunities with traffic potential"
           }
         },
         "feature_CGK8jh": {
           "type": "feature",
           "settings": {
-            "title": "Keyword Research",
-            "description": "Pinterest-specific keyword strategy using platform search data"
+            "title": "Content Strategy",
+            "description": "Topic clusters and pillar page planning for topical authority"
           }
         },
         "feature_WRfYgM": {
           "type": "feature",
           "settings": {
-            "title": "Pin Design",
-            "description": "Click-worthy graphics optimized for Pinterest's visual algorithm"
+            "title": "Expert Writing",
+            "description": "Engaging, well-researched articles that readers love"
           }
         },
         "feature_Nz6XTd": {
           "type": "feature",
           "settings": {
-            "title": "Fresh Pin Strategy",
-            "description": "Consistent new content to fuel the algorithm and grow reach"
+            "title": "On-Page SEO",
+            "description": "Optimized titles, headers, meta descriptions, and schema"
           }
         },
         "feature_aYey6f": {
           "type": "feature",
           "settings": {
-            "title": "Rich Pins Setup",
-            "description": "Enhanced pins with real-time data from your website"
+            "title": "Internal Linking",
+            "description": "Strategic link architecture for SEO power distribution"
           }
         },
         "feature_wBVcMj": {
           "type": "feature",
           "settings": {
-            "title": "Analytics & Reporting",
-            "description": "Track growth, clicks, and optimize continuously"
+            "title": "Performance Tracking",
+            "description": "Monitor rankings, traffic, and conversions"
           }
         }
       },
@@ -451,43 +451,43 @@
         "step_VWnEJa": {
           "type": "step",
           "settings": {
-            "title": "Pinterest Audit",
-            "description": "Analyze current presence, competitors, and opportunities"
+            "title": "SEO Audit",
+            "description": "Analyze current rankings, content gaps, and opportunities"
           }
         },
         "step_GejF3z": {
           "type": "step",
           "settings": {
-            "title": "Keyword Strategy",
-            "description": "Research high-volume, relevant Pinterest keywords"
+            "title": "Keyword Research",
+            "description": "Identify high-value target keywords with ranking potential"
           }
         },
         "step_MxmXGH": {
           "type": "step",
           "settings": {
-            "title": "Profile Optimization",
-            "description": "Restructure profile, boards, and sections for SEO"
+            "title": "Content Planning",
+            "description": "Create strategic content calendar with topic clusters"
           }
         },
         "step_NfX4qg": {
           "type": "step",
           "settings": {
-            "title": "Content Creation",
-            "description": "Design fresh pins with optimized titles and descriptions"
+            "title": "Writing",
+            "description": "Produce high-quality, comprehensive, optimized articles"
           }
         },
         "step_78eaHH": {
           "type": "step",
           "settings": {
-            "title": "Publishing Strategy",
-            "description": "Implement consistent pinning schedule for algorithm favor"
+            "title": "Publishing",
+            "description": "Format, optimize, and publish with proper SEO elements"
           }
         },
         "step_zEyLVB": {
           "type": "step",
           "settings": {
-            "title": "Optimization",
-            "description": "Analyze data and refine strategy monthly"
+            "title": "Monitoring",
+            "description": "Track rankings, iterate strategy, and optimize existing content"
           }
         }
       },
@@ -513,12 +513,12 @@
         "plan_HyVafM": {
           "type": "plan",
           "settings": {
-            "name": "Foundation",
-            "description": "Get started with Pinterest SEO",
-            "price": "$800",
+            "name": "Starter",
+            "description": "Begin your SEO content journey",
+            "price": "$1,500",
             "period": "/ per month",
             "badge": "",
-            "features_text": "Profile optimization\nBoard restructuring\n30 fresh pins/month\nBasic keyword optimization\nMonthly reporting\nEmail support",
+            "features_text": "2 SEO articles/month\n1,500+ words each\nKeyword research included\nOn-page optimization\nBasic images\nMonthly ranking report",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -528,11 +528,11 @@
           "type": "plan",
           "settings": {
             "name": "Growth",
-            "description": "Scale your Pinterest traffic",
-            "price": "$1,500",
+            "description": "Build momentum with consistent content",
+            "price": "$3,000",
             "period": "/ per month",
             "badge": "Most Popular",
-            "features_text": "Everything in Foundation\n60 fresh pins/month\nAdvanced keyword strategy\nIdea pins (video)\nRich pins setup\nCompetitor monitoring\nBi-weekly optimization\nPriority support",
+            "features_text": "4 SEO articles/month\n2,000+ words each\nAdvanced keyword strategy\nCustom graphics\nInternal linking strategy\nContent refresh (1 article)\nBi-weekly strategy calls\nDetailed ranking reports",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -541,12 +541,12 @@
         "plan_qWaeyc": {
           "type": "plan",
           "settings": {
-            "name": "Dominate",
-            "description": "Full Pinterest domination",
-            "price": "$3,000",
+            "name": "Authority",
+            "description": "Dominate your niche",
+            "price": "$6,000",
             "period": "/ per month",
             "badge": "",
-            "features_text": "Everything in Growth\n100+ fresh pins/month\nMultiple pin designs per URL\nPinterest ads management\nInfluencer outreach\nWeekly strategy calls\nAdvanced analytics\nDedicated manager",
+            "features_text": "8 SEO articles/month\n2,500+ words each\nPillar content strategy\nTopic cluster development\nPremium custom graphics\nContent refresh (3 articles)\nLink building outreach\nWeekly strategy calls",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
