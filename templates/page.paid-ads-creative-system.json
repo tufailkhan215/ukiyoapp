@@ -451,43 +451,43 @@
         "step_VWnEJa": {
           "type": "step",
           "settings": {
-            "title": "Strategy & Planning",
-            "description": "Define goals, audience, sitemap, and success metrics"
+            "title": "Research",
+            "description": "Analyze competitors, audience, and top-performing ads in your space"
           }
         },
         "step_GejF3z": {
           "type": "step",
           "settings": {
-            "title": "Wireframing",
-            "description": "Plan the structure, user flows, and experience architecture"
+            "title": "Strategy",
+            "description": "Develop creative angles, hooks, and messaging framework"
           }
         },
         "step_MxmXGH": {
           "type": "step",
           "settings": {
-            "title": "Design",
-            "description": "Create the visual design, interactions, and brand application"
+            "title": "Production",
+            "description": "Create diverse creative variations for testing"
           }
         },
         "step_NfX4qg": {
           "type": "step",
           "settings": {
-            "title": "Development",
-            "description": "Build with clean, scalable code and modern frameworks"
+            "title": "Launch",
+            "description": "Deploy in structured testing framework"
           }
         },
         "step_78eaHH": {
           "type": "step",
           "settings": {
-            "title": "Testing & QA",
-            "description": "Rigorous testing across devices, browsers, and scenarios"
+            "title": "Analyze",
+            "description": "Review performance data and identify winners"
           }
         },
         "step_zEyLVB": {
           "type": "step",
           "settings": {
-            "title": "Launch & Support",
-            "description": "Deploy with monitoring and provide ongoing maintenance"
+            "title": "Iterate",
+            "description": "Double down on winners, test new concepts"
           }
         }
       },
@@ -514,11 +514,11 @@
           "type": "plan",
           "settings": {
             "name": "Starter",
-            "description": "Perfect for small businesses and portfolios",
-            "price": "$5,000",
-            "period": "/ one-time",
+            "description": "Essential creative for testing",
+            "price": "$2,000",
+            "period": "/ per month",
             "badge": "",
-            "features_text": "Up to 5 pages\nMobile-responsive design\nBasic CMS (WordPress/Shopify)\nContact form\nGoogle Analytics\n2 rounds of revisions\n30-day support",
+            "features_text": "10 static ad designs\n3 video ads (15s)\nSingle platform focus\nBasic copy variations\nMonthly creative call\nPerformance reporting",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -527,12 +527,12 @@
         "plan_FrHA6H": {
           "type": "plan",
           "settings": {
-            "name": "Professional",
-            "description": "Ideal for growing businesses",
-            "price": "$15,000",
-            "period": "/ one-time",
+            "name": "Growth",
+            "description": "Full creative system",
+            "price": "$4,000",
+            "period": "/ per month",
             "badge": "Most Popular",
-            "features_text": "Up to 15 pages\nCustom UI/UX design\nAdvanced CMS customization\nBlog functionality\nLead capture forms\nAdvanced SEO optimization\nCRM integration\nPerformance optimization",
+            "features_text": "20 static ad designs\n6 video ads (mixed lengths)\n2 UGC-style videos\nMulti-platform optimization\nCopy testing framework\nBi-weekly strategy calls\nCompetitor monitoring\nCreative testing roadmap",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -541,12 +541,12 @@
         "plan_qWaeyc": {
           "type": "plan",
           "settings": {
-            "name": "Enterprise",
-            "description": "For complex web applications",
-            "price": "$35,000+",
+            "name": "Scale",
+            "description": "High-volume creative machine",
+            "price": "$8,000",
             "period": "/ per month",
             "badge": "",
-            "features_text": "Unlimited pages\nCustom web application\nE-commerce functionality\nCustom integrations\nUser authentication\nDatabase development\nAPI development\nAdvanced analytics dashboard",
+            "features_text": "40+ static ad designs\n12+ video ads\n6+ UGC videos\nAll platforms\nCustom creative concepts\nInfluencer coordination\nWeekly strategy calls\nAdvanced analytics",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -564,9 +564,9 @@
         "title_before": "Choose Your",
         "title_gradient": "Plan",
         "description": "Select the package that best fits your needs. All plans include our signature quality and support.",
-        "footer_before": "for Hosting, maintenance, and updates",
-        "footer_highlight": "$500/mo",
-        "footer_after": "for Hosting, maintenance, and updates"
+        "footer_before": "",
+        "footer_highlight": "",
+        "footer_after": ""
       }
     },
     "service_testimonial_ekeHMB": {
