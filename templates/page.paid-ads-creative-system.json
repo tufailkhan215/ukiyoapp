@@ -851,7 +851,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Figma",
+            "label": "Meta Ads Manager",
             "gradient": "emerald_teal",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -865,7 +865,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Adobe Creative Suite",
+            "label": "TikTok Ads",
             "gradient": "orange_amber",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -879,7 +879,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Canva Pro",
+            "label": "Google Ads",
             "gradient": "orange_amber",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -893,7 +893,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Lottie",
+            "label": "CapCut",
             "gradient": "orange_amber",
             "url": "",
             "popup_tagline": "Professional Tool",
@@ -907,7 +907,7 @@
           "type": "tech",
           "settings": {
             "icon": "zap",
-            "label": "Spline",
+            "label": "Figma",
             "gradient": "orange_red",
             "url": "",
             "popup_tagline": "Professional Tool",
