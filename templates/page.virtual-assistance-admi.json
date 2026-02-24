@@ -513,12 +513,12 @@
         "plan_HyVafM": {
           "type": "plan",
           "settings": {
-            "name": "Foundation",
-            "description": "Get started with Pinterest SEO",
-            "price": "$800",
+            "name": "Part-Time",
+            "description": "Perfect for solopreneurs",
+            "price": "$1,000",
             "period": "/ per month",
             "badge": "",
-            "features_text": "Profile optimization\nBoard restructuring\n30 fresh pins/month\nBasic keyword optimization\nMonthly reporting\nEmail support",
+            "features_text": "20 hours/month\nDedicated VA\nEmail management\nCalendar coordination\nBasic research tasks\nEmail support\nNext-day response",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -527,12 +527,12 @@
         "plan_FrHA6H": {
           "type": "plan",
           "settings": {
-            "name": "Growth",
-            "description": "Scale your Pinterest traffic",
-            "price": "$1,500",
+            "name": "Standard",
+            "description": "Ideal for growing businesses",
+            "price": "$2,000",
             "period": "/ per month",
             "badge": "Most Popular",
-            "features_text": "Everything in Foundation\n60 fresh pins/month\nAdvanced keyword strategy\nIdea pins (video)\nRich pins setup\nCompetitor monitoring\nBi-weekly optimization\nPriority support",
+            "features_text": "40 hours/month\nDedicated VA\nAll Part-Time services\nCRM management\nTravel planning\nDocument preparation\nExpense tracking\nSame-day response",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -541,12 +541,12 @@
         "plan_qWaeyc": {
           "type": "plan",
           "settings": {
-            "name": "Dominate",
-            "description": "Full Pinterest domination",
-            "price": "$3,000",
+            "name": "Full-Time",
+            "description": "Complete back-office support",
+            "price": "$3,500",
             "period": "/ per month",
             "badge": "",
-            "features_text": "Everything in Growth\n100+ fresh pins/month\nMultiple pin designs per URL\nPinterest ads management\nInfluencer outreach\nWeekly strategy calls\nAdvanced analytics\nDedicated manager",
+            "features_text": "80+ hours/month\nDedicated VA\nAll Standard services\nProject coordination\nTeam communication\nProcess documentation\nBasic bookkeeping\nPriority response",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -564,9 +564,9 @@
         "title_before": "Choose Your",
         "title_gradient": "Plan",
         "description": "Select the package that best fits your needs. All plans include our signature quality and support.",
-        "footer_before": "",
-        "footer_highlight": "",
-        "footer_after": ""
+        "footer_before": "Need ongoing support? Add",
+        "footer_highlight": "35/hr",
+        "footer_after": "for Additional hours beyond package"
       }
     },
     "service_testimonial_ekeHMB": {
