@@ -573,10 +573,10 @@
       "type": "service-testimonial",
       "name": "Service Testimonial",
       "settings": {
-        "quote": "\"Our new website generated more leads in the first month than our old site did in a year. The design perfectly captures our brand and the performance is incredible.\"",
-        "author_image": "shopify://shop_images/3.png",
-        "author_name": "Jennifer Liu",
-        "author_role": "VP of Growth, Fintech Pro"
+        "quote": "\"Our ROAS improved by 180% after switching to their creative system. The iterative testing approach is brilliant we're always learning what works.\"",
+        "author_image": "shopify://shop_images/1_5219122d-6b75-4131-89e8-ca501a34d76c.png",
+        "author_name": "Alex Rivera",
+        "author_role": "Founder, D2C Brand"
       }
     },
     "17715474998453bd5d": {
