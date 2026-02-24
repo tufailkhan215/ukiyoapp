@@ -303,61 +303,61 @@
         "feature_VD783b": {
           "type": "feature",
           "settings": {
-            "text": "Pinterest audit & strategy"
+            "text": "Dedicated virtual assistant"
           }
         },
         "feature_rVJdJK": {
           "type": "feature",
           "settings": {
-            "text": "Profile & board optimization"
+            "text": "Email & inbox management"
           }
         },
         "feature_DpUeXd": {
           "type": "feature",
           "settings": {
-            "text": "Keyword research & mapping"
+            "text": "Calendar coordination"
           }
         },
         "feature_cKMdiL": {
           "type": "feature",
           "settings": {
-            "text": "Pin design (30-100 pins/month)"
+            "text": "Meeting scheduling"
           }
         },
         "feature_3UUBba": {
           "type": "feature",
           "settings": {
-            "text": "Pin description writing"
+            "text": "Travel arrangements"
           }
         },
         "feature_zHPdUx": {
           "type": "feature",
           "settings": {
-            "text": "Strategic scheduling"
+            "text": "Data entry & CRM updates"
           }
         },
         "feature_FpyCGk": {
           "type": "feature",
           "settings": {
-            "text": "Rich pins setup"
+            "text": "Research & reporting"
           }
         },
         "feature_BUxiQB": {
           "type": "feature",
           "settings": {
-            "text": "Competitor analysis"
+            "text": "Document preparation"
           }
         },
         "feature_TUayC4": {
           "type": "feature",
           "settings": {
-            "text": "Monthly analytics report"
+            "text": "Expense tracking"
           }
         },
         "feature_LnXAf6": {
           "type": "feature",
           "settings": {
-            "text": "Ongoing optimization"
+            "text": "Basic customer service"
           }
         }
       },
@@ -381,7 +381,7 @@
         "title_gradient": "AI Agent",
         "paragraph_1": "<p>Create custom AI agents that understand your company inside and out. From customer service to sales, your brand voice stays consistent across every interaction.</p>",
         "paragraph_2": "<p>In an era where customer expectations are at an all-time high, having a consistent brand voice across every touchpoint is crucial. Our Company Agent Builder service creates bespoke AI agents trained on your brand guidelines, tone of voice, product knowledge, and company values. These agents become extensions of your team, handling everything from customer inquiries to lead qualification with the precision and personality your brand deserves.</p>",
-        "title_included": "Complete Pinterest Management"
+        "title_included": "Complete Administrative Support"
       }
     },
     "services_key_features_qwLJ4x": {
@@ -390,43 +390,43 @@
         "feature_cVUqcy": {
           "type": "feature",
           "settings": {
-            "title": "Profile Optimization",
-            "description": "SEO-optimized profile, boards, and sections for maximum discoverability"
+            "title": "Email Management",
+            "description": "Inbox zero maintained with smart triage and response drafts"
           }
         },
         "feature_CGK8jh": {
           "type": "feature",
           "settings": {
-            "title": "Keyword Research",
-            "description": "Pinterest-specific keyword strategy using platform search data"
+            "title": "Calendar Management",
+            "description": "Scheduling, reminders, coordination, and buffer time protection"
           }
         },
         "feature_WRfYgM": {
           "type": "feature",
           "settings": {
-            "title": "Pin Design",
-            "description": "Click-worthy graphics optimized for Pinterest's visual algorithm"
+            "title": "Research Tasks",
+            "description": "Market research, competitive analysis, data gathering, and summaries"
           }
         },
         "feature_Nz6XTd": {
           "type": "feature",
           "settings": {
-            "title": "Fresh Pin Strategy",
-            "description": "Consistent new content to fuel the algorithm and grow reach"
+            "title": "Data Entry",
+            "description": "CRM updates, spreadsheets, documentation, and database management"
           }
         },
         "feature_aYey6f": {
           "type": "feature",
           "settings": {
-            "title": "Rich Pins Setup",
-            "description": "Enhanced pins with real-time data from your website"
+            "title": "Travel Planning",
+            "description": "Itineraries, bookings, logistics, and travel coordination"
           }
         },
         "feature_wBVcMj": {
           "type": "feature",
           "settings": {
-            "title": "Analytics & Reporting",
-            "description": "Track growth, clicks, and optimize continuously"
+            "title": "Project Coordination",
+            "description": "Follow-ups, task tracking, team communication, and meeting notes"
           }
         }
       },
@@ -451,43 +451,43 @@
         "step_VWnEJa": {
           "type": "step",
           "settings": {
-            "title": "Pinterest Audit",
-            "description": "Analyze current presence, competitors, and opportunities"
+            "title": "Onboarding",
+            "description": "Learn your systems, preferences, workflows, and priorities"
           }
         },
         "step_GejF3z": {
           "type": "step",
           "settings": {
-            "title": "Keyword Strategy",
-            "description": "Research high-volume, relevant Pinterest keywords"
+            "title": "Setup",
+            "description": "Get access to necessary tools, accounts, and communication channels"
           }
         },
         "step_MxmXGH": {
           "type": "step",
           "settings": {
-            "title": "Profile Optimization",
-            "description": "Restructure profile, boards, and sections for SEO"
+            "title": "Task Delegation",
+            "description": "Start handling assigned responsibilities with clear SOPs"
           }
         },
         "step_NfX4qg": {
           "type": "step",
           "settings": {
-            "title": "Content Creation",
-            "description": "Design fresh pins with optimized titles and descriptions"
+            "title": "Communication",
+            "description": "Regular check-ins and updates on task status"
           }
         },
         "step_78eaHH": {
           "type": "step",
           "settings": {
-            "title": "Publishing Strategy",
-            "description": "Implement consistent pinning schedule for algorithm favor"
+            "title": "Optimization",
+            "description": "Continuously improve processes and efficiency"
           }
         },
         "step_zEyLVB": {
           "type": "step",
           "settings": {
-            "title": "Optimization",
-            "description": "Analyze data and refine strategy monthly"
+            "title": "Scaling",
+            "description": "Expand support as your needs grow"
           }
         }
       },
