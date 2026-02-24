@@ -958,7 +958,7 @@
           "settings": {
             "number": "",
             "label": "Week 1",
-            "title": "Audit & Keyword Research"
+            "title": "Onboarding & Systems Setup"
           }
         },
         "step_tiReLw": {
@@ -966,7 +966,7 @@
           "settings": {
             "number": "",
             "label": "Week 2",
-            "title": "Profile Optimization"
+            "title": "Task Training & Handoff"
           }
         },
         "step_CJxzWT": {
@@ -974,7 +974,7 @@
           "settings": {
             "number": "",
             "label": "Week 3-4",
-            "title": "Pin Creation & Scheduling"
+            "title": "Independent Operations"
           }
         },
         "step_AjFwPY": {
@@ -982,7 +982,7 @@
           "settings": {
             "number": "",
             "label": "Ongoing",
-            "title": "Monitor & Optimize"
+            "title": "Continuous Support"
           }
         }
       },
@@ -1051,8 +1051,8 @@
       "type": "services-cta",
       "name": "Services CTA",
       "settings": {
-        "heading": "Ready to Dominate Pinterest?",
-        "description": "Let's turn Pinterest into your biggest source of organic traffic.",
+        "heading": "Ready to Reclaim Your Time?",
+        "description": "Let's match you with a dedicated VA who can handle your back office so you can focus on growth.",
         "cta_text": "Book Free Consultation",
         "cta_url": "https://tidycal.com/salesautomateiq/consultation",
         "cta_new_tab": true
