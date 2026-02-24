@@ -564,9 +564,9 @@
         "title_before": "Choose Your",
         "title_gradient": "Plan",
         "description": "Select the package that best fits your needs. All plans include our signature quality and support.",
-        "footer_before": "for Hosting, maintenance, and updates",
-        "footer_highlight": "$500/mo",
-        "footer_after": "for Hosting, maintenance, and updates"
+        "footer_before": "",
+        "footer_highlight": "",
+        "footer_after": ""
       }
     },
     "service_testimonial_ekeHMB": {
