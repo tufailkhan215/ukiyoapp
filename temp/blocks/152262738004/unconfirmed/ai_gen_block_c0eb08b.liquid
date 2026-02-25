@@ -1,6 +1,230 @@
+{% doc %}
+  @prompt
+    create a schema markup tag section
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-schema-markup-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+  }
+
+  .ai-schema-markup-container-{{ ai_gen_id }} {
+    padding: 24px;
+    background-color: {{ block.settings.background_color }};
+    border: 1px solid {{ block.settings.border_color }};
+    border-radius: 8px;
+  }
+
+  .ai-schema-markup-header-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .ai-schema-markup-icon-{{ ai_gen_id }} {
+    width: 24px;
+    height: 24px;
+    color: {{ block.settings.icon_color }};
+  }
+
+  .ai-schema-markup-title-{{ ai_gen_id }} {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-schema-markup-description-{{ ai_gen_id }} {
+    margin: 0 0 16px;
+    font-size: 14px;
+    color: {{ block.settings.muted_color }};
+    line-height: 1.5;
+  }
+
+  .ai-schema-markup-code-{{ ai_gen_id }} {
+    background-color: {{ block.settings.code_background }};
+    border: 1px solid {{ block.settings.code_border }};
+    border-radius: 4px;
+    padding: 16px;
+    overflow-x: auto;
+  }
+
+  .ai-schema-markup-code-{{ ai_gen_id }} pre {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    color: {{ block.settings.code_text_color }};
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .ai-schema-markup-empty-{{ ai_gen_id }} {
+    padding: 32px;
+    text-align: center;
+    color: {{ block.settings.muted_color }};
+    font-size: 14px;
+    font-style: italic;
+  }
+{% endstyle %}
+
+<schema-markup-{{ ai_gen_id }}
+  class="ai-schema-markup-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  {% if block.settings.show_preview %}
+    <div class="ai-schema-markup-container-{{ ai_gen_id }}">
+      <div class="ai-schema-markup-header-{{ ai_gen_id }}">
+        <svg
+          class="ai-schema-markup-icon-{{ ai_gen_id }}"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="16 18 22 12 16 6"></polyline>
+          <polyline points="8 6 2 12 8 18"></polyline>
+        </svg>
+        <h3 class="ai-schema-markup-title-{{ ai_gen_id }}">Schema Markup Preview</h3>
+      </div>
+      <p class="ai-schema-markup-description-{{ ai_gen_id }}">
+        This structured data helps search engines understand your content better. The markup is invisible to visitors but improves SEO.
+      </p>
+      {% if block.settings.schema_code != blank %}
+        <div class="ai-schema-markup-code-{{ ai_gen_id }}">
+          <pre>{{ block.settings.schema_code }}</pre>
+        </div>
+      {% else %}
+        <div class="ai-schema-markup-empty-{{ ai_gen_id }}">
+          Add your schema markup code in the block settings
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+</schema-markup-{{ ai_gen_id }}>
+
+{% if block.settings.schema_code != blank %}
+  <script type="application/ld+json">
+    {{ block.settings.schema_code }}
+  </script>
+{% endif %}
+
+<script>
+  (function() {
+    class SchemaMarkup{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        if (window.Shopify && window.Shopify.designMode) {
+          console.log('Schema markup block loaded in theme editor');
+        }
+      }
+    }
+
+    customElements.define('schema-markup-{{ ai_gen_id }}', SchemaMarkup{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Schema markup",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Schema markup"
+    },
+    {
+      "type": "paragraph",
+      "content": "Add JSON-LD structured data to help search engines understand your content. Common types: Organization, Product, Article, LocalBusiness, FAQ, BreadcrumbList."
+    },
+    {
+      "type": "liquid",
+      "id": "schema_code",
+      "label": "Schema JSON-LD code"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_preview",
+      "label": "Show preview in theme editor",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Preview style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "muted_color",
+      "label": "Muted text",
+      "default": "#999999"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "code_background",
+      "label": "Code background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "code_border",
+      "label": "Code border",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "code_text_color",
+      "label": "Code text",
+      "default": "#00ff00"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Schema markup"
+    }
+  ]
+}
 {% endschema %}
