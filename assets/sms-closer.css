@@ -1,0 +1,109 @@
+/* SMS Closer - Theme App Extension Styles */
+
+.sms-closer-wrapper {
+  margin: 12px 0;
+  width: 100%;
+}
+
+.sms-closer-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  color: #999;
+  font-size: 13px;
+}
+
+.sms-closer-divider::before,
+.sms-closer-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #e5e5e5;
+}
+
+.sms-closer-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 16px 24px;
+  background: var(--sms-btn-bg, #1a1a1a);
+  color: var(--sms-btn-color, #ffffff);
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+  border: none;
+}
+
+.sms-closer-btn--rounded { border-radius: 100px; }
+.sms-closer-btn--soft    { border-radius: 10px; }
+.sms-closer-btn--square  { border-radius: 4px; }
+
+.sms-closer-btn__icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.sms-closer-btn__pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--sms-pulse-color, #25D366);
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0);
+}
+
+.sms-closer-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  opacity: 0.92;
+}
+
+.sms-closer-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+@keyframes sms-ripple {
+  0%   { transform: scale(0); opacity: 0.35; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+.sms-closer-btn.is-tapped .sms-closer-btn__pulse {
+  animation: sms-ripple 0.5s ease-out forwards;
+}
+
+.sms-closer-subtext {
+  margin: 8px 0 0;
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+  line-height: 1.4;
+}
+
+@media (min-width: 768px) {
+  .sms-closer-desktop-note {
+    display: inline;
+    margin-left: 6px;
+    font-size: 11px;
+    opacity: 0.5;
+    font-weight: 400;
+  }
+}
+
+@media (max-width: 767px) {
+  .sms-closer-desktop-note {
+    display: none;
+  }
+}
