@@ -12,9 +12,131 @@
     "main": {
       "type": "main-page",
       "settings": {}
+    },
+    "1771990703a39fba08": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_6838f51_R3trFX": {
+          "type": "ai_gen_block_6838f51",
+          "settings": {
+            "eyebrow_text": "Official Merch",
+            "title": "Exclusive Merchandise Collection",
+            "description": "Discover our curated selection of premium merchandise. Each piece is crafted with attention to detail and designed to represent our brand.",
+            "title_size": 48,
+            "eyebrow_size": 12,
+            "description_size": 16,
+            "header_spacing": 60,
+            "collection": "",
+            "product_limit": 12,
+            "show_description": true,
+            "show_badges": true,
+            "button_text": "View",
+            "columns_desktop": 3,
+            "columns_mobile": "1",
+            "max_width": 1400,
+            "section_padding": 80,
+            "grid_gap": 30,
+            "grid_spacing": 40,
+            "card_padding": 24,
+            "card_border_radius": 12,
+            "card_title_size": 20,
+            "card_description_size": 14,
+            "price_size": 20,
+            "button_border_radius": 6,
+            "background_color": "#000000",
+            "text_color": "#ffffff",
+            "muted_color": "#999999",
+            "eyebrow_color": "#ffffff",
+            "card_background": "#111111",
+            "card_border_color": "#222222",
+            "image_background": "#1a1a1a",
+            "badge_background": "#ffffff",
+            "badge_text_color": "#000000",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "button_hover_background": "#e5e5e5"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_6838f51_R3trFX"
+      ],
+      "settings": {}
+    },
+    "1771991251cfc7df1e": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_20bbd06_mXxU6w": {
+          "type": "ai_gen_block_20bbd06",
+          "settings": {
+            "heading": "Frequently Asked Questions",
+            "subheading": "",
+            "heading_alignment": "left",
+            "heading_spacing": 40,
+            "faq_1_question": "Where do you ship?",
+            "faq_1_answer": "We ship domestically and internationally where carriers support delivery. Available destinations and shipping options appear at checkout based on your address.",
+            "faq_2_question": "How long does it take to make and ship my merch?",
+            "faq_2_answer": "Most merch is made to order. Production typically takes a few business days before it ships, and then shipping time depends on your location and the method you choose at checkout.",
+            "faq_3_question": "Will I get tracking?",
+            "faq_3_answer": "Yes—once your order ships, you'll receive a shipping confirmation with tracking details.",
+            "faq_4_question": "Can I change or cancel my order after I place it?",
+            "faq_4_answer": "If you need to change a size, color, address, or cancel, contact us ASAP. Once an order enters production, changes may not be possible because items are made to order.",
+            "faq_5_question": "How do I choose the right size?",
+            "faq_5_answer": "Use the size chart on each product page and compare it to a similar item you already own (lay it flat and measure). If you're between sizes, sizing up usually gives a more relaxed fit—especially for hoodies.",
+            "faq_6_question": "What if my item doesn't fit—can I exchange it?",
+            "faq_6_answer": "If your item doesn't fit, reach out and we'll help you find the best option. Because many items are made to order, exchanges may depend on the item and condition. (Tip: double-check size charts before ordering—size uncertainty is one of the biggest reasons apparel gets returned.)",
+            "faq_7_question": "What's your return policy?",
+            "faq_7_answer": "If something arrives misprinted, damaged, or defective, contact us with photos and we'll make it right. Claims for print defects/damage are commonly handled within a defined window after delivery (often 30 days).",
+            "faq_8_question": "What if my order arrives damaged or the print looks wrong?",
+            "faq_8_answer": "Send us a message with your order number and clear photos of the issue. If it's damaged, defective, or misprinted, we'll coordinate a replacement or resolution according to the fulfillment partner's claim window and process.",
+            "faq_9_question": "What if my package is marked \"delivered\" but I don't have it?",
+            "faq_9_answer": "First, check around your delivery location (mailroom, neighbors, front desk) and contact the carrier. If you still can't locate it, message us and we'll help you troubleshoot next steps.",
+            "faq_10_question": "Do you restock items?",
+            "faq_10_answer": "Some drops are limited and may not restock. If something sells out, the best move is to join the waitlist / email list (or check back on the product page).",
+            "faq_11_question": "Are these items printed on demand?",
+            "faq_11_answer": "Many modern merch stores use on-demand production so items are created after purchase rather than sitting in a warehouse. This helps reduce overproduction and keeps drops flexible (but it also means order changes are time-sensitive).",
+            "faq_12_question": "Will the packaging show another company's branding?",
+            "faq_12_answer": "If your merch is fulfilled through a white-label production partner, packaging is typically unbranded from the printer's side (i.e., it doesn't advertise the printer).",
+            "faq_13_question": "Can I place a bulk order for an event or team?",
+            "faq_13_answer": "Yes—bulk orders are possible depending on the product. Send what you need (quantities, sizes, deadline, shipping location) and we'll confirm pricing and timelines.",
+            "faq_14_question": "Do you offer wholesale or collaborations?",
+            "faq_14_answer": "We're open to collaborations that fit Ukiyo's aesthetic and values. Reach out with your concept, audience, and what you're envisioning.",
+            "faq_15_question": "How do I contact support?",
+            "faq_15_answer": "Email or use the site contact form with your order number and a quick description. If there's an issue, include photos—this speeds up resolution.",
+            "desktop_width_percent": 100,
+            "max_width": 900,
+            "section_padding": 60,
+            "item_spacing": 10,
+            "background_color": "#000000",
+            "text_color": "#ffffff",
+            "heading_color": "#ffffff",
+            "subheading_color": "#999999",
+            "item_background": "#000000",
+            "border_color": "#333333",
+            "question_color": "#ffffff",
+            "question_hover_bg": "#111111",
+            "answer_color": "#cccccc",
+            "icon_color": "#ffffff",
+            "heading_size": 36,
+            "subheading_size": 16,
+            "question_size": 16,
+            "answer_size": 14,
+            "border_radius": 8,
+            "question_padding": 20
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_20bbd06_mXxU6w"
+      ],
+      "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "1771990703a39fba08",
+    "1771991251cfc7df1e"
   ]
 }
