@@ -299,6 +299,21 @@
       <a href="{{ section.settings.cta_link }}" class="btn btn--primary mt-4">{{ section.settings.cta_text }}</a>
     {% endif %}
   </nav>
+
+
+  {% comment %} adding new line start {% endcomment %}
+   <script>
+  document.querySelectorAll('.drawer__nav-toggle').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var group = btn.closest('.drawer__nav-group');
+      var children = group.querySelector('.drawer__nav-children');
+      group.classList.toggle('is-open');
+      children.classList.toggle('drawer__nav-children--collapsed');
+      children.classList.toggle('drawer__nav-children--open');
+    });
+  });
+</script>
+   {% comment %} adding new end  {% endcomment %}
 </aside>
 
 {% schema %}
