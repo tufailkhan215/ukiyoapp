@@ -739,4 +739,12 @@ img {
   border-color: #ffffff;
 }
 
-/* adding new lines by mohammad */
+/* adding new lines by mohammad [starts] */
+/* Drawer mobile nav - collapsible groups */
+.drawer__nav-toggle{display:flex;align-items:center;justify-content:space-between;width:100%;background:none;border:none;color:white;cursor:pointer;padding:0.5rem 0}
+.drawer__nav-children--collapsed{display:none}
+.drawer__nav-children--open{display:block}
+.drawer__nav-chevron{transition:transform 0.3s;flex-shrink:0}
+.drawer__nav-group.is-open .drawer__nav-chevron{transform:rotate(180deg)}
+.drawer__nav-category-label{display:block;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.35);pointer-events:none;padding:14px 0 4px 1rem}
+/* adding new lines by mohammad [ends] */
