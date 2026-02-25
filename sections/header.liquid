@@ -278,7 +278,9 @@
 
 
             {% comment %} adding new lines by mohammad [starts]  {% endcomment %}
-{% if block.settings.category_title != blank %}
+
+
+            {% if block.settings.category_title != blank %}
   <span class="drawer__nav-category-label">{{ block.settings.category_title }}</span>
 {% endif %}
 {% if block.settings.links_text != blank %}
