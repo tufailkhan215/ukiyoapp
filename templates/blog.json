@@ -269,8 +269,8 @@
           "type": "step",
           "settings": {
             "kicker": "Feature",
-            "heading": "Step heading",
-            "description": "Describe this feature or benefit in a compelling way.",
+            "heading": "Media that moves people",
+            "description": "Asymmetrical layouts and scroll-driven storytelling designed to keep visitors engaged and convert browsers into buyers.",
             "image_big": "shopify://shop_images/IMG_6776.webp",
             "image_small": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge.webp",
             "btn_primary_label": "Explore details",
@@ -283,8 +283,8 @@
           "type": "step",
           "settings": {
             "kicker": "Feature",
-            "heading": "Step heading",
-            "description": "Describe this feature or benefit in a compelling way.",
+            "heading": "Layered visuals that feel premium",
+            "description": "Use asymmetry and editorial spacing to make your product feel high-value. The sticky media area holds attention while your content walks through every key benefit.",
             "image_big": "shopify://shop_images/DSC_29323129.webp",
             "image_small": "shopify://shop_images/MJJ06476_1_5dfdb4bf-4b69-4ee3-9c5e-3d00edf1460f.jpg",
             "btn_primary_label": "Explore details",
@@ -297,8 +297,8 @@
           "type": "step",
           "settings": {
             "kicker": "Feature",
-            "heading": "Step heading",
-            "description": "Describe this feature or benefit in a compelling way.",
+            "heading": "Micro-interactions that engage",
+            "description": "Subtle hover zoom and layered cards create real depth. Every interaction is designed to build an immersive premium feel while keeping the layout clean and conversion-focused.",
             "image_big": "shopify://shop_images/ChatGPT_Image_Feb_26_2026_at_01_32_23_AM.png",
             "image_small": "shopify://shop_images/Create_a_professional_202602241643.jpg",
             "btn_primary_label": "Explore details",
