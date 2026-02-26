@@ -1,35 +1,31 @@
 {% comment %}
   ┌─────────────────────────────────────────────────────────────────┐
-  │  MEDIA ZOOM EFFECT — UkiyoProd                                  │
-  │  Asymmetric media grid with zoom-on-hover effects              │
-  │  Version: 1.0.0                                                 │
+  │  MEDIA ZOOM EFFECT v2 — UkiyoProd                              │
+  │  Sticky header + asymmetric media grid with zoom-on-hover      │
+  │  Version: 2.0.0                                                 │
   └─────────────────────────────────────────────────────────────────┘
 {% endcomment %}
 
 {%- liquid
   assign section_id  = 'mze-' | append: section.id
   assign layout_mode = section.settings.layout_mode
-  assign kicker      = section.settings.kicker
-  assign heading     = section.settings.heading
-  assign subheading  = section.settings.subheading
-  assign items       = section.blocks
 -%}
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap');
-
   #{{ section_id }} {
-    --bg:       {{ section.settings.bg_color }};
-    --accent:   {{ section.settings.accent_color }};
-    --card-bg:  {{ section.settings.card_bg_color }};
-    --text:     {{ section.settings.text_color }};
-    --muted:    {{ section.settings.text_color | color_mix: section.settings.bg_color, 38 }};
-    --border:   {{ section.settings.text_color | color_mix: section.settings.bg_color, 10 }};
-    --zoom:     {{ section.settings.zoom_scale | divided_by: 100.0 }};
-    --radius:   {{ section.settings.border_radius }}px;
-    --gap:      {{ section.settings.grid_gap }}px;
-    --ease:     cubic-bezier(.25,1,.5,1);
-    --dur:      {{ section.settings.zoom_duration }}ms;
+    --mz-bg:      {{ section.settings.bg_color }};
+    --mz-surface: rgba(255,255,255,0.06);
+    --mz-border:  rgba(255,255,255,0.12);
+    --mz-text:    {{ section.settings.text_color }};
+    --mz-muted:   rgba(255,255,255,0.68);
+    --mz-radius:  18px;
+    --mz-gap:     clamp(14px,2vw,22px);
+    --mz-pad-y:   clamp(44px,6vw,96px);
+    --mz-max:     {{ section.settings.max_width }}px;
+    --mz-zoom:    {{ section.settings.zoom_scale | divided_by: 100.0 }};
+    --mz-shadow:  0 18px 40px rgba(0,0,0,0.38);
+    --mz-dur:     {{ section.settings.zoom_duration }}ms;
+    --mz-ease:    cubic-bezier(.2,.7,.1,1);
   }
 
   #{{ section_id }} *, #{{ section_id }} *::before, #{{ section_id }} *::after {
@@ -37,423 +33,368 @@
   }
 
   #{{ section_id }} {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Outfit', sans-serif;
-    padding: clamp(3.5rem, 8vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+    padding: var(--mz-pad-y) 0;
+    background:
+      radial-gradient(1200px 500px at 30% 10%, rgba(70,120,255,0.12), transparent 55%),
+      radial-gradient(900px 400px at 80% 40%, rgba(0,255,200,0.07), transparent 55%),
+      var(--mz-bg);
+    color: var(--mz-text);
+    font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     overflow: hidden;
   }
 
-  #{{ section_id }} .mze-inner {
-    max-width: {{ section.settings.max_width }}px;
+  /* ── CONTAINER: sticky header left + grid right ──────────── */
+  #{{ section_id }} .mz-container {
+    width: min(var(--mz-max), calc(100% - 40px));
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.95fr 1.25fr;
+    gap: clamp(22px,4vw,60px);
+    align-items: start;
   }
 
-  /* ── HEADER ──────────────────────────────────────────────────── */
-  #{{ section_id }} .mze-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 2rem;
-    margin-bottom: clamp(2rem, 4vw, 3.5rem);
-    flex-wrap: wrap;
+  /* ── STICKY HEADER ───────────────────────────────────────── */
+  #{{ section_id }} .mz-header {
+    position: sticky;
+    top: 24px;
   }
 
-  #{{ section_id }} .mze-kicker {
-    font-size: .68rem;
-    font-weight: 700;
-    letter-spacing: .22em;
+  #{{ section_id }} .mz-eyebrow {
+    letter-spacing: .12em;
     text-transform: uppercase;
-    color: var(--accent);
-    display: flex;
-    align-items: center;
-    gap: .6rem;
-    margin-bottom: .9rem;
-  }
-  #{{ section_id }} .mze-kicker::before {
-    content: '';
-    display: inline-block;
-    width: 2rem; height: 1.5px;
-    background: var(--accent);
+    font-size: 12px;
+    color: var(--mz-muted);
+    margin-bottom: 10px;
   }
 
-  #{{ section_id }} .mze-heading {
-    font-size: clamp(2rem, 4.5vw, 3.5rem);
-    font-weight: 900;
-    line-height: 1.04;
-    letter-spacing: -.04em;
+  #{{ section_id }} .mz-title {
+    font-size: clamp(26px, 3.2vw, 40px);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -.02em;
+    margin-bottom: 12px;
   }
-  #{{ section_id }} .mze-heading em {
+  #{{ section_id }} .mz-title em {
     font-style: normal;
     color: transparent;
-    -webkit-text-stroke: 1.5px var(--accent);
+    -webkit-text-stroke: 1.5px rgba(255,255,255,.7);
   }
 
-  #{{ section_id }} .mze-subheading {
-    font-size: clamp(.85rem, 1.3vw, 1rem);
-    color: var(--muted);
+  #{{ section_id }} .mz-subtitle {
+    color: var(--mz-muted);
     line-height: 1.65;
-    max-width: 38ch;
-    font-weight: 300;
+    max-width: 46ch;
+    margin-bottom: 18px;
+    font-size: .95rem;
   }
 
-  /* layout pills */
-  #{{ section_id }} .mze-pills {
-    display: flex;
-    gap: .4rem;
-    flex-shrink: 0;
+  #{{ section_id }} .mz-bullets {
+    padding-left: 18px;
+    color: var(--mz-muted);
+    display: grid;
+    gap: 8px;
+    font-size: .9rem;
+    margin-bottom: 20px;
   }
-  #{{ section_id }} .mze-pill {
-    padding: .45rem 1rem;
+
+  /* layout switcher note box */
+  #{{ section_id }} .mz-note {
+    padding: 14px;
+    background: var(--mz-surface);
+    border: 1px solid var(--mz-border);
+    border-radius: 14px;
+    color: var(--mz-muted);
+    display: grid;
+    gap: 10px;
+    font-size: .8rem;
+  }
+
+  #{{ section_id }} .mz-pill-sm {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--mz-border);
+    background: rgba(255,255,255,.04);
+    color: rgba(255,255,255,.8);
+    font-size: 11px;
+  }
+
+  /* layout pill buttons */
+  #{{ section_id }} .mz-layout-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem;
+    margin-top: 1.2rem;
+  }
+  #{{ section_id }} .mz-layout-btn {
+    padding: .4rem .9rem;
     border-radius: 999px;
     font-size: .68rem;
     font-weight: 700;
     letter-spacing: .08em;
     text-transform: uppercase;
-    border: 1px solid var(--border);
+    border: 1px solid var(--mz-border);
     background: transparent;
-    color: var(--muted);
+    color: var(--mz-muted);
     cursor: pointer;
-    transition: all .25s var(--ease);
+    transition: all .25s ease;
   }
-  #{{ section_id }} .mze-pill.is-active,
-  #{{ section_id }} .mze-pill:hover {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #000;
+  #{{ section_id }} .mz-layout-btn.is-active,
+  #{{ section_id }} .mz-layout-btn:hover {
+    background: rgba(255,255,255,.12);
+    border-color: rgba(255,255,255,.3);
+    color: rgba(255,255,255,.9);
   }
 
-  /* ── GRID ────────────────────────────────────────────────────── */
-  #{{ section_id }} .mze-grid {
+  /* ── GRID ────────────────────────────────────────────────── */
+  #{{ section_id }} .mz-grid {
     display: grid;
-    gap: var(--gap);
+    gap: var(--mz-gap);
   }
 
-  /* ASYMMETRIC — hero left + 2 right */
-  #{{ section_id }} .mze-grid.mode--asymmetric {
-    grid-template-columns: 1.6fr 1fr;
-    grid-template-rows: auto;
+  /* Layout 1: Asymmetric (hero left tall + 3 right) */
+  #{{ section_id }} .mz-grid.mz-layout-1 {
+    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-areas:
+      "a b"
+      "a c"
+      "d c";
   }
-  #{{ section_id }} .mze-grid.mode--asymmetric .mze-cell:nth-child(1) {
-    grid-row: span 2;
-  }
+  #{{ section_id }} .mz-layout-1 .mz-a { grid-area: a; }
+  #{{ section_id }} .mz-layout-1 .mz-b { grid-area: b; }
+  #{{ section_id }} .mz-layout-1 .mz-c { grid-area: c; }
+  #{{ section_id }} .mz-layout-1 .mz-d { grid-area: d; }
+  #{{ section_id }} .mz-layout-1 .mz-a .mz-media { aspect-ratio: 4/5; }
+  #{{ section_id }} .mz-layout-1 .mz-b .mz-media { aspect-ratio: 16/10; }
+  #{{ section_id }} .mz-layout-1 .mz-c .mz-media { aspect-ratio: 3/4; }
+  #{{ section_id }} .mz-layout-1 .mz-d .mz-media { aspect-ratio: 16/10; }
 
-  /* MAGAZINE — large top, 3 below */
-  #{{ section_id }} .mze-grid.mode--magazine {
-    grid-template-columns: repeat(3, 1fr);
+  /* Layout 2: Editorial strip + two cards */
+  #{{ section_id }} .mz-grid.mz-layout-2 {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "a a"
+      "b c"
+      "d c";
   }
-  #{{ section_id }} .mze-grid.mode--magazine .mze-cell:nth-child(1) {
-    grid-column: span 3;
-  }
+  #{{ section_id }} .mz-layout-2 .mz-a { grid-area: a; }
+  #{{ section_id }} .mz-layout-2 .mz-b { grid-area: b; }
+  #{{ section_id }} .mz-layout-2 .mz-c { grid-area: c; }
+  #{{ section_id }} .mz-layout-2 .mz-d { grid-area: d; }
+  #{{ section_id }} .mz-layout-2 .mz-a .mz-media { aspect-ratio: 21/9; }
+  #{{ section_id }} .mz-layout-2 .mz-c .mz-media { aspect-ratio: 4/5; }
 
-  /* MOSAIC — 2 tall + 1 wide bottom */
-  #{{ section_id }} .mze-grid.mode--mosaic {
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 240px;
+  /* Layout 3: Masonry tall right */
+  #{{ section_id }} .mz-grid.mz-layout-3 {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "a b"
+      "c b"
+      "c d";
   }
-  #{{ section_id }} .mze-grid.mode--mosaic .mze-cell:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-  #{{ section_id }} .mze-grid.mode--mosaic .mze-cell:nth-child(2) { grid-column: span 2; }
-  #{{ section_id }} .mze-grid.mode--mosaic .mze-cell:nth-child(3) { grid-column: span 2; }
-  #{{ section_id }} .mze-grid.mode--mosaic .mze-cell:nth-child(4) { grid-column: span 2; grid-row: span 2; }
-  #{{ section_id }} .mze-grid.mode--mosaic .mze-cell:nth-child(5) { grid-column: span 2; }
-  #{{ section_id }} .mze-grid.mode--mosaic .mze-cell:nth-child(n+6) { grid-column: span 2; }
+  #{{ section_id }} .mz-layout-3 .mz-a { grid-area: a; }
+  #{{ section_id }} .mz-layout-3 .mz-b { grid-area: b; }
+  #{{ section_id }} .mz-layout-3 .mz-c { grid-area: c; }
+  #{{ section_id }} .mz-layout-3 .mz-d { grid-area: d; }
+  #{{ section_id }} .mz-layout-3 .mz-b .mz-media { aspect-ratio: 4/6; }
+  #{{ section_id }} .mz-layout-3 .mz-c .mz-media { aspect-ratio: 16/10; }
 
-  /* GRID — even columns */
-  #{{ section_id }} .mze-grid.mode--grid {
-    grid-template-columns: repeat({{ section.settings.grid_cols }}, 1fr);
-  }
-
-  /* Responsive */
-  @media (max-width: 900px) {
-    #{{ section_id }} .mze-grid.mode--asymmetric { grid-template-columns: 1fr 1fr; }
-    #{{ section_id }} .mze-grid.mode--asymmetric .mze-cell:nth-child(1) { grid-row: span 1; }
-    #{{ section_id }} .mze-grid.mode--magazine { grid-template-columns: 1fr 1fr; }
-    #{{ section_id }} .mze-grid.mode--magazine .mze-cell:nth-child(1) { grid-column: span 2; }
-    #{{ section_id }} .mze-grid.mode--mosaic { grid-template-columns: 1fr 1fr; }
-    #{{ section_id }} .mze-grid.mode--mosaic .mze-cell { grid-column: span 1 !important; grid-row: span 1 !important; }
-    #{{ section_id }} .mze-grid.mode--grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 560px) {
-    #{{ section_id }} .mze-grid { grid-template-columns: 1fr !important; }
-    #{{ section_id }} .mze-grid .mze-cell { grid-column: span 1 !important; grid-row: span 1 !important; }
-  }
-
-  /* ── CELL ────────────────────────────────────────────────────── */
-  #{{ section_id }} .mze-cell {
+  /* ── CARD ────────────────────────────────────────────────── */
+  #{{ section_id }} .mz-card {
     position: relative;
-    border-radius: var(--radius);
+    display: block;
     overflow: hidden;
-    background: var(--card-bg);
-    cursor: {% if section.settings.cursor_zoom %}zoom-in{% else %}pointer{% endif %};
-    min-height: 240px;
+    border-radius: var(--mz-radius);
+    border: 1px solid var(--mz-border);
+    background: rgba(255,255,255,.03);
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+    text-decoration: none;
+    color: inherit;
     isolation: isolate;
   }
 
-  /* ── ZOOM IMAGE ──────────────────────────────────────────────── */
-  #{{ section_id }} .mze-img {
+  #{{ section_id }} .mz-card::before {
+    content: '';
     position: absolute; inset: 0;
+    background:
+      radial-gradient(900px 380px at 20% 20%, rgba(255,255,255,.10), transparent 55%),
+      linear-gradient(to bottom, rgba(0,0,0,.15), rgba(0,0,0,.55));
+    opacity: .85;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  #{{ section_id }} .mz-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--mz-shadow);
+    border-color: rgba(255,255,255,.22);
+  }
+
+  #{{ section_id }} .mz-card:focus-visible {
+    outline: 3px solid rgba(70,120,255,.55);
+    outline-offset: 3px;
+  }
+
+  /* ── MEDIA + ZOOM ────────────────────────────────────────── */
+  #{{ section_id }} .mz-media {
+    aspect-ratio: 4/3;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  #{{ section_id }} .mz-media img,
+  #{{ section_id }} .mz-media .mz-placeholder {
     width: 100%; height: 100%;
     object-fit: cover;
-    transform-origin: center center;
     transform: scale(1);
-    transition: transform var(--dur) var(--ease),
-                filter var(--dur) var(--ease);
+    transition: transform var(--mz-dur) var(--mz-ease);
     will-change: transform;
+    display: block;
   }
 
-  /* ZOOM STYLES */
-  {% if section.settings.zoom_style == 'standard' %}
-    #{{ section_id }} .mze-cell:hover .mze-img {
-      transform: scale(var(--zoom));
-    }
-  {% elsif section.settings.zoom_style == 'tilt' %}
-    #{{ section_id }} .mze-cell:hover .mze-img {
-      transform: scale(var(--zoom)) rotate(2deg);
-    }
-  {% elsif section.settings.zoom_style == 'kenburns' %}
-    #{{ section_id }} .mze-cell:hover .mze-img {
-      transform: scale(var(--zoom)) translate(2%, -2%);
-    }
-  {% elsif section.settings.zoom_style == 'reveal' %}
-    #{{ section_id }} .mze-cell .mze-img {
-      transform: scale(var(--zoom));
-      filter: blur(4px);
-    }
-    #{{ section_id }} .mze-cell:hover .mze-img {
-      transform: scale(1);
-      filter: blur(0px);
-    }
-  {% endif %}
-
-  /* Brightness dim on hover (unless reveal mode) */
-  {% unless section.settings.zoom_style == 'reveal' %}
-    #{{ section_id }} .mze-cell:hover .mze-img {
-      filter: brightness({{ section.settings.hover_brightness | divided_by: 100.0 }});
-    }
-  {% endunless %}
-
-  /* placeholder */
-  #{{ section_id }} .mze-placeholder {
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, var(--card-bg) 0%, #1c1c28 100%);
+  #{{ section_id }} .mz-placeholder {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
   }
 
-  /* overlay */
-  #{{ section_id }} .mze-overlay {
-    position: absolute; inset: 0; z-index: 1;
-    background: linear-gradient(to top, rgba(0,0,0,.85) 0%, transparent 55%);
-    opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
-    transition: opacity .5s var(--ease);
-  }
-  #{{ section_id }} .mze-cell:hover .mze-overlay {
-    opacity: {{ section.settings.overlay_opacity_hover | divided_by: 100.0 }};
+  #{{ section_id }} .mz-card:hover .mz-media img,
+  #{{ section_id }} .mz-card:hover .mz-media .mz-placeholder {
+    transform: scale(var(--mz-zoom));
   }
 
-  /* content */
-  #{{ section_id }} .mze-content {
-    position: absolute; inset: 0; z-index: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 1.6rem;
-    transform: translateY(4px);
-    transition: transform .5s var(--ease);
-  }
-  #{{ section_id }} .mze-cell:hover .mze-content {
-    transform: translateY(0);
+  /* ── OVERLAY TEXT ────────────────────────────────────────── */
+  #{{ section_id }} .mz-overlay {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 16px;
+    z-index: 2;
+    display: grid;
+    gap: 6px;
   }
 
-  #{{ section_id }} .mze-tag {
-    font-size: .62rem;
-    font-weight: 700;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: .45rem;
-    display: flex;
-    align-items: center;
-    gap: .4rem;
-    opacity: 0;
-    transform: translateY(6px);
-    transition: opacity .4s var(--ease) .05s, transform .4s var(--ease) .05s;
+  #{{ section_id }} .mz-tag {
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.18);
+    background: rgba(0,0,0,.25);
+    backdrop-filter: blur(8px);
+    color: rgba(255,255,255,.85);
+    font-size: 12px;
+    letter-spacing: .02em;
+    transition: background .25s;
   }
-  #{{ section_id }} .mze-cell:hover .mze-tag {
-    opacity: 1; transform: translateY(0);
-  }
-  #{{ section_id }} .mze-tag-dot {
-    width: 5px; height: 5px; border-radius: 50%;
-    background: var(--accent);
-    flex-shrink: 0;
+  #{{ section_id }} .mz-card:hover .mz-tag {
+    background: rgba(0,0,0,.45);
   }
 
-  #{{ section_id }} .mze-title {
-    font-size: clamp(.95rem, 1.8vw, 1.3rem);
+  #{{ section_id }} .mz-card-title {
+    font-size: 16px;
     font-weight: 700;
     line-height: 1.2;
-    letter-spacing: -.02em;
-    color: #fff;
-    margin-bottom: .35rem;
+    color: rgba(255,255,255,.92);
   }
 
-  #{{ section_id }} .mze-desc {
-    font-size: .8rem;
-    color: rgba(255,255,255,.5);
-    line-height: 1.55;
-    max-width: 34ch;
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity .4s var(--ease) .1s, transform .4s var(--ease) .1s;
-  }
-  #{{ section_id }} .mze-cell:hover .mze-desc {
-    opacity: 1; transform: translateY(0);
+  /* ── RESPONSIVE ──────────────────────────────────────────── */
+  @media (max-width: 960px) {
+    #{{ section_id }} .mz-container { grid-template-columns: 1fr; }
+    #{{ section_id }} .mz-header { position: static; }
   }
 
-  /* zoom indicator badge */
-  #{{ section_id }} .mze-zoom-badge {
-    position: absolute;
-    top: 1rem; right: 1rem;
-    z-index: 3;
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    background: rgba(255,255,255,.1);
-    border: 1px solid rgba(255,255,255,.2);
-    display: flex; align-items: center; justify-content: center;
-    backdrop-filter: blur(6px);
-    opacity: 0;
-    transform: scale(.7);
-    transition: opacity .3s var(--ease), transform .3s var(--ease);
-  }
-  #{{ section_id }} .mze-cell:hover .mze-zoom-badge {
-    opacity: 1; transform: scale(1);
-  }
-  #{{ section_id }} .mze-zoom-badge svg {
-    width: 14px; height: 14px;
-    fill: none; stroke: #fff; stroke-width: 1.8;
-  }
-
-  /* ── SCROLL REVEAL ───────────────────────────────────────────── */
-  @media (prefers-reduced-motion: no-preference) {
-    .mze-reveal { opacity: 0; transform: translateY(22px); }
-    .mze-reveal.is-in { animation: mze-up .8s cubic-bezier(.16,1,.3,1) forwards; }
-    .mze-reveal.d1 { animation-delay: .1s; }
-    .mze-reveal.d2 { animation-delay: .2s; }
-    .mze-reveal.d3 { animation-delay: .3s; }
-    @keyframes mze-up { to { opacity: 1; transform: none; } }
-
-    #{{ section_id }} .mze-cell {
-      opacity: 0; transform: translateY(18px) scale(.97);
-      transition: opacity .65s cubic-bezier(.16,1,.3,1),
-                  transform .65s cubic-bezier(.16,1,.3,1);
+  @media (max-width: 640px) {
+    #{{ section_id }} .mz-grid.mz-layout-1,
+    #{{ section_id }} .mz-grid.mz-layout-2,
+    #{{ section_id }} .mz-grid.mz-layout-3 {
+      grid-template-columns: 1fr;
+      grid-template-areas: "a" "b" "c" "d";
     }
-    #{{ section_id }} .mze-cell.is-in { opacity: 1; transform: translateY(0) scale(1); }
-    {% for i in (1..12) %}
-    #{{ section_id }} .mze-cell:nth-child({{ i }}) { transition-delay: {{ i | times: 0.07 }}s; }
-    {% endfor %}
+    #{{ section_id }} .mz-media { aspect-ratio: 4/3 !important; }
+  }
+
+  /* ── REVEAL ──────────────────────────────────────────────── */
+  @media (prefers-reduced-motion: no-preference) {
+    #{{ section_id }} .mz-reveal { opacity: 0; transform: translateY(20px); }
+    #{{ section_id }} .mz-reveal.is-in { animation: mze-up .75s cubic-bezier(.16,1,.3,1) forwards; }
+    #{{ section_id }} .mz-reveal.d1 { animation-delay: .1s; }
+    #{{ section_id }} .mz-reveal.d2 { animation-delay: .2s; }
+    #{{ section_id }} .mz-card { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease, box-shadow 220ms ease, border-color 220ms ease; }
+    #{{ section_id }} .mz-card.is-in { opacity: 1; transform: translateY(0); }
+    #{{ section_id }} .mz-card.is-in:hover { transform: translateY(-2px); }
+    #{{ section_id }} .mz-card:nth-child(1) { transition-delay: .05s; }
+    #{{ section_id }} .mz-card:nth-child(2) { transition-delay: .12s; }
+    #{{ section_id }} .mz-card:nth-child(3) { transition-delay: .19s; }
+    #{{ section_id }} .mz-card:nth-child(4) { transition-delay: .26s; }
+    @keyframes mze-up { to { opacity: 1; transform: none; } }
   }
 </style>
 
 <section id="{{ section_id }}" class="media-zoom-effect" data-section-id="{{ section.id }}">
-  <div class="mze-inner">
+  <div class="mz-container">
 
-    <!-- HEADER -->
-    <div class="mze-header">
-      <div>
-        {%- if kicker != blank -%}
-          <p class="mze-kicker mze-reveal">{{ kicker }}</p>
-        {%- endif -%}
-        {%- if heading != blank -%}
-          <h2 class="mze-heading mze-reveal d1">{{ heading }}</h2>
-        {%- endif -%}
-        {%- if subheading != blank -%}
-          <p class="mze-subheading mze-reveal d2" style="margin-top:.75rem">{{ subheading }}</p>
-        {%- endif -%}
+    <!-- STICKY HEADER -->
+    <header class="mz-header">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="mz-eyebrow mz-reveal">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="mz-title mz-reveal d1">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}
+        <p class="mz-subtitle mz-reveal d2">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.show_bullets -%}
+        <ul class="mz-bullets mz-reveal d2">
+          {%- if section.settings.bullet_1 != blank -%}<li>{{ section.settings.bullet_1 }}</li>{%- endif -%}
+          {%- if section.settings.bullet_2 != blank -%}<li>{{ section.settings.bullet_2 }}</li>{%- endif -%}
+          {%- if section.settings.bullet_3 != blank -%}<li>{{ section.settings.bullet_3 }}</li>{%- endif -%}
+          {%- if section.settings.bullet_4 != blank -%}<li>{{ section.settings.bullet_4 }}</li>{%- endif -%}
+        </ul>
+      {%- endif -%}
+
+      <div class="mz-layout-pills mz-reveal d2" data-mze-pills>
+        <button class="mz-layout-btn {% if layout_mode == '1' %}is-active{% endif %}" data-mode="1">Asymmetric</button>
+        <button class="mz-layout-btn {% if layout_mode == '2' %}is-active{% endif %}" data-mode="2">Editorial</button>
+        <button class="mz-layout-btn {% if layout_mode == '3' %}is-active{% endif %}" data-mode="3">Masonry</button>
       </div>
+    </header>
 
-      <div class="mze-pills mze-reveal d3" data-mze-pills>
-        <button class="mze-pill {% if layout_mode == 'asymmetric' %}is-active{% endif %}" data-mode="asymmetric">Asymmetric</button>
-        <button class="mze-pill {% if layout_mode == 'magazine' %}is-active{% endif %}" data-mode="magazine">Magazine</button>
-        <button class="mze-pill {% if layout_mode == 'mosaic' %}is-active{% endif %}" data-mode="mosaic">Mosaic</button>
-        <button class="mze-pill {% if layout_mode == 'grid' %}is-active{% endif %}" data-mode="grid">Grid</button>
-      </div>
-    </div>
+    <!-- MEDIA GRID -->
+    <div class="mz-grid mz-layout-{{ layout_mode }}" data-mze-grid>
 
-    <!-- GRID -->
-    <div class="mze-grid mode--{{ layout_mode }}" data-mze-grid>
-
-      {%- for block in items -%}
-        <div
-          class="mze-cell"
+      {%- assign slots = 'a,b,c,d' | split: ',' -%}
+      {%- for slot in slots -%}
+        {%- assign block = section.blocks[forloop.index0] -%}
+        <a
+          class="mz-card mz-{{ slot }}"
+          href="{{ block.settings.link | default: '#' }}"
+          aria-label="{{ block.settings.title | default: 'View media' | escape }}"
+          {% if block.settings.link == blank %}tabindex="0"{% endif %}
           {{ block.shopify_attributes }}
-          {% if block.settings.link != blank %}
-            onclick="window.location='{{ block.settings.link }}'"
-            role="link" tabindex="0"
-          {% endif %}
-          {% if section.settings.zoom_style == 'cursor' %}
-            data-mze-cursor
-          {% endif %}
         >
-          {%- if block.settings.image -%}
-            <img
-              class="mze-img"
-              src="{{ block.settings.image | image_url: width: 1200 }}"
-              alt="{{ block.settings.title | escape }}"
-              loading="lazy"
-            >
-          {%- else -%}
-            <div class="mze-placeholder"></div>
-          {%- endif -%}
-
-          <div class="mze-overlay"></div>
-
-          {%- if section.settings.show_zoom_icon -%}
-            <div class="mze-zoom-badge">
-              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="7" cy="7" r="5"/>
-                <path d="M11 11l3 3" stroke-linecap="round"/>
-                <path d="M5 7h4M7 5v4" stroke-linecap="round"/>
-              </svg>
-            </div>
-          {%- endif -%}
-
-          <div class="mze-content">
+          <div class="mz-media">
+            {%- if block.settings.image -%}
+              <img
+                src="{{ block.settings.image | image_url: width: 1200 }}"
+                alt="{{ block.settings.title | escape }}"
+                loading="lazy"
+              >
+            {%- else -%}
+              <div class="mz-placeholder"></div>
+            {%- endif -%}
+          </div>
+          <div class="mz-overlay">
             {%- if block.settings.tag != blank -%}
-              <span class="mze-tag">
-                <span class="mze-tag-dot"></span>
-                {{ block.settings.tag }}
-              </span>
+              <span class="mz-tag">{{ block.settings.tag }}</span>
             {%- endif -%}
             {%- if block.settings.title != blank -%}
-              <h3 class="mze-title">{{ block.settings.title }}</h3>
-            {%- endif -%}
-            {%- if block.settings.description != blank -%}
-              <p class="mze-desc">{{ block.settings.description }}</p>
+              <h3 class="mz-card-title">{{ block.settings.title }}</h3>
             {%- endif -%}
           </div>
-        </div>
-
-      {%- else -%}
-        {%- assign demo_t = 'Coastal Collection,Urban Portraits,Architecture,Still Life,Aerial Views' | split: ',' -%}
-        {%- assign demo_k = 'Photography,Portrait,Design,Editorial,Aerial' | split: ',' -%}
-        {%- for i in (1..5) -%}
-          {%- assign idx = forloop.index0 -%}
-          <div class="mze-cell">
-            <div class="mze-placeholder"></div>
-            <div class="mze-overlay"></div>
-            {%- if section.settings.show_zoom_icon -%}
-              <div class="mze-zoom-badge">
-                <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="7" cy="7" r="5" stroke="white" stroke-width="1.8" fill="none"/>
-                  <path d="M11 11l3 3" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-                  <path d="M5 7h4M7 5v4" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-                </svg>
-              </div>
-            {%- endif -%}
-            <div class="mze-content">
-              <span class="mze-tag"><span class="mze-tag-dot"></span>{{ demo_k[idx] }}</span>
-              <h3 class="mze-title">{{ demo_t[idx] }}</h3>
-            </div>
-          </div>
-        {%- endfor -%}
+        </a>
       {%- endfor -%}
 
     </div>
@@ -462,57 +403,34 @@
 
 <script>
 (function() {
-  var sec = document.getElementById('{{ section_id }}');
+  var sec  = document.getElementById('{{ section_id }}');
   if (!sec) return;
 
   var grid  = sec.querySelector('[data-mze-grid]');
-  var pills = sec.querySelectorAll('[data-mze-pills] .mze-pill');
+  var pills = sec.querySelectorAll('[data-mze-pills] .mz-layout-btn');
 
-  /* ── Layout switcher ───────────────────────────────────────── */
-  pills.forEach(function(pill) {
-    pill.addEventListener('click', function() {
-      pills.forEach(function(p) { p.classList.remove('is-active'); });
-      pill.classList.add('is-active');
-      grid.className = 'mze-grid mode--' + pill.dataset.mode;
-      sec.querySelectorAll('.mze-cell').forEach(function(c) {
+  /* ── Layout switcher ───────────────────────────────────── */
+  pills.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      pills.forEach(function(b) { b.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+      var base = grid.className.replace(/mz-layout-\d/g, '').trim();
+      grid.className = base + ' mz-layout-' + btn.dataset.mode;
+      sec.querySelectorAll('.mz-card').forEach(function(c) {
         c.classList.remove('is-in');
         requestAnimationFrame(function() { c.classList.add('is-in'); });
       });
     });
   });
 
-  /* ── Cursor-origin zoom (tracks mouse position) ────────────── */
-  {% if section.settings.zoom_style == 'cursor' %}
-  sec.querySelectorAll('.mze-cell').forEach(function(cell) {
-    cell.addEventListener('mousemove', function(e) {
-      var r  = cell.getBoundingClientRect();
-      var x  = ((e.clientX - r.left) / r.width  * 100).toFixed(1);
-      var y  = ((e.clientY - r.top)  / r.height * 100).toFixed(1);
-      var img = cell.querySelector('.mze-img');
-      if (img) img.style.transformOrigin = x + '% ' + y + '%';
-    });
-    cell.addEventListener('mouseleave', function() {
-      var img = cell.querySelector('.mze-img');
-      if (img) img.style.transformOrigin = 'center center';
-    });
-  });
-  {% endif %}
-
-  /* ── Scroll reveal ─────────────────────────────────────────── */
+  /* ── Scroll reveal ─────────────────────────────────────── */
   var obs = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
       if (e.isIntersecting) { e.target.classList.add('is-in'); obs.unobserve(e.target); }
     });
-  }, { threshold: .1 });
+  }, { threshold: .08 });
 
-  sec.querySelectorAll('.mze-reveal, .mze-cell').forEach(function(el) { obs.observe(el); });
-
-  /* Shopify editor */
-  if (window.Shopify && Shopify.designMode) {
-    document.addEventListener('shopify:section:load', function(e) {
-      if (e.target.contains(sec)) sec.querySelectorAll('.mze-cell').forEach(function(c) { obs.observe(c); });
-    });
-  }
+  sec.querySelectorAll('.mz-reveal, .mz-card').forEach(function(el) { obs.observe(el); });
 })();
 </script>
 
@@ -521,7 +439,7 @@
   "name": "Media Zoom Effect",
   "tag": "section",
   "class": "media-zoom-effect-section",
-  "max_blocks": 12,
+  "max_blocks": 4,
   "settings": [
     {
       "type": "header",
@@ -532,117 +450,83 @@
       "id": "layout_mode",
       "label": "Default layout",
       "options": [
-        { "value": "asymmetric", "label": "Asymmetric" },
-        { "value": "magazine",   "label": "Magazine" },
-        { "value": "mosaic",     "label": "Mosaic" },
-        { "value": "grid",       "label": "Grid" }
+        { "value": "1", "label": "Asymmetric (hero left)" },
+        { "value": "2", "label": "Editorial (strip top)" },
+        { "value": "3", "label": "Masonry (tall right)" }
       ],
-      "default": "asymmetric"
-    },
-    {
-      "type": "range",
-      "id": "grid_cols",
-      "label": "Grid columns (Grid mode)",
-      "min": 2, "max": 4, "step": 1, "default": 3
-    },
-    {
-      "type": "range",
-      "id": "grid_gap",
-      "label": "Grid gap (px)",
-      "min": 0, "max": 32, "step": 2, "default": 8
+      "default": "1"
     },
     {
       "type": "range",
       "id": "max_width",
       "label": "Max width (px)",
-      "min": 800, "max": 1800, "step": 40, "default": 1400
-    },
-    {
-      "type": "range",
-      "id": "border_radius",
-      "label": "Corner radius (px)",
-      "min": 0, "max": 32, "step": 2, "default": 8
-    },
+"min": 800, "max": 1400, "step": 40, "default": 1200    },
     {
       "type": "header",
-      "content": "Zoom settings"
-    },
-    {
-      "type": "select",
-      "id": "zoom_style",
-      "label": "Zoom style",
-      "options": [
-        { "value": "standard", "label": "Standard (scale up)" },
-        { "value": "tilt",     "label": "Tilt zoom" },
-        { "value": "kenburns", "label": "Ken Burns (pan + zoom)" },
-        { "value": "reveal",   "label": "Reveal (blur to sharp)" },
-        { "value": "cursor",   "label": "Cursor origin zoom" }
-      ],
-      "default": "standard"
+      "content": "Zoom"
     },
     {
       "type": "range",
       "id": "zoom_scale",
       "label": "Zoom scale (%)",
-      "min": 105, "max": 150, "step": 5, "default": 115
+      "min": 105, "max": 140, "step": 5, "default": 110
     },
     {
       "type": "range",
       "id": "zoom_duration",
       "label": "Zoom duration (ms)",
-      "min": 200, "max": 1200, "step": 100, "default": 600
-    },
-    {
-      "type": "range",
-      "id": "hover_brightness",
-      "label": "Image brightness on hover (%)",
-      "min": 60, "max": 100, "step": 5, "default": 80
-    },
-    {
-      "type": "range",
-      "id": "overlay_opacity",
-      "label": "Overlay opacity (%)",
-      "min": 0, "max": 100, "step": 5, "default": 60
-    },
-    {
-      "type": "range",
-      "id": "overlay_opacity_hover",
-      "label": "Overlay opacity on hover (%)",
-      "min": 0, "max": 100, "step": 5, "default": 80
-    },
-    {
-      "type": "checkbox",
-      "id": "cursor_zoom",
-      "label": "Show zoom cursor",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_zoom_icon",
-      "label": "Show zoom icon badge",
-      "default": true
-    },
+"min": 200, "max": 1000, "step": 100, "default": 500    },
     {
       "type": "header",
       "content": "Content"
     },
     {
       "type": "text",
-      "id": "kicker",
-      "label": "Kicker",
+      "id": "eyebrow",
+      "label": "Eyebrow",
       "default": "Visual Stories"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Every detail <em>matters</em>"
+      "default": "Every detail matters"
     },
     {
       "type": "textarea",
       "id": "subheading",
       "label": "Subheading",
-      "default": "Hover to explore. Crafted for those who notice the difference."
+      "default": "Create an interactive, premium feel by showcasing details with an asymmetrical media grid."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bullets",
+      "label": "Show bullet points",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "bullet_1",
+      "label": "Bullet 1",
+      "default": "Zoom on hover effect"
+    },
+    {
+      "type": "text",
+      "id": "bullet_2",
+      "label": "Bullet 2",
+      "default": "Strong visual hierarchy"
+    },
+    {
+      "type": "text",
+      "id": "bullet_3",
+      "label": "Bullet 3",
+      "default": "Multiple layout modes"
+    },
+    {
+      "type": "text",
+      "id": "bullet_4",
+      "label": "Bullet 4",
+      "default": "Editorial spacing"
     },
     {
       "type": "header",
@@ -652,25 +536,13 @@
       "type": "color",
       "id": "bg_color",
       "label": "Background",
-      "default": "#060606"
-    },
-    {
-      "type": "color",
-      "id": "card_bg_color",
-      "label": "Card background",
-      "default": "#111111"
+      "default": "#0b0d10"
     },
     {
       "type": "color",
       "id": "text_color",
       "label": "Text",
-      "default": "#f5f5f5"
-    },
-    {
-      "type": "color",
-      "id": "accent_color",
-      "label": "Accent",
-      "default": "#ff6b35"
+      "default": "#f0f0f0"
     }
   ],
   "blocks": [
@@ -687,18 +559,13 @@
           "type": "text",
           "id": "tag",
           "label": "Tag",
-          "default": "Photography"
+          "default": "Feature"
         },
         {
           "type": "text",
           "id": "title",
           "label": "Title",
           "default": "Media Title"
-        },
-        {
-          "type": "textarea",
-          "id": "description",
-          "label": "Description"
         },
         {
           "type": "url",
@@ -712,11 +579,10 @@
     {
       "name": "Media Zoom Effect",
       "blocks": [
-        { "type": "media_item", "settings": { "tag": "Photography", "title": "Coastal Collection" } },
-        { "type": "media_item", "settings": { "tag": "Portrait", "title": "Urban Portraits" } },
-        { "type": "media_item", "settings": { "tag": "Design", "title": "Architecture" } },
-        { "type": "media_item", "settings": { "tag": "Editorial", "title": "Still Life" } },
-        { "type": "media_item", "settings": { "tag": "Aerial", "title": "Aerial Views" } }
+        { "type": "media_item", "settings": { "tag": "Feature", "title": "Hero visual" } },
+        { "type": "media_item", "settings": { "tag": "Detail", "title": "Close-up" } },
+        { "type": "media_item", "settings": { "tag": "Texture", "title": "Materials" } },
+        { "type": "media_item", "settings": { "tag": "Use", "title": "In action" } }
       ]
     }
   ]
