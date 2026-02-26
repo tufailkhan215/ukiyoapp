@@ -265,62 +265,64 @@
     "media_visual_experience_c4HyKg": {
       "type": "media-visual-experience",
       "blocks": {
-        "card_JwWWcx": {
-          "type": "card",
+        "step_4NtUcp": {
+          "type": "step",
           "settings": {
-            "label": "Feature",
-            "title": "Layered Depth",
-            "link": ""
+            "kicker": "Feature",
+            "heading": "Step heading",
+            "description": "Describe this feature or benefit in a compelling way.",
+            "image_big": "shopify://shop_images/IMG_6776.webp",
+            "image_small": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge.webp",
+            "btn_primary_label": "Explore details",
+            "btn_primary_url": "",
+            "btn_ghost_label": "View gallery",
+            "btn_ghost_url": ""
           }
         },
-        "card_QW4Mhc": {
-          "type": "card",
+        "step_7FLw6k": {
+          "type": "step",
           "settings": {
-            "label": "Premium",
-            "title": "Stacked Excellence",
-            "link": ""
+            "kicker": "Feature",
+            "heading": "Step heading",
+            "description": "Describe this feature or benefit in a compelling way.",
+            "image_big": "shopify://shop_images/DSC_29323129.webp",
+            "image_small": "shopify://shop_images/MJJ06476_1_5dfdb4bf-4b69-4ee3-9c5e-3d00edf1460f.jpg",
+            "btn_primary_label": "Explore details",
+            "btn_primary_url": "",
+            "btn_ghost_label": "View gallery",
+            "btn_ghost_url": ""
           }
         },
-        "card_YNfeLK": {
-          "type": "card",
+        "step_9gwWNR": {
+          "type": "step",
           "settings": {
-            "label": "Included",
-            "title": "Precision Proof",
-            "link": ""
-          }
-        },
-        "card_DJqpQQ": {
-          "type": "card",
-          "settings": {
-            "label": "Design",
-            "title": "Visual Hierarchy",
-            "link": ""
+            "kicker": "Feature",
+            "heading": "Step heading",
+            "description": "Describe this feature or benefit in a compelling way.",
+            "image_big": "shopify://shop_images/ChatGPT_Image_Feb_26_2026_at_01_32_23_AM.png",
+            "image_small": "shopify://shop_images/Create_a_professional_202602241643.jpg",
+            "btn_primary_label": "Explore details",
+            "btn_primary_url": "",
+            "btn_ghost_label": "View gallery",
+            "btn_ghost_url": ""
           }
         }
       },
       "block_order": [
-        "card_JwWWcx",
-        "card_QW4Mhc",
-        "card_YNfeLK",
-        "card_DJqpQQ"
+        "step_4NtUcp",
+        "step_7FLw6k",
+        "step_9gwWNR"
       ],
       "name": "Media Visual Experience",
       "settings": {
         "layout_mode": "scroll",
         "max_width": 1280,
-        "badge": "New",
-        "heading": "Unmatched <em>Excellence</em>",
-        "subtitle": "Layered media",
+        "eyebrow": "About This Product",
+        "heading": "Unmatched Excellence",
         "subheading": "Add a compelling description here.",
-        "cta_primary_label": "Get Started",
-        "cta_primary_url": "",
-        "cta_ghost_label": "Learn more",
-        "cta_ghost_url": "",
-        "show_scroll_hint": true,
         "bg_color": "#07080c",
         "text_color": "#f0f0f5",
-        "accent_color": "#6366f1",
-        "accent_color2": "#ec4899"
+        "accent_color": "#6366f1"
       }
     },
     "media_zoom_effect_xRpYWk": {
