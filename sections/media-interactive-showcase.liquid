@@ -1,575 +1,383 @@
 {% comment %}
   ┌─────────────────────────────────────────────────────────────────┐
-  │  Media Showcase — UkiyoProd                        │
-  │  Asymmetric interactive showcase with hover effects            │
-  │  Version: 1.0.0                                                 │
+  │  MEDIA INTERACTIVE SHOWCASE — UkiyoProd                        │
+  │  Bento grid layout with filter pills & hover effects           │
+  │  Version: 2.0.0                                                 │
   └─────────────────────────────────────────────────────────────────┘
 {% endcomment %}
 
 {%- liquid
-  assign section_id    = 'mis-' | append: section.id
-  assign interaction   = section.settings.interaction_mode
-  assign kicker        = section.settings.kicker
-  assign heading       = section.settings.heading
-  assign subheading    = section.settings.subheading
-  assign items         = section.blocks
+  assign section_id  = 'mis-' | append: section.id
+  assign layout_mode = section.settings.interaction_mode
+  assign kicker      = section.settings.kicker
+  assign heading     = section.settings.heading
+  assign subheading  = section.settings.subheading
+  assign items       = section.blocks
 -%}
 
 <style>
-  /* ── TOKENS ──────────────────────────────────────────────────── */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
   #{{ section_id }} {
-    --mis-bg:        {{ section.settings.bg_color }};
-    --mis-text:      {{ section.settings.text_color }};
-    --mis-accent:    {{ section.settings.accent_color }};
-    --mis-accent-r:  {{ section.settings.accent_color | color_extract: 'red' }};
-    --mis-accent-g:  {{ section.settings.accent_color | color_extract: 'green' }};
-    --mis-accent-b:  {{ section.settings.accent_color | color_extract: 'blue' }};
-    --mis-muted:     {{ section.settings.text_color | color_mix: section.settings.bg_color, 40 }};
-    --mis-border:    {{ section.settings.text_color | color_mix: section.settings.bg_color, 12 }};
-    --mis-card-bg:   {{ section.settings.card_bg_color }};
-    --mis-radius:    {{ section.settings.border_radius }}px;
-    --mis-ease:      cubic-bezier(.16,1,.3,1);
-    --mis-pad:       clamp(4rem, 8vw, 9rem);
+    --bg:      {{ section.settings.bg_color }};
+    --accent:  {{ section.settings.accent_color }};
+    --card-bg: {{ section.settings.card_bg_color }};
+    --text:    {{ section.settings.text_color }};
+    --muted:   {{ section.settings.text_color | color_mix: section.settings.bg_color, 40 }};
+    --ease:    cubic-bezier(.23,1,.32,1);
   }
 
   #{{ section_id }} *, #{{ section_id }} *::before, #{{ section_id }} *::after {
     box-sizing: border-box; margin: 0; padding: 0;
   }
 
-  /* ── SECTION ─────────────────────────────────────────────────── */
   #{{ section_id }} {
-    background: var(--mis-bg);
-    color: var(--mis-text);
-    padding: var(--mis-pad) max(1.5rem, 5vw);
-    position: relative;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    padding: clamp(3rem, 8vw, 5rem) clamp(1.5rem, 5vw, 5rem);
     overflow: hidden;
-    font-family: 'Syne', 'Helvetica Neue', sans-serif;
-  }
-
-  /* Ambient glow */
-  #{{ section_id }}::before {
-    content: '';
-    position: absolute;
-    width: 600px; height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(var(--mis-accent-r),var(--mis-accent-g),var(--mis-accent-b),.08) 0%, transparent 70%);
-    top: -200px; right: -100px;
-    pointer-events: none;
-  }
-
-  #{{ section_id }} .mis-inner {
-    max-width: {{ section.settings.max_width }}px;
-    margin: 0 auto;
-    position: relative; z-index: 1;
   }
 
   /* ── HEADER ──────────────────────────────────────────────────── */
-  .mis-header {
+  #{{ section_id }} .mis-header {
     display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
+    flex-direction: column;
     gap: 2rem;
-    margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
-    flex-wrap: wrap;
+    margin-bottom: 4rem;
+  }
+  @media (min-width: 768px) {
+    #{{ section_id }} .mis-header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
   }
 
-  .mis-header-left { max-width: 52ch; }
-
-  .mis-kicker {
-    display: inline-flex; align-items: center; gap: .6rem;
-    font-size: .68rem; font-weight: 700; letter-spacing: .2em;
-    text-transform: uppercase; color: var(--mis-accent);
+  #{{ section_id }} .mis-kicker {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: .7rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    display: block;
     margin-bottom: 1rem;
   }
-  .mis-kicker-dot {
-    width: 5px; height: 5px; border-radius: 50%;
-    background: var(--mis-accent);
-    box-shadow: 0 0 8px rgba(var(--mis-accent-r),var(--mis-accent-g),var(--mis-accent-b),.8);
+
+  #{{ section_id }} .mis-heading {
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -.03em;
+    margin-bottom: 1.25rem;
   }
 
-  .mis-heading {
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    font-weight: 800; line-height: 1.06;
-    letter-spacing: -.04em;
-    color: var(--mis-text);
-  }
-  .mis-heading em {
-    font-style: normal;
-    -webkit-text-stroke: 1.5px var(--mis-accent);
+  #{{ section_id }} .mis-heading .outline {
     color: transparent;
+    -webkit-text-stroke: 1.5px rgba(255,255,255,.8);
   }
 
-  .mis-subheading {
-    font-size: clamp(.85rem, 1.3vw, 1rem);
-    line-height: 1.7; color: var(--mis-muted);
-    max-width: 38ch;
+  #{{ section_id }} .mis-subheading {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 44ch;
   }
 
-  /* mode tabs */
-  .mis-mode-tabs {
-    display: flex; gap: .4rem; flex-shrink: 0;
+  /* ── FILTER PILLS ────────────────────────────────────────────── */
+  #{{ section_id }} .mis-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
     align-self: flex-start;
-    margin-top: .5rem;
   }
-  .mis-tab {
-    padding: .4rem .9rem;
-    border-radius: 999px;
-    font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+
+  #{{ section_id }} .mis-pill {
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.1);
+    padding: .5rem 1.25rem;
+    border-radius: 9999px;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .06em;
     text-transform: uppercase;
-    border: 1px solid var(--mis-border);
-    background: transparent; color: var(--mis-muted);
+    color: var(--text);
     cursor: pointer;
-    transition: all .25s var(--mis-ease);
+    transition: all .3s var(--ease);
   }
-  .mis-tab.is-active, .mis-tab:hover {
-    background: var(--mis-accent);
-    border-color: var(--mis-accent);
-    color: #fff;
+  #{{ section_id }} .mis-pill.is-active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #000;
+  }
+  #{{ section_id }} .mis-pill:hover:not(.is-active) {
+    background: rgba(255,255,255,.1);
   }
 
-  /* ── SHOWCASE GRID ───────────────────────────────────────────── */
-  .mis-grid {
+  /* ── BENTO GRID ──────────────────────────────────────────────── */
+  #{{ section_id }} .mis-bento {
     display: grid;
-    gap: 1.5px;
-    border-radius: var(--mis-radius);
-    overflow: hidden;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: minmax(150px, auto);
+    gap: 1.5rem;
   }
 
-  /* ASYMMETRIC mode: large left + 2 right stacked */
-  .mis-grid.mode--asymmetric {
-    grid-template-columns: 1.6fr 1fr;
-    grid-template-rows: auto;
-  }
-  .mis-grid.mode--asymmetric .mis-card:first-child {
-    grid-row: span 2;
-  }
+  /* ASYMMETRIC */
+  #{{ section_id }} .mis-bento.mode--asymmetric .mis-card:nth-child(1) { grid-column: span 8; grid-row: span 3; }
+  #{{ section_id }} .mis-bento.mode--asymmetric .mis-card:nth-child(2) { grid-column: span 4; grid-row: span 2; }
+  #{{ section_id }} .mis-bento.mode--asymmetric .mis-card:nth-child(3) { grid-column: span 4; grid-row: span 1; }
+  #{{ section_id }} .mis-bento.mode--asymmetric .mis-card:nth-child(4) { grid-column: span 6; grid-row: span 2; }
+  #{{ section_id }} .mis-bento.mode--asymmetric .mis-card:nth-child(5) { grid-column: span 6; grid-row: span 2; }
+  #{{ section_id }} .mis-bento.mode--asymmetric .mis-card:nth-child(n+6) { grid-column: span 4; grid-row: span 2; }
 
-  /* GRID mode: even 2x2 or 3-col */
-  .mis-grid.mode--grid {
-    grid-template-columns: repeat({{ section.settings.grid_cols }}, 1fr);
-  }
+  /* GRID */
+  #{{ section_id }} .mis-bento.mode--grid .mis-card { grid-column: span 4; grid-row: span 2; }
 
-  /* SPOTLIGHT mode: one big + small strip */
-  .mis-grid.mode--spotlight {
-    grid-template-columns: 2fr 1fr;
-  }
-  .mis-grid.mode--spotlight .mis-card:first-child {
-    grid-row: span 3;
-  }
+  /* SPOTLIGHT */
+  #{{ section_id }} .mis-bento.mode--spotlight .mis-card:nth-child(1) { grid-column: span 8; grid-row: span 4; }
+  #{{ section_id }} .mis-bento.mode--spotlight .mis-card:nth-child(n+2) { grid-column: span 4; grid-row: span 2; }
 
-  /* MASONRY mode: pinterest-style */
-  .mis-grid.mode--masonry {
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 180px;
-  }
-  .mis-grid.mode--masonry .mis-card:nth-child(1) { grid-row: span 2; }
-  .mis-grid.mode--masonry .mis-card:nth-child(4) { grid-row: span 2; }
+  /* MASONRY */
+  #{{ section_id }} .mis-bento.mode--masonry .mis-card:nth-child(1) { grid-column: span 4; grid-row: span 3; }
+  #{{ section_id }} .mis-bento.mode--masonry .mis-card:nth-child(2) { grid-column: span 4; grid-row: span 2; }
+  #{{ section_id }} .mis-bento.mode--masonry .mis-card:nth-child(3) { grid-column: span 4; grid-row: span 2; }
+  #{{ section_id }} .mis-bento.mode--masonry .mis-card:nth-child(4) { grid-column: span 6; grid-row: span 2; }
+  #{{ section_id }} .mis-bento.mode--masonry .mis-card:nth-child(5) { grid-column: span 6; grid-row: span 1; }
+  #{{ section_id }} .mis-bento.mode--masonry .mis-card:nth-child(n+6) { grid-column: span 4; grid-row: span 2; }
 
-  @media (max-width: 768px) {
-    .mis-grid.mode--asymmetric,
-    .mis-grid.mode--spotlight,
-    .mis-grid.mode--masonry { grid-template-columns: 1fr 1fr; }
-    .mis-grid.mode--asymmetric .mis-card:first-child,
-    .mis-grid.mode--spotlight .mis-card:first-child { grid-row: span 1; }
-    .mis-grid.mode--masonry .mis-card:nth-child(1),
-    .mis-grid.mode--masonry .mis-card:nth-child(4) { grid-row: span 1; }
-    .mis-grid.mode--grid { grid-template-columns: 1fr 1fr; }
+  /* Responsive */
+  @media (max-width: 1024px) {
+    #{{ section_id }} .mis-bento .mis-card { grid-column: span 6 !important; grid-row: span 2 !important; }
   }
-  @media (max-width: 480px) {
-    .mis-grid { grid-template-columns: 1fr !important; }
-    .mis-grid .mis-card { grid-row: span 1 !important; }
+  @media (max-width: 640px) {
+    #{{ section_id }} .mis-bento .mis-card { grid-column: span 12 !important; grid-row: span 2 !important; }
   }
 
   /* ── CARD ────────────────────────────────────────────────────── */
-  .mis-card {
+  #{{ section_id }} .mis-card {
     position: relative;
-    background: var(--mis-card-bg);
+    background: var(--card-bg);
+    border-radius: 1.5rem;
     overflow: hidden;
+    border: 1px solid rgba(255,255,255,.05);
+    transition: border-color .5s var(--ease), transform .5s var(--ease);
     cursor: pointer;
-    min-height: 220px;
-    isolation: isolate;
+    min-height: 200px;
+  }
+  #{{ section_id }} .mis-card:hover {
+    border-color: rgba(255,255,255,.2);
+    transform: translateY(-5px);
   }
 
-  /* image */
-  .mis-card-img {
+  #{{ section_id }} .mis-card-img {
     position: absolute; inset: 0;
     width: 100%; height: 100%;
     object-fit: cover;
-    transition: transform .8s var(--mis-ease), filter .6s var(--mis-ease);
-    will-change: transform;
+    opacity: .7;
+    transition: transform .7s var(--ease), opacity .7s var(--ease);
   }
-  .mis-card:hover .mis-card-img {
-    transform: scale(1.07);
-    filter: brightness(.75);
+  #{{ section_id }} .mis-card:hover .mis-card-img {
+    transform: scale(1.08);
+    opacity: 1;
   }
 
-  /* placeholder when no image */
-  .mis-card-placeholder {
+  #{{ section_id }} .mis-card-placeholder {
     position: absolute; inset: 0;
-    background: linear-gradient(135deg,
-      {{ section.settings.card_bg_color }} 0%,
-      {{ section.settings.card_bg_color | color_mix: section.settings.accent_color, 15 }} 100%
-    );
+    background: linear-gradient(135deg, #111 0%, #1a1a2e 100%);
   }
 
-  /* overlay gradient */
-  .mis-card-overlay {
-    position: absolute; inset: 0; z-index: 1;
-    background: linear-gradient(
-      to top,
-      rgba(0,0,0,.85) 0%,
-      rgba(0,0,0,.2) 50%,
-      transparent 100%
-    );
-    opacity: .6;
-    transition: opacity .5s var(--mis-ease);
-  }
-  .mis-card:hover .mis-card-overlay { opacity: 1; }
-
-  /* shine effect on hover */
-  .mis-card::after {
-    content: '';
-    position: absolute; inset: 0; z-index: 2;
-    background: linear-gradient(
-      105deg,
-      transparent 40%,
-      rgba(255,255,255,.06) 50%,
-      transparent 60%
-    );
-    transform: translateX(-100%);
-    transition: transform .7s var(--mis-ease);
-  }
-  .mis-card:hover::after { transform: translateX(100%); }
-
-  /* card content */
-  .mis-card-content {
-    position: absolute; inset: 0; z-index: 3;
-    display: flex; flex-direction: column;
+  #{{ section_id }} .mis-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,.9) 0%, rgba(0,0,0,0) 60%);
+    display: flex;
+    flex-direction: column;
     justify-content: flex-end;
-    padding: 1.5rem;
-    transform: translateY(6px);
-    transition: transform .5s var(--mis-ease);
-  }
-  .mis-card:hover .mis-card-content { transform: translateY(0); }
-
-  .mis-card-tag {
-    display: inline-flex; align-items: center; gap: .35rem;
-    font-size: .62rem; font-weight: 700; letter-spacing: .14em;
-    text-transform: uppercase; color: var(--mis-accent);
-    margin-bottom: .5rem;
-    opacity: 0; transform: translateY(8px);
-    transition: opacity .4s var(--mis-ease) .05s, transform .4s var(--mis-ease) .05s;
-  }
-  .mis-card:hover .mis-card-tag { opacity: 1; transform: translateY(0); }
-
-  .mis-card-title {
-    font-size: clamp(.95rem, 1.8vw, 1.25rem);
-    font-weight: 800; line-height: 1.15;
-    letter-spacing: -.02em; color: #fff;
-    margin-bottom: .4rem;
-  }
-
-  .mis-card-desc {
-    font-size: .8rem; line-height: 1.55;
-    color: rgba(255,255,255,.55);
-    max-width: 36ch;
-    opacity: 0; transform: translateY(10px);
-    transition: opacity .4s var(--mis-ease) .08s, transform .4s var(--mis-ease) .08s;
-  }
-  .mis-card:hover .mis-card-desc { opacity: 1; transform: translateY(0); }
-
-  /* arrow */
-  .mis-card-arrow {
-    position: absolute; top: 1.2rem; right: 1.2rem; z-index: 3;
-    width: 36px; height: 36px; border-radius: 50%;
-    background: rgba(255,255,255,.08);
-    border: 1px solid rgba(255,255,255,.15);
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; transform: scale(.8) rotate(-45deg);
-    transition: opacity .35s var(--mis-ease), transform .35s var(--mis-ease), background .25s;
-    backdrop-filter: blur(6px);
-  }
-  .mis-card:hover .mis-card-arrow {
-    opacity: 1; transform: scale(1) rotate(0deg);
-  }
-  .mis-card-arrow:hover { background: var(--mis-accent); border-color: var(--mis-accent); }
-  .mis-card-arrow svg { width: 14px; height: 14px; fill: none; stroke: #fff; stroke-width: 2; }
-
-  /* number badge */
-  .mis-card-num {
-    position: absolute; top: 1.2rem; left: 1.2rem; z-index: 3;
-    font-size: .62rem; font-weight: 900; letter-spacing: .1em;
-    color: rgba(255,255,255,.3);
-    font-variant-numeric: tabular-nums;
-    transition: color .3s;
-  }
-  .mis-card:hover .mis-card-num { color: var(--mis-accent); }
-
-  /* ── CURSOR FOLLOWER ─────────────────────────────────────────── */
-  .mis-cursor {
-    position: fixed; z-index: 9999;
-    width: 48px; height: 48px;
-    border-radius: 50%;
-    background: rgba(var(--mis-accent-r),var(--mis-accent-g),var(--mis-accent-b),.15);
-    border: 1.5px solid rgba(var(--mis-accent-r),var(--mis-accent-g),var(--mis-accent-b),.5);
+    padding: 2rem;
     pointer-events: none;
-    transform: translate(-50%,-50%) scale(0);
-    transition: transform .3s var(--mis-ease), opacity .3s;
-    display: flex; align-items: center; justify-content: center;
-    font-size: .6rem; font-weight: 800; letter-spacing: .1em;
-    text-transform: uppercase; color: var(--mis-accent);
-    backdrop-filter: blur(4px);
-    opacity: 0;
+    z-index: 1;
   }
-  .mis-cursor.is-visible { opacity: 1; transform: translate(-50%,-50%) scale(1); }
 
-  /* ── SCROLL REVEAL ───────────────────────────────────────────── */
+  #{{ section_id }} .mis-card-tag {
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: .5rem;
+    display: block;
+  }
+
+  #{{ section_id }} .mis-card-title {
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff;
+  }
+
+  #{{ section_id }} .mis-card-desc {
+    font-size: .82rem;
+    color: rgba(255,255,255,.5);
+    line-height: 1.55;
+    margin-top: .4rem;
+    max-width: 36ch;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity .4s var(--ease), transform .4s var(--ease);
+  }
+  #{{ section_id }} .mis-card:hover .mis-card-desc {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── FOOTER ──────────────────────────────────────────────────── */
+  #{{ section_id }} .mis-footer {
+    margin-top: 5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(255,255,255,.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: .7rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  #{{ section_id }} .mis-footer a { color: var(--muted); text-decoration: none; transition: color .2s; }
+  #{{ section_id }} .mis-footer a:hover { color: var(--text); }
+
+  /* ── REVEAL ──────────────────────────────────────────────────── */
   @media (prefers-reduced-motion: no-preference) {
-    .mis-reveal { opacity: 0; transform: translateY(28px); }
-    .mis-reveal.is-visible {
-      animation: mis-in .8s cubic-bezier(.16,1,.3,1) forwards;
-    }
-    .mis-reveal.d1 { animation-delay: .08s; }
-    .mis-reveal.d2 { animation-delay: .18s; }
-    .mis-reveal.d3 { animation-delay: .28s; }
-    @keyframes mis-in { to { opacity: 1; transform: translateY(0); } }
+    .mis-reveal { opacity: 0; transform: translateY(24px); }
+    .mis-reveal.is-in { animation: mis-fadein .8s cubic-bezier(.16,1,.3,1) forwards; }
+    .mis-reveal.d1 { animation-delay: .1s; }
+    .mis-reveal.d2 { animation-delay: .2s; }
+    .mis-reveal.d3 { animation-delay: .3s; }
+    @keyframes mis-fadein { to { opacity: 1; transform: none; } }
 
-    .mis-card {
+    #{{ section_id }} .mis-card {
       opacity: 0; transform: translateY(20px) scale(.98);
-      transition-property: opacity, transform;
-      transition-duration: .7s;
-      transition-timing-function: cubic-bezier(.16,1,.3,1);
+      transition: opacity .6s var(--ease), transform .6s var(--ease),
+                  border-color .5s var(--ease);
     }
-    .mis-card.is-visible { opacity: 1; transform: translateY(0) scale(1); }
-    {% for i in (1..10) %}
-    .mis-card:nth-child({{ i }}) { transition-delay: {{ i | times: 0.07 }}s; }
+    #{{ section_id }} .mis-card.is-in { opacity: 1; transform: translateY(0) scale(1); }
+    {% for i in (1..12) %}
+    #{{ section_id }} .mis-card:nth-child({{ i }}) { transition-delay: {{ i | times: 0.06 }}s; }
     {% endfor %}
   }
 </style>
 
 <section id="{{ section_id }}" class="media-interactive-showcase" data-section-id="{{ section.id }}">
+  <div style="max-width:{{ section.settings.max_width }}px;margin:0 auto;">
 
-  {%- comment %} Custom cursor {%- endcomment %}
-  <div class="mis-cursor" id="{{ section_id }}-cursor">View</div>
-
-  <div class="mis-inner">
-
-    {%- comment %} ── HEADER ──────────────────────────────────────── {%- endcomment %}
-    <div class="mis-header">
-      <div class="mis-header-left">
+    <header class="mis-header">
+      <div style="max-width:36rem;">
         {%- if kicker != blank -%}
-          <p class="mis-kicker mis-reveal">
-            <span class="mis-kicker-dot"></span>
-            {{ kicker }}
-          </p>
+          <span class="mis-kicker mis-reveal">• {{ kicker }}</span>
         {%- endif -%}
         {%- if heading != blank -%}
           <h2 class="mis-heading mis-reveal d1">{{ heading }}</h2>
         {%- endif -%}
         {%- if subheading != blank -%}
-          <p class="mis-subheading mis-reveal d2" style="margin-top:.8rem">{{ subheading }}</p>
+          <p class="mis-subheading mis-reveal d2">{{ subheading }}</p>
         {%- endif -%}
       </div>
 
-      {%- comment %} Interaction mode tabs {%- endcomment %}
-      <div class="mis-mode-tabs mis-reveal d3" data-mis-tabs>
-        <button class="mis-tab {% if interaction == 'asymmetric' %}is-active{% endif %}" data-mode="asymmetric">Asymmetric</button>
-        <button class="mis-tab {% if interaction == 'grid' %}is-active{% endif %}" data-mode="grid">Grid</button>
-        <button class="mis-tab {% if interaction == 'spotlight' %}is-active{% endif %}" data-mode="spotlight">Spotlight</button>
-        <button class="mis-tab {% if interaction == 'masonry' %}is-active{% endif %}" data-mode="masonry">Masonry</button>
-      </div>
-    </div>
+      <nav class="mis-filters mis-reveal d3" data-mis-filters>
+        <button class="mis-pill {% if layout_mode == 'asymmetric' %}is-active{% endif %}" data-mode="asymmetric">Asymmetric</button>
+        <button class="mis-pill {% if layout_mode == 'grid' %}is-active{% endif %}" data-mode="grid">Grid</button>
+        <button class="mis-pill {% if layout_mode == 'spotlight' %}is-active{% endif %}" data-mode="spotlight">Spotlight</button>
+        <button class="mis-pill {% if layout_mode == 'masonry' %}is-active{% endif %}" data-mode="masonry">Masonry</button>
+      </nav>
+    </header>
 
-    {%- comment %} ── GRID ─────────────────────────────────────────── {%- endcomment %}
-    <div
-      class="mis-grid mode--{{ interaction }}"
-      data-mis-grid
-      data-cols="{{ section.settings.grid_cols }}"
-    >
+    <main class="mis-bento mode--{{ layout_mode }}" data-mis-grid>
       {%- for block in items -%}
-        {%- liquid
-          assign num = forloop.index | prepend: '0'
-          if forloop.index < 10
-            assign num = '0' | append: forloop.index
-          endif
-        -%}
         <div
           class="mis-card"
           {{ block.shopify_attributes }}
-          data-mis-card
-          {% if block.settings.link != blank %}
-            onclick="window.location='{{ block.settings.link }}'"
-            role="link"
-            tabindex="0"
-          {% endif %}
+          {% if block.settings.link != blank %}onclick="window.location='{{ block.settings.link }}'" role="link" tabindex="0"{% endif %}
         >
           {%- if block.settings.image -%}
-            <img
-              class="mis-card-img"
-              src="{{ block.settings.image | image_url: width: 900 }}"
-              alt="{{ block.settings.title | escape }}"
-              loading="lazy"
-              width="900"
-            >
+            <img class="mis-card-img" src="{{ block.settings.image | image_url: width: 1000 }}" alt="{{ block.settings.title | escape }}" loading="lazy">
           {%- else -%}
             <div class="mis-card-placeholder"></div>
           {%- endif -%}
-
-          <div class="mis-card-overlay"></div>
-
-          <span class="mis-card-num">{{ num }}</span>
-
-          <div class="mis-card-content">
-            {%- if block.settings.tag != blank -%}
-              <span class="mis-card-tag">
-                <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="4"/></svg>
-                {{ block.settings.tag }}
-              </span>
-            {%- endif -%}
-            {%- if block.settings.title != blank -%}
-              <h3 class="mis-card-title">{{ block.settings.title }}</h3>
-            {%- endif -%}
-            {%- if block.settings.description != blank -%}
-              <p class="mis-card-desc">{{ block.settings.description }}</p>
-            {%- endif -%}
-          </div>
-
-          <div class="mis-card-arrow" aria-hidden="true">
-            <svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2 7h10M7 2l5 5-5 5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+          <div class="mis-card-overlay">
+            {%- if block.settings.tag != blank -%}<span class="mis-card-tag">{{ block.settings.tag }}</span>{%- endif -%}
+            {%- if block.settings.title != blank -%}<h3 class="mis-card-title">{{ block.settings.title }}</h3>{%- endif -%}
+            {%- if block.settings.description != blank -%}<p class="mis-card-desc">{{ block.settings.description }}</p>{%- endif -%}
           </div>
         </div>
       {%- else -%}
-        {%- comment %} Demo cards when no blocks added {%- endcomment %}
-        {%- assign demo_titles = 'Brand Identity,Motion Design,Digital Strategy,Web Experience,Visual Systems' | split: ',' -%}
-        {%- assign demo_tags = 'Branding,Motion,Strategy,Development,Design' | split: ',' -%}
+        {%- assign demo_titles = 'Brand Identity System,Campaign Film,Digital Experience,Growth Framework,Visual Systems' | split: ',' -%}
+        {%- assign demo_tags   = 'Branding,Motion,UX/UI,Strategy,Design' | split: ',' -%}
         {%- for i in (1..5) -%}
           {%- assign idx = forloop.index0 -%}
-          <div class="mis-card" data-mis-card>
+          <div class="mis-card">
             <div class="mis-card-placeholder"></div>
-            <div class="mis-card-overlay"></div>
-            <span class="mis-card-num">0{{ forloop.index }}</span>
-            <div class="mis-card-content">
-              <span class="mis-card-tag">
-                <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="4"/></svg>
-                {{ demo_tags[idx] }}
-              </span>
+            <div class="mis-card-overlay">
+              <span class="mis-card-tag">{{ demo_tags[idx] }}</span>
               <h3 class="mis-card-title">{{ demo_titles[idx] }}</h3>
-              <p class="mis-card-desc">Showcase your work with stunning visual presentation and interactive hover effects.</p>
-            </div>
-            <div class="mis-card-arrow" aria-hidden="true">
-              <svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 7h10M7 2l5 5-5 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              </svg>
             </div>
           </div>
         {%- endfor -%}
       {%- endfor -%}
-    </div>
+    </main>
+
+    {%- if section.settings.show_footer -%}
+      <footer class="mis-footer">
+        <div>&copy; {{ 'now' | date: '%Y' }} {{ section.settings.footer_brand }}</div>
+        <div style="display:flex;gap:1.5rem;">
+          {%- if section.settings.footer_link_1_label != blank -%}
+            <a href="{{ section.settings.footer_link_1 }}">{{ section.settings.footer_link_1_label }}</a>
+          {%- endif -%}
+          {%- if section.settings.footer_link_2_label != blank -%}
+            <a href="{{ section.settings.footer_link_2 }}">{{ section.settings.footer_link_2_label }}</a>
+          {%- endif -%}
+        </div>
+      </footer>
+    {%- endif -%}
 
   </div>
 </section>
 
 <script>
 (function() {
-  'use strict';
+  var sec  = document.getElementById('{{ section_id }}');
+  if (!sec) return;
+  var grid  = sec.querySelector('[data-mis-grid]');
+  var pills = sec.querySelectorAll('[data-mis-filters] .mis-pill');
+  var cards = sec.querySelectorAll('.mis-card');
 
-  var sectionEl = document.getElementById('{{ section_id }}');
-  if (!sectionEl) return;
-
-  var grid    = sectionEl.querySelector('[data-mis-grid]');
-  var tabs    = sectionEl.querySelectorAll('[data-mis-tabs] .mis-tab');
-  var cards   = sectionEl.querySelectorAll('[data-mis-card]');
-  var cursor  = document.getElementById('{{ section_id }}-cursor');
-  var cols    = '{{ section.settings.grid_cols }}';
-
-  /* ── Layout mode switcher ──────────────────────────────────── */
-  tabs.forEach(function(tab) {
-    tab.addEventListener('click', function() {
-      var mode = tab.dataset.mode;
-      tabs.forEach(function(t) { t.classList.remove('is-active'); });
-      tab.classList.add('is-active');
-
-      grid.className = 'mis-grid mode--' + mode;
-
-      // re-apply grid-cols for grid mode
-      if (mode === 'grid') {
-        grid.style.gridTemplateColumns = 'repeat(' + cols + ', 1fr)';
-      } else {
-        grid.style.gridTemplateColumns = '';
-      }
-
-      // re-trigger card reveals
+  pills.forEach(function(pill) {
+    pill.addEventListener('click', function() {
+      pills.forEach(function(p) { p.classList.remove('is-active'); });
+      pill.classList.add('is-active');
+      grid.className = 'mis-bento mode--' + pill.dataset.mode;
       cards.forEach(function(c) {
-        c.classList.remove('is-visible');
-        setTimeout(function() { c.classList.add('is-visible'); }, 50);
+        c.classList.remove('is-in');
+        requestAnimationFrame(function() { c.classList.add('is-in'); });
       });
     });
   });
 
-  /* ── Custom cursor ─────────────────────────────────────────── */
-  if (cursor && window.matchMedia('(pointer: fine)').matches) {
-    var mouseX = 0, mouseY = 0;
-    var cursorX = 0, cursorY = 0;
-    var raf;
-
-    document.addEventListener('mousemove', function(e) {
-      mouseX = e.clientX; mouseY = e.clientY;
-    });
-
-    function animCursor() {
-      cursorX += (mouseX - cursorX) * .12;
-      cursorY += (mouseY - cursorY) * .12;
-      cursor.style.left = cursorX + 'px';
-      cursor.style.top  = cursorY + 'px';
-      raf = requestAnimationFrame(animCursor);
-    }
-
-    sectionEl.addEventListener('mouseenter', function() {
-      cursor.classList.add('is-visible');
-      raf = requestAnimationFrame(animCursor);
-    });
-    sectionEl.addEventListener('mouseleave', function() {
-      cursor.classList.remove('is-visible');
-      cancelAnimationFrame(raf);
-    });
-  }
-
-  /* ── Scroll reveal ─────────────────────────────────────────── */
-  var revealEls = sectionEl.querySelectorAll('.mis-reveal, [data-mis-card]');
   var obs = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
-      if (e.isIntersecting) {
-        e.target.classList.add('is-visible');
-        obs.unobserve(e.target);
-      }
+      if (e.isIntersecting) { e.target.classList.add('is-in'); obs.unobserve(e.target); }
     });
-  }, { threshold: .1 });
-  revealEls.forEach(function(el) { obs.observe(el); });
+  }, { threshold: .08 });
 
-  /* ── Keyboard nav for cards ────────────────────────────────── */
-  cards.forEach(function(card) {
-    card.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') card.click();
-    });
-  });
-
-  /* Shopify theme editor */
-  if (window.Shopify && Shopify.designMode) {
-    document.addEventListener('shopify:section:load', function(e) {
-      var s = e.target.querySelector('.media-interactive-showcase');
-      if (s) { /* reinit if needed */ }
-    });
-  }
+  sec.querySelectorAll('.mis-reveal, .mis-card').forEach(function(el) { obs.observe(el); });
 })();
 </script>
 
 {% schema %}
 {
-"name": "Media Showcase",
+  "name": "Media Showcase",
   "tag": "section",
-  "class": "media-interactive-showcase-section",
+  "class": "media-showcase-section",
   "max_blocks": 12,
   "settings": [
     {
@@ -579,32 +387,20 @@
     {
       "type": "select",
       "id": "interaction_mode",
-      "label": "Default layout mode",
+      "label": "Default layout",
       "options": [
-        { "value": "asymmetric", "label": "Asymmetric (editorial)" },
-        { "value": "grid",       "label": "Grid (even)" },
-        { "value": "spotlight",  "label": "Spotlight (one hero)" },
-        { "value": "masonry",    "label": "Masonry (pinterest)" }
+        { "value": "asymmetric", "label": "Asymmetric" },
+        { "value": "grid",       "label": "Grid" },
+        { "value": "spotlight",  "label": "Spotlight" },
+        { "value": "masonry",    "label": "Masonry" }
       ],
       "default": "asymmetric"
     },
     {
       "type": "range",
-      "id": "grid_cols",
-      "label": "Grid columns (Grid mode)",
-      "min": 2, "max": 4, "step": 1, "default": 3
-    },
-    {
-      "type": "range",
       "id": "max_width",
-      "label": "Max section width (px)",
+      "label": "Max width (px)",
       "min": 800, "max": 1800, "step": 40, "default": 1400
-    },
-    {
-      "type": "range",
-      "id": "border_radius",
-      "label": "Card corner radius (px)",
-      "min": 0, "max": 32, "step": 2, "default": 0
     },
     {
       "type": "header",
@@ -613,20 +409,58 @@
     {
       "type": "text",
       "id": "kicker",
-      "label": "Kicker / overline",
+      "label": "Kicker",
       "default": "Our Work"
     },
     {
-      "type": "richtext",
+      "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "<p>Stories that <em>move</em> people</p>"
+      "default": "Stories that move people"
     },
     {
       "type": "textarea",
       "id": "subheading",
       "label": "Subheading",
       "default": "A curated showcase of projects built at the intersection of craft and strategy."
+    },
+    {
+      "type": "header",
+      "content": "Footer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_footer",
+      "label": "Show footer",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "footer_brand",
+      "label": "Brand name",
+      "default": "Design Collective"
+    },
+    {
+      "type": "text",
+      "id": "footer_link_1_label",
+      "label": "Link 1 label",
+      "default": "Instagram"
+    },
+    {
+      "type": "url",
+      "id": "footer_link_1",
+      "label": "Link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "footer_link_2_label",
+      "label": "Link 2 label",
+      "default": "LinkedIn"
+    },
+    {
+      "type": "url",
+      "id": "footer_link_2",
+      "label": "Link 2 URL"
     },
     {
       "type": "header",
@@ -642,19 +476,19 @@
       "type": "color",
       "id": "card_bg_color",
       "label": "Card background",
-      "default": "#141414"
+      "default": "#121212"
     },
     {
       "type": "color",
       "id": "text_color",
       "label": "Text",
-      "default": "#f0f0f0"
+      "default": "#ffffff"
     },
     {
       "type": "color",
       "id": "accent_color",
       "label": "Accent",
-      "default": "#00d4ff"
+      "default": "#00e5ff"
     }
   ],
   "blocks": [
@@ -670,7 +504,7 @@
         {
           "type": "text",
           "id": "tag",
-          "label": "Tag / category",
+          "label": "Tag",
           "default": "Branding"
         },
         {
@@ -682,8 +516,7 @@
         {
           "type": "textarea",
           "id": "description",
-          "label": "Description",
-          "default": "A short description of this project or content piece."
+          "label": "Description"
         },
         {
           "type": "url",
@@ -698,10 +531,10 @@
       "name": "Media Showcase",
       "blocks": [
         { "type": "showcase_item", "settings": { "tag": "Branding", "title": "Brand Identity System" } },
-        { "type": "showcase_item", "settings": { "tag": "Motion", "title": "Campaign Film" } },
-        { "type": "showcase_item", "settings": { "tag": "Web", "title": "Digital Experience" } },
+        { "type": "showcase_item", "settings": { "tag": "Fashion", "title": "Modern Textile Design" } },
+        { "type": "showcase_item", "settings": { "tag": "UX/UI", "title": "Digital Experience" } },
         { "type": "showcase_item", "settings": { "tag": "Strategy", "title": "Growth Framework" } },
-        { "type": "showcase_item", "settings": { "tag": "Design", "title": "Visual Systems" } }
+        { "type": "showcase_item", "settings": { "tag": "Motion", "title": "Visual Systems" } }
       ]
     }
   ]
