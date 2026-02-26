@@ -592,19 +592,21 @@
         });
       }
 
-      if (bigPlay) {
-        bigPlay.addEventListener('click', function() {
-          spinner && spinner.classList.add('is-loading');
-          if (window.YT && YT.Player) {
-            if (!ready) buildYT(); else player.playVideo();
-          } else {
-            var tag = document.createElement('script');
-            tag.src = 'https://www.youtube.com/iframe_api';
-            document.head.appendChild(tag);
-            window.onYouTubeIframeAPIReady = buildYT;
-          }
-        });
+     if (bigPlay) {
+  bigPlay.addEventListener('click', function() {
+    spinner && spinner.classList.add('is-loading');
+    if (window.YT && window.YT.Player) {
+      buildYT();
+    } else {
+      window.onYouTubeIframeAPIReady = buildYT;
+      if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
+        var tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        document.head.appendChild(tag);
       }
+    }
+  });
+}
       return;
     }
 
