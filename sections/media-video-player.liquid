@@ -1,0 +1,932 @@
+{% comment %}
+  ┌─────────────────────────────────────────────────────────────────┐
+  │  MEDIA VIDEO PLAYER — UkiyoProd                                 │
+  │  Advanced video section with custom controls & layout modes     │
+  │  Version: 1.0.0                                                 │
+  └─────────────────────────────────────────────────────────────────┘
+{% endcomment %}
+
+{%- liquid
+  assign section_id   = 'mvp-' | append: section.id
+  assign layout_mode  = section.settings.layout_mode
+  assign video_url    = section.settings.video_url
+  assign video_file   = section.settings.video_file
+  assign poster_img   = section.settings.poster_image
+  assign video_type   = section.settings.video_type
+  assign show_badge   = section.settings.show_badge
+  assign badge_text   = section.settings.badge_text
+  assign kicker       = section.settings.kicker
+  assign heading      = section.settings.heading
+  assign subheading   = section.settings.subheading
+  assign tag_label    = section.settings.tag_label
+  assign autoplay     = section.settings.autoplay
+  assign loop         = section.settings.loop
+  assign muted        = section.settings.muted
+  assign color_scheme = section.settings.color_scheme
+-%}
+
+<style>
+  /* ── TOKENS ─────────────────────────────────────────────────── */
+  #{{ section_id }} {
+    --mvp-bg:          {{ section.settings.bg_color }};
+    --mvp-text:        {{ section.settings.text_color }};
+    --mvp-accent:      {{ section.settings.accent_color }};
+    --mvp-accent-rgb:  {{ section.settings.accent_color | color_extract: 'red' }}, {{ section.settings.accent_color | color_extract: 'green' }}, {{ section.settings.accent_color | color_extract: 'blue' }};
+    --mvp-muted:       {{ section.settings.text_color | color_mix: section.settings.bg_color, 45 }};
+    --mvp-border:      {{ section.settings.text_color | color_mix: section.settings.bg_color, 15 }};
+    --mvp-radius:      {{ section.settings.border_radius }}px;
+    --mvp-gap:         clamp(2rem, 5vw, 5rem);
+    --mvp-section-pad: clamp(4rem, 8vw, 9rem);
+    --mvp-ctrl-h:      52px;
+    --mvp-ease:        cubic-bezier(.16,1,.3,1);
+  }
+
+  /* ── RESET / BASE ────────────────────────────────────────────── */
+  #{{ section_id }} *, #{{ section_id }} *::before, #{{ section_id }} *::after {
+    box-sizing: border-box; margin: 0; padding: 0;
+  }
+
+  /* ── SECTION WRAPPER ─────────────────────────────────────────── */
+  #{{ section_id }} {
+    background: var(--mvp-bg);
+    color: var(--mvp-text);
+    padding: var(--mvp-section-pad) max(1.5rem, 5vw);
+    overflow: hidden;
+    position: relative;
+    font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  /* decorative grain overlay */
+  #{{ section_id }}::before {
+    content: '';
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    opacity: .025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+  }
+
+  #{{ section_id }} .mvp-inner {
+    position: relative; z-index: 1;
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+  }
+
+  /* ── LAYOUT MODES ────────────────────────────────────────────── */
+
+  /* CINEMATIC — full-width stacked */
+  #{{ section_id }}.layout--cinematic .mvp-grid {
+    display: flex; flex-direction: column; gap: var(--mvp-gap);
+  }
+  #{{ section_id }}.layout--cinematic .mvp-content {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    flex-wrap: wrap; gap: 1.5rem;
+  }
+  #{{ section_id }}.layout--cinematic .mvp-meta { max-width: 52ch; }
+  #{{ section_id }}.layout--cinematic .mvp-actions { flex-shrink: 0; }
+
+  /* SPLIT — 50/50 side by side */
+  #{{ section_id }}.layout--split .mvp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--mvp-gap);
+    align-items: center;
+  }
+
+  /* ASYMMETRIC — 60/40 editorial offset */
+  #{{ section_id }}.layout--asymmetric .mvp-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--mvp-gap);
+    align-items: center;
+  }
+  #{{ section_id }}.layout--asymmetric .mvp-content {
+    padding-left: clamp(0px, 2vw, 2rem);
+  }
+
+  /* REVERSE — content left, video right */
+  #{{ section_id }}.layout--reverse .mvp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: var(--mvp-gap);
+    align-items: center;
+  }
+  #{{ section_id }}.layout--reverse .mvp-video-wrap { order: 2; }
+  #{{ section_id }}.layout--reverse .mvp-content    { order: 1; }
+
+  /* responsive collapse */
+  @media (max-width: 768px) {
+    #{{ section_id }}.layout--split .mvp-grid,
+    #{{ section_id }}.layout--asymmetric .mvp-grid,
+    #{{ section_id }}.layout--reverse .mvp-grid {
+      grid-template-columns: 1fr;
+    }
+    #{{ section_id }}.layout--reverse .mvp-video-wrap,
+    #{{ section_id }}.layout--reverse .mvp-content { order: unset; }
+  }
+
+  /* ── CONTENT BLOCK ───────────────────────────────────────────── */
+  .mvp-kicker {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-size: .7rem; font-weight: 700; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--mvp-accent);
+    margin-bottom: 1.2rem;
+  }
+  .mvp-kicker-line {
+    display: inline-block; width: 2rem; height: 1.5px;
+    background: var(--mvp-accent);
+  }
+
+  .mvp-heading {
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 800; line-height: 1.08;
+    letter-spacing: -.03em;
+    color: var(--mvp-text);
+    margin-bottom: 1rem;
+  }
+  .mvp-heading em {
+    font-style: normal;
+    color: var(--mvp-accent);
+  }
+
+  .mvp-subheading {
+    font-size: clamp(.9rem, 1.4vw, 1.05rem);
+    line-height: 1.65; color: var(--mvp-muted);
+    max-width: 42ch;
+    margin-bottom: 2rem;
+  }
+
+  .mvp-tag {
+    display: inline-flex; align-items: center; gap: .4rem;
+    padding: .3rem .75rem; border-radius: 999px;
+    font-size: .7rem; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase;
+    border: 1px solid var(--mvp-border);
+    color: var(--mvp-muted);
+    margin-bottom: 2rem;
+  }
+  .mvp-tag-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--mvp-accent);
+    animation: mvp-pulse 2s ease-in-out infinite;
+  }
+  @keyframes mvp-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: .5; transform: scale(.7); }
+  }
+
+  /* ── VIDEO WRAPPER ───────────────────────────────────────────── */
+  .mvp-video-wrap {
+    position: relative;
+    border-radius: var(--mvp-radius);
+    overflow: hidden;
+    background: #000;
+    aspect-ratio: 16 / 9;
+    box-shadow: 0 32px 80px rgba(0,0,0,.35), 0 0 0 1px var(--mvp-border);
+  }
+
+  /* badge */
+  .mvp-badge {
+    position: absolute; top: 1rem; left: 1rem; z-index: 10;
+    padding: .3rem .75rem;
+    border-radius: 999px;
+    font-size: .65rem; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase;
+    background: var(--mvp-accent);
+    color: #fff;
+  }
+
+  /* native video / iframe */
+  .mvp-video-el,
+  .mvp-iframe {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; border: none;
+  }
+
+  /* poster overlay */
+  .mvp-poster {
+    position: absolute; inset: 0; z-index: 2;
+    background-size: cover; background-position: center;
+    transition: opacity .6s var(--mvp-ease);
+  }
+  .mvp-poster.is-hidden { opacity: 0; pointer-events: none; }
+
+  /* big play button */
+  .mvp-play-btn {
+    position: absolute; inset: 0; z-index: 3;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; background: transparent; border: none;
+    transition: opacity .4s var(--mvp-ease);
+  }
+  .mvp-play-btn.is-hidden { opacity: 0; pointer-events: none; }
+
+  .mvp-play-circle {
+    width: clamp(56px, 8vw, 80px);
+    height: clamp(56px, 8vw, 80px);
+    border-radius: 50%;
+    background: var(--mvp-accent);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform .3s var(--mvp-ease), box-shadow .3s var(--mvp-ease);
+    box-shadow: 0 8px 32px rgba(var(--mvp-accent-rgb),.45);
+  }
+  .mvp-play-btn:hover .mvp-play-circle {
+    transform: scale(1.1);
+    box-shadow: 0 12px 48px rgba(var(--mvp-accent-rgb),.6);
+  }
+  .mvp-play-circle svg { width: 28%; margin-left: 6%; fill: #fff; }
+
+  /* ── CUSTOM CONTROLS ─────────────────────────────────────────── */
+  .mvp-controls {
+    position: absolute; bottom: 0; left: 0; right: 0; z-index: 5;
+    padding: .75rem 1rem .75rem;
+    background: linear-gradient(to top, rgba(0,0,0,.85) 0%, transparent 100%);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity .3s var(--mvp-ease), transform .3s var(--mvp-ease);
+    display: flex; flex-direction: column; gap: .5rem;
+  }
+  .mvp-video-wrap:hover .mvp-controls,
+  .mvp-video-wrap.is-playing .mvp-controls { opacity: 1; transform: translateY(0); }
+
+  /* progress bar */
+  .mvp-progress-track {
+    width: 100%; height: 3px; border-radius: 99px;
+    background: rgba(255,255,255,.2);
+    cursor: pointer; position: relative;
+    transition: height .2s;
+  }
+  .mvp-progress-track:hover { height: 5px; }
+
+  .mvp-progress-fill {
+    height: 100%; border-radius: 99px;
+    background: var(--mvp-accent);
+    width: 0%; pointer-events: none;
+    position: relative;
+    transition: width .1s linear;
+  }
+  .mvp-progress-fill::after {
+    content: '';
+    position: absolute; right: -5px; top: 50%;
+    transform: translateY(-50%);
+    width: 11px; height: 11px; border-radius: 50%;
+    background: #fff;
+    opacity: 0;
+    transition: opacity .2s;
+  }
+  .mvp-progress-track:hover .mvp-progress-fill::after { opacity: 1; }
+
+  /* controls row */
+  .mvp-ctrl-row {
+    display: flex; align-items: center; gap: .5rem;
+  }
+
+  .mvp-ctrl-btn {
+    background: none; border: none; cursor: pointer; padding: .4rem;
+    color: rgba(255,255,255,.8); line-height: 0;
+    border-radius: 6px;
+    transition: color .2s, background .2s;
+    flex-shrink: 0;
+  }
+  .mvp-ctrl-btn:hover { color: #fff; background: rgba(255,255,255,.1); }
+  .mvp-ctrl-btn svg { width: 18px; height: 18px; fill: currentColor; }
+
+  .mvp-volume-wrap {
+    display: flex; align-items: center; gap: .4rem;
+  }
+  .mvp-volume-slider {
+    -webkit-appearance: none; appearance: none;
+    width: 64px; height: 3px; border-radius: 99px;
+    background: rgba(255,255,255,.25); cursor: pointer; outline: none;
+    transition: width .2s var(--mvp-ease);
+  }
+  .mvp-volume-wrap:hover .mvp-volume-slider { width: 80px; }
+  .mvp-volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 12px; height: 12px;
+    border-radius: 50%; background: #fff; cursor: pointer;
+  }
+
+  .mvp-time {
+    font-size: .72rem; font-weight: 500; color: rgba(255,255,255,.7);
+    letter-spacing: .04em; font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+  }
+
+  .mvp-spacer { flex: 1; }
+
+  .mvp-quality-btn {
+    font-size: .65rem; font-weight: 700; letter-spacing: .06em;
+    padding: .2rem .45rem; border-radius: 4px;
+    background: rgba(255,255,255,.12); color: rgba(255,255,255,.7);
+    border: 1px solid rgba(255,255,255,.15); cursor: pointer;
+    transition: background .2s, color .2s;
+  }
+  .mvp-quality-btn:hover { background: rgba(255,255,255,.22); color: #fff; }
+
+  /* ── YOUTUBE / VIMEO WRAPPER ─────────────────────────────────── */
+  .mvp-embed-wrap {
+    position: absolute; inset: 0; z-index: 1;
+    pointer-events: none;
+  }
+  .mvp-embed-wrap.is-active { pointer-events: all; }
+
+  /* ── LOADING SPINNER ─────────────────────────────────────────── */
+  .mvp-spinner {
+    position: absolute; inset: 0; z-index: 4;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity .3s; pointer-events: none;
+  }
+  .mvp-spinner.is-loading { opacity: 1; }
+  .mvp-spinner-ring {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 2.5px solid rgba(255,255,255,.2);
+    border-top-color: var(--mvp-accent);
+    animation: mvp-spin .7s linear infinite;
+  }
+  @keyframes mvp-spin { to { transform: rotate(360deg); } }
+
+  /* ── ANIMATION: section reveal ───────────────────────────────── */
+  @media (prefers-reduced-motion: no-preference) {
+    .mvp-animate { opacity: 0; transform: translateY(24px); }
+    .mvp-animate.is-visible {
+      animation: mvp-reveal .8s var(--mvp-ease) forwards;
+    }
+    .mvp-animate.delay-1 { animation-delay: .1s; }
+    .mvp-animate.delay-2 { animation-delay: .2s; }
+    .mvp-animate.delay-3 { animation-delay: .32s; }
+    .mvp-animate.delay-4 { animation-delay: .48s; }
+
+    @keyframes mvp-reveal {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  }
+</style>
+
+<section
+  id="{{ section_id }}"
+  class="media-video-player layout--{{ layout_mode }}"
+  data-section-id="{{ section.id }}"
+  data-video-type="{{ video_type }}"
+>
+  <div class="mvp-inner">
+    <div class="mvp-grid">
+
+      {%- comment %} ── VIDEO COLUMN ──────────────────────────────── {% endcomment %}
+      <div class="mvp-video-wrap mvp-animate" data-mvp-player>
+
+        {%- if show_badge and badge_text != blank -%}
+          <div class="mvp-badge">{{ badge_text }}</div>
+        {%- endif -%}
+
+        {%- comment %} NATIVE VIDEO {%- endcomment %}
+        {%- if video_type == 'native' -%}
+          {%- if video_file -%}
+            <video
+              class="mvp-video-el"
+              data-mvp-video
+              {% if autoplay %}autoplay{% endif %}
+              {% if loop %}loop{% endif %}
+              {% if muted or autoplay %}muted{% endif %}
+              playsinline
+              preload="metadata"
+              {% if poster_img %}poster="{{ poster_img | image_url: width: 1200 }}"{% endif %}
+            >
+              <source src="{{ video_file }}" type="video/mp4">
+            </video>
+          {%- endif -%}
+
+        {%- comment %} YOUTUBE / VIMEO {%- endcomment %}
+        {%- elsif video_type == 'youtube' or video_type == 'vimeo' -%}
+          <div class="mvp-embed-wrap" data-mvp-embed></div>
+        {%- endif -%}
+
+        {%- comment %} POSTER OVERLAY {%- endcomment %}
+        {%- if poster_img and video_type != 'native' or video_type == 'native' and poster_img -%}
+          <div
+            class="mvp-poster"
+            data-mvp-poster
+            style="background-image: url('{{ poster_img | image_url: width: 1200 }}')"
+          ></div>
+        {%- endif -%}
+
+        {%- comment %} BIG PLAY BUTTON {%- endcomment %}
+        {%- unless autoplay -%}
+          <button class="mvp-play-btn" data-mvp-bigplay aria-label="Play video">
+            <span class="mvp-play-circle">
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 2.5l10 5.5-10 5.5V2.5z"/>
+              </svg>
+            </span>
+          </button>
+        {%- endunless -%}
+
+        {%- comment %} SPINNER {%- endcomment %}
+        <div class="mvp-spinner" data-mvp-spinner>
+          <div class="mvp-spinner-ring"></div>
+        </div>
+
+        {%- comment %} CUSTOM CONTROLS (native video only) {%- endcomment %}
+        {%- if video_type == 'native' -%}
+          <div class="mvp-controls" data-mvp-controls>
+            <div class="mvp-progress-track" data-mvp-progress-track>
+              <div class="mvp-progress-fill" data-mvp-progress-fill></div>
+            </div>
+            <div class="mvp-ctrl-row">
+
+              <!-- Play/Pause -->
+              <button class="mvp-ctrl-btn" data-mvp-playpause aria-label="Play/Pause">
+                <svg data-icon="play" viewBox="0 0 16 16"><path d="M3 2.5l10 5.5-10 5.5V2.5z"/></svg>
+                <svg data-icon="pause" viewBox="0 0 16 16" style="display:none"><path d="M4 2h2.5v12H4V2zm5.5 0H12v12H9.5V2z"/></svg>
+              </button>
+
+              <!-- Volume -->
+              <div class="mvp-volume-wrap">
+                <button class="mvp-ctrl-btn" data-mvp-mute aria-label="Mute/Unmute">
+                  <svg data-icon="vol" viewBox="0 0 16 16"><path d="M9 2l-5 4H1v4h3l5 4V2zM11.5 5.5a3 3 0 010 5M13.5 3.5a6 6 0 010 9"/></svg>
+                  <svg data-icon="muted" viewBox="0 0 16 16" style="display:none"><path d="M9 2l-5 4H1v4h3l5 4V2zM12 6l3 4m0-4l-3 4"/></svg>
+                </button>
+                <input class="mvp-volume-slider" data-mvp-volume type="range" min="0" max="1" step=".05" value="{{ muted | default: 0 | ternary: 0, 1 }}">
+              </div>
+
+              <!-- Time -->
+              <span class="mvp-time" data-mvp-time>0:00 / 0:00</span>
+
+              <div class="mvp-spacer"></div>
+
+              <!-- Fullscreen -->
+              <button class="mvp-ctrl-btn" data-mvp-fullscreen aria-label="Fullscreen">
+                <svg data-icon="fs" viewBox="0 0 16 16"><path d="M1 1h5v2H3v3H1V1zm9 0h5v5h-2V3h-3V1zM1 10h2v3h3v2H1v-5zm12 3h-3v2h5v-5h-2v3z"/></svg>
+                <svg data-icon="exit-fs" viewBox="0 0 16 16" style="display:none"><path d="M6 1v5H1V4h3V1h2zm4 0h2v3h3v2h-5V1zM1 10h5v5H4v-3H1v-2zm9 3v3h-2v-5h5v2h-3z"/></svg>
+              </button>
+
+            </div>
+          </div>
+        {%- endif -%}
+
+      </div><!-- /video-wrap -->
+
+      {%- comment %} ── CONTENT COLUMN ────────────────────────────── {% endcomment %}
+      {%- unless layout_mode == 'cinematic' -%}
+      <div class="mvp-content">
+        {%- if kicker != blank -%}
+          <p class="mvp-kicker mvp-animate delay-1">
+            <span class="mvp-kicker-line"></span>
+            {{ kicker }}
+          </p>
+        {%- endif -%}
+
+        {%- if heading != blank -%}
+          <h2 class="mvp-heading mvp-animate delay-2">{{ heading }}</h2>
+        {%- endif -%}
+
+        {%- if subheading != blank -%}
+          <p class="mvp-subheading mvp-animate delay-3">{{ subheading }}</p>
+        {%- endif -%}
+
+        {%- if tag_label != blank -%}
+          <div class="mvp-tag mvp-animate delay-4">
+            <span class="mvp-tag-dot"></span>
+            {{ tag_label }}
+          </div>
+        {%- endif -%}
+      </div>
+      {%- endunless -%}
+
+    </div><!-- /grid -->
+
+    {%- comment %} ── CINEMATIC: content below video ───────────────── {% endcomment %}
+    {%- if layout_mode == 'cinematic' -%}
+      <div class="mvp-content mvp-animate delay-2" style="margin-top: var(--mvp-gap);">
+        <div class="mvp-meta">
+          {%- if kicker != blank -%}
+            <p class="mvp-kicker"><span class="mvp-kicker-line"></span>{{ kicker }}</p>
+          {%- endif -%}
+          {%- if heading != blank -%}<h2 class="mvp-heading">{{ heading }}</h2>{%- endif -%}
+          {%- if subheading != blank -%}<p class="mvp-subheading">{{ subheading }}</p>{%- endif -%}
+        </div>
+        {%- if tag_label != blank -%}
+          <div class="mvp-actions">
+            <div class="mvp-tag"><span class="mvp-tag-dot"></span>{{ tag_label }}</div>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+  </div><!-- /inner -->
+</section>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── helpers ──────────────────────────────────────────────── */
+  function fmt(s) {
+    s = Math.floor(s || 0);
+    const m = Math.floor(s / 60), sec = s % 60;
+    return m + ':' + String(sec).padStart(2,'0');
+  }
+
+  function initPlayer(section) {
+    const type  = section.dataset.videoType;
+    const video = section.querySelector('[data-mvp-video]');
+    const wrap  = section.querySelector('[data-mvp-player]');
+    if (!wrap) return;
+
+    const poster      = section.querySelector('[data-mvp-poster]');
+    const bigPlay     = section.querySelector('[data-mvp-bigplay]');
+    const spinner     = section.querySelector('[data-mvp-spinner]');
+    const controls    = section.querySelector('[data-mvp-controls]');
+    const playPauseBtn= section.querySelector('[data-mvp-playpause]');
+    const muteBtn     = section.querySelector('[data-mvp-mute]');
+    const volumeSlider= section.querySelector('[data-mvp-volume]');
+    const timeEl      = section.querySelector('[data-mvp-time]');
+    const progressTrack = section.querySelector('[data-mvp-progress-track]');
+    const progressFill  = section.querySelector('[data-mvp-progress-fill]');
+    const fsBtn       = section.querySelector('[data-mvp-fullscreen]');
+    const embedWrap   = section.querySelector('[data-mvp-embed]');
+
+    /* ── YouTube embed ───────────────────────────────────────── */
+    if (type === 'youtube') {
+      const rawUrl  = {{ video_url | json }};
+      const match   = rawUrl ? rawUrl.match(/(?:v=|youtu\.be\/)([^&?/]+)/) : null;
+      const videoId = match ? match[1] : null;
+      if (!videoId) return;
+
+      let player, ready = false;
+
+      function buildYT() {
+        const iframe = document.createElement('iframe');
+        iframe.className = 'mvp-iframe';
+        iframe.allow = 'autoplay; encrypted-media; fullscreen';
+        iframe.id = 'yt-' + section.id;
+        embedWrap.appendChild(iframe);
+
+        player = new YT.Player(iframe, {
+          videoId: videoId,
+          playerVars: {
+            autoplay: 0, controls: 0, rel: 0, modestbranding: 1,
+            iv_load_policy: 3, disablekb: 1, enablejsapi: 1,
+            {% if muted %}mute: 1{% endif %}
+          },
+          events: {
+            onReady: function() {
+              ready = true;
+              spinner && spinner.classList.remove('is-loading');
+            },
+            onStateChange: function(e) {
+              if (e.data === YT.PlayerState.PLAYING) {
+                poster && poster.classList.add('is-hidden');
+                bigPlay && bigPlay.classList.add('is-hidden');
+                wrap.classList.add('is-playing');
+                embedWrap.classList.add('is-active');
+              }
+              if (e.data === YT.PlayerState.ENDED || e.data === YT.PlayerState.PAUSED) {
+                wrap.classList.remove('is-playing');
+              }
+            }
+          }
+        });
+      }
+
+      if (bigPlay) {
+        bigPlay.addEventListener('click', function() {
+          spinner && spinner.classList.add('is-loading');
+          if (window.YT && YT.Player) {
+            if (!ready) buildYT(); else player.playVideo();
+          } else {
+            var tag = document.createElement('script');
+            tag.src = 'https://www.youtube.com/iframe_api';
+            document.head.appendChild(tag);
+            window.onYouTubeIframeAPIReady = buildYT;
+          }
+        });
+      }
+      return;
+    }
+
+    /* ── Vimeo embed ─────────────────────────────────────────── */
+    if (type === 'vimeo') {
+      const rawUrl = {{ video_url | json }};
+      const match  = rawUrl ? rawUrl.match(/vimeo\.com\/(\d+)/) : null;
+      const videoId = match ? match[1] : null;
+      if (!videoId) return;
+
+      if (bigPlay) {
+        bigPlay.addEventListener('click', function() {
+          spinner && spinner.classList.add('is-loading');
+          const iframe = document.createElement('iframe');
+          iframe.className = 'mvp-iframe';
+          iframe.src = 'https://player.vimeo.com/video/' + videoId + '?autoplay=1&color={{ section.settings.accent_color | remove: "#" }}{% if muted %}&muted=1{% endif %}';
+          iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+          embedWrap.appendChild(iframe);
+          embedWrap.classList.add('is-active');
+          poster && poster.classList.add('is-hidden');
+          bigPlay.classList.add('is-hidden');
+          spinner && setTimeout(function(){ spinner.classList.remove('is-loading'); }, 1200);
+        });
+      }
+      return;
+    }
+
+    /* ── Native video ────────────────────────────────────────── */
+    if (!video) return;
+
+    let isPlaying = false;
+
+    function setPlayIcon(playing) {
+      if (!playPauseBtn) return;
+      playPauseBtn.querySelector('[data-icon="play"]').style.display  = playing ? 'none' : '';
+      playPauseBtn.querySelector('[data-icon="pause"]').style.display = playing ? '' : 'none';
+    }
+
+    function play() {
+      video.play();
+      isPlaying = true;
+      wrap.classList.add('is-playing');
+      poster && poster.classList.add('is-hidden');
+      bigPlay && bigPlay.classList.add('is-hidden');
+      setPlayIcon(true);
+    }
+
+    function pause() {
+      video.pause();
+      isPlaying = false;
+      wrap.classList.remove('is-playing');
+      setPlayIcon(false);
+    }
+
+    /* big play */
+    if (bigPlay) bigPlay.addEventListener('click', play);
+
+    /* play/pause toggle */
+    if (playPauseBtn) playPauseBtn.addEventListener('click', function() {
+      isPlaying ? pause() : play();
+    });
+
+    /* click on video to toggle */
+    video.addEventListener('click', function() { isPlaying ? pause() : play(); });
+
+    /* progress */
+    video.addEventListener('timeupdate', function() {
+      if (!video.duration) return;
+      const pct = (video.currentTime / video.duration) * 100;
+      if (progressFill) progressFill.style.width = pct + '%';
+      if (timeEl) timeEl.textContent = fmt(video.currentTime) + ' / ' + fmt(video.duration);
+    });
+
+    if (progressTrack) {
+      progressTrack.addEventListener('click', function(e) {
+        const rect = progressTrack.getBoundingClientRect();
+        video.currentTime = ((e.clientX - rect.left) / rect.width) * video.duration;
+      });
+    }
+
+    /* volume */
+    if (volumeSlider) {
+      volumeSlider.value = video.muted ? 0 : video.volume;
+      volumeSlider.addEventListener('input', function() {
+        video.volume = parseFloat(volumeSlider.value);
+        video.muted  = video.volume === 0;
+        updateMuteIcon();
+      });
+    }
+
+    function updateMuteIcon() {
+      if (!muteBtn) return;
+      muteBtn.querySelector('[data-icon="vol"]').style.display   = video.muted ? 'none' : '';
+      muteBtn.querySelector('[data-icon="muted"]').style.display = video.muted ? '' : 'none';
+    }
+
+    if (muteBtn) {
+      muteBtn.addEventListener('click', function() {
+        video.muted = !video.muted;
+        if (volumeSlider) volumeSlider.value = video.muted ? 0 : video.volume;
+        updateMuteIcon();
+      });
+    }
+
+    /* fullscreen */
+    if (fsBtn) {
+      fsBtn.addEventListener('click', function() {
+        if (!document.fullscreenElement) {
+          wrap.requestFullscreen && wrap.requestFullscreen();
+          fsBtn.querySelector('[data-icon="fs"]').style.display      = 'none';
+          fsBtn.querySelector('[data-icon="exit-fs"]').style.display = '';
+        } else {
+          document.exitFullscreen && document.exitFullscreen();
+          fsBtn.querySelector('[data-icon="fs"]').style.display      = '';
+          fsBtn.querySelector('[data-icon="exit-fs"]').style.display = 'none';
+        }
+      });
+    }
+
+    /* spinner */
+    video.addEventListener('waiting', function() { spinner && spinner.classList.add('is-loading'); });
+    video.addEventListener('canplay', function() { spinner && spinner.classList.remove('is-loading'); });
+    video.addEventListener('ended',   function() {
+      isPlaying = false; wrap.classList.remove('is-playing'); setPlayIcon(false);
+    });
+
+    updateMuteIcon();
+  }
+
+  /* ── Scroll-reveal ───────────────────────────────────────── */
+  function initReveal(section) {
+    const items = section.querySelectorAll('.mvp-animate');
+    if (!items.length) return;
+    const obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: .12 });
+    items.forEach(function(el) { obs.observe(el); });
+  }
+
+  /* ── Boot ────────────────────────────────────────────────── */
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.media-video-player').forEach(function(sec) {
+      initPlayer(sec);
+      initReveal(sec);
+    });
+  });
+
+  /* Shopify theme editor live reload */
+  if (window.Shopify && Shopify.designMode) {
+    document.addEventListener('shopify:section:load', function(e) {
+      var sec = e.target.querySelector('.media-video-player');
+      if (sec) { initPlayer(sec); initReveal(sec); }
+    });
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Media Video Player",
+  "tag": "section",
+  "class": "media-video-player-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout_mode",
+      "label": "Layout mode",
+      "options": [
+        { "value": "cinematic",   "label": "Cinematic (Full-width)" },
+        { "value": "split",       "label": "Split (50/50)" },
+        { "value": "asymmetric",  "label": "Asymmetric (60/40)" },
+        { "value": "reverse",     "label": "Reverse (Content left)" }
+      ],
+      "default": "asymmetric"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max section width (px)",
+      "min": 800, "max": 1800, "step": 40, "default": 1280
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Video corner radius (px)",
+      "min": 0, "max": 32, "step": 2, "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Video source"
+    },
+    {
+      "type": "select",
+      "id": "video_type",
+      "label": "Video type",
+      "options": [
+        { "value": "native",  "label": "Uploaded video (MP4)" },
+        { "value": "youtube", "label": "YouTube" },
+        { "value": "vimeo",   "label": "Vimeo" }
+      ],
+      "default": "youtube"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "YouTube / Vimeo URL",
+      "accept": ["youtube", "vimeo"],
+      "info": "Used when Video type is YouTube or Vimeo"
+    },
+    {
+      "type": "text",
+      "id": "video_file",
+      "label": "Hosted video URL",
+      "info": "Direct .mp4 URL. Used when Video type is Uploaded video."
+    },
+    {
+      "type": "image_picker",
+      "id": "poster_image",
+      "label": "Poster / thumbnail image"
+    },
+    {
+      "type": "header",
+      "content": "Playback options"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": false,
+      "info": "Mutes video automatically when enabled (browser requirement)"
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Loop video",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "muted",
+      "label": "Start muted",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Badge"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badge",
+      "label": "Show badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "NEW"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker / overline",
+      "default": "Featured Content"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Watch the story <em>unfold</em></p>"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading / description",
+      "default": "A cinematic showcase of what's possible when craft meets technology."
+    },
+    {
+      "type": "text",
+      "id": "tag_label",
+      "label": "Tag label",
+      "default": "4K · Dolby Vision"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent",
+      "default": "#e84040"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Media Video Player",
+      "settings": {
+        "layout_mode": "asymmetric",
+        "video_type": "youtube",
+        "bg_color": "#0a0a0a",
+        "text_color": "#f5f5f5",
+        "accent_color": "#e84040"
+      }
+    }
+  ]
+}
+{% endschema %}
