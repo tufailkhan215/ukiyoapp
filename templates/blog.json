@@ -262,6 +262,91 @@
         "title_gradient": "Articles"
       }
     },
+    "media_zoom_effect_xRpYWk": {
+      "type": "media-zoom-effect",
+      "blocks": {
+        "media_item_gTxtnE": {
+          "type": "media_item",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Feb_26_2026_at_01_25_41_AM.png",
+            "tag": "Photography",
+            "title": "Coastal Collection",
+            "description": "",
+            "link": ""
+          }
+        },
+        "media_item_d4CBwz": {
+          "type": "media_item",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Feb_24_2026_at_03_43_11_PM.png",
+            "tag": "Portrait",
+            "title": "Urban Portraits",
+            "description": "",
+            "link": ""
+          }
+        },
+        "media_item_zxgAUp": {
+          "type": "media_item",
+          "settings": {
+            "image": "shopify://shop_images/media-background-video.png",
+            "tag": "Design",
+            "title": "Architecture",
+            "description": "",
+            "link": ""
+          }
+        },
+        "media_item_3wMiTk": {
+          "type": "media_item",
+          "settings": {
+            "image": "shopify://shop_images/IMG_3161.webp",
+            "tag": "Editorial",
+            "title": "Still Life",
+            "description": "",
+            "link": ""
+          }
+        },
+        "media_item_ArjCG8": {
+          "type": "media_item",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_3maf173maf173maf.png",
+            "tag": "Aerial",
+            "title": "Aerial Views",
+            "description": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "media_item_gTxtnE",
+        "media_item_d4CBwz",
+        "media_item_zxgAUp",
+        "media_item_3wMiTk",
+        "media_item_ArjCG8"
+      ],
+      "name": "Media Zoom Effect",
+      "settings": {
+        "layout_mode": "asymmetric",
+        "grid_cols": 3,
+        "grid_gap": 8,
+        "max_width": 1400,
+        "border_radius": 8,
+        "zoom_style": "standard",
+        "zoom_scale": 115,
+        "zoom_duration": 600,
+        "hover_brightness": 80,
+        "overlay_opacity": 60,
+        "overlay_opacity_hover": 80,
+        "cursor_zoom": true,
+        "show_zoom_icon": true,
+        "kicker": "Visual Stories",
+        "heading": "Every detail matters",
+        "subheading": "Hover to explore. Crafted for those who notice the difference.",
+        "bg_color": "#060606",
+        "card_bg_color": "#111111",
+        "text_color": "#f5f5f5",
+        "accent_color": "#ff6b35"
+      }
+    },
     "media_interactive_showcase_eeA9EV": {
       "type": "media-interactive-showcase",
       "blocks": {
@@ -326,12 +411,16 @@
       "name": "Media Showcase",
       "settings": {
         "interaction_mode": "asymmetric",
-        "grid_cols": 3,
         "max_width": 1400,
-        "border_radius": 0,
         "kicker": "Our Work",
         "heading": "<p>Stories that <em>move</em> people</p>",
         "subheading": "A curated showcase of projects built at the intersection of craft and strategy.",
+        "show_footer": true,
+        "footer_brand": "Design Collective",
+        "footer_link_1_label": "Instagram",
+        "footer_link_1": "",
+        "footer_link_2_label": "LinkedIn",
+        "footer_link_2": "",
         "bg_color": "#080808",
         "card_bg_color": "#141414",
         "text_color": "#f0f0f0",
@@ -382,6 +471,7 @@
     "main_blog",
     "blog_editors_pick_dqPNUd",
     "blog_latest_articles_mCYz7A",
+    "media_zoom_effect_xRpYWk",
     "media_interactive_showcase_eeA9EV",
     "media_video_player_aBL3Nz",
     "blog_newsletter_signup_RcRmqg"
