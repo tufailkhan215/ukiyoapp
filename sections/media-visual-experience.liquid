@@ -1,0 +1,810 @@
+{% comment %}
+  ┌─────────────────────────────────────────────────────────────────┐
+  │  MEDIA VISUAL EXPERIENCE — UkiyoProd                           │
+  │  Immersive scroll with layered stacking cards                  │
+  │  Version: 1.0.0                                                 │
+  └─────────────────────────────────────────────────────────────────┘
+{% endcomment %}
+
+{%- liquid
+  assign section_id  = 'mve-' | append: section.id
+  assign layout_mode = section.settings.layout_mode
+-%}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+  #{{ section_id }} {
+    --mve-bg:       {{ section.settings.bg_color }};
+    --mve-text:     {{ section.settings.text_color }};
+    --mve-accent:   {{ section.settings.accent_color }};
+    --mve-accent2:  {{ section.settings.accent_color2 }};
+    --mve-muted:    rgba(255,255,255,0.5);
+    --mve-border:   rgba(255,255,255,0.1);
+    --mve-radius:   16px;
+    --mve-ease:     cubic-bezier(.16,1,.3,1);
+  }
+
+  #{{ section_id }} *, #{{ section_id }} *::before, #{{ section_id }} *::after {
+    box-sizing: border-box; margin: 0; padding: 0;
+  }
+
+  #{{ section_id }} {
+    background: var(--mve-bg);
+    color: var(--mve-text);
+    font-family: 'DM Sans', sans-serif;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ambient glow blobs */
+  #{{ section_id }}::before,
+  #{{ section_id }}::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  #{{ section_id }}::before {
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, {{ section.settings.accent_color | color_modify: 'alpha', 0.15 }} 0%, transparent 70%);
+    top: -100px; left: -150px;
+    filter: blur(40px);
+  }
+  #{{ section_id }}::after {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, {{ section.settings.accent_color2 | color_modify: 'alpha', 0.12 }} 0%, transparent 70%);
+    bottom: 0; right: -100px;
+    filter: blur(40px);
+  }
+
+  /* ── LAYOUT MODES ────────────────────────────────────────── */
+
+  /* SCROLL mode: sticky left + scrolling right stack */
+  #{{ section_id }} .mve-wrap.mode--scroll {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 4vw, 4rem);
+  }
+
+  #{{ section_id }} .mve-wrap.mode--scroll .mve-left {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 3rem 4rem 0;
+  }
+
+  #{{ section_id }} .mve-wrap.mode--scroll .mve-right {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 6rem 0;
+    align-items: center;
+  }
+
+  /* IMMERSIVE mode: full screen with floating cards */
+  #{{ section_id }} .mve-wrap.mode--immersive {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+    padding: 6rem clamp(1.5rem, 4vw, 4rem);
+  }
+
+  #{{ section_id }} .mve-wrap.mode--immersive .mve-left {
+    max-width: 44ch;
+    position: relative;
+    z-index: 2;
+  }
+
+  #{{ section_id }} .mve-wrap.mode--immersive .mve-right {
+    position: absolute;
+    right: clamp(1.5rem, 4vw, 4rem);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52%;
+  }
+
+  /* SPLIT mode: 50/50 centered */
+  #{{ section_id }} .mve-wrap.mode--split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    z-index: 1;
+    position: relative;
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+    padding: 6rem clamp(1.5rem, 4vw, 4rem);
+  }
+
+  /* Responsive collapse */
+  @media (max-width: 900px) {
+    #{{ section_id }} .mve-wrap.mode--scroll,
+    #{{ section_id }} .mve-wrap.mode--split {
+      grid-template-columns: 1fr;
+    }
+    #{{ section_id }} .mve-wrap.mode--scroll .mve-left {
+      position: static;
+      height: auto;
+      padding: 3rem 0 1rem;
+    }
+    #{{ section_id }} .mve-wrap.mode--scroll .mve-right {
+      padding: 0 0 4rem;
+    }
+    #{{ section_id }} .mve-wrap.mode--immersive {
+      flex-direction: column;
+      min-height: auto;
+      padding: 4rem clamp(1.5rem, 4vw, 4rem);
+    }
+    #{{ section_id }} .mve-wrap.mode--immersive .mve-right {
+      position: static;
+      transform: none;
+      width: 100%;
+      margin-top: 3rem;
+    }
+  }
+
+  /* ── LEFT CONTENT ────────────────────────────────────────── */
+  #{{ section_id }} .mve-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .3rem .75rem;
+    border-radius: 999px;
+    background: {{ section.settings.accent_color | color_modify: 'alpha', 0.15 }};
+    border: 1px solid {{ section.settings.accent_color | color_modify: 'alpha', 0.3 }};
+    font-size: .65rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--mve-accent);
+    margin-bottom: 1.4rem;
+  }
+  #{{ section_id }} .mve-badge-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--mve-accent);
+    box-shadow: 0 0 8px var(--mve-accent);
+    animation: mve-pulse 2s ease-in-out infinite;
+  }
+  @keyframes mve-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: .5; transform: scale(.7); }
+  }
+
+  #{{ section_id }} .mve-heading {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.06;
+    letter-spacing: -.04em;
+    margin-bottom: 1rem;
+  }
+  #{{ section_id }} .mve-heading em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--mve-accent), var(--mve-accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  #{{ section_id }} .mve-subheading {
+    font-size: clamp(.85rem, 1.3vw, 1rem);
+    color: var(--mve-muted);
+    line-height: 1.7;
+    max-width: 38ch;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  #{{ section_id }} .mve-subtitle {
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--mve-muted);
+    margin-bottom: 1rem;
+  }
+
+  #{{ section_id }} .mve-cta-row {
+    display: flex;
+    gap: .75rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+
+  #{{ section_id }} .mve-btn-primary {
+    padding: .7rem 1.6rem;
+    border-radius: 999px;
+    font-size: .82rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    background: linear-gradient(135deg, var(--mve-accent), var(--mve-accent2));
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    transition: opacity .2s, transform .2s;
+    box-shadow: 0 6px 24px {{ section.settings.accent_color | color_modify: 'alpha', 0.35 }};
+  }
+  #{{ section_id }} .mve-btn-primary:hover { opacity: .88; transform: translateY(-1px); }
+
+  #{{ section_id }} .mve-btn-ghost {
+    padding: .7rem 1.6rem;
+    border-radius: 999px;
+    font-size: .82rem;
+    font-weight: 600;
+    letter-spacing: .04em;
+    background: transparent;
+    color: var(--mve-text);
+    border: 1px solid var(--mve-border);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: border-color .2s, background .2s;
+  }
+  #{{ section_id }} .mve-btn-ghost:hover {
+    border-color: rgba(255,255,255,.3);
+    background: rgba(255,255,255,.05);
+  }
+
+  /* ── CARD STACK ──────────────────────────────────────────── */
+  #{{ section_id }} .mve-stack {
+    position: relative;
+    width: 100%;
+  }
+
+  /* scroll mode: vertical cards */
+  #{{ section_id }} .mode--scroll .mve-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* immersive/split mode: stacked with offset */
+  #{{ section_id }} .mode--immersive .mve-stack,
+  #{{ section_id }} .mode--split .mve-stack {
+    position: relative;
+    height: 380px;
+  }
+
+  #{{ section_id }} .mode--immersive .mve-card,
+  #{{ section_id }} .mode--split .mve-card {
+    position: absolute !important;
+    width: 88%;
+  }
+  #{{ section_id }} .mode--immersive .mve-card:nth-child(1),
+  #{{ section_id }} .mode--split .mve-card:nth-child(1) {
+    top: 0; right: 0; z-index: 3;
+  }
+  #{{ section_id }} .mode--immersive .mve-card:nth-child(2),
+  #{{ section_id }} .mode--split .mve-card:nth-child(2) {
+    top: 32px; right: 32px; z-index: 2;
+    opacity: .75;
+    transform: scale(.96);
+  }
+  #{{ section_id }} .mode--immersive .mve-card:nth-child(3),
+  #{{ section_id }} .mode--split .mve-card:nth-child(3) {
+    top: 64px; right: 64px; z-index: 1;
+    opacity: .5;
+    transform: scale(.92);
+  }
+
+  /* ── CARD ────────────────────────────────────────────────── */
+  #{{ section_id }} .mve-card {
+    position: relative;
+    border-radius: var(--mve-radius);
+    overflow: hidden;
+    border: 1px solid var(--mve-border);
+    background: rgba(255,255,255,.04);
+    backdrop-filter: blur(12px);
+    transition: transform .5s var(--mve-ease), box-shadow .5s var(--mve-ease), border-color .3s;
+    cursor: pointer;
+  }
+  #{{ section_id }} .mode--scroll .mve-card:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 24px 60px rgba(0,0,0,.5);
+    border-color: rgba(255,255,255,.2);
+  }
+
+  #{{ section_id }} .mve-card-img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+    transition: transform .7s var(--mve-ease);
+  }
+  #{{ section_id }} .mode--scroll .mve-card:hover .mve-card-img {
+    transform: scale(1.04);
+  }
+
+  #{{ section_id }} .mve-card-placeholder {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg,
+      {{ section.settings.accent_color | color_modify: 'alpha', 0.2 }} 0%,
+      {{ section.settings.accent_color2 | color_modify: 'alpha', 0.15 }} 50%,
+      rgba(255,255,255,.03) 100%
+    );
+    position: relative;
+    overflow: hidden;
+  }
+  /* shimmer on placeholder */
+  #{{ section_id }} .mve-card-placeholder::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,.06) 50%, transparent 60%);
+    animation: mve-shimmer 2.5s ease-in-out infinite;
+  }
+  @keyframes mve-shimmer {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  #{{ section_id }} .mve-card-body {
+    padding: 1rem 1.2rem 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  #{{ section_id }} .mve-card-info {}
+
+  #{{ section_id }} .mve-card-label {
+    font-size: .65rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--mve-accent);
+    margin-bottom: .25rem;
+  }
+
+  #{{ section_id }} .mve-card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(.95rem, 1.4vw, 1.1rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--mve-text);
+  }
+
+  #{{ section_id }} .mve-card-arrow {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: background .25s, transform .25s;
+  }
+  #{{ section_id }} .mve-card:hover .mve-card-arrow {
+    background: var(--mve-accent);
+    border-color: var(--mve-accent);
+    transform: rotate(45deg);
+  }
+  #{{ section_id }} .mve-card-arrow svg {
+    width: 14px; height: 14px;
+    fill: none; stroke: rgba(255,255,255,.7); stroke-width: 2;
+  }
+  #{{ section_id }} .mve-card:hover .mve-card-arrow svg { stroke: #fff; }
+
+  /* ── LAYOUT PILLS ────────────────────────────────────────── */
+  #{{ section_id }} .mve-pills {
+    display: flex;
+    gap: .4rem;
+    margin-top: 1.5rem;
+  }
+  #{{ section_id }} .mve-pill {
+    padding: .38rem .85rem;
+    border-radius: 999px;
+    font-size: .65rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    border: 1px solid var(--mve-border);
+    background: transparent;
+    color: var(--mve-muted);
+    cursor: pointer;
+    transition: all .25s var(--mve-ease);
+  }
+  #{{ section_id }} .mve-pill.is-active,
+  #{{ section_id }} .mve-pill:hover {
+    background: rgba(255,255,255,.1);
+    border-color: rgba(255,255,255,.25);
+    color: var(--mve-text);
+  }
+
+  /* ── SCROLL INDICATOR ────────────────────────────────────── */
+  #{{ section_id }} .mve-scroll-hint {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: .68rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--mve-muted);
+    margin-top: 2rem;
+  }
+  #{{ section_id }} .mve-scroll-line {
+    width: 32px; height: 1px;
+    background: var(--mve-muted);
+    position: relative;
+    overflow: hidden;
+  }
+  #{{ section_id }} .mve-scroll-line::after {
+    content: '';
+    position: absolute; top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: var(--mve-accent);
+    animation: mve-scroll-slide 2s ease-in-out infinite;
+  }
+  @keyframes mve-scroll-slide {
+    0%   { left: -100%; }
+    100% { left: 100%; }
+  }
+
+  /* ── REVEAL ──────────────────────────────────────────────── */
+  @media (prefers-reduced-motion: no-preference) {
+    #{{ section_id }} .mve-reveal { opacity: 0; transform: translateY(20px); }
+    #{{ section_id }} .mve-reveal.is-in {
+      animation: mve-up .8s cubic-bezier(.16,1,.3,1) forwards;
+    }
+    #{{ section_id }} .mve-reveal.d1 { animation-delay: .1s; }
+    #{{ section_id }} .mve-reveal.d2 { animation-delay: .2s; }
+    #{{ section_id }} .mve-reveal.d3 { animation-delay: .3s; }
+    #{{ section_id }} .mve-reveal.d4 { animation-delay: .4s; }
+    @keyframes mve-up { to { opacity: 1; transform: none; } }
+
+    #{{ section_id }} .mve-card {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .7s var(--mve-ease), transform .7s var(--mve-ease),
+                  box-shadow .5s var(--mve-ease), border-color .3s;
+    }
+    #{{ section_id }} .mve-card.is-in { opacity: 1; transform: translateY(0); }
+    #{{ section_id }} .mve-card.is-in:hover { transform: translateY(-4px) scale(1.01); }
+    #{{ section_id }} .mve-card:nth-child(1) { transition-delay: .08s; }
+    #{{ section_id }} .mve-card:nth-child(2) { transition-delay: .16s; }
+    #{{ section_id }} .mve-card:nth-child(3) { transition-delay: .24s; }
+    #{{ section_id }} .mve-card:nth-child(4) { transition-delay: .32s; }
+  }
+</style>
+
+<div id="{{ section_id }}" class="media-visual-experience" data-section-id="{{ section.id }}">
+
+  <div class="mve-wrap mode--{{ layout_mode }}" data-mve-wrap>
+
+    <!-- LEFT: sticky content -->
+    <div class="mve-left">
+
+      {%- if section.settings.badge != blank -%}
+        <div class="mve-badge mve-reveal">
+          <span class="mve-badge-dot"></span>
+          {{ section.settings.badge }}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="mve-heading mve-reveal d1">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.subtitle != blank -%}
+        <p class="mve-subtitle mve-reveal d2">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.subheading != blank -%}
+        <p class="mve-subheading mve-reveal d2">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.cta_primary_label != blank or section.settings.cta_ghost_label != blank -%}
+        <div class="mve-cta-row mve-reveal d3">
+          {%- if section.settings.cta_primary_label != blank -%}
+            <a href="{{ section.settings.cta_primary_url | default: '#' }}" class="mve-btn-primary">
+              {{ section.settings.cta_primary_label }}
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          {%- endif -%}
+          {%- if section.settings.cta_ghost_label != blank -%}
+            <a href="{{ section.settings.cta_ghost_url | default: '#' }}" class="mve-btn-ghost">
+              {{ section.settings.cta_ghost_label }}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      <!-- Layout switcher pills -->
+      <div class="mve-pills mve-reveal d4" data-mve-pills>
+        <button class="mve-pill {% if layout_mode == 'scroll' %}is-active{% endif %}" data-mode="scroll">Scroll</button>
+        <button class="mve-pill {% if layout_mode == 'immersive' %}is-active{% endif %}" data-mode="immersive">Immersive</button>
+        <button class="mve-pill {% if layout_mode == 'split' %}is-active{% endif %}" data-mode="split">Split</button>
+      </div>
+
+      {%- if section.settings.show_scroll_hint and layout_mode == 'scroll' -%}
+        <div class="mve-scroll-hint mve-reveal d4">
+          <span class="mve-scroll-line"></span>
+          Scroll to explore
+        </div>
+      {%- endif -%}
+
+    </div>
+
+    <!-- RIGHT: card stack -->
+    <div class="mve-right">
+      <div class="mve-stack" data-mve-stack>
+
+        {%- for block in section.blocks -%}
+          <div class="mve-card" {{ block.shopify_attributes }}
+            {% if block.settings.link != blank %}onclick="window.location='{{ block.settings.link }}'" role="link" tabindex="0"{% endif %}
+          >
+            {%- if block.settings.image -%}
+              <img class="mve-card-img"
+                src="{{ block.settings.image | image_url: width: 1000 }}"
+                alt="{{ block.settings.title | escape }}"
+                loading="lazy"
+              >
+            {%- else -%}
+              <div class="mve-card-placeholder"></div>
+            {%- endif -%}
+            <div class="mve-card-body">
+              <div class="mve-card-info">
+                {%- if block.settings.label != blank -%}
+                  <p class="mve-card-label">{{ block.settings.label }}</p>
+                {%- endif -%}
+                {%- if block.settings.title != blank -%}
+                  <h3 class="mve-card-title">{{ block.settings.title }}</h3>
+                {%- endif -%}
+              </div>
+              <div class="mve-card-arrow">
+                <svg viewBox="0 0 14 14"><path d="M2 7h10M7 2l5 5-5 5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+            </div>
+          </div>
+        {%- else -%}
+          {%- assign demo_titles = 'Layered Depth,Stacked Excellence,Precision Proof Included,Visual Hierarchy' | split: ',' -%}
+          {%- assign demo_labels = 'Feature,Premium,Included,Design' | split: ',' -%}
+          {%- for i in (1..4) -%}
+            {%- assign idx = forloop.index0 -%}
+            <div class="mve-card">
+              <div class="mve-card-placeholder"></div>
+              <div class="mve-card-body">
+                <div class="mve-card-info">
+                  <p class="mve-card-label">{{ demo_labels[idx] }}</p>
+                  <h3 class="mve-card-title">{{ demo_titles[idx] }}</h3>
+                </div>
+                <div class="mve-card-arrow">
+                  <svg viewBox="0 0 14 14" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2"><path d="M2 7h10M7 2l5 5-5 5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endfor -%}
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function() {
+  var sec  = document.getElementById('{{ section_id }}');
+  if (!sec) return;
+
+  var wrap  = sec.querySelector('[data-mve-wrap]');
+  var pills = sec.querySelectorAll('[data-mve-pills] .mve-pill');
+
+  /* ── Layout switcher ─────────────────────────────────────── */
+  pills.forEach(function(pill) {
+    pill.addEventListener('click', function() {
+      pills.forEach(function(p) { p.classList.remove('is-active'); });
+      pill.classList.add('is-active');
+      wrap.className = 'mve-wrap mode--' + pill.dataset.mode;
+      sec.querySelectorAll('.mve-card').forEach(function(c) {
+        c.classList.remove('is-in');
+        requestAnimationFrame(function() { c.classList.add('is-in'); });
+      });
+    });
+  });
+
+  /* ── Scroll reveal ───────────────────────────────────────── */
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('is-in'); obs.unobserve(e.target); }
+    });
+  }, { threshold: .08 });
+
+  sec.querySelectorAll('.mve-reveal, .mve-card').forEach(function(el) { obs.observe(el); });
+
+  /* ── Parallax scroll (scroll mode only) ─────────────────── */
+  var cards = sec.querySelectorAll('.mve-card');
+  function onScroll() {
+    if (!wrap.classList.contains('mode--scroll')) return;
+    var rect = sec.getBoundingClientRect();
+    var progress = Math.max(0, Math.min(1, -rect.top / (rect.height - window.innerHeight)));
+    cards.forEach(function(card, i) {
+      var offset = i * 20 * (1 - progress);
+      card.style.transform = 'translateY(' + offset + 'px)';
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* Shopify editor */
+  if (window.Shopify && Shopify.designMode) {
+    document.addEventListener('shopify:section:load', function(e) {
+      if (e.target.contains(sec)) sec.querySelectorAll('.mve-card').forEach(function(c) { obs.observe(c); });
+    });
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Media Visual Experience",
+  "tag": "section",
+  "class": "media-visual-experience-section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout_mode",
+      "label": "Default layout",
+      "options": [
+        { "value": "scroll",    "label": "Scroll (sticky left)" },
+        { "value": "immersive", "label": "Immersive (floating stack)" },
+        { "value": "split",     "label": "Split (50/50)" }
+      ],
+      "default": "scroll"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max width (px)",
+      "min": 800, "max": 1600, "step": 80, "default": 1280
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge text",
+      "default": "New"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Unmatched <em>Excellence</em>"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle (small caps)",
+      "default": "Layered media"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Description",
+      "default": "Add a compelling description here."
+    },
+    {
+      "type": "text",
+      "id": "cta_primary_label",
+      "label": "Primary button label",
+      "default": "Get Started"
+    },
+    {
+      "type": "url",
+      "id": "cta_primary_url",
+      "label": "Primary button URL"
+    },
+    {
+      "type": "text",
+      "id": "cta_ghost_label",
+      "label": "Ghost button label",
+      "default": "Learn more"
+    },
+    {
+      "type": "url",
+      "id": "cta_ghost_url",
+      "label": "Ghost button URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_scroll_hint",
+      "label": "Show scroll hint",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background",
+      "default": "#07080c"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#f0f0f5"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent (gradient start)",
+      "default": "#6366f1"
+    },
+    {
+      "type": "color",
+      "id": "accent_color2",
+      "label": "Accent (gradient end)",
+      "default": "#ec4899"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Feature"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Card Title"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Media Visual Experience",
+      "blocks": [
+        { "type": "card", "settings": { "label": "Feature", "title": "Layered Depth" } },
+        { "type": "card", "settings": { "label": "Premium", "title": "Stacked Excellence" } },
+        { "type": "card", "settings": { "label": "Included", "title": "Precision Proof" } },
+        { "type": "card", "settings": { "label": "Design", "title": "Visual Hierarchy" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
