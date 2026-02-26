@@ -262,6 +262,77 @@
         "title_gradient": "Articles"
       }
     },
+    "media_interactive_showcase_eeA9EV": {
+      "type": "media-interactive-showcase",
+      "blocks": {
+        "showcase_item_kNaTge": {
+          "type": "showcase_item",
+          "settings": {
+            "tag": "Branding",
+            "title": "Brand Identity System",
+            "description": "A short description of this project or content piece.",
+            "link": ""
+          }
+        },
+        "showcase_item_TXkdCr": {
+          "type": "showcase_item",
+          "settings": {
+            "tag": "Motion",
+            "title": "Campaign Film",
+            "description": "A short description of this project or content piece.",
+            "link": ""
+          }
+        },
+        "showcase_item_XwqqPN": {
+          "type": "showcase_item",
+          "settings": {
+            "tag": "Web",
+            "title": "Digital Experience",
+            "description": "A short description of this project or content piece.",
+            "link": ""
+          }
+        },
+        "showcase_item_9TNQP3": {
+          "type": "showcase_item",
+          "settings": {
+            "tag": "Strategy",
+            "title": "Growth Framework",
+            "description": "A short description of this project or content piece.",
+            "link": ""
+          }
+        },
+        "showcase_item_8iqWLM": {
+          "type": "showcase_item",
+          "settings": {
+            "tag": "Design",
+            "title": "Visual Systems",
+            "description": "A short description of this project or content piece.",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "showcase_item_kNaTge",
+        "showcase_item_TXkdCr",
+        "showcase_item_XwqqPN",
+        "showcase_item_9TNQP3",
+        "showcase_item_8iqWLM"
+      ],
+      "name": "Media Showcase",
+      "settings": {
+        "interaction_mode": "asymmetric",
+        "grid_cols": 3,
+        "max_width": 1400,
+        "border_radius": 0,
+        "kicker": "Our Work",
+        "heading": "<p>Stories that <em>move</em> people</p>",
+        "subheading": "A curated showcase of projects built at the intersection of craft and strategy.",
+        "bg_color": "#080808",
+        "card_bg_color": "#141414",
+        "text_color": "#f0f0f0",
+        "accent_color": "#00d4ff"
+      }
+    },
     "media_video_player_aBL3Nz": {
       "type": "media-video-player",
       "name": "Media Video Player",
@@ -306,6 +377,7 @@
     "main_blog",
     "blog_editors_pick_dqPNUd",
     "blog_latest_articles_mCYz7A",
+    "media_interactive_showcase_eeA9EV",
     "media_video_player_aBL3Nz",
     "blog_newsletter_signup_RcRmqg"
   ]
