@@ -262,6 +262,29 @@
         "title_gradient": "Articles"
       }
     },
+    "media_video_player_aBL3Nz": {
+      "type": "media-video-player",
+      "name": "Media Video Player",
+      "settings": {
+        "layout_mode": "asymmetric",
+        "max_width": 1280,
+        "border_radius": 12,
+        "video_type": "youtube",
+        "video_file": "https://www.youtube.com/watch?v=lxt4jnwsc28",
+        "autoplay": false,
+        "loop": false,
+        "muted": false,
+        "show_badge": true,
+        "badge_text": "NEW",
+        "kicker": "Featured Content",
+        "heading": "<p>Watch the story <em>unfold</em></p>",
+        "subheading": "A cinematic showcase of what's possible when craft meets technology.",
+        "tag_label": "4K · Dolby Vision",
+        "bg_color": "#0a0a0a",
+        "text_color": "#f5f5f5",
+        "accent_color": "#e84040"
+      }
+    },
     "blog_newsletter_signup_RcRmqg": {
       "type": "blog-newsletter-signup",
       "name": "Newsletter sign up",
@@ -282,6 +305,7 @@
     "main_blog",
     "blog_editors_pick_dqPNUd",
     "blog_latest_articles_mCYz7A",
+    "media_video_player_aBL3Nz",
     "blog_newsletter_signup_RcRmqg"
   ]
 }
