@@ -544,69 +544,37 @@
     const fsBtn       = section.querySelector('[data-mvp-fullscreen]');
     const embedWrap   = section.querySelector('[data-mvp-embed]');
 
-    /* ── YouTube embed ───────────────────────────────────────── */
+  /* ── YouTube embed ───────────────────────────────────────── */
     if (type === 'youtube') {
-      {% comment %} const rawUrl  = {{ video_url | json }}; {% endcomment %}
-    
-    
       const rawUrl = "{{ section.settings.video_url }}";
-      const match   = rawUrl ? rawUrl.match(/(?:v=|youtu\.be\/)([^&?/]+)/) : null;
+      const match  = rawUrl ? rawUrl.match(/(?:v=|youtu\.be\/)([^&?/]+)/) : null;
       const videoId = match ? match[1] : null;
-    
-    
-      if (!videoId) return;
 
-      let player, ready = false;
+      if (!videoId) {
+        spinner && spinner.classList.remove('is-loading');
+        return;
+      }
 
-      function buildYT() {
-        const iframe = document.createElement('iframe');
-        iframe.className = 'mvp-iframe';
-        iframe.allow = 'autoplay; encrypted-media; fullscreen';
-        iframe.id = 'yt-' + section.id;
-        embedWrap.appendChild(iframe);
+      if (bigPlay) {
+        bigPlay.addEventListener('click', function() {
+          bigPlay.classList.add('is-hidden');
+          poster && poster.classList.add('is-hidden');
+          spinner && spinner.classList.add('is-loading');
 
-        player = new YT.Player(iframe, {
-          videoId: videoId,
-          playerVars: {
-            autoplay: 0, controls: 0, rel: 0, modestbranding: 1,
-            iv_load_policy: 3, disablekb: 1, enablejsapi: 1,
-            {% if muted %}mute: 1{% endif %}
-          },
-          events: {
-            onReady: function() {
-              ready = true;
-              spinner && spinner.classList.remove('is-loading');
-            },
-            onStateChange: function(e) {
-              if (e.data === YT.PlayerState.PLAYING) {
-                poster && poster.classList.add('is-hidden');
-                bigPlay && bigPlay.classList.add('is-hidden');
-                wrap.classList.add('is-playing');
-                embedWrap.classList.add('is-active');
-              }
-              if (e.data === YT.PlayerState.ENDED || e.data === YT.PlayerState.PAUSED) {
-                wrap.classList.remove('is-playing');
-              }
-            }
-          }
+          // Build iframe directly — no API needed
+          const iframe = document.createElement('iframe');
+          iframe.className = 'mvp-iframe';
+          iframe.allow = 'autoplay; encrypted-media; fullscreen';
+          iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0&modestbranding=1{% if muted %}&mute=1{% endif %}';
+          iframe.onload = function() {
+            spinner && spinner.classList.remove('is-loading');
+            wrap.classList.add('is-playing');
+          };
+          embedWrap.innerHTML = '';
+          embedWrap.appendChild(iframe);
+          embedWrap.classList.add('is-active');
         });
       }
-
-     if (bigPlay) {
-  bigPlay.addEventListener('click', function() {
-    spinner && spinner.classList.add('is-loading');
-    if (window.YT && window.YT.Player) {
-      buildYT();
-    } else {
-      window.onYouTubeIframeAPIReady = buildYT;
-      if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
-        var tag = document.createElement('script');
-        tag.src = 'https://www.youtube.com/iframe_api';
-        document.head.appendChild(tag);
-      }
-    }
-  });
-}
       return;
     }
 
