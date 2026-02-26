@@ -288,6 +288,7 @@
         "showcase_item_XwqqPN": {
           "type": "showcase_item",
           "settings": {
+            "image": "shopify://shop_images/minimalist-brand-identity-design-logo-system-on-dark-background-clean-typography-premium-black-and-gold-aesthetic-editorial-photography-style.png",
             "tag": "Web",
             "title": "Digital Experience",
             "description": "A short description of this project or content piece.",
@@ -297,6 +298,7 @@
         "showcase_item_9TNQP3": {
           "type": "showcase_item",
           "settings": {
+            "image": "shopify://shop_images/DSCF9760.webp",
             "tag": "Strategy",
             "title": "Growth Framework",
             "description": "A short description of this project or content piece.",
@@ -306,6 +308,7 @@
         "showcase_item_8iqWLM": {
           "type": "showcase_item",
           "settings": {
+            "image": "shopify://shop_images/IMG_6776.webp",
             "tag": "Design",
             "title": "Visual Systems",
             "description": "A short description of this project or content piece.",
