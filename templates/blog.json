@@ -262,6 +262,67 @@
         "title_gradient": "Articles"
       }
     },
+    "media_visual_experience_c4HyKg": {
+      "type": "media-visual-experience",
+      "blocks": {
+        "card_JwWWcx": {
+          "type": "card",
+          "settings": {
+            "label": "Feature",
+            "title": "Layered Depth",
+            "link": ""
+          }
+        },
+        "card_QW4Mhc": {
+          "type": "card",
+          "settings": {
+            "label": "Premium",
+            "title": "Stacked Excellence",
+            "link": ""
+          }
+        },
+        "card_YNfeLK": {
+          "type": "card",
+          "settings": {
+            "label": "Included",
+            "title": "Precision Proof",
+            "link": ""
+          }
+        },
+        "card_DJqpQQ": {
+          "type": "card",
+          "settings": {
+            "label": "Design",
+            "title": "Visual Hierarchy",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_JwWWcx",
+        "card_QW4Mhc",
+        "card_YNfeLK",
+        "card_DJqpQQ"
+      ],
+      "name": "Media Visual Experience",
+      "settings": {
+        "layout_mode": "scroll",
+        "max_width": 1280,
+        "badge": "New",
+        "heading": "Unmatched <em>Excellence</em>",
+        "subtitle": "Layered media",
+        "subheading": "Add a compelling description here.",
+        "cta_primary_label": "Get Started",
+        "cta_primary_url": "",
+        "cta_ghost_label": "Learn more",
+        "cta_ghost_url": "",
+        "show_scroll_hint": true,
+        "bg_color": "#07080c",
+        "text_color": "#f0f0f5",
+        "accent_color": "#6366f1",
+        "accent_color2": "#ec4899"
+      }
+    },
     "media_zoom_effect_xRpYWk": {
       "type": "media-zoom-effect",
       "blocks": {
@@ -471,6 +532,7 @@
     "main_blog",
     "blog_editors_pick_dqPNUd",
     "blog_latest_articles_mCYz7A",
+    "media_visual_experience_c4HyKg",
     "media_zoom_effect_xRpYWk",
     "media_interactive_showcase_eeA9EV",
     "media_video_player_aBL3Nz",
