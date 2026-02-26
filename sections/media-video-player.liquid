@@ -546,9 +546,14 @@
 
     /* ── YouTube embed ───────────────────────────────────────── */
     if (type === 'youtube') {
-      const rawUrl  = {{ video_url | json }};
+      {% comment %} const rawUrl  = {{ video_url | json }}; {% endcomment %}
+    
+    
+      const rawUrl = "{{ section.settings.video_url }}";
       const match   = rawUrl ? rawUrl.match(/(?:v=|youtu\.be\/)([^&?/]+)/) : null;
       const videoId = match ? match[1] : null;
+    
+    
       if (!videoId) return;
 
       let player, ready = false;
