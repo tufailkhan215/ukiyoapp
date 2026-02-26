@@ -268,6 +268,7 @@
         "showcase_item_kNaTge": {
           "type": "showcase_item",
           "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Feb_26_2026_at_01_35_34_AM.png",
             "tag": "Branding",
             "title": "Brand Identity System",
             "description": "A short description of this project or content piece.",
@@ -277,6 +278,7 @@
         "showcase_item_TXkdCr": {
           "type": "showcase_item",
           "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Feb_24_2026_at_03_46_36_PM_41a36b2a-4e19-477f-be0f-43d219d71f71.png",
             "tag": "Motion",
             "title": "Campaign Film",
             "description": "A short description of this project or content piece.",
