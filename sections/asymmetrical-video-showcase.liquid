@@ -1,0 +1,1074 @@
+{% comment %}
+  Section: Asymmetrical Video Showcase
+  File: sections/asymmetrical-video-showcase.liquid
+{% endcomment %}
+
+{%- assign accent = section.settings.accent_color | default: '#4DEBFF' -%}
+
+<style>
+  /* ── Variables ─────────────────────────────────────────── */
+  #avs-{{ section.id }} {
+    --avs-accent:   {{ accent }};
+    --avs-bg:       #0f2123;
+    --avs-surface:  #16282a;
+    --avs-surface2: #1c3033;
+    --avs-border:   rgba(255,255,255,0.08);
+    --avs-text:     #f1f5f9;
+    --avs-muted:    #94a3b8;
+    --avs-radius:   16px;
+
+    background:  var(--avs-bg);
+    color:       var(--avs-text);
+    font-family: inherit;
+    position:    relative;
+    overflow:    hidden;
+  }
+
+  /* Grid overlay */
+  #avs-{{ section.id }} .avs-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right,  rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 44px 44px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  #avs-{{ section.id }} .avs-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    top: -100px; right: -100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(77,235,255,0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Wrap ──────────────────────────────────────────────── */
+  #avs-{{ section.id }} .avs-wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Header ────────────────────────────────────────────── */
+  #avs-{{ section.id }} .avs-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 3.5rem;
+  }
+
+  @media (min-width: 768px) {
+    #avs-{{ section.id }} .avs-header {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+  }
+
+  #avs-{{ section.id }} .avs-header-left { max-width: 44rem; }
+
+  #avs-{{ section.id }} .avs-eyebrow {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--avs-accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.6rem;
+  }
+
+  #avs-{{ section.id }} .avs-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 20px; height: 1px;
+    background: var(--avs-accent);
+  }
+
+  #avs-{{ section.id }} .avs-heading {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    margin: 0 0 0.75rem;
+  }
+
+  #avs-{{ section.id }} .avs-subheading {
+    font-size: 1rem;
+    color: var(--avs-muted);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  #avs-{{ section.id }} .avs-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    background: var(--avs-accent);
+    color: #000;
+    font-weight: 800;
+    font-size: 0.9rem;
+    padding: 0.85rem 1.75rem;
+    border-radius: 999px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 22px rgba(77,235,255,0.3);
+    transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+  }
+
+  #avs-{{ section.id }} .avs-cta-btn:hover {
+    background: #fff;
+    box-shadow: 0 0 36px rgba(77,235,255,0.5);
+    transform: translateY(-2px);
+  }
+
+  #avs-{{ section.id }} .avs-cta-btn svg {
+    width: 16px; height: 16px;
+    fill: none; stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.3s;
+  }
+
+  #avs-{{ section.id }} .avs-cta-btn:hover svg { transform: translateX(3px); }
+
+  /* ── Grid ──────────────────────────────────────────────── */
+  #avs-{{ section.id }} .avs-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    grid-auto-rows: 280px;
+  }
+
+  @media (min-width: 640px) {
+    #avs-{{ section.id }} .avs-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    #avs-{{ section.id }} .avs-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* ── Tile ──────────────────────────────────────────────── */
+  #avs-{{ section.id }} .avs-tile {
+    position: relative;
+    border-radius: var(--avs-radius);
+    overflow: hidden;
+    background: var(--avs-surface);
+    border: 1px solid var(--avs-border);
+    cursor: pointer;
+    transition:
+      transform 0.45s cubic-bezier(.165,.84,.44,1),
+      border-color 0.3s,
+      box-shadow 0.45s;
+  }
+
+  #avs-{{ section.id }} .avs-tile:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,255,255,0.2);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  }
+
+  @media (min-width: 640px) {
+    #avs-{{ section.id }} .avs-tile--featured {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+  }
+
+  /* ── Media Layer ───────────────────────────────────────── */
+  #avs-{{ section.id }} .avs-media {
+    position: absolute;
+    inset: 0;
+  }
+
+  #avs-{{ section.id }} .avs-poster {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.65s cubic-bezier(.165,.84,.44,1);
+  }
+
+  #avs-{{ section.id }} .avs-tile:hover .avs-poster { transform: scale(1.04); }
+
+  #avs-{{ section.id }} .avs-video-preview {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  #avs-{{ section.id }} .avs-tile:hover .avs-video-preview { opacity: 1; }
+
+  /* Gradient overlay */
+  #avs-{{ section.id }} .avs-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0) 55%);
+    transition: background 0.4s;
+  }
+
+  #avs-{{ section.id }} .avs-tile:hover .avs-overlay {
+    background: linear-gradient(0deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.2) 55%);
+  }
+
+  /* ── Play Ring ─────────────────────────────────────────── */
+  #avs-{{ section.id }} .avs-play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  #avs-{{ section.id }} .avs-tile:hover .avs-play { opacity: 1; }
+
+  #avs-{{ section.id }} .avs-play-ring {
+    width: 68px; height: 68px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 2px solid var(--avs-accent);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 28px rgba(77,235,255,0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  #avs-{{ section.id }} .avs-tile:hover .avs-play-ring {
+    transform: scale(1.08);
+    box-shadow: 0 0 44px rgba(77,235,255,0.6);
+  }
+
+  #avs-{{ section.id }} .avs-play-ring svg {
+    width: 28px; height: 28px;
+    fill: var(--avs-accent);
+    margin-left: 3px;
+  }
+
+  /* ── Tile Content ──────────────────────────────────────── */
+  #avs-{{ section.id }} .avs-content {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 1.25rem 1.5rem;
+    z-index: 4;
+  }
+
+  #avs-{{ section.id }} .avs-tile--featured .avs-content { padding: 2rem; }
+
+  #avs-{{ section.id }} .avs-tag {
+    display: inline-block;
+    background: rgba(77,235,255,0.15);
+    border: 1px solid rgba(77,235,255,0.25);
+    color: var(--avs-accent);
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+  }
+
+  #avs-{{ section.id }} .avs-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 0 0 0.3rem;
+  }
+
+  #avs-{{ section.id }} .avs-tile--featured .avs-title {
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  }
+
+  #avs-{{ section.id }} .avs-caption {
+    font-size: 0.82rem;
+    color: var(--avs-muted);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0 0 0.75rem;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.35s, transform 0.35s;
+  }
+
+  #avs-{{ section.id }} .avs-tile:hover .avs-caption {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #avs-{{ section.id }} .avs-watch {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--avs-accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 0.3s 0.05s;
+  }
+
+  #avs-{{ section.id }} .avs-tile:hover .avs-watch { opacity: 1; }
+
+  /* Source badge */
+  #avs-{{ section.id }} .avs-source-badge {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(6px);
+    border: 1px solid var(--avs-border);
+    border-radius: 999px;
+    padding: 3px 10px;
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    z-index: 4;
+  }
+
+  /* Featured play button row */
+  #avs-{{ section.id }} .avs-play-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--avs-accent);
+    color: #000;
+    font-weight: 800;
+    font-size: 0.85rem;
+    padding: 0.7rem 1.4rem;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(77,235,255,0.35);
+    margin-top: 0.75rem;
+    transition: background 0.3s;
+  }
+
+  #avs-{{ section.id }} .avs-play-btn svg {
+    width: 18px; height: 18px;
+    fill: currentColor;
+  }
+
+  #avs-{{ section.id }} .avs-play-btn:hover { background: #fff; }
+
+  /* ── Specs Strip ───────────────────────────────────────── */
+  #avs-{{ section.id }} .avs-specs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  @media (min-width: 640px) {
+    #avs-{{ section.id }} .avs-specs { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  #avs-{{ section.id }} .avs-spec {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--avs-border);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  #avs-{{ section.id }} .avs-spec-icon {
+    font-size: 1.3rem;
+    color: var(--avs-accent);
+    margin-bottom: 0.25rem;
+  }
+
+  #avs-{{ section.id }} .avs-spec-label {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: var(--avs-muted);
+  }
+
+  #avs-{{ section.id }} .avs-spec-value {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--avs-text);
+  }
+
+  /* ── Modal ─────────────────────────────────────────────── */
+  #avs-modal-{{ section.id }} {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  #avs-modal-{{ section.id }}.is-open { display: flex; }
+
+  #avs-modal-{{ section.id }} .avs-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(7,7,7,0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  #avs-modal-{{ section.id }} .avs-modal-box {
+    position: relative;
+    width: 100%;
+    max-width: 1020px;
+    background: var(--avs-surface);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--avs-border);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+    z-index: 1;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #avs-modal-{{ section.id }} .avs-modal-player {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    flex-shrink: 0;
+  }
+
+  #avs-modal-{{ section.id }} .avs-modal-player video,
+  #avs-modal-{{ section.id }} .avs-modal-player iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    border: none;
+    display: block;
+  }
+
+  #avs-modal-{{ section.id }} .avs-modal-info {
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  #avs-modal-{{ section.id }} .avs-modal-tag {
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--avs-accent);
+    margin-bottom: 0.35rem;
+  }
+
+  #avs-modal-{{ section.id }} .avs-modal-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin: 0 0 0.25rem;
+  }
+
+  #avs-modal-{{ section.id }} .avs-modal-caption {
+    font-size: 0.85rem;
+    color: var(--avs-muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  #avs-modal-{{ section.id }} .avs-modal-close {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.65);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s, border-color 0.3s, color 0.3s;
+    flex-shrink: 0;
+  }
+
+  #avs-modal-{{ section.id }} .avs-modal-close:hover {
+    background: var(--avs-accent);
+    border-color: var(--avs-accent);
+    color: #000;
+  }
+
+  #avs-modal-{{ section.id }} .avs-modal-close svg {
+    width: 18px; height: 18px;
+    stroke: currentColor; fill: none;
+    stroke-width: 2.2; stroke-linecap: round;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    #avs-{{ section.id }} .avs-tile,
+    #avs-{{ section.id }} .avs-poster,
+    #avs-{{ section.id }} .avs-caption,
+    #avs-{{ section.id }} .avs-play { transition: none !important; }
+  }
+</style>
+
+<div id="avs-{{ section.id }}">
+  {% if section.settings.enable_grid_overlay %}<div class="avs-grid-bg"></div>{% endif %}
+  <div class="avs-glow"></div>
+
+  <div class="avs-wrap">
+
+    <!-- ── Header ── -->
+    <div class="avs-header">
+      <div class="avs-header-left">
+        {% if section.settings.eyebrow_text != blank %}
+          <p class="avs-eyebrow">{{ section.settings.eyebrow_text }}</p>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2 class="avs-heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+        {% if section.settings.subheading != blank %}
+          <p class="avs-subheading">{{ section.settings.subheading }}</p>
+        {% endif %}
+      </div>
+      {% if section.settings.cta_label != blank %}
+        <a href="{{ section.settings.cta_link | default: '#' }}" class="avs-cta-btn">
+          {{ section.settings.cta_label }}
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- ── Video Grid ── -->
+    <div class="avs-grid" id="avs-grid-{{ section.id }}">
+      {% for block in section.blocks %}
+        {%- assign is_featured = block.settings.featured -%}
+        {%- assign src_type    = block.settings.source_type -%}
+
+        {%- comment -%} Extract YouTube ID {%- endcomment -%}
+        {%- assign yt_id = '' -%}
+        {% if src_type == 'youtube' and block.settings.youtube_url != blank %}
+          {%- assign yt_raw = block.settings.youtube_url -%}
+          {%- if yt_raw contains 'youtu.be/' -%}
+            {%- assign yt_id = yt_raw | split: 'youtu.be/' | last | split: '?' | first -%}
+          {%- elsif yt_raw contains 'v=' -%}
+            {%- assign yt_id = yt_raw | split: 'v=' | last | split: '&' | first -%}
+          {%- endif -%}
+        {% endif %}
+
+        {%- assign has_hosted = false -%}
+        {% if src_type == 'hosted' and block.settings.hosted_video != blank %}
+          {%- assign has_hosted = true -%}
+        {% endif %}
+
+        <div
+          class="avs-tile{% if is_featured %} avs-tile--featured{% endif %}"
+          data-type="{{ src_type }}"
+          data-yt-id="{{ yt_id }}"
+          {% if has_hosted %}data-video="{{ block.settings.hosted_video | file_url }}"{% endif %}
+          data-title="{{ block.settings.title | escape }}"
+          data-caption="{{ block.settings.caption | escape }}"
+          data-tag="{{ block.settings.tag | escape }}"
+          tabindex="0"
+          role="button"
+          aria-label="Play: {{ block.settings.title | escape }}"
+          {{ block.shopify_attributes }}>
+
+          <!-- Media -->
+          <div class="avs-media">
+            {% if block.settings.poster %}
+              <img
+                class="avs-poster"
+                src="{{ block.settings.poster | img_url: '1200x' }}"
+                alt="{{ block.settings.title | escape }}"
+                loading="lazy"
+                width="1200"
+                height="800">
+            {% elsif has_hosted %}
+              <img
+                class="avs-poster"
+                src="{{ block.settings.hosted_video | file_url | append: '?frame=1' }}"
+                alt="{{ block.settings.title | escape }}"
+                loading="lazy">
+            {% else %}
+              <div style="position:absolute;inset:0;background:var(--avs-surface2);"></div>
+            {% endif %}
+
+            {% if has_hosted and section.settings.enable_hosted_hover_preview %}
+              <video
+                class="avs-video-preview"
+                src="{{ block.settings.hosted_video | file_url }}"
+                muted
+                playsinline
+                loop
+                preload="none"
+                tabindex="-1">
+              </video>
+            {% endif %}
+          </div>
+
+          <div class="avs-overlay"></div>
+
+          <!-- Source badge -->
+          <span class="avs-source-badge">
+            {% if src_type == 'youtube' %}▶ YouTube{% else %}▶ Video{% endif %}
+          </span>
+
+          <!-- Play ring -->
+          <div class="avs-play" aria-hidden="true">
+            <div class="avs-play-ring">
+              <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="avs-content">
+            {% if block.settings.tag != blank %}
+              <span class="avs-tag">{{ block.settings.tag }}</span>
+            {% endif %}
+            {% if block.settings.title != blank %}
+              <div class="avs-title">{{ block.settings.title }}</div>
+            {% endif %}
+            {% if block.settings.caption != blank %}
+              <p class="avs-caption">{{ block.settings.caption }}</p>
+            {% endif %}
+            {% if is_featured %}
+              <button class="avs-play-btn avs-tile-play-btn" aria-label="Play {{ block.settings.title | escape }}">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Play Now
+              </button>
+            {% else %}
+              <span class="avs-watch">Watch →</span>
+            {% endif %}
+          </div>
+
+        </div>
+      {% else %}
+        <div style="grid-column:1/-1;text-align:center;padding:4rem;color:var(--avs-muted);">
+          Add video tiles in the Theme Editor to get started.
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- ── Specs Strip ── -->
+    {%- assign has_specs = false -%}
+    {% for i in (1..4) %}
+      {%- assign sv = 'spec_' | append: i | append: '_value' -%}
+      {% if section.settings[sv] != blank %}{%- assign has_specs = true -%}{% endif %}
+    {% endfor %}
+
+    {% if has_specs %}
+      <div class="avs-specs">
+        {% for i in (1..4) %}
+          {%- assign sv = 'spec_' | append: i | append: '_value' -%}
+          {%- assign sl = 'spec_' | append: i | append: '_label' -%}
+          {%- assign si = 'spec_' | append: i | append: '_icon' -%}
+          {% if section.settings[sv] != blank %}
+            <div class="avs-spec">
+              {% if section.settings[si] != blank %}
+                <div class="avs-spec-icon">{{ section.settings[si] }}</div>
+              {% endif %}
+              <div class="avs-spec-label">{{ section.settings[sl] }}</div>
+              <div class="avs-spec-value">{{ section.settings[sv] }}</div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+
+<!-- ── Modal ── -->
+<div id="avs-modal-{{ section.id }}" role="dialog" aria-modal="true" aria-labelledby="avs-modal-title-{{ section.id }}">
+  <div class="avs-modal-backdrop" id="avs-backdrop-{{ section.id }}"></div>
+  <div class="avs-modal-box">
+    <button class="avs-modal-close" id="avs-close-{{ section.id }}" aria-label="Close video">
+      <svg viewBox="0 0 24 24">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <div class="avs-modal-player" id="avs-player-{{ section.id }}"></div>
+    <div class="avs-modal-info">
+      <div>
+        <div class="avs-modal-tag"  id="avs-modal-tag-{{ section.id }}"></div>
+        <h3 class="avs-modal-title" id="avs-modal-title-{{ section.id }}"></h3>
+        <p class="avs-modal-caption" id="avs-modal-caption-{{ section.id }}"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var sid          = '{{ section.id }}';
+  var modal        = document.getElementById('avs-modal-' + sid);
+  var player       = document.getElementById('avs-player-' + sid);
+  var backdrop     = document.getElementById('avs-backdrop-' + sid);
+  var closeBtn     = document.getElementById('avs-close-' + sid);
+  var modalTag     = document.getElementById('avs-modal-tag-' + sid);
+  var modalTitle   = document.getElementById('avs-modal-title-' + sid);
+  var modalCaption = document.getElementById('avs-modal-caption-' + sid);
+  var hoverEnabled = {{ section.settings.enable_hosted_hover_preview | json }};
+
+  if (!modal) return;
+
+  /* ── Open Modal ─────────────────────────────────────────── */
+  function openModal(data) {
+    player.innerHTML = '';
+
+    if (modalTag)     modalTag.textContent     = data.tag     || '';
+    if (modalTitle)   modalTitle.textContent   = data.title   || '';
+    if (modalCaption) modalCaption.textContent = data.caption || '';
+
+    if (data.type === 'youtube' && data.ytId) {
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/' + data.ytId + '?autoplay=1&rel=0&modestbranding=1';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      player.appendChild(iframe);
+    } else if (data.video) {
+      var vid = document.createElement('video');
+      vid.src = data.video;
+      vid.controls = true;
+      vid.autoplay = true;
+      vid.style.cssText = 'width:100%;height:100%;object-fit:contain;background:#000;';
+      player.appendChild(vid);
+    }
+
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  /* ── Close Modal ────────────────────────────────────────── */
+  function closeModal() {
+    modal.classList.remove('is-open');
+    player.innerHTML = '';
+    document.body.style.overflow = '';
+  }
+
+  /* ── Data from tile ─────────────────────────────────────── */
+  function getTileData(tile) {
+    return {
+      type:    tile.dataset.type,
+      ytId:    tile.dataset.ytId,
+      video:   tile.dataset.video,
+      title:   tile.dataset.title,
+      caption: tile.dataset.caption,
+      tag:     tile.dataset.tag
+    };
+  }
+
+  /* ── Tile click / keyboard ──────────────────────────────── */
+  var tiles = document.querySelectorAll('#avs-grid-' + sid + ' .avs-tile');
+
+  tiles.forEach(function(tile) {
+    tile.addEventListener('click', function(e) {
+      if (e.target.closest('.avs-tile-play-btn') || e.currentTarget === tile) {
+        openModal(getTileData(tile));
+      }
+    });
+
+    tile.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal(getTileData(tile));
+      }
+    });
+  });
+
+  /* ── Hover preview (hosted only) ───────────────────────── */
+  if (hoverEnabled) {
+    tiles.forEach(function(tile) {
+      var vid = tile.querySelector('.avs-video-preview');
+      if (!vid) return;
+
+      tile.addEventListener('mouseenter', function() {
+        vid.currentTime = 0;
+        vid.play().catch(function() {});
+      });
+
+      tile.addEventListener('mouseleave', function() {
+        vid.pause();
+        vid.currentTime = 0;
+      });
+    });
+  }
+
+  /* ── Close handlers ─────────────────────────────────────── */
+  if (closeBtn)  closeBtn.addEventListener('click', closeModal);
+  if (backdrop)  backdrop.addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Video Showcase",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow label",
+      "default": "Product Showcase"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "See it in every angle."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Cinematic reveals, unboxing experiences, and performance tests — all in one place."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA button label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA button link"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#4DEBFF"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_grid_overlay",
+      "label": "Show subtle grid background",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_hosted_hover_preview",
+      "label": "Enable hosted video hover preview",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Specs Strip (optional)"
+    },
+    {
+      "type": "text",
+      "id": "spec_1_icon",
+      "label": "Spec 1 icon (emoji or text)",
+      "default": "🎬"
+    },
+    {
+      "type": "text",
+      "id": "spec_1_label",
+      "label": "Spec 1 label",
+      "default": "Resolution"
+    },
+    {
+      "type": "text",
+      "id": "spec_1_value",
+      "label": "Spec 1 value",
+      "default": "Ultra HD 4K"
+    },
+    {
+      "type": "text",
+      "id": "spec_2_icon",
+      "label": "Spec 2 icon",
+      "default": "⚡"
+    },
+    {
+      "type": "text",
+      "id": "spec_2_label",
+      "label": "Spec 2 label",
+      "default": "Frame Rate"
+    },
+    {
+      "type": "text",
+      "id": "spec_2_value",
+      "label": "Spec 2 value",
+      "default": "120 FPS"
+    },
+    {
+      "type": "text",
+      "id": "spec_3_icon",
+      "label": "Spec 3 icon",
+      "default": "🌈"
+    },
+    {
+      "type": "text",
+      "id": "spec_3_label",
+      "label": "Spec 3 label",
+      "default": "Dynamic Range"
+    },
+    {
+      "type": "text",
+      "id": "spec_3_value",
+      "label": "Spec 3 value",
+      "default": "HDR10+"
+    },
+    {
+      "type": "text",
+      "id": "spec_4_icon",
+      "label": "Spec 4 icon",
+      "default": "🔋"
+    },
+    {
+      "type": "text",
+      "id": "spec_4_label",
+      "label": "Spec 4 label",
+      "default": "Battery"
+    },
+    {
+      "type": "text",
+      "id": "spec_4_value",
+      "label": "Spec 4 value",
+      "default": "72h Life"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video_tile",
+      "name": "Video Tile",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Cinematic Reveal"
+        },
+        {
+          "type": "textarea",
+          "id": "caption",
+          "label": "Caption (shown on hover)"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag (e.g. Demo, BTS, Unboxing)",
+          "default": "Demo"
+        },
+        {
+          "type": "image_picker",
+          "id": "poster",
+          "label": "Poster / thumbnail image"
+        },
+        {
+          "type": "select",
+          "id": "source_type",
+          "label": "Video source",
+          "options": [
+            { "value": "youtube", "label": "YouTube" },
+            { "value": "hosted",  "label": "Hosted (Shopify file)" }
+          ],
+          "default": "youtube"
+        },
+        {
+          "type": "video",
+          "id": "hosted_video",
+          "label": "Hosted video file"
+        },
+        {
+          "type": "text",
+          "id": "youtube_url",
+          "label": "YouTube URL",
+          "placeholder": "https://www.youtube.com/watch?v=..."
+        },
+        {
+          "type": "checkbox",
+          "id": "featured",
+          "label": "Featured tile (spans 2 columns × 2 rows)",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Showcase",
+      "blocks": [
+        {
+          "type": "video_tile",
+          "settings": {
+            "title": "Cinematic Reveal",
+            "caption": "A full cinematic walkthrough of the product design and build quality.",
+            "tag": "Premiere",
+            "source_type": "youtube",
+            "featured": true
+          }
+        },
+        {
+          "type": "video_tile",
+          "settings": {
+            "title": "Design Story",
+            "tag": "BTS",
+            "source_type": "youtube"
+          }
+        },
+        {
+          "type": "video_tile",
+          "settings": {
+            "title": "Performance Test",
+            "tag": "Review",
+            "source_type": "youtube"
+          }
+        },
+        {
+          "type": "video_tile",
+          "settings": {
+            "title": "Unboxing Experience",
+            "tag": "Unboxing",
+            "source_type": "youtube"
+          }
+        },
+        {
+          "type": "video_tile",
+          "settings": {
+            "title": "User Reviews",
+            "tag": "Reviews",
+            "source_type": "youtube"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
