@@ -226,12 +226,12 @@
     backdrop-filter: blur(6px);
     border: 1.5px solid var(--vs-accent);
     display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 0 24px color-mix(in srgb, var(--vs-accent) 40%, transparent);
+box-shadow: 0 0 24px rgba(77,235,255,0.4);
     transition: box-shadow 0.3s, transform 0.3s;
   }
 
   #vs-{{ section.id }} .vs-tile:hover .vs-play-ring {
-    box-shadow: 0 0 36px color-mix(in srgb, var(--vs-accent) 60%, transparent);
+box-shadow: 0 0 36px rgba(77,235,255,0.6);
     transform: scale(1.08);
   }
 
@@ -349,7 +349,7 @@
     border: none;
     cursor: pointer;
     transition: background 0.3s, box-shadow 0.3s;
-    box-shadow: 0 0 20px color-mix(in srgb, var(--vs-accent) 40%, transparent);
+box-shadow: 0 0 20px rgba(77,235,255,0.4);
   }
 
   #vs-{{ section.id }} .vs-btn-primary:hover {
