@@ -514,6 +514,113 @@
         "accent_color": "#e84040"
       }
     },
+    "video_showcase_R6CD8m": {
+      "type": "video-showcase",
+      "blocks": {
+        "video_tile_HT7QQ3": {
+          "type": "video_tile",
+          "settings": {
+            "title": "Neon Genesis: The Awakening",
+            "caption": "In a future where humanity has merged with machines, one detective must solve the ultimate crime.",
+            "tag": "Premiere",
+            "duration": "2h 14m",
+            "video_type": "youtube",
+            "youtube_url": "https://www.youtube.com/watch?v=iR_b09xcDjs",
+            "hosted_video": "",
+            "featured": true,
+            "tall": false
+          }
+        },
+        "video_tile_LMef8m": {
+          "type": "video_tile",
+          "settings": {
+            "title": "Echoes of Silence",
+            "caption": "",
+            "tag": "Drama",
+            "duration": "1h 45m",
+            "video_type": "youtube",
+            "youtube_url": "",
+            "hosted_video": "",
+            "featured": false,
+            "tall": false
+          }
+        },
+        "video_tile_jMVbmU": {
+          "type": "video_tile",
+          "settings": {
+            "title": "The Last Frontier",
+            "caption": "",
+            "tag": "Documentary",
+            "duration": "52m",
+            "video_type": "youtube",
+            "youtube_url": "",
+            "hosted_video": "",
+            "featured": false,
+            "tall": false
+          }
+        },
+        "video_tile_YFJHBm": {
+          "type": "video_tile",
+          "settings": {
+            "title": "Crimson Tide",
+            "caption": "A gripping tale of power and betrayal set in the heart of a cyberpunk metropolis.",
+            "tag": "New Season",
+            "duration": "3:45",
+            "video_type": "youtube",
+            "youtube_url": "",
+            "hosted_video": "",
+            "featured": false,
+            "tall": true
+          }
+        },
+        "video_tile_frrra7": {
+          "type": "video_tile",
+          "settings": {
+            "title": "Orbit",
+            "caption": "",
+            "tag": "Sci-Fi",
+            "duration": "1h 58m",
+            "video_type": "youtube",
+            "youtube_url": "",
+            "hosted_video": "",
+            "featured": false,
+            "tall": false
+          }
+        },
+        "video_tile_gxD7ap": {
+          "type": "video_tile",
+          "settings": {
+            "title": "Velvet Road",
+            "caption": "",
+            "tag": "Action",
+            "duration": "2h 05m",
+            "video_type": "youtube",
+            "youtube_url": "",
+            "hosted_video": "",
+            "featured": false,
+            "tall": false
+          }
+        }
+      },
+      "block_order": [
+        "video_tile_HT7QQ3",
+        "video_tile_LMef8m",
+        "video_tile_jMVbmU",
+        "video_tile_YFJHBm",
+        "video_tile_frrra7",
+        "video_tile_gxD7ap"
+      ],
+      "name": "Video Showcase",
+      "settings": {
+        "eyebrow": "(WATCH IT IN ACTION)",
+        "heading": "See the product, not just the photos.",
+        "subheading": "Real demos, behind-the-scenes footage, and creator stories.",
+        "cta_label": "Shop Now",
+        "cta_link": "",
+        "accent_color": "#4DEBFF",
+        "show_grid_bg": true
+      }
+    },
     "blog_newsletter_signup_RcRmqg": {
       "type": "blog-newsletter-signup",
       "name": "Newsletter sign up",
@@ -538,6 +645,7 @@
     "media_zoom_effect_xRpYWk",
     "media_interactive_showcase_eeA9EV",
     "media_video_player_aBL3Nz",
+    "video_showcase_R6CD8m",
     "blog_newsletter_signup_RcRmqg"
   ]
 }
