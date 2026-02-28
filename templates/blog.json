@@ -706,7 +706,7 @@
         "main_poster": "shopify://shop_images/DSC_29323129.webp",
         "layout": "video-left",
         "show_grid_bg": true,
-        "accent_color": "#4DEBFF",
+        "accent_color": "#4debff",
         "stat_1_value": "12+",
         "stat_1_label": "Chapters",
         "stat_2_value": "2.5h",
@@ -724,6 +724,81 @@
         "cta_primary_link": "",
         "cta_secondary_label": "View Full Details",
         "cta_secondary_link": ""
+      }
+    },
+    "svg_animation_showcase_Q8XKAm": {
+      "type": "svg-animation-showcase",
+      "blocks": {
+        "svg_item_9br6jw": {
+          "type": "svg_item",
+          "settings": {
+            "svg_title": "Neural Network",
+            "svg_caption": "Central node visualization with live path animation.",
+            "svg_code": "",
+            "animation_type": "pulse",
+            "position_mode": "primary",
+            "size_mode": "medium",
+            "interaction_trigger": "hover"
+          }
+        },
+        "svg_item_eXTBDq": {
+          "type": "svg_item",
+          "settings": {
+            "svg_title": "Stroke Dynamics",
+            "svg_caption": "Real-time path manipulation for organic movement.",
+            "svg_code": "",
+            "animation_type": "stroke_draw",
+            "position_mode": "secondary",
+            "size_mode": "medium",
+            "interaction_trigger": "hover"
+          }
+        },
+        "svg_item_g4Hd7P": {
+          "type": "svg_item",
+          "settings": {
+            "svg_title": "Parallax Depth",
+            "svg_caption": "Multi-layered elements creating immersive 3D spatial awareness.",
+            "svg_code": "",
+            "animation_type": "float",
+            "position_mode": "secondary",
+            "size_mode": "small",
+            "interaction_trigger": "none"
+          }
+        },
+        "svg_item_dX4b7m": {
+          "type": "svg_item",
+          "settings": {
+            "svg_title": "Micro-Interactions",
+            "svg_caption": "Subtle triggers that respond seamlessly to user cursor movement.",
+            "svg_code": "",
+            "animation_type": "stroke_draw",
+            "position_mode": "primary",
+            "size_mode": "medium",
+            "interaction_trigger": "click"
+          }
+        }
+      },
+      "block_order": [
+        "svg_item_9br6jw",
+        "svg_item_eXTBDq",
+        "svg_item_g4Hd7P",
+        "svg_item_dX4b7m"
+      ],
+      "name": "SVG Animation Showcase",
+      "settings": {
+        "eyebrow_text": "Case Study",
+        "heading": "Living Vector Motion",
+        "subheading": "Experience the fluidity of code-driven motion. Our vector animations bring static designs to life with precise stroke manipulation and parallax depth.",
+        "cta_label": "View Case Study",
+        "cta_link": "",
+        "secondary_link_label": "Learn more",
+        "secondary_link_url": "",
+        "accent_color": "#4DEBFF",
+        "background_style": "subtle-grid",
+        "layout_mode": "left-text-right-visual",
+        "spacing_density": "normal",
+        "enable_scroll_trigger": true,
+        "enable_interactive": true
       }
     },
     "blog_newsletter_signup_RcRmqg": {
@@ -752,6 +827,7 @@
     "media_video_player_aBL3Nz",
     "video_showcase_R6CD8m",
     "media_tutorial_video_zPRHnt",
+    "svg_animation_showcase_Q8XKAm",
     "blog_newsletter_signup_RcRmqg"
   ]
 }
