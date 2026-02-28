@@ -627,6 +627,105 @@
         "show_grid_bg": true
       }
     },
+    "media_tutorial_video_zPRHnt": {
+      "type": "Media_Tutorial_Video",
+      "blocks": {
+        "chapter_PMUJYp": {
+          "type": "chapter",
+          "settings": {
+            "chapter_title": "Unboxing & Overview",
+            "chapter_description": "First look at everything inside the box and what each component does.",
+            "chapter_tag": "Intro",
+            "chapter_duration": "3:20",
+            "video_type": "youtube",
+            "youtube_url": "",
+            "hosted_video_url": ""
+          }
+        },
+        "chapter_pwyPMk": {
+          "type": "chapter",
+          "settings": {
+            "chapter_title": "Setup & Installation",
+            "chapter_description": "Step-by-step guide to getting everything connected and configured.",
+            "chapter_tag": "Setup",
+            "chapter_duration": "6:45",
+            "video_type": "youtube",
+            "youtube_url": "",
+            "hosted_video_url": ""
+          }
+        },
+        "chapter_dWjGbE": {
+          "type": "chapter",
+          "settings": {
+            "chapter_title": "First Use Walkthrough",
+            "chapter_description": "A full walkthrough of your first session with the product.",
+            "chapter_tag": "Tutorial",
+            "chapter_duration": "8:10",
+            "video_type": "youtube",
+            "youtube_url": "",
+            "hosted_video_url": ""
+          }
+        },
+        "chapter_iNgChq": {
+          "type": "chapter",
+          "settings": {
+            "chapter_title": "Advanced Features",
+            "chapter_description": "Power-user tips and hidden features most people miss.",
+            "chapter_tag": "Advanced",
+            "chapter_duration": "10:22",
+            "video_type": "youtube",
+            "youtube_url": "",
+            "hosted_video_url": ""
+          }
+        },
+        "chapter_6NYYWJ": {
+          "type": "chapter",
+          "settings": {
+            "chapter_title": "Maintenance & Care",
+            "chapter_description": "How to clean, store, and maintain your product for long-term use.",
+            "chapter_tag": "Tips",
+            "chapter_duration": "4:05",
+            "video_type": "youtube",
+            "youtube_url": "",
+            "hosted_video_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "chapter_PMUJYp",
+        "chapter_pwyPMk",
+        "chapter_dWjGbE",
+        "chapter_iNgChq",
+        "chapter_6NYYWJ"
+      ],
+      "name": "Media Tutorial Video",
+      "settings": {
+        "eyebrow": "About This Product",
+        "heading": "See it in action.",
+        "subheading": "Step-by-step tutorials that show you exactly how to get the most out of this product.",
+        "main_poster": "shopify://shop_images/DSC_29323129.webp",
+        "layout": "video-left",
+        "show_grid_bg": true,
+        "accent_color": "#4DEBFF",
+        "stat_1_value": "12+",
+        "stat_1_label": "Chapters",
+        "stat_2_value": "2.5h",
+        "stat_2_label": "Total runtime",
+        "stat_3_value": "4.9★",
+        "stat_3_label": "Rating",
+        "stat_4_value": "Free",
+        "stat_4_label": "With purchase",
+        "highlight_1": "Full setup from unboxing to first use",
+        "highlight_2": "Advanced tips and pro workflows",
+        "highlight_3": "Troubleshooting and maintenance guide",
+        "highlight_4": "",
+        "highlight_5": "",
+        "cta_primary_label": "Buy Now",
+        "cta_primary_link": "",
+        "cta_secondary_label": "View Full Details",
+        "cta_secondary_link": ""
+      }
+    },
     "blog_newsletter_signup_RcRmqg": {
       "type": "blog-newsletter-signup",
       "name": "Newsletter sign up",
@@ -652,6 +751,7 @@
     "media_interactive_showcase_eeA9EV",
     "media_video_player_aBL3Nz",
     "video_showcase_R6CD8m",
+    "media_tutorial_video_zPRHnt",
     "blog_newsletter_signup_RcRmqg"
   ]
 }
