@@ -1,0 +1,923 @@
+{% comment %}
+  Section: Asymmetrical Video Showcase
+  File: sections/video-showcase.liquid
+{% endcomment %}
+
+{%- assign accent = section.settings.accent_color -%}
+
+<style>
+  #vs-{{ section.id }} {
+    --vs-accent:   {{ accent }};
+    --vs-bg:       #070707;
+    --vs-surface:  #121212;
+    --vs-border:   rgba(255,255,255,0.10);
+    --vs-text:     #F5F5F5;
+    --vs-muted:    rgba(245,245,245,0.72);
+    --vs-radius:   16px;
+    background: var(--vs-bg);
+    color: var(--vs-text);
+    font-family: inherit;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Grid overlay */
+  #vs-{{ section.id }} .vs-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  #vs-{{ section.id }} .vs-wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Section Header ── */
+  #vs-{{ section.id }} .vs-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    #vs-{{ section.id }} .vs-header {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+  }
+
+  #vs-{{ section.id }} .vs-header-text { max-width: 42rem; }
+
+  #vs-{{ section.id }} .vs-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--vs-accent);
+    margin-bottom: 0.5rem;
+  }
+
+  #vs-{{ section.id }} .vs-heading {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0 0 0.75rem;
+    color: var(--vs-text);
+  }
+
+  #vs-{{ section.id }} .vs-subheading {
+    font-size: 1rem;
+    color: var(--vs-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  #vs-{{ section.id }} .vs-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    border: 1px solid var(--vs-border);
+    background: rgba(255,255,255,0.04);
+    color: var(--vs-text);
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: border-color 0.3s, background 0.3s;
+    cursor: pointer;
+  }
+
+  #vs-{{ section.id }} .vs-cta-btn:hover {
+    border-color: var(--vs-accent);
+    background: rgba(255,255,255,0.08);
+  }
+
+  #vs-{{ section.id }} .vs-cta-btn svg {
+    width: 16px; height: 16px;
+    transition: transform 0.3s;
+  }
+
+  #vs-{{ section.id }} .vs-cta-btn:hover svg { transform: translateX(3px); }
+
+  /* ── Grid ── */
+  #vs-{{ section.id }} .vs-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    grid-auto-rows: 280px;
+  }
+
+  @media (min-width: 640px) {
+    #vs-{{ section.id }} .vs-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    #vs-{{ section.id }} .vs-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* ── Tile Base ── */
+  #vs-{{ section.id }} .vs-tile {
+    position: relative;
+    border-radius: var(--vs-radius);
+    overflow: hidden;
+    border: 1px solid var(--vs-border);
+    background: var(--vs-surface);
+    cursor: pointer;
+    transition: transform 0.45s cubic-bezier(.165,.84,.44,1),
+                box-shadow 0.45s,
+                border-color 0.45s;
+  }
+
+  #vs-{{ section.id }} .vs-tile:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,255,255,0.22);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+  }
+
+  /* Featured: 2 col span + 2 row span */
+  @media (min-width: 640px) {
+    #vs-{{ section.id }} .vs-tile--featured {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+  }
+
+  /* Tall: 2 row span */
+  @media (min-width: 1024px) {
+    #vs-{{ section.id }} .vs-tile--tall {
+      grid-row: span 2;
+    }
+  }
+
+  /* ── Poster / Video Layer ── */
+  #vs-{{ section.id }} .vs-media {
+    position: absolute;
+    inset: 0;
+  }
+
+  #vs-{{ section.id }} .vs-poster {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.65s cubic-bezier(.165,.84,.44,1);
+    display: block;
+  }
+
+  #vs-{{ section.id }} .vs-tile:hover .vs-poster { transform: scale(1.04); }
+
+  #vs-{{ section.id }} .vs-video-preview {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  #vs-{{ section.id }} .vs-tile:hover .vs-video-preview { opacity: 1; }
+
+  /* Gradient overlay */
+  #vs-{{ section.id }} .vs-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0) 60%);
+    transition: background 0.4s;
+  }
+
+  #vs-{{ section.id }} .vs-tile:hover .vs-overlay {
+    background: linear-gradient(0deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.15) 60%);
+  }
+
+  /* ── Play Button ── */
+  #vs-{{ section.id }} .vs-play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.35s;
+    z-index: 2;
+  }
+
+  #vs-{{ section.id }} .vs-tile:hover .vs-play { opacity: 1; }
+
+  #vs-{{ section.id }} .vs-play-ring {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(6px);
+    border: 1.5px solid var(--vs-accent);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 24px color-mix(in srgb, var(--vs-accent) 40%, transparent);
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+
+  #vs-{{ section.id }} .vs-tile:hover .vs-play-ring {
+    box-shadow: 0 0 36px color-mix(in srgb, var(--vs-accent) 60%, transparent);
+    transform: scale(1.08);
+  }
+
+  #vs-{{ section.id }} .vs-play-ring svg {
+    width: 28px; height: 28px;
+    fill: var(--vs-accent);
+    margin-left: 3px;
+  }
+
+  /* ── Tile Content (bottom) ── */
+  #vs-{{ section.id }} .vs-content {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 1.5rem;
+    z-index: 2;
+  }
+
+  #vs-{{ section.id }} .vs-tile--featured .vs-content { padding: 2rem; }
+
+  #vs-{{ section.id }} .vs-tag {
+    display: inline-block;
+    background: color-mix(in srgb, var(--vs-accent) 18%, transparent);
+    border: 1px solid color-mix(in srgb, var(--vs-accent) 30%, transparent);
+    color: var(--vs-accent);
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 6px;
+    margin-bottom: 0.6rem;
+  }
+
+  #vs-{{ section.id }} .vs-tile-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 0 0 0.35rem;
+    color: var(--vs-text);
+  }
+
+  #vs-{{ section.id }} .vs-tile--featured .vs-tile-title {
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    margin-bottom: 0.5rem;
+  }
+
+  #vs-{{ section.id }} .vs-tile-meta {
+    font-size: 0.78rem;
+    color: var(--vs-muted);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  #vs-{{ section.id }} .vs-dot {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: var(--vs-muted);
+    display: inline-block;
+  }
+
+  #vs-{{ section.id }} .vs-caption {
+    font-size: 0.82rem;
+    color: var(--vs-muted);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0 0 0.75rem;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.4s 0.05s, transform 0.4s 0.05s;
+  }
+
+  #vs-{{ section.id }} .vs-tile:hover .vs-caption {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #vs-{{ section.id }} .vs-watch-link {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--vs-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    opacity: 0;
+    transition: opacity 0.3s 0.1s;
+  }
+
+  #vs-{{ section.id }} .vs-tile:hover .vs-watch-link { opacity: 1; }
+
+  /* Featured play buttons row */
+  #vs-{{ section.id }} .vs-featured-actions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  #vs-{{ section.id }} .vs-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--vs-accent);
+    color: #000;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.65rem 1.4rem;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 20px color-mix(in srgb, var(--vs-accent) 40%, transparent);
+  }
+
+  #vs-{{ section.id }} .vs-btn-primary:hover {
+    background: #fff;
+    box-shadow: 0 0 30px color-mix(in srgb, var(--vs-accent) 60%, transparent);
+  }
+
+  #vs-{{ section.id }} .vs-btn-primary svg { width: 18px; height: 18px; fill: currentColor; }
+
+  /* ── Modal ── */
+  #vs-modal-{{ section.id }} {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  #vs-modal-{{ section.id }}.is-open { display: flex; }
+
+  #vs-modal-{{ section.id }} .vs-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(7,7,7,0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  #vs-modal-{{ section.id }} .vs-modal-box {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    background: #0e0e0e;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--vs-border);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+    z-index: 1;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #vs-modal-{{ section.id }} .vs-modal-player {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #000;
+    flex-shrink: 0;
+  }
+
+  #vs-modal-{{ section.id }} .vs-modal-player video,
+  #vs-modal-{{ section.id }} .vs-modal-player iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  #vs-modal-{{ section.id }} .vs-modal-info {
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  #vs-modal-{{ section.id }} .vs-modal-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin: 0 0 0.35rem;
+  }
+
+  #vs-modal-{{ section.id }} .vs-modal-meta {
+    font-size: 0.8rem;
+    color: var(--vs-muted);
+  }
+
+  #vs-modal-{{ section.id }} .vs-modal-close {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  #vs-modal-{{ section.id }} .vs-modal-close:hover {
+    background: var(--vs-accent);
+    border-color: var(--vs-accent);
+    color: #000;
+  }
+
+  #vs-modal-{{ section.id }} .vs-modal-close svg {
+    width: 18px; height: 18px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    #vs-{{ section.id }} .vs-tile,
+    #vs-{{ section.id }} .vs-poster,
+    #vs-{{ section.id }} .vs-caption,
+    #vs-{{ section.id }} .vs-play { transition: none !important; }
+  }
+</style>
+
+<div id="vs-{{ section.id }}">
+  {% if section.settings.show_grid_bg %}<div class="vs-grid-bg"></div>{% endif %}
+
+  <div class="vs-wrap">
+
+    <!-- ── Section Header ── -->
+    <div class="vs-header">
+      <div class="vs-header-text">
+        {% if section.settings.eyebrow != blank %}
+          <p class="vs-eyebrow">{{ section.settings.eyebrow }}</p>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2 class="vs-heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+        {% if section.settings.subheading != blank %}
+          <p class="vs-subheading">{{ section.settings.subheading }}</p>
+        {% endif %}
+      </div>
+
+      {% if section.settings.cta_label != blank and section.settings.cta_link != blank %}
+        <a href="{{ section.settings.cta_link }}" class="vs-cta-btn">
+          {{ section.settings.cta_label }}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- ── Video Grid ── -->
+    <div class="vs-grid">
+      {% for block in section.blocks %}
+        {%- assign is_featured = block.settings.featured -%}
+        {%- assign is_tall = block.settings.tall -%}
+        {%- assign video_type = block.settings.video_type -%}
+      {% if block.settings.hosted_video != blank %}
+  {%- assign has_hosted = true -%}
+{% else %}
+  {%- assign has_hosted = false -%}
+{% endif %}
+{% if block.settings.youtube_url != blank %}
+  {%- assign has_youtube = true -%}
+{% else %}
+  {%- assign has_youtube = false -%}
+{% endif %}
+        {%- comment -%} Extract YouTube ID {%- endcomment -%}
+        {%- assign yt_id = '' -%}
+        {% if has_youtube %}
+          {%- assign yt_raw = block.settings.youtube_url -%}
+          {%- if yt_raw contains 'youtu.be/' -%}
+            {%- assign yt_id = yt_raw | split: 'youtu.be/' | last | split: '?' | first -%}
+          {%- elsif yt_raw contains 'v=' -%}
+            {%- assign yt_id = yt_raw | split: 'v=' | last | split: '&' | first -%}
+          {%- endif -%}
+        {% endif %}
+
+        <div
+          class="vs-tile{% if is_featured %} vs-tile--featured{% endif %}{% if is_tall %} vs-tile--tall{% endif %}"
+          data-section="{{ section.id }}"
+          data-type="{{ video_type }}"
+          data-yt-id="{{ yt_id }}"
+          data-title="{{ block.settings.title | escape }}"
+          data-meta="{{ block.settings.tag | escape }}{% if block.settings.duration != blank %} · {{ block.settings.duration | escape }}{% endif %}"
+          {% if has_hosted and video_type == 'hosted' %}data-video-src="{{ block.settings.hosted_video | file_url }}"{% endif %}
+          {{ block.shopify_attributes }}>
+
+          <!-- Media Layer -->
+          <div class="vs-media">
+            {% if block.settings.poster_image %}
+              <img
+                class="vs-poster"
+                src="{{ block.settings.poster_image | img_url: '1200x' }}"
+                alt="{{ block.settings.title | escape }}"
+                loading="lazy"
+                width="1200"
+                height="800">
+            {% else %}
+              <img
+                class="vs-poster"
+                src="{{ 'collection-1' | placeholder_svg_tag }}"
+                alt="{{ block.settings.title | escape }}"
+                loading="lazy">
+            {% endif %}
+
+            {% if has_hosted and video_type == 'hosted' %}
+              <video
+                class="vs-video-preview"
+                src="{{ block.settings.hosted_video | file_url }}"
+                muted
+                loop
+                playsinline
+                preload="none"
+                tabindex="-1">
+              </video>
+            {% endif %}
+          </div>
+
+          <div class="vs-overlay"></div>
+
+          <!-- Play Button -->
+          <div class="vs-play" aria-hidden="true">
+            <div class="vs-play-ring">
+              <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="vs-content">
+            {% if block.settings.tag != blank %}
+              <span class="vs-tag">{{ block.settings.tag }}</span>
+            {% endif %}
+
+            {% if block.settings.title != blank %}
+              <h3 class="vs-tile-title">{{ block.settings.title }}</h3>
+            {% endif %}
+
+            {% if block.settings.tag != blank or block.settings.duration != blank %}
+              <div class="vs-tile-meta">
+                {% if block.settings.tag != blank %}<span>{{ block.settings.tag }}</span>{% endif %}
+                {% if block.settings.tag != blank and block.settings.duration != blank %}<span class="vs-dot"></span>{% endif %}
+                {% if block.settings.duration != blank %}<span>{{ block.settings.duration }}</span>{% endif %}
+              </div>
+            {% endif %}
+
+            {% if block.settings.caption != blank %}
+              <p class="vs-caption">{{ block.settings.caption }}</p>
+            {% endif %}
+
+            {% if is_featured %}
+              <div class="vs-featured-actions">
+                <button
+                  class="vs-btn-primary vs-open-modal"
+                  data-section="{{ section.id }}"
+                  data-type="{{ video_type }}"
+                  data-yt-id="{{ yt_id }}"
+                  data-title="{{ block.settings.title | escape }}"
+                  data-meta="{{ block.settings.tag | escape }}{% if block.settings.duration != blank %} · {{ block.settings.duration | escape }}{% endif %}"
+                  {% if has_hosted and video_type == 'hosted' %}data-video-src="{{ block.settings.hosted_video | file_url }}"{% endif %}
+                  aria-label="Play {{ block.settings.title | escape }}">
+                  <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  Play Now
+                </button>
+              </div>
+            {% else %}
+              <span class="vs-watch-link">Watch →</span>
+            {% endif %}
+          </div>
+
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+<!-- ── Modal ── -->
+<div id="vs-modal-{{ section.id }}" role="dialog" aria-modal="true" aria-labelledby="vs-modal-title-{{ section.id }}">
+  <div class="vs-modal-backdrop" id="vs-backdrop-{{ section.id }}"></div>
+  <div class="vs-modal-box">
+    <button class="vs-modal-close" id="vs-close-{{ section.id }}" aria-label="Close video">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="vs-modal-player" id="vs-player-{{ section.id }}"></div>
+    <div class="vs-modal-info">
+      <div>
+        <h3 class="vs-modal-title" id="vs-modal-title-{{ section.id }}"></h3>
+        <p class="vs-modal-meta" id="vs-modal-meta-{{ section.id }}"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var sectionId = '{{ section.id }}';
+  var modal     = document.getElementById('vs-modal-' + sectionId);
+  var player    = document.getElementById('vs-player-' + sectionId);
+  var titleEl   = document.getElementById('vs-modal-title-' + sectionId);
+  var metaEl    = document.getElementById('vs-modal-meta-' + sectionId);
+  var closeBtn  = document.getElementById('vs-close-' + sectionId);
+  var backdrop  = document.getElementById('vs-backdrop-' + sectionId);
+
+  function openModal(data) {
+    titleEl.textContent = data.title || '';
+    metaEl.textContent  = data.meta  || '';
+    player.innerHTML    = '';
+
+    if (data.type === 'youtube' && data.ytId) {
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/' + data.ytId + '?autoplay=1&rel=0';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      player.appendChild(iframe);
+    } else if (data.videoSrc) {
+      var video = document.createElement('video');
+      video.src = data.videoSrc;
+      video.controls = true;
+      video.autoplay = true;
+      video.style.cssText = 'width:100%;height:100%;object-fit:contain;';
+      player.appendChild(video);
+    }
+
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('is-open');
+    player.innerHTML = '';
+    document.body.style.overflow = '';
+  }
+
+  function getTileData(el) {
+    return {
+      type:     el.dataset.type,
+      ytId:     el.dataset.ytId,
+      title:    el.dataset.title,
+      meta:     el.dataset.meta,
+      videoSrc: el.dataset.videoSrc
+    };
+  }
+
+  // Click on any tile
+  document.querySelectorAll('#vs-' + sectionId + ' .vs-tile').forEach(function(tile) {
+    tile.addEventListener('click', function() {
+      openModal(getTileData(tile));
+    });
+    tile.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(getTileData(tile)); }
+    });
+    tile.setAttribute('tabindex', '0');
+    tile.setAttribute('role', 'button');
+  });
+
+  // Click on featured "Play Now" button
+  document.querySelectorAll('#vs-' + sectionId + ' .vs-open-modal').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      openModal(getTileData(btn));
+    });
+  });
+
+  // Close handlers
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', closeModal);
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
+
+  // Hover video preview for hosted tiles
+  document.querySelectorAll('#vs-' + sectionId + ' .vs-tile').forEach(function(tile) {
+    var vid = tile.querySelector('.vs-video-preview');
+    if (!vid) return;
+    tile.addEventListener('mouseenter', function() {
+      vid.currentTime = 0;
+      vid.play().catch(function(){});
+    });
+    tile.addEventListener('mouseleave', function() {
+      vid.pause();
+      vid.currentTime = 0;
+    });
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Video Showcase",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "(WATCH IT IN ACTION)"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "See the product, not just the photos."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Real demos, behind-the-scenes footage, and creator stories."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA button label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA button link"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#4DEBFF"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_grid_bg",
+      "label": "Show subtle grid background",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video_tile",
+      "name": "Video Tile",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Video Title"
+        },
+        {
+          "type": "textarea",
+          "id": "caption",
+          "label": "Caption (optional, shown on hover)"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag (e.g. Demo, BTS, Tutorial)",
+          "default": "Demo"
+        },
+        {
+          "type": "text",
+          "id": "duration",
+          "label": "Duration (e.g. 2h 14m)",
+          "default": "3:45"
+        },
+        {
+          "type": "image_picker",
+          "id": "poster_image",
+          "label": "Poster / Thumbnail image"
+        },
+        {
+          "type": "select",
+          "id": "video_type",
+          "label": "Video source",
+          "options": [
+            { "value": "youtube",  "label": "YouTube" },
+            { "value": "hosted",   "label": "Hosted (Shopify file)" }
+          ],
+          "default": "youtube"
+        },
+        {
+          "type": "text",
+          "id": "youtube_url",
+          "label": "YouTube URL",
+          "placeholder": "https://www.youtube.com/watch?v=..."
+        },
+        {
+          "type": "text",
+          "id": "hosted_video",
+          "label": "Hosted video file handle (from Files)"
+        },
+        {
+          "type": "checkbox",
+          "id": "featured",
+          "label": "Featured tile (spans 2 columns × 2 rows)",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "tall",
+          "label": "Tall tile (spans 2 rows on desktop)",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Showcase",
+      "blocks": [
+        {
+          "type": "video_tile",
+          "settings": {
+            "title": "Neon Genesis: The Awakening",
+            "tag": "Premiere",
+            "duration": "2h 14m",
+            "caption": "In a future where humanity has merged with machines, one detective must solve the ultimate crime.",
+            "video_type": "youtube",
+            "featured": true
+          }
+        },
+        {
+          "type": "video_tile",
+          "settings": {
+            "title": "Echoes of Silence",
+            "tag": "Drama",
+            "duration": "1h 45m",
+            "video_type": "youtube"
+          }
+        },
+        {
+          "type": "video_tile",
+          "settings": {
+            "title": "The Last Frontier",
+            "tag": "Documentary",
+            "duration": "52m",
+            "video_type": "youtube"
+          }
+        },
+        {
+          "type": "video_tile",
+          "settings": {
+            "title": "Crimson Tide",
+            "tag": "New Season",
+            "caption": "A gripping tale of power and betrayal set in the heart of a cyberpunk metropolis.",
+            "video_type": "youtube",
+            "tall": true
+          }
+        },
+        {
+          "type": "video_tile",
+          "settings": {
+            "title": "Orbit",
+            "tag": "Sci-Fi",
+            "duration": "1h 58m",
+            "video_type": "youtube"
+          }
+        },
+        {
+          "type": "video_tile",
+          "settings": {
+            "title": "Velvet Road",
+            "tag": "Action",
+            "duration": "2h 05m",
+            "video_type": "youtube"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
