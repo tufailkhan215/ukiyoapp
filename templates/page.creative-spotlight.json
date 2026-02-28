@@ -10,11 +10,9 @@
 {
   "sections": {
     "main": {
-      "type": "main-page",
+      "type": "creative-spotlight",
       "settings": {}
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main"]
 }
