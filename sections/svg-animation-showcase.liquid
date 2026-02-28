@@ -1,0 +1,1093 @@
+{% comment %}
+  Section: SVG Animation Showcase
+  File: sections/svg-animation-showcase.liquid
+{% endcomment %}
+
+{%- assign accent      = section.settings.accent_color | default: '#4DEBFF' -%}
+{%- assign layout      = section.settings.layout_mode  | default: 'left-text-right-visual' -%}
+{%- assign bg_style    = section.settings.background_style | default: 'subtle-grid' -%}
+{%- assign spacing     = section.settings.spacing_density  | default: 'normal' -%}
+{%- assign interactive = section.settings.enable_interactive -%}
+{%- assign scroll_trig = section.settings.enable_scroll_trigger -%}
+
+{%- assign pad_map_y = 'normal:5rem,relaxed:8rem,compact:3rem' -%}
+{%- assign pad_y = '5rem' -%}
+{%- if spacing == 'relaxed' -%}{%- assign pad_y = '8rem' -%}{%- endif -%}
+{%- if spacing == 'compact' -%}{%- assign pad_y = '3rem' -%}{%- endif -%}
+
+{%- assign gap_map = 'normal:3rem,relaxed:5rem,compact:1.5rem' -%}
+{%- assign gap_val = '3rem' -%}
+{%- if spacing == 'relaxed' -%}{%- assign gap_val = '5rem' -%}{%- endif -%}
+{%- if spacing == 'compact' -%}{%- assign gap_val = '1.5rem' -%}{%- endif -%}
+
+<style>
+  /* ── CSS Variables ──────────────────────────────────────── */
+  #sas-{{ section.id }} {
+    --sas-accent:    {{ accent }};
+    --sas-bg:        #070707;
+    --sas-surface:   #111111;
+    --sas-surface2:  #181818;
+    --sas-border:    rgba(255,255,255,0.08);
+    --sas-text:      #F5F5F5;
+    --sas-muted:     rgba(245,245,245,0.55);
+    --sas-radius:    20px;
+    --sas-pad-y:     {{ pad_y }};
+    --sas-gap:       {{ gap_val }};
+    background:      var(--sas-bg);
+    color:           var(--sas-text);
+    font-family:     inherit;
+    position:        relative;
+    overflow:        hidden;
+  }
+
+  /* ── Backgrounds ────────────────────────────────────────── */
+  #sas-{{ section.id }} .sas-bg-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  {% if bg_style == 'subtle-grid' %}
+  #sas-{{ section.id }} .sas-bg-layer {
+    background-image:
+      linear-gradient(to right,  rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  {% elsif bg_style == 'gradient' %}
+  #sas-{{ section.id }} .sas-bg-layer {
+    background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(77,235,255,0.06) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 40% at 10% 80%, rgba(77,235,255,0.03) 0%, transparent 60%);
+  }
+  {% endif %}
+
+  /* Glow orb */
+  #sas-{{ section.id }} .sas-glow {
+    position: absolute;
+    width: 700px; height: 700px;
+    right: -100px; top: -100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(77,235,255,0.05) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Wrapper ────────────────────────────────────────────── */
+  #sas-{{ section.id }} .sas-wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: var(--sas-pad-y) 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Layout Grid ────────────────────────────────────────── */
+  #sas-{{ section.id }} .sas-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sas-gap);
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    #sas-{{ section.id }} .sas-layout.mode--left-text-right-visual {
+      grid-template-columns: 5fr 7fr;
+    }
+    #sas-{{ section.id }} .sas-layout.mode--right-text-left-visual {
+      grid-template-columns: 7fr 5fr;
+    }
+    #sas-{{ section.id }} .sas-layout.mode--right-text-left-visual .sas-content-col {
+      order: 2;
+    }
+    #sas-{{ section.id }} .sas-layout.mode--right-text-left-visual .sas-visual-col {
+      order: 1;
+    }
+    #sas-{{ section.id }} .sas-layout.mode--stacked {
+      grid-template-columns: 1fr;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+  }
+
+  /* ── Content Column ─────────────────────────────────────── */
+  #sas-{{ section.id }} .sas-content-col {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  #sas-{{ section.id }} .sas-eyebrow {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sas-accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  #sas-{{ section.id }} .sas-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    background: var(--sas-accent);
+  }
+
+  #sas-{{ section.id }} .sas-heading {
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.06;
+    margin: 0;
+  }
+
+  #sas-{{ section.id }} .sas-heading .sas-accent-word {
+    background: linear-gradient(135deg, var(--sas-accent) 0%, #0ea5e9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  #sas-{{ section.id }} .sas-subheading {
+    font-size: 1.05rem;
+    color: var(--sas-muted);
+    line-height: 1.75;
+    max-width: 38rem;
+    margin: 0;
+  }
+
+  /* ── Feature Items ──────────────────────────────────────── */
+  #sas-{{ section.id }} .sas-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  #sas-{{ section.id }} .sas-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    cursor: default;
+  }
+
+  #sas-{{ section.id }} .sas-feature-icon {
+    flex-shrink: 0;
+    width: 42px; height: 42px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--sas-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.3s, background 0.3s;
+    font-size: 1.1rem;
+    color: var(--sas-accent);
+  }
+
+  #sas-{{ section.id }} .sas-feature:hover .sas-feature-icon {
+    border-color: rgba(77,235,255,0.4);
+    background: rgba(77,235,255,0.08);
+  }
+
+  #sas-{{ section.id }} .sas-feature-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    transition: color 0.3s;
+  }
+
+  #sas-{{ section.id }} .sas-feature:hover .sas-feature-title {
+    color: var(--sas-accent);
+  }
+
+  #sas-{{ section.id }} .sas-feature-text {
+    font-size: 0.85rem;
+    color: var(--sas-muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* ── CTAs ───────────────────────────────────────────────── */
+  #sas-{{ section.id }} .sas-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  #sas-{{ section.id }} .sas-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--sas-accent);
+    color: #000;
+    font-weight: 800;
+    font-size: 0.9rem;
+    padding: 0.85rem 1.75rem;
+    border-radius: 999px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    box-shadow: 0 0 22px rgba(77,235,255,0.3);
+    transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+  }
+
+  #sas-{{ section.id }} .sas-btn-primary:hover {
+    background: #fff;
+    box-shadow: 0 0 36px rgba(77,235,255,0.5);
+    transform: translateY(-2px) scale(1.02);
+  }
+
+  #sas-{{ section.id }} .sas-btn-primary svg {
+    width: 16px; height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.3s;
+  }
+
+  #sas-{{ section.id }} .sas-btn-primary:hover svg { transform: translateX(3px); }
+
+  #sas-{{ section.id }} .sas-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.87rem;
+    font-weight: 600;
+    color: var(--sas-muted);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 2px;
+    transition: color 0.3s, border-color 0.3s;
+  }
+
+  #sas-{{ section.id }} .sas-btn-ghost:hover {
+    color: var(--sas-text);
+    border-color: var(--sas-text);
+  }
+
+  /* ── Visual Stage ───────────────────────────────────────── */
+  #sas-{{ section.id }} .sas-visual-col {
+    position: relative;
+  }
+
+  #sas-{{ section.id }} .sas-stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--sas-radius);
+    background: linear-gradient(135deg, var(--sas-surface) 0%, #000 100%);
+    border: 1px solid var(--sas-border);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  }
+
+  /* Stage grid overlay */
+  #sas-{{ section.id }} .sas-stage::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right,  rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 0;
+    mix-blend-mode: overlay;
+  }
+
+  /* Stage bottom vignette */
+  #sas-{{ section.id }} .sas-stage::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 40%;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* SVG primary container */
+  #sas-{{ section.id }} .sas-svg-primary {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    padding: 2rem;
+  }
+
+  #sas-{{ section.id }} .sas-svg-primary svg,
+  #sas-{{ section.id }} .sas-svg-primary .sas-svg-inner svg {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  /* SVG secondary containers */
+  #sas-{{ section.id }} .sas-svg-secondary {
+    position: absolute;
+    z-index: 3;
+    background: rgba(15,15,15,0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--sas-border);
+    border-radius: 14px;
+    padding: 1rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+
+  #sas-{{ section.id }} .sas-svg-secondary.size--medium { width: 180px; }
+  #sas-{{ section.id }} .sas-svg-secondary.size--small  { width: 130px; }
+
+  /* Asymmetric positioning */
+  #sas-{{ section.id }} .sas-svg-secondary:nth-of-type(1) { top: -1.5rem;   right: -1rem; }
+  #sas-{{ section.id }} .sas-svg-secondary:nth-of-type(2) { bottom: -1.5rem; left: -1.5rem; }
+  #sas-{{ section.id }} .sas-svg-secondary:nth-of-type(3) { top: 40%;       left: -2rem; }
+
+  #sas-{{ section.id }} .sas-svg-secondary .sas-float-title {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--sas-text);
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #sas-{{ section.id }} .sas-float-badge {
+    font-size: 0.58rem;
+    background: rgba(77,235,255,0.15);
+    color: var(--sas-accent);
+    padding: 2px 7px;
+    border-radius: 999px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  #sas-{{ section.id }} .sas-svg-secondary .sas-svg-inner {
+    width: 100%;
+    aspect-ratio: 1;
+  }
+
+  #sas-{{ section.id }} .sas-svg-secondary .sas-svg-inner svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Stage bottom info bar */
+  #sas-{{ section.id }} .sas-stage-bar {
+    position: absolute;
+    bottom: 1.25rem; left: 1.25rem; right: 1.25rem;
+    z-index: 5;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  #sas-{{ section.id }} .sas-stage-meta {
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--sas-border);
+    border-radius: 10px;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.68rem;
+    font-family: monospace;
+    color: var(--sas-accent);
+    line-height: 1.6;
+  }
+
+  #sas-{{ section.id }} .sas-stage-controls {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  #sas-{{ section.id }} .sas-ctrl-btn {
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid var(--sas-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--sas-text);
+    font-size: 0.85rem;
+    transition: background 0.3s, border-color 0.3s, color 0.3s;
+  }
+
+  #sas-{{ section.id }} .sas-ctrl-btn:hover {
+    background: var(--sas-accent);
+    border-color: var(--sas-accent);
+    color: #000;
+  }
+
+  /* ── Animation Keyframes ────────────────────────────────── */
+  @keyframes sas-stroke-draw {
+    from { stroke-dashoffset: 1000; opacity: 0; }
+    to   { stroke-dashoffset: 0;    opacity: 1; }
+  }
+
+  @keyframes sas-float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-12px); }
+  }
+
+  @keyframes sas-pulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50%       { opacity: 1;   transform: scale(1.05); }
+  }
+
+  @keyframes sas-rotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  @keyframes sas-rotate-reverse {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(-360deg); }
+  }
+
+  @keyframes sas-spin-slow {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  @keyframes sas-fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Animation Classes ──────────────────────────────────── */
+
+  /* Stroke draw */
+  #sas-{{ section.id }} .anim--stroke_draw.is-visible svg path,
+  #sas-{{ section.id }} .anim--stroke_draw.is-visible svg line,
+  #sas-{{ section.id }} .anim--stroke_draw.is-visible svg polyline,
+  #sas-{{ section.id }} .anim--stroke_draw.is-visible svg circle {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+    animation: sas-stroke-draw 2s cubic-bezier(0.4,0,0.2,1) forwards;
+  }
+
+  /* Float */
+  #sas-{{ section.id }} .anim--float.is-visible {
+    animation: sas-float 4s ease-in-out infinite;
+  }
+
+  /* Pulse */
+  #sas-{{ section.id }} .anim--pulse.is-visible {
+    animation: sas-pulse 3s ease-in-out infinite;
+  }
+
+  /* Rotate */
+  #sas-{{ section.id }} .anim--rotate.is-visible svg {
+    animation: sas-rotate 12s linear infinite;
+    transform-origin: center;
+  }
+
+  /* Secondary floats on load (always subtle) */
+  #sas-{{ section.id }} .sas-svg-secondary {
+    animation: sas-float 5s ease-in-out infinite;
+  }
+
+  #sas-{{ section.id }} .sas-svg-secondary:nth-of-type(2) {
+    animation-delay: -2s;
+    animation-duration: 6s;
+  }
+
+  #sas-{{ section.id }} .sas-svg-secondary:nth-of-type(3) {
+    animation-delay: -1s;
+    animation-duration: 4.5s;
+  }
+
+  /* Scroll trigger — hidden until .is-visible */
+  {% if scroll_trig %}
+  #sas-{{ section.id }} .sas-anim-target {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1),
+                transform 0.7s cubic-bezier(0.4,0,0.2,1);
+  }
+  #sas-{{ section.id }} .sas-anim-target.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  #sas-{{ section.id }} .sas-anim-target:nth-child(2) { transition-delay: 0.1s; }
+  #sas-{{ section.id }} .sas-anim-target:nth-child(3) { transition-delay: 0.2s; }
+  #sas-{{ section.id }} .sas-anim-target:nth-child(4) { transition-delay: 0.3s; }
+  #sas-{{ section.id }} .sas-anim-target:nth-child(5) { transition-delay: 0.4s; }
+  {% endif %}
+
+  /* Paused state */
+  #sas-{{ section.id }} .sas-stage.is-paused .anim--float.is-visible,
+  #sas-{{ section.id }} .sas-stage.is-paused .anim--pulse.is-visible,
+  #sas-{{ section.id }} .sas-stage.is-paused .anim--rotate.is-visible svg,
+  #sas-{{ section.id }} .sas-stage.is-paused .sas-svg-secondary {
+    animation-play-state: paused;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    #sas-{{ section.id }} .anim--float.is-visible,
+    #sas-{{ section.id }} .anim--pulse.is-visible,
+    #sas-{{ section.id }} .anim--rotate.is-visible svg,
+    #sas-{{ section.id }} .sas-svg-secondary {
+      animation: none !important;
+    }
+    #sas-{{ section.id }} .sas-anim-target {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+
+  /* Hover / click interaction */
+  {% if interactive %}
+  #sas-{{ section.id }} .interact--hover:hover .sas-svg-inner svg {
+    filter: drop-shadow(0 0 12px {{ accent }});
+    transform: scale(1.06);
+    transition: transform 0.4s, filter 0.4s;
+  }
+  #sas-{{ section.id }} .interact--click.is-triggered .sas-svg-inner svg {
+    filter: drop-shadow(0 0 18px {{ accent }});
+  }
+  {% endif %}
+</style>
+
+<div id="sas-{{ section.id }}">
+  <div class="sas-bg-layer"></div>
+  <div class="sas-glow"></div>
+
+  <div class="sas-wrap">
+    <div class="sas-layout mode--{{ layout }}">
+
+      <!-- ══ CONTENT COLUMN ══ -->
+      <div class="sas-content-col">
+
+        {% if section.settings.eyebrow_text != blank %}
+          <p class="sas-eyebrow sas-anim-target">{{ section.settings.eyebrow_text }}</p>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          {%- assign words = section.settings.heading | split: ' ' -%}
+          {%- assign last_word = words | last -%}
+          {%- assign front_words = section.settings.heading | remove: last_word | strip -%}
+          <h2 class="sas-heading sas-anim-target">
+            {% if front_words != blank %}{{ front_words }}<br>{% endif %}
+            <span class="sas-accent-word">{{ last_word }}</span>
+          </h2>
+        {% endif %}
+
+        {% if section.settings.subheading != blank %}
+          <p class="sas-subheading sas-anim-target">{{ section.settings.subheading }}</p>
+        {% endif %}
+
+        <!-- Feature blocks (non-primary SVG items shown as feature bullets) -->
+        {%- assign feature_blocks = section.blocks | where: 'type', 'svg_item' -%}
+        {% if feature_blocks.size > 0 %}
+          <div class="sas-features sas-anim-target">
+            {% for block in feature_blocks %}
+              {% if block.settings.svg_title != blank %}
+                <div class="sas-feature" {{ block.shopify_attributes }}>
+                  <div class="sas-feature-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      {% if block.settings.animation_type == 'stroke_draw' %}
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                      {% elsif block.settings.animation_type == 'float' %}
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                      {% elsif block.settings.animation_type == 'pulse' %}
+                        <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/>
+                      {% else %}
+                        <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M5.34 18.66l-1.41 1.41M12 2v2M12 20v2M4.93 4.93l1.41 1.41M18.66 18.66l1.41 1.41M2 12h2M20 12h2"/>
+                      {% endif %}
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="sas-feature-title">{{ block.settings.svg_title }}</div>
+                    {% if block.settings.svg_caption != blank %}
+                      <p class="sas-feature-text">{{ block.settings.svg_caption }}</p>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <!-- CTAs -->
+        <div class="sas-ctas sas-anim-target">
+          {% if section.settings.cta_label != blank %}
+            <a href="{{ section.settings.cta_link | default: '#' }}" class="sas-btn-primary">
+              {{ section.settings.cta_label }}
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          {% endif %}
+          {% if section.settings.secondary_link_label != blank %}
+            <a href="{{ section.settings.secondary_link_url | default: '#' }}" class="sas-btn-ghost">
+              {{ section.settings.secondary_link_label }}
+            </a>
+          {% endif %}
+        </div>
+
+      </div>
+      <!-- /CONTENT COLUMN -->
+
+      <!-- ══ VISUAL COLUMN ══ -->
+      <div class="sas-visual-col">
+        <div class="sas-stage" id="sas-stage-{{ section.id }}">
+
+          {%- assign primary_block = blank -%}
+          {%- assign secondary_blocks = '' -%}
+          {%- assign sec_count = 0 -%}
+
+          {% for block in section.blocks %}
+            {% if block.settings.position_mode == 'primary' and primary_block == blank %}
+              {%- assign primary_block = block -%}
+            {% endif %}
+          {% endfor %}
+
+          <!-- Primary SVG -->
+          {% if primary_block != blank and primary_block.svg_code != blank or primary_block != blank %}
+            <div
+              class="sas-svg-primary anim--{{ primary_block.settings.animation_type }}{% if interactive %} interact--{{ primary_block.settings.interaction_trigger }}{% endif %}"
+              id="sas-block-{{ primary_block.id }}"
+              {{ primary_block.shopify_attributes }}>
+              {% if primary_block.settings.svg_code != blank %}
+                <div class="sas-svg-inner">{{ primary_block.settings.svg_code }}</div>
+              {% else %}
+                <!-- Default fallback SVG -->
+                <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:{{ accent }};opacity:0.85;">
+                  <path d="M50 150 C100 50 150 250 200 150 S300 50 350 150" stroke="currentColor" stroke-width="2" stroke-dasharray="8 4" opacity="0.4"/>
+                  <path d="M50 150 C100 100 150 200 200 150 S300 100 350 150" stroke="currentColor" stroke-width="1.5" opacity="0.7"/>
+                  <circle cx="200" cy="150" r="45" stroke="currentColor" stroke-width="1" stroke-dasharray="10 5" opacity="0.35" style="transform-origin:200px 150px;animation:sas-rotate 10s linear infinite"/>
+                  <circle cx="200" cy="150" r="68" stroke="currentColor" stroke-width="1" stroke-dasharray="2 8" opacity="0.18" style="transform-origin:200px 150px;animation:sas-rotate-reverse 15s linear infinite"/>
+                  <circle cx="200" cy="150" r="10" fill="currentColor" opacity="0.6" style="filter:blur(4px)"/>
+                  <circle cx="200" cy="150" r="4" fill="white"/>
+                  <line x1="200" y1="150" x2="100" y2="80"  stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
+                  <line x1="200" y1="150" x2="300" y2="80"  stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
+                  <line x1="200" y1="150" x2="100" y2="220" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
+                  <line x1="200" y1="150" x2="300" y2="220" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
+                  <circle cx="100" cy="80"  r="7" stroke="currentColor" stroke-width="2" fill="transparent"/>
+                  <circle cx="300" cy="80"  r="7" stroke="currentColor" stroke-width="2" fill="transparent"/>
+                  <circle cx="100" cy="220" r="7" stroke="currentColor" stroke-width="2" fill="transparent"/>
+                  <circle cx="300" cy="220" r="7" stroke="currentColor" stroke-width="2" fill="transparent"/>
+                </svg>
+              {% endif %}
+            </div>
+          {% else %}
+            <!-- Full fallback when no blocks set -->
+            <div class="sas-svg-primary anim--pulse" id="sas-block-fallback-{{ section.id }}">
+              <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:{{ accent }};opacity:0.85;">
+                <path d="M50 150 C100 50 150 250 200 150 S300 50 350 150" stroke="currentColor" stroke-width="2" stroke-dasharray="8 4" opacity="0.4"/>
+                <path d="M50 150 C100 100 150 200 200 150 S300 100 350 150" stroke="currentColor" stroke-width="1.5" opacity="0.7"/>
+                <circle cx="200" cy="150" r="45" stroke="currentColor" stroke-width="1" stroke-dasharray="10 5" opacity="0.35" style="transform-origin:200px 150px;animation:sas-rotate 10s linear infinite"/>
+                <circle cx="200" cy="150" r="68" stroke="currentColor" stroke-width="1" stroke-dasharray="2 8" opacity="0.18" style="transform-origin:200px 150px;animation:sas-rotate-reverse 15s linear infinite"/>
+                <circle cx="200" cy="150" r="10" fill="currentColor" opacity="0.6" style="filter:blur(4px)"/>
+                <circle cx="200" cy="150" r="4" fill="white"/>
+                <line x1="200" y1="150" x2="100" y2="80"  stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
+                <line x1="200" y1="150" x2="300" y2="80"  stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
+                <line x1="200" y1="150" x2="100" y2="220" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
+                <line x1="200" y1="150" x2="300" y2="220" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
+                <circle cx="100" cy="80"  r="7" stroke="currentColor" stroke-width="2" fill="transparent"/>
+                <circle cx="300" cy="80"  r="7" stroke="currentColor" stroke-width="2" fill="transparent"/>
+                <circle cx="100" cy="220" r="7" stroke="currentColor" stroke-width="2" fill="transparent"/>
+                <circle cx="300" cy="220" r="7" stroke="currentColor" stroke-width="2" fill="transparent"/>
+              </svg>
+            </div>
+          {% endif %}
+
+          <!-- Secondary SVGs -->
+          {%- assign sec_idx = 0 -%}
+          {% for block in section.blocks %}
+            {% if block.settings.position_mode == 'secondary' and sec_idx < 3 %}
+              <div
+                class="sas-svg-secondary size--{{ block.settings.size_mode | default: 'medium' }}{% if interactive %} interact--{{ block.settings.interaction_trigger }}{% endif %}"
+                id="sas-sec-{{ block.id }}"
+                {{ block.shopify_attributes }}>
+                <div class="sas-float-title">
+                  {{ block.settings.svg_title | default: 'Module' }}
+                  <span class="sas-float-badge">Active</span>
+                </div>
+                <div class="sas-svg-inner">
+                  {% if block.settings.svg_code != blank %}
+                    {{ block.settings.svg_code }}
+                  {% else %}
+                    <!-- Default mini SVG -->
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:{{ accent }}">
+                      <circle cx="50" cy="50" r="35" stroke="currentColor" stroke-width="2" stroke-dasharray="6 3" opacity="0.5" style="transform-origin:50px 50px;animation:sas-rotate 8s linear infinite"/>
+                      <circle cx="50" cy="50" r="10" fill="currentColor" opacity="0.7"/>
+                      <circle cx="50" cy="50" r="4"  fill="white"/>
+                      {% if sec_idx == 0 %}
+                        <!-- Bars -->
+                        <rect x="15" y="72" width="14" height="16" fill="currentColor" opacity="0.4" rx="2"/>
+                        <rect x="33" y="64" width="14" height="24" fill="currentColor" opacity="0.6" rx="2"/>
+                        <rect x="51" y="56" width="14" height="32" fill="currentColor" opacity="0.8" rx="2"/>
+                        <rect x="69" y="68" width="14" height="20" fill="currentColor" opacity="0.5" rx="2"/>
+                      {% elsif sec_idx == 1 %}
+                        <line x1="50" y1="15" x2="50" y2="85" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
+                        <line x1="15" y1="50" x2="85" y2="50" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
+                      {% endif %}
+                    </svg>
+                  {% endif %}
+                </div>
+              </div>
+              {%- assign sec_idx = sec_idx | plus: 1 -%}
+            {% endif %}
+          {% endfor %}
+
+          <!-- Stage bottom bar -->
+          <div class="sas-stage-bar">
+            <div class="sas-stage-meta">
+              RENDER_TIME: 0.04ms<br>NODES: 1,420
+            </div>
+            <div class="sas-stage-controls">
+              <button class="sas-ctrl-btn" id="sas-play-{{ section.id }}" aria-label="Pause animations" title="Pause / Resume">
+                ⏸
+              </button>
+              <button class="sas-ctrl-btn" id="sas-restart-{{ section.id }}" aria-label="Restart animations" title="Restart">
+                ↺
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- /VISUAL COLUMN -->
+
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var sid         = '{{ section.id }}';
+  var section_el  = document.getElementById('sas-' + sid);
+  var stage       = document.getElementById('sas-stage-' + sid);
+  var playBtn     = document.getElementById('sas-play-' + sid);
+  var restartBtn  = document.getElementById('sas-restart-' + sid);
+  var isPaused    = false;
+  var scrollTrig  = {{ scroll_trig | json }};
+  var interactive = {{ interactive | json }};
+
+  if (!section_el) return;
+
+  // ── Scroll Trigger ──────────────────────────────────────────
+  var animTargets = section_el.querySelectorAll('.sas-anim-target');
+  var svgTargets  = section_el.querySelectorAll('.sas-svg-primary, .sas-svg-secondary');
+  var allTargets  = Array.prototype.slice.call(animTargets).concat(Array.prototype.slice.call(svgTargets));
+
+  function activateAll() {
+    allTargets.forEach(function(el) { el.classList.add('is-visible'); });
+  }
+
+  if (scrollTrig && 'IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          activateAll();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    observer.observe(section_el);
+  } else {
+    activateAll();
+  }
+
+  // ── Pause / Resume ──────────────────────────────────────────
+  if (playBtn) {
+    playBtn.addEventListener('click', function() {
+      isPaused = !isPaused;
+      if (isPaused) {
+        stage.classList.add('is-paused');
+        playBtn.textContent = '▶';
+        playBtn.setAttribute('aria-label', 'Resume animations');
+      } else {
+        stage.classList.remove('is-paused');
+        playBtn.textContent = '⏸';
+        playBtn.setAttribute('aria-label', 'Pause animations');
+      }
+    });
+  }
+
+  // ── Restart ─────────────────────────────────────────────────
+  if (restartBtn) {
+    restartBtn.addEventListener('click', function() {
+      // Remove + re-add is-visible to restart CSS animations
+      allTargets.forEach(function(el) {
+        el.classList.remove('is-visible');
+      });
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          activateAll();
+          stage.classList.remove('is-paused');
+          isPaused = false;
+          if (playBtn) {
+            playBtn.textContent = '⏸';
+            playBtn.setAttribute('aria-label', 'Pause animations');
+          }
+        });
+      });
+    });
+  }
+
+  // ── Click interactions ──────────────────────────────────────
+  if (interactive) {
+    section_el.querySelectorAll('.interact--click').forEach(function(el) {
+      el.addEventListener('click', function() {
+        el.classList.toggle('is-triggered');
+      });
+      el.setAttribute('tabindex', '0');
+      el.setAttribute('role', 'button');
+      el.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); }
+      });
+    });
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "SVG Animation Showcase",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow label",
+      "default": "Case Study"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Living Vector Motion"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Experience the fluidity of code-driven motion. Our vector animations bring static designs to life with precise stroke manipulation and parallax depth."
+    },
+    {
+      "type": "header",
+      "content": "Call to Action"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Primary button label",
+      "default": "View Case Study"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_link_label",
+      "label": "Secondary link label",
+      "default": "Learn more"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link_url",
+      "label": "Secondary link URL"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#4DEBFF"
+    },
+    {
+      "type": "select",
+      "id": "background_style",
+      "label": "Background style",
+      "options": [
+        { "value": "solid",       "label": "Solid dark" },
+        { "value": "subtle-grid", "label": "Subtle grid" },
+        { "value": "gradient",    "label": "Gradient glow" }
+      ],
+      "default": "subtle-grid"
+    },
+    {
+      "type": "select",
+      "id": "layout_mode",
+      "label": "Layout mode",
+      "options": [
+        { "value": "left-text-right-visual",  "label": "Text left, visual right" },
+        { "value": "right-text-left-visual",  "label": "Visual left, text right" },
+        { "value": "stacked",                 "label": "Stacked (centered)" }
+      ],
+      "default": "left-text-right-visual"
+    },
+    {
+      "type": "select",
+      "id": "spacing_density",
+      "label": "Spacing density",
+      "options": [
+        { "value": "relaxed", "label": "Relaxed" },
+        { "value": "normal",  "label": "Normal" },
+        { "value": "compact", "label": "Compact" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Animation"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_scroll_trigger",
+      "label": "Enable scroll-triggered animations",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_interactive",
+      "label": "Enable hover / click interactions",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "svg_item",
+      "name": "SVG Element",
+      "settings": [
+        {
+          "type": "text",
+          "id": "svg_title",
+          "label": "Title",
+          "default": "Stroke Dynamics"
+        },
+        {
+          "type": "textarea",
+          "id": "svg_caption",
+          "label": "Caption / description",
+          "default": "Real-time path manipulation for organic movement that feels alive."
+        },
+        {
+          "type": "textarea",
+          "id": "svg_code",
+          "label": "SVG code (paste raw <svg>...</svg> here)"
+        },
+        {
+          "type": "select",
+          "id": "animation_type",
+          "label": "Animation type",
+          "options": [
+            { "value": "stroke_draw", "label": "Stroke draw" },
+            { "value": "float",       "label": "Float" },
+            { "value": "pulse",       "label": "Pulse" },
+            { "value": "rotate",      "label": "Rotate" }
+          ],
+          "default": "pulse"
+        },
+        {
+          "type": "select",
+          "id": "position_mode",
+          "label": "Position in visual stage",
+          "options": [
+            { "value": "primary",   "label": "Primary (center, large)" },
+            { "value": "secondary", "label": "Secondary (floating card)" }
+          ],
+          "default": "primary"
+        },
+        {
+          "type": "select",
+          "id": "size_mode",
+          "label": "Size (secondary only)",
+          "options": [
+            { "value": "medium", "label": "Medium" },
+            { "value": "small",  "label": "Small" }
+          ],
+          "default": "medium"
+        },
+        {
+          "type": "select",
+          "id": "interaction_trigger",
+          "label": "Interaction trigger",
+          "options": [
+            { "value": "hover", "label": "Hover" },
+            { "value": "click", "label": "Click" },
+            { "value": "none",  "label": "None" }
+          ],
+          "default": "hover"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SVG Animation Showcase",
+      "blocks": [
+        {
+          "type": "svg_item",
+          "settings": {
+            "svg_title": "Neural Network",
+            "svg_caption": "Central node visualization with live path animation.",
+            "animation_type": "pulse",
+            "position_mode": "primary",
+            "interaction_trigger": "hover"
+          }
+        },
+        {
+          "type": "svg_item",
+          "settings": {
+            "svg_title": "Stroke Dynamics",
+            "svg_caption": "Real-time path manipulation for organic movement.",
+            "animation_type": "stroke_draw",
+            "position_mode": "secondary",
+            "size_mode": "medium",
+            "interaction_trigger": "hover"
+          }
+        },
+        {
+          "type": "svg_item",
+          "settings": {
+            "svg_title": "Parallax Depth",
+            "svg_caption": "Multi-layered elements creating immersive 3D spatial awareness.",
+            "animation_type": "float",
+            "position_mode": "secondary",
+            "size_mode": "small",
+            "interaction_trigger": "none"
+          }
+        },
+        {
+          "type": "svg_item",
+          "settings": {
+            "svg_title": "Micro-Interactions",
+            "svg_caption": "Subtle triggers that respond seamlessly to user cursor movement.",
+            "animation_type": "rotate",
+            "position_mode": "secondary",
+            "size_mode": "medium",
+            "interaction_trigger": "click"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
