@@ -1,0 +1,574 @@
+{% comment %}
+  Section: cs-the-place-on-south-pine
+  Case Study — The Place on South Pine | Website Design & Content Strategy
+  
+  HOW TO USE:
+  1. Upload this file to Shopify > Online Store > Themes > Edit Code > Sections
+  2. Upload the template file (templates/page.the-place-on-south-pine.json) to Templates
+  3. Create a page with handle "the-place-on-south-pine" and assign template "page.the-place-on-south-pine"
+  4. All content is editable in the Theme Customizer
+{% endcomment %}
+
+{% render 'case-study-styles' %}
+
+<div class="cs-page">
+
+  {%- comment -%} BACK BUTTON {%- endcomment -%}
+  <div class="cs-back">
+    <a href="{{ section.settings.back_url | default: '/pages/work' }}">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+      </svg>
+      {{ section.settings.back_label | default: 'Back' }}
+    </a>
+  </div>
+
+  {%- comment -%} TOP GALLERY — 4 IMAGES {%- endcomment -%}
+  <div class="cs-gallery-top">
+    <div class="cs-gallery-top__grid">
+      <div class="cs-gallery-top__item">
+        <img src="{{ section.settings.gallery_image_1 }}" alt="{{ section.settings.client }} project 1" loading="eager" />
+      </div>
+      <div class="cs-gallery-top__item">
+        <img src="{{ section.settings.gallery_image_2 }}" alt="{{ section.settings.client }} project 2" loading="eager" />
+      </div>
+      <div class="cs-gallery-top__item">
+        <img src="{{ section.settings.gallery_image_3 }}" alt="{{ section.settings.client }} project 3" loading="lazy" />
+      </div>
+      <div class="cs-gallery-top__item">
+        <img src="{{ section.settings.gallery_image_4 }}" alt="{{ section.settings.client }} project 4" loading="lazy" />
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} PAGE HEADER {%- endcomment -%}
+  <div class="cs-header">
+    <span class="cs-badge">{{ section.settings.category }}</span>
+    <h1 class="cs-title">{{ section.settings.title }}</h1>
+    <p class="cs-subtitle">{{ section.settings.subtitle }}</p>
+  </div>
+
+  {%- comment -%} WHAT WE DID {%- endcomment -%}
+  <section class="cs-what">
+    <h2 class="cs-what__heading">What we did</h2>
+    <div class="cs-what__grid">
+      <div class="cs-what__col">
+        <h3>Client expectations</h3>
+        <p>{{ section.settings.challenge }}</p>
+        <h3>Expected outcomes</h3>
+        <ul class="cs-what__list">
+          {%- for i in (1..6) -%}
+            {%- assign exp_key = 'expectation_' | append: i -%}
+            {%- if section.settings[exp_key] != blank -%}
+              <li>{{ section.settings[exp_key] }}</li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+      <div class="cs-what__col">
+        <h3>How we did it</h3>
+        <p>{{ section.settings.solution }}</p>
+        <h3>Delivered results</h3>
+        <ul class="cs-what__list">
+          {%- for i in (1..6) -%}
+            {%- assign out_key = 'outcome_' | append: i -%}
+            {%- if section.settings[out_key] != blank -%}
+              <li>{{ section.settings[out_key] }}</li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} SERVICES BLOCKS {%- endcomment -%}
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'service' -%}
+      <div class="cs-service {% if forloop.index0 == 1 or forloop.index0 == 3 %}cs-service--reverse{% endif %}" {{ block.shopify_attributes }}>
+        <div class="cs-service__inner">
+          {%- if block.settings.service_image != blank -%}
+            <div class="cs-service__image">
+              <img src="{{ block.settings.service_image }}" alt="{{ block.settings.service_title }}" loading="lazy" />
+            </div>
+          {%- endif -%}
+          <div class="cs-service__content">
+            <h3>{{ block.settings.service_title }}</h3>
+            <p>{{ block.settings.service_description }}</p>
+            {%- if block.settings.service_features != blank -%}
+              <ul class="cs-service__features">
+                {%- assign features = block.settings.service_features | split: '|' -%}
+                {%- for feature in features -%}
+                  {%- assign parts = feature | split: ':' -%}
+                  <li>
+                    {%- if parts.size > 1 -%}
+                      <strong>{{ parts[0] }}:</strong>{{ parts[1] }}
+                    {%- else -%}
+                      {{ feature }}
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- comment -%} BOTTOM GALLERY — 3 IMAGES {%- endcomment -%}
+  <div class="cs-gallery-bottom">
+    <div class="cs-gallery-bottom__grid">
+      <div class="cs-gallery-bottom__item">
+        <img src="{{ section.settings.gallery_image_2 }}" alt="{{ section.settings.client }} gallery 1" loading="lazy" />
+      </div>
+      <div class="cs-gallery-bottom__item">
+        <img src="{{ section.settings.gallery_image_3 }}" alt="{{ section.settings.client }} gallery 2" loading="lazy" />
+      </div>
+      <div class="cs-gallery-bottom__item">
+        <img src="{{ section.settings.gallery_image_4 }}" alt="{{ section.settings.client }} gallery 3" loading="lazy" />
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} STATS {%- endcomment -%}
+  <div class="cs-stats">
+    <div class="cs-stats__grid">
+      {%- for i in (1..4) -%}
+        {%- assign val_key = 'stat_value_' | append: i -%}
+        {%- assign lbl_key = 'stat_label_' | append: i -%}
+        {%- assign dsc_key = 'stat_desc_' | append: i -%}
+        {%- if section.settings[val_key] != blank -%}
+          <div class="cs-stat">
+            <span class="cs-stat__value">{{ section.settings[val_key] }}</span>
+            <span class="cs-stat__label">{{ section.settings[lbl_key] }}</span>
+            <span class="cs-stat__desc">{{ section.settings[dsc_key] }}</span>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+  {%- comment -%} TESTIMONIAL {%- endcomment -%}
+  {%- if section.settings.testimonial_quote != blank -%}
+    <div class="cs-testimonial">
+      <div class="cs-testimonial__inner">
+        <p class="cs-testimonial__quote">"{{ section.settings.testimonial_quote }}"</p>
+        <div class="cs-testimonial__author">
+          {%- if section.settings.testimonial_photo != blank -%}
+            <img class="cs-testimonial__photo" src="{{ section.settings.testimonial_photo }}" alt="{{ section.settings.testimonial_author }}" loading="lazy" />
+          {%- endif -%}
+          <div class="cs-testimonial__info">
+            <span class="cs-testimonial__name">{{ section.settings.testimonial_author }}</span>
+            <span class="cs-testimonial__role">{{ section.settings.testimonial_role }}, {{ section.settings.testimonial_company }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} CTA {%- endcomment -%}
+  <div class="cs-cta">
+    <div class="cs-cta__inner">
+      <h2 class="cs-cta__heading">{{ section.settings.cta_heading }}</h2>
+      <p class="cs-cta__subtext">{{ section.settings.cta_subtext }}</p>
+      <div class="cs-cta__buttons">
+        <a href="{{ section.settings.cta_primary_url }}" class="cs-btn cs-btn--primary">
+          {{ section.settings.cta_primary_label }}
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/>
+          </svg>
+        </a>
+        <a href="{{ section.settings.cta_secondary_url }}" class="cs-btn cs-btn--secondary">
+          {{ section.settings.cta_secondary_label }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "CS - South Pine",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Page Header"
+    },
+    {
+      "type": "text",
+      "id": "client",
+      "label": "Client Name",
+      "default": "The Place on South Pine"
+    },
+    {
+      "type": "text",
+      "id": "category",
+      "label": "Category Badge",
+      "default": "Hospitality / Restaurant & Dining"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Page Title",
+      "default": "Website Design & Content Strategy"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Digital Footprint Refresh with Visual Storytelling"
+    },
+    {
+      "type": "header",
+      "content": "Back Button"
+    },
+    {
+      "type": "url",
+      "id": "back_url",
+      "label": "Back Button URL"
+    },
+    {
+      "type": "text",
+      "id": "back_label",
+      "label": "Back Button Label",
+      "default": "Back"
+    },
+    {
+      "type": "header",
+      "content": "Top Gallery Images"
+    },
+    {
+      "type": "text",
+      "id": "gallery_image_1",
+      "label": "Gallery Image 1 URL",
+      "default": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80"
+    },
+    {
+      "type": "text",
+      "id": "gallery_image_2",
+      "label": "Gallery Image 2 URL",
+      "default": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80"
+    },
+    {
+      "type": "text",
+      "id": "gallery_image_3",
+      "label": "Gallery Image 3 URL",
+      "default": "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80"
+    },
+    {
+      "type": "text",
+      "id": "gallery_image_4",
+      "label": "Gallery Image 4 URL",
+      "default": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80"
+    },
+    {
+      "type": "header",
+      "content": "What We Did"
+    },
+    {
+      "type": "textarea",
+      "id": "challenge",
+      "label": "Client Expectations (Challenge)",
+      "default": "The Place on South Pine aimed to refresh their digital footprint through a sleek, user-friendly website overhaul. They also wanted to introduce automated marketing workflows and strengthen brand engagement by developing new social media content."
+    },
+    {
+      "type": "textarea",
+      "id": "solution",
+      "label": "How We Did It (Solution)",
+      "default": "We overhauled the site's design to ensure it was both visually striking and easy to navigate. Simultaneously, we deployed automated marketing workflows and produced captivating photos and videos for social channels."
+    },
+    {
+      "type": "header",
+      "content": "Expected Outcomes (up to 6)"
+    },
+    {
+      "type": "text",
+      "id": "expectation_1",
+      "label": "Expectation 1",
+      "default": "Modernize the website layout for an elevated user experience"
+    },
+    {
+      "type": "text",
+      "id": "expectation_2",
+      "label": "Expectation 2",
+      "default": "Implement automated marketing campaigns for customer retention"
+    },
+    {
+      "type": "text",
+      "id": "expectation_3",
+      "label": "Expectation 3",
+      "default": "Curate and manage compelling social media content"
+    },
+    {
+      "type": "text",
+      "id": "expectation_4",
+      "label": "Expectation 4",
+      "default": "Boost brand awareness and build deeper audience connections"
+    },
+    {
+      "type": "text",
+      "id": "expectation_5",
+      "label": "Expectation 5"
+    },
+    {
+      "type": "text",
+      "id": "expectation_6",
+      "label": "Expectation 6"
+    },
+    {
+      "type": "header",
+      "content": "Delivered Outcomes (up to 6)"
+    },
+    {
+      "type": "text",
+      "id": "outcome_1",
+      "label": "Outcome 1",
+      "default": "Sleek, modern website design"
+    },
+    {
+      "type": "text",
+      "id": "outcome_2",
+      "label": "Outcome 2",
+      "default": "Automated marketing driving repeat visits"
+    },
+    {
+      "type": "text",
+      "id": "outcome_3",
+      "label": "Outcome 3",
+      "default": "Engaging social content increasing followers"
+    },
+    {
+      "type": "text",
+      "id": "outcome_4",
+      "label": "Outcome 4",
+      "default": "Stronger brand identity and recognition"
+    },
+    {
+      "type": "text",
+      "id": "outcome_5",
+      "label": "Outcome 5"
+    },
+    {
+      "type": "text",
+      "id": "outcome_6",
+      "label": "Outcome 6"
+    },
+    {
+      "type": "header",
+      "content": "Stats"
+    },
+    {
+      "type": "text",
+      "id": "stat_value_1",
+      "label": "Stat 1 Value",
+      "default": "3x"
+    },
+    {
+      "type": "text",
+      "id": "stat_label_1",
+      "label": "Stat 1 Label",
+      "default": "Reservations"
+    },
+    {
+      "type": "text",
+      "id": "stat_desc_1",
+      "label": "Stat 1 Description",
+      "default": "Month over month"
+    },
+    {
+      "type": "text",
+      "id": "stat_value_2",
+      "label": "Stat 2 Value",
+      "default": "200%"
+    },
+    {
+      "type": "text",
+      "id": "stat_label_2",
+      "label": "Stat 2 Label",
+      "default": "Social Growth"
+    },
+    {
+      "type": "text",
+      "id": "stat_desc_2",
+      "label": "Stat 2 Description",
+      "default": "Follower increase"
+    },
+    {
+      "type": "text",
+      "id": "stat_value_3",
+      "label": "Stat 3 Value",
+      "default": "85%"
+    },
+    {
+      "type": "text",
+      "id": "stat_label_3",
+      "label": "Stat 3 Label",
+      "default": "Engagement"
+    },
+    {
+      "type": "text",
+      "id": "stat_desc_3",
+      "label": "Stat 3 Description",
+      "default": "Content interaction"
+    },
+    {
+      "type": "text",
+      "id": "stat_value_4",
+      "label": "Stat 4 Value",
+      "default": "4.9"
+    },
+    {
+      "type": "text",
+      "id": "stat_label_4",
+      "label": "Stat 4 Label",
+      "default": "Rating"
+    },
+    {
+      "type": "text",
+      "id": "stat_desc_4",
+      "label": "Stat 4 Description",
+      "default": "Average review score"
+    },
+    {
+      "type": "header",
+      "content": "Testimonial"
+    },
+    {
+      "type": "textarea",
+      "id": "testimonial_quote",
+      "label": "Quote",
+      "default": "Our online presence went from outdated to outstanding. The photos and videos they produced truly capture our restaurant's atmosphere and have brought in so many new customers."
+    },
+    {
+      "type": "text",
+      "id": "testimonial_author",
+      "label": "Author Name",
+      "default": "David Park"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_role",
+      "label": "Author Role",
+      "default": "Owner"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_company",
+      "label": "Company",
+      "default": "The Place on South Pine"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_photo",
+      "label": "Author Photo URL",
+      "default": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80"
+    },
+    {
+      "type": "header",
+      "content": "Call to Action"
+    },
+    {
+      "type": "text",
+      "id": "cta_heading",
+      "label": "CTA Heading",
+      "default": "Ready to start your project?"
+    },
+    {
+      "type": "text",
+      "id": "cta_subtext",
+      "label": "CTA Subtext",
+      "default": "Let's collaborate and bring your vision to life."
+    },
+    {
+      "type": "text",
+      "id": "cta_primary_label",
+      "label": "Primary Button Label",
+      "default": "Get in Touch"
+    },
+    {
+      "type": "url",
+      "id": "cta_primary_url",
+      "label": "Primary Button URL"
+    },
+    {
+      "type": "text",
+      "id": "cta_secondary_label",
+      "label": "Secondary Button Label",
+      "default": "View More Work"
+    },
+    {
+      "type": "url",
+      "id": "cta_secondary_url",
+      "label": "Secondary Button URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Service",
+      "settings": [
+        {
+          "type": "text",
+          "id": "service_title",
+          "label": "Service Title",
+          "default": "Website Design & Creation"
+        },
+        {
+          "type": "textarea",
+          "id": "service_description",
+          "label": "Service Description",
+          "default": "Building effective online ecosystems that boost credibility."
+        },
+        {
+          "type": "text",
+          "id": "service_image",
+          "label": "Service Image URL",
+          "default": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
+        },
+        {
+          "type": "textarea",
+          "id": "service_features",
+          "label": "Features (separate with | pipe character)",
+          "default": "Content Updates: Fresh visuals and engaging copy|Functionality Upgrades: Smooth, conversion-focused interactions|Analytics & Performance: Data tracking optimization"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "CS - South Pine",
+      "blocks": [
+        {
+          "type": "service",
+          "settings": {
+            "service_title": "Website Design & Creation",
+            "service_description": "Building effective online ecosystems that boost credibility.",
+            "service_image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+            "service_features": "Content Updates: Fresh visuals and engaging copy|Functionality Upgrades: Smooth, conversion-focused interactions|Analytics & Performance: Data tracking optimization"
+          }
+        },
+        {
+          "type": "service",
+          "settings": {
+            "service_title": "Content Creation & Management",
+            "service_description": "Crafting engaging narratives that enhance your brand.",
+            "service_image": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80",
+            "service_features": "Creative Development: Captivating articles and visuals|Content Strategy: Aligned messaging with goals|Performance Analysis: Metrics to maximize impact"
+          }
+        },
+        {
+          "type": "service",
+          "settings": {
+            "service_title": "In-House Photoshoots & Videoshoots",
+            "service_description": "High-quality visual content showcasing your brand.",
+            "service_image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
+            "service_features": "Professional Photography: Stunning images|Video Production: Engaging brand stories|Post-Production Editing: Polished results"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
