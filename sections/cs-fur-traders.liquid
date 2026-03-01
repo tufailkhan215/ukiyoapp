@@ -1,0 +1,435 @@
+{% comment %}
+  Section: CS - Fur Traders
+  File: sections/cs-fur-traders.liquid
+  Template: templates/page.fur-traders.json
+{% endcomment %}
+
+<style>
+  #ft-{{ section.id }} {
+    --accent:  #a78bfa;
+    --bg:      #000;
+    --surface: #0a0a0a;
+    --border:  rgba(255,255,255,0.07);
+    --muted:   rgba(255,255,255,0.48);
+    --faint:   rgba(255,255,255,0.28);
+    --r:       16px;
+    background: var(--bg); color: #f1f5f9; font-family: inherit; min-height: 100vh;
+  }
+  #ft-{{ section.id }} * { box-sizing: border-box; }
+  #ft-{{ section.id }} img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  #ft-{{ section.id }} .rv { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1); }
+  #ft-{{ section.id }} .rv.in { opacity: 1; transform: none; }
+
+  /* Back */
+  #ft-{{ section.id }} .ft-back { max-width: 1400px; margin: 0 auto; padding: 2rem 1.5rem 0; }
+  #ft-{{ section.id }} .ft-back a { display: inline-flex; align-items: center; gap: .5rem; font-size: .88rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: color .25s; }
+  #ft-{{ section.id }} .ft-back a:hover { color: #fff; }
+
+  /* Top Gallery — 4 images */
+  #ft-{{ section.id }} .ft-gtop { max-width: 1400px; margin: 0 auto; padding: 2rem 1.5rem; }
+  #ft-{{ section.id }} .ft-gtop__grid { display: grid; gap: .9rem; grid-template-columns: repeat(2,1fr); }
+  @media (min-width: 768px) { #ft-{{ section.id }} .ft-gtop__grid { grid-template-columns: repeat(4,1fr); height: 360px; } }
+  #ft-{{ section.id }} .ft-gtop__item { border-radius: var(--r); overflow: hidden; cursor: pointer; border: 1px solid var(--border); min-height: 180px; }
+  #ft-{{ section.id }} .ft-gtop__item img { height: 100%; transition: transform .55s cubic-bezier(.165,.84,.44,1); }
+  #ft-{{ section.id }} .ft-gtop__item:hover img { transform: scale(1.05); }
+
+  /* Header */
+  #ft-{{ section.id }} .ft-hdr { max-width: 1000px; margin: 0 auto; padding: 4rem 1.5rem 2rem; }
+  #ft-{{ section.id }} .ft-badge { display: inline-block; padding: .28rem .9rem; border-radius: 999px; font-size: .65rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; background: rgba(167,139,250,.12); border: 1px solid rgba(167,139,250,.3); color: var(--accent); margin-bottom: 1.25rem; }
+  #ft-{{ section.id }} .ft-title { font-size: clamp(2rem,5vw,3.5rem); font-weight: 900; line-height: 1.08; letter-spacing: -.028em; color: #fff; margin: 0 0 1rem; }
+  #ft-{{ section.id }} .ft-sub { font-size: 1rem; color: var(--muted); line-height: 1.75; max-width: 42rem; margin: 0; border-left: 2px solid rgba(167,139,250,.35); padding-left: 1rem; }
+
+  /* What We Did */
+  #ft-{{ section.id }} .ft-what { max-width: 1000px; margin: 0 auto; padding: 5rem 1.5rem; }
+  #ft-{{ section.id }} .ft-what h2 { font-size: clamp(1.8rem,4vw,2.8rem); font-weight: 900; color: #fff; margin: 0 0 3rem; letter-spacing: -.022em; }
+  #ft-{{ section.id }} .ft-what__grid { display: grid; gap: 3rem; }
+  @media (min-width: 768px) { #ft-{{ section.id }} .ft-what__grid { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+  #ft-{{ section.id }} .ft-what__col h3 { font-size: 1rem; font-weight: 700; color: #fff; margin: 0 0 .85rem; }
+  #ft-{{ section.id }} .ft-what__col p  { font-size: .92rem; color: var(--muted); line-height: 1.78; margin: 0 0 2rem; }
+  #ft-{{ section.id }} .ft-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .65rem; }
+  #ft-{{ section.id }} .ft-list li { display: flex; gap: .65rem; align-items: flex-start; font-size: .88rem; color: var(--muted); line-height: 1.55; }
+  #ft-{{ section.id }} .ft-list li::before { content: '◦'; color: var(--faint); flex-shrink: 0; margin-top: 1px; }
+
+  /* Services */
+  #ft-{{ section.id }} .ft-svc { border-top: 1px solid var(--border); padding: 5rem 0; }
+  #ft-{{ section.id }} .ft-svc__inner { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; display: flex; flex-direction: column; gap: 3rem; align-items: center; }
+  @media (min-width: 1024px) {
+    #ft-{{ section.id }} .ft-svc__inner { flex-direction: row; gap: 5rem; }
+    #ft-{{ section.id }} .ft-svc--alt .ft-svc__inner { flex-direction: row-reverse; }
+  }
+  #ft-{{ section.id }} .ft-svc__img { width: 100%; border-radius: var(--r); overflow: hidden; aspect-ratio: 4/3; cursor: pointer; flex-shrink: 0; border: 1px solid var(--border); }
+  @media (min-width: 1024px) { #ft-{{ section.id }} .ft-svc__img { width: 40%; } }
+  #ft-{{ section.id }} .ft-svc__img img { transition: transform .55s cubic-bezier(.165,.84,.44,1); }
+  #ft-{{ section.id }} .ft-svc__img:hover img { transform: scale(1.04); }
+  #ft-{{ section.id }} .ft-svc__copy { flex: 1; }
+  #ft-{{ section.id }} .ft-svc__copy h3 { font-size: 1.2rem; font-weight: 900; text-transform: uppercase; letter-spacing: .06em; color: #fff; margin: 0 0 .85rem; }
+  #ft-{{ section.id }} .ft-svc__copy > p { font-size: .92rem; color: var(--muted); line-height: 1.75; margin: 0 0 1.5rem; }
+  #ft-{{ section.id }} .ft-feats { display: flex; flex-direction: column; gap: .4rem; }
+  #ft-{{ section.id }} .ft-feat  { font-size: .82rem; color: var(--faint); line-height: 1.55; }
+  #ft-{{ section.id }} .ft-feat strong { color: rgba(255,255,255,.62); font-weight: 600; }
+
+  /* Bottom Gallery */
+  #ft-{{ section.id }} .ft-gbot { max-width: 1200px; margin: 0 auto; padding: 4rem 1.5rem; }
+  #ft-{{ section.id }} .ft-gbot__grid { display: grid; gap: .9rem; grid-template-columns: 1fr; }
+  @media (min-width: 768px) { #ft-{{ section.id }} .ft-gbot__grid { grid-template-columns: repeat(3,1fr); } }
+  #ft-{{ section.id }} .ft-gbot__item { aspect-ratio: 1; border-radius: var(--r); overflow: hidden; cursor: pointer; border: 1px solid var(--border); }
+  #ft-{{ section.id }} .ft-gbot__item img { transition: transform .55s cubic-bezier(.165,.84,.44,1); }
+  #ft-{{ section.id }} .ft-gbot__item:hover img { transform: scale(1.05); }
+
+  /* Stats */
+  #ft-{{ section.id }} .ft-stats { border-top: 1px solid var(--border); padding: 4.5rem 0; }
+  #ft-{{ section.id }} .ft-stats__g { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; display: grid; gap: 2rem; grid-template-columns: repeat(2,1fr); }
+  @media (min-width: 1024px) { #ft-{{ section.id }} .ft-stats__g { grid-template-columns: repeat(4,1fr); } }
+  #ft-{{ section.id }} .ft-stat { text-align: center; }
+  #ft-{{ section.id }} .ft-stat__v { display: block; font-size: clamp(2.2rem,5vw,3.2rem); font-weight: 900; color: #fff; letter-spacing: -.03em; line-height: 1; margin-bottom: .35rem; }
+  #ft-{{ section.id }} .ft-stat__l { display: block; font-size: .85rem; font-weight: 700; color: rgba(255,255,255,.6); margin-bottom: .2rem; }
+  #ft-{{ section.id }} .ft-stat__d { display: block; font-size: .72rem; color: var(--faint); }
+
+  /* Testimonial */
+  #ft-{{ section.id }} .ft-testi { background: var(--surface); padding: 5rem 1.5rem; border-top: 1px solid var(--border); }
+  #ft-{{ section.id }} .ft-testi__inner { max-width: 800px; margin: 0 auto; text-align: center; }
+  #ft-{{ section.id }} .ft-testi__marks { font-size: 3rem; line-height: 1; color: rgba(167,139,250,.3); margin-bottom: 1rem; display: block; }
+  #ft-{{ section.id }} .ft-testi__q { font-size: clamp(1.1rem,2.8vw,1.55rem); font-weight: 300; color: #fff; line-height: 1.65; margin: 0 0 2.5rem; font-style: italic; }
+  #ft-{{ section.id }} .ft-testi__who { display: flex; align-items: center; justify-content: center; gap: 1rem; }
+  #ft-{{ section.id }} .ft-testi__photo { width: 48px; height: 48px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 1px solid var(--border); }
+  #ft-{{ section.id }} .ft-testi__name { display: block; font-size: .92rem; font-weight: 700; color: #fff; }
+  #ft-{{ section.id }} .ft-testi__role { display: block; font-size: .78rem; color: var(--muted); }
+
+  /* CTA */
+  #ft-{{ section.id }} .ft-cta { border-top: 1px solid var(--border); padding: 5.5rem 1.5rem; }
+  #ft-{{ section.id }} .ft-cta__inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+  #ft-{{ section.id }} .ft-cta__h2 { font-size: clamp(1.8rem,4vw,2.8rem); font-weight: 900; color: #fff; margin: 0 0 1rem; letter-spacing: -.022em; }
+  #ft-{{ section.id }} .ft-cta__sub { font-size: 1rem; color: var(--muted); line-height: 1.75; max-width: 36rem; margin: 0 auto 2.5rem; }
+  #ft-{{ section.id }} .ft-cta__btns { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+  #ft-{{ section.id }} .ft-btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; font-size: .88rem; font-weight: 700; padding: .85rem 1.6rem; border-radius: 999px; text-decoration: none; border: none; cursor: pointer; transition: background .25s, color .25s, transform .2s, box-shadow .25s; }
+  #ft-{{ section.id }} .ft-btn--p { background: #fff; color: #000; }
+  #ft-{{ section.id }} .ft-btn--p:hover { background: #e5e7eb; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.35); }
+  #ft-{{ section.id }} .ft-btn--s { background: rgba(255,255,255,.05); color: rgba(255,255,255,.8); border: 1px solid rgba(255,255,255,.12); }
+  #ft-{{ section.id }} .ft-btn--s:hover { background: rgba(255,255,255,.1); color: #fff; border-color: rgba(255,255,255,.25); }
+
+  /* Lightbox */
+  #ft-lb-{{ section.id }} { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.96); align-items: center; justify-content: center; }
+  #ft-lb-{{ section.id }}.open { display: flex; }
+  #ft-lb-{{ section.id }} .lb-img { max-width: 90vw; max-height: 88vh; object-fit: contain; width: auto; height: auto; border-radius: 12px; transition: opacity .22s; }
+  #ft-lb-{{ section.id }} .lb-btn { position: absolute; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; transition: background .25s; }
+  #ft-lb-{{ section.id }} .lb-btn:hover { background: rgba(255,255,255,.2); }
+  #ft-lb-{{ section.id }} .lb-close { top: 1.25rem; right: 1.25rem; }
+  #ft-lb-{{ section.id }} .lb-prev  { left: 1.25rem; top: 50%; transform: translateY(-50%); }
+  #ft-lb-{{ section.id }} .lb-next  { right: 1.25rem; top: 50%; transform: translateY(-50%); }
+  #ft-lb-{{ section.id }} .lb-dots  { position: absolute; bottom: 1.25rem; left: 50%; transform: translateX(-50%); display: flex; gap: .4rem; }
+  #ft-lb-{{ section.id }} .lb-dot   { height: 3px; width: 16px; border-radius: 999px; background: rgba(255,255,255,.3); cursor: pointer; border: none; transition: background .25s, width .25s; }
+  #ft-lb-{{ section.id }} .lb-dot.on{ background: #fff; width: 28px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    #ft-{{ section.id }} .rv { opacity: 1 !important; transform: none !important; transition: none !important; }
+    #ft-{{ section.id }} img { transition: none !important; }
+  }
+</style>
+
+<div id="ft-{{ section.id }}">
+
+  <div class="ft-back">
+    <a href="{{ section.settings.back_url | default: '/pages/work' }}">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="15" height="15"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+      {{ section.settings.back_label | default: 'Back' }}
+    </a>
+  </div>
+
+  <!-- Top Gallery (4 images) -->
+  <div class="ft-gtop rv">
+    <div class="ft-gtop__grid">
+      {%- for i in (1..4) -%}
+        {%- assign gk = 'gallery_image_' | append: i -%}
+        {%- if section.settings[gk] -%}
+          <div class="ft-gtop__item" data-lbidx="{{ i | minus: 1 }}" tabindex="0" role="button" aria-label="Open image {{ i }}">
+            <img src="{{ section.settings[gk] | img_url: '800x' }}" alt="{{ section.settings.client }} {{ i }}" loading="{% if i <= 2 %}eager{% else %}lazy{% endif %}">
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <!-- Header -->
+  <div class="ft-hdr rv">
+    {%- if section.settings.category != blank -%}<span class="ft-badge">{{ section.settings.category }}</span>{%- endif -%}
+    <h1 class="ft-title">{{ section.settings.title }}</h1>
+    {%- if section.settings.subtitle != blank -%}<p class="ft-sub">{{ section.settings.subtitle }}</p>{%- endif -%}
+  </div>
+
+  <!-- What We Did -->
+  <section class="ft-what">
+    <h2 class="rv">What we did</h2>
+    <div class="ft-what__grid">
+      <div class="ft-what__col rv">
+        <h3>Client expectations</h3>
+        <p>{{ section.settings.challenge }}</p>
+        {%- assign has_exp = false -%}
+        {%- for i in (1..6) -%}{%- assign ek = 'expectation_' | append: i -%}{%- if section.settings[ek] != blank -%}{%- assign has_exp = true -%}{%- endif -%}{%- endfor -%}
+        {%- if has_exp -%}
+          <h3>Expected outcomes</h3>
+          <ul class="ft-list">{%- for i in (1..6) -%}{%- assign ek = 'expectation_' | append: i -%}{%- if section.settings[ek] != blank -%}<li>{{ section.settings[ek] }}</li>{%- endif -%}{%- endfor -%}</ul>
+        {%- endif -%}
+      </div>
+      <div class="ft-what__col rv">
+        <h3>How we did it</h3>
+        <p>{{ section.settings.solution }}</p>
+        {%- assign has_out = false -%}
+        {%- for i in (1..6) -%}{%- assign ok = 'outcome_' | append: i -%}{%- if section.settings[ok] != blank -%}{%- assign has_out = true -%}{%- endif -%}{%- endfor -%}
+        {%- if has_out -%}
+          <h3>Delivered results</h3>
+          <ul class="ft-list">{%- for i in (1..6) -%}{%- assign ok = 'outcome_' | append: i -%}{%- if section.settings[ok] != blank -%}<li>{{ section.settings[ok] }}</li>{%- endif -%}{%- endfor -%}</ul>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'service' -%}
+      {%- assign alt = forloop.index0 | modulo: 2 -%}
+      <div class="ft-svc{% if alt == 1 %} ft-svc--alt{% endif %}" {{ block.shopify_attributes }}>
+        <div class="ft-svc__inner">
+          {%- if block.settings.image -%}
+            <div class="ft-svc__img rv" data-lbsrc="{{ block.settings.image | img_url: '1400x' }}">
+              <img src="{{ block.settings.image | img_url: '800x' }}" alt="{{ block.settings.title }}" loading="lazy">
+            </div>
+          {%- endif -%}
+          <div class="ft-svc__copy rv">
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.description }}</p>
+            {%- if block.settings.features != blank -%}
+              <div class="ft-feats">
+                {%- assign feats = block.settings.features | split: '|' -%}
+                {%- for feat in feats -%}
+                  {%- if feat != blank -%}
+                    {%- assign pts = feat | strip | split: ':' -%}
+                    <p class="ft-feat">{%- if pts.size > 1 -%}<strong>{{ pts[0] }}:</strong>{{ pts | shift | join: ':' }}{%- else -%}{{ feat }}{%- endif -%}</p>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+
+  <!-- Bottom Gallery -->
+  {%- assign has_bot = false -%}
+  {%- for i in (1..3) -%}{%- assign bk = 'gallery_bot_' | append: i -%}{%- if section.settings[bk] != blank -%}{%- assign has_bot = true -%}{%- endif -%}{%- endfor -%}
+  {%- if has_bot -%}
+    <div class="ft-gbot rv">
+      <div class="ft-gbot__grid">
+        {%- for i in (1..3) -%}
+          {%- assign bk = 'gallery_bot_' | append: i -%}
+          {%- if section.settings[bk] != blank -%}
+            <div class="ft-gbot__item" data-lbidx="{{ i | minus: 1 }}" tabindex="0" role="button" aria-label="Open gallery image {{ i }}">
+              <img src="{{ section.settings[bk] | img_url: '800x' }}" alt="{{ section.settings.client }} gallery {{ i }}" loading="lazy">
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  <!-- Stats -->
+  <div class="ft-stats">
+    <div class="ft-stats__g">
+      {%- for i in (1..4) -%}
+        {%- assign vk = 'stat_value_' | append: i -%}
+        {%- assign lk = 'stat_label_' | append: i -%}
+        {%- assign dk = 'stat_desc_'  | append: i -%}
+        {%- if section.settings[vk] != blank -%}
+          <div class="ft-stat rv">
+            <span class="ft-stat__v">{{ section.settings[vk] }}</span>
+            <span class="ft-stat__l">{{ section.settings[lk] }}</span>
+            {%- if section.settings[dk] != blank -%}<span class="ft-stat__d">{{ section.settings[dk] }}</span>{%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <!-- Testimonial -->
+  {%- if section.settings.testimonial_quote != blank -%}
+    <div class="ft-testi">
+      <div class="ft-testi__inner rv">
+        <span class="ft-testi__marks">&ldquo;</span>
+        <p class="ft-testi__q">{{ section.settings.testimonial_quote }}</p>
+        <div class="ft-testi__who">
+          {%- if section.settings.testimonial_photo -%}
+            <div class="ft-testi__photo"><img src="{{ section.settings.testimonial_photo | img_url: '200x200' }}" alt="{{ section.settings.testimonial_author }}" loading="lazy"></div>
+          {%- endif -%}
+          <div>
+            <span class="ft-testi__name">{{ section.settings.testimonial_author }}</span>
+            <span class="ft-testi__role">{{ section.settings.testimonial_role }}{%- if section.settings.testimonial_company != blank -%}, {{ section.settings.testimonial_company }}{%- endif -%}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+
+  <!-- CTA -->
+  <div class="ft-cta">
+    <div class="ft-cta__inner rv">
+      <h2 class="ft-cta__h2">{{ section.settings.cta_heading }}</h2>
+      <p class="ft-cta__sub">{{ section.settings.cta_subtext }}</p>
+      <div class="ft-cta__btns">
+        {%- if section.settings.cta_primary_label != blank -%}
+          <a href="{{ section.settings.cta_primary_url | default: '#' }}" class="ft-btn ft-btn--p">
+            {{ section.settings.cta_primary_label }}
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if section.settings.cta_secondary_label != blank -%}
+          <a href="{{ section.settings.cta_secondary_url | default: '#' }}" class="ft-btn ft-btn--s">{{ section.settings.cta_secondary_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="ft-lb-{{ section.id }}" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-btn lb-close" aria-label="Close">✕</button>
+  <button class="lb-btn lb-prev"  aria-label="Previous">‹</button>
+  <button class="lb-btn lb-next"  aria-label="Next">›</button>
+  <img class="lb-img" src="" alt="">
+  <div class="lb-dots"></div>
+</div>
+
+<script>
+(function(){
+  var sid  = '{{ section.id }}';
+  var root = document.getElementById('ft-' + sid);
+  var lb   = document.getElementById('ft-lb-' + sid);
+  if (!root || !lb) return;
+  var lbImg = lb.querySelector('.lb-img'), lbDots = lb.querySelector('.lb-dots');
+  var rvEls = root.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {threshold:0.1});
+    rvEls.forEach(function(el,i){ el.style.transitionDelay=Math.min(i*0.05,0.35)+'s'; io.observe(el); });
+  } else { rvEls.forEach(function(el){ el.classList.add('in'); }); }
+
+  var lbSrcs=[], lbIdx=0;
+  function openLb(srcs,idx){ lbSrcs=srcs.filter(Boolean); lbIdx=Math.min(idx,lbSrcs.length-1); renderLb(); buildDots(); lb.classList.add('open'); document.body.style.overflow='hidden'; }
+  function renderLb(){ lbImg.style.opacity='0'; setTimeout(function(){ lbImg.src=lbSrcs[lbIdx]||''; lbImg.style.opacity='1'; },180); lb.querySelectorAll('.lb-dot').forEach(function(d,i){ d.classList.toggle('on',i===lbIdx); }); }
+  function buildDots(){ lbDots.innerHTML=''; lbSrcs.forEach(function(_,i){ var d=document.createElement('button'); d.className='lb-dot'+(i===lbIdx?' on':''); d.setAttribute('aria-label','Image '+(i+1)); d.addEventListener('click',function(){ lbIdx=i; renderLb(); }); lbDots.appendChild(d); }); }
+  function closeLb(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+
+  var topSrcs=[].slice.call(root.querySelectorAll('.ft-gtop__item')).map(function(el){ var img=el.querySelector('img'); return img?img.src:''; });
+  var botSrcs=[].slice.call(root.querySelectorAll('.ft-gbot__item')).map(function(el){ var img=el.querySelector('img'); return img?img.src:''; });
+
+  root.querySelectorAll('.ft-gtop__item').forEach(function(el){ el.addEventListener('click',function(){ openLb(topSrcs,parseInt(el.dataset.lbidx)||0); }); el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); el.click(); } }); });
+  root.querySelectorAll('.ft-svc__img[data-lbsrc]').forEach(function(el){ el.addEventListener('click',function(){ openLb([el.dataset.lbsrc],0); }); });
+  root.querySelectorAll('.ft-gbot__item').forEach(function(el){ el.addEventListener('click',function(){ openLb(botSrcs,parseInt(el.dataset.lbidx)||0); }); el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); el.click(); } }); });
+
+  lb.querySelector('.lb-close').addEventListener('click',closeLb);
+  lb.querySelector('.lb-prev').addEventListener('click',function(){ lbIdx=(lbIdx-1+lbSrcs.length)%lbSrcs.length; renderLb(); });
+  lb.querySelector('.lb-next').addEventListener('click',function(){ lbIdx=(lbIdx+1)%lbSrcs.length; renderLb(); });
+  lb.addEventListener('click',function(e){ if(e.target===lb) closeLb(); });
+  document.addEventListener('keydown',function(e){ if(!lb.classList.contains('open')) return; if(e.key==='Escape') closeLb(); if(e.key==='ArrowLeft'){ lbIdx=(lbIdx-1+lbSrcs.length)%lbSrcs.length; renderLb(); } if(e.key==='ArrowRight'){ lbIdx=(lbIdx+1)%lbSrcs.length; renderLb(); } });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "CS - Fur Traders",
+  "tag": "section",
+  "settings": [
+    { "type": "header", "content": "Page Info" },
+    { "type": "text", "id": "client",   "label": "Client name",    "default": "Fur Traders" },
+    { "type": "text", "id": "category", "label": "Category badge", "default": "E-commerce / Fashion & Apparel" },
+    { "type": "text", "id": "title",    "label": "Page title",     "default": "E-commerce Website Design & SEO Optimization" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle",       "default": "Complete Brand Refresh with Content Strategy" },
+
+    { "type": "header", "content": "Back Button" },
+    { "type": "url",  "id": "back_url",   "label": "Back URL" },
+    { "type": "text", "id": "back_label", "label": "Back label", "default": "Back" },
+
+    { "type": "header", "content": "Top Gallery (4 images)" },
+    { "type": "image_picker", "id": "gallery_image_1", "label": "Image 1" },
+    { "type": "image_picker", "id": "gallery_image_2", "label": "Image 2" },
+    { "type": "image_picker", "id": "gallery_image_3", "label": "Image 3" },
+    { "type": "image_picker", "id": "gallery_image_4", "label": "Image 4" },
+
+    { "type": "header", "content": "What We Did" },
+    { "type": "textarea", "id": "challenge", "label": "Client expectations", "default": "The client aimed to refresh their e-commerce platform with a new design and UI to enhance the purchase flow. Alongside user experience improvements, they sought to integrate active and reactive email marketing automations and consistent content creation for their social channels." },
+    { "type": "textarea", "id": "solution",  "label": "How we did it",       "default": "We refreshed the UI to improve navigation and purchasing ease. Simultaneously, we integrated email automations that address both active and lapsed customers. New payment methods were introduced for flexibility, while reactive flows helped recapture potential buyers." },
+
+    { "type": "header", "content": "Expected Outcomes (up to 6)" },
+    { "type": "text", "id": "expectation_1", "label": "Expectation 1", "default": "A user-friendly design that simplifies the buying journey" },
+    { "type": "text", "id": "expectation_2", "label": "Expectation 2", "default": "Comprehensive automations for active and reactive email marketing" },
+    { "type": "text", "id": "expectation_3", "label": "Expectation 3", "default": "Expanded payment options to improve accessibility" },
+    { "type": "text", "id": "expectation_4", "label": "Expectation 4", "default": "High-quality content assets and social account management" },
+    { "type": "text", "id": "expectation_5", "label": "Expectation 5" },
+    { "type": "text", "id": "expectation_6", "label": "Expectation 6" },
+
+    { "type": "header", "content": "Delivered Outcomes (up to 6)" },
+    { "type": "text", "id": "outcome_1", "label": "Outcome 1", "default": "Modernized e-commerce UI boosting conversion rate" },
+    { "type": "text", "id": "outcome_2", "label": "Outcome 2", "default": "Active and reactive email flows driving repeat purchases" },
+    { "type": "text", "id": "outcome_3", "label": "Outcome 3", "default": "New payment methods increasing checkout completion" },
+    { "type": "text", "id": "outcome_4", "label": "Outcome 4", "default": "Consistent social content growing brand awareness" },
+    { "type": "text", "id": "outcome_5", "label": "Outcome 5" },
+    { "type": "text", "id": "outcome_6", "label": "Outcome 6" },
+
+    { "type": "header", "content": "Bottom Gallery (3 square images)" },
+    { "type": "image_picker", "id": "gallery_bot_1", "label": "Bottom image 1" },
+    { "type": "image_picker", "id": "gallery_bot_2", "label": "Bottom image 2" },
+    { "type": "image_picker", "id": "gallery_bot_3", "label": "Bottom image 3" },
+
+    { "type": "header", "content": "Stats" },
+    { "type": "text", "id": "stat_value_1", "label": "Stat 1 value", "default": "500%"  },
+    { "type": "text", "id": "stat_label_1", "label": "Stat 1 label", "default": "Traffic Growth" },
+    { "type": "text", "id": "stat_desc_1",  "label": "Stat 1 desc",  "default": "Organic search increase" },
+    { "type": "text", "id": "stat_value_2", "label": "Stat 2 value", "default": "280%"  },
+    { "type": "text", "id": "stat_label_2", "label": "Stat 2 label", "default": "Revenue Growth" },
+    { "type": "text", "id": "stat_desc_2",  "label": "Stat 2 desc",  "default": "Year over year" },
+    { "type": "text", "id": "stat_value_3", "label": "Stat 3 value" },
+    { "type": "text", "id": "stat_label_3", "label": "Stat 3 label" },
+    { "type": "text", "id": "stat_desc_3",  "label": "Stat 3 desc"  },
+    { "type": "text", "id": "stat_value_4", "label": "Stat 4 value" },
+    { "type": "text", "id": "stat_label_4", "label": "Stat 4 label" },
+    { "type": "text", "id": "stat_desc_4",  "label": "Stat 4 desc"  },
+
+    { "type": "header", "content": "Testimonial" },
+    { "type": "textarea",     "id": "testimonial_quote",   "label": "Quote", "default": "Our website went from outdated to outstanding. The email automations they set up now run on autopilot and consistently bring customers back to purchase again." },
+    { "type": "text",         "id": "testimonial_author",  "label": "Author name",  "default": "Sarah Chen" },
+    { "type": "text",         "id": "testimonial_role",    "label": "Author role",  "default": "Founder" },
+    { "type": "text",         "id": "testimonial_company", "label": "Company",      "default": "Fur Traders" },
+    { "type": "image_picker", "id": "testimonial_photo",   "label": "Author photo" },
+
+    { "type": "header", "content": "Call to Action" },
+    { "type": "text", "id": "cta_heading",        "label": "Heading",         "default": "Ready to start your project?" },
+    { "type": "text", "id": "cta_subtext",         "label": "Subtext",         "default": "Let's collaborate and bring your vision to life." },
+    { "type": "text", "id": "cta_primary_label",   "label": "Primary label",   "default": "Get in Touch" },
+    { "type": "url",  "id": "cta_primary_url",     "label": "Primary URL" },
+    { "type": "text", "id": "cta_secondary_label", "label": "Secondary label", "default": "View More Work" },
+    { "type": "url",  "id": "cta_secondary_url",   "label": "Secondary URL" }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Service",
+      "settings": [
+        { "type": "image_picker", "id": "image",       "label": "Service image" },
+        { "type": "text",         "id": "title",       "label": "Title",       "default": "E-commerce Website Design" },
+        { "type": "textarea",     "id": "description", "label": "Description", "default": "Building a seamless shopping experience that converts browsers into buyers." },
+        { "type": "textarea",     "id": "features",    "label": "Features (pipe-separated, Label:Detail format)", "default": "UI Refresh: Modern, conversion-focused layout|Navigation: Intuitive product browsing|Checkout Optimization: Streamlined purchase flow" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "CS - Fur Traders",
+      "blocks": [
+        { "type": "service", "settings": { "title": "E-commerce Website Design",      "description": "Building a seamless shopping experience that converts browsers into buyers.", "features": "UI Refresh: Modern, conversion-focused layout|Navigation: Intuitive product browsing|Checkout Optimization: Streamlined purchase flow" } },
+        { "type": "service", "settings": { "title": "Email Marketing Automations",    "description": "Active and reactive flows that nurture customers and recover lost sales.",   "features": "Welcome Series: Onboarding new subscribers|Abandoned Cart: Recovering lost revenue|Win-Back Flows: Re-engaging lapsed customers" } },
+        { "type": "service", "settings": { "title": "SEO Optimization",               "description": "Building long-term organic visibility to drive qualified traffic.",             "features": "Keyword Research: Strategic targeting|On-Page SEO: Content and metadata|Performance Tracking: Continuous improvement" } },
+        { "type": "service", "settings": { "title": "Social Media Management",        "description": "Consistent, on-brand content that grows community and drives sales.",         "features": "Content Creation: Engaging posts and visuals|Engagement Strategy: Meaningful connections|Analytics & Reporting: Performance optimization" } },
+        { "type": "service", "settings": { "title": "In-House Photoshoots & Videoshoots", "description": "High-quality product and lifestyle visuals that showcase the brand.",    "features": "Product Photography: Clean, conversion-ready shots|Lifestyle Photography: Brand storytelling|Video Content: Engaging social reels" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
