@@ -325,6 +325,79 @@
         "filters_text": "All\nBrand Partnership\nAdventure Travel\nEnergy & Lifestyle\nFashion & Lifestyle\nCulinary\nHospitality"
       }
     },
+    "case_studies_bento_yCTkaq": {
+      "type": "case-studies-bento",
+      "blocks": {
+        "card_XYnpVR": {
+          "type": "card",
+          "settings": {
+            "client": "Resiklo",
+            "category": "E-commerce",
+            "title": "E-commerce Website Redesign & UI/UX Improvements",
+            "description": "Complete platform migration with automation integration that increased conversion by 340%.",
+            "results": "340% Conversion | 85% Time Saved | 4x Email",
+            "link": ""
+          }
+        },
+        "card_zQycLT": {
+          "type": "card",
+          "settings": {
+            "client": "The Place on South Pine",
+            "category": "Hospitality",
+            "title": "Website Design & Content Strategy",
+            "description": "Digital footprint refresh with visual storytelling and automated marketing.",
+            "results": "3x Reservations | 200% Social Growth",
+            "link": ""
+          }
+        },
+        "card_FTxgHE": {
+          "type": "card",
+          "settings": {
+            "client": "Supramood",
+            "category": "Branding",
+            "title": "SEO Optimization & Digital Content Creation",
+            "description": "Comprehensive brand strategy with podcast series and affiliate program.",
+            "results": "10K+ Downloads | $200K+ Affiliate",
+            "link": ""
+          }
+        },
+        "card_k8Az3p": {
+          "type": "card",
+          "settings": {
+            "client": "Dynamic Autoworks",
+            "category": "E-commerce",
+            "title": "Premier Automotive Parts E-commerce Platform",
+            "description": "Large-scale catalog with nationwide shipping supporting 1.5M+ products.",
+            "results": "1.5M+ Products | <2s Search",
+            "link": ""
+          }
+        },
+        "card_3kRgL4": {
+          "type": "card",
+          "settings": {
+            "client": "Fur Traders",
+            "category": "E-commerce",
+            "title": "E-commerce Website Design & SEO Optimization",
+            "description": "Complete brand refresh with content strategy and e-commerce optimization.",
+            "results": "500% Traffic | 280% Revenue",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_XYnpVR",
+        "card_zQycLT",
+        "card_FTxgHE",
+        "card_k8Az3p",
+        "card_3kRgL4"
+      ],
+      "name": "Case Studies Bento",
+      "settings": {
+        "eyebrow": "[Case Studies]",
+        "heading": "Featured Projects",
+        "accent_color": "#a78bfa"
+      }
+    },
     "featured_projects_NAbVdw": {
       "type": "featured-projects",
       "blocks": {
@@ -563,6 +636,7 @@
     "work_hero_8cByLV",
     "brand_activation_bYyitf",
     "featured_work_JMQwnw",
+    "case_studies_bento_yCTkaq",
     "featured_projects_NAbVdw",
     "our_impact_aMV3jN",
     "services_cta_nPTw36"
