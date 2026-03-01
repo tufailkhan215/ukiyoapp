@@ -20,6 +20,7 @@
         "service_M8rcG8": {
           "type": "service",
           "settings": {
+            "image": "shopify://shop_images/working-from-home.jpg",
             "title": "Website Design & Creation",
             "description": "Building effective online ecosystems that boost credibility and drive growth.",
             "features": "Content Updates: Fresh visuals and engaging copy|Functionality Upgrades: Smooth, conversion-focused interactions|Analytics & Performance: Data tracking to optimize presence"
@@ -28,6 +29,7 @@
         "service_KAnwaW": {
           "type": "service",
           "settings": {
+            "image": "shopify://shop_images/email-automation.png",
             "title": "Email Automations",
             "description": "Targeted campaigns and automated workflows for lead nurturing.",
             "features": "Targeted Campaigns: Personalized messages for higher open rates|Automated Workflows: Timely follow-ups without manual effort|Performance Tracking: Detailed analytics to refine strategies"
@@ -36,6 +38,7 @@
         "service_qawchQ": {
           "type": "service",
           "settings": {
+            "image": "shopify://shop_images/inventory-optimization-pic-for-websites-landing-page.png",
             "title": "Inventory Optimization",
             "description": "Enhanced categorization and notification systems for better team collaboration.",
             "features": "Enhanced Categorization: Intuitive product organization|Streamlined Notifications: Real-time alerts for order fulfilment|Stock Management: Automated inventory tracking"
@@ -55,6 +58,10 @@
         "subtitle": "Complete Platform Migration with Automation Integration",
         "back_url": "",
         "back_label": "Back",
+        "gallery_image_1": "shopify://shop_images/ecommerce-webpage-pics-3d-aesthetic-cinematic.png",
+        "gallery_image_2": "shopify://shop_images/ecommerce-webpage-pics-3d-cinematic.png",
+        "gallery_image_3": "shopify://shop_images/ecommerce-webpage-pics-aesthetic-cinematic.png",
+        "gallery_image_4": "shopify://shop_images/laptop-from-above.jpg",
         "challenge": "The client sought our help to transfer their platform to a different website provider while implementing a new UI to replace their old website. Additionally, they requested the integration of automations throughout their e-commerce business for both active and reactive email marketing.",
         "solution": "We collaborated closely with the client to understand their vision for the new e-commerce site and the desired user experience. This allowed us to design a seamless transition strategy, ensuring that the new UI was not only visually appealing but also functional and intuitive.",
         "expectation_1": "Transition to a new website provider with a user-friendly interface",
