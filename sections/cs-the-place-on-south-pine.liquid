@@ -1,113 +1,278 @@
 {% comment %}
-  Section: cs-the-place-on-south-pine
-  Case Study — The Place on South Pine | Website Design & Content Strategy
-  
-  HOW TO USE:
-  1. Upload this file to Shopify > Online Store > Themes > Edit Code > Sections
-  2. Upload the template file (templates/page.the-place-on-south-pine.json) to Templates
-  3. Create a page with handle "the-place-on-south-pine" and assign template "page.the-place-on-south-pine"
-  4. All content is editable in the Theme Customizer
+  Section: CS - South Pine
+  File: sections/cs-the-place-on-south-pine.liquid
+  Template: templates/page.the-place-on-south-pine.json
 {% endcomment %}
 
-{% render 'case-study-styles' %}
+<style>
+  /* ─── Base ─────────────────────────────────────────────── */
+  #sp-{{ section.id }} {
+    --accent:  #a78bfa;
+    --bg:      #000;
+    --surface: #0a0a0a;
+    --border:  rgba(255,255,255,0.07);
+    --text:    #f1f5f9;
+    --muted:   rgba(255,255,255,0.48);
+    --faint:   rgba(255,255,255,0.28);
+    --r:       16px;
+    background:  var(--bg);
+    color:       var(--text);
+    font-family: inherit;
+    min-height:  100vh;
+  }
+  #sp-{{ section.id }} * { box-sizing: border-box; }
+  #sp-{{ section.id }} img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
-<div class="cs-page">
+  /* Scroll reveal */
+  #sp-{{ section.id }} .rv { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1); }
+  #sp-{{ section.id }} .rv.in { opacity: 1; transform: none; }
 
-  {%- comment -%} BACK BUTTON {%- endcomment -%}
-  <div class="cs-back">
+  /* ─── Back ──────────────────────────────────────────────── */
+  #sp-{{ section.id }} .sp-back { max-width: 1400px; margin: 0 auto; padding: 2rem 1.5rem 0; }
+  #sp-{{ section.id }} .sp-back a {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-size: .88rem; font-weight: 500; color: var(--muted);
+    text-decoration: none; transition: color .25s;
+  }
+  #sp-{{ section.id }} .sp-back a:hover { color: #fff; }
+
+  /* ─── Top Gallery ───────────────────────────────────────── */
+  #sp-{{ section.id }} .sp-gtop { max-width: 1400px; margin: 0 auto; padding: 2rem 1.5rem; }
+  #sp-{{ section.id }} .sp-gtop__grid { display: grid; gap: .9rem; grid-template-columns: repeat(2,1fr); }
+  @media (min-width: 768px) { #sp-{{ section.id }} .sp-gtop__grid { grid-template-columns: repeat(4,1fr); } }
+  #sp-{{ section.id }} .sp-gtop__item {
+    aspect-ratio: 3/4; border-radius: var(--r); overflow: hidden;
+    cursor: pointer; border: 1px solid var(--border);
+  }
+  #sp-{{ section.id }} .sp-gtop__item img { transition: transform .55s cubic-bezier(.165,.84,.44,1); }
+  #sp-{{ section.id }} .sp-gtop__item:hover img { transform: scale(1.05); }
+
+  /* ─── Header ────────────────────────────────────────────── */
+  #sp-{{ section.id }} .sp-hdr { max-width: 1000px; margin: 0 auto; padding: 4rem 1.5rem 2rem; }
+  #sp-{{ section.id }} .sp-badge {
+    display: inline-block; padding: .28rem .9rem; border-radius: 999px;
+    font-size: .65rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+    background: rgba(167,139,250,.12); border: 1px solid rgba(167,139,250,.3);
+    color: var(--accent); margin-bottom: 1.25rem;
+  }
+  #sp-{{ section.id }} .sp-title {
+    font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900;
+    line-height: 1.08; letter-spacing: -.028em; color: #fff; margin: 0 0 1rem;
+  }
+  #sp-{{ section.id }} .sp-sub {
+    font-size: 1rem; color: var(--muted); line-height: 1.75; max-width: 42rem; margin: 0;
+    border-left: 2px solid rgba(167,139,250,.35); padding-left: 1rem;
+  }
+
+  /* ─── What We Did ───────────────────────────────────────── */
+  #sp-{{ section.id }} .sp-what { max-width: 1000px; margin: 0 auto; padding: 5rem 1.5rem; }
+  #sp-{{ section.id }} .sp-what h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900;
+    color: #fff; margin: 0 0 3rem; letter-spacing: -.022em;
+  }
+  #sp-{{ section.id }} .sp-what__grid { display: grid; gap: 3rem; }
+  @media (min-width: 768px) { #sp-{{ section.id }} .sp-what__grid { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+  #sp-{{ section.id }} .sp-what__col h3 { font-size: 1rem; font-weight: 700; color: #fff; margin: 0 0 .85rem; }
+  #sp-{{ section.id }} .sp-what__col p  { font-size: .92rem; color: var(--muted); line-height: 1.78; margin: 0 0 2rem; }
+  #sp-{{ section.id }} .sp-what__list   { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .65rem; }
+  #sp-{{ section.id }} .sp-what__list li { display: flex; gap: .65rem; align-items: flex-start; font-size: .88rem; color: var(--muted); line-height: 1.55; }
+  #sp-{{ section.id }} .sp-what__list li::before { content: '◦'; color: var(--faint); flex-shrink: 0; margin-top: 1px; }
+
+  /* ─── Services ──────────────────────────────────────────── */
+  #sp-{{ section.id }} .sp-svc { border-top: 1px solid var(--border); padding: 5rem 0; }
+  #sp-{{ section.id }} .sp-svc__inner {
+    max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;
+    display: flex; flex-direction: column; gap: 3rem; align-items: center;
+  }
+  @media (min-width: 1024px) {
+    #sp-{{ section.id }} .sp-svc__inner { flex-direction: row; gap: 5rem; }
+    #sp-{{ section.id }} .sp-svc--alt .sp-svc__inner { flex-direction: row-reverse; }
+  }
+  #sp-{{ section.id }} .sp-svc__img {
+    width: 100%; border-radius: var(--r); overflow: hidden;
+    aspect-ratio: 4/3; cursor: pointer; flex-shrink: 0; border: 1px solid var(--border);
+  }
+  @media (min-width: 1024px) { #sp-{{ section.id }} .sp-svc__img { width: 40%; } }
+  #sp-{{ section.id }} .sp-svc__img img { transition: transform .55s cubic-bezier(.165,.84,.44,1); }
+  #sp-{{ section.id }} .sp-svc__img:hover img { transform: scale(1.04); }
+  #sp-{{ section.id }} .sp-svc__copy { flex: 1; }
+  #sp-{{ section.id }} .sp-svc__copy h3 {
+    font-size: 1.2rem; font-weight: 900; text-transform: uppercase;
+    letter-spacing: .06em; color: #fff; margin: 0 0 .85rem;
+  }
+  #sp-{{ section.id }} .sp-svc__copy > p { font-size: .92rem; color: var(--muted); line-height: 1.75; margin: 0 0 1.5rem; }
+  #sp-{{ section.id }} .sp-feats { display: flex; flex-direction: column; gap: .4rem; }
+  #sp-{{ section.id }} .sp-feat  { font-size: .82rem; color: var(--faint); line-height: 1.55; }
+  #sp-{{ section.id }} .sp-feat strong { color: rgba(255,255,255,.62); font-weight: 600; }
+
+  /* ─── Bottom Gallery ────────────────────────────────────── */
+  #sp-{{ section.id }} .sp-gbot { max-width: 1200px; margin: 0 auto; padding: 4rem 1.5rem; }
+  #sp-{{ section.id }} .sp-gbot__grid { display: grid; gap: .9rem; grid-template-columns: 1fr; }
+  @media (min-width: 768px) { #sp-{{ section.id }} .sp-gbot__grid { grid-template-columns: repeat(3,1fr); } }
+  #sp-{{ section.id }} .sp-gbot__item {
+    aspect-ratio: 1; border-radius: var(--r); overflow: hidden;
+    cursor: pointer; border: 1px solid var(--border);
+  }
+  #sp-{{ section.id }} .sp-gbot__item img { transition: transform .55s cubic-bezier(.165,.84,.44,1); }
+  #sp-{{ section.id }} .sp-gbot__item:hover img { transform: scale(1.05); }
+
+  /* ─── Stats ─────────────────────────────────────────────── */
+  #sp-{{ section.id }} .sp-stats { border-top: 1px solid var(--border); padding: 4.5rem 0; }
+  #sp-{{ section.id }} .sp-stats__g {
+    max-width: 1000px; margin: 0 auto; padding: 0 1.5rem;
+    display: grid; gap: 2rem; grid-template-columns: repeat(2,1fr);
+  }
+  @media (min-width: 1024px) { #sp-{{ section.id }} .sp-stats__g { grid-template-columns: repeat(4,1fr); } }
+  #sp-{{ section.id }} .sp-stat { text-align: center; }
+  #sp-{{ section.id }} .sp-stat__v { display: block; font-size: clamp(2.2rem,5vw,3.2rem); font-weight: 900; color: #fff; letter-spacing: -.03em; line-height: 1; margin-bottom: .35rem; }
+  #sp-{{ section.id }} .sp-stat__l { display: block; font-size: .85rem; font-weight: 700; color: rgba(255,255,255,.6); margin-bottom: .2rem; }
+  #sp-{{ section.id }} .sp-stat__d { display: block; font-size: .72rem; color: var(--faint); }
+
+  /* ─── Testimonial ───────────────────────────────────────── */
+  #sp-{{ section.id }} .sp-testi { background: var(--surface); padding: 5rem 1.5rem; border-top: 1px solid var(--border); }
+  #sp-{{ section.id }} .sp-testi__inner { max-width: 800px; margin: 0 auto; text-align: center; }
+  #sp-{{ section.id }} .sp-testi__marks { font-size: 3rem; line-height: 1; color: rgba(167,139,250,.3); margin-bottom: 1rem; display: block; }
+  #sp-{{ section.id }} .sp-testi__q { font-size: clamp(1.1rem,2.8vw,1.55rem); font-weight: 300; color: #fff; line-height: 1.65; margin: 0 0 2.5rem; font-style: italic; }
+  #sp-{{ section.id }} .sp-testi__who { display: flex; align-items: center; justify-content: center; gap: 1rem; }
+  #sp-{{ section.id }} .sp-testi__photo { width: 48px; height: 48px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 1px solid var(--border); }
+  #sp-{{ section.id }} .sp-testi__info { text-align: left; }
+  #sp-{{ section.id }} .sp-testi__name { display: block; font-size: .92rem; font-weight: 700; color: #fff; }
+  #sp-{{ section.id }} .sp-testi__role { display: block; font-size: .78rem; color: var(--muted); }
+
+  /* ─── CTA ────────────────────────────────────────────────── */
+  #sp-{{ section.id }} .sp-cta { border-top: 1px solid var(--border); padding: 5.5rem 1.5rem; }
+  #sp-{{ section.id }} .sp-cta__inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+  #sp-{{ section.id }} .sp-cta__h2 { font-size: clamp(1.8rem,4vw,2.8rem); font-weight: 900; color: #fff; margin: 0 0 1rem; letter-spacing: -.022em; }
+  #sp-{{ section.id }} .sp-cta__sub { font-size: 1rem; color: var(--muted); line-height: 1.75; max-width: 36rem; margin: 0 auto 2.5rem; }
+  #sp-{{ section.id }} .sp-cta__btns { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+  #sp-{{ section.id }} .sp-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    font-size: .88rem; font-weight: 700; padding: .85rem 1.6rem; border-radius: 999px;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: background .25s, color .25s, transform .2s, box-shadow .25s;
+  }
+  #sp-{{ section.id }} .sp-btn--p { background: #fff; color: #000; }
+  #sp-{{ section.id }} .sp-btn--p:hover { background: #e5e7eb; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.35); }
+  #sp-{{ section.id }} .sp-btn--s { background: rgba(255,255,255,.05); color: rgba(255,255,255,.8); border: 1px solid rgba(255,255,255,.12); }
+  #sp-{{ section.id }} .sp-btn--s:hover { background: rgba(255,255,255,.1); color: #fff; border-color: rgba(255,255,255,.25); }
+
+  /* ─── Lightbox ───────────────────────────────────────────── */
+  #sp-lb-{{ section.id }} {
+    display: none; position: fixed; inset: 0; z-index: 9999;
+    background: rgba(0,0,0,0.96); align-items: center; justify-content: center;
+  }
+  #sp-lb-{{ section.id }}.open { display: flex; }
+  #sp-lb-{{ section.id }} .lb-img { max-width: 90vw; max-height: 88vh; object-fit: contain; width: auto; height: auto; border-radius: 12px; transition: opacity .22s; }
+  #sp-lb-{{ section.id }} .lb-btn {
+    position: absolute; width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15);
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 1.1rem; transition: background .25s;
+  }
+  #sp-lb-{{ section.id }} .lb-btn:hover { background: rgba(255,255,255,.2); }
+  #sp-lb-{{ section.id }} .lb-close { top: 1.25rem; right: 1.25rem; }
+  #sp-lb-{{ section.id }} .lb-prev  { left: 1.25rem;  top: 50%; transform: translateY(-50%); }
+  #sp-lb-{{ section.id }} .lb-next  { right: 1.25rem; top: 50%; transform: translateY(-50%); }
+  #sp-lb-{{ section.id }} .lb-dots  { position: absolute; bottom: 1.25rem; left: 50%; transform: translateX(-50%); display: flex; gap: .4rem; }
+  #sp-lb-{{ section.id }} .lb-dot   { height: 3px; width: 16px; border-radius: 999px; background: rgba(255,255,255,.3); cursor: pointer; border: none; transition: background .25s, width .25s; }
+  #sp-lb-{{ section.id }} .lb-dot.on{ background: #fff; width: 28px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    #sp-{{ section.id }} .rv { opacity: 1 !important; transform: none !important; transition: none !important; }
+    #sp-{{ section.id }} img { transition: none !important; }
+  }
+</style>
+
+<div id="sp-{{ section.id }}">
+
+  <!-- Back -->
+  <div class="sp-back">
     <a href="{{ section.settings.back_url | default: '/pages/work' }}">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="15" height="15">
         <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
       </svg>
       {{ section.settings.back_label | default: 'Back' }}
     </a>
   </div>
 
-  {%- comment -%} TOP GALLERY — 4 IMAGES {%- endcomment -%}
-  <div class="cs-gallery-top">
-    <div class="cs-gallery-top__grid">
-      <div class="cs-gallery-top__item">
-        <img src="{{ section.settings.gallery_image_1 }}" alt="{{ section.settings.client }} project 1" loading="eager" />
-      </div>
-      <div class="cs-gallery-top__item">
-        <img src="{{ section.settings.gallery_image_2 }}" alt="{{ section.settings.client }} project 2" loading="eager" />
-      </div>
-      <div class="cs-gallery-top__item">
-        <img src="{{ section.settings.gallery_image_3 }}" alt="{{ section.settings.client }} project 3" loading="lazy" />
-      </div>
-      <div class="cs-gallery-top__item">
-        <img src="{{ section.settings.gallery_image_4 }}" alt="{{ section.settings.client }} project 4" loading="lazy" />
-      </div>
+  <!-- Top Gallery -->
+  <div class="sp-gtop rv">
+    <div class="sp-gtop__grid">
+      {%- for i in (1..4) -%}
+        {%- assign gk = 'gallery_image_' | append: i -%}
+        {%- if section.settings[gk] -%}
+          <div class="sp-gtop__item" data-lbset="top" data-lbidx="{{ i | minus: 1 }}" tabindex="0" role="button" aria-label="Open image {{ i }}">
+            <img src="{{ section.settings[gk] | img_url: '800x' }}" alt="{{ section.settings.client }} {{ i }}" loading="{% if i <= 2 %}eager{% else %}lazy{% endif %}">
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
     </div>
   </div>
 
-  {%- comment -%} PAGE HEADER {%- endcomment -%}
-  <div class="cs-header">
-    <span class="cs-badge">{{ section.settings.category }}</span>
-    <h1 class="cs-title">{{ section.settings.title }}</h1>
-    <p class="cs-subtitle">{{ section.settings.subtitle }}</p>
+  <!-- Header -->
+  <div class="sp-hdr rv">
+    {%- if section.settings.category != blank -%}<span class="sp-badge">{{ section.settings.category }}</span>{%- endif -%}
+    <h1 class="sp-title">{{ section.settings.title }}</h1>
+    {%- if section.settings.subtitle != blank -%}<p class="sp-sub">{{ section.settings.subtitle }}</p>{%- endif -%}
   </div>
 
-  {%- comment -%} WHAT WE DID {%- endcomment -%}
-  <section class="cs-what">
-    <h2 class="cs-what__heading">What we did</h2>
-    <div class="cs-what__grid">
-      <div class="cs-what__col">
+  <!-- What We Did -->
+  <section class="sp-what">
+    <h2 class="rv">What we did</h2>
+    <div class="sp-what__grid">
+      <div class="sp-what__col rv">
         <h3>Client expectations</h3>
         <p>{{ section.settings.challenge }}</p>
-        <h3>Expected outcomes</h3>
-        <ul class="cs-what__list">
-          {%- for i in (1..6) -%}
-            {%- assign exp_key = 'expectation_' | append: i -%}
-            {%- if section.settings[exp_key] != blank -%}
-              <li>{{ section.settings[exp_key] }}</li>
-            {%- endif -%}
-          {%- endfor -%}
-        </ul>
+        {%- assign has_exp = false -%}
+        {%- for i in (1..6) -%}{%- assign ek = 'expectation_' | append: i -%}{%- if section.settings[ek] != blank -%}{%- assign has_exp = true -%}{%- endif -%}{%- endfor -%}
+        {%- if has_exp -%}
+          <h3>Expected outcomes</h3>
+          <ul class="sp-what__list">
+            {%- for i in (1..6) -%}{%- assign ek = 'expectation_' | append: i -%}{%- if section.settings[ek] != blank -%}<li>{{ section.settings[ek] }}</li>{%- endif -%}{%- endfor -%}
+          </ul>
+        {%- endif -%}
       </div>
-      <div class="cs-what__col">
+      <div class="sp-what__col rv">
         <h3>How we did it</h3>
         <p>{{ section.settings.solution }}</p>
-        <h3>Delivered results</h3>
-        <ul class="cs-what__list">
-          {%- for i in (1..6) -%}
-            {%- assign out_key = 'outcome_' | append: i -%}
-            {%- if section.settings[out_key] != blank -%}
-              <li>{{ section.settings[out_key] }}</li>
-            {%- endif -%}
-          {%- endfor -%}
-        </ul>
+        {%- assign has_out = false -%}
+        {%- for i in (1..6) -%}{%- assign ok = 'outcome_' | append: i -%}{%- if section.settings[ok] != blank -%}{%- assign has_out = true -%}{%- endif -%}{%- endfor -%}
+        {%- if has_out -%}
+          <h3>Delivered results</h3>
+          <ul class="sp-what__list">
+            {%- for i in (1..6) -%}{%- assign ok = 'outcome_' | append: i -%}{%- if section.settings[ok] != blank -%}<li>{{ section.settings[ok] }}</li>{%- endif -%}{%- endfor -%}
+          </ul>
+        {%- endif -%}
       </div>
     </div>
   </section>
 
-  {%- comment -%} SERVICES BLOCKS {%- endcomment -%}
+  <!-- Services -->
   {%- for block in section.blocks -%}
     {%- if block.type == 'service' -%}
-      <div class="cs-service {% if forloop.index0 == 1 or forloop.index0 == 3 %}cs-service--reverse{% endif %}" {{ block.shopify_attributes }}>
-        <div class="cs-service__inner">
-          {%- if block.settings.service_image != blank -%}
-            <div class="cs-service__image">
-              <img src="{{ block.settings.service_image }}" alt="{{ block.settings.service_title }}" loading="lazy" />
+      {%- assign alt = forloop.index0 | modulo: 2 -%}
+      <div class="sp-svc{% if alt == 1 %} sp-svc--alt{% endif %}" {{ block.shopify_attributes }}>
+        <div class="sp-svc__inner">
+          {%- if block.settings.image -%}
+            <div class="sp-svc__img rv" data-lbset="svc" data-lbsrc="{{ block.settings.image | img_url: '1400x' }}">
+              <img src="{{ block.settings.image | img_url: '800x' }}" alt="{{ block.settings.title }}" loading="lazy">
             </div>
           {%- endif -%}
-          <div class="cs-service__content">
-            <h3>{{ block.settings.service_title }}</h3>
-            <p>{{ block.settings.service_description }}</p>
-            {%- if block.settings.service_features != blank -%}
-              <ul class="cs-service__features">
-                {%- assign features = block.settings.service_features | split: '|' -%}
-                {%- for feature in features -%}
-                  {%- assign parts = feature | split: ':' -%}
-                  <li>
-                    {%- if parts.size > 1 -%}
-                      <strong>{{ parts[0] }}:</strong>{{ parts[1] }}
-                    {%- else -%}
-                      {{ feature }}
-                    {%- endif -%}
-                  </li>
+          <div class="sp-svc__copy rv">
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.description }}</p>
+            {%- if block.settings.features != blank -%}
+              <div class="sp-feats">
+                {%- assign feats = block.settings.features | split: '|' -%}
+                {%- for feat in feats -%}
+                  {%- if feat != blank -%}
+                    {%- assign pts = feat | strip | split: ':' -%}
+                    <p class="sp-feat">
+                      {%- if pts.size > 1 -%}<strong>{{ pts[0] }}:</strong>{{ pts | shift | join: ':' }}{%- else -%}{{ feat }}{%- endif -%}
+                    </p>
+                  {%- endif -%}
                 {%- endfor -%}
-              </ul>
+              </div>
             {%- endif -%}
           </div>
         </div>
@@ -115,424 +280,274 @@
     {%- endif -%}
   {%- endfor -%}
 
-  {%- comment -%} BOTTOM GALLERY — 3 IMAGES {%- endcomment -%}
-  <div class="cs-gallery-bottom">
-    <div class="cs-gallery-bottom__grid">
-      <div class="cs-gallery-bottom__item">
-        <img src="{{ section.settings.gallery_image_2 }}" alt="{{ section.settings.client }} gallery 1" loading="lazy" />
-      </div>
-      <div class="cs-gallery-bottom__item">
-        <img src="{{ section.settings.gallery_image_3 }}" alt="{{ section.settings.client }} gallery 2" loading="lazy" />
-      </div>
-      <div class="cs-gallery-bottom__item">
-        <img src="{{ section.settings.gallery_image_4 }}" alt="{{ section.settings.client }} gallery 3" loading="lazy" />
+  <!-- Bottom Gallery -->
+  {%- assign has_bot = false -%}
+  {%- for i in (1..3) -%}{%- assign bk = 'gallery_bot_' | append: i -%}{%- if section.settings[bk] != blank -%}{%- assign has_bot = true -%}{%- endif -%}{%- endfor -%}
+  {%- if has_bot -%}
+    <div class="sp-gbot rv">
+      <div class="sp-gbot__grid">
+        {%- for i in (1..3) -%}
+          {%- assign bk = 'gallery_bot_' | append: i -%}
+          {%- if section.settings[bk] != blank -%}
+            <div class="sp-gbot__item" data-lbset="bot" data-lbidx="{{ i | minus: 1 }}" tabindex="0" role="button" aria-label="Open gallery image {{ i }}">
+              <img src="{{ section.settings[bk] | img_url: '800x' }}" alt="{{ section.settings.client }} gallery {{ i }}" loading="lazy">
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
       </div>
     </div>
-  </div>
+  {%- endif -%}
 
-  {%- comment -%} STATS {%- endcomment -%}
-  <div class="cs-stats">
-    <div class="cs-stats__grid">
+  <!-- Stats -->
+  <div class="sp-stats">
+    <div class="sp-stats__g">
       {%- for i in (1..4) -%}
-        {%- assign val_key = 'stat_value_' | append: i -%}
-        {%- assign lbl_key = 'stat_label_' | append: i -%}
-        {%- assign dsc_key = 'stat_desc_' | append: i -%}
-        {%- if section.settings[val_key] != blank -%}
-          <div class="cs-stat">
-            <span class="cs-stat__value">{{ section.settings[val_key] }}</span>
-            <span class="cs-stat__label">{{ section.settings[lbl_key] }}</span>
-            <span class="cs-stat__desc">{{ section.settings[dsc_key] }}</span>
+        {%- assign vk = 'stat_value_' | append: i -%}
+        {%- assign lk = 'stat_label_' | append: i -%}
+        {%- assign dk = 'stat_desc_'  | append: i -%}
+        {%- if section.settings[vk] != blank -%}
+          <div class="sp-stat rv">
+            <span class="sp-stat__v">{{ section.settings[vk] }}</span>
+            <span class="sp-stat__l">{{ section.settings[lk] }}</span>
+            {%- if section.settings[dk] != blank -%}<span class="sp-stat__d">{{ section.settings[dk] }}</span>{%- endif -%}
           </div>
         {%- endif -%}
       {%- endfor -%}
     </div>
   </div>
 
-  {%- comment -%} TESTIMONIAL {%- endcomment -%}
+  <!-- Testimonial -->
   {%- if section.settings.testimonial_quote != blank -%}
-    <div class="cs-testimonial">
-      <div class="cs-testimonial__inner">
-        <p class="cs-testimonial__quote">"{{ section.settings.testimonial_quote }}"</p>
-        <div class="cs-testimonial__author">
-          {%- if section.settings.testimonial_photo != blank -%}
-            <img class="cs-testimonial__photo" src="{{ section.settings.testimonial_photo }}" alt="{{ section.settings.testimonial_author }}" loading="lazy" />
+    <div class="sp-testi">
+      <div class="sp-testi__inner rv">
+        <span class="sp-testi__marks">&ldquo;</span>
+        <p class="sp-testi__q">{{ section.settings.testimonial_quote }}</p>
+        <div class="sp-testi__who">
+          {%- if section.settings.testimonial_photo -%}
+            <div class="sp-testi__photo">
+              <img src="{{ section.settings.testimonial_photo | img_url: '200x200' }}" alt="{{ section.settings.testimonial_author }}" loading="lazy">
+            </div>
           {%- endif -%}
-          <div class="cs-testimonial__info">
-            <span class="cs-testimonial__name">{{ section.settings.testimonial_author }}</span>
-            <span class="cs-testimonial__role">{{ section.settings.testimonial_role }}, {{ section.settings.testimonial_company }}</span>
+          <div class="sp-testi__info">
+            <span class="sp-testi__name">{{ section.settings.testimonial_author }}</span>
+            <span class="sp-testi__role">{{ section.settings.testimonial_role }}{%- if section.settings.testimonial_company != blank -%}, {{ section.settings.testimonial_company }}{%- endif -%}</span>
           </div>
         </div>
       </div>
     </div>
   {%- endif -%}
 
-  {%- comment -%} CTA {%- endcomment -%}
-  <div class="cs-cta">
-    <div class="cs-cta__inner">
-      <h2 class="cs-cta__heading">{{ section.settings.cta_heading }}</h2>
-      <p class="cs-cta__subtext">{{ section.settings.cta_subtext }}</p>
-      <div class="cs-cta__buttons">
-        <a href="{{ section.settings.cta_primary_url }}" class="cs-btn cs-btn--primary">
-          {{ section.settings.cta_primary_label }}
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/>
-          </svg>
-        </a>
-        <a href="{{ section.settings.cta_secondary_url }}" class="cs-btn cs-btn--secondary">
-          {{ section.settings.cta_secondary_label }}
-        </a>
+  <!-- CTA -->
+  <div class="sp-cta">
+    <div class="sp-cta__inner rv">
+      <h2 class="sp-cta__h2">{{ section.settings.cta_heading }}</h2>
+      <p class="sp-cta__sub">{{ section.settings.cta_subtext }}</p>
+      <div class="sp-cta__btns">
+        {%- if section.settings.cta_primary_label != blank -%}
+          <a href="{{ section.settings.cta_primary_url | default: '#' }}" class="sp-btn sp-btn--p">
+            {{ section.settings.cta_primary_label }}
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="14" height="14">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </a>
+        {%- endif -%}
+        {%- if section.settings.cta_secondary_label != blank -%}
+          <a href="{{ section.settings.cta_secondary_url | default: '#' }}" class="sp-btn sp-btn--s">{{ section.settings.cta_secondary_label }}</a>
+        {%- endif -%}
       </div>
     </div>
   </div>
 
 </div>
 
+<!-- Lightbox -->
+<div id="sp-lb-{{ section.id }}" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-btn lb-close" aria-label="Close">✕</button>
+  <button class="lb-btn lb-prev"  aria-label="Previous">‹</button>
+  <button class="lb-btn lb-next"  aria-label="Next">›</button>
+  <img class="lb-img" src="" alt="">
+  <div class="lb-dots"></div>
+</div>
+
+<script>
+(function(){
+  var sid  = '{{ section.id }}';
+  var root = document.getElementById('sp-' + sid);
+  var lb   = document.getElementById('sp-lb-' + sid);
+  if (!root || !lb) return;
+
+  var lbImg  = lb.querySelector('.lb-img');
+  var lbDots = lb.querySelector('.lb-dots');
+
+  /* Scroll reveal */
+  var rvEls = root.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold: 0.1});
+    rvEls.forEach(function(el,i){ el.style.transitionDelay = Math.min(i*0.05,0.35)+'s'; io.observe(el); });
+  } else { rvEls.forEach(function(el){ el.classList.add('in'); }); }
+
+  /* Build image src arrays */
+  function getSrcs(set) {
+    if (set === 'top') {
+      return [].slice.call(root.querySelectorAll('.sp-gtop__item')).map(function(el){ var img=el.querySelector('img'); return img?img.src:''; });
+    }
+    if (set === 'bot') {
+      return [].slice.call(root.querySelectorAll('.sp-gbot__item')).map(function(el){ var img=el.querySelector('img'); return img?img.src:''; });
+    }
+    return [];
+  }
+
+  var lbSrcs = [], lbIdx = 0;
+
+  function openLb(srcs, idx) {
+    lbSrcs = srcs.filter(Boolean);
+    lbIdx  = Math.min(idx, lbSrcs.length - 1);
+    renderLb();
+    buildDots();
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function renderLb() {
+    lbImg.style.opacity = '0';
+    setTimeout(function(){ lbImg.src = lbSrcs[lbIdx] || ''; lbImg.style.opacity = '1'; }, 180);
+    lb.querySelectorAll('.lb-dot').forEach(function(d,i){ d.classList.toggle('on', i===lbIdx); });
+  }
+
+  function buildDots() {
+    lbDots.innerHTML = '';
+    lbSrcs.forEach(function(_,i){
+      var d = document.createElement('button');
+      d.className = 'lb-dot' + (i===lbIdx?' on':'');
+      d.setAttribute('aria-label','Image '+(i+1));
+      d.addEventListener('click', function(){ lbIdx=i; renderLb(); });
+      lbDots.appendChild(d);
+    });
+  }
+
+  function closeLb(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+
+  /* Bind top gallery */
+  root.querySelectorAll('.sp-gtop__item').forEach(function(el){
+    el.addEventListener('click',    function(){ openLb(getSrcs('top'), parseInt(el.dataset.lbidx)||0); });
+    el.addEventListener('keydown',  function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); el.click(); } });
+  });
+
+  /* Bind service images (single image) */
+  root.querySelectorAll('.sp-svc__img[data-lbsrc]').forEach(function(el){
+    el.addEventListener('click', function(){ openLb([el.dataset.lbsrc], 0); });
+  });
+
+  /* Bind bottom gallery */
+  root.querySelectorAll('.sp-gbot__item').forEach(function(el){
+    el.addEventListener('click',   function(){ openLb(getSrcs('bot'), parseInt(el.dataset.lbidx)||0); });
+    el.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); el.click(); } });
+  });
+
+  /* LB controls */
+  lb.querySelector('.lb-close').addEventListener('click', closeLb);
+  lb.querySelector('.lb-prev').addEventListener('click',  function(){ lbIdx=(lbIdx-1+lbSrcs.length)%lbSrcs.length; renderLb(); });
+  lb.querySelector('.lb-next').addEventListener('click',  function(){ lbIdx=(lbIdx+1)%lbSrcs.length; renderLb(); });
+  lb.addEventListener('click', function(e){ if(e.target===lb) closeLb(); });
+  document.addEventListener('keydown', function(e){
+    if (!lb.classList.contains('open')) return;
+    if (e.key==='Escape')     closeLb();
+    if (e.key==='ArrowLeft')  { lbIdx=(lbIdx-1+lbSrcs.length)%lbSrcs.length; renderLb(); }
+    if (e.key==='ArrowRight') { lbIdx=(lbIdx+1)%lbSrcs.length; renderLb(); }
+  });
+})();
+</script>
+
 {% schema %}
 {
   "name": "CS - South Pine",
   "tag": "section",
   "settings": [
-    {
-      "type": "header",
-      "content": "Page Header"
-    },
-    {
-      "type": "text",
-      "id": "client",
-      "label": "Client Name",
-      "default": "The Place on South Pine"
-    },
-    {
-      "type": "text",
-      "id": "category",
-      "label": "Category Badge",
-      "default": "Hospitality / Restaurant & Dining"
-    },
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Page Title",
-      "default": "Website Design & Content Strategy"
-    },
-    {
-      "type": "text",
-      "id": "subtitle",
-      "label": "Subtitle",
-      "default": "Digital Footprint Refresh with Visual Storytelling"
-    },
-    {
-      "type": "header",
-      "content": "Back Button"
-    },
-    {
-      "type": "url",
-      "id": "back_url",
-      "label": "Back Button URL"
-    },
-    {
-      "type": "text",
-      "id": "back_label",
-      "label": "Back Button Label",
-      "default": "Back"
-    },
-    {
-      "type": "header",
-      "content": "Top Gallery Images"
-    },
-    {
-      "type": "text",
-      "id": "gallery_image_1",
-      "label": "Gallery Image 1 URL",
-      "default": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80"
-    },
-    {
-      "type": "text",
-      "id": "gallery_image_2",
-      "label": "Gallery Image 2 URL",
-      "default": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80"
-    },
-    {
-      "type": "text",
-      "id": "gallery_image_3",
-      "label": "Gallery Image 3 URL",
-      "default": "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80"
-    },
-    {
-      "type": "text",
-      "id": "gallery_image_4",
-      "label": "Gallery Image 4 URL",
-      "default": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80"
-    },
-    {
-      "type": "header",
-      "content": "What We Did"
-    },
-    {
-      "type": "textarea",
-      "id": "challenge",
-      "label": "Client Expectations (Challenge)",
-      "default": "The Place on South Pine aimed to refresh their digital footprint through a sleek, user-friendly website overhaul. They also wanted to introduce automated marketing workflows and strengthen brand engagement by developing new social media content."
-    },
-    {
-      "type": "textarea",
-      "id": "solution",
-      "label": "How We Did It (Solution)",
-      "default": "We overhauled the site's design to ensure it was both visually striking and easy to navigate. Simultaneously, we deployed automated marketing workflows and produced captivating photos and videos for social channels."
-    },
-    {
-      "type": "header",
-      "content": "Expected Outcomes (up to 6)"
-    },
-    {
-      "type": "text",
-      "id": "expectation_1",
-      "label": "Expectation 1",
-      "default": "Modernize the website layout for an elevated user experience"
-    },
-    {
-      "type": "text",
-      "id": "expectation_2",
-      "label": "Expectation 2",
-      "default": "Implement automated marketing campaigns for customer retention"
-    },
-    {
-      "type": "text",
-      "id": "expectation_3",
-      "label": "Expectation 3",
-      "default": "Curate and manage compelling social media content"
-    },
-    {
-      "type": "text",
-      "id": "expectation_4",
-      "label": "Expectation 4",
-      "default": "Boost brand awareness and build deeper audience connections"
-    },
-    {
-      "type": "text",
-      "id": "expectation_5",
-      "label": "Expectation 5"
-    },
-    {
-      "type": "text",
-      "id": "expectation_6",
-      "label": "Expectation 6"
-    },
-    {
-      "type": "header",
-      "content": "Delivered Outcomes (up to 6)"
-    },
-    {
-      "type": "text",
-      "id": "outcome_1",
-      "label": "Outcome 1",
-      "default": "Sleek, modern website design"
-    },
-    {
-      "type": "text",
-      "id": "outcome_2",
-      "label": "Outcome 2",
-      "default": "Automated marketing driving repeat visits"
-    },
-    {
-      "type": "text",
-      "id": "outcome_3",
-      "label": "Outcome 3",
-      "default": "Engaging social content increasing followers"
-    },
-    {
-      "type": "text",
-      "id": "outcome_4",
-      "label": "Outcome 4",
-      "default": "Stronger brand identity and recognition"
-    },
-    {
-      "type": "text",
-      "id": "outcome_5",
-      "label": "Outcome 5"
-    },
-    {
-      "type": "text",
-      "id": "outcome_6",
-      "label": "Outcome 6"
-    },
-    {
-      "type": "header",
-      "content": "Stats"
-    },
-    {
-      "type": "text",
-      "id": "stat_value_1",
-      "label": "Stat 1 Value",
-      "default": "3x"
-    },
-    {
-      "type": "text",
-      "id": "stat_label_1",
-      "label": "Stat 1 Label",
-      "default": "Reservations"
-    },
-    {
-      "type": "text",
-      "id": "stat_desc_1",
-      "label": "Stat 1 Description",
-      "default": "Month over month"
-    },
-    {
-      "type": "text",
-      "id": "stat_value_2",
-      "label": "Stat 2 Value",
-      "default": "200%"
-    },
-    {
-      "type": "text",
-      "id": "stat_label_2",
-      "label": "Stat 2 Label",
-      "default": "Social Growth"
-    },
-    {
-      "type": "text",
-      "id": "stat_desc_2",
-      "label": "Stat 2 Description",
-      "default": "Follower increase"
-    },
-    {
-      "type": "text",
-      "id": "stat_value_3",
-      "label": "Stat 3 Value",
-      "default": "85%"
-    },
-    {
-      "type": "text",
-      "id": "stat_label_3",
-      "label": "Stat 3 Label",
-      "default": "Engagement"
-    },
-    {
-      "type": "text",
-      "id": "stat_desc_3",
-      "label": "Stat 3 Description",
-      "default": "Content interaction"
-    },
-    {
-      "type": "text",
-      "id": "stat_value_4",
-      "label": "Stat 4 Value",
-      "default": "4.9"
-    },
-    {
-      "type": "text",
-      "id": "stat_label_4",
-      "label": "Stat 4 Label",
-      "default": "Rating"
-    },
-    {
-      "type": "text",
-      "id": "stat_desc_4",
-      "label": "Stat 4 Description",
-      "default": "Average review score"
-    },
-    {
-      "type": "header",
-      "content": "Testimonial"
-    },
-    {
-      "type": "textarea",
-      "id": "testimonial_quote",
-      "label": "Quote",
-      "default": "Our online presence went from outdated to outstanding. The photos and videos they produced truly capture our restaurant's atmosphere and have brought in so many new customers."
-    },
-    {
-      "type": "text",
-      "id": "testimonial_author",
-      "label": "Author Name",
-      "default": "David Park"
-    },
-    {
-      "type": "text",
-      "id": "testimonial_role",
-      "label": "Author Role",
-      "default": "Owner"
-    },
-    {
-      "type": "text",
-      "id": "testimonial_company",
-      "label": "Company",
-      "default": "The Place on South Pine"
-    },
-    {
-      "type": "text",
-      "id": "testimonial_photo",
-      "label": "Author Photo URL",
-      "default": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80"
-    },
-    {
-      "type": "header",
-      "content": "Call to Action"
-    },
-    {
-      "type": "text",
-      "id": "cta_heading",
-      "label": "CTA Heading",
-      "default": "Ready to start your project?"
-    },
-    {
-      "type": "text",
-      "id": "cta_subtext",
-      "label": "CTA Subtext",
-      "default": "Let's collaborate and bring your vision to life."
-    },
-    {
-      "type": "text",
-      "id": "cta_primary_label",
-      "label": "Primary Button Label",
-      "default": "Get in Touch"
-    },
-    {
-      "type": "url",
-      "id": "cta_primary_url",
-      "label": "Primary Button URL"
-    },
-    {
-      "type": "text",
-      "id": "cta_secondary_label",
-      "label": "Secondary Button Label",
-      "default": "View More Work"
-    },
-    {
-      "type": "url",
-      "id": "cta_secondary_url",
-      "label": "Secondary Button URL"
-    }
+    { "type": "header",    "content": "Page Info" },
+    { "type": "text",      "id": "client",   "label": "Client name",    "default": "The Place on South Pine" },
+    { "type": "text",      "id": "category", "label": "Category badge", "default": "Hospitality / Restaurant & Dining" },
+    { "type": "text",      "id": "title",    "label": "Page title",     "default": "Website Design & Content Strategy" },
+    { "type": "text",      "id": "subtitle", "label": "Subtitle",       "default": "Digital Footprint Refresh with Visual Storytelling" },
+
+    { "type": "header", "content": "Back Button" },
+    { "type": "url",  "id": "back_url",   "label": "Back URL" },
+    { "type": "text", "id": "back_label", "label": "Back label", "default": "Back" },
+
+    { "type": "header", "content": "Top Gallery (4 images, 3:4 ratio)" },
+    { "type": "image_picker", "id": "gallery_image_1", "label": "Image 1" },
+    { "type": "image_picker", "id": "gallery_image_2", "label": "Image 2" },
+    { "type": "image_picker", "id": "gallery_image_3", "label": "Image 3" },
+    { "type": "image_picker", "id": "gallery_image_4", "label": "Image 4" },
+
+    { "type": "header", "content": "What We Did" },
+    { "type": "textarea", "id": "challenge", "label": "Client expectations",
+      "default": "The Place on South Pine aimed to refresh their digital footprint through a sleek, user-friendly website overhaul. They also wanted to introduce automated marketing workflows and strengthen brand engagement by developing new social media content." },
+    { "type": "textarea", "id": "solution",  "label": "How we did it",
+      "default": "We overhauled the site's design to ensure it was both visually striking and easy to navigate. Simultaneously, we deployed automated marketing workflows and produced captivating photos and videos for social channels." },
+
+    { "type": "header", "content": "Expected Outcomes (up to 6)" },
+    { "type": "text", "id": "expectation_1", "label": "Expectation 1", "default": "Modernize the website layout for an elevated user experience" },
+    { "type": "text", "id": "expectation_2", "label": "Expectation 2", "default": "Implement automated marketing campaigns for customer retention" },
+    { "type": "text", "id": "expectation_3", "label": "Expectation 3", "default": "Curate and manage compelling social media content" },
+    { "type": "text", "id": "expectation_4", "label": "Expectation 4", "default": "Boost brand awareness and build deeper audience connections" },
+    { "type": "text", "id": "expectation_5", "label": "Expectation 5" },
+    { "type": "text", "id": "expectation_6", "label": "Expectation 6" },
+
+    { "type": "header", "content": "Delivered Outcomes (up to 6)" },
+    { "type": "text", "id": "outcome_1", "label": "Outcome 1", "default": "Sleek, modern website design" },
+    { "type": "text", "id": "outcome_2", "label": "Outcome 2", "default": "Automated marketing driving repeat visits" },
+    { "type": "text", "id": "outcome_3", "label": "Outcome 3", "default": "Engaging social content increasing followers" },
+    { "type": "text", "id": "outcome_4", "label": "Outcome 4", "default": "Stronger brand identity and recognition" },
+    { "type": "text", "id": "outcome_5", "label": "Outcome 5" },
+    { "type": "text", "id": "outcome_6", "label": "Outcome 6" },
+
+    { "type": "header", "content": "Bottom Gallery (3 square images)" },
+    { "type": "image_picker", "id": "gallery_bot_1", "label": "Bottom image 1" },
+    { "type": "image_picker", "id": "gallery_bot_2", "label": "Bottom image 2" },
+    { "type": "image_picker", "id": "gallery_bot_3", "label": "Bottom image 3" },
+
+    { "type": "header", "content": "Stats" },
+    { "type": "text", "id": "stat_value_1", "label": "Stat 1 value", "default": "3x"    },
+    { "type": "text", "id": "stat_label_1", "label": "Stat 1 label", "default": "Reservations" },
+    { "type": "text", "id": "stat_desc_1",  "label": "Stat 1 desc",  "default": "Month over month" },
+    { "type": "text", "id": "stat_value_2", "label": "Stat 2 value", "default": "200%"  },
+    { "type": "text", "id": "stat_label_2", "label": "Stat 2 label", "default": "Social Growth" },
+    { "type": "text", "id": "stat_desc_2",  "label": "Stat 2 desc",  "default": "Follower increase" },
+    { "type": "text", "id": "stat_value_3", "label": "Stat 3 value", "default": "85%"   },
+    { "type": "text", "id": "stat_label_3", "label": "Stat 3 label", "default": "Engagement" },
+    { "type": "text", "id": "stat_desc_3",  "label": "Stat 3 desc",  "default": "Content interaction" },
+    { "type": "text", "id": "stat_value_4", "label": "Stat 4 value", "default": "4.9"   },
+    { "type": "text", "id": "stat_label_4", "label": "Stat 4 label", "default": "Rating" },
+    { "type": "text", "id": "stat_desc_4",  "label": "Stat 4 desc",  "default": "Average review score" },
+
+    { "type": "header", "content": "Testimonial" },
+    { "type": "textarea",     "id": "testimonial_quote",   "label": "Quote",
+      "default": "Our online presence went from outdated to outstanding. The photos and videos they produced truly capture our restaurant's atmosphere and have brought in so many new customers." },
+    { "type": "text",         "id": "testimonial_author",  "label": "Author name",    "default": "David Park" },
+    { "type": "text",         "id": "testimonial_role",    "label": "Author role",    "default": "Owner" },
+    { "type": "text",         "id": "testimonial_company", "label": "Company",        "default": "The Place on South Pine" },
+    { "type": "image_picker", "id": "testimonial_photo",   "label": "Author photo" },
+
+    { "type": "header", "content": "Call to Action" },
+    { "type": "text", "id": "cta_heading",        "label": "Heading",         "default": "Ready to start your project?" },
+    { "type": "text", "id": "cta_subtext",         "label": "Subtext",         "default": "Let's collaborate and bring your vision to life." },
+    { "type": "text", "id": "cta_primary_label",   "label": "Primary label",   "default": "Get in Touch" },
+    { "type": "url",  "id": "cta_primary_url",     "label": "Primary URL" },
+    { "type": "text", "id": "cta_secondary_label", "label": "Secondary label", "default": "View More Work" },
+    { "type": "url",  "id": "cta_secondary_url",   "label": "Secondary URL" }
   ],
   "blocks": [
     {
       "type": "service",
       "name": "Service",
       "settings": [
-        {
-          "type": "text",
-          "id": "service_title",
-          "label": "Service Title",
-          "default": "Website Design & Creation"
-        },
-        {
-          "type": "textarea",
-          "id": "service_description",
-          "label": "Service Description",
-          "default": "Building effective online ecosystems that boost credibility."
-        },
-        {
-          "type": "text",
-          "id": "service_image",
-          "label": "Service Image URL",
-          "default": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
-        },
-        {
-          "type": "textarea",
-          "id": "service_features",
-          "label": "Features (separate with | pipe character)",
-          "default": "Content Updates: Fresh visuals and engaging copy|Functionality Upgrades: Smooth, conversion-focused interactions|Analytics & Performance: Data tracking optimization"
-        }
+        { "type": "image_picker", "id": "image",       "label": "Service image" },
+        { "type": "text",         "id": "title",       "label": "Title",       "default": "Website Design & Creation" },
+        { "type": "textarea",     "id": "description", "label": "Description", "default": "Building effective online ecosystems that boost credibility." },
+        { "type": "textarea",     "id": "features",    "label": "Features (pipe-separated, Label:Detail format)",
+          "default": "Content Updates: Fresh visuals and engaging copy|Functionality Upgrades: Smooth, conversion-focused interactions|Analytics & Performance: Data tracking optimization" }
       ]
     }
   ],
@@ -540,33 +555,9 @@
     {
       "name": "CS - South Pine",
       "blocks": [
-        {
-          "type": "service",
-          "settings": {
-            "service_title": "Website Design & Creation",
-            "service_description": "Building effective online ecosystems that boost credibility.",
-            "service_image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-            "service_features": "Content Updates: Fresh visuals and engaging copy|Functionality Upgrades: Smooth, conversion-focused interactions|Analytics & Performance: Data tracking optimization"
-          }
-        },
-        {
-          "type": "service",
-          "settings": {
-            "service_title": "Content Creation & Management",
-            "service_description": "Crafting engaging narratives that enhance your brand.",
-            "service_image": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80",
-            "service_features": "Creative Development: Captivating articles and visuals|Content Strategy: Aligned messaging with goals|Performance Analysis: Metrics to maximize impact"
-          }
-        },
-        {
-          "type": "service",
-          "settings": {
-            "service_title": "In-House Photoshoots & Videoshoots",
-            "service_description": "High-quality visual content showcasing your brand.",
-            "service_image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
-            "service_features": "Professional Photography: Stunning images|Video Production: Engaging brand stories|Post-Production Editing: Polished results"
-          }
-        }
+        { "type": "service", "settings": { "title": "Website Design & Creation",          "description": "Building effective online ecosystems that boost credibility.",             "features": "Content Updates: Fresh visuals and engaging copy|Functionality Upgrades: Smooth, conversion-focused interactions|Analytics & Performance: Data tracking optimization" } },
+        { "type": "service", "settings": { "title": "Content Creation & Management",      "description": "Crafting engaging narratives that enhance your brand.",                   "features": "Creative Development: Captivating articles and visuals|Content Strategy: Aligned messaging with goals|Performance Analysis: Metrics to maximize impact" } },
+        { "type": "service", "settings": { "title": "In-House Photoshoots & Videoshoots", "description": "High-quality visual content showcasing your brand.",                      "features": "Professional Photography: Stunning images|Video Production: Engaging brand stories|Post-Production Editing: Polished results" } }
       ]
     }
   ]
