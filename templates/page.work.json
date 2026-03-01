@@ -343,7 +343,7 @@
         "card_zQycLT": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/website-design-and-content-stsattygy-logo-aes-thetic.png",
+            "image": "shopify://shop_images/laptop-from-above.jpg",
             "client": "The Place on South Pine",
             "category": "Hospitality",
             "title": "Website Design & Content Strategy",
@@ -355,7 +355,7 @@
         "card_FTxgHE": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/topic-cluster-cannibalization-how-to-fix-overlapping-posts-and-regain-rankings.png",
+            "image": "shopify://shop_images/portrait-of-illuminated-laptop.jpg",
             "client": "Supramood",
             "category": "Branding",
             "title": "SEO Optimization & Digital Content Creation",
@@ -367,7 +367,7 @@
         "card_k8Az3p": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/exploring-the-tesla-bot-automation-and-robotics-for-everyday-life.png",
+            "image": "shopify://shop_images/working-at-night.jpg",
             "client": "Dynamic Autoworks",
             "category": "E-commerce",
             "title": "Premier Automotive Parts E-commerce Platform",
@@ -379,13 +379,13 @@
         "card_3kRgL4": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/high-demand-prompt-pack-hd28-webinar-funnel-vsl-slide-deck.png",
+            "image": "shopify://shop_images/woman-relaxed-work.jpg",
             "client": "Fur Traders",
             "category": "E-commerce",
             "title": "E-commerce Website Design & SEO Optimization",
             "description": "Complete brand refresh with content strategy and e-commerce optimization.",
             "results": "500% Traffic | 280% Revenue",
-            "link": "shopify://pages/resiklo"
+            "link": ""
           }
         }
       },
