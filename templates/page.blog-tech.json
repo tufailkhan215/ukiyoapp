@@ -11,7 +11,20 @@
   "sections": {
     "main": {
       "type": "blog-tech",
-      "settings": {}
+      "settings": {
+        "hero_pill": "(TECH INSIGHTS)",
+        "hero_heading": "Tech Insights",
+        "hero_subheading": "Deep dives into AI, automation, web development, and the tools shaping how modern businesses operate online.",
+        "blog": "tech-innovative-products",
+        "articles_per_page": 6,
+        "show_featured": true,
+        "show_filters": true,
+        "show_newsletter": true,
+        "newsletter_heading": "Stay Ahead of the Curve.",
+        "newsletter_subheading": "Get weekly Tech Insights — the latest in AI, automation, and digital innovation, delivered to your inbox.",
+        "newsletter_placeholder": "email@address.com",
+        "newsletter_cta": "Subscribe"
+      }
     }
   },
   "order": [
