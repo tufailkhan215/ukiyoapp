@@ -11,7 +11,20 @@
   "sections": {
     "main": {
       "type": "blog-travel",
-      "settings": {}
+      "settings": {
+        "hero_pill": "(TRAVEL DIARIES)",
+        "hero_heading": "Travel Diaries",
+        "hero_subheading": "Destinations, guides, and stories from around the world — inspiring your next adventure one journey at a time.",
+        "blog": "culinary-hub-1",
+        "articles_per_page": 6,
+        "show_featured": true,
+        "show_filters": true,
+        "show_newsletter": true,
+        "newsletter_heading": "Wander Further.",
+        "newsletter_subheading": "Get weekly Travel Diaries — destination guides, hidden gems, and travel inspiration curated for the curious explorer.",
+        "newsletter_placeholder": "email@address.com",
+        "newsletter_cta": "Subscribe"
+      }
     }
   },
   "order": [
