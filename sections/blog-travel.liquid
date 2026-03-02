@@ -1,0 +1,368 @@
+{% comment %}
+  Section: Blog - Tech
+  File: sections/blog-tech.liquid
+  Template: templates/page.blog-tech.json
+{% endcomment %}
+
+{%- assign blog_handle = section.settings.blog -%}
+{%- assign current_blog = blogs[blog_handle] -%}
+{%- assign active_tag = request.param_value['tag'] | default: '' -%}
+
+<style>
+  #bv-{{ section.id }} *, #bv-{{ section.id }} *::before, #bv-{{ section.id }} *::after { box-sizing: border-box; }
+
+  #bv-{{ section.id }} {
+    --accent:      #a78bfa;
+    --accent-glow: rgba(77,235,255,0.15);
+    --accent-bdr:  rgba(167,139,250,0.3);
+    --bg:          #050505;
+    --bg-card:     #0b0b0b;
+    --border:      rgba(255,255,255,0.08);
+    --muted:       #a1a1aa;
+    --r:           28px;
+    background-color: var(--bg);
+    color: #fff;
+    font-family: inherit;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  #bv-{{ section.id }} .bv-grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none; opacity: 0.3; z-index: 0;
+  }
+
+  #bv-{{ section.id }} .bv-wrap {
+    max-width: 1280px; margin: 0 auto; padding: 0 1.5rem;
+    position: relative; z-index: 1;
+  }
+
+  #bv-{{ section.id }} .bv-pill {
+    display: inline-block;
+    background: var(--accent-glow);
+    border: 1px solid var(--accent-bdr);
+    padding: 4px 14px; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em;
+    text-transform: uppercase; color: var(--accent);
+  }
+
+  #bv-{{ section.id }} .bv-hero {
+    min-height: 52vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 6rem 0 4rem;
+  }
+  #bv-{{ section.id }} .bv-hero .bv-pill { margin-bottom: 1.5rem; }
+  #bv-{{ section.id }} .bv-hero h1 {
+    font-size: clamp(2.8rem, 8vw, 6rem); font-weight: 800;
+    letter-spacing: -0.03em; line-height: 1; margin: 0 0 1.5rem;
+  }
+  #bv-{{ section.id }} .bv-hero p {
+    max-width: 36rem; font-size: clamp(1rem, 2vw, 1.15rem);
+    color: var(--muted); line-height: 1.7; margin: 0 auto;
+  }
+  #bv-{{ section.id }} .bv-divider {
+    width: 100%; max-width: 56rem; height: 1px;
+    background: linear-gradient(to right, transparent, #3f3f46, transparent);
+    margin: 4rem auto 0;
+  }
+
+  #bv-{{ section.id }} .bv-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--r); overflow: hidden;
+    transition: transform 0.4s cubic-bezier(.165,.84,.44,1), border-color 0.4s, box-shadow 0.4s;
+  }
+  #bv-{{ section.id }} .bv-card:hover {
+    transform: translateY(-4px); border-color: rgba(255,255,255,0.2);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  }
+  #bv-{{ section.id }} .bv-img-wrap { overflow: hidden; position: relative; }
+  #bv-{{ section.id }} .bv-img-wrap img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 0.6s cubic-bezier(.165,.84,.44,1);
+  }
+  #bv-{{ section.id }} .bv-card:hover .bv-img-wrap img { transform: scale(1.05); }
+  #bv-{{ section.id }} .bv-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.7));
+    transition: background 0.4s;
+  }
+  #bv-{{ section.id }} .bv-card:hover .bv-overlay {
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.88));
+  }
+
+  /* Featured */
+  #bv-{{ section.id }} .bv-featured-wrap { margin: 0 0 5rem; }
+  #bv-{{ section.id }} .bv-featured { display: flex; flex-direction: column; }
+  @media (min-width: 1024px) { #bv-{{ section.id }} .bv-featured { flex-direction: row; height: 500px; } }
+  #bv-{{ section.id }} .bv-featured-img { height: 300px; flex-shrink: 0; }
+  @media (min-width: 1024px) { #bv-{{ section.id }} .bv-featured-img { width: 55%; height: 100%; } }
+  #bv-{{ section.id }} .bv-featured-body {
+    padding: 2.5rem 2rem; display: flex; flex-direction: column; justify-content: center;
+  }
+  @media (min-width: 768px) { #bv-{{ section.id }} .bv-featured-body { padding: 3rem; } }
+  #bv-{{ section.id }} .bv-featured-label {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; color: #71717a;
+    text-transform: uppercase; display: flex; align-items: center; gap: 8px; margin-bottom: 1rem;
+  }
+  #bv-{{ section.id }} .bv-featured-label .dot {
+    width: 8px; height: 8px; background: var(--accent); border-radius: 50%; display: inline-block;
+  }
+  #bv-{{ section.id }} .bv-featured-body h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 700; line-height: 1.2; margin: 0 0 1.25rem;
+  }
+  #bv-{{ section.id }} .bv-featured-body > p { color: var(--muted); line-height: 1.7; margin: 0 0 1.5rem; }
+  #bv-{{ section.id }} .bv-meta {
+    font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: #71717a;
+    display: flex; gap: 1.5rem; margin-bottom: 1.5rem;
+  }
+  #bv-{{ section.id }} .bv-link {
+    font-size: 0.85rem; font-weight: 700; color: var(--accent);
+    text-decoration: none; border-bottom: 1px solid var(--accent-bdr); padding-bottom: 2px;
+    transition: border-color 0.3s; display: inline-block;
+  }
+  #bv-{{ section.id }} .bv-link:hover { border-color: var(--accent); }
+
+  /* Filters */
+  #bv-{{ section.id }} .bv-filters-wrap {
+    overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none;
+    margin-bottom: 3rem; padding: 0.5rem 0;
+  }
+  #bv-{{ section.id }} .bv-filters-wrap::-webkit-scrollbar { display: none; }
+  #bv-{{ section.id }} .bv-filters { display: flex; gap: 0.75rem; min-width: max-content; }
+  #bv-{{ section.id }} .bv-chip {
+    padding: 8px 20px; border-radius: 999px; background: transparent;
+    border: 1px solid var(--border); white-space: nowrap; font-weight: 500;
+    font-size: 0.85rem; color: var(--muted); cursor: pointer; text-decoration: none;
+    transition: border-color 0.3s, color 0.3s, background 0.3s, box-shadow 0.3s; display: inline-block;
+  }
+  #bv-{{ section.id }} .bv-chip:hover { border-color: rgba(255,255,255,0.4); color: #fff; }
+  #bv-{{ section.id }} .bv-chip.active {
+    background: var(--accent); color: #000; border-color: var(--accent);
+    box-shadow: 0 0 15px var(--accent-glow);
+  }
+
+  /* Grid */
+  #bv-{{ section.id }} .bv-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-bottom: 5rem; }
+  @media (min-width: 768px)  { #bv-{{ section.id }} .bv-grid { grid-template-columns: repeat(2,1fr); } }
+  @media (min-width: 1024px) { #bv-{{ section.id }} .bv-grid { grid-template-columns: repeat(3,1fr); } }
+  #bv-{{ section.id }} .bv-art-img { aspect-ratio: 4/3; }
+  #bv-{{ section.id }} .bv-tag-pill {
+    position: absolute; top: 1rem; left: 1rem;
+    background: rgba(0,0,0,0.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  }
+  #bv-{{ section.id }} .bv-art-body { padding: 1.5rem; }
+  #bv-{{ section.id }} .bv-art-body h3 { font-size: 1.15rem; font-weight: 700; line-height: 1.3; margin: 0 0 0.75rem; }
+  #bv-{{ section.id }} .bv-art-body p {
+    font-size: 0.875rem; color: var(--muted); line-height: 1.6; margin: 0 0 1.25rem;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  #bv-{{ section.id }} .bv-art-meta {
+    font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: #52525b;
+    display: flex; justify-content: space-between; margin-bottom: 1rem;
+  }
+
+  /* Newsletter */
+  #bv-{{ section.id }} .bv-nl { margin-bottom: 5rem; }
+  #bv-{{ section.id }} .bv-nl .bv-card {
+    padding: 3rem 2rem; display: flex; flex-direction: column; align-items: center; gap: 2rem;
+  }
+  @media (min-width: 768px) {
+    #bv-{{ section.id }} .bv-nl .bv-card { flex-direction: row; justify-content: space-between; padding: 4rem; }
+  }
+  #bv-{{ section.id }} .bv-nl-text { max-width: 28rem; }
+  #bv-{{ section.id }} .bv-nl-text h2 { font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 700; margin: 0 0 0.75rem; }
+  #bv-{{ section.id }} .bv-nl-text p { color: var(--muted); margin: 0; }
+  #bv-{{ section.id }} .bv-nl-form { display: flex; gap: 0.75rem; width: 100%; }
+  @media (min-width: 768px) { #bv-{{ section.id }} .bv-nl-form { width: auto; } }
+  #bv-{{ section.id }} .bv-nl-form input[type="email"] {
+    flex: 1; min-width: 0; padding: 1rem 1.5rem; border-radius: 999px;
+    background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+    color: #fff; font-size: 0.875rem; outline: none; transition: border-color 0.3s;
+  }
+  @media (min-width: 768px) { #bv-{{ section.id }} .bv-nl-form input[type="email"] { width: 16rem; } }
+  #bv-{{ section.id }} .bv-nl-form input[type="email"]:focus { border-color: var(--accent-bdr); }
+  #bv-{{ section.id }} .bv-nl-form input[type="email"]::placeholder { color: #52525b; }
+  #bv-{{ section.id }} .bv-nl-form button {
+    padding: 1rem 2rem; border-radius: 999px; background: var(--accent); color: #000;
+    font-weight: 700; font-size: 0.875rem; border: none; cursor: pointer; white-space: nowrap; transition: opacity 0.3s;
+  }
+  #bv-{{ section.id }} .bv-nl-form button:hover { opacity: 0.85; }
+
+  /* Pagination */
+  #bv-{{ section.id }} .bv-pages { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 4rem; }
+  #bv-{{ section.id }} .bv-pages a,
+  #bv-{{ section.id }} .bv-pages span {
+    padding: 8px 16px; border-radius: 999px; border: 1px solid var(--border);
+    font-size: 0.85rem; color: var(--muted); text-decoration: none; transition: all 0.3s;
+  }
+  #bv-{{ section.id }} .bv-pages a:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+  #bv-{{ section.id }} .bv-pages span.on { background: var(--accent); color: #000; border-color: var(--accent); }
+
+  #bv-{{ section.id }} .bv-empty { text-align: center; padding: 5rem 0; color: var(--muted); }
+</style>
+
+<div id="bv-{{ section.id }}">
+  <div class="bv-grid-bg"></div>
+
+  <div class="bv-wrap">
+    <div class="bv-hero">
+      <span class="bv-pill">{{ section.settings.hero_pill | default: '(TRAVEL DIARIES)' }}</span>
+      <h1>{{ section.settings.hero_heading | default: 'Travel Diaries' }}</h1>
+      <p>{{ section.settings.hero_subheading | default: 'Destinations, guides, and stories from around the world — inspiring your next adventure one journey at a time.' }}</p>
+      <div class="bv-divider"></div>
+    </div>
+  </div>
+
+  <div class="bv-wrap">
+
+    {%- if current_blog != blank -%}
+
+      {%- assign all_tags = '' -%}
+      {%- for article in current_blog.articles -%}
+        {%- for tag in article.tags -%}
+          {%- assign all_tags = all_tags | append: tag | append: '|' -%}
+        {%- endfor -%}
+      {%- endfor -%}
+      {%- assign tag_list = all_tags | split: '|' | uniq | sort -%}
+      {%- assign limit = section.settings.articles_per_page | default: 6 -%}
+      {%- assign featured_article = current_blog.articles.first -%}
+
+      {%- if section.settings.show_featured and featured_article != blank -%}
+        <div class="bv-featured-wrap">
+          <div class="bv-card bt-featured">
+            <div class="bv-img-wrap bt-featured-img">
+              {%- if featured_article.image -%}
+                <img src="{{ featured_article.image | img_url: '1200x' }}" alt="{{ featured_article.image.alt | escape }}" loading="eager">
+              {%- else -%}
+                <img src="{{ 'collection-1' | placeholder_svg_tag }}" alt="{{ featured_article.title | escape }}" loading="eager">
+              {%- endif -%}
+              <div class="bv-overlay"></div>
+            </div>
+            <div class="bv-featured-body">
+              <p class="bv-featured-label"><span class="dot"></span> FEATURED</p>
+              <h2>{{ featured_article.title }}</h2>
+              <p>{{ featured_article.excerpt | strip_html | truncate: 160 }}</p>
+              <div class="bv-meta">
+                <span>{{ featured_article.published_at | date: '%b %d, %Y' | upcase }}</span>
+                <span>{{ featured_article.content | strip_html | split: ' ' | size | divided_by: 200 | plus: 1 }} MIN READ</span>
+              </div>
+              <a href="{{ featured_article.url }}" class="bv-link">Read Article &rarr;</a>
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if tag_list.size > 0 and section.settings.show_filters -%}
+        <div class="bv-filters-wrap">
+          <div class="bv-filters">
+            <a href="{{ current_blog.url }}" class="bv-chip{%- if active_tag == '' %} active{%- endif -%}">All</a>
+            {%- for tag in tag_list -%}
+              {%- unless tag == '' -%}
+                <a href="{{ current_blog.url }}/tagged/{{ tag | handleize }}" class="bv-chip{%- if active_tag == tag %} active{%- endif -%}">{{ tag }}</a>
+              {%- endunless -%}
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- paginate current_blog.articles by limit -%}
+        <div class="bv-grid">
+          {%- for article in current_blog.articles -%}
+            {%- unless forloop.index0 == 0 and section.settings.show_featured -%}
+              <article class="bv-card">
+                <div class="bv-img-wrap bt-art-img">
+                  {%- if article.image -%}
+                    <img src="{{ article.image | img_url: '600x' }}" alt="{{ article.image.alt | escape }}" loading="lazy">
+                  {%- else -%}
+                    <img src="{{ 'image' | placeholder_svg_tag }}" alt="{{ article.title | escape }}" loading="lazy">
+                  {%- endif -%}
+                  <div class="bv-overlay"></div>
+                  {%- if article.tags.first -%}
+                    <span class="bv-pill bt-tag-pill">{{ article.tags.first }}</span>
+                  {%- endif -%}
+                </div>
+                <div class="bv-art-body">
+                  <h3>{{ article.title }}</h3>
+                  <p>{{ article.excerpt | strip_html | truncate: 120 }}</p>
+                  <div class="bv-art-meta">
+                    <span>{{ article.published_at | date: '%b %d, %Y' | upcase }}</span>
+                    <span>{{ article.content | strip_html | split: ' ' | size | divided_by: 200 | plus: 1 }} MIN READ</span>
+                  </div>
+                  <a href="{{ article.url }}" class="bv-link" style="font-size:.75rem;">Read more &rarr;</a>
+                </div>
+              </article>
+            {%- endunless -%}
+          {%- else -%}
+            <div class="bv-empty" style="grid-column:1/-1;">
+              <p>No articles found{%- if active_tag != '' %} for &ldquo;{{ active_tag }}&rdquo;{%- endif -%}.</p>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        {%- if paginate.pages > 1 -%}
+          <div class="bv-pages">
+            {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}">&larr; Prev</a>{%- endif -%}
+            {%- for part in paginate.parts -%}
+              {%- if part.is_link -%}<a href="{{ part.url }}">{{ part.title }}</a>{%- else -%}<span class="on">{{ part.title }}</span>{%- endif -%}
+            {%- endfor -%}
+            {%- if paginate.next -%}<a href="{{ paginate.next.url }}">Next &rarr;</a>{%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endpaginate -%}
+
+    {%- else -%}
+      <div class="bv-empty"><p>Select a blog in the Theme Editor to display articles here.</p></div>
+    {%- endif -%}
+
+    {%- if section.settings.show_newsletter -%}
+      <div class="bv-nl">
+        <div class="bv-card">
+          <div class="bv-nl-text">
+            <h2>{{ section.settings.newsletter_heading | default: 'Wander Further.' }}</h2>
+            <p>{{ section.settings.newsletter_subheading | default: 'Get weekly Travel Diaries — destination guides, hidden gems, and travel inspiration curated for the curious explorer.' }}</p>
+          </div>
+          {%- form 'customer', class: 'bt-nl-form' -%}
+            <input type="hidden" name="contact[tags]" value="newsletter,travel-diaries">
+            <input type="email" name="contact[email]" placeholder="{{ section.settings.newsletter_placeholder | default: 'email@address.com' }}" autocomplete="email" required>
+            <button type="submit">{{ section.settings.newsletter_cta | default: 'Subscribe' }}</button>
+            {%- if form.posted_successfully? -%}<p style="color:#4ade80;margin:.5rem 0 0;font-size:.85rem;">&#10003; You're subscribed!</p>{%- endif -%}
+          {%- endform -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Blog - Travel",
+  "tag": "section",
+  "settings": [
+    { "type": "header",   "content": "Hero" },
+    { "type": "text",     "id": "hero_pill",      "label": "Pill label",  "default": "(TRAVEL DIARIES)" },
+    { "type": "text",     "id": "hero_heading",   "label": "Heading",     "default": "Travel Diaries" },
+    { "type": "textarea", "id": "hero_subheading","label": "Subheading",  "default": "Destinations, guides, and stories from around the world — inspiring your next adventure one journey at a time." },
+    { "type": "header",   "content": "Blog" },
+    { "type": "blog",     "id": "blog",           "label": "Blog to display" },
+    { "type": "range",    "id": "articles_per_page", "label": "Articles per page", "min": 3, "max": 12, "step": 3, "default": 6 },
+    { "type": "header",   "content": "Featured Article" },
+    { "type": "checkbox", "id": "show_featured",  "label": "Show featured article", "default": true },
+    { "type": "header",   "content": "Filters" },
+    { "type": "checkbox", "id": "show_filters",   "label": "Show tag filters", "default": true },
+    { "type": "header",   "content": "Newsletter" },
+    { "type": "checkbox", "id": "show_newsletter","label": "Show newsletter section", "default": true },
+    { "type": "text",     "id": "newsletter_heading",    "label": "Newsletter heading",    "default": "Wander Further." },
+    { "type": "textarea", "id": "newsletter_subheading", "label": "Newsletter subheading", "default": "Get weekly Travel Diaries — destination guides, hidden gems, and travel inspiration curated for the curious explorer." },
+    { "type": "text",     "id": "newsletter_placeholder","label": "Email placeholder",     "default": "email@address.com" },
+    { "type": "text",     "id": "newsletter_cta",        "label": "Button label",          "default": "Subscribe" }
+  ],
+  "presets": [
+    { "name": "Blog - Travel" }
+  ]
+}
+{% endschema %}
