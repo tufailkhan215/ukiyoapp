@@ -11,8 +11,56 @@
   "sections": {
     "main": {
       "type": "cs-supramood",
-      "settings": {}
+      "settings": {
+        "client": "Supramood",
+        "category": "Branding / Lifestyle & Wellness",
+        "title": "SEO Optimization & Digital Content Creation",
+        "subtitle": "Comprehensive Brand Strategy with Multi-Channel Presence",
+        "back_url": "",
+        "back_label": "Back",
+        "gallery_image_1": "shopify://shop_images/1_ed15d37f-fc4c-45c4-9555-41f06bd77c01.webp",
+        "gallery_image_2": "shopify://shop_images/2_51717a87-4821-4855-ba17-468c8b0db0ba.webp",
+        "gallery_image_3": "shopify://shop_images/4_5aefbac7-bc88-4078-95e5-2576058c013c.webp",
+        "challenge": "Supramood sought to bolster its brand strategy, broaden its reach, and deepen audience engagement. Beyond fine-tuning their online presence with vibrant visuals, they needed a cohesive brand strategy, a dedicated podcast series, and avenues for UGC and affiliate partnerships.",
+        "solution": "We solidified Supramood's foundational brand elements and produced visually compelling photos and videos. We introduced a dedicated podcast series and developed email marketing automations to nurture leads at scale.",
+        "expectation_1": "Develop a clear, impactful brand strategy",
+        "expectation_2": "Capture high-quality photo and video assets",
+        "expectation_3": "Launch a podcast series to amplify brand values",
+        "expectation_4": "Establish automated email marketing and affiliate program",
+        "expectation_5": "",
+        "expectation_6": "",
+        "outcome_1": "Cohesive brand identity across all channels",
+        "outcome_2": "Engaging podcast driving audience growth",
+        "outcome_3": "Automated email campaigns nurturing leads",
+        "outcome_4": "Successful affiliate program generating revenue",
+        "outcome_5": "",
+        "outcome_6": "",
+        "stat_value_1": "10K+",
+        "stat_label_1": "Podcast Downloads",
+        "stat_desc_1": "First six months",
+        "stat_value_2": "350%",
+        "stat_label_2": "Social Growth",
+        "stat_desc_2": "Follower increase",
+        "stat_value_3": "",
+        "stat_label_3": "",
+        "stat_desc_3": "",
+        "stat_value_4": "",
+        "stat_label_4": "",
+        "stat_desc_4": "",
+        "testimonial_quote": "Ukiyo helped us build something special. Our podcast has become a cornerstone of our brand and the affiliate program they set up generates consistent revenue month after month.",
+        "testimonial_author": "Cindy Rodriguez",
+        "testimonial_role": "Founder",
+        "testimonial_company": "Supramood",
+        "cta_heading": "Ready to start your project?",
+        "cta_subtext": "Let's collaborate and bring your vision to life.",
+        "cta_primary_label": "Get in Touch",
+        "cta_primary_url": "",
+        "cta_secondary_label": "View More Work",
+        "cta_secondary_url": ""
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }
