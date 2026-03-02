@@ -11,8 +11,57 @@
   "sections": {
     "main": {
       "type": "cs-fur-traders",
-      "settings": {}
+      "settings": {
+        "client": "Fur Traders",
+        "category": "E-commerce / Fashion & Apparel",
+        "title": "E-commerce Website Design & SEO Optimization",
+        "subtitle": "Complete Brand Refresh with Content Strategy",
+        "back_url": "",
+        "back_label": "Back",
+        "gallery_image_1": "shopify://shop_images/1_7ca1121b-c631-486b-b62c-34d10c41390d.webp",
+        "gallery_image_2": "shopify://shop_images/2_6dbd5ab3-e611-427a-9d87-762c681059d8.webp",
+        "gallery_image_3": "shopify://shop_images/3_fd3cb1a1-09d5-44a0-ab7c-2194aa5523f0.webp",
+        "gallery_image_4": "shopify://shop_images/4_b267556e-46a9-4dcc-a500-8c6770db6a47.webp",
+        "challenge": "The client aimed to refresh their e-commerce platform with a new design and UI to enhance the purchase flow. Alongside user experience improvements, they sought to integrate active and reactive email marketing automations and consistent content creation for their social channels.",
+        "solution": "We refreshed the UI to improve navigation and purchasing ease. Simultaneously, we integrated email automations that address both active and lapsed customers. New payment methods were introduced for flexibility, while reactive flows helped recapture potential buyers.",
+        "expectation_1": "A user-friendly design that simplifies the buying journey",
+        "expectation_2": "Comprehensive automations for active and reactive email marketing",
+        "expectation_3": "Expanded payment options to improve accessibility",
+        "expectation_4": "High-quality content assets and social account management",
+        "expectation_5": "",
+        "expectation_6": "",
+        "outcome_1": "Modernized e-commerce UI boosting conversion rate",
+        "outcome_2": "Active and reactive email flows driving repeat purchases",
+        "outcome_3": "New payment methods increasing checkout completion",
+        "outcome_4": "Consistent social content growing brand awareness",
+        "outcome_5": "",
+        "outcome_6": "",
+        "stat_value_1": "500%",
+        "stat_label_1": "Traffic Growth",
+        "stat_desc_1": "Organic search increase",
+        "stat_value_2": "280%",
+        "stat_label_2": "Revenue Growth",
+        "stat_desc_2": "Year over year",
+        "stat_value_3": "",
+        "stat_label_3": "",
+        "stat_desc_3": "",
+        "stat_value_4": "",
+        "stat_label_4": "",
+        "stat_desc_4": "",
+        "testimonial_quote": "Our website went from outdated to outstanding. The email automations they set up now run on autopilot and consistently bring customers back to purchase again.",
+        "testimonial_author": "Sarah Chen",
+        "testimonial_role": "Founder",
+        "testimonial_company": "Fur Traders",
+        "cta_heading": "Ready to start your project?",
+        "cta_subtext": "Let's collaborate and bring your vision to life.",
+        "cta_primary_label": "Get in Touch",
+        "cta_primary_url": "",
+        "cta_secondary_label": "View More Work",
+        "cta_secondary_url": ""
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }
