@@ -11,7 +11,20 @@
   "sections": {
     "main": {
       "type": "blog-culinary",
-      "settings": {}
+      "settings": {
+        "hero_pill": "(CULINARY STORIES)",
+        "hero_heading": "Culinary Stories",
+        "hero_subheading": "From farm to table — exploring food culture, recipes, restaurant features, and the people behind unforgettable dining experiences.",
+        "blog": "culinary-hub",
+        "articles_per_page": 6,
+        "show_featured": true,
+        "show_filters": true,
+        "show_newsletter": true,
+        "newsletter_heading": "Feed Your Curiosity.",
+        "newsletter_subheading": "Weekly Culinary Stories — recipes, restaurant spotlights, and food culture delivered fresh to your inbox.",
+        "newsletter_placeholder": "email@address.com",
+        "newsletter_cta": "Subscribe"
+      }
     }
   },
   "order": [
