@@ -108,7 +108,7 @@
             "image": "shopify://shop_images/25930044-A454-4EE9-BF1C-43FA0D5EA00E.jpg",
             "title": "Tech & Products",
             "description": "Explore the exciting world of technology! The latest gadgets and innovative products that are changing our lives. From smart home devices to cutting-edge apps.",
-            "url": "",
+            "url": "shopify://pages/creative_spotlight_new",
             "cta_text": "Explore Tech & Products"
           }
         },
