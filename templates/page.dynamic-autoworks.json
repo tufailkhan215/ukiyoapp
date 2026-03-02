@@ -11,8 +11,60 @@
   "sections": {
     "main": {
       "type": "cs-dynamic-autoworks",
-      "settings": {}
+      "settings": {
+        "client": "Dynamic Autoworks",
+        "category": "E-commerce / Automotive",
+        "title": "Premier Automotive Parts E-commerce Platform",
+        "subtitle": "Large-Scale Catalog with Nationwide Shipping",
+        "back_url": "",
+        "back_label": "Back",
+        "gallery_image_1": "shopify://shop_images/1_18e96b13-a26e-4e7b-a6bf-22ee44689330.webp",
+        "gallery_image_2": "shopify://shop_images/2_5127fa43-23ca-40c8-be47-c12a802710ea.webp",
+        "gallery_image_3": "shopify://shop_images/3_8a605db2-1cc4-4722-99fa-30553125554b.webp",
+        "gallery_image_4": "shopify://shop_images/4_d1f634d2-d80c-421c-9de0-6035f03ff5fd.webp",
+        "challenge": "DynamicAutoWorks needed an e-commerce platform capable of listing up to 1.5 million automotive parts, all while offering seamless nationwide shipping. The website had to be both robust and user-friendly.",
+        "solution": "We designed a scalable platform that supports high-volume inventory without sacrificing performance. Advanced search tools and clearly organized categories were introduced to streamline the part-finding process.",
+        "expectation_1": "Build a large-scale online catalog supporting 1.5 million automotive parts",
+        "expectation_2": "Implement intuitive navigation and search functionality",
+        "expectation_3": "Integrate a nationwide shipping system for coast-to-coast deliveries",
+        "expectation_4": "Establish a consistent brand identity in the automotive market",
+        "expectation_5": "",
+        "expectation_6": "",
+        "outcome_1": "Scalable platform handling massive inventory",
+        "outcome_2": "Advanced search finding parts in seconds",
+        "outcome_3": "Nationwide shipping integration",
+        "outcome_4": "Strong brand presence in automotive sector",
+        "outcome_5": "",
+        "outcome_6": "",
+        "gallery_bot_1": "shopify://shop_images/2_add0f107-74ed-4dac-b18f-32fd6b3011fd.webp",
+        "gallery_bot_2": "shopify://shop_images/1_446fe60a-55a0-4b7c-b8e4-57b11b9e4ed9.webp",
+        "gallery_bot_3": "shopify://shop_images/3_0d31bb1c-848e-495f-aa1e-aa911ce60090.webp",
+        "stat_value_1": "1.5M+",
+        "stat_label_1": "Products Listed",
+        "stat_desc_1": "Automotive parts catalog",
+        "stat_value_2": "<2s",
+        "stat_label_2": "Search Speed",
+        "stat_desc_2": "Average part-finding time",
+        "stat_value_3": "",
+        "stat_label_3": "",
+        "stat_desc_3": "",
+        "stat_value_4": "",
+        "stat_label_4": "",
+        "stat_desc_4": "",
+        "testimonial_quote": "Managing 1.5 million parts seemed impossible until Ukiyo built our platform. The search functionality is lightning fast and customers love how easy it is to find exactly what they need.",
+        "testimonial_author": "James Rodriguez",
+        "testimonial_role": "CEO",
+        "testimonial_company": "Dynamic Autoworks",
+        "cta_heading": "Ready to start your project?",
+        "cta_subtext": "Let's collaborate and bring your vision to life.",
+        "cta_primary_label": "Get in Touch",
+        "cta_primary_url": "",
+        "cta_secondary_label": "View More Work",
+        "cta_secondary_url": ""
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }
