@@ -20,6 +20,7 @@
         "service_3VwPQ9": {
           "type": "service",
           "settings": {
+            "image": "shopify://shop_images/1_86bfbe08-d9f6-434b-8882-2428d520d865.webp",
             "title": "Website Design & Creation",
             "description": "Building effective online ecosystems that boost credibility.",
             "features": "Content Updates: Fresh visuals and engaging copy|Functionality Upgrades: Smooth, conversion-focused interactions|Analytics & Performance: Data tracking optimization"
@@ -28,6 +29,7 @@
         "service_nVNXAw": {
           "type": "service",
           "settings": {
+            "image": "shopify://shop_images/2.webp",
             "title": "Content Creation & Management",
             "description": "Crafting engaging narratives that enhance your brand.",
             "features": "Creative Development: Captivating articles and visuals|Content Strategy: Aligned messaging with goals|Performance Analysis: Metrics to maximize impact"
@@ -36,6 +38,7 @@
         "service_REEQpe": {
           "type": "service",
           "settings": {
+            "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge.webp",
             "title": "In-House Photoshoots & Videoshoots",
             "description": "High-quality visual content showcasing your brand.",
             "features": "Professional Photography: Stunning images|Video Production: Engaging brand stories|Post-Production Editing: Polished results"
