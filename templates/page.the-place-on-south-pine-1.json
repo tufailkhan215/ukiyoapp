@@ -14,10 +14,10 @@
       "disabled": true,
       "settings": {}
     },
-    "cs_the_place_on_south_pine_zKfHFB": {
+    "cs_the_place_on_south_pine_7KDr6q": {
       "type": "cs-the-place-on-south-pine",
       "blocks": {
-        "service_6KRXJn": {
+        "service_GpVCQ3": {
           "type": "service",
           "settings": {
             "title": "Website Design & Creation",
@@ -25,7 +25,7 @@
             "features": "Content Updates: Fresh visuals and engaging copy|Functionality Upgrades: Smooth, conversion-focused interactions|Analytics & Performance: Data tracking optimization"
           }
         },
-        "service_WVAQ7b": {
+        "service_HYFGdF": {
           "type": "service",
           "settings": {
             "title": "Content Creation & Management",
@@ -33,7 +33,7 @@
             "features": "Creative Development: Captivating articles and visuals|Content Strategy: Aligned messaging with goals|Performance Analysis: Metrics to maximize impact"
           }
         },
-        "service_wYJgqD": {
+        "service_UJftKw": {
           "type": "service",
           "settings": {
             "title": "In-House Photoshoots & Videoshoots",
@@ -43,9 +43,9 @@
         }
       },
       "block_order": [
-        "service_6KRXJn",
-        "service_WVAQ7b",
-        "service_wYJgqD"
+        "service_GpVCQ3",
+        "service_HYFGdF",
+        "service_UJftKw"
       ],
       "name": "CS - South Pine",
       "settings": {
@@ -96,6 +96,6 @@
   },
   "order": [
     "main",
-    "cs_the_place_on_south_pine_zKfHFB"
+    "cs_the_place_on_south_pine_7KDr6q"
   ]
 }
