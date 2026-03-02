@@ -20,6 +20,7 @@
         "service_Jj4VBz": {
           "type": "service",
           "settings": {
+            "image": "shopify://shop_images/1_8d512fa8-43cd-4fd9-ba91-284f21a5bfa3.webp",
             "title": "Website Design & Creation",
             "description": "Building effective online ecosystems that boost credibility and drive growth.",
             "features": "Content Updates: Fresh visuals and engaging copy|Functionality Upgrades: Smooth, conversion-focused interactions|Analytics & Performance: Data tracking to optimize presence"
@@ -28,6 +29,7 @@
         "service_McgRgW": {
           "type": "service",
           "settings": {
+            "image": "shopify://shop_images/email-automation.png",
             "title": "Email Automations",
             "description": "Targeted campaigns and automated workflows for lead nurturing.",
             "features": "Targeted Campaigns: Personalized messages for higher open rates|Automated Workflows: Timely follow-ups without manual effort|Performance Tracking: Detailed analytics to refine strategies"
@@ -36,6 +38,7 @@
         "service_3Mcmfa": {
           "type": "service",
           "settings": {
+            "image": "shopify://shop_images/inventory-optimization-pic-for-websites-landing-page.png",
             "title": "Inventory Optimization",
             "description": "Enhanced categorization and notification systems for better team collaboration.",
             "features": "Enhanced Categorization: Intuitive product organization|Streamlined Notifications: Real-time alerts for order fulfilment|Stock Management: Automated inventory tracking"
@@ -89,17 +92,98 @@
         "testimonial_author": "Michael Chen",
         "testimonial_role": "Founder",
         "testimonial_company": "Resiklo",
-        "cta_heading": "Ready to start your project?",
-        "cta_subtext": "Let's collaborate and bring your vision to life.",
-        "cta_primary_label": "Get in Touch",
+        "cta_heading": "",
+        "cta_subtext": "",
+        "cta_primary_label": "",
         "cta_primary_url": "",
-        "cta_secondary_label": "View More Work",
+        "cta_secondary_label": "",
         "cta_secondary_url": ""
+      }
+    },
+    "media_zoom_effect_KVmVfN": {
+      "type": "media-zoom-effect",
+      "blocks": {
+        "media_item_TCKBbw": {
+          "type": "media_item",
+          "settings": {
+            "tag": "Photography",
+            "title": "Coastal Collection",
+            "description": "",
+            "link": ""
+          }
+        },
+        "media_item_Ba4xUA": {
+          "type": "media_item",
+          "settings": {
+            "tag": "Portrait",
+            "title": "Urban Portraits",
+            "description": "",
+            "link": ""
+          }
+        },
+        "media_item_cmyzMT": {
+          "type": "media_item",
+          "settings": {
+            "tag": "Design",
+            "title": "Architecture",
+            "description": "",
+            "link": ""
+          }
+        },
+        "media_item_cJ3UkE": {
+          "type": "media_item",
+          "settings": {
+            "tag": "Editorial",
+            "title": "Still Life",
+            "description": "",
+            "link": ""
+          }
+        },
+        "media_item_Vpwc6N": {
+          "type": "media_item",
+          "settings": {
+            "tag": "Aerial",
+            "title": "Aerial Views",
+            "description": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "media_item_TCKBbw",
+        "media_item_Ba4xUA",
+        "media_item_cmyzMT",
+        "media_item_cJ3UkE",
+        "media_item_Vpwc6N"
+      ],
+      "name": "Media Zoom Effect",
+      "settings": {
+        "layout_mode": "asymmetric",
+        "grid_cols": 3,
+        "grid_gap": 8,
+        "max_width": 1400,
+        "border_radius": 8,
+        "zoom_style": "standard",
+        "zoom_scale": 115,
+        "zoom_duration": 600,
+        "hover_brightness": 80,
+        "overlay_opacity": 60,
+        "overlay_opacity_hover": 80,
+        "cursor_zoom": true,
+        "show_zoom_icon": true,
+        "kicker": "Visual Stories",
+        "heading": "Every detail matters",
+        "subheading": "Hover to explore. Crafted for those who notice the difference.",
+        "bg_color": "#060606",
+        "card_bg_color": "#111111",
+        "text_color": "#f5f5f5",
+        "accent_color": "#ff6b35"
       }
     }
   },
   "order": [
     "main",
-    "cs_resiklo_fAVcbw"
+    "cs_resiklo_fAVcbw",
+    "media_zoom_effect_KVmVfN"
   ]
 }
