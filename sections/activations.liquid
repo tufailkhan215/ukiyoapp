@@ -1,0 +1,396 @@
+{% comment %}
+  Section: Activations
+  File: sections/activations.liquid
+  Template: templates/page.activations.json
+{% endcomment %}
+
+<style>
+  #ws-{{ section.id }} {
+    --accent:   #3b82f6;
+    --accent-g: rgba(59,130,246,0.15);
+    --accent-b: rgba(59,130,246,0.3);
+    --bg:       #050505;
+    --card-bg:  rgba(255,255,255,0.02);
+    --border:   rgba(255,255,255,0.08);
+    --muted:    #6b7280;
+    --r:        32px;
+    background: var(--bg);
+    color: #fff;
+    font-family: 'Plus Jakarta Sans', inherit;
+    overflow-x: hidden;
+    position: relative;
+  }
+  #ws-{{ section.id }} * { box-sizing: border-box; }
+  #ws-{{ section.id }} a { text-decoration: none; }
+
+  /* Ambient glow */
+  #ws-{{ section.id }} .ws-glow {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at 50% -20%, #1e293b 0%, transparent 55%);
+    pointer-events: none; z-index: 0;
+  }
+
+  #ws-{{ section.id }} .ws-inner {
+    max-width: 1400px; margin: 0 auto;
+    padding: 0 1.5rem 5rem;
+    position: relative; z-index: 1;
+  }
+
+  /* ── Marquee ── */
+  #ws-{{ section.id }} .ws-marquee-wrap {
+    overflow: hidden; white-space: nowrap;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 5rem;
+  }
+  @keyframes ws-marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  #ws-{{ section.id }} .ws-marquee-track {
+    display: inline-block;
+    animation: ws-marquee 22s linear infinite;
+  }
+  #ws-{{ section.id }} .ws-marquee-item {
+    display: inline-block; margin: 0 3rem;
+    font-size: 0.72rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.3em;
+    color: rgba(255,255,255,0.18);
+  }
+  #ws-{{ section.id }} .ws-marquee-item span {
+    color: rgba(59,130,246,0.4); margin-right: 0.5rem;
+  }
+
+  /* ── Header ── */
+  #ws-{{ section.id }} .ws-header {
+    display: flex; flex-direction: column; align-items: flex-start;
+    margin-bottom: 4rem;
+  }
+  #ws-{{ section.id }} .ws-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.25rem 0.85rem; border-radius: 999px;
+    border: 1px solid var(--accent-b); background: var(--accent-g);
+    font-size: 0.65rem; font-weight: 800; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem;
+  }
+  #ws-{{ section.id }} .ws-badge-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    animation: ws-pulse 2s cubic-bezier(.4,0,.6,1) infinite;
+  }
+  @keyframes ws-pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+  #ws-{{ section.id }} .ws-h2 {
+    font-size: clamp(3rem, 9vw, 7rem);
+    font-weight: 900; letter-spacing: -0.04em;
+    line-height: 0.95; margin: 0 0 1.5rem;
+    background: linear-gradient(to bottom, #fff 30%, rgba(255,255,255,0.35) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  #ws-{{ section.id }} .ws-sub {
+    max-width: 38rem; font-size: 1.05rem; font-weight: 300;
+    color: var(--muted); line-height: 1.75; margin: 0;
+  }
+  #ws-{{ section.id }} .ws-sub em { color: #fff; font-style: italic; font-weight: 400; }
+
+  /* ── Bento Grid ── */
+  #ws-{{ section.id }} .ws-bento {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  @media (min-width: 1024px) {
+    #ws-{{ section.id }} .ws-bento {
+      grid-template-columns: repeat(12, 1fr);
+      height: 660px;
+    }
+    #ws-{{ section.id }} .ws-card-main { grid-column: span 8; }
+    #ws-{{ section.id }} .ws-card-side { grid-column: span 4; }
+  }
+
+  #ws-{{ section.id }} .ws-card {
+    position: relative; overflow: hidden;
+    border-radius: var(--r);
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    transition: transform 0.55s cubic-bezier(.23,1,.32,1),
+                border-color 0.4s, box-shadow 0.55s;
+    min-height: 360px;
+  }
+  @media (min-width: 1024px) { #ws-{{ section.id }} .ws-card { min-height: unset; } }
+
+  #ws-{{ section.id }} .ws-card:hover {
+    transform: scale(0.99) translateY(-5px);
+    border-color: rgba(255,255,255,0.18);
+    box-shadow: 0 0 80px rgba(59,130,246,0.12);
+  }
+
+  /* Card image */
+  #ws-{{ section.id }} .ws-card-img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover;
+    opacity: 0.38;
+    filter: saturate(0) contrast(1.2);
+    transition: opacity 0.7s ease, transform 0.7s ease, filter 0.7s ease;
+  }
+  #ws-{{ section.id }} .ws-card:hover .ws-card-img {
+    opacity: 0.65; transform: scale(1.06);
+    filter: saturate(1) contrast(1.05);
+  }
+
+  /* Card gradient overlay */
+  #ws-{{ section.id }} .ws-card-grad {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.3) 55%, transparent 100%);
+    z-index: 1;
+  }
+
+  /* Card content */
+  #ws-{{ section.id }} .ws-card-body {
+    position: relative; z-index: 2;
+    height: 100%; display: flex; flex-direction: column;
+    justify-content: flex-end; padding: 2.5rem;
+  }
+  @media (min-width: 768px) { #ws-{{ section.id }} .ws-card-body { padding: 3rem; } }
+
+  #ws-{{ section.id }} .ws-card-eyebrow {
+    font-size: 0.62rem; font-weight: 800; letter-spacing: 0.2em;
+    text-transform: uppercase; margin-bottom: auto;
+    padding-top: 0.25rem;
+  }
+  #ws-{{ section.id }} .ws-card-eyebrow--accent { color: var(--accent); }
+  #ws-{{ section.id }} .ws-card-eyebrow--muted { color: rgba(255,255,255,0.3); }
+
+  #ws-{{ section.id }} .ws-card-title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 900; line-height: 1; letter-spacing: -0.03em;
+    margin: 1rem 0 1rem; color: #fff;
+  }
+  #ws-{{ section.id }} .ws-card-side .ws-card-title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+  }
+
+  #ws-{{ section.id }} .ws-card-desc {
+    font-size: 0.92rem; color: rgba(255,255,255,0.5);
+    line-height: 1.65; margin: 0 0 1.75rem; max-width: 26rem;
+  }
+
+  /* CTA Button */
+  #ws-{{ section.id }} .ws-btn {
+    display: inline-flex; align-items: center; gap: 0.65rem;
+    padding: 0.85rem 1.75rem; border-radius: 999px;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #fff; font-weight: 700; font-size: 0.78rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    overflow: hidden; position: relative;
+    transition: background 0.35s, color 0.35s, transform 0.35s, border-color 0.35s;
+    cursor: pointer;
+  }
+  #ws-{{ section.id }} .ws-btn:hover {
+    background: #fff; color: #000; border-color: #fff;
+    transform: scale(1.04);
+  }
+  #ws-{{ section.id }} .ws-btn::before {
+    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+    transition: 0.5s;
+  }
+  #ws-{{ section.id }} .ws-btn:hover::before { left: 100%; }
+  #ws-{{ section.id }} .ws-btn svg { flex-shrink: 0; }
+
+  /* ── Stats ── */
+  #ws-{{ section.id }} .ws-stats {
+    display: grid; grid-template-columns: 1fr;
+    gap: 1rem; margin-top: 1.5rem;
+  }
+  @media (min-width: 640px) { #ws-{{ section.id }} .ws-stats { grid-template-columns: repeat(3,1fr); } }
+
+  #ws-{{ section.id }} .ws-stat {
+    background: rgba(255,255,255,0.025);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 24px; padding: 2rem;
+    display: flex; flex-direction: column; justify-content: center;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  #ws-{{ section.id }} .ws-stat:hover {
+    border-color: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.04);
+  }
+  #ws-{{ section.id }} .ws-stat-label {
+    font-size: 0.6rem; font-weight: 800; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem;
+  }
+  #ws-{{ section.id }} .ws-stat-value {
+    font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 900;
+    color: #fff; line-height: 1; letter-spacing: -0.03em;
+  }
+  #ws-{{ section.id }} .ws-stat-desc {
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); margin-top: 0.4rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #ws-{{ section.id }} .ws-marquee-track { animation: none; }
+    #ws-{{ section.id }} .ws-card { transition: none; }
+    #ws-{{ section.id }} .ws-card-img { transition: none; }
+    #ws-{{ section.id }} .ws-badge-dot { animation: none; }
+  }
+</style>
+
+<div id="ws-{{ section.id }}">
+  <div class="ws-glow"></div>
+  <div class="ws-inner">
+
+    <!-- Marquee -->
+    {%- if section.settings.show_marquee -%}
+      <div class="ws-marquee-wrap">
+        <div class="ws-marquee-track">
+          {%- assign items = section.settings.marquee_items | default: 'Strategy · Branding · Digital Experience · Creative Direction' | split: '·' -%}
+          {%- for item in items -%}<span class="ws-marquee-item"><span>✦</span>{{ item | strip }}</span>{%- endfor -%}
+          {%- for item in items -%}<span class="ws-marquee-item"><span>✦</span>{{ item | strip }}</span>{%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    <!-- Header -->
+    <div class="ws-header">
+      {%- if section.settings.badge_label != blank -%}
+        <div class="ws-badge">
+          <span class="ws-badge-dot"></span>
+          {{ section.settings.badge_label }}
+        </div>
+      {%- endif -%}
+      <h2 class="ws-h2">{{ section.settings.heading | newline_to_br }}</h2>
+      {%- if section.settings.subheading != blank -%}
+        <p class="ws-sub">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    <!-- Bento Grid -->
+    <div class="ws-bento">
+
+      <!-- Main Card -->
+      <div class="ws-card ws-card-main">
+        {%- if section.settings.card1_image -%}
+          <img class="ws-card-img" src="{{ section.settings.card1_image | img_url: '1400x' }}" alt="{{ section.settings.card1_title }}" loading="eager">
+        {%- endif -%}
+        <div class="ws-card-grad"></div>
+        <div class="ws-card-body">
+          {%- if section.settings.card1_eyebrow != blank -%}
+            <p class="ws-card-eyebrow ws-card-eyebrow--accent">{{ section.settings.card1_eyebrow }}</p>
+          {%- endif -%}
+          <h3 class="ws-card-title">{{ section.settings.card1_title | newline_to_br }}</h3>
+          {%- if section.settings.card1_desc != blank -%}
+            <p class="ws-card-desc">{{ section.settings.card1_desc }}</p>
+          {%- endif -%}
+          {%- if section.settings.card1_btn_label != blank -%}
+            <div>
+              <a href="{{ section.settings.card1_btn_url | default: '#' }}" class="ws-btn">
+                {{ section.settings.card1_btn_label }}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </a>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- Side Card -->
+      <div class="ws-card ws-card-side">
+        {%- if section.settings.card2_image -%}
+          <img class="ws-card-img" src="{{ section.settings.card2_image | img_url: '900x' }}" alt="{{ section.settings.card2_title }}" loading="lazy">
+        {%- endif -%}
+        <div class="ws-card-grad"></div>
+        <div class="ws-card-body">
+          {%- if section.settings.card2_eyebrow != blank -%}
+            <p class="ws-card-eyebrow ws-card-eyebrow--muted">{{ section.settings.card2_eyebrow }}</p>
+          {%- endif -%}
+          <h3 class="ws-card-title">{{ section.settings.card2_title | newline_to_br }}</h3>
+          {%- if section.settings.card2_desc != blank -%}
+            <p class="ws-card-desc">{{ section.settings.card2_desc }}</p>
+          {%- endif -%}
+          {%- if section.settings.card2_btn_label != blank -%}
+            <div>
+              <a href="{{ section.settings.card2_btn_url | default: '#' }}" class="ws-btn">
+                {{ section.settings.card2_btn_label }}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </a>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Stats -->
+    {%- assign has_stats = false -%}
+    {%- for i in (1..3) -%}
+      {%- assign vk = 'stat_value_' | append: i -%}
+      {%- if section.settings[vk] != blank -%}{%- assign has_stats = true -%}{%- endif -%}
+    {%- endfor -%}
+    {%- if has_stats -%}
+      <div class="ws-stats">
+        {%- for i in (1..3) -%}
+          {%- assign vk = 'stat_value_' | append: i -%}
+          {%- assign lk = 'stat_label_' | append: i -%}
+          {%- assign dk = 'stat_desc_'  | append: i -%}
+          {%- if section.settings[vk] != blank -%}
+            <div class="ws-stat">
+              {%- if section.settings[lk] != blank -%}<p class="ws-stat-label">{{ section.settings[lk] }}</p>{%- endif -%}
+              <div class="ws-stat-value">{{ section.settings[vk] }}</div>
+              {%- if section.settings[dk] != blank -%}<p class="ws-stat-desc">{{ section.settings[dk] }}</p>{%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Activations",
+  "tag": "section",
+  "settings": [
+    { "type": "header",   "content": "Marquee" },
+    { "type": "checkbox", "id": "show_marquee",   "label": "Show marquee",  "default": true },
+    { "type": "text",     "id": "marquee_items",  "label": "Items (· separated)", "default": "Strategy · Branding · Digital Experience · Creative Direction" },
+
+    { "type": "header",   "content": "Section Header" },
+    { "type": "text",     "id": "badge_label",   "label": "Badge label",  "default": "Showcase 2024" },
+    { "type": "text",     "id": "heading",       "label": "Heading (use newline for line breaks)", "default": "BOLD IDEAS.\nSTUNNING RESULTS." },
+    { "type": "textarea", "id": "subheading",    "label": "Subheading",   "default": "We partner with visionary brands to create impactful moments in the digital landscape." },
+
+    { "type": "header",   "content": "Main Card (large left)" },
+    { "type": "image_picker", "id": "card1_image",     "label": "Background image" },
+    { "type": "text",         "id": "card1_eyebrow",   "label": "Eyebrow label",    "default": "Core Service" },
+    { "type": "text",         "id": "card1_title",     "label": "Title",            "default": "IDENTITY &\nBRANDING" },
+    { "type": "textarea",     "id": "card1_desc",      "label": "Description",      "default": "Crafting visual languages that resonate across every touchpoint." },
+    { "type": "text",         "id": "card1_btn_label", "label": "Button label",     "default": "VIEW PROJECTS" },
+    { "type": "url",          "id": "card1_btn_url",   "label": "Button URL" },
+
+    { "type": "header",   "content": "Side Card (small right)" },
+    { "type": "image_picker", "id": "card2_image",     "label": "Background image" },
+    { "type": "text",         "id": "card2_eyebrow",   "label": "Eyebrow label",    "default": "Success Stories" },
+    { "type": "text",         "id": "card2_title",     "label": "Title",            "default": "CASE\nSTUDIES" },
+    { "type": "textarea",     "id": "card2_desc",      "label": "Description",      "default": "Data-driven results that define industry standards." },
+    { "type": "text",         "id": "card2_btn_label", "label": "Button label",     "default": "EXPLORE" },
+    { "type": "url",          "id": "card2_btn_url",   "label": "Button URL" },
+
+    { "type": "header", "content": "Stats" },
+    { "type": "text", "id": "stat_label_1", "label": "Stat 1 label", "default": "Impact" },
+    { "type": "text", "id": "stat_value_1", "label": "Stat 1 value", "default": "2.4M+" },
+    { "type": "text", "id": "stat_desc_1",  "label": "Stat 1 desc",  "default": "User Reach Generated" },
+    { "type": "text", "id": "stat_label_2", "label": "Stat 2 label", "default": "Efficiency" },
+    { "type": "text", "id": "stat_value_2", "label": "Stat 2 value", "default": "40%" },
+    { "type": "text", "id": "stat_desc_2",  "label": "Stat 2 desc",  "default": "Average Conversion Lift" },
+    { "type": "text", "id": "stat_label_3", "label": "Stat 3 label", "default": "Partners" },
+    { "type": "text", "id": "stat_value_3", "label": "Stat 3 value", "default": "Global" },
+    { "type": "text", "id": "stat_desc_3",  "label": "Stat 3 desc",  "default": "Operating in 14 Countries" }
+  ],
+  "presets": [
+    { "name": "Activations" }
+  ]
+}
+{% endschema %}
