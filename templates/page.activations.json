@@ -11,7 +11,34 @@
   "sections": {
     "main": {
       "type": "activations",
-      "settings": {}
+      "settings": {
+        "show_marquee": true,
+        "marquee_items": "Strategy · Branding · Digital Experience · Creative Direction",
+        "badge_label": "Showcase 2024",
+        "heading": "BOLD IDEAS.STUNNING RESULTS.",
+        "subheading": "We partner with visionary brands to create impactful moments in the digital landscape.",
+        "card1_image": "shopify://shop_images/6.webp",
+        "card1_eyebrow": "Core Service",
+        "card1_title": "IDENTITY &BRANDING",
+        "card1_desc": "Crafting visual languages that resonate across every touchpoint.",
+        "card1_btn_label": "VIEW PROJECTS",
+        "card1_btn_url": "",
+        "card2_image": "shopify://shop_images/2_4c9fd956-ba98-4960-a38a-1bb81fd8c096.jpg",
+        "card2_eyebrow": "Success Stories",
+        "card2_title": "CASESTUDIES",
+        "card2_desc": "Data-driven results that define industry standards.",
+        "card2_btn_label": "EXPLORE",
+        "card2_btn_url": "",
+        "stat_label_1": "Impact",
+        "stat_value_1": "2.4M+",
+        "stat_desc_1": "User Reach Generated",
+        "stat_label_2": "Efficiency",
+        "stat_value_2": "40%",
+        "stat_desc_2": "Average Conversion Lift",
+        "stat_label_3": "Partners",
+        "stat_value_3": "Global",
+        "stat_desc_3": "Operating in 14 Countries"
+      }
     }
   },
   "order": [
