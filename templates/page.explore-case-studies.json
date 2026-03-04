@@ -12,6 +12,15 @@
     "main": {
       "type": "explore-case-studies",
       "blocks": {
+        "case_study_HyTWqf": {
+          "type": "case_study",
+          "settings": {
+            "image": "shopify://shop_images/9.webp",
+            "name": "Hotel Tugu | BAli",
+            "tag": "Branding",
+            "url": ""
+          }
+        },
         "case_study_fnjwTn": {
           "type": "case_study",
           "settings": {
@@ -68,6 +77,7 @@
         }
       },
       "block_order": [
+        "case_study_HyTWqf",
         "case_study_fnjwTn",
         "case_study_438jgR",
         "case_study_6XxLrz",
