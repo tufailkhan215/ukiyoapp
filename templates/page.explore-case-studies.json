@@ -12,6 +12,15 @@
     "main": {
       "type": "explore-case-studies",
       "blocks": {
+        "case_study_6XxLrz": {
+          "type": "case_study",
+          "settings": {
+            "image": "shopify://shop_images/4_42592dca-a3e6-4528-9ebc-14b720f02703.webp",
+            "name": "Dynamic Autoworks",
+            "tag": "Branding",
+            "url": "shopify://pages/dynamic-autoworks-1"
+          }
+        },
         "case_study_idhENK": {
           "type": "case_study",
           "settings": {
@@ -41,6 +50,7 @@
         }
       },
       "block_order": [
+        "case_study_6XxLrz",
         "case_study_idhENK",
         "case_study_NWQFja",
         "case_study_DtTeee"
