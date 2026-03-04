@@ -1,0 +1,284 @@
+{% comment %}
+  Section: Explore Case Studies
+  File: sections/explore-case-studies.liquid
+  Template: templates/page.explore-case-studies.json
+{% endcomment %}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap');
+
+  #ecs-{{ section.id }} {
+    --bg:      #000;
+    --border:  rgba(255,255,255,0.07);
+    --muted:   rgba(255,255,255,0.42);
+    background: var(--bg);
+    color: #fff;
+    font-family: inherit;
+    padding: 5rem 1.5rem 6rem;
+    position: relative;
+  }
+
+  #ecs-{{ section.id }} * { box-sizing: border-box; }
+  #ecs-{{ section.id }} img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+  /* Header */
+  .ecs-header {
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+
+  .ecs-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: .62rem; font-weight: 500; letter-spacing: .28em;
+    text-transform: uppercase; color: rgba(255,255,255,.28);
+    display: flex; align-items: center; justify-content: center; gap: .65rem;
+    margin-bottom: 1.25rem;
+  }
+  .ecs-eyebrow::before, .ecs-eyebrow::after {
+    content: ''; display: block; width: 24px; height: 1px;
+    background: rgba(255,255,255,.18);
+  }
+
+  .ecs-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    letter-spacing: .03em; line-height: .92;
+    margin: 0 0 1rem; color: #fff;
+  }
+
+  .ecs-desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: .92rem; font-weight: 300; line-height: 1.75;
+    color: var(--muted); max-width: 36rem; margin: 0 auto;
+  }
+
+  /* Grid */
+  .ecs-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .5rem;
+  }
+
+  @media (min-width: 640px) { .ecs-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  /* Card */
+  .ecs-card {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    background: #0a0a0a;
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+  }
+
+  .ecs-card-img {
+    position: absolute; inset: 0;
+    transition: transform .9s cubic-bezier(.165,.84,.44,1), filter .7s, opacity .7s;
+    filter: saturate(0.15) brightness(0.6);
+    opacity: 1;
+  }
+
+  .ecs-card:hover .ecs-card-img {
+    transform: scale(1.06);
+    filter: saturate(0.65) brightness(0.55);
+  }
+
+  .ecs-card-grad {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,0.82) 0%,
+      rgba(0,0,0,0.3) 45%,
+      rgba(0,0,0,0.05) 100%
+    );
+    transition: background .5s;
+  }
+
+  .ecs-card:hover .ecs-card-grad {
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,0.88) 0%,
+      rgba(0,0,0,0.45) 55%,
+      rgba(0,0,0,0.1) 100%
+    );
+  }
+
+  .ecs-card-body {
+    position: relative; z-index: 2;
+    height: 100%;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 1.5rem 1.75rem;
+  }
+
+  @media (min-width: 768px) { .ecs-card-body { padding: 2rem 2.25rem; } }
+
+  .ecs-card-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: .58rem; font-weight: 500; letter-spacing: .22em;
+    text-transform: uppercase; color: rgba(255,255,255,.35);
+    margin-bottom: .5rem;
+    display: block;
+    transform: translateY(4px);
+    opacity: 0;
+    transition: opacity .4s .1s, transform .4s .1s;
+  }
+
+  .ecs-card:hover .ecs-card-tag { opacity: 1; transform: none; }
+
+  .ecs-card-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    letter-spacing: .04em; line-height: 1;
+    color: #fff; margin: 0;
+    transition: letter-spacing .4s;
+  }
+
+  .ecs-card:hover .ecs-card-name { letter-spacing: .07em; }
+
+  /* Arrow reveal on hover */
+  .ecs-card-arrow {
+    position: absolute; top: 1.5rem; right: 1.5rem; z-index: 3;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.14);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0;
+    transform: scale(0.7) rotate(-45deg);
+    transition: opacity .4s, transform .4s;
+  }
+
+  .ecs-card:hover .ecs-card-arrow {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+
+  /* Scroll reveal */
+  #ecs-{{ section.id }} .rv {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity .65s cubic-bezier(.4,0,.2,1), transform .65s cubic-bezier(.4,0,.2,1);
+  }
+  #ecs-{{ section.id }} .rv.in { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    #ecs-{{ section.id }} .rv { opacity: 1 !important; transform: none !important; }
+  }
+</style>
+
+<div id="ecs-{{ section.id }}">
+
+  <!-- Header -->
+  <div class="ecs-header rv">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="ecs-eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+    <h2 class="ecs-title">{{ section.settings.title }}</h2>
+    {%- if section.settings.description != blank -%}
+      <p class="ecs-desc">{{ section.settings.description }}</p>
+    {%- endif -%}
+  </div>
+
+  <!-- Cards Grid -->
+  <div class="ecs-grid">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'case_study' -%}
+        <a class="ecs-card rv"
+          href="{{ block.settings.url | default: '#' }}"
+          {{ block.shopify_attributes }}>
+
+          {%- if block.settings.image -%}
+            <img class="ecs-card-img"
+              src="{{ block.settings.image | img_url: '900x' }}"
+              alt="{{ block.settings.name }}"
+              loading="{% if forloop.index <= 2 %}eager{% else %}lazy{% endif %}">
+          {%- endif -%}
+
+          <div class="ecs-card-grad"></div>
+
+          <div class="ecs-card-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+            </svg>
+          </div>
+
+          <div class="ecs-card-body">
+            {%- if block.settings.tag != blank -%}
+              <span class="ecs-card-tag">{{ block.settings.tag }}</span>
+            {%- endif -%}
+            <p class="ecs-card-name">{{ block.settings.name }}</p>
+          </div>
+
+        </a>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ecs-{{ section.id }}');
+  if (!root) return;
+  var els = root.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.06 });
+    els.forEach(function(el, i){
+      el.style.transitionDelay = Math.min(i * 0.06, 0.4) + 's';
+      io.observe(el);
+    });
+  } else {
+    els.forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Explore Case Studies",
+  "tag": "section",
+  "settings": [
+    { "type": "header",   "content": "Header" },
+    { "type": "text",     "id": "eyebrow",     "label": "Eyebrow",     "default": "Our Latest Projects" },
+    { "type": "text",     "id": "title",       "label": "Title",       "default": "CASE STUDIES" },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Browse our work across branding, e-commerce, content creation, and digital marketing." }
+  ],
+  "blocks": [
+    {
+      "type": "case_study",
+      "name": "Case Study",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text",         "id": "name",  "label": "Project name", "default": "RESIKLO" },
+        { "type": "text",         "id": "tag",   "label": "Category tag", "default": "Branding" },
+        { "type": "url",          "id": "url",   "label": "Link URL" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Explore Case Studies",
+      "blocks": [
+        { "type": "case_study", "settings": { "name": "RESIKLO",                 "tag": "Branding / Sustainability" } },
+        { "type": "case_study", "settings": { "name": "FUR TRADERS",             "tag": "E-commerce / Fashion" } },
+        { "type": "case_study", "settings": { "name": "THE PLACE ON SOUTH PINE", "tag": "Hospitality / Content" } },
+        { "type": "case_study", "settings": { "name": "DYNAMIC AUTOWORKS",       "tag": "E-commerce / Automotive" } },
+        { "type": "case_study", "settings": { "name": "SUPRAMOOD",               "tag": "Branding / Wellness" } },
+        { "type": "case_study", "settings": { "name": "MANO BEACH HOUSE",        "tag": "Hospitality / Travel" } },
+        { "type": "case_study", "settings": { "name": "HOTEL TUGU | BALI",       "tag": "Hospitality / Luxury" } },
+        { "type": "case_study", "settings": { "name": "LIFE FORCE ACADEMY",      "tag": "Branding / Wellness" } },
+        { "type": "case_study", "settings": { "name": "POLAROID",                "tag": "Content / Photography" } },
+        { "type": "case_study", "settings": { "name": "ACADEMY OF ORACLE ARTS",  "tag": "Branding / Education" } },
+        { "type": "case_study", "settings": { "name": "COACHELLA",               "tag": "Events / Content" } },
+        { "type": "case_study", "settings": { "name": "WANDRD",                  "tag": "Content / Gear" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
