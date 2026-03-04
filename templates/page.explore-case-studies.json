@@ -12,6 +12,33 @@
     "main": {
       "type": "explore-case-studies",
       "blocks": {
+        "case_study_Erj6iL": {
+          "type": "case_study",
+          "settings": {
+            "image": "shopify://shop_images/12_f9f25ff6-09b6-4b99-a532-4c2a79aecb34.jpg",
+            "name": "Wandrd",
+            "tag": "Branding",
+            "url": "shopify://pages/coming-soon"
+          }
+        },
+        "case_study_8jeqcH": {
+          "type": "case_study",
+          "settings": {
+            "image": "shopify://shop_images/11.webp",
+            "name": "Coachella",
+            "tag": "Branding",
+            "url": "shopify://pages/coming-soon"
+          }
+        },
+        "case_study_qrAGpY": {
+          "type": "case_study",
+          "settings": {
+            "image": "shopify://shop_images/10.webp",
+            "name": "Academy of Oracle Arts",
+            "tag": "Branding",
+            "url": "shopify://pages/coming-soon"
+          }
+        },
         "case_study_pfCcXG": {
           "type": "case_study",
           "settings": {
@@ -95,6 +122,9 @@
         }
       },
       "block_order": [
+        "case_study_Erj6iL",
+        "case_study_8jeqcH",
+        "case_study_qrAGpY",
         "case_study_pfCcXG",
         "case_study_iFnNf9",
         "case_study_HyTWqf",
