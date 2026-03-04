@@ -12,6 +12,15 @@
     "main": {
       "type": "explore-case-studies",
       "blocks": {
+        "case_study_iFnNf9": {
+          "type": "case_study",
+          "settings": {
+            "image": "shopify://shop_images/8.avif",
+            "name": "Life Force Academy",
+            "tag": "Branding",
+            "url": ""
+          }
+        },
         "case_study_HyTWqf": {
           "type": "case_study",
           "settings": {
@@ -77,6 +86,7 @@
         }
       },
       "block_order": [
+        "case_study_iFnNf9",
         "case_study_HyTWqf",
         "case_study_fnjwTn",
         "case_study_438jgR",
