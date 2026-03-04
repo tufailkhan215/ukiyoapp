@@ -1,4 +1,12 @@
 {% comment %} Source structure and Tailwind classes from reference (ukiyo-prod.com) {% endcomment %}
+<style>
+  .ukiyo-mega-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 2.5rem 4rem !important;
+    width: 100% !important;
+  }
+</style>
 <nav class="ukiyo-nav fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent" role="navigation" aria-label="Main">
   <div class="max-w-[1800px] mx-auto px-6 lg:px-12">
     <div class="flex items-center justify-between h-20 lg:h-24">
@@ -82,7 +90,7 @@
   <div class="bg-black/95 backdrop-blur-xl border border-white/10 rounded-xl p-8" style="display:grid;grid-template-columns:repeat(2,1fr);gap:2.5rem 4rem;"> {% endcomment %}
 
 <div class="nav-dropdown-panel opacity-0 invisible pointer-events-none transition-all duration-300" style="position:fixed;top:80px;left:50%;transform:translateX(-50%);width:720px;z-index:9999;" data-dropdown-panel aria-hidden="true">
-  <div class="bg-black/95 backdrop-blur-xl border border-white/10 rounded-xl p-8" style="display:grid;grid-template-columns:repeat(2,1fr);gap:2.5rem 4rem;">
+  <div class="ukiyo-mega-grid bg-black/95 backdrop-blur-xl border border-white/10 rounded-xl p-8">
               {% for block in section.blocks %}
                       {% if block.type == 'dropdown_category' and block.settings.parent_handle == link.handle %}
                         <div {{ block.shopify_attributes }}>
