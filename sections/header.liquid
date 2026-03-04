@@ -373,15 +373,39 @@
     </div>
 
   {% elsif link.links.size > 0 %}
+    {% comment %} Check if this is a mega handle {% endcomment %}
+    {% assign is_mega_handle = false %}
+    {% if section.settings.dropdown_handles != blank %}
+      {% assign mega_handles = section.settings.dropdown_handles | split: ',' %}
+      {% for mh in mega_handles %}
+        {% assign mh_stripped = mh | strip %}
+        {% if link.handle == mh_stripped %}
+          {% assign is_mega_handle = true %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
     <div class="drawer__nav-group">
       <button class="drawer__nav-toggle" type="button">
         <a href="{{ link.url }}" onclick="event.stopPropagation()">{{ link.title }}</a>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="drawer__nav-chevron"><path d="m6 9 6 6 6-6"/></svg>
       </button>
       <div class="drawer__nav-children drawer__nav-children--collapsed">
-        {% for child_link in link.links %}
-          <a href="{{ child_link.url }}" class="drawer__nav-child">{{ child_link.title }}</a>
-        {% endfor %}
+        {% if is_mega_handle %}
+          <a href="{{ link.url }}" class="drawer__nav-child" style="color:#6ba4e8;margin-bottom:0.5rem;display:block;">All {{ link.title }} →</a>
+          {% for child_link in link.links %}
+            {% if child_link.links.size > 0 %}
+              {% for sub_link in child_link.links %}
+                <a href="{{ sub_link.url }}" class="drawer__nav-subchild">{{ sub_link.title }}</a>
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          {% for child_link in link.links %}
+            <a href="{{ child_link.url }}" class="drawer__nav-child">{{ child_link.title }}</a>
+          {% endfor %}
+        {% endif %}
       </div>
     </div>
 
