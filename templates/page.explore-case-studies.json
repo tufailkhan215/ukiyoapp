@@ -11,7 +11,35 @@
   "sections": {
     "main": {
       "type": "explore-case-studies",
-      "settings": {}
+      "blocks": {
+        "case_study_NWQFja": {
+          "type": "case_study",
+          "settings": {
+            "image": "shopify://shop_images/2_1b9fb776-6778-41f8-8895-8180aeb8ab12.webp",
+            "name": "Fur Traders",
+            "tag": "Branding",
+            "url": "shopify://pages/copy-of-case-study"
+          }
+        },
+        "case_study_DtTeee": {
+          "type": "case_study",
+          "settings": {
+            "image": "shopify://shop_images/1_3f7fbe2a-dabc-4cdb-95d6-b9a028e362a9.webp",
+            "name": "RESIKLO",
+            "tag": "Branding",
+            "url": "shopify://pages/resiklo"
+          }
+        }
+      },
+      "block_order": [
+        "case_study_NWQFja",
+        "case_study_DtTeee"
+      ],
+      "settings": {
+        "eyebrow": "Our Latest Projects",
+        "title": "CASE STUDIES",
+        "description": "Browse our work across branding, e-commerce, content creation, and digital marketing."
+      }
     }
   },
   "order": [
