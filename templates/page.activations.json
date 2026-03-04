@@ -28,7 +28,7 @@
         "card2_title": "CASESTUDIES",
         "card2_desc": "Data-driven results that define industry standards.",
         "card2_btn_label": "EXPLORE",
-        "card2_btn_url": "",
+        "card2_btn_url": "shopify://pages/explore-case-studies",
         "stat_label_1": "Impact",
         "stat_value_1": "2.4M+",
         "stat_desc_1": "User Reach Generated",
