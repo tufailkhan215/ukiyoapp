@@ -160,7 +160,16 @@
                     <div class="ukiyo-mega-grid bg-black/95 backdrop-blur-xl border border-white/10 rounded-xl p-8">
                       {% for child_link in link.links %}
                         <div>
-                          <a class="block text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all py-1" href="{{ child_link.url }}">{{ child_link.title }}</a>
+                          <a href="{{ child_link.url }}">
+                            <span class="text-xs font-medium text-white/40 tracking-[0.2em] uppercase mb-3 block">{{ child_link.title }}</span>
+                          </a>
+                          {% if child_link.links.size > 0 %}
+                            <div class="space-y-2">
+                              {% for sub_link in child_link.links %}
+                                <a class="block text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all py-1" href="{{ sub_link.url }}">{{ sub_link.title }}</a>
+                              {% endfor %}
+                            </div>
+                          {% endif %}
                         </div>
                       {% endfor %}
                     </div>
