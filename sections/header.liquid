@@ -69,10 +69,16 @@
 
               {% if has_dropdown_blocks %}
                 {% comment %} Mega menu (from section blocks) {% endcomment %}
-                <div class="nav-dropdown-panel absolute top-full left-0 pt-4 opacity-0 invisible pointer-events-none transition-all duration-300" data-dropdown-panel aria-hidden="true">
-                  {% comment %} <div class="w-[600px] bg-black/95 backdrop-blur-xl border border-white/10 p-6 grid grid-cols-2 gap-6"> {% endcomment %}
+             
+             
+                {% comment %} <div class="nav-dropdown-panel absolute top-full left-0 pt-4 opacity-0 invisible pointer-events-none transition-all duration-300" data-dropdown-panel aria-hidden="true">
+                  <div class="w-[600px] bg-black/95 backdrop-blur-xl border border-white/10 p-6 grid grid-cols-2 gap-6">
                 <div class="bg-black/95 backdrop-blur-xl border border-white/10 p-6" style="width:680px;display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;">
-                  {% for block in section.blocks %}
+              {% endcomment %}
+             
+             <div class="nav-dropdown-panel absolute top-full left-0 pt-4 opacity-0 invisible pointer-events-none transition-all duration-300" data-dropdown-panel aria-hidden="true" style="width:680px;">
+  <div class="mega-grid bg-black/95 backdrop-blur-xl border border-white/10 p-6">
+              {% for block in section.blocks %}
                       {% if block.type == 'dropdown_category' and block.settings.parent_handle == link.handle %}
                         <div {{ block.shopify_attributes }}>
                           {% if block.settings.category_title != blank %}
