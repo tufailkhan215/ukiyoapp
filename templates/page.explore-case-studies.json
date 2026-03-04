@@ -12,6 +12,15 @@
     "main": {
       "type": "explore-case-studies",
       "blocks": {
+        "case_study_fnjwTn": {
+          "type": "case_study",
+          "settings": {
+            "image": "shopify://shop_images/6_b11cbb9c-32b4-4b8f-b6c8-12ec9222f3b8.webp",
+            "name": "Mano Beach House",
+            "tag": "Branding",
+            "url": ""
+          }
+        },
         "case_study_438jgR": {
           "type": "case_study",
           "settings": {
@@ -59,6 +68,7 @@
         }
       },
       "block_order": [
+        "case_study_fnjwTn",
         "case_study_438jgR",
         "case_study_6XxLrz",
         "case_study_idhENK",
