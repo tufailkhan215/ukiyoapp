@@ -12,6 +12,15 @@
     "main": {
       "type": "explore-case-studies",
       "blocks": {
+        "case_study_438jgR": {
+          "type": "case_study",
+          "settings": {
+            "image": "shopify://shop_images/5_c0b35b9b-8246-4218-9f3d-175821171a47.webp",
+            "name": "Supramood",
+            "tag": "Branding",
+            "url": "shopify://pages/supramood_new"
+          }
+        },
         "case_study_6XxLrz": {
           "type": "case_study",
           "settings": {
@@ -50,6 +59,7 @@
         }
       },
       "block_order": [
+        "case_study_438jgR",
         "case_study_6XxLrz",
         "case_study_idhENK",
         "case_study_NWQFja",
