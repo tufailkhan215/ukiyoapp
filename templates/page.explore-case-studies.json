@@ -12,6 +12,15 @@
     "main": {
       "type": "explore-case-studies",
       "blocks": {
+        "case_study_pfCcXG": {
+          "type": "case_study",
+          "settings": {
+            "image": "shopify://shop_images/botanical-bitters-why-bitter-drinks-taste-better-and-how-to-balance-them.png",
+            "name": "POLAROID",
+            "tag": "Branding",
+            "url": "shopify://pages/coming-soon"
+          }
+        },
         "case_study_iFnNf9": {
           "type": "case_study",
           "settings": {
@@ -86,6 +95,7 @@
         }
       },
       "block_order": [
+        "case_study_pfCcXG",
         "case_study_iFnNf9",
         "case_study_HyTWqf",
         "case_study_fnjwTn",
