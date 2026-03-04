@@ -79,7 +79,6 @@
              <div class="nav-dropdown-panel absolute top-full left-0 pt-4 opacity-0 invisible pointer-events-none transition-all duration-300" data-dropdown-panel aria-hidden="true" style="width:680px;">
   <div class="mega-grid bg-black/95 backdrop-blur-xl border border-white/10 p-6">
               {% for block in section.blocks %}
-                
                       {% if block.type == 'dropdown_category' and block.settings.parent_handle == link.handle %}
                         <div {{ block.shopify_attributes }}>
                           {% if block.settings.category_title != blank %}
@@ -108,8 +107,11 @@
               {% elsif has_dropdown_compact_block and compact_block != nil %}
                 {% comment %} Compact dropdown (ukiyo-prod style): header link + section label + links {% endcomment %}
                 {% assign b = compact_block %}
-                <div class="nav-dropdown-panel absolute top-full left-0 pt-4 opacity-0 invisible pointer-events-none transition-all duration-300" data-dropdown-panel aria-hidden="true">
-                  <div class="w-[280px] bg-black/95 backdrop-blur-xl border border-white/10 rounded-xl p-4" {{ b.shopify_attributes }}>
+          
+                {% comment %} <div class="nav-dropdown-panel absolute top-full left-0 pt-4 opacity-0 invisible pointer-events-none transition-all duration-300" data-dropdown-panel aria-hidden="true"> {% endcomment %}
+          
+          <div class="nav-dropdown-panel absolute top-full pt-4 opacity-0 invisible pointer-events-none transition-all duration-300" style="left:50%;transform:translateX(-50%);" data-dropdown-panel aria-hidden="true">
+                <div class="w-[280px] bg-black/95 backdrop-blur-xl border border-white/10 rounded-xl p-4" {{ b.shopify_attributes }}>
                     {% if b.settings.header_title != blank or b.settings.header_url != blank %}
                       <a class="block px-4 py-3 text-white font-medium hover:bg-white/5 rounded-lg transition-colors mb-2" href="{{ b.settings.header_url | default: '#' }}">{{ b.settings.header_title }}</a>
                       <div class="h-px bg-white/10 my-2"></div>
