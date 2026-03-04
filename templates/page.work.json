@@ -130,6 +130,7 @@
         "image_4kLiJa",
         "image_YMKhVT"
       ],
+      "disabled": true,
       "name": "Brand Activation",
       "settings": {
         "strap": "(Branding)",
@@ -399,7 +400,7 @@
       "name": "Case Studies Bento",
       "settings": {
         "eyebrow": "[Case Studies]",
-        "heading": "Featured Projects",
+        "heading": "Featured Case Studies",
         "accent_color": "#a78bfa"
       }
     },
