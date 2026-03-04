@@ -12,6 +12,15 @@
     "main": {
       "type": "explore-case-studies",
       "blocks": {
+        "case_study_idhENK": {
+          "type": "case_study",
+          "settings": {
+            "image": "shopify://shop_images/3_ee95539c-7b78-4e3f-90c4-31755702cccc.webp",
+            "name": "The place of south pine",
+            "tag": "Branding",
+            "url": "shopify://pages/website-design-content-strategy"
+          }
+        },
         "case_study_NWQFja": {
           "type": "case_study",
           "settings": {
@@ -32,6 +41,7 @@
         }
       },
       "block_order": [
+        "case_study_idhENK",
         "case_study_NWQFja",
         "case_study_DtTeee"
       ],
