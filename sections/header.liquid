@@ -397,7 +397,7 @@
           {% for child_link in link.links %}
             {% if child_link.links.size > 0 %}
               {% for sub_link in child_link.links %}
-                <a href="{{ sub_link.url }}" class="drawer__nav-subchild">{{ sub_link.title }}</a>
+<a href="{{ sub_link.url }}" class="drawer__nav-subchild" style="display:block;">{{ sub_link.title }}</a>
               {% endfor %}
             {% endif %}
           {% endfor %}
