@@ -211,10 +211,13 @@
         "project_bRFthk": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/Untitled_design_1.png",
+            "image": "shopify://shop_images/4_4192c34b-000c-4fd5-be7c-350b15f33157.webp",
             "category": "Lifestyle & Wellness",
             "title": "SUPRAMOOD",
-            "description": "Comprehensive brand strategy with podcast series and affiliate program."
+            "description": "Comprehensive brand strategy with podcast series and affiliate program.",
+            "gallery_image_2": "shopify://shop_images/1_9e4980dd-8adf-4e14-b342-ed62d92822c2.webp",
+            "gallery_image_3": "shopify://shop_images/2_528d9138-b021-4a76-9cd9-0bc2121d9dfd.webp",
+            "gallery_image_4": "shopify://shop_images/3_b593cdfd-b9b0-40e0-a58d-48b6557c3850.webp"
           }
         },
         "project_7jNmCg": {
