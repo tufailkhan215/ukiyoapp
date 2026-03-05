@@ -12,6 +12,170 @@
     max-width: 720px !important;
     position: fixed !important;
   }
+
+  /* ── DRAWER / MOBILE NAV ─────────────────────────────────────── */
+  .drawer-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 998;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .drawer-overlay.is-open { display: block; opacity: 1; }
+
+  .drawer {
+    position: fixed;
+    top: 0; right: 0; bottom: 0;
+    width: min(320px, 92vw);
+    z-index: 999;
+    background: #000;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(.165,.84,.44,1);
+    overflow-y: auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .drawer.is-open { transform: translateX(0); }
+
+  /* Close button */
+  .drawer__close {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: none; border: none;
+    color: rgba(255,255,255,0.6);
+    font-size: 20px;
+    cursor: pointer;
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    transition: color 0.2s, background 0.2s;
+    z-index: 10;
+  }
+  .drawer__close:hover { color: #fff; background: rgba(255,255,255,0.08); }
+
+  /* Logo area inside drawer */
+  .drawer__logo {
+    padding: 22px 24px 20px;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    margin-bottom: 8px;
+  }
+
+  /* Nav wrapper */
+  .drawer__nav {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0 40px;
+    flex: 1;
+  }
+
+  /* Top-level plain links (Home, Work, Gallery…) */
+  .drawer__nav > a {
+    display: block;
+    padding: 14px 24px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: color 0.2s;
+  }
+  .drawer__nav > a:hover { color: rgba(255,255,255,0.7); }
+
+  /* Expandable group (Services, Shop…) */
+  .drawer__nav-group {
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .drawer__nav-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    gap: 8px;
+  }
+  .drawer__nav-toggle > a {
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    pointer-events: none; /* click handled by button */
+  }
+
+  /* Chevron icon */
+  .drawer__nav-chevron {
+    color: rgba(255,255,255,0.4);
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+  }
+  .drawer__nav-group.is-open .drawer__nav-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* Children container */
+  .drawer__nav-children {
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(.165,.84,.44,1), opacity 0.3s ease;
+  }
+  .drawer__nav-children--collapsed {
+    max-height: 0 !important;
+    opacity: 0;
+  }
+  .drawer__nav-children--open {
+    max-height: 1200px;
+    opacity: 1;
+  }
+
+  /* "All Services →" prominent link */
+  .drawer__nav-child {
+    display: block;
+    padding: 10px 24px 10px 32px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .drawer__nav-child:hover { color: rgba(255,255,255,0.7); }
+
+  /* Category label (small uppercase) */
+  .drawer__nav-category-label {
+    display: block;
+    padding: 6px 24px 4px 32px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-top: 4px;
+  }
+
+  /* Sub-items (individual service links) */
+  .drawer__nav-sub {
+    padding: 2px 0 8px;
+  }
+  .drawer__nav-subchild {
+    display: block;                          /* ← key fix: was inline */
+    padding: 9px 24px 9px 32px;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    transition: color 0.2s, padding-left 0.2s;
+  }
+  .drawer__nav-subchild:hover {
+    color: rgba(255,255,255,0.85);
+    padding-left: 36px;
+  }
 </style>
 <nav class="ukiyo-nav fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent" role="navigation" aria-label="Main">
   <div class="max-w-[1800px] mx-auto px-6 lg:px-12">
@@ -307,6 +471,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <div class="drawer-overlay" data-drawer-overlay aria-hidden="true"></div>
 <aside class="drawer" id="drawer" data-drawer role="dialog" aria-label="Menu">
+  <div class="drawer__logo">
+    {{ section.settings.logo_text | default: 'UKIYO' }}
+  </div>
   <button type="button" class="drawer__close" aria-label="Close menu" data-drawer-close>✕</button>
   <nav class="drawer__nav">
     <a href="{{ routes.root_url }}">Home</a>
@@ -373,25 +540,21 @@ document.addEventListener('DOMContentLoaded', function() {
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="drawer__nav-chevron"><path d="m6 9 6 6 6-6"/></svg>
       </button>
       <div class="drawer__nav-children drawer__nav-children--collapsed">
+        <a href="{{ link.url }}" class="drawer__nav-child" style="color:#6ba4e8;">All {{ link.title }} →</a>
         {% for block in section.blocks %}
           {% if block.type == 'dropdown_category' and block.settings.parent_handle == link.handle %}
-            {% if block.settings.category_title != blank %}
-              <span class="drawer__nav-category-label">{{ block.settings.category_title }}</span>
-            {% endif %}
             {% if block.settings.links_text != blank %}
-              <div class="drawer__nav-sub">
-                {% assign link_lines = block.settings.links_text | newline_to_br | split: '<br />' %}
-                {% for line in link_lines %}
-                  {% assign line_stripped = line | strip %}
-                  {% if line_stripped != '' %}
-                    {% assign parts = line_stripped | split: '|' %}
-                    {% assign label = parts[0] | strip %}
-                    {% assign url = parts[1] | strip %}
-                    {% if url == blank %}{% assign url = '#' %}{% endif %}
-                    <a href="{{ url }}" class="drawer__nav-subchild">{{ label }}</a>
-                  {% endif %}
-                {% endfor %}
-              </div>
+              {% assign link_lines = block.settings.links_text | newline_to_br | split: '<br />' %}
+              {% for line in link_lines %}
+                {% assign line_stripped = line | strip %}
+                {% if line_stripped != '' %}
+                  {% assign parts = line_stripped | split: '|' %}
+                  {% assign label = parts[0] | strip %}
+                  {% assign url = parts[1] | strip %}
+                  {% if url == blank %}{% assign url = '#' %}{% endif %}
+                  <a href="{{ url }}" class="drawer__nav-subchild">{{ label }}</a>
+                {% endif %}
+              {% endfor %}
             {% endif %}
           {% endif %}
         {% endfor %}
@@ -482,15 +645,55 @@ document.addEventListener('DOMContentLoaded', function() {
 
   {% comment %} adding new line start {% endcomment %}
    <script>
-  document.querySelectorAll('.drawer__nav-toggle').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var group = btn.closest('.drawer__nav-group');
-      var children = group.querySelector('.drawer__nav-children');
-      group.classList.toggle('is-open');
-      children.classList.toggle('drawer__nav-children--collapsed');
-      children.classList.toggle('drawer__nav-children--open');
+  (function () {
+    /* ── Drawer open/close ── */
+    var drawer  = document.getElementById('drawer');
+    var overlay = document.querySelector('[data-drawer-overlay]');
+    var trigger = document.querySelector('[data-drawer-trigger]');
+    var closeBtn = document.querySelector('[data-drawer-close]');
+
+    function openDrawer() {
+      drawer  && drawer.classList.add('is-open');
+      overlay && overlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDrawer() {
+      drawer  && drawer.classList.remove('is-open');
+      overlay && overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    trigger  && trigger.addEventListener('click', openDrawer);
+    closeBtn && closeBtn.addEventListener('click', closeDrawer);
+    overlay  && overlay.addEventListener('click', closeDrawer);
+
+    /* ── Accordion toggles ── */
+    document.querySelectorAll('.drawer__nav-toggle').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var group    = btn.closest('.drawer__nav-group');
+        var children = group.querySelector('.drawer__nav-children');
+        var isOpen   = group.classList.contains('is-open');
+
+        /* Close all others */
+        document.querySelectorAll('.drawer__nav-group.is-open').forEach(function(g) {
+          if (g !== group) {
+            g.classList.remove('is-open');
+            var c = g.querySelector('.drawer__nav-children');
+            if (c) {
+              c.classList.remove('drawer__nav-children--open');
+              c.classList.add('drawer__nav-children--collapsed');
+            }
+          }
+        });
+
+        group.classList.toggle('is-open', !isOpen);
+        if (children) {
+          children.classList.toggle('drawer__nav-children--open', !isOpen);
+          children.classList.toggle('drawer__nav-children--collapsed', isOpen);
+        }
+      });
     });
-  });
+  })();
 </script>
    {% comment %} adding new end  {% endcomment %}
 </aside>
