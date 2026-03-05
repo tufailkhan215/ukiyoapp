@@ -1,4 +1,4 @@
-{% comment %} Brand activations: two-col intro + 2x4 image grid with per-card carousel (up to 4 images). Grayscale → color on hover. {% endcomment %}
+{% comment %} Brand activations: two-col intro (strap, title, description, CTA) + 2x4 image grid (grayscale, hover color + overlay title). {% endcomment %}
 <section class="relative py-32 lg:py-40 bg-black" data-testid="brand-activation">
   <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
   <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
@@ -32,94 +32,32 @@
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
       {% for block in section.blocks %}
         {% if block.type == 'image' %}
-          {%- assign imgs = '' | split: '' -%}
-          {%- if block.settings.image != blank -%}{%- assign imgs = imgs | concat: block.settings.image -%}{%- endif -%}
-          {%- if block.settings.image_2 != blank -%}{%- assign imgs = imgs | concat: block.settings.image_2 -%}{%- endif -%}
-          {%- if block.settings.image_3 != blank -%}{%- assign imgs = imgs | concat: block.settings.image_3 -%}{%- endif -%}
-          {%- if block.settings.image_4 != blank -%}{%- assign imgs = imgs | concat: block.settings.image_4 -%}{%- endif -%}
-
-          <div
-            class="ba-card group relative aspect-square overflow-hidden bg-white/[0.02] border border-white/[0.05] hover:border-white/10 transition-all"
-            data-ba-card
-            data-slide-count="{{ imgs.size }}"
-            {{ block.shopify_attributes }}
-          >
-            {%- for img in imgs -%}
+          <div class="group relative aspect-square overflow-hidden bg-white/[0.02] border border-white/[0.05] hover:border-white/10 transition-all" {{ block.shopify_attributes }}>
+            {% if block.settings.image != blank %}
               <img
                 alt="{{ block.settings.title | default: 'Brand activation' | escape }}"
-                class="ba-slide absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105{% unless forloop.first %} opacity-0{% endunless %}"
-                src="{{ img | image_url: width: 600 }}"
+                class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+                src="{{ block.settings.image | image_url: width: 600 }}"
                 width="600"
                 height="600"
                 loading="lazy"
               >
-            {%- endfor -%}
-
+            {% else %}
+              <div class="absolute inset-0 bg-white/[0.05] flex items-center justify-center">
+                <span class="text-white/30 text-sm">Image</span>
+              </div>
+            {% endif %}
             {% if block.settings.title != blank %}
-              <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-10">
+              <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                 <span class="text-white text-sm font-medium">{{ block.settings.title }}</span>
               </div>
             {% endif %}
-
-            {%- if imgs.size > 1 -%}
-              <div class="ba-dots absolute bottom-2 left-0 right-0 flex justify-center gap-1 z-20 opacity-0 group-hover:opacity-100 transition-opacity">
-                {%- for img in imgs -%}
-                  <span class="ba-dot block w-1.5 h-1.5 rounded-full bg-white/40 transition-colors{% if forloop.first %} !bg-white{% endif %}"></span>
-                {%- endfor -%}
-              </div>
-            {%- endif -%}
           </div>
         {% endif %}
       {% endfor %}
     </div>
   </div>
 </section>
-
-<script>
-(function () {
-  var INTERVAL = 2500;
-
-  function initCard(card) {
-    var slides = Array.from(card.querySelectorAll('.ba-slide'));
-    var dots = Array.from(card.querySelectorAll('.ba-dot'));
-    if (slides.length <= 1) return;
-
-    var current = 0;
-    var timer = null;
-
-    function goTo(idx) {
-      slides[current].classList.add('opacity-0');
-      dots[current] && dots[current].classList.remove('!bg-white');
-      current = (idx + slides.length) % slides.length;
-      slides[current].classList.remove('opacity-0');
-      dots[current] && dots[current].classList.add('!bg-white');
-    }
-
-    function start() {
-      if (timer) return;
-      timer = setInterval(function () { goTo(current + 1); }, INTERVAL);
-    }
-
-    function stop() {
-      clearInterval(timer);
-      timer = null;
-    }
-
-    card.addEventListener('mouseenter', start);
-    card.addEventListener('mouseleave', stop);
-  }
-
-  function init() {
-    document.querySelectorAll('[data-ba-card]').forEach(initCard);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-</script>
 
 {% schema %}
 {
@@ -173,27 +111,12 @@
   "blocks": [
     {
       "type": "image",
-      "name": "Image Card",
+      "name": "Image",
       "settings": [
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Image 1"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_2",
-          "label": "Image 2 (carousel)"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_3",
-          "label": "Image 3 (carousel)"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_4",
-          "label": "Image 4 (carousel)"
+          "label": "Image"
         },
         {
           "type": "text",
