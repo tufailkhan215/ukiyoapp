@@ -12,6 +12,163 @@
     max-width: 720px !important;
     position: fixed !important;
   }
+
+  /* ── DRAWER / MOBILE NAV ─────────────────────────────────────── */
+  .drawer-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 998;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .drawer-overlay.is-open { display: block; opacity: 1; }
+
+  .drawer {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;  /* full screen on mobile */
+    z-index: 999;
+    background: #000;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(.165,.84,.44,1);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  @media (min-width: 480px) {
+    .drawer {
+      left: auto;
+      width: 360px;
+    }
+  }
+  .drawer.is-open { transform: translateX(0); }
+
+  /* Header row: logo + close */
+  .drawer__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 24px 20px;
+  }
+  .drawer__logo {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: #fff;
+  }
+  .drawer__close {
+    background: none; border: none;
+    color: rgba(255,255,255,0.55);
+    font-size: 22px;
+    cursor: pointer;
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 6px;
+    transition: color 0.2s;
+    position: static; /* override any absolute */
+  }
+  .drawer__close:hover { color: #fff; }
+
+  /* Nav wrapper */
+  .drawer__nav {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding-bottom: 40px;
+  }
+
+  /* Top-level plain links (Home, Work, Gallery, About…) */
+  .drawer__nav > a {
+    display: block;
+    padding: 18px 24px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    transition: color 0.2s;
+  }
+  .drawer__nav > a:hover { color: rgba(255,255,255,0.65); }
+
+  /* Expandable group */
+  .drawer__nav-group {
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .drawer__nav-group:last-child {
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .drawer__nav-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+  }
+  .drawer__nav-toggle > a {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    pointer-events: none;
+  }
+
+  .drawer__nav-chevron {
+    color: rgba(255,255,255,0.45);
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+  }
+  .drawer__nav-group.is-open .drawer__nav-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* Children container */
+  .drawer__nav-children {
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(.165,.84,.44,1), opacity 0.25s ease;
+  }
+  .drawer__nav-children--collapsed { max-height: 0; opacity: 0; }
+  .drawer__nav-children--open      { max-height: 1400px; opacity: 1; }
+
+  /* "All Services →" */
+  .drawer__nav-child {
+    display: block;
+    padding: 10px 24px 10px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.2s;
+    margin-bottom: 4px;
+  }
+  .drawer__nav-child:hover { color: rgba(255,255,255,0.7); }
+
+  /* Category label */
+  .drawer__nav-category-label {
+    display: block;
+    padding: 4px 24px 2px 28px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.28);
+  }
+
+  /* Sub-items */
+  .drawer__nav-sub { padding-bottom: 12px; }
+  .drawer__nav-subchild {
+    display: block;
+    padding: 8px 24px 8px 28px;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.42);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .drawer__nav-subchild:hover { color: rgba(255,255,255,0.8); }
 </style>
 <nav class="ukiyo-nav fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent" role="navigation" aria-label="Main">
   <div class="max-w-[1800px] mx-auto px-6 lg:px-12">
@@ -307,7 +464,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <div class="drawer-overlay" data-drawer-overlay aria-hidden="true"></div>
 <aside class="drawer" id="drawer" data-drawer role="dialog" aria-label="Menu">
-  <button type="button" class="drawer__close" aria-label="Close menu" data-drawer-close>✕</button>
+  <div class="drawer__header">
+    <div class="drawer__logo">{{ section.settings.logo_text | default: 'UKIYO' }}</div>
+    <button type="button" class="drawer__close" aria-label="Close menu" data-drawer-close>✕</button>
+  </div>
   <nav class="drawer__nav">
     <a href="{{ routes.root_url }}">Home</a>
     {% if section.settings.show_wishlist_icon %}
@@ -373,25 +533,21 @@ document.addEventListener('DOMContentLoaded', function() {
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="drawer__nav-chevron"><path d="m6 9 6 6 6-6"/></svg>
       </button>
       <div class="drawer__nav-children drawer__nav-children--collapsed">
+        <a href="{{ link.url }}" class="drawer__nav-child" style="color:#6ba4e8;">All {{ link.title }} →</a>
         {% for block in section.blocks %}
           {% if block.type == 'dropdown_category' and block.settings.parent_handle == link.handle %}
-            {% if block.settings.category_title != blank %}
-              <span class="drawer__nav-category-label">{{ block.settings.category_title }}</span>
-            {% endif %}
             {% if block.settings.links_text != blank %}
-              <div class="drawer__nav-sub">
-                {% assign link_lines = block.settings.links_text | newline_to_br | split: '<br />' %}
-                {% for line in link_lines %}
-                  {% assign line_stripped = line | strip %}
-                  {% if line_stripped != '' %}
-                    {% assign parts = line_stripped | split: '|' %}
-                    {% assign label = parts[0] | strip %}
-                    {% assign url = parts[1] | strip %}
-                    {% if url == blank %}{% assign url = '#' %}{% endif %}
-                    <a href="{{ url }}" class="drawer__nav-subchild">{{ label }}</a>
-                  {% endif %}
-                {% endfor %}
-              </div>
+              {% assign link_lines = block.settings.links_text | newline_to_br | split: '<br />' %}
+              {% for line in link_lines %}
+                {% assign line_stripped = line | strip %}
+                {% if line_stripped != '' %}
+                  {% assign parts = line_stripped | split: '|' %}
+                  {% assign label = parts[0] | strip %}
+                  {% assign url = parts[1] | strip %}
+                  {% if url == blank %}{% assign url = '#' %}{% endif %}
+                  <a href="{{ url }}" class="drawer__nav-subchild">{{ label }}</a>
+                {% endif %}
+              {% endfor %}
             {% endif %}
           {% endif %}
         {% endfor %}
@@ -482,15 +638,55 @@ document.addEventListener('DOMContentLoaded', function() {
 
   {% comment %} adding new line start {% endcomment %}
    <script>
-  document.querySelectorAll('.drawer__nav-toggle').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var group = btn.closest('.drawer__nav-group');
-      var children = group.querySelector('.drawer__nav-children');
-      group.classList.toggle('is-open');
-      children.classList.toggle('drawer__nav-children--collapsed');
-      children.classList.toggle('drawer__nav-children--open');
+  (function () {
+    /* ── Drawer open/close ── */
+    var drawer  = document.getElementById('drawer');
+    var overlay = document.querySelector('[data-drawer-overlay]');
+    var trigger = document.querySelector('[data-drawer-trigger]');
+    var closeBtn = document.querySelector('[data-drawer-close]');
+
+    function openDrawer() {
+      drawer  && drawer.classList.add('is-open');
+      overlay && overlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDrawer() {
+      drawer  && drawer.classList.remove('is-open');
+      overlay && overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    trigger  && trigger.addEventListener('click', openDrawer);
+    closeBtn && closeBtn.addEventListener('click', closeDrawer);
+    overlay  && overlay.addEventListener('click', closeDrawer);
+
+    /* ── Accordion toggles ── */
+    document.querySelectorAll('.drawer__nav-toggle').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var group    = btn.closest('.drawer__nav-group');
+        var children = group.querySelector('.drawer__nav-children');
+        var isOpen   = group.classList.contains('is-open');
+
+        /* Close all others */
+        document.querySelectorAll('.drawer__nav-group.is-open').forEach(function(g) {
+          if (g !== group) {
+            g.classList.remove('is-open');
+            var c = g.querySelector('.drawer__nav-children');
+            if (c) {
+              c.classList.remove('drawer__nav-children--open');
+              c.classList.add('drawer__nav-children--collapsed');
+            }
+          }
+        });
+
+        group.classList.toggle('is-open', !isOpen);
+        if (children) {
+          children.classList.toggle('drawer__nav-children--open', !isOpen);
+          children.classList.toggle('drawer__nav-children--collapsed', isOpen);
+        }
+      });
     });
-  });
+  })();
 </script>
    {% comment %} adding new end  {% endcomment %}
 </aside>
