@@ -54,10 +54,10 @@
       ],
       "name": "Work Hero",
       "settings": {
-        "strap": "(Our Work)",
+        "strap": "",
         "title_line_1": "ACTIVATIONS &",
         "title_line_2": "CASE STUDIES",
-        "description": "Discover our diverse projects and activations tailored to meet your needs. We're committed to delivering innovative solutions that drive success."
+        "description": "Branding is crucial for establishing a unique identity and ensuring a company's success. We offer branding services that include social media content, partnerships, and written articles. With our experience in the U.S. and Asia, we help increase brand awareness, attract customers, and market your business to new opportunities."
       }
     },
     "brand_activation_bYyitf": {
@@ -604,6 +604,31 @@
         "accent_color": "#e84040"
       }
     },
+    "media_video_player_yRxWmc": {
+      "type": "media-video-player",
+      "name": "Media Video Player",
+      "settings": {
+        "layout_mode": "asymmetric",
+        "max_width": 1280,
+        "border_radius": 12,
+        "video_type": "youtube",
+        "video_url": "",
+        "video_file": "shopify://files/videos/Gen-3 Alpha 4281765804, FPV drone racing.mp4",
+        "poster_image": "shopify://shop_images/videoframe_1541.png",
+        "autoplay": false,
+        "loop": false,
+        "muted": false,
+        "show_badge": true,
+        "badge_text": "NEW",
+        "kicker": "",
+        "heading": "",
+        "subheading": "what's possible when craft meets technology.",
+        "tag_label": "",
+        "bg_color": "#0a0a0a",
+        "text_color": "#f5f5f5",
+        "accent_color": "#e84040"
+      }
+    },
     "our_impact_aMV3jN": {
       "type": "our-impact",
       "blocks": {
@@ -718,6 +743,7 @@
     "case_studies_bento_yCTkaq",
     "featured_projects_NAbVdw",
     "media_video_player_wEfDGH",
+    "media_video_player_yRxWmc",
     "our_impact_aMV3jN",
     "services_cta_nPTw36"
   ]
