@@ -379,7 +379,7 @@
 
         {%- comment %} NATIVE VIDEO {%- endcomment %}
         {%- if video_type == 'native' -%}
-          {%- if video_file -%}
+          {%- if video_file != blank -%}
             <video
               class="mvp-video-el"
               data-mvp-video
@@ -390,7 +390,9 @@
               preload="metadata"
               {% if poster_img %}poster="{{ poster_img | image_url: width: 1200 }}"{% endif %}
             >
-              <source src="{{ video_file }}" type="video/mp4">
+              {%- for source in video_file.sources -%}
+                <source src="{{ source.url }}" type="{{ source.mime_type }}">
+              {%- endfor -%}
             </video>
           {%- endif -%}
 
@@ -791,10 +793,10 @@
 },
     
     {
-      "type": "text",
+      "type": "video",
       "id": "video_file",
-      "label": "Hosted video URL",
-      "info": "Direct .mp4 URL. Used when Video type is Uploaded video."
+      "label": "Uploaded video",
+      "info": "Upload an MP4 from your Shopify Files. Used when Video type is Uploaded video."
     },
     {
       "type": "image_picker",
