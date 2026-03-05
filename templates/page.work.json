@@ -337,7 +337,12 @@
             "image": "shopify://shop_images/d45bbecb5e9a8d33d14f0dee170e73a2-xxlarge.webp",
             "category": "Entertainment",
             "title": "HARDROCK | CALIFORNIA",
-            "description": "Iconic entertainment venue content creation and brand activation."
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/3_33e3da64-e46c-4f72-8c0d-0576a9fd3a75.webp",
+            "gallery_image_3": "shopify://shop_images/1_3216522a-9d8c-4927-8d5a-ca0224fd0c57.webp",
+            "gallery_image_4": "shopify://shop_images/2_05492d9a-8f1f-4689-a300-5b0aef75b61e.webp",
+            "gallery_image_5": "shopify://shop_images/3_33e3da64-e46c-4f72-8c0d-0576a9fd3a75.webp",
+            "gallery_image_6": "shopify://shop_images/4_63ac179c-f0dd-4078-a060-0abab6c3d7a0.webp"
           }
         }
       },
