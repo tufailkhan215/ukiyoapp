@@ -1,0 +1,477 @@
+{% comment %}
+  Carousel Grid — generic reusable section.
+  Each block = one brand card with title + up to 8 carousel images.
+  Prev/Next arrows + dot indicators per card. Touch/swipe supported.
+{% endcomment %}
+
+{%- assign cg = section.id -%}
+
+<style>
+  #cg-{{ cg }} {
+    padding: {{ section.settings.section_padding }}px 0;
+    background: {{ section.settings.bg_color }};
+  }
+  #cg-{{ cg }} .cg-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  /* Header */
+  #cg-{{ cg }} .cg-header {
+    margin-bottom: 40px;
+  }
+  #cg-{{ cg }} .cg-title {
+    font-size: clamp(22px, 3vw, 36px);
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: {{ section.settings.heading_color }};
+    margin: 0 0 10px;
+    line-height: 1.1;
+  }
+  #cg-{{ cg }} .cg-subtitle {
+    font-size: 15px;
+    color: {{ section.settings.muted_color }};
+    max-width: 520px;
+    line-height: 1.6;
+    margin: 0;
+  }
+  /* Grid */
+  #cg-{{ cg }} .cg-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: {{ section.settings.gap }}px;
+  }
+  @media (min-width: 768px) {
+    #cg-{{ cg }} .cg-grid {
+      grid-template-columns: repeat({{ section.settings.columns }}, 1fr);
+    }
+  }
+  /* Card */
+  #cg-{{ cg }} .cg-card {
+    background: {{ section.settings.card_bg }};
+    border: 1px solid {{ section.settings.border_color }};
+    border-radius: {{ section.settings.border_radius }}px;
+    overflow: hidden;
+  }
+  #cg-{{ cg }} .cg-card-title {
+    padding: 12px 14px 11px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: {{ section.settings.card_title_color }};
+    line-height: 1.35;
+    border-bottom: 1px solid {{ section.settings.border_color }};
+  }
+  /* Carousel */
+  #cg-{{ cg }} .cg-carousel {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: {{ section.settings.aspect_ratio }};
+    background: #1a1a1a;
+    cursor: grab;
+  }
+  #cg-{{ cg }} .cg-carousel:active { cursor: grabbing; }
+  #cg-{{ cg }} .cg-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.42s cubic-bezier(.165,.84,.44,1);
+  }
+  #cg-{{ cg }} .cg-slide {
+    flex: 0 0 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  #cg-{{ cg }} .cg-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.55s cubic-bezier(.165,.84,.44,1);
+    pointer-events: none;
+    user-select: none;
+  }
+  #cg-{{ cg }} .cg-card:hover .cg-slide img {
+    transform: scale(1.04);
+  }
+  /* Arrows */
+  #cg-{{ cg }} .cg-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.15);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 20px;
+    line-height: 1;
+    padding: 0;
+    transition: background 0.2s, opacity 0.25s;
+    opacity: 0;
+    backdrop-filter: blur(4px);
+  }
+  #cg-{{ cg }} .cg-carousel:hover .cg-arrow { opacity: 1; }
+  #cg-{{ cg }} .cg-arrow:hover { background: rgba(0,0,0,0.75); }
+  #cg-{{ cg }} .cg-arrow--prev { left: 10px; }
+  #cg-{{ cg }} .cg-arrow--next { right: 10px; }
+  /* Dots */
+  #cg-{{ cg }} .cg-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    z-index: 10;
+  }
+  #cg-{{ cg }} .cg-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s, transform 0.2s;
+    flex-shrink: 0;
+  }
+  #cg-{{ cg }} .cg-dot.active {
+    background: #fff;
+    transform: scale(1.25);
+  }
+  /* Single image hides controls */
+  #cg-{{ cg }} .cg-carousel[data-count="1"] .cg-arrow,
+  #cg-{{ cg }} .cg-carousel[data-count="1"] .cg-dots,
+  #cg-{{ cg }} .cg-carousel[data-count="0"] .cg-arrow,
+  #cg-{{ cg }} .cg-carousel[data-count="0"] .cg-dots { display: none; }
+  /* Scroll reveal */
+  #cg-{{ cg }} .rv {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity .6s cubic-bezier(.4,0,.2,1), transform .6s cubic-bezier(.4,0,.2,1);
+  }
+  #cg-{{ cg }} .rv.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    #cg-{{ cg }} .rv { opacity: 1 !important; transform: none !important; transition: none !important; }
+  }
+</style>
+
+<section id="cg-{{ cg }}" aria-label="{{ section.settings.section_title | escape }}">
+  <div class="cg-inner">
+
+    {%- if section.settings.section_title != blank or section.settings.section_subtitle != blank -%}
+      <div class="cg-header rv">
+        {%- if section.settings.section_title != blank -%}
+          <h2 class="cg-title">{{ section.settings.section_title }}</h2>
+        {%- endif -%}
+        {%- if section.settings.section_subtitle != blank -%}
+          <p class="cg-subtitle">{{ section.settings.section_subtitle }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="cg-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'card' -%}
+
+          {%- assign cg_imgs = '' | split: '' -%}
+          {%- if block.settings.image_1 != blank -%}{%- assign cg_imgs = cg_imgs | concat: block.settings.image_1 -%}{%- endif -%}
+          {%- if block.settings.image_2 != blank -%}{%- assign cg_imgs = cg_imgs | concat: block.settings.image_2 -%}{%- endif -%}
+          {%- if block.settings.image_3 != blank -%}{%- assign cg_imgs = cg_imgs | concat: block.settings.image_3 -%}{%- endif -%}
+          {%- if block.settings.image_4 != blank -%}{%- assign cg_imgs = cg_imgs | concat: block.settings.image_4 -%}{%- endif -%}
+          {%- if block.settings.image_5 != blank -%}{%- assign cg_imgs = cg_imgs | concat: block.settings.image_5 -%}{%- endif -%}
+          {%- if block.settings.image_6 != blank -%}{%- assign cg_imgs = cg_imgs | concat: block.settings.image_6 -%}{%- endif -%}
+          {%- if block.settings.image_7 != blank -%}{%- assign cg_imgs = cg_imgs | concat: block.settings.image_7 -%}{%- endif -%}
+          {%- if block.settings.image_8 != blank -%}{%- assign cg_imgs = cg_imgs | concat: block.settings.image_8 -%}{%- endif -%}
+
+          <div class="cg-card rv" {{ block.shopify_attributes }}>
+
+            {%- if block.settings.title != blank -%}
+              <div class="cg-card-title">{{ block.settings.title }}</div>
+            {%- endif -%}
+
+            <div class="cg-carousel" data-cg-carousel data-count="{{ cg_imgs.size }}">
+              <div class="cg-track">
+                {%- for img in cg_imgs -%}
+                  <div class="cg-slide">
+                    <img
+                      src="{{ img | image_url: width: 800 }}"
+                      alt="{{ block.settings.title | default: 'Image' | escape }} {{ forloop.index }}"
+                      width="800"
+                      loading="lazy"
+                    >
+                  </div>
+                {%- else -%}
+                  <div class="cg-slide" style="background:#111;display:flex;align-items:center;justify-content:center;">
+                    <span style="color:rgba(255,255,255,0.18);font-size:12px;letter-spacing:.05em;">No image</span>
+                  </div>
+                {%- endfor -%}
+              </div>
+
+              {%- if cg_imgs.size > 1 -%}
+                <button class="cg-arrow cg-arrow--prev" aria-label="Previous slide">&#8249;</button>
+                <button class="cg-arrow cg-arrow--next" aria-label="Next slide">&#8250;</button>
+                <div class="cg-dots" role="tablist">
+                  {%- for img in cg_imgs -%}
+                    <button class="cg-dot{% if forloop.first %} active{% endif %}" role="tab" aria-label="Slide {{ forloop.index }}"></button>
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+            </div>
+
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function () {
+  var root = document.getElementById('cg-{{ cg }}');
+  if (!root) return;
+
+  /* ── Per-card carousel ── */
+  root.querySelectorAll('[data-cg-carousel]').forEach(function (carousel) {
+    var track = carousel.querySelector('.cg-track');
+    var dots  = Array.from(carousel.querySelectorAll('.cg-dot'));
+    var prev  = carousel.querySelector('.cg-arrow--prev');
+    var next  = carousel.querySelector('.cg-arrow--next');
+    var total = parseInt(carousel.getAttribute('data-count'), 10) || 0;
+    var cur   = 0;
+
+    if (total <= 1) return;
+
+    function goTo(idx) {
+      cur = (idx + total) % total;
+      track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+      dots.forEach(function (d, i) { d.classList.toggle('active', i === cur); });
+    }
+
+    if (prev) prev.addEventListener('click', function (e) { e.stopPropagation(); goTo(cur - 1); });
+    if (next) next.addEventListener('click', function (e) { e.stopPropagation(); goTo(cur + 1); });
+    dots.forEach(function (d, i) { d.addEventListener('click', function () { goTo(i); }); });
+
+    /* Touch swipe */
+    var sx = 0, sy = 0, dragging = false;
+    carousel.addEventListener('touchstart', function (e) {
+      sx = e.touches[0].clientX;
+      sy = e.touches[0].clientY;
+    }, { passive: true });
+    carousel.addEventListener('touchend', function (e) {
+      var dx = sx - e.changedTouches[0].clientX;
+      var dy = sy - e.changedTouches[0].clientY;
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) goTo(dx > 0 ? cur + 1 : cur - 1);
+    });
+  });
+
+  /* ── Scroll reveal ── */
+  var rvEls = root.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    rvEls.forEach(function (el, i) {
+      el.style.transitionDelay = Math.min(i * 0.07, 0.42) + 's';
+      io.observe(el);
+    });
+  } else {
+    rvEls.forEach(function (el) { el.classList.add('in'); });
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Carousel Grid",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Title",
+      "default": "Travel & Experience Brands"
+    },
+    {
+      "type": "textarea",
+      "id": "section_subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns (desktop)",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap between cards (px)",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "aspect_ratio",
+      "label": "Image aspect ratio",
+      "options": [
+        { "value": "1 / 1",  "label": "Square (1:1)" },
+        { "value": "4 / 3",  "label": "Landscape (4:3)" },
+        { "value": "3 / 2",  "label": "Photo (3:2)" },
+        { "value": "4 / 5",  "label": "Portrait (4:5)" },
+        { "value": "16 / 9", "label": "Widescreen (16:9)" }
+      ],
+      "default": "4 / 3"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Top / bottom padding (px)",
+      "min": 20,
+      "max": 120,
+      "step": 4,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Card corner radius (px)",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Section heading",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "muted_color",
+      "label": "Subtitle text",
+      "default": "#888888"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card title",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border / divider",
+      "default": "#e5e5e5"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Brand Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Brand name / card title"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "Image 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_4",
+          "label": "Image 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_5",
+          "label": "Image 5"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_6",
+          "label": "Image 6"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_7",
+          "label": "Image 7"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_8",
+          "label": "Image 8"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Carousel Grid",
+      "blocks": [
+        { "type": "card", "settings": { "title": "JI Restaurant | Bali Indonesia" } },
+        { "type": "card", "settings": { "title": "Satori | Maui" } },
+        { "type": "card", "settings": { "title": "Chai'ba | Bali Indonesia" } },
+        { "type": "card", "settings": { "title": "Two Hands | Austin Texas" } },
+        { "type": "card", "settings": { "title": "Dakan | California" } },
+        { "type": "card", "settings": { "title": "Hardrock | California" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
