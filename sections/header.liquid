@@ -247,6 +247,63 @@
     </div>
   </div>
 </nav>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('[data-dropdown]').forEach(function(dropdown) {
+    var trigger = dropdown.querySelector('[data-dropdown-trigger]');
+    var panel = dropdown.querySelector('[data-dropdown-panel]');
+    if (!trigger || !panel) return;
+
+    trigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      document.querySelectorAll('[data-dropdown]').forEach(function(other) {
+        if (other !== dropdown) {
+          var otherPanel = other.querySelector('[data-dropdown-panel]');
+          var otherTrigger = other.querySelector('[data-dropdown-trigger]');
+          if (otherPanel) {
+            otherPanel.style.opacity = '0';
+            otherPanel.style.visibility = 'hidden';
+            otherPanel.style.pointerEvents = 'none';
+            otherPanel.setAttribute('aria-hidden', 'true');
+          }
+          if (otherTrigger) otherTrigger.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      var isOpen = panel.style.visibility === 'visible';
+      if (isOpen) {
+        panel.style.opacity = '0';
+        panel.style.visibility = 'hidden';
+        panel.style.pointerEvents = 'none';
+        panel.setAttribute('aria-hidden', 'true');
+        trigger.setAttribute('aria-expanded', 'false');
+      } else {
+        panel.style.opacity = '1';
+        panel.style.visibility = 'visible';
+        panel.style.pointerEvents = 'auto';
+        panel.setAttribute('aria-hidden', 'false');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('[data-dropdown]') && !e.target.closest('.nav-dropdown-panel')) {
+      document.querySelectorAll('[data-dropdown-panel]').forEach(function(panel) {
+        panel.style.opacity = '0';
+        panel.style.visibility = 'hidden';
+        panel.style.pointerEvents = 'none';
+        panel.setAttribute('aria-hidden', 'true');
+      });
+      document.querySelectorAll('[data-dropdown-trigger]').forEach(function(t) {
+        t.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+});
+</script>
 
 <div class="drawer-overlay" data-drawer-overlay aria-hidden="true"></div>
 <aside class="drawer" id="drawer" data-drawer role="dialog" aria-label="Menu">
@@ -397,7 +454,7 @@
           {% for child_link in link.links %}
             {% if child_link.links.size > 0 %}
               {% for sub_link in child_link.links %}
-<a href="{{ sub_link.url }}" class="drawer__nav-subchild" style="display:block;">{{ sub_link.title }}</a>
+                <a href="{{ sub_link.url }}" class="drawer__nav-subchild">{{ sub_link.title }}</a>
               {% endfor %}
             {% endif %}
           {% endfor %}
