@@ -272,7 +272,11 @@
             "image": "shopify://shop_images/29.webp",
             "category": "Culinary",
             "title": "JI RESTAURANT | BALI INDONESIA",
-            "description": "Balinese fine dining experience captured through visual storytelling."
+            "description": "Balinese fine dining experience captured through visual storytelling.",
+            "gallery_image_2": "shopify://shop_images/6_2dbffab1-32cb-4cd9-b207-bf73c27caa35.webp",
+            "gallery_image_3": "shopify://shop_images/5_4fd104c7-932c-4c6a-b301-f964daee0a79.webp",
+            "gallery_image_4": "shopify://shop_images/4_0389aa3b-9062-4053-93fb-7a2288fdba1e.webp",
+            "gallery_image_5": "shopify://shop_images/2_bd10305b-93b2-47d2-a586-3076c246b91b.webp"
           }
         },
         "project_agJeiy": {
@@ -352,6 +356,7 @@
       "blocks": {
         "card_XYnpVR": {
           "type": "card",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/e-commerce-logo-aesthetic.png",
             "client": "Resiklo",
@@ -418,6 +423,7 @@
         "card_k8Az3p",
         "card_3kRgL4"
       ],
+      "disabled": true,
       "name": "Case Studies Bento",
       "settings": {
         "eyebrow": "[Case Studies]",
