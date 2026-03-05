@@ -285,7 +285,10 @@
             "image": "shopify://shop_images/DSCF9519_1.webp",
             "category": "Hospitality",
             "title": "SATORI | MAUI",
-            "description": "Hawaiian wellness retreat brand development and content creation."
+            "description": "Hawaiian wellness retreat brand development and content creation.",
+            "gallery_image_2": "shopify://shop_images/4_170d51ba-56cd-499b-846e-7c6e3dde0761.webp",
+            "gallery_image_3": "shopify://shop_images/3_635d13c7-e847-462d-821a-877f874e2f21.webp",
+            "gallery_image_4": "shopify://shop_images/2_ddcd511e-b849-4bb1-b275-ee227ab8b97a.webp"
           }
         },
         "project_ReWfVG": {
