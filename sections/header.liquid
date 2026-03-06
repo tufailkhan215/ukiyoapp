@@ -30,15 +30,14 @@
     bottom: 0;
     left: 0;
     z-index: 999;
-    /* Inner container holds the actual background — Apple's own workaround */
     background: transparent !important;
     -webkit-transform: translateX(100%);
     transform: translateX(100%);
-    -webkit-transition: -webkit-transform 0.35s cubic-bezier(.165,.84,.44,1);
-    transition: transform 0.35s cubic-bezier(.165,.84,.44,1);
-    /* Compositing layer fix — prevents iOS bleeding */
+    -webkit-transition: -webkit-transform 0.35s cubic-bezier(.165,.84,.44,1), visibility 0s linear 0.35s;
+    transition: transform 0.35s cubic-bezier(.165,.84,.44,1), visibility 0s linear 0.35s;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    visibility: hidden;       /* iOS won't paint it at all when hidden */
     overflow: hidden;
     display: -webkit-flex;
     display: flex;
@@ -51,6 +50,9 @@
   #drawer.is-open {
     -webkit-transform: translateX(0) !important;
     transform: translateX(0) !important;
+    visibility: visible !important;
+    -webkit-transition: -webkit-transform 0.35s cubic-bezier(.165,.84,.44,1), visibility 0s linear 0s !important;
+    transition: transform 0.35s cubic-bezier(.165,.84,.44,1), visibility 0s linear 0s !important;
   }
 
   /* Inner container: this is what actually holds the bg + scroll */
