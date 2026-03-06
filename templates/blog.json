@@ -313,6 +313,7 @@
         "step_7FLw6k",
         "step_9gwWNR"
       ],
+      "disabled": true,
       "name": "Media Visual Experience",
       "settings": {
         "layout_mode": "scroll",
@@ -386,6 +387,7 @@
         "media_item_3wMiTk",
         "media_item_ArjCG8"
       ],
+      "disabled": true,
       "name": "Media Zoom Effect",
       "settings": {
         "layout_mode": "asymmetric",
@@ -415,6 +417,7 @@
       "blocks": {
         "showcase_item_kNaTge": {
           "type": "showcase_item",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/ChatGPT_Image_Feb_26_2026_at_01_35_34_AM.png",
             "tag": "Branding",
@@ -471,6 +474,7 @@
         "showcase_item_9TNQP3",
         "showcase_item_8iqWLM"
       ],
+      "disabled": true,
       "name": "Media Showcase",
       "settings": {
         "interaction_mode": "asymmetric",
@@ -492,6 +496,7 @@
     },
     "media_video_player_aBL3Nz": {
       "type": "media-video-player",
+      "disabled": true,
       "name": "Media Video Player",
       "settings": {
         "layout_mode": "asymmetric",
@@ -499,7 +504,6 @@
         "border_radius": 12,
         "video_type": "youtube",
         "video_url": "https://www.youtube.com/watch?v=MSpiWmZW4Vk",
-        "video_file": "",
         "autoplay": false,
         "loop": false,
         "muted": false,
@@ -519,6 +523,7 @@
       "blocks": {
         "video_tile_HT7QQ3": {
           "type": "video_tile",
+          "disabled": true,
           "settings": {
             "title": "Neon Genesis: The Awakening",
             "caption": "In a future where humanity has merged with machines, one detective must solve the ultimate crime.",
@@ -616,6 +621,7 @@
         "video_tile_frrra7",
         "video_tile_gxD7ap"
       ],
+      "disabled": true,
       "name": "Video Showcase",
       "settings": {
         "eyebrow": "(WATCH IT IN ACTION)",
@@ -698,6 +704,7 @@
         "chapter_iNgChq",
         "chapter_6NYYWJ"
       ],
+      "disabled": true,
       "name": "Media Tutorial Video",
       "settings": {
         "eyebrow": "About This Product",
@@ -784,6 +791,7 @@
         "svg_item_g4Hd7P",
         "svg_item_dX4b7m"
       ],
+      "disabled": true,
       "name": "SVG Animation Showcase",
       "settings": {
         "eyebrow_text": "Case Study",
