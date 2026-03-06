@@ -513,40 +513,6 @@ document.addEventListener('DOMContentLoaded', function() {
     <button type="button" class="drawer__close" aria-label="Close menu" data-drawer-close>✕</button>
   </div>
   <nav class="drawer__nav">
-    <a href="{{ routes.root_url }}">Home</a>
-    {% if section.settings.show_wishlist_icon %}
-      <a href="{{ section.settings.wishlist_page_url | default: '/pages/wishlist' }}">Wishlist</a>
-    {% endif %}
-    {% if section.settings.show_account_icon %}
-      <a href="{{ routes.account_url }}">Account</a>
-    {% endif %}
-
-
-
-    {% comment %} {% for link in linklists[section.settings.menu].links %}
-      {% if link.links.size > 0 %}
-        <div class="drawer__nav-group">
-          <a href="{{ link.url }}">{{ link.title }}</a>
-          <div class="drawer__nav-children">
-            {% for child_link in link.links %}
-              <a href="{{ child_link.url }}" class="drawer__nav-child">{{ child_link.title }}</a>
-              {% if child_link.links.size > 0 %}
-                <div class="drawer__nav-sub">
-                  {% for sub_link in child_link.links %}
-                    <a href="{{ sub_link.url }}" class="drawer__nav-subchild">{{ sub_link.title }}</a>
-                  {% endfor %}
-                </div>
-              {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-      {% else %}
-        <a href="{{ link.url }}">{{ link.title }}</a>
-      {% endif %}
-    {% endfor %} {% endcomment %}
-
-
-
     {% comment %} new line starts {% endcomment %}
 {% for link in linklists[section.settings.menu].links %}
 
