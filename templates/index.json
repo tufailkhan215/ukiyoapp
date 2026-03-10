@@ -406,7 +406,7 @@
             "title": "AI Revenue Concierge Chatbot",
             "description": "Captures leads 24/7, converts DMs to sales",
             "price": "$5,000",
-            "roi": "+25% ROI"
+            "roi": "+10% ROI"
           }
         },
         "service_TUKTbq": {
@@ -414,8 +414,8 @@
           "settings": {
             "title": "Complete Brand Identity System",
             "description": "Logo, colors, typography, guidelines",
-            "price": "$10,000",
-            "roi": "+20% ROI"
+            "price": "$5,000",
+            "roi": "+25% ROI"
           }
         },
         "service_9CWjbY": {
@@ -423,8 +423,8 @@
           "settings": {
             "title": "High-Converting Website",
             "description": "Custom design, SEO optimized",
-            "price": "$8000",
-            "roi": "+25% ROI"
+            "price": "$3500",
+            "roi": "+20% ROI"
           }
         },
         "service_dzTg6b": {
@@ -432,7 +432,7 @@
           "settings": {
             "title": "Email Automation Flows",
             "description": "Welcome, abandoned cart, win-back",
-            "price": "$2,500",
+            "price": "$3,500",
             "roi": "+25% ROI"
           }
         },
@@ -441,7 +441,7 @@
           "settings": {
             "title": "Content Strategy + Calendar",
             "description": "90-day content plan with templates",
-            "price": "$4,000",
+            "price": "$3,500",
             "roi": "+15% ROI"
           }
         },
