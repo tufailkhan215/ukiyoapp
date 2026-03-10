@@ -126,6 +126,7 @@
         "statement_dkKzTj",
         "statement_KPGt4n"
       ],
+      "disabled": true,
       "name": "Big statement CHECK KAHALA",
       "settings": {}
     },
@@ -552,7 +553,7 @@
       "settings": {
         "strap": "(Selected Work)",
         "title_line1": "Recent",
-        "title_line2": "case studies",
+        "title_line2": "Case Studies",
         "view_all_text": "View all projects",
         "view_all_url": ""
       }
