@@ -196,7 +196,7 @@
             "icon": "trending_up",
             "metric": "$100K+",
             "card_title": "Revenue Growth",
-            "description": "Boosted sales for multiple clients from $2K to $200K+"
+            "description": "Boosted sales for multiple clients from $2K to $100K+"
           }
         },
         "card_JHTGqm": {
@@ -212,9 +212,9 @@
           "type": "card",
           "settings": {
             "icon": "target",
-            "metric": "+30%",
+            "metric": "+50%",
             "card_title": "Brand Elevation",
-            "description": "Rebranded organizations, achieving a 30% increase in engagement and, most importantly, a significant boost in sales."
+            "description": "Rebranded organizations, achieving a 50% increase in engagement and, most importantly, a significant boost in sales."
           }
         },
         "card_8TfyGx": {
@@ -482,8 +482,46 @@
         "subtitle": "We've partnered with some of the most recognizable brands in the world."
       }
     },
+    "contact_form_DKbNiK": {
+      "type": "contact-form",
+      "name": "Contact form",
+      "settings": {
+        "background_color": "#000000",
+        "badge": "(Get In Touch)",
+        "heading": "Send Us a Message",
+        "subtitle": "Fill out the form below and we'll get back to you within 24 hours.",
+        "label_name": "Your Name",
+        "placeholder_name": "John Doe",
+        "label_email": "Email Address",
+        "placeholder_email": "john@company.com",
+        "label_company": "Company",
+        "placeholder_company": "Your Company",
+        "label_budget": "Budget Range",
+        "budget_placeholder": "Select budget",
+        "budget_option_1": "$5,000 - $10,000",
+        "budget_option_2": "$10,000 - $25,000",
+        "budget_option_3": "$25,000 - $50,000",
+        "budget_option_4": "$50,000+",
+        "budget_option_5": "",
+        "label_message": "Tell us about your project",
+        "placeholder_message": "Describe your project goals, timeline, and any specific requirements...",
+        "button_text": "Send Message",
+        "success_message": "Thanks for contacting us. We'll get back to you as soon as possible.",
+        "quick_response_heading": "Quick Response Guaranteed",
+        "quick_response_text": "We respond to all inquiries within 24 hours. Most requests are answered same-day.",
+        "email": "hello.ukiyoprod@gmail.com",
+        "label_email_card": "Email",
+        "location": "Nevada County, California",
+        "label_location": "Location",
+        "hours": "Mon - Fri: 9AM - 6PM PST",
+        "label_hours": "Hours",
+        "testimonial_quote": "Working with Ukiyo transformed our brand. The results exceeded every expectation.",
+        "testimonial_author": "— Sarah K., CEO at TechStart"
+      }
+    },
     "dynamic_cta_GeqrTY": {
       "type": "dynamic-cta",
+      "disabled": true,
       "name": "Dynamic CTA",
       "settings": {
         "tagline": "(Ready to Rally Around Your Big Idea?)",
@@ -507,6 +545,7 @@
     "about_culture_code_xCqJnp",
     "about_team_yiFPU3",
     "marquee_logos_LK3BWa",
+    "contact_form_DKbNiK",
     "dynamic_cta_GeqrTY"
   ]
 }
