@@ -722,6 +722,7 @@
         "math_stat_QrQqkK",
         "math_stat_hbVLWC"
       ],
+      "disabled": true,
       "name": "Business Statistics",
       "settings": {
         "badge": "(Brutal Honesty Incoming)",
@@ -931,7 +932,7 @@
         "title_after": "Left This Month",
         "description": "We only take on 5 new clients per month to ensure premium quality. Once spots are filled, you'll have to wait until next month.",
         "countdown_label": "Offer Expires In",
-        "countdown_end": "2026-12-31 23:59:59",
+        "countdown_end": "2026-03-31 23:59:59",
         "cta_url": "https://tidycal.com/salesautomateiq/consultation",
         "cta_new_tab": true,
         "cta_text": "Claim Your Spot Now",
