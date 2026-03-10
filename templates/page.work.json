@@ -725,6 +725,7 @@
     },
     "services_cta_nPTw36": {
       "type": "services-cta",
+      "disabled": true,
       "name": "Services CTA",
       "settings": {
         "heading": "Ready to Build Your AI-Powered Brand Agent?",
