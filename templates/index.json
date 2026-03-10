@@ -406,7 +406,7 @@
             "title": "AI Revenue Concierge Chatbot",
             "description": "Captures leads 24/7, converts DMs to sales",
             "price": "$5,000",
-            "roi": "+10% ROI"
+            "roi": "+10% Average ROI Increase"
           }
         },
         "service_TUKTbq": {
@@ -415,7 +415,7 @@
             "title": "Complete Brand Identity System",
             "description": "Logo, colors, typography, guidelines",
             "price": "$5,000",
-            "roi": "+25% ROI"
+            "roi": "+12% Average ROI Increase"
           }
         },
         "service_9CWjbY": {
@@ -423,8 +423,8 @@
           "settings": {
             "title": "High-Converting Website",
             "description": "Custom design, SEO optimized",
-            "price": "$3500",
-            "roi": "+20% ROI"
+            "price": "$3,500",
+            "roi": "+20% Average ROI Increase"
           }
         },
         "service_dzTg6b": {
@@ -433,7 +433,7 @@
             "title": "Email Automation Flows",
             "description": "Welcome, abandoned cart, win-back",
             "price": "$3,500",
-            "roi": "+25% ROI"
+            "roi": "+18% Average ROI Increase"
           }
         },
         "service_8yfiPD": {
@@ -442,7 +442,7 @@
             "title": "Content Strategy + Calendar",
             "description": "90-day content plan with templates",
             "price": "$3,500",
-            "roi": "+15% ROI"
+            "roi": "+15% Average ROI Increase"
           }
         },
         "service_4waeGa": {
@@ -451,7 +451,7 @@
             "title": "1:1 Strategy Sessions",
             "description": "Monthly calls with our strategists",
             "price": "$1,500",
-            "roi": "+10% ROI"
+            "roi": "+11% ROI"
           }
         }
       },
