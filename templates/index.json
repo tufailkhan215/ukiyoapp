@@ -107,8 +107,8 @@
         "statement_dkKzTj": {
           "type": "statement",
           "settings": {
-            "label": "Our Mission",
-            "quote": "To empower bold brands with AI-driven innovation and creative excellence.",
+            "label": "What DIY growth is really costing you",
+            "quote": "Manual follow-up that leaks leads.\nInconsistent brand presentation across channels.\nContent bottlenecks that slow launches.\nNo clear system for turning attention into qualified conversations.",
             "subtext": "We exist to turn ambitious ideas into market defining realities."
           }
         },
@@ -126,7 +126,7 @@
         "statement_dkKzTj",
         "statement_KPGt4n"
       ],
-      "name": "Big statement",
+      "name": "Big statement CHECK KAHALA",
       "settings": {}
     },
     "transformation_xNQCz7": {
@@ -563,7 +563,7 @@
         "stat_hfWHxX": {
           "type": "stat",
           "settings": {
-            "value": "$50M+",
+            "value": "$30M+",
             "label": "Revenue Generated",
             "desc": "For clients through strategic campaigns"
           }
@@ -571,7 +571,7 @@
         "stat_QLWtpg": {
           "type": "stat",
           "settings": {
-            "value": "+200%",
+            "value": "+220%",
             "label": "Average Growth YOY",
             "desc": "Annual Recurring Revenue increase"
           }
@@ -579,7 +579,7 @@
         "stat_z4jHpN": {
           "type": "stat",
           "settings": {
-            "value": "98%",
+            "value": "94%",
             "label": "Client Retention",
             "desc": "Long-term partnerships"
           }
