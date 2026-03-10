@@ -52,8 +52,8 @@
           "settings": {
             "gradient": "gray3_gray5",
             "icon": "zap",
-            "stat": "340%",
-            "label": "Revenue growth"
+            "stat": "220%",
+            "label": "Yearly Revenue growth"
           }
         },
         "stat_DHxwHB": {
@@ -61,7 +61,7 @@
           "settings": {
             "gradient": "gray2_gray4",
             "icon": "users",
-            "stat": "98%",
+            "stat": "94%",
             "label": "Client retention"
           }
         },
@@ -70,7 +70,7 @@
           "settings": {
             "gradient": "white_gray3",
             "icon": "target",
-            "stat": "50M+",
+            "stat": "30M+",
             "label": "Revenue generated"
           }
         },
