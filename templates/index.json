@@ -405,7 +405,7 @@
           "settings": {
             "title": "AI Revenue Concierge Chatbot",
             "description": "Captures leads 24/7, converts DMs to sales",
-            "price": "$15,000",
+            "price": "$5,000",
             "roi": "+25% ROI"
           }
         },
@@ -414,7 +414,7 @@
           "settings": {
             "title": "Complete Brand Identity System",
             "description": "Logo, colors, typography, guidelines",
-            "price": "$25,000",
+            "price": "$10,000",
             "roi": "+20% ROI"
           }
         },
@@ -423,7 +423,7 @@
           "settings": {
             "title": "High-Converting Website",
             "description": "Custom design, SEO optimized",
-            "price": "$35,000",
+            "price": "$8000",
             "roi": "+25% ROI"
           }
         },
@@ -432,7 +432,7 @@
           "settings": {
             "title": "Email Automation Flows",
             "description": "Welcome, abandoned cart, win-back",
-            "price": "$12,000",
+            "price": "$2,500",
             "roi": "+25% ROI"
           }
         },
@@ -441,7 +441,7 @@
           "settings": {
             "title": "Content Strategy + Calendar",
             "description": "90-day content plan with templates",
-            "price": "$8,000",
+            "price": "$4,000",
             "roi": "+15% ROI"
           }
         },
@@ -450,7 +450,7 @@
           "settings": {
             "title": "1:1 Strategy Sessions",
             "description": "Monthly calls with our strategists",
-            "price": "$5,000",
+            "price": "$1,500",
             "roi": "+10% ROI"
           }
         }
