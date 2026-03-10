@@ -35,6 +35,41 @@
         "speed": 30
       }
     },
+    "about_cards_rafhfB": {
+      "type": "about-cards",
+      "blocks": {
+        "card_Kzfq8H": {
+          "type": "card",
+          "settings": {
+            "style": "light",
+            "badge": "(Brand Development)",
+            "title": "UKIYO PRODUCTIONS",
+            "paragraph_1": "At Ukiyo Productions, we create impactful content that drives real results. We've partnered with leaders like",
+            "paragraph_1_highlight": "Polaroid, SXSW, Coachella, Wandrd, and Adidas",
+            "paragraph_2": "We blend storytelling with strategy to capture attention and drive growth.",
+            "tags": "Branding\nContent\nStrategy"
+          }
+        },
+        "card_jtBcpW": {
+          "type": "card",
+          "settings": {
+            "style": "dark",
+            "badge": "(AI Solutions)",
+            "title": "AUTOMATEIQ",
+            "paragraph_1": "We leverage AI-driven automation and data optimizations to help brands work smarter and faster.",
+            "paragraph_1_highlight": "",
+            "paragraph_2": "Our technology adapts to the market, keeping you ahead of the competition.",
+            "tags": "AI\nAutomation\nData"
+          }
+        }
+      },
+      "block_order": [
+        "card_Kzfq8H",
+        "card_jtBcpW"
+      ],
+      "name": "About Cards",
+      "settings": {}
+    },
     "about_stats_PUgd3f": {
       "type": "about-stats",
       "blocks": {
@@ -91,6 +126,7 @@
         "stat_WbMgEc",
         "stat_986MnD"
       ],
+      "disabled": true,
       "name": "About Stats",
       "settings": {
         "background_color": "#000000",
@@ -98,41 +134,6 @@
         "title_before": "Numbers That",
         "title_gradient": "Matter"
       }
-    },
-    "about_cards_rafhfB": {
-      "type": "about-cards",
-      "blocks": {
-        "card_Kzfq8H": {
-          "type": "card",
-          "settings": {
-            "style": "light",
-            "badge": "(Brand Development)",
-            "title": "UKIYO PRODUCTIONS",
-            "paragraph_1": "At Ukiyo Productions, we create impactful content that drives real results. We've partnered with leaders like",
-            "paragraph_1_highlight": "Polaroid, SXSW, Coachella, Wandrd, and Adidas",
-            "paragraph_2": "We blend storytelling with strategy to capture attention and drive growth.",
-            "tags": "Branding\nContent\nStrategy"
-          }
-        },
-        "card_jtBcpW": {
-          "type": "card",
-          "settings": {
-            "style": "dark",
-            "badge": "(AI Solutions)",
-            "title": "AUTOMATEIQ",
-            "paragraph_1": "We leverage AI-driven automation and data optimizations to help brands work smarter and faster.",
-            "paragraph_1_highlight": "",
-            "paragraph_2": "Our technology adapts to the market, keeping you ahead of the competition.",
-            "tags": "AI\nAutomation\nData"
-          }
-        }
-      },
-      "block_order": [
-        "card_Kzfq8H",
-        "card_jtBcpW"
-      ],
-      "name": "About Cards",
-      "settings": {}
     },
     "about_our_process_q6MDRf": {
       "type": "about-our-process",
@@ -196,7 +197,7 @@
             "icon": "trending_up",
             "metric": "$100K+",
             "card_title": "Revenue Growth",
-            "description": "Boosted sales for multiple clients from $2K to $100K+"
+            "description": "Boosted sales for multiple clients from $2K to $50K a month."
           }
         },
         "card_JHTGqm": {
@@ -538,8 +539,8 @@
     "main",
     "services_hero_7xAyQh",
     "text_marquee_Hxikpp",
-    "about_stats_PUgd3f",
     "about_cards_rafhfB",
+    "about_stats_PUgd3f",
     "about_our_process_q6MDRf",
     "about_accomplish_clients_fwVyEM",
     "about_culture_code_xCqJnp",
