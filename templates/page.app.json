@@ -1,0 +1,393 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "contact_background": {
+      "type": "contact-background",
+      "settings": {}
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "contact_intro_BTX3N8": {
+      "type": "contact-intro",
+      "blocks": {
+        "stat_XTC8tF": {
+          "type": "stat",
+          "settings": {
+            "icon": "clock",
+            "value": "24hr",
+            "label": "Response Time"
+          }
+        },
+        "stat_BFmb9j": {
+          "type": "stat",
+          "settings": {
+            "icon": "circle_check_big",
+            "value": "98%",
+            "label": "Client Satisfaction"
+          }
+        },
+        "stat_XzjTiQ": {
+          "type": "stat",
+          "settings": {
+            "icon": "file_text",
+            "value": "150+",
+            "label": "Projects Delivered"
+          }
+        },
+        "stat_cDLDBk": {
+          "type": "stat",
+          "settings": {
+            "icon": "zap",
+            "value": "50M+",
+            "label": "Revenue Generated"
+          }
+        }
+      },
+      "block_order": [
+        "stat_XTC8tF",
+        "stat_BFmb9j",
+        "stat_XzjTiQ",
+        "stat_cDLDBk"
+      ],
+      "name": "Contact Intro",
+      "settings": {
+        "background_color": "rgba(0,0,0,0)",
+        "badge_text": "Let's Talk",
+        "badge_icon": "message_square",
+        "title_line1": "START YOUR",
+        "title_line2": "TRANSFORMATION",
+        "subtitle": "Ready to elevate your brand? Tell us about your project and let's create something extraordinary together."
+      }
+    },
+    "about_stats_hBLCWr": {
+      "type": "about-stats",
+      "blocks": {
+        "stat_qHyUhq": {
+          "type": "stat",
+          "settings": {
+            "gradient": "white_gray4",
+            "icon": "trending_up",
+            "stat": "Brand Strategy",
+            "label": "Comprehensive brand development from positioning to visual identity."
+          }
+        },
+        "stat_LBR37j": {
+          "type": "stat",
+          "settings": {
+            "gradient": "white_gray4",
+            "icon": "trending_up",
+            "stat": "AI Automation",
+            "label": "Custom workflows and AI solutions to scale your operations."
+          }
+        },
+        "stat_ByHPUw": {
+          "type": "stat",
+          "settings": {
+            "gradient": "gray3_gray5",
+            "icon": "zap",
+            "stat": "Content Production",
+            "label": "High-impact content from photography to full video production."
+          }
+        },
+        "stat_UqzLkd": {
+          "type": "stat",
+          "settings": {
+            "gradient": "gray2_gray4",
+            "icon": "users",
+            "stat": "98%",
+            "label": "Client retention"
+          }
+        },
+        "stat_CfPqRP": {
+          "type": "stat",
+          "settings": {
+            "gradient": "white_gray3",
+            "icon": "target",
+            "stat": "50M+",
+            "label": "Revenue generated"
+          }
+        }
+      },
+      "block_order": [
+        "stat_qHyUhq",
+        "stat_LBR37j",
+        "stat_ByHPUw",
+        "stat_UqzLkd",
+        "stat_CfPqRP"
+      ],
+      "disabled": true,
+      "name": "About Stats",
+      "settings": {
+        "background_color": "rgba(0,0,0,0)",
+        "badge": "(How We Can Help)",
+        "title_before": "Our",
+        "title_gradient": "Services"
+      }
+    },
+    "1771464952e166b3bd": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_82c6c13_dQ36tp": {
+          "type": "ai_gen_block_82c6c13",
+          "settings": {
+            "eyebrow_text": "HOW WE CAN HELP",
+            "heading_text": "Our Services",
+            "background_color": "#ffffff",
+            "eyebrow_color": "#6b7280",
+            "heading_color": "#111827",
+            "card_background": "#f9fafb",
+            "card_border_color": "#e5e7eb",
+            "card_title_color": "#111827",
+            "card_description_color": "#6b7280",
+            "icon_background": "#f3f4f6",
+            "icon_color": "#111827",
+            "card_1_title": "Brand Strategy",
+            "card_1_description": "Comprehensive brand development from positioning to visual identity.",
+            "card_1_icon": "globe",
+            "card_1_custom_svg": "",
+            "card_1_link": "",
+            "card_2_title": "AI Automation",
+            "card_2_description": "Custom workflows and AI solutions to scale your operations.",
+            "card_2_icon": "bolt",
+            "card_2_custom_svg": "",
+            "card_2_link": "",
+            "card_3_title": "Content Production",
+            "card_3_description": "High-impact content from photography to full video production.",
+            "card_3_icon": "document",
+            "card_3_custom_svg": "",
+            "card_3_link": "",
+            "card_4_title": "Growth Marketing",
+            "card_4_description": "Data-driven campaigns that drive real business results.",
+            "card_4_icon": "users",
+            "card_4_custom_svg": "",
+            "card_4_link": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_82c6c13_dQ36tp"
+      ],
+      "settings": {}
+    },
+    "contact_form_8JmRJE": {
+      "type": "contact-form",
+      "name": "Contact form",
+      "settings": {
+        "background_color": "rgba(0,0,0,0)",
+        "badge": "(Get In Touch)",
+        "heading": "Send Us a Message",
+        "subtitle": "Fill out the form below and we'll get back to you within 24 hours.",
+        "label_name": "Your Name",
+        "placeholder_name": "John Doe",
+        "label_email": "Email Address",
+        "placeholder_email": "john@company.com",
+        "label_company": "Company",
+        "placeholder_company": "Your Company",
+        "label_budget": "Budget Range",
+        "budget_placeholder": "Select budget",
+        "budget_option_1": "$5,000 - $10,000",
+        "budget_option_2": "$10,000 - $25,000",
+        "budget_option_3": "$25,000 - $50,000",
+        "budget_option_4": "$50,000+",
+        "budget_option_5": "",
+        "label_message": "Tell us about your project",
+        "placeholder_message": "Describe your project goals, timeline, and any specific requirements...",
+        "button_text": "Send Message",
+        "success_message": "Thanks for contacting us. We'll get back to you as soon as possible.",
+        "quick_response_heading": "Quick Response Guaranteed",
+        "quick_response_text": "We respond to all inquiries within 24 hours. Most requests are answered same-day.",
+        "email": "hello.ukiyoprod@gmail.com",
+        "label_email_card": "Email",
+        "location": "Nevada County, California",
+        "label_location": "Location",
+        "hours": "Mon - Fri: 9AM - 6PM PST",
+        "label_hours": "Hours",
+        "testimonial_quote": "Working with Ukiyo transformed our brand. The results exceeded every expectation.",
+        "testimonial_author": "— John. L | Designer and Brand Owner"
+      }
+    },
+    "contact_prefer_to_talk_xyijFn": {
+      "type": "contact-prefer-to-talk",
+      "disabled": true,
+      "name": "Prefer to Talk",
+      "settings": {
+        "background_color": "rgba(0,0,0,0)",
+        "heading": "Prefer to Talk?",
+        "description": "Schedule a free 30-minute consultation to discuss your project goals and how we can help bring your vision to life.",
+        "tidycal_path": "salesautomateiq/consultation",
+        "tidycal_script_url": "",
+        "embed_min_height": 600,
+        "placeholder_text": "Set TidyCal path in section settings (e.g. salesautomateiq/consultation)."
+      }
+    },
+    "177146424609ae6256": {
+      "type": "_blocks",
+      "custom_css": [],
+      "settings": {}
+    },
+    "marquee_logos_p6q6xL": {
+      "type": "marquee-logos",
+      "blocks": {
+        "logo_MkCyM6": {
+          "type": "logo",
+          "settings": {
+            "name": "NIKE"
+          }
+        },
+        "logo_47xHCR": {
+          "type": "logo",
+          "settings": {
+            "name": "SPOTIFY"
+          }
+        },
+        "logo_3ybTEM": {
+          "type": "logo",
+          "settings": {
+            "name": "APPLE"
+          }
+        },
+        "logo_BQtbQc": {
+          "type": "logo",
+          "settings": {
+            "name": "ADIDAS"
+          }
+        },
+        "logo_CNF4DX": {
+          "type": "logo",
+          "settings": {
+            "name": "WANDRD"
+          }
+        },
+        "logo_CgRzje": {
+          "type": "logo",
+          "settings": {
+            "name": "COACHELLA"
+          }
+        },
+        "logo_eB7Deb": {
+          "type": "logo",
+          "settings": {
+            "name": "SXSW"
+          }
+        },
+        "logo_feiYaB": {
+          "type": "logo",
+          "settings": {
+            "name": "POLAROID"
+          }
+        }
+      },
+      "block_order": [
+        "logo_MkCyM6",
+        "logo_47xHCR",
+        "logo_3ybTEM",
+        "logo_BQtbQc",
+        "logo_CNF4DX",
+        "logo_CgRzje",
+        "logo_eB7Deb",
+        "logo_feiYaB"
+      ],
+      "name": "Marquee Logos",
+      "settings": {
+        "badge_text": "Trusted By Industry Leaders",
+        "title_before": "Brands That",
+        "title_gradient": "Trust Us",
+        "subtitle": "We've partnered with some of the most recognizable brands in the world."
+      }
+    },
+    "gallery_icons_stats_EKhzMy": {
+      "type": "gallery-icons-stats",
+      "blocks": {
+        "card_iECVHR": {
+          "type": "card",
+          "settings": {
+            "gradient": "amber_orange",
+            "icon": "camera",
+            "title": "Brand Photography",
+            "description": "Capturing the essence of your brand through stunning visual storytelling that resonates with your audience.",
+            "stat1_number": "500+",
+            "stat1_label": "Shoots",
+            "stat2_number": "200+",
+            "stat2_label": "Brands"
+          }
+        },
+        "card_3Yz4aE": {
+          "type": "card",
+          "settings": {
+            "gradient": "purple_pink",
+            "icon": "video",
+            "title": "Video Production",
+            "description": "From concept to delivery, we create cinematic content that elevates your brand and drives engagement.",
+            "stat1_number": "200+",
+            "stat1_label": "Videos",
+            "stat2_number": "10M+",
+            "stat2_label": "Views"
+          }
+        },
+        "card_qXR8TX": {
+          "type": "card",
+          "settings": {
+            "gradient": "blue_cyan",
+            "icon": "palette",
+            "title": "Creative Direction",
+            "description": "Strategic creative vision that aligns every visual element with your brand story and business goals.",
+            "stat1_number": "100+",
+            "stat1_label": "Campaigns",
+            "stat2_number": "30%",
+            "stat2_label": "Avg ROI Lift"
+          }
+        },
+        "card_Wqf9mm": {
+          "type": "card",
+          "settings": {
+            "gradient": "emerald_teal",
+            "icon": "target",
+            "title": "Event Coverage",
+            "description": "Immersive event documentation that captures the energy, emotion, and impact of your activations.",
+            "stat1_number": "75+",
+            "stat1_label": "Events",
+            "stat2_number": "25+",
+            "stat2_label": "Countries"
+          }
+        }
+      },
+      "block_order": [
+        "card_iECVHR",
+        "card_3Yz4aE",
+        "card_qXR8TX",
+        "card_Wqf9mm"
+      ],
+      "name": "Gallery Icons Stats",
+      "settings": {
+        "badge": "(What We Do)",
+        "title_before": "Why Brands",
+        "title_gradient": "Choose Us",
+        "subtitle": "We transform brand visions into visual experiences that captivate, engage, and convert."
+      }
+    }
+  },
+  "order": [
+    "contact_background",
+    "main",
+    "contact_intro_BTX3N8",
+    "about_stats_hBLCWr",
+    "1771464952e166b3bd",
+    "contact_form_8JmRJE",
+    "gallery_icons_stats_EKhzMy",
+    "contact_prefer_to_talk_xyijFn",
+    "177146424609ae6256",
+    "marquee_logos_p6q6xL"
+  ]
+}
