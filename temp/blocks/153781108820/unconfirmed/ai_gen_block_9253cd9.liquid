@@ -1,6 +1,157 @@
+{% doc %}
+  @prompt
+    i need to embed code , <script>
+    (function(){function getUrlParams(){return new URLSearchParams(window.location.search)}function getCleanBaseUrl(){var u=window.location.href.split("?")[0];return u.endsWith("/")?u:u+"/"}function createIframe(){var params=getUrlParams(),baseUrl="https://app.followr.ai?wl=d2wtMTAwLTE3NzMyNjk0ODI3MDA=",iframeSrc=baseUrl,firstParam=true;
+      params.forEach(function(value, key){
+        if(!value) return;
+        iframeSrc += (firstParam ? (baseUrl.includes("?") ? "&" : "?") : "&");
+        iframeSrc += encodeURIComponent(key) + "=" + encodeURIComponent(value);
+        firstParam = false;
+      });
+      var iframe=document.createElement("iframe");iframe.id="branded-experience";iframe.src=iframeSrc;iframe.title="Ukiyoproductions";iframe.style.width="100%";iframe.style.height="100%";iframe.style.border="none";iframe.allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";iframe.loading="lazy";iframe.setAttribute("data-origin-url",getCleanBaseUrl());var container=document.getElementById("followr-iframe-container");container&&(container.innerHTML="",container.appendChild(iframe));iframe.onload=function(){try{var originUrl=getCleanBaseUrl();iframe.contentWindow.postMessage({type:"FOLLOWR_PARENT_URL",url:originUrl},"*")}catch(e){console.error("Error sending parent URL to iframe:",e)}}}document.addEventListener("DOMContentLoaded",createIframe)})();
+    </script>
+    <div id="followr-iframe-container" style="width: 100%; height: 100%;"></div>
+    
+    make this work
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-iframe-embed-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .ai-iframe-container-{{ ai_gen_id }} {
+    width: 100%;
+    height: {{ block.settings.iframe_height }}px;
+    min-height: 400px;
+    position: relative;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-iframe-container-{{ ai_gen_id }} {
+      height: {{ block.settings.mobile_iframe_height }}px;
+    }
+  }
+{% endstyle %}
+
+<followr-iframe-{{ ai_gen_id }}
+  class="ai-iframe-embed-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div id="followr-iframe-container-{{ ai_gen_id }}" class="ai-iframe-container-{{ ai_gen_id }}"></div>
+</followr-iframe-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    var containerId = 'followr-iframe-container-{{ ai_gen_id }}';
+    
+    function getUrlParams() {
+      return new URLSearchParams(window.location.search);
+    }
+    
+    function getCleanBaseUrl() {
+      var u = window.location.href.split("?")[0];
+      return u.endsWith("/") ? u : u + "/";
+    }
+    
+    function createIframe() {
+      var params = getUrlParams();
+      var baseUrl = "https://app.followr.ai?wl=d2wtMTAwLTE3NzMyNjk0ODI3MDA=";
+      var iframeSrc = baseUrl;
+      var firstParam = true;
+      
+      params.forEach(function(value, key) {
+        if (!value) return;
+        iframeSrc += (firstParam ? (baseUrl.includes("?") ? "&" : "?") : "&");
+        iframeSrc += encodeURIComponent(key) + "=" + encodeURIComponent(value);
+        firstParam = false;
+      });
+      
+      var iframe = document.createElement("iframe");
+      iframe.id = "branded-experience-{{ ai_gen_id }}";
+      iframe.src = iframeSrc;
+      iframe.title = "Ukiyoproductions";
+      iframe.style.width = "100%";
+      iframe.style.height = "100%";
+      iframe.style.border = "none";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+      iframe.loading = "lazy";
+      iframe.setAttribute("data-origin-url", getCleanBaseUrl());
+      
+      var container = document.getElementById(containerId);
+      if (container) {
+        container.innerHTML = "";
+        container.appendChild(iframe);
+      }
+      
+      iframe.onload = function() {
+        try {
+          var originUrl = getCleanBaseUrl();
+          iframe.contentWindow.postMessage({
+            type: "FOLLOWR_PARENT_URL",
+            url: originUrl
+          }, "*");
+        } catch (e) {
+          console.error("Error sending parent URL to iframe:", e);
+        }
+      };
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener("DOMContentLoaded", createIframe);
+    } else {
+      createIframe();
+    }
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Followr iframe embed",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "iframe_height",
+      "label": "Desktop height",
+      "min": 400,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "default": 800
+    },
+    {
+      "type": "range",
+      "id": "mobile_iframe_height",
+      "label": "Mobile height",
+      "min": 400,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "default": 600
+    }
+  ],
+  "presets": [
+    {
+      "name": "Followr iframe embed"
+    }
+  ]
+}
 {% endschema %}
