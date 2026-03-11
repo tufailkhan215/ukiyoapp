@@ -13,6 +13,25 @@
       "type": "contact-background",
       "settings": {}
     },
+    "blocks_gwgLCp": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_9253cd9_BAbmiK": {
+          "type": "ai_gen_block_9253cd9",
+          "settings": {
+            "desktop_width_percent": 100,
+            "iframe_height": 800,
+            "mobile_iframe_height": 600
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_9253cd9_BAbmiK"
+      ],
+      "name": "Custom code",
+      "settings": {}
+    },
     "main": {
       "type": "main-page",
       "disabled": true,
@@ -60,6 +79,7 @@
         "stat_XzjTiQ",
         "stat_cDLDBk"
       ],
+      "disabled": true,
       "name": "Contact Intro",
       "settings": {
         "background_color": "rgba(0,0,0,0)",
@@ -218,6 +238,77 @@
         "testimonial_author": "— John. L | Designer and Brand Owner"
       }
     },
+    "gallery_icons_stats_EKhzMy": {
+      "type": "gallery-icons-stats",
+      "blocks": {
+        "card_iECVHR": {
+          "type": "card",
+          "settings": {
+            "gradient": "amber_orange",
+            "icon": "camera",
+            "title": "Brand Photography",
+            "description": "Capturing the essence of your brand through stunning visual storytelling that resonates with your audience.",
+            "stat1_number": "500+",
+            "stat1_label": "Shoots",
+            "stat2_number": "200+",
+            "stat2_label": "Brands"
+          }
+        },
+        "card_3Yz4aE": {
+          "type": "card",
+          "settings": {
+            "gradient": "purple_pink",
+            "icon": "video",
+            "title": "Video Production",
+            "description": "From concept to delivery, we create cinematic content that elevates your brand and drives engagement.",
+            "stat1_number": "200+",
+            "stat1_label": "Videos",
+            "stat2_number": "10M+",
+            "stat2_label": "Views"
+          }
+        },
+        "card_qXR8TX": {
+          "type": "card",
+          "settings": {
+            "gradient": "blue_cyan",
+            "icon": "palette",
+            "title": "Creative Direction",
+            "description": "Strategic creative vision that aligns every visual element with your brand story and business goals.",
+            "stat1_number": "100+",
+            "stat1_label": "Campaigns",
+            "stat2_number": "30%",
+            "stat2_label": "Avg ROI Lift"
+          }
+        },
+        "card_Wqf9mm": {
+          "type": "card",
+          "settings": {
+            "gradient": "emerald_teal",
+            "icon": "target",
+            "title": "Event Coverage",
+            "description": "Immersive event documentation that captures the energy, emotion, and impact of your activations.",
+            "stat1_number": "75+",
+            "stat1_label": "Events",
+            "stat2_number": "25+",
+            "stat2_label": "Countries"
+          }
+        }
+      },
+      "block_order": [
+        "card_iECVHR",
+        "card_3Yz4aE",
+        "card_qXR8TX",
+        "card_Wqf9mm"
+      ],
+      "disabled": true,
+      "name": "Gallery Icons Stats",
+      "settings": {
+        "badge": "(What We Do)",
+        "title_before": "Why Brands",
+        "title_gradient": "Choose Us",
+        "subtitle": "We transform brand visions into visual experiences that captivate, engage, and convert."
+      }
+    },
     "contact_prefer_to_talk_xyijFn": {
       "type": "contact-prefer-to-talk",
       "disabled": true,
@@ -299,6 +390,7 @@
         "logo_eB7Deb",
         "logo_feiYaB"
       ],
+      "disabled": true,
       "name": "Marquee Logos",
       "settings": {
         "badge_text": "Trusted By Industry Leaders",
@@ -306,80 +398,11 @@
         "title_gradient": "Trust Us",
         "subtitle": "We've partnered with some of the most recognizable brands in the world."
       }
-    },
-    "gallery_icons_stats_EKhzMy": {
-      "type": "gallery-icons-stats",
-      "blocks": {
-        "card_iECVHR": {
-          "type": "card",
-          "settings": {
-            "gradient": "amber_orange",
-            "icon": "camera",
-            "title": "Brand Photography",
-            "description": "Capturing the essence of your brand through stunning visual storytelling that resonates with your audience.",
-            "stat1_number": "500+",
-            "stat1_label": "Shoots",
-            "stat2_number": "200+",
-            "stat2_label": "Brands"
-          }
-        },
-        "card_3Yz4aE": {
-          "type": "card",
-          "settings": {
-            "gradient": "purple_pink",
-            "icon": "video",
-            "title": "Video Production",
-            "description": "From concept to delivery, we create cinematic content that elevates your brand and drives engagement.",
-            "stat1_number": "200+",
-            "stat1_label": "Videos",
-            "stat2_number": "10M+",
-            "stat2_label": "Views"
-          }
-        },
-        "card_qXR8TX": {
-          "type": "card",
-          "settings": {
-            "gradient": "blue_cyan",
-            "icon": "palette",
-            "title": "Creative Direction",
-            "description": "Strategic creative vision that aligns every visual element with your brand story and business goals.",
-            "stat1_number": "100+",
-            "stat1_label": "Campaigns",
-            "stat2_number": "30%",
-            "stat2_label": "Avg ROI Lift"
-          }
-        },
-        "card_Wqf9mm": {
-          "type": "card",
-          "settings": {
-            "gradient": "emerald_teal",
-            "icon": "target",
-            "title": "Event Coverage",
-            "description": "Immersive event documentation that captures the energy, emotion, and impact of your activations.",
-            "stat1_number": "75+",
-            "stat1_label": "Events",
-            "stat2_number": "25+",
-            "stat2_label": "Countries"
-          }
-        }
-      },
-      "block_order": [
-        "card_iECVHR",
-        "card_3Yz4aE",
-        "card_qXR8TX",
-        "card_Wqf9mm"
-      ],
-      "name": "Gallery Icons Stats",
-      "settings": {
-        "badge": "(What We Do)",
-        "title_before": "Why Brands",
-        "title_gradient": "Choose Us",
-        "subtitle": "We transform brand visions into visual experiences that captivate, engage, and convert."
-      }
     }
   },
   "order": [
     "contact_background",
+    "blocks_gwgLCp",
     "main",
     "contact_intro_BTX3N8",
     "about_stats_hBLCWr",
