@@ -12,10 +12,10 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "subtitle": "Creative Branding Agency",
-        "headline_line1": "Brand strategy,",
-        "headline_line2": "content, and AI systems",
-        "headline_line3": "for brands ready to scale",
+        "subtitle": "CREATIVE GROWTH STUDIO",
+        "headline_line1": "We build the strategy,",
+        "headline_line2": "content, and systems brands need",
+        "headline_line3": "scale with intention.",
         "description": "We help founders and marketing teams sharpen positioning, create content that converts, and automate the work that slows growth.",
         "cta_primary_text": "Book a Discovery Call",
         "cta_primary_link": "#",
@@ -223,8 +223,8 @@
           "settings": {
             "icon": "zap",
             "title": "AI Automations",
-            "subtitle": "Scale intelligently",
-            "description": "Streamline operations with cutting-edge AI-powered solutions.",
+            "subtitle": "Scale with less friction",
+            "description": "Clarify your positioning, sharpen your message, and build the strategic foundation for stronger visibility and conversion.",
             "link_text": "Explore",
             "link": "https://ukiyoprod.com/pages/services-3"
           }
@@ -234,8 +234,8 @@
           "settings": {
             "icon": "target",
             "title": "Lead Generation",
-            "subtitle": "Grow consistently",
-            "description": "Data-driven strategies that convert prospects into customers.",
+            "subtitle": "Create steadier demand",
+            "description": "Implement AI-supported systems that reduce manual work, improve efficiency, and give your business more room to grow.",
             "link_text": "Explore",
             "link": "https://ukiyoprod.com/pages/services-3"
           }
@@ -245,8 +245,8 @@
           "settings": {
             "icon": "palette",
             "title": "Brand Identity",
-            "subtitle": "Stand out visually",
-            "description": "Distinctive visual systems that capture your brand essence.",
+            "subtitle": "Stand out with intention",
+            "description": "Build outreach and acquisition systems designed to attract qualified leads, start better conversations, and turn interest into revenue.",
             "link_text": "Explore",
             "link": "https://ukiyoprod.com/pages/services-3"
           }
@@ -267,8 +267,8 @@
           "settings": {
             "icon": "trending-up",
             "title": "Growth Marketing",
-            "subtitle": "Accelerate results",
-            "description": "Performance marketing that drives measurable business growth.",
+            "subtitle": "Create with purpose",
+            "description": "Build a visual identity that feels distinct, cohesive, and aligned with how your brand wants to be remembered.",
             "link_text": "Explore",
             "link": "https://ukiyoprod.com/pages/services-3"
           }
@@ -287,7 +287,7 @@
         "strap": "(What We Do)",
         "title_line1": "Services that",
         "title_line2": "drive growth",
-        "description": "We work with founders, CEOs, and leadership teams to shape defining ideas and build the strategy and systems that carry them through growth.",
+        "description": "work with founders, CEOs, and leadership teams to sharpen their positioning, strengthen their marketing, and build the strategy behind sustainable growth.",
         "explore_text": "Explore all services",
         "explore_url": "#"
       }
@@ -467,9 +467,9 @@
       "name": "Brutal Stack",
       "settings": {
         "badge": "(Build Your Bundle)",
-        "title_before": "Pick Your",
-        "title_gradient": "Power Stack",
-        "subtitle": "Select the services you need. The more you bundle, the more you save—up to",
+        "title_before": "Create Your",
+        "title_gradient": "Custom Service Stack",
+        "subtitle": "Choose the services that fit your goals. The more support you bundle, the more value you unlock with savings of up to",
         "save_line": "70% OFF!",
         "services_heading": "Select Services",
         "select_all_text": "Select All (70% OFF!)",
@@ -796,56 +796,67 @@
         "title_gradient": "praise"
       }
     },
-    "guarantee_37PUCE": {
-      "type": "guarantee",
+    "1773481531c299df1f": {
+      "type": "_blocks",
       "blocks": {
-        "guarantee_VDFQNb": {
-          "type": "guarantee",
+        "ai_gen_block_cceddf5_BJ9JXb": {
+          "type": "ai_gen_block_cceddf5",
           "settings": {
-            "icon": "shield",
-            "title": "Performance Promise",
-            "description": "If you don’t see measurable results within 90 days, we’ll continue working for free until you do. Your success is our priority."
-          }
-        },
-        "guarantee_mBqYnB": {
-          "type": "guarantee",
-          "settings": {
-            "icon": "refresh_cw",
-            "title": "Unlimited Revisions",
-            "description": "We work until you're 100% satisfied. Your vision is our mission."
-          }
-        },
-        "guarantee_FtYWxL": {
-          "type": "guarantee",
-          "settings": {
-            "icon": "clock",
-            "title": "On-Time Delivery",
-            "description": "We guarantee delivery on schedule or your next month is free."
-          }
-        },
-        "guarantee_9VgQ87": {
-          "type": "guarantee",
-          "settings": {
-            "icon": "award",
-            "title": "90-Day Success Commitment",
-            "description": "Our iron-clad guarantee means you get results or we keep working at no extra cost until you do."
-          }
+            "title": "WHY CLIENTS TRUST US",
+            "intro_text": "<p>Clear expectations. Thoughtful execution. No inflated promises.</p><p>We believe strong client relationships are built on transparency, responsiveness, and work that is delivered with care.</p>",
+            "feature_1_title": "Tailored Strategy",
+            "feature_1_description": "Every recommendation is shaped around your business, not pulled from a template.",
+            "feature_2_title": "Refined with You",
+            "feature_2_description": "We value collaboration and thoughtful revision so the final work feels aligned and effective.",
+            "feature_3_title": "Dependable Process",
+            "feature_3_description": "Clear timelines, organized execution, and consistent communication at every stage.",
+            "feature_4_title": "Built for Momentum",
+            "feature_4_description": "Our work is designed to support stronger positioning, better execution, and more sustainable growth over time.",
+            "desktop_width_percent": 100,
+            "max_width": 1200,
+            "section_padding": 60,
+            "text_alignment": "center",
+            "columns_desktop": 2,
+            "columns_tablet": 2,
+            "columns_mobile": "1",
+            "grid_gap": 30,
+            "grid_margin_top": 50,
+            "title_color": "#ffffff",
+            "title_size": 48,
+            "title_weight": 700,
+            "title_letter_spacing": 0,
+            "title_transform": "uppercase",
+            "title_margin": 30,
+            "intro_color": "#999999",
+            "intro_size": 18,
+            "intro_line_height": 1.6,
+            "intro_max_width": 700,
+            "header_spacing": 40,
+            "card_background": "#111111",
+            "card_hover_background": "#1a1a1a",
+            "card_border_color": "#333333",
+            "card_hover_border_color": "#555555",
+            "card_border_width": 1,
+            "card_border_radius": 8,
+            "card_padding": 30,
+            "card_hover_lift": -4,
+            "card_title_color": "#ffffff",
+            "card_title_size": 20,
+            "card_title_weight": 600,
+            "card_title_margin": 15,
+            "card_description_color": "#999999",
+            "card_description_size": 15,
+            "card_description_line_height": 1.5,
+            "background_color": "#000000",
+            "text_color": "#ffffff"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "guarantee_VDFQNb",
-        "guarantee_mBqYnB",
-        "guarantee_FtYWxL",
-        "guarantee_9VgQ87"
+        "ai_gen_block_cceddf5_BJ9JXb"
       ],
-      "name": "Guarantee",
-      "settings": {
-        "strap": "(Risk Reversal)",
-        "title_before": "Zero Risk.",
-        "title_gradient": "All Reward.",
-        "description": "We're so confident in our results that we put our money where our mouth is.",
-        "badge_text": "90-Day Iron-Clad Guarantee"
-      }
+      "settings": {}
     },
     "lead_magnet_iCNhMM": {
       "type": "lead-magnet",
@@ -883,10 +894,10 @@
       "name": "Lead Magnet",
       "settings": {
         "strap": "(Free Resources)",
-        "title_before": "Get a",
-        "title_gradient": "Free Discovery Consultation",
-        "title_after": "(Valued at $2,000)",
-        "description": "We invite you to a personalized session where we explore your biggest challenges and uncover tailored solutions to help you succeed.",
+        "title_before": "Book a",
+        "title_gradient": "complimentary strategy session",
+        "title_after": "with Ukiyo",
+        "description": "A focused working session to identify growth opportunities, uncover friction points, and explore the strategy, content, or systems that could move your brand forward.",
         "privacy_text": "Why are we giving this away for free? Because we genuinely want to see you win. While we are a for-profit business, we believe in building strong, lasting relationships. That’s why our clients typically work with us for over 25+ months, because trust and results matter most.",
         "form_action_url": "",
         "form_heading": "Want A FREE Consultation?",
@@ -1032,7 +1043,7 @@
     "stats_Fyj9UD",
     "business_statistics_zWJ3bN",
     "testimonials_prH64B",
-    "guarantee_37PUCE",
+    "1773481531c299df1f",
     "lead_magnet_iCNhMM",
     "urgency_83eAUA",
     "about_4mCeyC",
