@@ -1,6 +1,681 @@
+{% doc %}
+  @prompt
+    Generate a section with below content. 
+    
+    Create a section titled “WHY CLIENTS TRUST US”.
+    
+    Intro text:
+    “Clear expectations. Thoughtful execution. No inflated promises.
+    
+    We believe strong client relationships are built on transparency, responsiveness, and work that is delivered with care.”
+    
+    Remove these existing items:
+    - Performance Promise
+    - Unlimited Revisions
+    - On-Time Delivery
+    - 90-Day Success Commitment
+    
+    Add these 4 new items as feature/value cards:
+    1. Tailored Strategy — Every recommendation is shaped around your business, not pulled from a template.
+    2. Refined with You — We value collaboration and thoughtful revision so the final work feels aligned and effective.
+    3. Dependable Process — Clear timelines, organized execution, and consistent communication at every stage.
+    4. Built for Momentum — Our work is designed to support stronger positioning, better execution, and more sustainable growth over time.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-trust-section-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: {{ block.settings.section_padding }}px 20px;
+    background-color: {{ block.settings.background_color }};
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-trust-section__container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.max_width }}px;
+    margin: 0 auto;
+  }
+
+  .ai-trust-section__header-{{ ai_gen_id }} {
+    text-align: {{ block.settings.text_alignment }};
+    margin-bottom: {{ block.settings.header_spacing }}px;
+  }
+
+  .ai-trust-section__title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: {{ block.settings.title_weight }};
+    color: {{ block.settings.title_color }};
+    margin: 0 0 {{ block.settings.title_margin }}px 0;
+    letter-spacing: {{ block.settings.title_letter_spacing }}px;
+    text-transform: {{ block.settings.title_transform }};
+  }
+
+  .ai-trust-section__intro-{{ ai_gen_id }} {
+    font-size: {{ block.settings.intro_size }}px;
+    line-height: {{ block.settings.intro_line_height }};
+    color: {{ block.settings.intro_color }};
+    max-width: {{ block.settings.intro_max_width }}px;
+    margin: 0 auto;
+  }
+
+  .ai-trust-section__grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat({{ block.settings.columns_desktop }}, 1fr);
+    gap: {{ block.settings.grid_gap }}px;
+    margin-top: {{ block.settings.grid_margin_top }}px;
+  }
+
+  .ai-trust-section__card-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_background }};
+    border: {{ block.settings.card_border_width }}px solid {{ block.settings.card_border_color }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    padding: {{ block.settings.card_padding }}px;
+    transition: all 0.3s ease;
+  }
+
+  .ai-trust-section__card-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.card_hover_background }};
+    border-color: {{ block.settings.card_hover_border_color }};
+    transform: translateY({{ block.settings.card_hover_lift }}px);
+  }
+
+  .ai-trust-section__card-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.card_title_size }}px;
+    font-weight: {{ block.settings.card_title_weight }};
+    color: {{ block.settings.card_title_color }};
+    margin: 0 0 {{ block.settings.card_title_margin }}px 0;
+  }
+
+  .ai-trust-section__card-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.card_description_size }}px;
+    line-height: {{ block.settings.card_description_line_height }};
+    color: {{ block.settings.card_description_color }};
+    margin: 0;
+  }
+
+  @media screen and (max-width: 989px) {
+    .ai-trust-section__grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_tablet }}, 1fr);
+    }
+
+    .ai-trust-section__title-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.title_size }}px * 0.8);
+    }
+
+    .ai-trust-section__intro-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.intro_size }}px * 0.9);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-trust-section__grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_mobile }}, 1fr);
+    }
+
+    .ai-trust-section__title-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.title_size }}px * 0.7);
+    }
+
+    .ai-trust-section__intro-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.intro_size }}px * 0.85);
+    }
+
+    .ai-trust-section-{{ ai_gen_id }} {
+      padding: calc({{ block.settings.section_padding }}px * 0.6) 16px;
+    }
+  }
+{% endstyle %}
+
+<trust-section-{{ ai_gen_id }} class="ai-trust-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-trust-section__container-{{ ai_gen_id }}">
+    <div class="ai-trust-section__header-{{ ai_gen_id }}">
+      {% if block.settings.title != blank %}
+        <h2 class="ai-trust-section__title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
+      {% endif %}
+      
+      {% if block.settings.intro_text != blank %}
+        <div class="ai-trust-section__intro-{{ ai_gen_id }}">
+          {{ block.settings.intro_text }}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="ai-trust-section__grid-{{ ai_gen_id }}">
+      {% if block.settings.feature_1_title != blank %}
+        <div class="ai-trust-section__card-{{ ai_gen_id }}">
+          <h3 class="ai-trust-section__card-title-{{ ai_gen_id }}">{{ block.settings.feature_1_title }}</h3>
+          {% if block.settings.feature_1_description != blank %}
+            <p class="ai-trust-section__card-description-{{ ai_gen_id }}">{{ block.settings.feature_1_description }}</p>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if block.settings.feature_2_title != blank %}
+        <div class="ai-trust-section__card-{{ ai_gen_id }}">
+          <h3 class="ai-trust-section__card-title-{{ ai_gen_id }}">{{ block.settings.feature_2_title }}</h3>
+          {% if block.settings.feature_2_description != blank %}
+            <p class="ai-trust-section__card-description-{{ ai_gen_id }}">{{ block.settings.feature_2_description }}</p>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if block.settings.feature_3_title != blank %}
+        <div class="ai-trust-section__card-{{ ai_gen_id }}">
+          <h3 class="ai-trust-section__card-title-{{ ai_gen_id }}">{{ block.settings.feature_3_title }}</h3>
+          {% if block.settings.feature_3_description != blank %}
+            <p class="ai-trust-section__card-description-{{ ai_gen_id }}">{{ block.settings.feature_3_description }}</p>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if block.settings.feature_4_title != blank %}
+        <div class="ai-trust-section__card-{{ ai_gen_id }}">
+          <h3 class="ai-trust-section__card-title-{{ ai_gen_id }}">{{ block.settings.feature_4_title }}</h3>
+          {% if block.settings.feature_4_description != blank %}
+            <p class="ai-trust-section__card-description-{{ ai_gen_id }}">{{ block.settings.feature_4_description }}</p>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</trust-section-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class TrustSection{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.setupAccessibility();
+      }
+
+      setupAccessibility() {
+        const cards = this.querySelectorAll('.ai-trust-section__card-{{ ai_gen_id }}');
+        cards.forEach((card) => {
+          card.setAttribute('role', 'article');
+        });
+      }
+    }
+
+    customElements.define('trust-section-{{ ai_gen_id }}', TrustSection{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Why clients trust us",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "WHY CLIENTS TRUST US"
+    },
+    {
+      "type": "richtext",
+      "id": "intro_text",
+      "label": "Intro text",
+      "default": "<p>Clear expectations. Thoughtful execution. No inflated promises.</p><p>We believe strong client relationships are built on transparency, responsiveness, and work that is delivered with care.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Feature 1"
+    },
+    {
+      "type": "text",
+      "id": "feature_1_title",
+      "label": "Title",
+      "default": "Tailored Strategy"
+    },
+    {
+      "type": "textarea",
+      "id": "feature_1_description",
+      "label": "Description",
+      "default": "Every recommendation is shaped around your business, not pulled from a template."
+    },
+    {
+      "type": "header",
+      "content": "Feature 2"
+    },
+    {
+      "type": "text",
+      "id": "feature_2_title",
+      "label": "Title",
+      "default": "Refined with You"
+    },
+    {
+      "type": "textarea",
+      "id": "feature_2_description",
+      "label": "Description",
+      "default": "We value collaboration and thoughtful revision so the final work feels aligned and effective."
+    },
+    {
+      "type": "header",
+      "content": "Feature 3"
+    },
+    {
+      "type": "text",
+      "id": "feature_3_title",
+      "label": "Title",
+      "default": "Dependable Process"
+    },
+    {
+      "type": "textarea",
+      "id": "feature_3_description",
+      "label": "Description",
+      "default": "Clear timelines, organized execution, and consistent communication at every stage."
+    },
+    {
+      "type": "header",
+      "content": "Feature 4"
+    },
+    {
+      "type": "text",
+      "id": "feature_4_title",
+      "label": "Title",
+      "default": "Built for Momentum"
+    },
+    {
+      "type": "textarea",
+      "id": "feature_4_description",
+      "label": "Description",
+      "default": "Our work is designed to support stronger positioning, better execution, and more sustainable growth over time."
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Content max width",
+      "min": 800,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section padding",
+      "min": 20,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Columns on desktop",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "columns_tablet",
+      "label": "Columns on tablet",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "label": "Grid gap",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "grid_margin_top",
+      "label": "Grid top spacing",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Title style"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Size",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "title_weight",
+      "label": "Weight",
+      "min": 300,
+      "max": 900,
+      "step": 100,
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "title_letter_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 5,
+      "step": 0.5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "title_transform",
+      "label": "Text transform",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "range",
+      "id": "title_margin",
+      "label": "Bottom margin",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Intro text style"
+    },
+    {
+      "type": "color",
+      "id": "intro_color",
+      "label": "Color",
+      "default": "#999999"
+    },
+    {
+      "type": "range",
+      "id": "intro_size",
+      "label": "Size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "intro_line_height",
+      "label": "Line height",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "default": 1.6
+    },
+    {
+      "type": "range",
+      "id": "intro_max_width",
+      "label": "Max width",
+      "min": 400,
+      "max": 1000,
+      "step": 50,
+      "unit": "px",
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "header_spacing",
+      "label": "Header bottom spacing",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Background",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "card_hover_background",
+      "label": "Hover background",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Border color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "card_hover_border_color",
+      "label": "Hover border color",
+      "default": "#555555"
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "label": "Padding",
+      "min": 15,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "card_hover_lift",
+      "label": "Hover lift",
+      "min": -10,
+      "max": 0,
+      "step": 1,
+      "unit": "px",
+      "default": -4
+    },
+    {
+      "type": "header",
+      "content": "Card title style"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "card_title_size",
+      "label": "Size",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_title_weight",
+      "label": "Weight",
+      "min": 300,
+      "max": 900,
+      "step": 100,
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "card_title_margin",
+      "label": "Bottom margin",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Card description style"
+    },
+    {
+      "type": "color",
+      "id": "card_description_color",
+      "label": "Color",
+      "default": "#999999"
+    },
+    {
+      "type": "range",
+      "id": "card_description_size",
+      "label": "Size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "card_description_line_height",
+      "label": "Line height",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "default": 1.5
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why clients trust us"
+    }
+  ]
+}
 {% endschema %}
