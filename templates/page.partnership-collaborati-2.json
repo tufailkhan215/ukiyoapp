@@ -438,42 +438,42 @@
           "type": "step",
           "settings": {
             "title": "Opportunity Mapping",
-            "description": "Define your ideal partner profile, objectives, and success criteria"
+            "description": "Clarify what partnerships should do for the business and what a strong-fit partner looks like."
           }
         },
         "step_GejF3z": {
           "type": "step",
           "settings": {
             "title": "Partner Research",
-            "description": "AI-driven discovery of potential partners in your space and adjacent markets"
+            "description": "Build a focused shortlist of aligned brands, creators, businesses, or collaborators."
           }
         },
         "step_MxmXGH": {
           "type": "step",
           "settings": {
             "title": "Outreach Strategy",
-            "description": "Craft compelling partnership proposals that highlight mutual value"
+            "description": "Shape the angle, offer, and communication so outreach feels intentional and compelling."
           }
         },
         "step_NfX4qg": {
           "type": "step",
           "settings": {
             "title": "Negotiation",
-            "description": "Structure win-win partnership terms with clear expectations"
+            "description": "Support terms, expectations, structure, and mutual value."
           }
         },
         "step_78eaHH": {
           "type": "step",
           "settings": {
             "title": "Launch Planning",
-            "description": "Develop joint go-to-market strategy and activation timeline"
+            "description": "Turn interest into an actual activation plan with next steps and ownership."
           }
         },
         "step_zEyLVB": {
           "type": "step",
           "settings": {
             "title": "Ongoing Management",
-            "description": "Nurture relationships and optimize for long-term success"
+            "description": "Keep momentum up, follow through, and refine the partnership pipeline over time."
           }
         }
       },
