@@ -394,42 +394,42 @@
           "type": "feature",
           "settings": {
             "title": "Brand Voice Training",
-            "description": "AI agents trained on your unique tone, values, and messaging guidelines for consistent communication"
+            "description": "Responses shaped around your tone, values, and messaging standards."
           }
         },
         "feature_CGK8jh": {
           "type": "feature",
           "settings": {
             "title": "Multi-Channel Deployment",
-            "description": "Deploy across website, email, social media, Instagram DMs, and messaging platforms seamlessly"
+            "description": "Deploy where your audience already reaches out, from your website to social and messaging platforms."
           }
         },
         "feature_WRfYgM": {
           "type": "feature",
           "settings": {
             "title": "Knowledge Base Integration",
-            "description": "Connected to your products, services, FAQs, and company information for accurate responses"
+            "description": "Ground answers in your products, services, FAQs, policies, and internal knowledge."
           }
         },
         "feature_Nz6XTd": {
           "type": "feature",
           "settings": {
             "title": "Continuous Learning",
-            "description": "Agents improve over time based on interactions, feedback, and new information"
+            "description": "Improve performance over time through real interactions, feedback, and updates."
           }
         },
         "feature_aYey6f": {
           "type": "feature",
           "settings": {
             "title": "Human Handoff",
-            "description": "Seamless escalation to human agents when complex situations require personal touch"
+            "description": "Escalate seamlessly when a conversation needs a person."
           }
         },
         "feature_wBVcMj": {
           "type": "feature",
           "settings": {
             "title": "Analytics Dashboard",
-            "description": "Real-time insights into agent performance, customer satisfaction, and conversation trends"
+            "description": "See conversation trends, agent performance, and where the system is creating value."
           }
         }
       },
@@ -455,42 +455,42 @@
           "type": "step",
           "settings": {
             "title": "Discovery Workshop",
-            "description": "Deep dive into your brand voice, values, customer journey, and business objectives"
+            "description": "Get clear on your brand voice, customer journey, offers, and business goals."
           }
         },
         "step_GejF3z": {
           "type": "step",
           "settings": {
             "title": "Knowledge Mapping",
-            "description": "Document all products, services, FAQs, policies, and brand guidelines comprehensively"
+            "description": "Organize the products, services, FAQs, policies, and source material the agent needs to perform well."
           }
         },
         "step_MxmXGH": {
           "type": "step",
           "settings": {
             "title": "Agent Development",
-            "description": "Build and train your custom AI agent with your unique brand DNA and personality"
+            "description": "Build and train a custom AI agent around your business, tone, and workflows."
           }
         },
         "step_NfX4qg": {
           "type": "step",
           "settings": {
             "title": "Testing & Refinement",
-            "description": "Rigorous testing across scenarios, edge cases, and real customer interactions"
+            "description": "Pressure-test conversations, edge cases, and handoff behavior before launch."
           }
         },
         "step_78eaHH": {
           "type": "step",
           "settings": {
             "title": "Deployment & Integration",
-            "description": "Launch across your chosen channels with full monitoring and support"
+            "description": "Launch across your chosen channels with the right integrations in place."
           }
         },
         "step_zEyLVB": {
           "type": "step",
           "settings": {
             "title": "Continuous Optimization",
-            "description": "Ongoing improvement based on real interactions, feedback, and performance data"
+            "description": "Refine the system using live conversations, feedback, and performance data."
           }
         }
       },
@@ -517,12 +517,12 @@
           "type": "plan",
           "settings": {
             "name": "Starter",
-            "description": "Perfect for small businesses getting started with AI automation",
+            "description": "A strong entry point for brands ready to implement their first custom AI agent.",
             "price": "$2,500",
             "period": "/ one-time setup",
             "badge": "Most Popular",
-            "features_text": "Single AI agent\nWebsite deployment\nBasic knowledge base (up to 50 FAQs)\nStandard response templates\nEmail support\n30-day optimization period",
-            "cta_text": "Get Started",
+            "features_text": "1 custom AI agent\nWebsite integration\nFoundational knowledge base (up to 50 FAQs)\nCore response framework\nEmail support\n30-day refinement period",
+            "cta_text": "Start Your Build",
             "cta_url": "#",
             "cta_new_tab": true
           }
@@ -531,12 +531,12 @@
           "type": "plan",
           "settings": {
             "name": "Professional",
-            "description": "Ideal for growing businesses ready to scale their customer experience",
+            "description": "Built for growing brands ready to expand customer support, lead handling, and day-to-day efficiency with a more capable AI system.",
             "price": "$5,000",
             "period": "/ one-time setup",
             "badge": "Most Popular",
-            "features_text": "Advanced AI agent with personality\nWebsite + Instagram DM deployment\nComprehensive knowledge base (unlimited)\nCustom conversation flows\nCRM integration\nAnalytics dashboard\nPriority support\n90-day optimization period",
-            "cta_text": "Get Started",
+            "features_text": "Advanced custom AI agent with brand-trained behavior\nWebsite + Instagram DM integration\nExpanded knowledge base\nCustom conversation flows\nCRM integration\nPerformance dashboard\nPriority support\n90-day optimization period",
+            "cta_text": "Start Your Build",
             "cta_url": "#",
             "cta_new_tab": true
           }
@@ -545,12 +545,12 @@
           "type": "plan",
           "settings": {
             "name": "Enterprise",
-            "description": "For established brands requiring complete AI ecosystem",
+            "description": "Designed for established brands that need a more integrated AI system across multiple channels, teams, and customer touchpoints.",
             "price": "$12,000",
             "period": "/ one-time setup",
             "badge": "",
-            "features_text": "Multiple AI agents\nAll channels (Web, IG, FB, Email, SMS)\nAdvanced integrations (Shopify, HubSpot, etc.)\nCustom training & fine-tuning\nDedicated account manager\nWhite-glove onboarding\n24/7 priority support\nQuarterly strategy reviews",
-            "cta_text": "Get Started",
+            "features_text": "Multiple custom AI agents\nMulti-channel deployment (Web, Instagram, Facebook, Email, SMS)\nAdvanced integrations (Shopify, HubSpot, and more)\nCustom training and refinement\nDedicated account support\nWhite-glove onboarding\nPriority support\nQuarterly strategy reviews",
+            "cta_text": "Start Your Build",
             "cta_url": "",
             "cta_new_tab": true
           }
@@ -564,9 +564,9 @@
       "name": "Services Plan",
       "settings": {
         "strap": "(Investment)",
-        "title_before": "Choose Your",
-        "title_gradient": "Plan",
-        "description": "Select the package that best fits your needs. All plans include our signature quality and support.",
+        "title_before": "Choose the right",
+        "title_gradient": "level of support",
+        "description": "Select the package that matches your current stage, goals, and operational needs. Every plan includes thoughtful setup, tailored implementation, and ongoing support.",
         "footer_before": "Need ongoing support? Add",
         "footer_highlight": "$500/mo",
         "footer_after": "for Ongoing optimization, updates, and support"
