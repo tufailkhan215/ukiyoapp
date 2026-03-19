@@ -294,7 +294,7 @@
       "name": "Services Rich Text",
       "settings": {
         "strap": "(Our Approach)",
-        "body": "<p>Our team has successfully partnered with industry leaders across the globe, delivering impactful activations and collaborations. Through our work, we have built strong relationships that enhance brand visibility and drive results.</p>"
+        "body": "<p>We do not treat partnerships like random networking. We approach them like a growth channel that needs the same level of strategy, positioning, and management as any other part of the business.</p>"
       }
     },
     "two_column_text_zCXJVY": {
@@ -303,49 +303,49 @@
         "feature_VD783b": {
           "type": "feature",
           "settings": {
-            "text": "Partnership opportunity research & identification"
+            "text": "Partnership opportunity research and identification"
           }
         },
         "feature_rVJdJK": {
           "type": "feature",
           "settings": {
-            "text": "Brand alignment analysis"
+            "text": "Campaign co-creation support"
           }
         },
         "feature_DpUeXd": {
           "type": "feature",
           "settings": {
-            "text": "Outreach strategy & templates"
+            "text": "Brand alignment analysis"
           }
         },
         "feature_cKMdiL": {
           "type": "feature",
           "settings": {
-            "text": "Negotiation support & contract review"
+            "text": "Performance tracking and reporting"
           }
         },
         "feature_3UUBba": {
           "type": "feature",
           "settings": {
-            "text": "Campaign co-creation assistance"
+            "text": "Outreach strategy and messaging"
           }
         },
         "feature_zHPdUx": {
           "type": "feature",
           "settings": {
-            "text": "Performance tracking & reporting"
+            "text": "Ongoing relationship management"
           }
         },
         "feature_FpyCGk": {
           "type": "feature",
           "settings": {
-            "text": "Quarterly partnership reviews"
+            "text": "Negotiation support"
           }
         },
         "feature_TUayC4": {
           "type": "feature",
           "settings": {
-            "text": "Relationship nurturing playbooks"
+            "text": "Strategic review and refinement"
           }
         }
       },
@@ -377,42 +377,42 @@
           "type": "feature",
           "settings": {
             "title": "Partner Discovery",
-            "description": "AI-powered identification of ideal partnership opportunities aligned with your brand"
+            "description": "A focused list of partnership opportunities that actually fit your audience, goals, and positioning."
           }
         },
         "feature_CGK8jh": {
           "type": "feature",
           "settings": {
             "title": "Strategic Fit Analysis",
-            "description": "Deep evaluation of brand alignment, audience overlap, and value potential"
+            "description": "A clearer view of who is worth pursuing and why."
           }
         },
         "feature_WRfYgM": {
           "type": "feature",
           "settings": {
             "title": "Negotiation Support",
-            "description": "Expert guidance through partnership terms, contracts, and agreements"
+            "description": "Help shaping offers, terms, expectations, and collaboration structure."
           }
         },
         "feature_Nz6XTd": {
           "type": "feature",
           "settings": {
             "title": "Collaboration Framework",
-            "description": "Structured approach to joint initiatives, campaigns, and content creation"
+            "description": "A more organized path from idea to execution."
           }
         },
         "feature_aYey6f": {
           "type": "feature",
           "settings": {
             "title": "Relationship Management",
-            "description": "Ongoing nurturing and optimization of partnership portfolio"
+            "description": "Support keeping conversations active, organized, and moving."
           }
         },
         "feature_wBVcMj": {
           "type": "feature",
           "settings": {
             "title": "Performance Tracking",
-            "description": "Clear metrics and reporting on partnership outcomes and ROI"
+            "description": "Visibility into what partnerships are producing so the strategy can improve over time."
           }
         }
       },
