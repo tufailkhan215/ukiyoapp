@@ -208,7 +208,7 @@
             "icon": "clock",
             "title": "Time Drain",
             "metric": "40hrs/week",
-            "description": "Average time spent on repetitive customer inquiries",
+            "description": "Lost to repeated questions, follow-ups, and manual routing.",
             "phrase": ""
           }
         },
@@ -218,7 +218,7 @@
             "icon": "users",
             "title": "Inconsistent Voice",
             "metric": "67%",
-            "description": "Of customers notice brand voice inconsistencies",
+            "description": "Of customers notice when messaging feels off-brand or uneven.",
             "phrase": ""
           }
         },
@@ -228,7 +228,7 @@
             "icon": "trending_down",
             "title": "Missed Opportunities",
             "metric": "$50K+",
-            "description": "Lost annually from slow response times",
+            "description": "Can disappear each year when response time is too slow.",
             "phrase": ""
           }
         }
@@ -244,7 +244,7 @@
         "badge": "(The Challenge)",
         "title_before": "Problems We",
         "title_gradient": "Solve",
-        "subtitle": "These common pain points are holding businesses back. We fix them."
+        "subtitle": "Repetitive communication creates drag, inconsistency, and missed opportunities. We build agents that reduce that friction."
       }
     },
     "icon_boxes_TzdEHE": {
@@ -257,7 +257,7 @@
             "title": "24/7 Availability",
             "metric": "",
             "description": "",
-            "phrase": "Never miss a customer"
+            "phrase": "Stay responsive around the clock."
           }
         },
         "box_MrqLQm": {
@@ -267,17 +267,17 @@
             "title": "Consistent Messaging",
             "metric": "",
             "description": "",
-            "phrase": "Perfect brand voice every time"
+            "phrase": "Keep communication aligned at every touchpoint."
           }
         },
         "box_bmGBXq": {
           "type": "box",
           "settings": {
             "icon": "trending_up",
-            "title": "Scale Instantly",
+            "title": "Built to Scale",
             "metric": "",
             "description": "",
-            "phrase": "Handle 1000s of conversations"
+            "phrase": "Handle higher conversation volume with more efficiency."
           }
         }
       },
@@ -292,7 +292,7 @@
         "badge": "(The Solution)",
         "title_before": "How We",
         "title_gradient": "Deliver",
-        "subtitle": "Proven strategies that get real results for your business."
+        "subtitle": "AI agents built to help your business respond faster, communicate more consistently, and handle growth with less friction."
       }
     },
     "rich_text_EEHbYG": {
@@ -311,7 +311,7 @@
       "name": "Services Rich Text",
       "settings": {
         "strap": "(Our Approach)",
-        "body": "<p>We leverage AI-driven automation and data optimizations to help brands work smarter and faster. Say goodbye to tedious tasks and hello to real-time insights that fuel your growth.</p>"
+        "body": "<p>We combine brand strategy, conversation design, and AI automation to build agents that are actually useful not generic bots with canned replies. Every system is trained around your business, then refined through real interactions so it becomes more accurate, more helpful, and more valuable over time.</p>"
       }
     },
     "two_column_text_zCXJVY": {
@@ -326,43 +326,43 @@
         "feature_rVJdJK": {
           "type": "feature",
           "settings": {
-            "text": "Brand voice and tone calibration"
+            "text": "Conversation flow design"
           }
         },
         "feature_DpUeXd": {
           "type": "feature",
           "settings": {
-            "text": "Knowledge base setup and integration"
+            "text": "Brand voice and tone calibration"
           }
         },
         "feature_cKMdiL": {
           "type": "feature",
           "settings": {
-            "text": "Multi-channel deployment (Website + Social)"
+            "text": "Real-time analytics dashboard"
           }
         },
         "feature_3UUBba": {
           "type": "feature",
           "settings": {
-            "text": "Real-time analytics dashboard"
+            "text": "Knowledge base setup and integration"
           }
         },
         "feature_zHPdUx": {
           "type": "feature",
           "settings": {
-            "text": "Conversation flow optimization"
+            "text": "Performance reporting"
           }
         },
         "feature_FpyCGk": {
           "type": "feature",
           "settings": {
-            "text": "Monthly performance reports"
+            "text": "Website and social deployment"
           }
         },
         "feature_TUayC4": {
           "type": "feature",
           "settings": {
-            "text": "Dedicated support team"
+            "text": "Launch support and refinement"
           }
         }
       },
