@@ -928,7 +928,7 @@
         "badge": "(Powered By)",
         "title_before": "Tech",
         "title_gradient": "Stack",
-        "subtitle": "Industry-leading tools that power your success. Click to learn more.",
+        "subtitle": "Flexible tools selected around your workflow, channels, and integration needs.",
         "footer_text": "Click on any tool to learn more"
       }
     },
@@ -979,7 +979,7 @@
         "badge": "(Delivery)",
         "title_before": "Project",
         "title_gradient": "Timeline",
-        "subtitle": "A clear roadmap from kickoff to launch. No surprises, just results.",
+        "subtitle": "A clear path from kickoff to launch, built for speed without sacrificing quality.",
         "guarantee_title": "On-Time Guarantee",
         "guarantee_subtitle": "Or your next month is free"
       }
@@ -989,10 +989,10 @@
       "name": "Hard Truth",
       "settings": {
         "badge": "(The Hard Truth)",
-        "title_line1": "F*CK AROUND",
-        "title_line2": "& FIND OUT",
+        "title_line1": "The real cost of the",
+        "title_line2": "wrong AI setup",
         "subtitle": "The real cost of \"saving money\" on your brand.",
-        "subtitle_bold": "Spoiler: it's expensive.",
+        "subtitle_bold": "A cheaper setup often costs more in missed leads, weak performance, and rebuilds.",
         "budget_label": "F*ck Around",
         "budget_title": "The \"Budget\" Route",
         "budget_cost": "$500 - $2K",
