@@ -500,11 +500,11 @@
           "type": "plan",
           "settings": {
             "name": "Discovery",
-            "description": "For brands starting their partnership journey",
+            "description": "For brands that need a clearer starting point and a stronger partnership direction.",
             "price": "$1,500",
             "period": "/ per month",
             "badge": "",
-            "features_text": "Partner opportunity research\nUp to 10 partner prospects/month\nBasic outreach templates\nMonthly strategy call\nPerformance tracking spreadsheet",
+            "features_text": "Partnership opportunity research\nUp to 10 qualified prospects per month\nBasic outreach templates\nMonthly strategy call\nTracking spreadsheet",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -514,11 +514,11 @@
           "type": "plan",
           "settings": {
             "name": "Growth",
-            "description": "For brands ready to scale their partnership program",
+            "description": "For brands ready to actively build a partnership pipeline with more hands-on support.",
             "price": "$3,500",
             "period": "/ per month",
             "badge": "Most Popular",
-            "features_text": "Comprehensive partner discovery\nUp to 25 partner prospects/month\nCustom outreach campaigns\nCustom outreach campaigns\nNegotiation support\nCampaign co-creation assistance\nBi-weekly strategy calls\nAnalytics dashboard\nDedicated partnership manager",
+            "features_text": "Deeper partner discovery\nUp to 25 qualified prospects per month\nCustom outreach campaigns\nNegotiation support\nCampaign co-creation assistance\nBi-weekly strategy calls\nAnalytics dashboard\nDedicated partnership support",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -528,11 +528,11 @@
           "type": "plan",
           "settings": {
             "name": "Scale",
-            "description": "For brands building a partnership ecosystem",
+            "description": "For brands building partnerships into an ongoing growth channel.",
             "price": "$7,500",
             "period": "/ per month",
             "badge": "",
-            "features_text": "Full-service partnership management\nUnlimited partner prospects\nContract negotiation & review\nJoint campaign management\nInfluencer coordination\nEvent partnership support\nWeekly strategy sessions\nExecutive reporting",
+            "features_text": "Full-service partnership management\nExpanded partner pipeline support\nContract and negotiation support\nJoint campaign planning\nInfluencer and partner coordination\nEvent partnership support\nWeekly strategy sessions\nExecutive-level reporting",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -547,9 +547,9 @@
       "name": "Services Plan",
       "settings": {
         "strap": "(Investment)",
-        "title_before": "Choose Your",
-        "title_gradient": "Plan",
-        "description": "Select the package that best fits your needs. All plans include our signature quality and support.",
+        "title_before": "Choose your level of",
+        "title_gradient": "Support",
+        "description": "Select the package that fits your current stage, goals, and partnership capacity.",
         "footer_before": "",
         "footer_highlight": "",
         "footer_after": ""
