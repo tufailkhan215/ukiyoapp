@@ -1004,7 +1004,7 @@
         "investment_title": "The \"Investment\" Route",
         "investment_cost": "$5K - $25K+",
         "investment_time": "4-8 weeks",
-        "investment_bullets": "Custom design that makes competitors jealous\nActually converts visitors into customers\nWorks flawlessly on every device\nSEO optimized from day one\nScales with your business for years",
+        "investment_bullets": "Custom build around your brand and workflows\nBetter accuracy, routing, and customer experience\nCleaner launch with testing and refinement\nBuilt to scale as your volume and complexity grow\nScales with your business for years",
         "investment_foot_label": "Return",
         "investment_foot_value": "ROI: 300-1000% in first year",
         "math_heading": "The Math Don't Lie",
@@ -1020,9 +1020,9 @@
         "quote_attr": "— Every experienced business owner ever",
         "six_months_heading": "6 Months Later...",
         "six_months_budget_title": "The \"Budget\" Client",
-        "six_months_budget_bullets": "On their 3rd designer\nLost 2 major deals due to \"unprofessional website\"\nStill explaining why the contact form doesn't work\nConsidering just using a Wix template",
+        "six_months_budget_bullets": "Still patching issues\nStill answering the same questions manually\nStill working around limitations\nConsidering just using a Wix template",
         "six_months_investment_title": "The \"Investment\" Client",
-        "six_months_investment_bullets": "Closed 15 new clients directly from website\nFeatured in industry publication\nCompetitors asking \"who did your branding?\"\nPlanning expansion into new market",
+        "six_months_investment_bullets": "Handling more conversations with less team effort\nStaying on-brand across channels\nSupporting growth with a system that actually works\nPlanning expansion into new market",
         "cta_heading": "Ready to do it right the first time?",
         "cta_text": "Let's Talk",
         "cta_url": "https://tidycal.com/salesautomateiq"
@@ -1033,7 +1033,7 @@
       "name": "Services CTA",
       "settings": {
         "heading": "Ready to Build Your AI-Powered Brand Agent?",
-        "description": "Book a free consultation to discuss how we can automate your customer interactions while maintaining your unique brand voice.",
+        "description": "Book a free consultation to discuss the right AI setup for your brand, team, and growth goals.",
         "cta_text": "Book Free Consultation",
         "cta_url": "https://tidycal.com/salesautomateiq/consultation",
         "cta_new_tab": true
