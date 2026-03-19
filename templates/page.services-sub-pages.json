@@ -997,7 +997,7 @@
         "budget_title": "The \"Budget\" Route",
         "budget_cost": "$500 - $2K",
         "budget_time": "2 weeks",
-        "budget_bullets": "Generic template that looks like everyone else\nDeveloper ghosts you after 3 revisions\nSite breaks on mobile (discovered by your biggest client)\nSEO? Never heard of her\nYou rebuild it in 6 months anyway",
+        "budget_bullets": "Generic template that looks like everyone else\nShallow logic and weak handoff behavior\nBreaks down under real conversation volume\nUsually needs rework once the business grows\nYou rebuild it in 6 months anyway",
         "budget_foot_label": "True Cost",
         "budget_foot_value": "$15K+ (time wasted, lost clients, rebuild)",
         "investment_label": "Do It Right",
