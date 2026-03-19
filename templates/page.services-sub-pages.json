@@ -588,7 +588,7 @@
           "type": "use_case",
           "settings": {
             "title": "Customer Support Automation",
-            "tagline": "Never Miss a Customer Question Again",
+            "tagline": "Resolve common questions quickly without stretching your team.",
             "url": "#",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -598,7 +598,7 @@
           "type": "use_case",
           "settings": {
             "title": "Sales Lead Qualification",
-            "tagline": "Only Talk to Ready-to-Buy Prospects",
+            "tagline": "Filter and route stronger-fit inquiries before they reach your team.",
             "url": "#",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -608,7 +608,7 @@
           "type": "use_case",
           "settings": {
             "title": "Product Recommendations",
-            "tagline": "Show Customers Exactly What They Want",
+            "tagline": "Guide customers toward the right fit with faster, clearer suggestions.",
             "url": "",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -618,7 +618,7 @@
           "type": "use_case",
           "settings": {
             "title": "Appointment Scheduling",
-            "tagline": "Fill Your Calendar on Autopilot",
+            "tagline": "Make booking easier and reduce back-and-forth.",
             "url": "",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -628,7 +628,7 @@
           "type": "use_case",
           "settings": {
             "title": "FAQ & Knowledge Base",
-            "tagline": "Instant Answers, Zero Wait Time",
+            "tagline": "Deliver quick answers with less wait time.",
             "url": "",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -638,7 +638,7 @@
           "type": "use_case",
           "settings": {
             "title": "Onboarding Assistance",
-            "tagline": "Guide Every Customer to Success",
+            "tagline": "Guide new customers with more clarity and consistency.",
             "url": "",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -648,7 +648,7 @@
           "type": "use_case",
           "settings": {
             "title": "Order Status Updates",
-            "tagline": "Proactive Communication, Happy Customers",
+            "tagline": "Keep customers informed without extra manual work.",
             "url": "",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -658,7 +658,7 @@
           "type": "use_case",
           "settings": {
             "title": "Feedback Collection",
-            "tagline": "Capture Insights at the Perfect Moment",
+            "tagline": "Capture insight while the experience is still fresh.",
             "url": "",
             "cta_text": "Explore",
             "open_new_tab": false
