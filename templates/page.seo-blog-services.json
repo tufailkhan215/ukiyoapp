@@ -452,42 +452,42 @@
           "type": "step",
           "settings": {
             "title": "SEO Audit",
-            "description": "Analyze current rankings, content gaps, and opportunities"
+            "description": "Review current rankings, content gaps, and organic opportunities."
           }
         },
         "step_GejF3z": {
           "type": "step",
           "settings": {
             "title": "Keyword Research",
-            "description": "Identify high-value target keywords with ranking potential"
+            "description": "Identify target themes, search intent, and business-relevant topics."
           }
         },
         "step_MxmXGH": {
           "type": "step",
           "settings": {
             "title": "Content Planning",
-            "description": "Create strategic content calendar with topic clusters"
+            "description": "Build a strategic article roadmap instead of disconnected one-offs."
           }
         },
         "step_NfX4qg": {
           "type": "step",
           "settings": {
             "title": "Writing",
-            "description": "Produce high-quality, comprehensive, optimized articles"
+            "description": "Create original articles designed around readability, usefulness, and SEO alignment."
           }
         },
         "step_78eaHH": {
           "type": "step",
           "settings": {
             "title": "Publishing",
-            "description": "Format, optimize, and publish with proper SEO elements"
+            "description": "Format, optimize, and prepare content for upload or publication."
           }
         },
         "step_zEyLVB": {
           "type": "step",
           "settings": {
             "title": "Monitoring",
-            "description": "Track rankings, iterate strategy, and optimize existing content"
+            "description": "Track movement over time and refine future content direction."
           }
         }
       },
