@@ -108,8 +108,8 @@
         "category_label": "Brand Strategy",
         "category_icon": "sparkles",
         "title": "AI Revenue Concierge Chatbot",
-        "subtitle": "Your Brand's AI-Powered Strategic Partner",
-        "description": "Build intelligent agents that embody your brand values and work 24/7",
+        "subtitle": "A brand-trained AI concierge for your website and Instagram DMs",
+        "description": "Answer faster, qualify better, and guide more conversations toward booking or buying. We build AI chat systems that feel on-brand, stay accurate, and help your inbound traffic convert with less manual back-and-forth.",
         "cta_primary_text": "Book Free Consultation",
         "cta_primary_url": "#",
         "cta_primary_new_tab": true,
@@ -175,8 +175,8 @@
         "strap": "(Overview)",
         "title_before": "What is AI",
         "title_gradient": "Concierge Chatbot?",
-        "paragraph_1": "<p>An intelligent AI chatbot that engages visitors on your website and Instagram DMs, qualifying leads and driving revenue while you sleep.</p>",
-        "paragraph_2": "<p>The AI Revenue Concierge is your always-on sales assistant that lives on your website and Instagram. It doesn't just answer questions it understands buying intent, qualifies leads, recommends products, handles objections, and guides prospects through to purchase. With natural language processing that feels genuinely human, your visitors get instant, helpful responses that move them closer to becoming customers.</p>",
+        "paragraph_1": "<p>A custom AI chatbot that supports your website, Instagram DMs, or both helping you answer questions, capture leads, and guide visitors toward the right next step.</p>",
+        "paragraph_2": "<p>This is not a generic chatbot dropped onto your site with canned replies. We build and train it around your business, your offer, and your brand voice so it feels useful, intentional, and aligned with how you actually sell.</p>",
         "title_included": "Everything You Need to Launch Your AI Agent"
       }
     },
@@ -294,7 +294,7 @@
       "name": "Services Rich Text",
       "settings": {
         "strap": "(Our Approach)",
-        "body": "<p>We leverage AI-driven funnels and automated follow-up sequences that rapidly scale monthly sales. Our technology adapts to the market, keeping you ahead of the competition with tools to make informed decisions that drive results.</p>"
+        "body": "<p>The tool is not the hard part. The hard part is building a conversation system that is accurate, clear, helpful, and connected to the way your business actually works. That is what we design.</p>"
       }
     },
     "two_column_text_zCXJVY": {
@@ -309,43 +309,43 @@
         "feature_rVJdJK": {
           "type": "feature",
           "settings": {
-            "text": "Website widget + Instagram integration"
+            "text": "Automated routing and handoff"
           }
         },
         "feature_DpUeXd": {
           "type": "feature",
           "settings": {
-            "text": "Product catalog integration"
+            "text": "Website and Instagram integration"
           }
         },
         "feature_cKMdiL": {
           "type": "feature",
           "settings": {
-            "text": "Lead scoring system"
+            "text": "Appointment scheduling integration"
           }
         },
         "feature_3UUBba": {
           "type": "feature",
           "settings": {
-            "text": "Automated follow-up sequences"
+            "text": "Product or offer training"
           }
         },
         "feature_zHPdUx": {
           "type": "feature",
           "settings": {
-            "text": "Real-time analytics dashboard"
+            "text": "Analytics dashboard"
           }
         },
         "feature_FpyCGk": {
           "type": "feature",
           "settings": {
-            "text": "Appointment scheduling integration"
+            "text": "Lead capture and qualification logic"
           }
         },
         "feature_TUayC4": {
           "type": "feature",
           "settings": {
-            "text": "Dedicated support team"
+            "text": "Launch support and refinement"
           }
         }
       },
@@ -377,42 +377,42 @@
           "type": "feature",
           "settings": {
             "title": "Brand Voice Training",
-            "description": "AI agents trained on your unique tone, values, and messaging guidelines for consistent communication"
+            "description": "A chatbot that sounds aligned with your business, not like generic support software."
           }
         },
         "feature_CGK8jh": {
           "type": "feature",
           "settings": {
             "title": "Intent Recognition",
-            "description": "AI understands what visitors really want and guides them to the right solution"
+            "description": "A system that can understand what people are asking and guide them more clearly."
           }
         },
         "feature_WRfYgM": {
           "type": "feature",
           "settings": {
             "title": "Product Recommendations",
-            "description": "Smart suggestions based on conversation context, browsing history, and preferences"
+            "description": "Smarter guidance based on customer needs, intent, and context."
           }
         },
         "feature_Nz6XTd": {
           "type": "feature",
           "settings": {
             "title": "Lead Qualification",
-            "description": "Automatically scores and routes high-value leads to your sales team"
+            "description": "More structured capture of contact details, intent, and fit."
           }
         },
         "feature_aYey6f": {
           "type": "feature",
           "settings": {
             "title": "Human Handoff",
-            "description": "Seamless escalation to human agents when complex situations require personal touch"
+            "description": "A smoother transfer when a conversation needs your team."
           }
         },
         "feature_wBVcMj": {
           "type": "feature",
           "settings": {
             "title": "Appointment Booking",
-            "description": "Integrated scheduling for calls, demos, and consultations"
+            "description": "Clear pathways into calls, demos, consultations, or inquiry forms."
           }
         }
       },
@@ -438,42 +438,42 @@
           "type": "step",
           "settings": {
             "title": "Revenue Audit",
-            "description": "Analyze your current conversion funnel, identify leaks, and map opportunities"
+            "description": "Review how people currently inquire, where they get stuck, and where conversion support is breaking down."
           }
         },
         "step_GejF3z": {
           "type": "step",
           "settings": {
             "title": "Conversation Design",
-            "description": "Map out optimal conversation flows for different visitor intents and journeys"
+            "description": "Map the key conversation paths around FAQs, qualification, objections, and next steps."
           }
         },
         "step_MxmXGH": {
           "type": "step",
           "settings": {
             "title": "AI Training",
-            "description": "Train the chatbot on your products, services, FAQs, and sales process"
+            "description": "Train the chatbot on your products, services, offers, FAQs, and sales process."
           }
         },
         "step_NfX4qg": {
           "type": "step",
           "settings": {
             "title": "Integration",
-            "description": "Connect to your website, Instagram, CRM, and e-commerce platform"
+            "description": "Connect it to your website, Instagram, CRM, ecommerce tools, or booking flow."
           }
         },
         "step_78eaHH": {
           "type": "step",
           "settings": {
             "title": "Launch & Test",
-            "description": "Go live with A/B testing and real-time optimization"
+            "description": "Review real-world scenarios, edge cases, and handoff behavior before launch."
           }
         },
         "step_zEyLVB": {
           "type": "step",
           "settings": {
             "title": "Scale & Optimize",
-            "description": "Continuous improvement for maximum ROI based on performance data"
+            "description": "Refine the system based on real conversations and performance data."
           }
         }
       },
@@ -500,11 +500,11 @@
           "type": "plan",
           "settings": {
             "name": "Essential",
-            "description": "Perfect for small businesses and startups",
+            "description": "For brands that want a focused first step on one channel.",
             "price": "$1,500",
             "period": "/ one-time setup",
             "badge": "Most Popular",
-            "features_text": "AI chatbot for website OR Instagram\nUp to 1,000 conversations/month\nBasic lead capture\nStandard response templates\nEmail notifications",
+            "features_text": "Chatbot for website or Instagram\nUp to 1,000 conversations per month\nBasic lead capture\nStandard response templates\nEmail notifications",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -514,11 +514,11 @@
           "type": "plan",
           "settings": {
             "name": "Professional",
-            "description": "Ideal for growing e-commerce and service businesses",
+            "description": "For growing brands that want stronger inbound support across both channels.",
             "price": "$2,500",
             "period": "/ one-time setup",
             "badge": "Most Popular",
-            "features_text": "AI chatbot for Website + Instagram\nUp to 5,000 conversations/month\nAdvanced lead scoring\nProduct recommendations\nCart abandonment recovery\nCRM integration\nAppointment booking",
+            "features_text": "Chatbot for website and Instagram\nUp to 5,000 conversations/month\nAdvanced lead scoring\nProduct recommendations\nCart abandonment recovery\nCRM integration\nAppointment booking",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -528,11 +528,11 @@
           "type": "plan",
           "settings": {
             "name": "Enterprise",
-            "description": "For high-volume businesses requiring advanced features",
+            "description": "For high-volume brands or more complex inbound systems.",
             "price": "$5,000",
             "period": "/ one-time setup",
             "badge": "",
-            "features_text": "All platforms (Web, IG, FB, SMS)\nUnlimited conversations\nCustom AI training\nAdvanced analytics & reporting\nMulti-language support\nAPI access\nDedicated success manager\nCustom integrations",
+            "features_text": "Multi-channel deployment (Web, IG, FB, SMS)\nUnlimited conversations\nCustom AI training\nAdvanced analytics & reporting\nMulti-language support\nAPI access\nDedicated success manager\nCustom integrations",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -575,7 +575,7 @@
           "type": "use_case",
           "settings": {
             "title": "Customer Support Automation",
-            "tagline": "Never Miss a Customer Question Again",
+            "tagline": "Answer common questions faster without creating more manual work.",
             "url": "#",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -585,7 +585,7 @@
           "type": "use_case",
           "settings": {
             "title": "Sales Lead Qualification",
-            "tagline": "Only Talk to Ready-to-Buy Prospects",
+            "tagline": "Capture stronger-fit leads before they reach your team.",
             "url": "#",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -595,7 +595,7 @@
           "type": "use_case",
           "settings": {
             "title": "Product Recommendations",
-            "tagline": "Show Customers Exactly What They Want",
+            "tagline": "Help customers find the right offer faster.",
             "url": "",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -605,7 +605,7 @@
           "type": "use_case",
           "settings": {
             "title": "Appointment Scheduling",
-            "tagline": "Fill Your Calendar on Autopilot",
+            "tagline": "Guide people cleanly into demos, calls, or consultations.",
             "url": "",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -615,7 +615,7 @@
           "type": "use_case",
           "settings": {
             "title": "FAQ & Knowledge Base",
-            "tagline": "Instant Answers, Zero Wait Time",
+            "tagline": "Deliver clear answers with less delay.",
             "url": "",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -625,7 +625,7 @@
           "type": "use_case",
           "settings": {
             "title": "Onboarding Assistance",
-            "tagline": "Guide Every Customer to Success",
+            "tagline": "Support new customers with better guidance and fewer gaps.",
             "url": "",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -635,7 +635,7 @@
           "type": "use_case",
           "settings": {
             "title": "Order Status Updates",
-            "tagline": "Proactive Communication, Happy Customers",
+            "tagline": "Keep customers informed without extra back-and-forth.",
             "url": "",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -645,7 +645,7 @@
           "type": "use_case",
           "settings": {
             "title": "Feedback Collection",
-            "tagline": "Capture Insights at the Perfect Moment",
+            "tagline": "Collect insight while the experience is still fresh.",
             "url": "",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -676,43 +676,43 @@
         "faq_7d93ic": {
           "type": "faq",
           "settings": {
-            "question": "How is this different from a regular chatbot?",
-            "answer": "Our AI Concierge Chatbot uses advanced natural language processing to understand context, intent, and sentiment. It doesn't just answer questions, it actively guides visitors toward conversion with personalized recommendations and strategic follow-ups."
+            "question": "Is this just a basic chatbot?",
+            "answer": "No. The goal is to build a trained assistant that reflects your brand, answers relevant questions, and guides people toward the right next step."
           }
         },
         "faq_Lh88e7": {
           "type": "faq",
           "settings": {
-            "question": "Will the chatbot sound robotic?",
-            "answer": "No! We train the AI on your brand voice and customize responses to sound natural and on-brand. Most visitors can't tell they're talking to AI."
+            "question": "Will it still feel on-brand?",
+            "answer": "Yes. We train the system on your voice, messaging, offers, and common conversation patterns so it feels consistent with your business."
           }
         },
         "faq_imN7DG": {
           "type": "faq",
           "settings": {
-            "question": "What platforms can the agent be deployed on?",
-            "answer": "Website chat, Instagram DMs, Facebook Messenger, email, and SMS. Enterprise plans can include custom integrations and additional channels."
+            "question": "Can it work on Instagram DMs?",
+            "answer": "Yes. Instagram DM automation is one of the core use cases for this service."
           }
         },
         "faq_RHcRGW": {
           "type": "faq",
           "settings": {
-            "question": "What happens when the AI can't answer a question?",
-            "answer": "The system gracefully escalates to a human agent, collecting context so your team can pick up seamlessly. You can set escalation rules based on topic, sentiment, or customer value."
+            "question": "Can it book calls or consultations?",
+            "answer": "Yes, when that is part of your workflow. We can connect the system to booking links, inquiry forms, or scheduling tools."
           }
         },
         "faq_MgjXXd": {
           "type": "faq",
           "settings": {
-            "question": "How quickly can we see results?",
-            "answer": "Most clients see measurable improvements within the first 30 days. Full optimization typically takes 60-90 days as the AI learns from real interactions."
+            "question": "What happens when the bot cannot answer something?",
+            "answer": "It can hand off to a human with conversation context, so your team is not starting from zero."
           }
         },
         "faq_cXrfCF": {
           "type": "faq",
           "settings": {
-            "question": "Do you offer Instagram DM automation specifically?",
-            "answer": "Absolutely! Instagram DM automation is a core feature. We can automate responses to story replies, DM inquiries, and comment responses."
+            "question": "How long does setup take?",
+            "answer": "Most builds are launched in about 4 weeks, depending on integrations and complexity."
           }
         }
       },
@@ -901,7 +901,7 @@
         "badge": "(Powered By)",
         "title_before": "Tech",
         "title_gradient": "Stack",
-        "subtitle": "Industry-leading tools that power your success. Click to learn more.",
+        "subtitle": "Selected around your channels, workflow, and conversion path.",
         "footer_text": "Click on any tool to learn more"
       }
     },
@@ -1006,8 +1006,8 @@
       "type": "services-cta",
       "name": "Services CTA",
       "settings": {
-        "heading": "Ready to Build Your AI-Powered Brand Agent?",
-        "description": "Book a free consultation to discuss how we can automate your customer interactions while maintaining your unique brand voice.",
+        "heading": "Ready to Make Inbound Conversations Work Harder?",
+        "description": "If people are already visiting your site or messaging your brand, an AI concierge can help you respond faster, guide them better, and capture more of the opportunities you are already generating.",
         "cta_text": "Book Free Consultation",
         "cta_url": "https://tidycal.com/salesautomateiq/consultation",
         "cta_new_tab": true
