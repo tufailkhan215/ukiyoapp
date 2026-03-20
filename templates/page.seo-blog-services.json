@@ -691,43 +691,43 @@
         "faq_7d93ic": {
           "type": "faq",
           "settings": {
-            "question": "How long until articles start ranking?",
-            "answer": "New articles typically start showing ranking signals within 2-4 weeks. Competitive keywords may take 3-6 months to reach page one. We focus on a mix of quick wins and long-term targets."
+            "question": "How long does it take for blog content to rank?",
+            "answer": "SEO content usually builds traction over time. Some posts may show movement earlier, while more competitive topics can take longer. We focus on a mix of near-term opportunities and longer-term authority building."
           }
         },
         "faq_Lh88e7": {
           "type": "faq",
           "settings": {
-            "question": "Do you write for any industry?",
-            "answer": "We have experience across many industries. For highly technical topics, we work with subject matter experts to ensure accuracy and depth."
+            "question": "Do you write for different industries?",
+            "answer": "Yes. We work across a range of industries and adapt the research and writing process to the subject matter and audience."
           }
         },
         "faq_imN7DG": {
           "type": "faq",
           "settings": {
-            "question": "What if an article doesn't rank?",
-            "answer": "We monitor all articles and continuously optimize. If an article underperforms, we'll update and improve it as part of our content refresh process."
+            "question": "What if an article underperforms?",
+            "answer": "We review performance over time and refine where needed, whether that means stronger targeting, content updates, or a different angle moving forward."
           }
         },
         "faq_RHcRGW": {
           "type": "faq",
           "settings": {
-            "question": "Do you handle publishing?",
-            "answer": "Yes! We can publish directly to your CMS (WordPress, Shopify, etc.) or deliver finished articles for your team to publish."
+            "question": "Do you handle publishing too?",
+            "answer": "Yes. We can deliver finalized content for your team or support formatting and publishing inside your CMS."
           }
         },
         "faq_MgjXXd": {
           "type": "faq",
           "settings": {
             "question": "How do you choose keywords?",
-            "answer": "We analyze search volume, keyword difficulty, business relevance, and conversion potential. We target a mix of high-volume and long-tail keywords for balanced growth."
+            "answer": "We look at business relevance first, then search intent, opportunity, competition, and how well a topic supports your broader strategy."
           }
         },
         "faq_cXrfCF": {
           "type": "faq",
           "settings": {
             "question": "Is link building included?",
-            "answer": "Our Authority package includes outreach for link building. Starter and Growth packages focus on on-page SEO and internal linking."
+            "answer": "Internal linking is included. Higher-tier support can also include outreach guidance depending on scope."
           }
         }
       },
@@ -946,7 +946,7 @@
         "badge": "(Powered By)",
         "title_before": "Tech",
         "title_gradient": "Stack",
-        "subtitle": "Industry-leading tools that power your success. Click to learn more.",
+        "subtitle": "Search and content tools selected around research, optimization, and publishing workflow.",
         "footer_text": "Click on any tool to learn more"
       }
     },
@@ -1051,8 +1051,8 @@
       "type": "services-cta",
       "name": "Services CTA",
       "settings": {
-        "heading": "Ready to Rank on Google?",
-        "description": "Let's create SEO content that drives qualified organic traffic to your business.",
+        "heading": "Ready to Build Blog Content That Actually Supports Growth?",
+        "description": "If your brand needs more than generic articles, we’ll help you create strategic blog content that strengthens visibility, authority, and qualified organic traffic.",
         "cta_text": "Book Free Consultation",
         "cta_url": "https://tidycal.com/salesautomateiq/consultation",
         "cta_new_tab": true
