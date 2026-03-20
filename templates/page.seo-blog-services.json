@@ -514,11 +514,11 @@
           "type": "plan",
           "settings": {
             "name": "Starter",
-            "description": "Begin your SEO content journey",
+            "description": "For brands beginning to build organic visibility with a smaller publishing rhythm.",
             "price": "$1,500",
             "period": "/ per month",
             "badge": "",
-            "features_text": "2 SEO articles/month\n1,500+ words each\nKeyword research included\nOn-page optimization\nBasic images\nMonthly ranking report",
+            "features_text": "2 SEO blog articles per month\n1,500+ words each\nKeyword research included\nOn-page optimization\nBasic images\nMonthly performance report",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -528,11 +528,11 @@
           "type": "plan",
           "settings": {
             "name": "Growth",
-            "description": "Build momentum with consistent content",
+            "description": "For brands ready to build more momentum with deeper strategy and stronger cadence.",
             "price": "$3,000",
             "period": "/ per month",
             "badge": "Most Popular",
-            "features_text": "4 SEO articles/month\n2,000+ words each\nAdvanced keyword strategy\nCustom graphics\nInternal linking strategy\nContent refresh (1 article)\nBi-weekly strategy calls\nDetailed ranking reports",
+            "features_text": "4 SEO articles/month\n2,000+ words each\nAdvanced keyword strategy\nCustom graphics\nInternal linking strategy\n1 content refresh per month\nBi-weekly strategy calls\nDetailed ranking reports",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -542,7 +542,7 @@
           "type": "plan",
           "settings": {
             "name": "Authority",
-            "description": "Dominate your niche",
+            "description": "For brands serious about becoming a go-to resource in their niche.",
             "price": "$6,000",
             "period": "/ per month",
             "badge": "",
@@ -590,7 +590,7 @@
           "type": "use_case",
           "settings": {
             "title": "B2B Lead Generation",
-            "tagline": "Transform Your Business",
+            "tagline": "Create educational content that attracts better-fit prospects.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -600,7 +600,7 @@
           "type": "use_case",
           "settings": {
             "title": "E-commerce SEO",
-            "tagline": "Transform Your Business",
+            "tagline": "Support category discovery, product education, and purchase intent.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -610,7 +610,7 @@
           "type": "use_case",
           "settings": {
             "title": "SaaS Content Marketing",
-            "tagline": "Transform Your Business",
+            "tagline": "Build visibility around the problems your product helps solve.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -620,7 +620,7 @@
           "type": "use_case",
           "settings": {
             "title": "Local SEO",
-            "tagline": "Transform Your Business",
+            "tagline": "Strengthen regional discoverability with more relevant content.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -630,7 +630,7 @@
           "type": "use_case",
           "settings": {
             "title": "Thought Leadership",
-            "tagline": "Transform Your Business",
+            "tagline": "Use the blog to share perspective, insight, and expertise.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -640,7 +640,7 @@
           "type": "use_case",
           "settings": {
             "title": "Product Education",
-            "tagline": "Transform Your Business",
+            "tagline": "Answer the questions people ask before they buy.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -650,7 +650,7 @@
           "type": "use_case",
           "settings": {
             "title": "Service Pages",
-            "tagline": "Transform Your Business",
+            "tagline": "Create blog content that strengthens lead-gen pages and service visibility.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -660,7 +660,7 @@
           "type": "use_case",
           "settings": {
             "title": "Industry Guides",
-            "tagline": "Transform Your Business",
+            "tagline": "Publish evergreen resources that become long-term entry points into your brand.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
