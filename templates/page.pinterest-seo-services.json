@@ -391,42 +391,42 @@
           "type": "feature",
           "settings": {
             "title": "Profile Optimization",
-            "description": "SEO-optimized profile, boards, and sections for maximum discoverability"
+            "description": "A clearer, more discoverable account structure aligned with what your brand offers."
           }
         },
         "feature_CGK8jh": {
           "type": "feature",
           "settings": {
             "title": "Keyword Research",
-            "description": "Pinterest-specific keyword strategy using platform search data"
+            "description": "Pinterest-specific keyword strategy based on real search behavior."
           }
         },
         "feature_WRfYgM": {
           "type": "feature",
           "settings": {
             "title": "Pin Design",
-            "description": "Click-worthy graphics optimized for Pinterest's visual algorithm"
+            "description": "Fresh branded assets designed to support clicks and saves."
           }
         },
         "feature_Nz6XTd": {
           "type": "feature",
           "settings": {
             "title": "Fresh Pin Strategy",
-            "description": "Consistent new content to fuel the algorithm and grow reach"
+            "description": "Consistent content creation that gives the platform more to work with."
           }
         },
         "feature_aYey6f": {
           "type": "feature",
           "settings": {
             "title": "Rich Pins Setup",
-            "description": "Enhanced pins with real-time data from your website"
+            "description": "Stronger pin presentation where your site and content support it."
           }
         },
         "feature_wBVcMj": {
           "type": "feature",
           "settings": {
             "title": "Analytics & Reporting",
-            "description": "Track growth, clicks, and optimize continuously"
+            "description": "Clear visibility into what is gaining traction and where to refine."
           }
         }
       },
@@ -452,42 +452,42 @@
           "type": "step",
           "settings": {
             "title": "Pinterest Audit",
-            "description": "Analyze current presence, competitors, and opportunities"
+            "description": "Review your current presence, opportunities, and gaps."
           }
         },
         "step_GejF3z": {
           "type": "step",
           "settings": {
             "title": "Keyword Strategy",
-            "description": "Research high-volume, relevant Pinterest keywords"
+            "description": "Identify the search terms and themes most relevant to your brand."
           }
         },
         "step_MxmXGH": {
           "type": "step",
           "settings": {
             "title": "Profile Optimization",
-            "description": "Restructure profile, boards, and sections for SEO"
+            "description": "Refine your profile, boards, and account structure for discoverability."
           }
         },
         "step_NfX4qg": {
           "type": "step",
           "settings": {
             "title": "Content Creation",
-            "description": "Design fresh pins with optimized titles and descriptions"
+            "description": "Design fresh pins and write supporting copy."
           }
         },
         "step_78eaHH": {
           "type": "step",
           "settings": {
             "title": "Publishing Strategy",
-            "description": "Implement consistent pinning schedule for algorithm favor"
+            "description": "Maintain a consistent publishing rhythm that supports growth."
           }
         },
         "step_zEyLVB": {
           "type": "step",
           "settings": {
             "title": "Optimization",
-            "description": "Analyze data and refine strategy monthly"
+            "description": "Review the data and refine monthly based on what performs."
           }
         }
       },
@@ -514,7 +514,7 @@
           "type": "plan",
           "settings": {
             "name": "Foundation",
-            "description": "Get started with Pinterest SEO",
+            "description": "For brands that need a strong setup and consistent monthly activity.",
             "price": "$800",
             "period": "/ per month",
             "badge": "",
@@ -528,7 +528,7 @@
           "type": "plan",
           "settings": {
             "name": "Growth",
-            "description": "Scale your Pinterest traffic",
+            "description": "For brands ready to build stronger traffic and a more active Pinterest presence.",
             "price": "$1,500",
             "period": "/ per month",
             "badge": "Most Popular",
@@ -542,11 +542,11 @@
           "type": "plan",
           "settings": {
             "name": "Dominate",
-            "description": "Full Pinterest domination",
+            "description": "For brands that want Pinterest managed at a higher level with broader support.",
             "price": "$3,000",
             "period": "/ per month",
             "badge": "",
-            "features_text": "Everything in Growth\n100+ fresh pins/month\nMultiple pin designs per URL\nPinterest ads management\nInfluencer outreach\nWeekly strategy calls\nAdvanced analytics\nDedicated manager",
+            "features_text": "Everything in Growth\n100+ fresh pins/month\nMultiple pin designs per URL\nPinterest ads management\nInfluencer outreach\nWeekly strategy calls\nAdvanced analytics\nDedicated account support",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -590,7 +590,7 @@
           "type": "use_case",
           "settings": {
             "title": "E-commerce Traffic",
-            "tagline": "Transform Your Business",
+            "tagline": "Drive more discovery to collection pages, product pages, and seasonal offers.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -600,7 +600,7 @@
           "type": "use_case",
           "settings": {
             "title": "Blog Promotion",
-            "tagline": "Transform Your Business",
+            "tagline": "Extend the life of your articles and get more value from every post.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -610,7 +610,7 @@
           "type": "use_case",
           "settings": {
             "title": "Lead Generation",
-            "tagline": "Transform Your Business",
+            "tagline": "Drive traffic to lead magnets, service pages, quizzes, and opt-ins.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -620,7 +620,7 @@
           "type": "use_case",
           "settings": {
             "title": "Recipe & Food Sites",
-            "tagline": "Transform Your Business",
+            "tagline": "Support content that performs through search, saves, and repeat discovery.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -630,7 +630,7 @@
           "type": "use_case",
           "settings": {
             "title": "Home & DIY Brands",
-            "tagline": "Transform Your Business",
+            "tagline": "Reach audiences already searching visually for ideas and inspiration.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -640,7 +640,7 @@
           "type": "use_case",
           "settings": {
             "title": "Fashion & Beauty",
-            "tagline": "Transform Your Business",
+            "tagline": "Create evergreen discovery around products, trends, and collections.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -650,7 +650,7 @@
           "type": "use_case",
           "settings": {
             "title": "Travel & Lifestyle",
-            "tagline": "Transform Your Business",
+            "tagline": "Stay discoverable around aspirational and search-friendly content themes.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -660,7 +660,7 @@
           "type": "use_case",
           "settings": {
             "title": "B2B Services",
-            "tagline": "Transform Your Business",
+            "tagline": "Support educational or strategic content that benefits from search-led discovery.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -692,21 +692,21 @@
           "type": "faq",
           "settings": {
             "question": "How long before I see results?",
-            "answer": "Pinterest is a long-term strategy. Most clients see noticeable traffic increases within 3-4 months, with significant growth at 6+ months. The beauty is that pins continue driving traffic for years."
+            "answer": "Pinterest is usually a slower-build channel than paid media, but the upside is that strong pins can keep working long after they are published. Most brands begin seeing clearer traction over the first few months."
           }
         },
         "faq_Lh88e7": {
           "type": "faq",
           "settings": {
             "question": "Do I need a business account?",
-            "answer": "Yes, a Pinterest Business account is required. We'll help you set one up or convert your personal account if needed."
+            "answer": "Yes. A Pinterest Business account is required, and we can help make sure it is set up correctly."
           }
         },
         "faq_imN7DG": {
           "type": "faq",
           "settings": {
-            "question": "What makes Pinterest different from other social platforms?",
-            "answer": "Pinterest is a search engine, not just social media. Content has a much longer lifespan pins can drive traffic for 2+ years compared to hours on Instagram or Twitter."
+            "question": "What makes Pinterest different from other platforms?",
+            "answer": "Pinterest works more like a search engine than a traditional social feed, which gives content a longer lifespan and stronger discovery potential over time."
           }
         },
         "faq_RHcRGW": {
@@ -719,15 +719,15 @@
         "faq_MgjXXd": {
           "type": "faq",
           "settings": {
-            "question": "Can Pinterest work for B2B businesses?",
-            "answer": "Absolutely! B2B brands in design, marketing, coaching, SaaS, and professional services see great results on Pinterest."
+            "question": "Can Pinterest work for service businesses or B2B brands?",
+            "answer": "Yes. It can be valuable when the content is educational, strategic, or visually useful."
           }
         },
         "faq_cXrfCF": {
           "type": "faq",
           "settings": {
-            "question": "Do you manage Pinterest ads?",
-            "answer": "Yes, our Dominate tier includes Pinterest advertising management for accelerated growth."
+            "question": "Do you manage Pinterest ads too?",
+            "answer": "Yes. Pinterest ads support is included in the highest-tier package."
           }
         }
       },
