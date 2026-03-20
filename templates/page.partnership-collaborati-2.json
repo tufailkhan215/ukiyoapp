@@ -902,7 +902,7 @@
         "badge": "(Powered By)",
         "title_before": "Tech",
         "title_gradient": "Stack",
-        "subtitle": "Industry-leading tools that power your success. Click to learn more.",
+        "subtitle": "Tools that support research, outreach, and relationship management without losing the human strategy layer.",
         "footer_text": "Click on any tool to learn more"
       }
     },
@@ -953,7 +953,7 @@
         "badge": "(Delivery)",
         "title_before": "Project",
         "title_gradient": "Timeline",
-        "subtitle": "A clear roadmap from kickoff to launch. No surprises, just results.",
+        "subtitle": "A structured path from opportunity mapping to active deal flow.",
         "guarantee_title": "On-Time Guarantee",
         "guarantee_subtitle": "Or your next month is free"
       }
@@ -1007,8 +1007,8 @@
       "type": "services-cta",
       "name": "Services CTA",
       "settings": {
-        "heading": "Ready to Build Strategic Partnerships?",
-        "description": "Let's discuss how we can help you identify and secure partnerships that amplify your brand reach.",
+        "heading": "Ready to Build Strategic Partnerships?",
+        "description": "Let’s talk about the collaborations, introductions, and partnership systems that could create more leverage for your brand.",
         "cta_text": "Book Free Consultation",
         "cta_url": "https://tidycal.com/salesautomateiq/consultation",
         "cta_new_tab": true
