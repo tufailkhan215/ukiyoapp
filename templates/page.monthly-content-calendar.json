@@ -109,7 +109,7 @@
         "category_icon": "sparkles",
         "title": "Monthly Content Calendar",
         "subtitle": "Strategic Content, Consistently Delivered",
-        "description": "Never wonder what to post again",
+        "description": "Never wonder what to post again. Done-for-you monthly content planning and creation that keeps your brand visible, aligned, and easier to maintain.",
         "cta_primary_text": "Book Free Consultation",
         "cta_primary_url": "#",
         "cta_primary_new_tab": true,
@@ -175,8 +175,8 @@
         "strap": "(Overview)",
         "title_before": "What is ",
         "title_gradient": "Monthly Content Calendar?",
-        "paragraph_1": "<p>Done-for-you monthly content planning and creation that keeps your brand visible and engaging across all platforms.</p>",
-        "paragraph_2": "<p>Consistent, high-quality content is the lifeblood of modern marketing—but it's also incredibly time-consuming. Our Monthly Content Calendar service takes the burden off your shoulders with strategic planning and professional content creation delivered every month. We research trending topics, align with your marketing goals, and create a mix of content that engages, educates, and converts your audience.</p>",
+        "paragraph_1": "<p>A done-for-you monthly content planning and creation service for brands that want support turning ideas into an actual content system.</p>",
+        "paragraph_2": "<p>Instead of guessing what to post, rushing content at the last minute, or posting inconsistently, we help you build a clear monthly plan and create the assets needed to support it.<br/><br/></p>",
         "title_included": "Everything You Need to Launch Your AI Agent"
       }
     },
@@ -294,7 +294,7 @@
       "name": "Services Rich Text",
       "settings": {
         "strap": "(Our Approach)",
-        "body": "<p>We deploy AI-enhanced content strategies, pumping out blogs, videos, and social assets at scale fueling exponential growth in both leads and audience engagement.</p>"
+        "body": "<p>We build monthly content around your goals, offers, audience, and platform mix — so what gets posted is not just consistent, but strategically useful.</p>"
       }
     },
     "two_column_text_zCXJVY": {
@@ -309,55 +309,55 @@
         "feature_rVJdJK": {
           "type": "feature",
           "settings": {
-            "text": "Content calendar planning"
+            "text": "Scheduling support"
           }
         },
         "feature_DpUeXd": {
           "type": "feature",
           "settings": {
-            "text": "Graphic design (posts, stories, reels covers)"
+            "text": "Content calendar planning"
           }
         },
         "feature_cKMdiL": {
           "type": "feature",
           "settings": {
-            "text": "Caption writing with hashtags"
+            "text": "Trend monitoring and integration"
           }
         },
         "feature_3UUBba": {
           "type": "feature",
           "settings": {
-            "text": "Video editing (reels, TikToks)"
+            "text": "Graphic design for feed posts, stories, and covers"
           }
         },
         "feature_zHPdUx": {
           "type": "feature",
           "settings": {
-            "text": "Content scheduling"
+            "text": "Engagement prompt ideas"
           }
         },
         "feature_FpyCGk": {
           "type": "feature",
           "settings": {
-            "text": "Trend monitoring & integration"
+            "text": "Caption writing with hashtag support"
           }
         },
         "feature_BUxiQB": {
           "type": "feature",
           "settings": {
-            "text": "Engagement prompts"
+            "text": "Revision rounds"
           }
         },
         "feature_TUayC4": {
           "type": "feature",
           "settings": {
-            "text": "Hosting setup assistance"
+            "text": "Short-form video editing"
           }
         },
         "feature_LnXAf6": {
           "type": "feature",
           "settings": {
-            "text": "Revision rounds included"
+            "text": "Monthly reporting and refinement"
           }
         }
       },
