@@ -391,42 +391,42 @@
           "type": "feature",
           "settings": {
             "title": "Strategic Planning",
-            "description": "Content aligned with marketing goals, seasons, and trends"
+            "description": "Content built around your goals, offers, seasons, and priorities."
           }
         },
         "feature_CGK8jh": {
           "type": "feature",
           "settings": {
             "title": "Multi-Platform",
-            "description": "Optimized for Instagram, TikTok, LinkedIn, Twitter, and more"
+            "description": "Content adapted for the channels your brand is actively using."
           }
         },
         "feature_WRfYgM": {
           "type": "feature",
           "settings": {
             "title": "Content Creation",
-            "description": "Graphics, videos, captions, and hashtags ready to post"
+            "description": "Graphics, captions, covers, and short-form assets prepared for use."
           }
         },
         "feature_Nz6XTd": {
           "type": "feature",
           "settings": {
             "title": "Trend Integration",
-            "description": "Stay relevant with trending topics, sounds, and formats"
+            "description": "Relevant trends used where they support the brand, not distract from it."
           }
         },
         "feature_aYey6f": {
           "type": "feature",
           "settings": {
             "title": "Brand Consistency",
-            "description": "Every piece reinforces your visual identity and voice"
+            "description": "A more cohesive visual identity and message across the month."
           }
         },
         "feature_wBVcMj": {
           "type": "feature",
           "settings": {
             "title": "Performance Reporting",
-            "description": "Monthly insights on what's working and optimization recommendations"
+            "description": "Clear review of what is working and where the strategy can improve."
           }
         }
       },
@@ -452,42 +452,42 @@
           "type": "step",
           "settings": {
             "title": "Strategy Session",
-            "description": "Align on goals, themes, content pillars, and brand voice"
+            "description": "Align on goals, content pillars, campaigns, priorities, and brand voice."
           }
         },
         "step_GejF3z": {
           "type": "step",
           "settings": {
             "title": "Calendar Planning",
-            "description": "Map out the month with strategic timing and platform mix"
+            "description": "Map the month’s content across platforms, themes, and timing."
           }
         },
         "step_MxmXGH": {
           "type": "step",
           "settings": {
             "title": "Content Creation",
-            "description": "Produce all graphics, videos, captions, and hashtags"
+            "description": "Build the graphics, captions, covers, and video assets in your package."
           }
         },
         "step_NfX4qg": {
           "type": "step",
           "settings": {
             "title": "Review & Approval",
-            "description": "You review everything and request any changes needed"
+            "description": "Refine the work based on feedback before finalizing."
           }
         },
         "step_78eaHH": {
           "type": "step",
           "settings": {
             "title": "Scheduling",
-            "description": "Load content into your scheduling tool or post directly"
+            "description": "Prepare approved content for publishing based on your workflow."
           }
         },
         "step_zEyLVB": {
           "type": "step",
           "settings": {
             "title": "Reporting",
-            "description": "Monthly performance review with optimization insights"
+            "description": "Review performance patterns and improve the approach month by month."
           }
         }
       },
