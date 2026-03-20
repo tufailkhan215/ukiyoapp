@@ -590,7 +590,7 @@
           "type": "use_case",
           "settings": {
             "title": "Instagram Marketing",
-            "tagline": "Transform Your Business",
+            "tagline": "Build a more polished, consistent presence with posts, stories, and reels.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -600,7 +600,7 @@
           "type": "use_case",
           "settings": {
             "title": "TikTok Growth",
-            "tagline": "Transform Your Business",
+            "tagline": "Create short-form content that feels relevant and easier to sustain.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -610,7 +610,7 @@
           "type": "use_case",
           "settings": {
             "title": "LinkedIn Thought Leadership",
-            "tagline": "Transform Your Business",
+            "tagline": "Turn expertise into a stronger, more consistent professional presence.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -620,7 +620,7 @@
           "type": "use_case",
           "settings": {
             "title": "Twitter/X Presence",
-            "tagline": "Transform Your Business",
+            "tagline": "Stay visible with sharper messaging and more organized output.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -630,7 +630,7 @@
           "type": "use_case",
           "settings": {
             "title": "Facebook Engagement",
-            "tagline": "Transform Your Business",
+            "tagline": "Keep your audience active with clearer content planning and creative support.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -640,7 +640,7 @@
           "type": "use_case",
           "settings": {
             "title": "Pinterest Traffic",
-            "tagline": "Transform Your Business",
+            "tagline": "Extend the reach of your content through search-friendly visual assets.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -650,7 +650,7 @@
           "type": "use_case",
           "settings": {
             "title": "YouTube Shorts",
-            "tagline": "Transform Your Business",
+            "tagline": "Repurpose short-form video into a more intentional content channel.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -660,7 +660,7 @@
           "type": "use_case",
           "settings": {
             "title": "Multi-Platform Strategy",
-            "tagline": "Transform Your Business",
+            "tagline": "Coordinate your monthly content in a way that feels organized, not fragmented.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -692,42 +692,42 @@
           "type": "faq",
           "settings": {
             "question": "How far in advance do you plan content?",
-            "answer": "We plan one month at a time, delivering your complete content calendar and assets by the 25th of the prior month. This allows time for review and revisions."
+            "answer": "We typically work one month at a time and build the next month’s calendar ahead of publishing."
           }
         },
         "faq_Lh88e7": {
           "type": "faq",
           "settings": {
             "question": "Can you match our existing brand style?",
-            "answer": "Absolutely! We start with your brand guidelines and create content that seamlessly matches your visual identity and voice."
+            "answer": "Yes. We work from your current brand direction and create content that feels visually and verbally aligned."
           }
         },
         "faq_imN7DG": {
           "type": "faq",
           "settings": {
             "question": "Do you post the content or just create it?",
-            "answer": "Both options are available. We can deliver content for your team to post, or manage posting entirely through scheduling tools."
+            "answer": "Both options are possible depending on your setup. We can prepare content for your team or support the scheduling process directly."
           }
         },
         "faq_RHcRGW": {
           "type": "faq",
           "settings": {
-            "question": "What if I need last-minute content?",
-            "answer": "We include a flexible content slot each month for timely topics. Additional rush content can be added for an extra fee."
+            "question": "What if we need timely or last-minute content?",
+            "answer": "We can leave room for timely content where needed. Rush requests can also be scoped separately."
           }
         },
         "faq_MgjXXd": {
           "type": "faq",
           "settings": {
             "question": "Do you create video content?",
-            "answer": "Yes! Growth and Scale packages include video reels. We handle editing, captions, trending sounds, and formatting for each platform."
+            "answer": "Yes. Video editing is included in the higher-tier packages."
           }
         },
         "faq_cXrfCF": {
           "type": "faq",
           "settings": {
-            "question": "Can you handle engagement and comments?",
-            "answer": "Community management is included in our Scale package. We monitor comments, respond on your behalf, and flag important conversations."
+            "question": "Can you help with engagement and comments?",
+            "answer": "Yes. Community management is included in the Scale package."
           }
         }
       },
@@ -1051,8 +1051,8 @@
       "type": "services-cta",
       "name": "Services CTA",
       "settings": {
-        "heading": "Ready for Consistent, Quality Content?",
-        "description": "Let us handle your content creation so you can focus on running your business.",
+        "heading": "Ready for More Consistent, Quality Content?",
+        "description": "If your business needs a clearer monthly content system, we’ll help you plan it, create it, and keep it moving.",
         "cta_text": "Book Free Consultation",
         "cta_url": "https://tidycal.com/salesautomateiq/consultation",
         "cta_new_tab": true
