@@ -946,7 +946,7 @@
         "badge": "(Powered By)",
         "title_before": "Tech",
         "title_gradient": "Stack",
-        "subtitle": "Industry-leading tools that power your success. Click to learn more.",
+        "subtitle": "Tools that support research, design, publishing, and performance tracking.",
         "footer_text": "Click on any tool to learn more"
       }
     },
@@ -1051,8 +1051,8 @@
       "type": "services-cta",
       "name": "Services CTA",
       "settings": {
-        "heading": "Ready to Dominate Pinterest?",
-        "description": "Let's turn Pinterest into your biggest source of organic traffic.",
+        "heading": "Ready to Build Pinterest Into a Real Traffic Channel?",
+        "description": "If your brand has content, products, or offers worth discovering, Pinterest can become a valuable long-term source of visibility and clicks.",
         "cta_text": "Book Free Consultation",
         "cta_url": "https://tidycal.com/salesautomateiq/consultation",
         "cta_new_tab": true
