@@ -514,7 +514,7 @@
           "type": "plan",
           "settings": {
             "name": "Starter",
-            "description": "Perfect for small businesses",
+            "description": "For small businesses that need a clear monthly plan and consistent output.",
             "price": "$1,200",
             "period": "/ per month",
             "badge": "",
@@ -528,11 +528,11 @@
           "type": "plan",
           "settings": {
             "name": "Growth",
-            "description": "Ideal for growing brands",
+            "description": "For brands ready to build more momentum across content types and channels.",
             "price": "$2,500",
             "period": "/ per month",
             "badge": "Most Popular",
-            "features_text": "24 posts per month\n2 platforms\nStatic + Story graphics\n4 video reels\nCaption + hashtags\nTrend integration\nContent scheduling\nBi-weekly strategy calls",
+            "features_text": "24 posts per month\n2 platforms\nStatic + Story graphics\n4 short-form videos\nCaption + hashtags\nTrend integration\nContent scheduling\nBi-weekly strategy calls",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -542,7 +542,7 @@
           "type": "plan",
           "settings": {
             "name": "Scale",
-            "description": "Full content management",
+            "description": "For brands that want content handled at a higher level each month.",
             "price": "$5,000",
             "period": "/ per month",
             "badge": "",
