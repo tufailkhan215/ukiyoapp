@@ -309,7 +309,7 @@
         "feature_rVJdJK": {
           "type": "feature",
           "settings": {
-            "text": "Content calendar planning"
+            "text": "Internal linking strategy"
           }
         },
         "feature_DpUeXd": {
@@ -321,7 +321,7 @@
         "feature_cKMdiL": {
           "type": "feature",
           "settings": {
-            "text": "On-page SEO optimization"
+            "text": "Metadata support"
           }
         },
         "feature_3UUBba": {
@@ -333,7 +333,7 @@
         "feature_zHPdUx": {
           "type": "feature",
           "settings": {
-            "text": "Internal linking strategy"
+            "text": "Schema support"
           }
         },
         "feature_FpyCGk": {
@@ -345,7 +345,7 @@
         "feature_BUxiQB": {
           "type": "feature",
           "settings": {
-            "text": "Schema markup"
+            "text": "CMS formatting or publishing"
           }
         },
         "feature_TUayC4": {
@@ -357,7 +357,7 @@
         "feature_LnXAf6": {
           "type": "feature",
           "settings": {
-            "text": "Monthly ranking reports"
+            "text": "Reporting and refinement"
           }
         }
       },
@@ -391,42 +391,42 @@
           "type": "feature",
           "settings": {
             "title": "Keyword Research",
-            "description": "Find high-value, rankable opportunities with traffic potential"
+            "description": "A clearer view of rankable opportunities that matter to your business."
           }
         },
         "feature_CGK8jh": {
           "type": "feature",
           "settings": {
             "title": "Content Strategy",
-            "description": "Topic clusters and pillar page planning for topical authority"
+            "description": "A roadmap built around topic clusters and stronger topical authority."
           }
         },
         "feature_WRfYgM": {
           "type": "feature",
           "settings": {
             "title": "Expert Writing",
-            "description": "Engaging, well-researched articles that readers love"
+            "description": "Articles that are useful, readable, and aligned with your brand voice."
           }
         },
         "feature_Nz6XTd": {
           "type": "feature",
           "settings": {
             "title": "On-Page SEO",
-            "description": "Optimized titles, headers, meta descriptions, and schema"
+            "description": "Search-friendly structure, formatting, and metadata support."
           }
         },
         "feature_aYey6f": {
           "type": "feature",
           "settings": {
             "title": "Internal Linking",
-            "description": "Strategic link architecture for SEO power distribution"
+            "description": "Smarter connections between content and the rest of your site."
           }
         },
         "feature_wBVcMj": {
           "type": "feature",
           "settings": {
             "title": "Performance Tracking",
-            "description": "Monitor rankings, traffic, and conversions"
+            "description": "A clearer picture of what is gaining traction and what to improve."
           }
         }
       },
