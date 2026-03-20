@@ -108,8 +108,8 @@
         "category_label": "Brand Strategy",
         "category_icon": "sparkles",
         "title": "Pinterest SEO Services",
-        "subtitle": "Visual Search Domination",
-        "description": "Turn Pinterest into your traffic machine",
+        "subtitle": "Strategic Pinterest SEO for long-term discovery",
+        "description": "Turn Pinterest into a steady traffic channel built for search and saves. We help brands use Pinterest more intentionally through profile optimization, keyword strategy, pin creation, and consistent publishing that supports long-term visibility and clicks.",
         "cta_primary_text": "Book Free Consultation",
         "cta_primary_url": "#",
         "cta_primary_new_tab": true,
@@ -175,8 +175,8 @@
         "strap": "(Overview)",
         "title_before": "What is ",
         "title_gradient": "Pinterest SEO Services?",
-        "paragraph_1": "<p>Strategic Pinterest optimization that drives massive organic traffic through visual search and discovery.</p>",
-        "paragraph_2": "<p>Pinterest is a sleeping giant for organic traffic—a visual search engine with over 450 million monthly users actively looking for inspiration and products. Our Pinterest SEO Services transform your Pinterest presence from an afterthought into a powerful traffic driver. We optimize your profile, boards, and pins for maximum visibility, create fresh pin designs, and implement a strategy that compounds over time.</p>",
+        "paragraph_1": "<p>Done-for-you Pinterest SEO and management for brands that want to turn Pinterest into a real traffic channel instead of an afterthought.</p>",
+        "paragraph_2": "<p>Pinterest behaves more like a visual search engine than a traditional social feed, which means the right content can keep driving discovery and clicks long after it is published.</p>",
         "title_included": "Everything You Need to Launch Your AI Agent"
       }
     },
@@ -294,7 +294,7 @@
       "name": "Services Rich Text",
       "settings": {
         "strap": "(Our Approach)",
-        "body": "<p>We handle your brand's entire online presence crafting killer strategies and engaging content so you don't have to. Pinterest drives long-term, compounding traffic unlike any other platform.</p>"
+        "body": "<p>We build Pinterest systems around search behavior, visual consistency, and fresh content so your pins have a better chance of being found, saved, and clicked over time.</p>"
       }
     },
     "two_column_text_zCXJVY": {
@@ -303,55 +303,55 @@
         "feature_VD783b": {
           "type": "feature",
           "settings": {
-            "text": "Pinterest audit & strategy"
+            "text": "Pinterest audit and strategy"
           }
         },
         "feature_rVJdJK": {
           "type": "feature",
           "settings": {
-            "text": "Profile & board optimization"
+            "text": "Strategic scheduling"
           }
         },
         "feature_DpUeXd": {
           "type": "feature",
           "settings": {
-            "text": "Keyword research & mapping"
+            "text": "Profile and board optimization"
           }
         },
         "feature_cKMdiL": {
           "type": "feature",
           "settings": {
-            "text": "Pin design (30-100 pins/month)"
+            "text": "Rich Pins setup"
           }
         },
         "feature_3UUBba": {
           "type": "feature",
           "settings": {
-            "text": "Pin description writing"
+            "text": "Keyword research and mapping"
           }
         },
         "feature_zHPdUx": {
           "type": "feature",
           "settings": {
-            "text": "Strategic scheduling"
+            "text": "Competitor review"
           }
         },
         "feature_FpyCGk": {
           "type": "feature",
           "settings": {
-            "text": "Rich pins setup"
+            "text": "Pin design"
           }
         },
         "feature_BUxiQB": {
           "type": "feature",
           "settings": {
-            "text": "Competitor analysis"
+            "text": "Monthly analytics report"
           }
         },
         "feature_TUayC4": {
           "type": "feature",
           "settings": {
-            "text": "Monthly analytics report"
+            "text": "Pin title and description writing"
           }
         },
         "feature_LnXAf6": {
