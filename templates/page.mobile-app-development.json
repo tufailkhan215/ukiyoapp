@@ -514,7 +514,7 @@
           "type": "plan",
           "settings": {
             "name": "MVP",
-            "description": "Launch your minimum viable product",
+            "description": "For founders and teams who need a focused first version of their app.",
             "price": "$15,000",
             "period": "/ one-time",
             "badge": "",
@@ -528,11 +528,11 @@
           "type": "plan",
           "settings": {
             "name": "Professional",
-            "description": "Full-featured app for both platforms",
+            "description": "For brands ready to launch a more developed app across both platforms.",
             "price": "$35,000",
             "period": "/ one-time",
             "badge": "Most Popular",
-            "features_text": "iOS + Android (cross-platform)\nUp to 25 screens\nCustom UI/UX design\nAdvanced user features\nCustom backend & API\nThird-party integrations\nAdmin dashboard\nBeta testing program",
+            "features_text": "iOS + Android (cross-platform)\nUp to 25 screens\nCustom UI/UX design\nAdvanced user features\nCustom backend & API\nThird-party integrations\nAdmin dashboard\nBeta testing support",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -542,7 +542,7 @@
           "type": "plan",
           "settings": {
             "name": "Enterprise",
-            "description": "Complex apps with advanced features",
+            "description": "For complex apps with advanced functionality, larger systems, or heavier infrastructure needs.",
             "price": "$75,000+",
             "period": "/ per month",
             "badge": "",
