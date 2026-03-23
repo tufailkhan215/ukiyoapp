@@ -514,11 +514,11 @@
           "type": "plan",
           "settings": {
             "name": "Starter",
-            "description": "Perfect for small businesses and portfolios",
+            "description": "For small businesses, portfolios, and brands that need a clean custom site without unnecessary complexity.",
             "price": "$5,000",
             "period": "/ one-time",
             "badge": "",
-            "features_text": "Up to 5 pages\nMobile-responsive design\nBasic CMS (WordPress/Shopify)\nContact form\nGoogle Analytics\n2 rounds of revisions\n30-day support",
+            "features_text": "Up to 5 pages\nMobile-responsive design\nBasic CMS\nContact form\nGoogle Analytics\n2 rounds of revisions\n30-day post-launch support",
             "cta_text": "Get Started",
             "cta_url": "https://tidycal.com/dashboard/booking-types",
             "cta_new_tab": true
@@ -528,7 +528,7 @@
           "type": "plan",
           "settings": {
             "name": "Professional",
-            "description": "Ideal for growing businesses",
+            "description": "For growing businesses that need a stronger custom build with better conversion support.",
             "price": "$15,000",
             "period": "/ one-time",
             "badge": "Most Popular",
@@ -542,7 +542,7 @@
           "type": "plan",
           "settings": {
             "name": "Enterprise",
-            "description": "For complex web applications",
+            "description": "For complex builds, custom functionality, ecommerce systems, and larger web platforms.",
             "price": "$35,000+",
             "period": "/ per month",
             "badge": "",
@@ -590,7 +590,7 @@
           "type": "use_case",
           "settings": {
             "title": "New Brand Launch",
-            "tagline": "Transform Your Business",
+            "tagline": "Build a stronger digital foundation from the start.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -599,8 +599,8 @@
         "use_case_4bwBcy": {
           "type": "use_case",
           "settings": {
-            "title": "Brand Refresh",
-            "tagline": "Transform Your Business",
+            "title": "Website Refresh",
+            "tagline": "Update an outdated site so it better reflects the business you have now.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -609,8 +609,8 @@
         "use_case_GD64Xa": {
           "type": "use_case",
           "settings": {
-            "title": "Merger Rebrand",
-            "tagline": "Transform Your Business",
+            "title": "Service-Based Lead Generation",
+            "tagline": "Create a site built to support inquiries, bookings, and clearer next steps.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -619,8 +619,8 @@
         "use_case_xAVNaF": {
           "type": "use_case",
           "settings": {
-            "title": "Product Line Branding",
-            "tagline": "Transform Your Business",
+            "title": "Ecommerce Experience",
+            "tagline": "Improve the storefront experience with better structure and smoother buyer flow.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -629,8 +629,8 @@
         "use_case_Dimqy4": {
           "type": "use_case",
           "settings": {
-            "title": "Event Branding",
-            "tagline": "Transform Your Business",
+            "title": "Content-Driven Brands",
+            "tagline": "Support blogs, resources, and long-term organic growth.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -639,8 +639,8 @@
         "use_case_JfAcB9": {
           "type": "use_case",
           "settings": {
-            "title": "Personal Branding",
-            "tagline": "Transform Your Business",
+            "title": "Custom Business Platforms",
+            "tagline": "Build beyond a standard marketing site when the business needs more.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
