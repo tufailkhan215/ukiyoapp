@@ -107,9 +107,9 @@
         "back_link_url": "/pages/services",
         "category_label": "Brand Strategy",
         "category_icon": "sparkles",
-        "title": "Mobile & App Development",
-        "subtitle": "Apps That Users Love",
-        "description": "Pocket-sized experiences, enterprise-grade quality",
+        "title": "Mobile apps built to move ideas into people’s hands",
+        "subtitle": "From MVPs to full-scale platforms, we design and develop apps that feel intuitive, function reliably, and support real growth.",
+        "description": "We handle the strategy, design, development, testing, and launch support needed to take an app from concept to release.",
         "cta_primary_text": "Book Free Consultation",
         "cta_primary_url": "#",
         "cta_primary_new_tab": true,
@@ -175,8 +175,8 @@
         "strap": "(Overview)",
         "title_before": "What is ",
         "title_gradient": "Mobile & App Development?",
-        "paragraph_1": "<p>Native and cross-platform mobile app development that delivers seamless user experiences and business results.</p>",
-        "paragraph_2": "<p>Mobile is where your customers are. Our Mobile & App Development service creates native and cross-platform applications that users love to use. From concept to App Store, we handle every aspect of mobile development with a focus on user experience, performance, and business outcomes.</p>",
+        "paragraph_1": "<p>A custom mobile app design and development service for businesses building a new app, launching an MVP, or expanding an existing digital product.</p>",
+        "paragraph_2": "<p>This is not just about creating an app that looks polished. It is about building a product that feels good to use, works the way it should, and gives your business something solid to grow from.</p>",
         "title_included": "Everything You Need to Launch Your AI Agent"
       }
     },
@@ -294,7 +294,7 @@
       "name": "Services Rich Text",
       "settings": {
         "strap": "(Our Approach)",
-        "body": "<p>We create digital product innovations that delight users and unlock business potential. Our responsive app development combines rapid prototyping with comprehensive technology development for continuous optimization.</p>"
+        "body": "<p>We combine product thinking, user experience, and technical execution to build mobile experiences that are clear, usable, and ready for real-world growth.</p>"
       }
     },
     "two_column_text_zCXJVY": {
@@ -303,61 +303,61 @@
         "feature_VD783b": {
           "type": "feature",
           "settings": {
-            "text": "Product strategy & roadmap"
+            "text": "Product strategy and roadmap"
           }
         },
         "feature_rVJdJK": {
           "type": "feature",
           "settings": {
-            "text": "UI/UX design & prototyping"
+            "text": "Push notification setup"
           }
         },
         "feature_DpUeXd": {
           "type": "feature",
           "settings": {
-            "text": "Native or cross-platform development"
+            "text": "UI/UX design and prototyping"
           }
         },
         "feature_cKMdiL": {
           "type": "feature",
           "settings": {
-            "text": "Backend API development"
+            "text": "Analytics integration"
           }
         },
         "feature_3UUBba": {
           "type": "feature",
           "settings": {
-            "text": "User authentication system"
+            "text": "Native or cross-platform development"
           }
         },
         "feature_zHPdUx": {
           "type": "feature",
           "settings": {
-            "text": "Push notification setup"
+            "text": "App Store optimization support"
           }
         },
         "feature_FpyCGk": {
           "type": "feature",
           "settings": {
-            "text": "Analytics integration"
+            "text": "Backend and API development"
           }
         },
         "feature_BUxiQB": {
           "type": "feature",
           "settings": {
-            "text": "App Store optimization"
+            "text": "Submission and approval support"
           }
         },
         "feature_TUayC4": {
           "type": "feature",
           "settings": {
-            "text": "Submission & approval support"
+            "text": "User authentication"
           }
         },
         "feature_LnXAf6": {
           "type": "feature",
           "settings": {
-            "text": "Post-launch bug fixes"
+            "text": "Post-launch fixes"
           }
         }
       },
@@ -391,42 +391,42 @@
           "type": "feature",
           "settings": {
             "title": "Native Development",
-            "description": "iOS (Swift) and Android (Kotlin) for optimal performance"
+            "description": "Strong performance where native build quality matters most."
           }
         },
         "feature_CGK8jh": {
           "type": "feature",
           "settings": {
-            "title": "Cross-Platform",
-            "description": "React Native and Flutter for cost-efficient development"
+            "title": "Cross-Platform Efficiency",
+            "description": "A faster, more cost-efficient path when shared code makes sense."
           }
         },
         "feature_WRfYgM": {
           "type": "feature",
           "settings": {
-            "title": "Intuitive interfaces",
-            "description": "Intuitive interfaces that delight users and drive engagement"
+            "title": "Intuitive Interfaces",
+            "description": "Cleaner user flows that help people understand and keep using the app."
           }
         },
         "feature_Nz6XTd": {
           "type": "feature",
           "settings": {
             "title": "Backend Integration",
-            "description": "Robust APIs and cloud infrastructure for scalability"
+            "description": "Reliable systems and APIs behind the experience."
           }
         },
         "feature_aYey6f": {
           "type": "feature",
           "settings": {
             "title": "Push Notifications",
-            "description": "Engage users with timely, relevant messages"
+            "description": "More thoughtful re-engagement when messaging is part of the product."
           }
         },
         "feature_wBVcMj": {
           "type": "feature",
           "settings": {
             "title": "Analytics & Tracking",
-            "description": "Understand user behavior and optimize continuously"
+            "description": "A clearer picture of how users behave and where to improve."
           }
         }
       },
