@@ -107,9 +107,9 @@
         "back_link_url": "/pages/services",
         "category_label": "Brand Strategy",
         "category_icon": "sparkles",
-        "title": "Klaviyo Flows Services",
-        "subtitle": "Email Automation That Prints Money",
-        "description": "Turn your email list into a revenue engine",
+        "title": "Email automation that does more than sit in the background",
+        "subtitle": "Build flows that welcome well, recover missed sales, and keep customers moving.",
+        "description": "We design and build Klaviyo flows that support the moments that matter most without relying on constant manual follow-up.",
         "cta_primary_text": "Book Free Consultation",
         "cta_primary_url": "#",
         "cta_primary_new_tab": true,
@@ -175,8 +175,8 @@
         "strap": "(Overview)",
         "title_before": "What is ",
         "title_gradient": "Klaviyo Flows Services?",
-        "paragraph_1": "<p>Expert Klaviyo flow setup and optimization that converts subscribers into customers on autopilot.</p>",
-        "paragraph_2": "<p>Email marketing has the highest ROI of any marketing channel but only when done right. Our Klaviyo Flows Services set up sophisticated email automation that nurtures leads, recovers abandoned carts, and maximizes customer lifetime value. We build flows that feel personal and timely, delivering the right message at the right moment to drive conversions.</p>",
+        "paragraph_1": "<p>A Klaviyo flow strategy, setup, and optimization service for brands that want their email marketing to pull more weight.</p>",
+        "paragraph_2": "<p>We build the automations that support the lifecycle moments that matter: when someone joins your list, browses without buying, abandons a cart, places an order, or goes quiet for too long.</p>",
         "title_included": "Everything You Need to Launch Your AI Agent"
       }
     },
@@ -294,7 +294,7 @@
       "name": "Services Rich Text",
       "settings": {
         "strap": "(Our Approach)",
-        "body": "<p>Targeted campaigns with personalized messages resonate with your audience for higher open rates. Automated workflows with timely follow-ups and reminders nurture leads without manual effort. Detailed analytics refine strategies and increase campaign effectiveness.</p>"
+        "body": "<p>This is not about sending more emails for the sake of it. It is about building a cleaner system that sends the right message at the right point in the customer journey.</p>"
       }
     },
     "two_column_text_zCXJVY": {
@@ -321,7 +321,7 @@
         "feature_cKMdiL": {
           "type": "feature",
           "settings": {
-            "text": "Welcome series (5-7 emails)"
+            "text": "Welcome series"
           }
         },
         "feature_3UUBba": {
