@@ -391,42 +391,42 @@
           "type": "feature",
           "settings": {
             "title": "Custom Design",
-            "description": "Unique designs that reflect your brand perfectly—no templates"
+            "description": "A website that reflects your brand clearly instead of feeling generic."
           }
         },
         "feature_CGK8jh": {
           "type": "feature",
           "settings": {
             "title": "Responsive Development",
-            "description": "Flawless experience across all devices and screen sizes"
+            "description": "A smooth experience across desktop, tablet, and mobile."
           }
         },
         "feature_WRfYgM": {
           "type": "feature",
           "settings": {
             "title": "Performance Optimization",
-            "description": "Lightning-fast load times and smooth interactions"
+            "description": "Cleaner builds, faster load times, and less friction."
           }
         },
         "feature_Nz6XTd": {
           "type": "feature",
           "settings": {
             "title": "SEO Foundation",
-            "description": "Built for search engine visibility from day one"
+            "description": "A stronger starting point for discoverability in search."
           }
         },
         "feature_aYey6f": {
           "type": "feature",
           "settings": {
             "title": "CMS Integration",
-            "description": "Easy content management with Shopify, WordPress, or custom solutions"
+            "description": "A setup that fits your business, whether that is Shopify, WordPress, or a custom solution."
           }
         },
         "feature_wBVcMj": {
           "type": "feature",
           "settings": {
             "title": "Analytics Setup",
-            "description": "Track what matters with proper instrumentation and dashboards"
+            "description": "Visibility into traffic, behavior, and key actions on the site."
           }
         }
       },
@@ -452,42 +452,42 @@
           "type": "step",
           "settings": {
             "title": "Strategy & Planning",
-            "description": "Define goals, audience, sitemap, and success metrics"
+            "description": "Define goals, audience, site structure, and what the website actually needs to do."
           }
         },
         "step_GejF3z": {
           "type": "step",
           "settings": {
             "title": "Wireframing",
-            "description": "Plan the structure, user flows, and experience architecture"
+            "description": "Map page hierarchy, user flow, and conversion pathways before design begins."
           }
         },
         "step_MxmXGH": {
           "type": "step",
           "settings": {
             "title": "Design",
-            "description": "Create the visual design, interactions, and brand application"
+            "description": "Create the visual system, layouts, and interactions."
           }
         },
         "step_NfX4qg": {
           "type": "step",
           "settings": {
             "title": "Development",
-            "description": "Build with clean, scalable code and modern frameworks"
+            "description": "Build the site with attention to responsiveness, performance, and scalability."
           }
         },
         "step_78eaHH": {
           "type": "step",
           "settings": {
             "title": "Testing & QA",
-            "description": "Rigorous testing across devices, browsers, and scenarios"
+            "description": "Review across devices, browsers, and use cases before launch."
           }
         },
         "step_zEyLVB": {
           "type": "step",
           "settings": {
             "title": "Launch & Support",
-            "description": "Deploy with monitoring and provide ongoing maintenance"
+            "description": "Go live with monitoring, refinement, and post-launch support."
           }
         }
       },
