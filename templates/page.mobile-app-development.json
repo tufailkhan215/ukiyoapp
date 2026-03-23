@@ -452,42 +452,42 @@
           "type": "step",
           "settings": {
             "title": "Discovery",
-            "description": "Define app goals, user needs, and technical requirements"
+            "description": "Define app goals, user needs, business priorities, and technical requirements."
           }
         },
         "step_GejF3z": {
           "type": "step",
           "settings": {
             "title": "Prototyping",
-            "description": "Create interactive prototypes for validation and feedback"
+            "description": "Map the experience and validate flows before development moves forward."
           }
         },
         "step_MxmXGH": {
           "type": "step",
           "settings": {
             "title": "Design",
-            "description": "Craft beautiful, intuitive interfaces following platform guidelines"
+            "description": "Create interfaces that feel intuitive, aligned, and platform-aware."
           }
         },
         "step_NfX4qg": {
           "type": "step",
           "settings": {
             "title": "Development",
-            "description": "Build with modern frameworks and best practices"
+            "description": "Build with the right frameworks, systems, and architecture."
           }
         },
         "step_78eaHH": {
           "type": "step",
           "settings": {
             "title": "Testing",
-            "description": "Comprehensive QA, beta testing, and performance optimization"
+            "description": "Review usability, bugs, performance, and real-world behavior before launch."
           }
         },
         "step_zEyLVB": {
           "type": "step",
           "settings": {
             "title": "Launch",
-            "description": "App Store submission, launch strategy, and marketing support"
+            "description": "Support submission, release, and rollout into market."
           }
         }
       },
