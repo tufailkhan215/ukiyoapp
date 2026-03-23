@@ -398,42 +398,42 @@
           "type": "feature",
           "settings": {
             "title": "Welcome Series",
-            "description": "Convert new subscribers into first-time buyers with strategic onboarding"
+            "description": "A stronger first impression for new subscribers."
           }
         },
         "feature_CGK8jh": {
           "type": "feature",
           "settings": {
             "title": "Abandoned Cart",
-            "description": "Recover lost sales with smart, personalized sequences"
+            "description": "Recovery sequences that follow up on intent instead of letting it disappear."
           }
         },
         "feature_WRfYgM": {
           "type": "feature",
           "settings": {
             "title": "Post-Purchase",
-            "description": "Drive reviews, upsells, and repeat purchases automatically"
+            "description": "Automation that supports repeat orders, reviews, and stronger retention."
           }
         },
         "feature_Nz6XTd": {
           "type": "feature",
           "settings": {
             "title": "Win-Back Flows",
-            "description": "Re-engage lapsed customers with targeted reactivation campaigns"
+            "description": "Smarter re-engagement for customers who have gone quiet."
           }
         },
         "feature_aYey6f": {
           "type": "feature",
           "settings": {
             "title": "Browse Abandonment",
-            "description": "Follow up with interested window shoppers who didn't add to cart"
+            "description": "Follow-up for interested visitors before the intent goes cold."
           }
         },
         "feature_wBVcMj": {
           "type": "feature",
           "settings": {
             "title": "VIP Programs",
-            "description": "Reward your best customers and increase loyalty"
+            "description": "Stronger retention and value from your best customers."
           }
         }
       },
@@ -459,42 +459,42 @@
           "type": "step",
           "settings": {
             "title": "Audit",
-            "description": "Review current email setup, flows, and performance metrics"
+            "description": "Review current setup, flows, integrations, and performance."
           }
         },
         "step_GejF3z": {
           "type": "step",
           "settings": {
             "title": "Strategy",
-            "description": "Plan flow architecture, triggers, and messaging strategy"
+            "description": "Define flow architecture, triggers, segments, and messaging direction."
           }
         },
         "step_MxmXGH": {
           "type": "step",
           "settings": {
             "title": "Design",
-            "description": "Create on-brand email templates that convert"
+            "description": "Create templates that feel on-brand and built for actual use."
           }
         },
         "step_NfX4qg": {
           "type": "step",
           "settings": {
             "title": "Build",
-            "description": "Set up flows with proper triggers, logic, and personalization"
+            "description": "Implement the flows inside Klaviyo with the right logic and personalization."
           }
         },
         "step_78eaHH": {
           "type": "step",
           "settings": {
             "title": "Test",
-            "description": "QA all flows, integrations, and edge cases"
+            "description": "QA links, triggers, formatting, and edge cases."
           }
         },
         "step_zEyLVB": {
           "type": "step",
           "settings": {
             "title": "Optimize",
-            "description": "A/B test and improve performance continuously"
+            "description": "Refine performance through testing and iteration."
           }
         }
       },
@@ -521,7 +521,7 @@
           "type": "plan",
           "settings": {
             "name": "Foundation",
-            "description": "Essential flows to start generating revenue",
+            "description": "For brands that need the essential flows in place and built properly.",
             "price": "$2,000",
             "period": "/ one-time",
             "badge": "",
@@ -535,7 +535,7 @@
           "type": "plan",
           "settings": {
             "name": "Growth",
-            "description": "Complete automation system",
+            "description": "For brands ready to build a more complete lifecycle email system.",
             "price": "$4,500",
             "period": "/ one-time",
             "badge": "Most Popular",
@@ -549,7 +549,7 @@
           "type": "plan",
           "settings": {
             "name": "Scale",
-            "description": "Advanced automation ecosystem",
+            "description": "For brands that want a more advanced automation ecosystem with deeper retention support.",
             "price": "$8,000",
             "period": "/ one-time",
             "badge": "",
@@ -597,7 +597,7 @@
           "type": "use_case",
           "settings": {
             "title": "E-commerce Stores",
-            "tagline": "Transform Your Business",
+            "tagline": "Build foundational flows that support revenue before and after the purchase.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -607,7 +607,7 @@
           "type": "use_case",
           "settings": {
             "title": "D2C Brands",
-            "tagline": "Transform Your Business",
+            "tagline": "Create a stronger lifecycle email system around browsing, buying, and coming back.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -617,7 +617,7 @@
           "type": "use_case",
           "settings": {
             "title": "Subscription Businesses",
-            "tagline": "Transform Your Business",
+            "tagline": "Support retention, renewals, and long-term customer value.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -627,7 +627,7 @@
           "type": "use_case",
           "settings": {
             "title": "B2B Companies",
-            "tagline": "Transform Your Business",
+            "tagline": "Use automation to educate, nurture, and move leads forward.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -637,7 +637,7 @@
           "type": "use_case",
           "settings": {
             "title": "Course Creators",
-            "tagline": "Transform Your Business",
+            "tagline": "Guide leads, onboard buyers, and re-engage past customers.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -647,7 +647,7 @@
           "type": "use_case",
           "settings": {
             "title": "Service Businesses",
-            "tagline": "Transform Your Business",
+            "tagline": "Follow up with inquiries, educate prospects, and support action.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -657,7 +657,7 @@
           "type": "use_case",
           "settings": {
             "title": "Retail Brands",
-            "tagline": "Transform Your Business",
+            "tagline": "Support repeat purchasing and better post-purchase follow-through.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -667,7 +667,7 @@
           "type": "use_case",
           "settings": {
             "title": "SaaS Companies",
-            "tagline": "Transform Your Business",
+            "tagline": "Build clearer onboarding, activation, and retention sequences.",
             "url": "https://tidycal.com/salesautomateiq",
             "cta_text": "Explore",
             "open_new_tab": false
@@ -699,42 +699,42 @@
           "type": "faq",
           "settings": {
             "question": "Do you only work with Klaviyo?",
-            "answer": "While Klaviyo is our specialty, we also work with Mailchimp, ActiveCampaign, and other ESP platforms. Klaviyo is our recommendation for e-commerce due to its powerful segmentation and integrations."
+            "answer": "Klaviyo is the core focus of this service. We also have experience with other ESPs, but this offer is centered around Klaviyo implementation and optimization."
           }
         },
         "faq_Lh88e7": {
           "type": "faq",
           "settings": {
             "question": "Can you migrate from another email platform?",
-            "answer": "Yes! We handle full migrations from any platform, including list import, flow recreation, and template conversion."
+            "answer": "Yes. We can help migrate lists, recreate key flows, and carry over the important parts of your email infrastructure."
           }
         },
         "faq_imN7DG": {
           "type": "faq",
           "settings": {
             "question": "How long does setup take?",
-            "answer": "Foundation setup takes 2-3 weeks, Growth takes 3-4 weeks, and Scale takes 4-6 weeks depending on complexity."
+            "answer": "Most builds are completed in roughly 2–6 weeks depending on scope and complexity."
           }
         },
         "faq_RHcRGW": {
           "type": "faq",
           "settings": {
-            "question": "Will flows work with my Shopify store?",
-            "answer": "Absolutely! Klaviyo integrates seamlessly with Shopify, WooCommerce, BigCommerce, and other platforms. We'll set up all necessary integrations."
+            "question": "Will this work with my Shopify store?",
+            "answer": "Yes. Klaviyo integrates well with Shopify and other ecommerce systems, and we configure the setup accordingly."
           }
         },
         "faq_MgjXXd": {
           "type": "faq",
           "settings": {
-            "question": "Do you write the email copy?",
-            "answer": "Yes! We write all email copy, design templates, and set up automation logic. Everything is custom to your brand."
+            "question": "Do you write the email copy too?",
+            "answer": "Yes. Strategy, copy, template design, and automation logic are all part of the build."
           }
         },
         "faq_cXrfCF": {
           "type": "faq",
           "settings": {
-            "question": "What results can I expect?",
-            "answer": "Most clients see 15-30% of total revenue coming from email within 90 days of implementing our flows. Cart recovery alone typically generates 5-10% of monthly revenue."
+            "question": "Do you offer support after launch?",
+            "answer": "Yes. Ongoing optimization and campaign support are available as an add-on."
           }
         }
       },
@@ -953,7 +953,7 @@
         "badge": "(Powered By)",
         "title_before": "Tech",
         "title_gradient": "Stack",
-        "subtitle": "Industry-leading tools that power your success. Click to learn more.",
+        "subtitle": "Tools selected around ecommerce lifecycle marketing, testing, and performance.",
         "footer_text": "Click on any tool to learn more"
       }
     },
@@ -1058,8 +1058,8 @@
       "type": "services-cta",
       "name": "Services CTA",
       "settings": {
-        "heading": "Ready to Turn Email into Revenue?",
-        "description": "Let's build an email automation system that generates sales while you sleep.",
+        "heading": "Ready to Make Email Pull More Weight?",
+        "description": "If your brand is already collecting subscribers, the next step is giving them a better path to buy, return, and stay connected.",
         "cta_text": "Book Free Consultation",
         "cta_url": "https://tidycal.com/salesautomateiq/consultation",
         "cta_new_tab": true
