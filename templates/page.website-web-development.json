@@ -691,43 +691,43 @@
         "faq_7d93ic": {
           "type": "faq",
           "settings": {
-            "question": "How long does a complete brand identity project take?",
-            "answer": "Essentials packages take 2-3 weeks, Professional packages 4-6 weeks, and Enterprise projects 8-12 weeks depending on complexity and feedback cycles."
+            "question": "How long does a website project take?",
+            "answer": "Timing depends on scope, functionality, and how quickly content and feedback are provided. Smaller sites move faster. Larger builds take more time."
           }
         },
         "faq_Lh88e7": {
           "type": "faq",
           "settings": {
-            "question": "What if I don't like the initial concepts?",
-            "answer": "We offer multiple concepts and revision rounds. If the initial direction doesn't resonate, we'll explore new approaches until we find the perfect fit for your brand."
+            "question": "Can you work with our existing brand?",
+            "answer": "Yes. We can build from your current brand system or help refine the visual direction as part of the process."
           }
         },
         "faq_imN7DG": {
           "type": "faq",
           "settings": {
-            "question": "Do I own the final designs?",
-            "answer": "Yes! Upon final payment, you receive full ownership of all designs, source files, and assets. We retain the right to showcase the work in our portfolio."
+            "question": "Do you write the website copy too?",
+            "answer": "Copy support can be included depending on scope. We can work with your existing content, refine it, or help create new copy where needed."
           }
         },
         "faq_RHcRGW": {
           "type": "faq",
           "settings": {
-            "question": "Can you work with our existing brand elements?",
-            "answer": "Absolutely! We can refresh and build upon existing elements or start completely fresh—whatever serves your brand best."
+            "question": "Will the site work on mobile?",
+            "answer": "Yes. Every site is built to function properly across desktop, tablet, and mobile."
           }
         },
         "faq_MgjXXd": {
           "type": "faq",
           "settings": {
-            "question": "What file formats do you deliver?",
-            "answer": "We provide all standard formats including AI, EPS, PDF, PNG, JPG, and SVG. We also include web-optimized versions and favicon files."
+            "question": "Can you build on Shopify or WordPress?",
+            "answer": "Yes. We work across platforms depending on what fits the project best."
           }
         },
         "faq_cXrfCF": {
           "type": "faq",
           "settings": {
-            "question": "Do you offer ongoing design support?",
-            "answer": "Yes! We offer monthly retainer packages for ongoing design needs including social graphics, marketing materials, and asset creation."
+            "question": "Do you offer support after launch?",
+            "answer": "Yes. Post-launch support is included, and ongoing maintenance can be added if needed."
           }
         }
       },
@@ -946,7 +946,7 @@
         "badge": "(Powered By)",
         "title_before": "Tech",
         "title_gradient": "Stack",
-        "subtitle": "Industry-leading tools that power your success. Click to learn more.",
+        "subtitle": "Design and development tools selected to match the experience you are building.",
         "footer_text": "Click on any tool to learn more"
       }
     },
@@ -1051,8 +1051,8 @@
       "type": "services-cta",
       "name": "Services CTA",
       "settings": {
-        "heading": "Ready to Transform Your Brand?",
-        "description": "Let's create a visual identity that captures your essence and commands attention in your market.",
+        "heading": "Ready to Build a Website That Can Hold More?",
+        "description": "If your brand needs a site that feels clearer, works better, and supports the level of business you are building toward, we can help you create it.",
         "cta_text": "Book Free Consultation",
         "cta_url": "https://tidycal.com/salesautomateiq/consultation",
         "cta_new_tab": true
