@@ -107,9 +107,9 @@
         "back_link_url": "/pages/services",
         "category_label": "Brand Strategy",
         "category_icon": "sparkles",
-        "title": "Website & Web Development",
-        "subtitle": "Digital Experiences That Convert",
-        "description": "Websites that work as hard as you do",
+        "title": "Websites built to carry the weight of your brand",
+        "subtitle": "Custom digital experiences that make your business easier to understand, trust, and act on.",
+        "description": "We design and develop websites that look refined, work smoothly, and support the next step with less friction.",
         "cta_primary_text": "Book Free Consultation",
         "cta_primary_url": "#",
         "cta_primary_new_tab": true,
@@ -175,8 +175,8 @@
         "strap": "(Overview)",
         "title_before": "What is ",
         "title_gradient": "Website & Web Development?",
-        "paragraph_1": "<p>Custom website design and development that combines stunning visuals with performance-driven architecture.</p>",
-        "paragraph_2": "<p>Your website is your most important digital asset it's where first impressions are made and business happens. Our Website & Web Development service creates custom digital experiences that look stunning, load fast, and convert visitors into customers. We combine award-winning design with modern development practices to build websites that are as beautiful as they are functional.</p>",
+        "paragraph_1": "<p>A custom website design and development service for brands that need more than a site that simply exists.</p>",
+        "paragraph_2": "<p>Your website is where people decide whether your business feels credible, clear, and worth engaging with. It should not just look polished. It should communicate what you do, guide people where they need to go, and support conversion more naturally.</p>",
         "title_included": "Everything You Need to Launch Your AI Agent"
       }
     },
@@ -294,7 +294,7 @@
       "name": "Services Rich Text",
       "settings": {
         "strap": "(Our Approach)",
-        "body": "<p>We build effective online ecosystems that boost credibility and drive growth. Our websites integrate with AI-driven analytics and CRM platforms leading to increased lead capture and a seamless customer experience.</p>"
+        "body": "<p>We combine strategy, structure, design, and development to create websites that feel aligned, function smoothly, and give your business a stronger foundation to grow from.</p>"
       }
     },
     "two_column_text_zCXJVY": {
@@ -309,55 +309,55 @@
         "feature_rVJdJK": {
           "type": "feature",
           "settings": {
-            "text": "Mobile-responsive development"
+            "text": "Contact forms and lead capture"
           }
         },
         "feature_DpUeXd": {
           "type": "feature",
           "settings": {
-            "text": "Content management system"
+            "text": "Mobile-responsive development"
           }
         },
         "feature_cKMdiL": {
           "type": "feature",
           "settings": {
-            "text": "SEO optimization"
+            "text": "Analytics integration"
           }
         },
         "feature_3UUBba": {
           "type": "feature",
           "settings": {
-            "text": "Speed optimization"
+            "text": "CMS setup"
           }
         },
         "feature_zHPdUx": {
           "type": "feature",
           "settings": {
-            "text": "Contact forms & lead capture"
+            "text": "Technical setup support"
           }
         },
         "feature_FpyCGk": {
           "type": "feature",
           "settings": {
-            "text": "Analytics integration"
+            "text": "SEO foundations"
           }
         },
         "feature_BUxiQB": {
           "type": "feature",
           "settings": {
-            "text": "SSL security certificate"
+            "text": "Launch assistance"
           }
         },
         "feature_TUayC4": {
           "type": "feature",
           "settings": {
-            "text": "Hosting setup assistance"
+            "text": "Speed optimization"
           }
         },
         "feature_LnXAf6": {
           "type": "feature",
           "settings": {
-            "text": "30-day post-launch support"
+            "text": "Post-launch support"
           }
         }
       },
