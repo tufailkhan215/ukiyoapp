@@ -1,6 +1,624 @@
+{% doc %}
+  @prompt
+    Create a new section named “Sample Work” and place it directly after “Two Column Text (What’s Included)” and before “Services Key Features”.
+    
+    Match the current page UI exactly:
+    - premium black background
+    - subtle 1px borders
+    - same rounded corners as the existing cards
+    - white headings
+    - muted gray supporting text
+    - no gradients
+    - no bright accents
+    - no redesign
+    - same premium spacing rhythm as the rest of the page
+    - mobile friendly
+    
+    This section must feel like a real proof/gallery section, not a text block.
+    
+    Layout:
+    - small label
+    - strong headline
+    - short supporting sentence
+    - desktop: 1 featured media card on the left and 3 supporting media cards on the right
+    - mobile: stack vertically
+    - each card must include an upload-ready image placeholder frame, a short title, and a short caption
+    - do not use stock images or fake artwork
+    - make the media frames clearly labeled placeholders so I can replace them later with real screenshots
+    
+    Use this content direction:
+    Label: SAMPLE WORK
+    Headline: How the system is actually built
+    Supporting sentence: A closer look at the workflows, logic, and handoff points behind a production-ready company agent.
+    
+    Featured media card:
+    Title: Agent conversation flow
+    Caption: Placeholder for the main conversational path and branching logic.
+    
+    Supporting card 1:
+    Title: Lead qualification logic
+    Caption: Placeholder for the qualification rules that filter and route inbound leads.
+    
+    Supporting card 2:
+    Title: CRM handoff workflow
+    Caption: Placeholder for the automation that passes qualified conversations into the right pipeline or owner.
+    
+    Supporting card 3:
+    Title: Knowledge base structure
+    Caption: Placeholder for the FAQ and internal content the agent uses to answer accurately.
+    
+    No CTA button in this section.
+    Prioritize layout quality and upload-ready media placeholders over final marketing copy.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-sample-work-{{ ai_gen_id }} {
+    display: block;
+    background-color: {{ block.settings.background_color }};
+    padding: 80px 20px;
+    width: 100%;
+  }
+
+  .ai-sample-work__container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-sample-work__header-{{ ai_gen_id }} {
+    margin-bottom: 60px;
+  }
+
+  .ai-sample-work__label-{{ ai_gen_id }} {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: {{ block.settings.label_color }};
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .ai-sample-work__headline-{{ ai_gen_id }} {
+    font-size: {{ block.settings.headline_size }}px;
+    line-height: 1.2;
+    color: {{ block.settings.headline_color }};
+    margin: 0 0 16px 0;
+    font-weight: 600;
+  }
+
+  .ai-sample-work__supporting-{{ ai_gen_id }} {
+    font-size: {{ block.settings.supporting_size }}px;
+    line-height: 1.6;
+    color: {{ block.settings.supporting_color }};
+    margin: 0;
+    max-width: 600px;
+  }
+
+  .ai-sample-work__grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: {{ block.settings.card_gap }}px;
+  }
+
+  .ai-sample-work__featured-{{ ai_gen_id }} {
+    grid-row: span 2;
+  }
+
+  .ai-sample-work__card-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_background }};
+    border: 1px solid {{ block.settings.card_border_color }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    padding: {{ block.settings.card_padding }}px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .ai-sample-work__media-frame-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background-color: {{ block.settings.placeholder_background }};
+    border: 1px dashed {{ block.settings.placeholder_border }};
+    border-radius: {{ block.settings.media_border_radius }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    overflow: hidden;
+  }
+
+  .ai-sample-work__media-frame-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-sample-work__placeholder-icon-{{ ai_gen_id }} {
+    width: 48px;
+    height: 48px;
+    color: {{ block.settings.placeholder_icon_color }};
+    opacity: 0.4;
+  }
+
+  .ai-sample-work__placeholder-text-{{ ai_gen_id }} {
+    font-size: 13px;
+    color: {{ block.settings.placeholder_text_color }};
+    opacity: 0.5;
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  .ai-sample-work__card-content-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ai-sample-work__card-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.card_title_size }}px;
+    line-height: 1.3;
+    color: {{ block.settings.card_title_color }};
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .ai-sample-work__card-caption-{{ ai_gen_id }} {
+    font-size: {{ block.settings.card_caption_size }}px;
+    line-height: 1.5;
+    color: {{ block.settings.card_caption_color }};
+    margin: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-sample-work-{{ ai_gen_id }} {
+      padding: 60px 20px;
+    }
+
+    .ai-sample-work__header-{{ ai_gen_id }} {
+      margin-bottom: 40px;
+    }
+
+    .ai-sample-work__headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.headline_size | times: 0.7 }}px;
+    }
+
+    .ai-sample-work__grid-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: {{ block.settings.card_gap | times: 0.75 }}px;
+    }
+
+    .ai-sample-work__featured-{{ ai_gen_id }} {
+      grid-row: auto;
+    }
+
+    .ai-sample-work__card-{{ ai_gen_id }} {
+      padding: {{ block.settings.card_padding | times: 0.75 }}px;
+    }
+  }
+{% endstyle %}
+
+<sample-work-{{ ai_gen_id }} class="ai-sample-work-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-sample-work__container-{{ ai_gen_id }}">
+    <div class="ai-sample-work__header-{{ ai_gen_id }}">
+      {% if block.settings.label != blank %}
+        <div class="ai-sample-work__label-{{ ai_gen_id }}">{{ block.settings.label }}</div>
+      {% endif %}
+      {% if block.settings.headline != blank %}
+        <h2 class="ai-sample-work__headline-{{ ai_gen_id }}">{{ block.settings.headline }}</h2>
+      {% endif %}
+      {% if block.settings.supporting_text != blank %}
+        <p class="ai-sample-work__supporting-{{ ai_gen_id }}">{{ block.settings.supporting_text }}</p>
+      {% endif %}
+    </div>
+
+    <div class="ai-sample-work__grid-{{ ai_gen_id }}">
+      <div class="ai-sample-work__card-{{ ai_gen_id }} ai-sample-work__featured-{{ ai_gen_id }}">
+        <div class="ai-sample-work__media-frame-{{ ai_gen_id }}">
+          {% if block.settings.featured_image %}
+            <img
+              src="{{ block.settings.featured_image | image_url: width: 1200 }}"
+              alt="{{ block.settings.featured_title | escape }}"
+              loading="lazy"
+              width="1200"
+              height="750"
+            >
+          {% else %}
+            <svg class="ai-sample-work__placeholder-icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <div class="ai-sample-work__placeholder-text-{{ ai_gen_id }}">Upload featured media</div>
+          {% endif %}
+        </div>
+        <div class="ai-sample-work__card-content-{{ ai_gen_id }}">
+          {% if block.settings.featured_title != blank %}
+            <h3 class="ai-sample-work__card-title-{{ ai_gen_id }}">{{ block.settings.featured_title }}</h3>
+          {% endif %}
+          {% if block.settings.featured_caption != blank %}
+            <p class="ai-sample-work__card-caption-{{ ai_gen_id }}">{{ block.settings.featured_caption }}</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="ai-sample-work__card-{{ ai_gen_id }}">
+        <div class="ai-sample-work__media-frame-{{ ai_gen_id }}">
+          {% if block.settings.card_1_image %}
+            <img
+              src="{{ block.settings.card_1_image | image_url: width: 800 }}"
+              alt="{{ block.settings.card_1_title | escape }}"
+              loading="lazy"
+              width="800"
+              height="500"
+            >
+          {% else %}
+            <svg class="ai-sample-work__placeholder-icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <div class="ai-sample-work__placeholder-text-{{ ai_gen_id }}">Upload media</div>
+          {% endif %}
+        </div>
+        <div class="ai-sample-work__card-content-{{ ai_gen_id }}">
+          {% if block.settings.card_1_title != blank %}
+            <h3 class="ai-sample-work__card-title-{{ ai_gen_id }}">{{ block.settings.card_1_title }}</h3>
+          {% endif %}
+          {% if block.settings.card_1_caption != blank %}
+            <p class="ai-sample-work__card-caption-{{ ai_gen_id }}">{{ block.settings.card_1_caption }}</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="ai-sample-work__card-{{ ai_gen_id }}">
+        <div class="ai-sample-work__media-frame-{{ ai_gen_id }}">
+          {% if block.settings.card_2_image %}
+            <img
+              src="{{ block.settings.card_2_image | image_url: width: 800 }}"
+              alt="{{ block.settings.card_2_title | escape }}"
+              loading="lazy"
+              width="800"
+              height="500"
+            >
+          {% else %}
+            <svg class="ai-sample-work__placeholder-icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <div class="ai-sample-work__placeholder-text-{{ ai_gen_id }}">Upload media</div>
+          {% endif %}
+        </div>
+        <div class="ai-sample-work__card-content-{{ ai_gen_id }}">
+          {% if block.settings.card_2_title != blank %}
+            <h3 class="ai-sample-work__card-title-{{ ai_gen_id }}">{{ block.settings.card_2_title }}</h3>
+          {% endif %}
+          {% if block.settings.card_2_caption != blank %}
+            <p class="ai-sample-work__card-caption-{{ ai_gen_id }}">{{ block.settings.card_2_caption }}</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="ai-sample-work__card-{{ ai_gen_id }}">
+        <div class="ai-sample-work__media-frame-{{ ai_gen_id }}">
+          {% if block.settings.card_3_image %}
+            <img
+              src="{{ block.settings.card_3_image | image_url: width: 800 }}"
+              alt="{{ block.settings.card_3_title | escape }}"
+              loading="lazy"
+              width="800"
+              height="500"
+            >
+          {% else %}
+            <svg class="ai-sample-work__placeholder-icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <div class="ai-sample-work__placeholder-text-{{ ai_gen_id }}">Upload media</div>
+          {% endif %}
+        </div>
+        <div class="ai-sample-work__card-content-{{ ai_gen_id }}">
+          {% if block.settings.card_3_title != blank %}
+            <h3 class="ai-sample-work__card-title-{{ ai_gen_id }}">{{ block.settings.card_3_title }}</h3>
+          {% endif %}
+          {% if block.settings.card_3_caption != blank %}
+            <p class="ai-sample-work__card-caption-{{ ai_gen_id }}">{{ block.settings.card_3_caption }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</sample-work-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class SampleWork{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.style.display = 'block';
+      }
+    }
+
+    customElements.define('sample-work-{{ ai_gen_id }}', SampleWork{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Sample work",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section header"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "SAMPLE WORK"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "How the system is actually built"
+    },
+    {
+      "type": "textarea",
+      "id": "supporting_text",
+      "label": "Supporting text",
+      "default": "A closer look at the workflows, logic, and handoff points behind a production-ready company agent."
+    },
+    {
+      "type": "header",
+      "content": "Featured card"
+    },
+    {
+      "type": "image_picker",
+      "id": "featured_image",
+      "label": "Featured image"
+    },
+    {
+      "type": "text",
+      "id": "featured_title",
+      "label": "Title",
+      "default": "Agent conversation flow"
+    },
+    {
+      "type": "textarea",
+      "id": "featured_caption",
+      "label": "Caption",
+      "default": "Placeholder for the main conversational path and branching logic."
+    },
+    {
+      "type": "header",
+      "content": "Supporting card 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_1_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_1_title",
+      "label": "Title",
+      "default": "Lead qualification logic"
+    },
+    {
+      "type": "textarea",
+      "id": "card_1_caption",
+      "label": "Caption",
+      "default": "Placeholder for the qualification rules that filter and route inbound leads."
+    },
+    {
+      "type": "header",
+      "content": "Supporting card 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_2_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_2_title",
+      "label": "Title",
+      "default": "CRM handoff workflow"
+    },
+    {
+      "type": "textarea",
+      "id": "card_2_caption",
+      "label": "Caption",
+      "default": "Placeholder for the automation that passes qualified conversations into the right pipeline or owner."
+    },
+    {
+      "type": "header",
+      "content": "Supporting card 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_3_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_3_title",
+      "label": "Title",
+      "default": "Knowledge base structure"
+    },
+    {
+      "type": "textarea",
+      "id": "card_3_caption",
+      "label": "Caption",
+      "default": "Placeholder for the FAQ and internal content the agent uses to answer accurately."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Label",
+      "default": "#999999"
+    },
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Headline",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "supporting_color",
+      "label": "Supporting text",
+      "default": "#999999"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card title",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_caption_color",
+      "label": "Card caption",
+      "default": "#999999"
+    },
+    {
+      "type": "color",
+      "id": "placeholder_background",
+      "label": "Placeholder background",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "color",
+      "id": "placeholder_border",
+      "label": "Placeholder border",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "placeholder_icon_color",
+      "label": "Placeholder icon",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "placeholder_text_color",
+      "label": "Placeholder text",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "headline_size",
+      "label": "Headline size",
+      "min": 24,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "supporting_size",
+      "label": "Supporting text size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "card_title_size",
+      "label": "Card title size",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_caption_size",
+      "label": "Card caption size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "label": "Card gap",
+      "min": 12,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "label": "Card padding",
+      "min": 16,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Card border radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "media_border_radius",
+      "label": "Media border radius",
+      "min": 0,
+      "max": 16,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sample work"
+    }
+  ]
+}
 {% endschema %}
