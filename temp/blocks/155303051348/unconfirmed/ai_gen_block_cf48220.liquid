@@ -1,6 +1,370 @@
+{% doc %}
+  @prompt
+    Create a new section named “Client Video” and place it directly after “Service Testimonial” and before “Use Cases”.
+    
+    Match the current page UI exactly:
+    - premium black background
+    - subtle borders
+    - rounded cards
+    - white headings
+    - muted gray supporting text
+    - no bright colors
+    - no redesign
+    - mobile friendly
+    
+    Layout:
+    - small label
+    - headline
+    - short intro sentence
+    - desktop: large 16:9 media upload field on the left and quote/speaker block on the right
+    - below that: 3 short outcome bullets
+    - mobile: stack vertically
+    - no CTA button
+    
+    Use this copy:
+    
+    Label: CLIENT STORY
+    Headline: Hear what changes when flows are doing their job
+    Intro text: Add a client story, Loom walkthrough, or account review video here once the file is ready.
+    
+    Media field label: Upload client video or retention walkthrough
+    
+    Quote: “Once the flows were set up properly, email stopped being background noise and started contributing real value.”
+    Speaker: Client name / role
+    
+    Outcome bullet 1: More revenue from automated email flows
+    Outcome bullet 2: Better retention after the first purchase
+    Outcome bullet 3: Stronger customer journey from first touch to repeat order
+    
+    Important:
+    - keep the media field upload-ready
+    - do not add stock people or fake testimonials
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-client-video-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: #000000;
+    padding: 80px 20px;
+  }
+
+  .ai-client-video-container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-client-video-header-{{ ai_gen_id }} {
+    margin-bottom: 60px;
+  }
+
+  .ai-client-video-label-{{ ai_gen_id }} {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #999999;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .ai-client-video-headline-{{ ai_gen_id }} {
+    font-size: 42px;
+    line-height: 1.2;
+    color: #ffffff;
+    margin: 0 0 16px 0;
+    font-weight: 600;
+  }
+
+  .ai-client-video-intro-{{ ai_gen_id }} {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #999999;
+    margin: 0;
+  }
+
+  .ai-client-video-main-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    margin-bottom: 60px;
+  }
+
+  .ai-client-video-media-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #0a0a0a;
+    border: 1px solid #1a1a1a;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .ai-client-video-media-{{ ai_gen_id }} video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-client-video-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0a0a0a;
+  }
+
+  .ai-client-video-placeholder-{{ ai_gen_id }} svg {
+    width: 80px;
+    height: 80px;
+    opacity: 0.3;
+  }
+
+  .ai-client-video-quote-block-{{ ai_gen_id }} {
+    background-color: #0a0a0a;
+    border: 1px solid #1a1a1a;
+    border-radius: 12px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .ai-client-video-quote-{{ ai_gen_id }} {
+    font-size: 20px;
+    line-height: 1.6;
+    color: #ffffff;
+    margin: 0 0 24px 0;
+    font-weight: 400;
+  }
+
+  .ai-client-video-speaker-{{ ai_gen_id }} {
+    font-size: 14px;
+    color: #999999;
+    margin: 0;
+  }
+
+  .ai-client-video-outcomes-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .ai-client-video-outcome-{{ ai_gen_id }} {
+    background-color: #0a0a0a;
+    border: 1px solid #1a1a1a;
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .ai-client-video-outcome-text-{{ ai_gen_id }} {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 989px) {
+    .ai-client-video-{{ ai_gen_id }} {
+      padding: 60px 20px;
+    }
+
+    .ai-client-video-headline-{{ ai_gen_id }} {
+      font-size: 32px;
+    }
+
+    .ai-client-video-main-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .ai-client-video-outcomes-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .ai-client-video-quote-block-{{ ai_gen_id }} {
+      padding: 30px;
+    }
+
+    .ai-client-video-quote-{{ ai_gen_id }} {
+      font-size: 18px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-client-video-{{ ai_gen_id }} {
+      padding: 40px 16px;
+    }
+
+    .ai-client-video-headline-{{ ai_gen_id }} {
+      font-size: 28px;
+    }
+
+    .ai-client-video-header-{{ ai_gen_id }} {
+      margin-bottom: 40px;
+    }
+
+    .ai-client-video-outcome-{{ ai_gen_id }} {
+      padding: 20px;
+    }
+  }
+{% endstyle %}
+
+<client-video-{{ ai_gen_id }} class="ai-client-video-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-client-video-container-{{ ai_gen_id }}">
+    <div class="ai-client-video-header-{{ ai_gen_id }}">
+      {% if block.settings.label != blank %}
+        <div class="ai-client-video-label-{{ ai_gen_id }}">{{ block.settings.label }}</div>
+      {% endif %}
+      {% if block.settings.headline != blank %}
+        <h2 class="ai-client-video-headline-{{ ai_gen_id }}">{{ block.settings.headline }}</h2>
+      {% endif %}
+      {% if block.settings.intro_text != blank %}
+        <p class="ai-client-video-intro-{{ ai_gen_id }}">{{ block.settings.intro_text }}</p>
+      {% endif %}
+    </div>
+
+    <div class="ai-client-video-main-{{ ai_gen_id }}">
+      <div class="ai-client-video-media-{{ ai_gen_id }}">
+        {% if block.settings.client_video != blank %}
+          {{ block.settings.client_video | video_tag: autoplay: false, controls: true }}
+        {% else %}
+          <div class="ai-client-video-placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="ai-client-video-quote-block-{{ ai_gen_id }}">
+        {% if block.settings.quote != blank %}
+          <p class="ai-client-video-quote-{{ ai_gen_id }}">"{{ block.settings.quote }}"</p>
+        {% endif %}
+        {% if block.settings.speaker != blank %}
+          <p class="ai-client-video-speaker-{{ ai_gen_id }}">{{ block.settings.speaker }}</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="ai-client-video-outcomes-{{ ai_gen_id }}">
+      {% if block.settings.outcome_1 != blank %}
+        <div class="ai-client-video-outcome-{{ ai_gen_id }}">
+          <p class="ai-client-video-outcome-text-{{ ai_gen_id }}">{{ block.settings.outcome_1 }}</p>
+        </div>
+      {% endif %}
+      {% if block.settings.outcome_2 != blank %}
+        <div class="ai-client-video-outcome-{{ ai_gen_id }}">
+          <p class="ai-client-video-outcome-text-{{ ai_gen_id }}">{{ block.settings.outcome_2 }}</p>
+        </div>
+      {% endif %}
+      {% if block.settings.outcome_3 != blank %}
+        <div class="ai-client-video-outcome-{{ ai_gen_id }}">
+          <p class="ai-client-video-outcome-text-{{ ai_gen_id }}">{{ block.settings.outcome_3 }}</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</client-video-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ClientVideo{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        const video = this.querySelector('video');
+        if (video) {
+          video.setAttribute('playsinline', '');
+        }
+      }
+    }
+
+    customElements.define('client-video-{{ ai_gen_id }}', ClientVideo{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Client video",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "CLIENT STORY"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Hear what changes when flows are doing their job"
+    },
+    {
+      "type": "textarea",
+      "id": "intro_text",
+      "label": "Intro text",
+      "default": "Add a client story, Loom walkthrough, or account review video here once the file is ready."
+    },
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "video",
+      "id": "client_video",
+      "label": "Upload client video or retention walkthrough"
+    },
+    {
+      "type": "header",
+      "content": "Quote"
+    },
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Quote text",
+      "default": "Once the flows were set up properly, email stopped being background noise and started contributing real value."
+    },
+    {
+      "type": "text",
+      "id": "speaker",
+      "label": "Speaker",
+      "default": "Client name / role"
+    },
+    {
+      "type": "header",
+      "content": "Outcomes"
+    },
+    {
+      "type": "text",
+      "id": "outcome_1",
+      "label": "Outcome 1",
+      "default": "More revenue from automated email flows"
+    },
+    {
+      "type": "text",
+      "id": "outcome_2",
+      "label": "Outcome 2",
+      "default": "Better retention after the first purchase"
+    },
+    {
+      "type": "text",
+      "id": "outcome_3",
+      "label": "Outcome 3",
+      "default": "Stronger customer journey from first touch to repeat order"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Client video"
+    }
+  ]
+}
 {% endschema %}
