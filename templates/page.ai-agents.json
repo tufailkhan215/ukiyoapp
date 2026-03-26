@@ -30,7 +30,7 @@
           "type": "tag",
           "settings": {
             "icon": "zap",
-            "label": "GPT-4 Powered",
+            "label": "GPT Powered",
             "accent": false,
             "highlight": false
           }
