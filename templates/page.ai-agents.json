@@ -77,7 +77,7 @@
         "stat_9CDJtG": {
           "type": "stat",
           "settings": {
-            "value": "GPT-4",
+            "value": "GPT",
             "label": "Powered By",
             "use_gradient": false
           }
