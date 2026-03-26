@@ -1,6 +1,525 @@
+{% doc %}
+  @prompt
+    Create a new section named “Sample Work” and place it directly after “Two Column Text (What’s Included)” and before “Services Key Features”.
+    
+    Match the current page UI exactly:
+    - black premium background
+    - subtle 1px borders
+    - rounded cards matching the existing service cards
+    - white headings
+    - muted gray supporting text
+    - no gradients
+    - no bright accents
+    - no redesign
+    - mobile friendly
+    
+    Layout:
+    - small label
+    - headline
+    - short supporting sentence
+    - desktop: 1 featured media card on the left and 3 supporting media cards on the right
+    - mobile: stack vertically
+    - every card must have an image upload field, title, and caption
+    - no CTA button
+    
+    Use this copy:
+    
+    Label: SAMPLE WORK
+    Headline: What support looks like behind the scenes
+    Supporting text: A closer look at the systems, workflows, and day-to-day execution that keep operations lighter and more organized.
+    
+    Card 1 title: Inbox triage system
+    Card 1 caption: Messages are sorted, prioritized, and moved forward without letting important follow-ups slip.
+    
+    Card 2 title: Calendar coordination view
+    Card 2 caption: Scheduling, rescheduling, reminders, and booking flow all managed in one clean system.
+    
+    Card 3 title: Task tracker and SOP board
+    Card 3 caption: Recurring admin work is handled through clear checklists, repeatable processes, and visible ownership.
+    
+    Card 4 title: CRM and admin workflow
+    Card 4 caption: Records stay updated, follow-ups stay on track, and back-office tasks stay organized.
+    
+    Important:
+    - keep the media frames upload-ready
+    - do not add fake logos, fake stats, or stock imagery
+    - focus on structure and polish
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-sample-work-{{ ai_gen_id }} {
+    display: block;
+    background-color: {{ block.settings.background_color }};
+    padding: 80px 20px;
+    width: 100%;
+  }
+
+  .ai-sample-work-container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-sample-work-header-{{ ai_gen_id }} {
+    margin-bottom: 60px;
+  }
+
+  .ai-sample-work-label-{{ ai_gen_id }} {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: {{ block.settings.label_color }};
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .ai-sample-work-headline-{{ ai_gen_id }} {
+    font-size: 36px;
+    line-height: 1.2;
+    color: {{ block.settings.heading_color }};
+    margin: 0 0 16px 0;
+    font-weight: 400;
+  }
+
+  .ai-sample-work-supporting-{{ ai_gen_id }} {
+    font-size: 16px;
+    line-height: 1.6;
+    color: {{ block.settings.supporting_text_color }};
+    margin: 0;
+    max-width: 600px;
+  }
+
+  .ai-sample-work-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .ai-sample-work-featured-{{ ai_gen_id }} {
+    grid-row: span 2;
+  }
+
+  .ai-sample-work-card-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_background }};
+    border: {{ block.settings.border_width }}px solid {{ block.settings.border_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ai-sample-work-image-wrapper-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background-color: #0a0a0a;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ai-sample-work-featured-{{ ai_gen_id }} .ai-sample-work-image-wrapper-{{ ai_gen_id }} {
+    aspect-ratio: 4 / 5;
+  }
+
+  .ai-sample-work-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-sample-work-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0a0a0a;
+  }
+
+  .ai-sample-work-placeholder-{{ ai_gen_id }} svg {
+    width: 60px;
+    height: 60px;
+    opacity: 0.3;
+  }
+
+  .ai-sample-work-card-content-{{ ai_gen_id }} {
+    padding: 24px;
+  }
+
+  .ai-sample-work-card-title-{{ ai_gen_id }} {
+    font-size: 18px;
+    line-height: 1.3;
+    color: {{ block.settings.card_title_color }};
+    margin: 0 0 8px 0;
+    font-weight: 400;
+  }
+
+  .ai-sample-work-card-caption-{{ ai_gen_id }} {
+    font-size: 14px;
+    line-height: 1.5;
+    color: {{ block.settings.card_caption_color }};
+    margin: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-sample-work-{{ ai_gen_id }} {
+      padding: 60px 20px;
+    }
+
+    .ai-sample-work-headline-{{ ai_gen_id }} {
+      font-size: 28px;
+    }
+
+    .ai-sample-work-grid-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .ai-sample-work-featured-{{ ai_gen_id }} {
+      grid-row: auto;
+    }
+
+    .ai-sample-work-featured-{{ ai_gen_id }} .ai-sample-work-image-wrapper-{{ ai_gen_id }} {
+      aspect-ratio: 16 / 10;
+    }
+
+    .ai-sample-work-card-content-{{ ai_gen_id }} {
+      padding: 20px;
+    }
+  }
+{% endstyle %}
+
+<sample-work-{{ ai_gen_id }} class="ai-sample-work-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-sample-work-container-{{ ai_gen_id }}">
+    <div class="ai-sample-work-header-{{ ai_gen_id }}">
+      {% if block.settings.label != blank %}
+        <div class="ai-sample-work-label-{{ ai_gen_id }}">{{ block.settings.label }}</div>
+      {% endif %}
+      {% if block.settings.headline != blank %}
+        <h2 class="ai-sample-work-headline-{{ ai_gen_id }}">{{ block.settings.headline }}</h2>
+      {% endif %}
+      {% if block.settings.supporting_text != blank %}
+        <p class="ai-sample-work-supporting-{{ ai_gen_id }}">{{ block.settings.supporting_text }}</p>
+      {% endif %}
+    </div>
+
+    <div class="ai-sample-work-grid-{{ ai_gen_id }}">
+      <div class="ai-sample-work-card-{{ ai_gen_id }} ai-sample-work-featured-{{ ai_gen_id }}">
+        <div class="ai-sample-work-image-wrapper-{{ ai_gen_id }}">
+          {% if block.settings.card_1_image %}
+            <img
+              src="{{ block.settings.card_1_image | image_url: width: 800 }}"
+              alt="{{ block.settings.card_1_title | escape }}"
+              class="ai-sample-work-image-{{ ai_gen_id }}"
+              loading="lazy"
+              width="800"
+              height="1000"
+            >
+          {% else %}
+            <div class="ai-sample-work-placeholder-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+        </div>
+        <div class="ai-sample-work-card-content-{{ ai_gen_id }}">
+          {% if block.settings.card_1_title != blank %}
+            <h3 class="ai-sample-work-card-title-{{ ai_gen_id }}">{{ block.settings.card_1_title }}</h3>
+          {% endif %}
+          {% if block.settings.card_1_caption != blank %}
+            <p class="ai-sample-work-card-caption-{{ ai_gen_id }}">{{ block.settings.card_1_caption }}</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="ai-sample-work-card-{{ ai_gen_id }}">
+        <div class="ai-sample-work-image-wrapper-{{ ai_gen_id }}">
+          {% if block.settings.card_2_image %}
+            <img
+              src="{{ block.settings.card_2_image | image_url: width: 600 }}"
+              alt="{{ block.settings.card_2_title | escape }}"
+              class="ai-sample-work-image-{{ ai_gen_id }}"
+              loading="lazy"
+              width="600"
+              height="375"
+            >
+          {% else %}
+            <div class="ai-sample-work-placeholder-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+        </div>
+        <div class="ai-sample-work-card-content-{{ ai_gen_id }}">
+          {% if block.settings.card_2_title != blank %}
+            <h3 class="ai-sample-work-card-title-{{ ai_gen_id }}">{{ block.settings.card_2_title }}</h3>
+          {% endif %}
+          {% if block.settings.card_2_caption != blank %}
+            <p class="ai-sample-work-card-caption-{{ ai_gen_id }}">{{ block.settings.card_2_caption }}</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="ai-sample-work-card-{{ ai_gen_id }}">
+        <div class="ai-sample-work-image-wrapper-{{ ai_gen_id }}">
+          {% if block.settings.card_3_image %}
+            <img
+              src="{{ block.settings.card_3_image | image_url: width: 600 }}"
+              alt="{{ block.settings.card_3_title | escape }}"
+              class="ai-sample-work-image-{{ ai_gen_id }}"
+              loading="lazy"
+              width="600"
+              height="375"
+            >
+          {% else %}
+            <div class="ai-sample-work-placeholder-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+        </div>
+        <div class="ai-sample-work-card-content-{{ ai_gen_id }}">
+          {% if block.settings.card_3_title != blank %}
+            <h3 class="ai-sample-work-card-title-{{ ai_gen_id }}">{{ block.settings.card_3_title }}</h3>
+          {% endif %}
+          {% if block.settings.card_3_caption != blank %}
+            <p class="ai-sample-work-card-caption-{{ ai_gen_id }}">{{ block.settings.card_3_caption }}</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="ai-sample-work-card-{{ ai_gen_id }}">
+        <div class="ai-sample-work-image-wrapper-{{ ai_gen_id }}">
+          {% if block.settings.card_4_image %}
+            <img
+              src="{{ block.settings.card_4_image | image_url: width: 600 }}"
+              alt="{{ block.settings.card_4_title | escape }}"
+              class="ai-sample-work-image-{{ ai_gen_id }}"
+              loading="lazy"
+              width="600"
+              height="375"
+            >
+          {% else %}
+            <div class="ai-sample-work-placeholder-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+        </div>
+        <div class="ai-sample-work-card-content-{{ ai_gen_id }}">
+          {% if block.settings.card_4_title != blank %}
+            <h3 class="ai-sample-work-card-title-{{ ai_gen_id }}">{{ block.settings.card_4_title }}</h3>
+          {% endif %}
+          {% if block.settings.card_4_caption != blank %}
+            <p class="ai-sample-work-card-caption-{{ ai_gen_id }}">{{ block.settings.card_4_caption }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</sample-work-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class SampleWork{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+      }
+    }
+
+    customElements.define('sample-work-{{ ai_gen_id }}', SampleWork{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Sample work",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section header"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "SAMPLE WORK"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "What support looks like behind the scenes"
+    },
+    {
+      "type": "textarea",
+      "id": "supporting_text",
+      "label": "Supporting text",
+      "default": "A closer look at the systems, workflows, and day-to-day execution that keep operations lighter and more organized."
+    },
+    {
+      "type": "header",
+      "content": "Card 1 (Featured)"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_1_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_1_title",
+      "label": "Title",
+      "default": "Inbox triage system"
+    },
+    {
+      "type": "textarea",
+      "id": "card_1_caption",
+      "label": "Caption",
+      "default": "Messages are sorted, prioritized, and moved forward without letting important follow-ups slip."
+    },
+    {
+      "type": "header",
+      "content": "Card 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_2_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_2_title",
+      "label": "Title",
+      "default": "Calendar coordination view"
+    },
+    {
+      "type": "textarea",
+      "id": "card_2_caption",
+      "label": "Caption",
+      "default": "Scheduling, rescheduling, reminders, and booking flow all managed in one clean system."
+    },
+    {
+      "type": "header",
+      "content": "Card 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_3_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_3_title",
+      "label": "Title",
+      "default": "Task tracker and SOP board"
+    },
+    {
+      "type": "textarea",
+      "id": "card_3_caption",
+      "label": "Caption",
+      "default": "Recurring admin work is handled through clear checklists, repeatable processes, and visible ownership."
+    },
+    {
+      "type": "header",
+      "content": "Card 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_4_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_4_title",
+      "label": "Title",
+      "default": "CRM and admin workflow"
+    },
+    {
+      "type": "textarea",
+      "id": "card_4_caption",
+      "label": "Caption",
+      "default": "Records stay updated, follow-ups stay on track, and back-office tasks stay organized."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Label",
+      "default": "#999999"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "supporting_text_color",
+      "label": "Supporting text",
+      "default": "#999999"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card title",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_caption_color",
+      "label": "Card caption",
+      "default": "#999999"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sample work"
+    }
+  ]
+}
 {% endschema %}
