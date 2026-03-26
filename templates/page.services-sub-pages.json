@@ -116,25 +116,9 @@
         "description": "12 specialized services across 6 categories, each designed to accelerate your business growth."
       }
     },
-    "service_details_intro_yGMBf3": {
-      "type": "service-details-intro",
-      "name": "Service Details Intro",
-      "settings": {
-        "enable_canvas_glow": true,
-        "enable_dots": true,
-        "back_link_text": "Back to Services",
-        "back_link_url": "/pages/services",
-        "category_label": "Brand Strategy",
-        "category_icon": "sparkles",
-        "title": "Company Agent Builder",
-        "subtitle": "Custom AI agents trained on your voice, offers, and workflows.",
-        "description": "Build intelligent agents that help your business respond faster, support better, and stay consistent across every touchpoint.",
-        "cta_primary_text": "Book Free Consultation",
-        "cta_primary_url": "#",
-        "cta_primary_new_tab": true,
-        "cta_secondary_text": "View Case Studies",
-        "cta_secondary_url": "/pages/work"
-      }
+    "1774475570ef8882b2": {
+      "type": "_blocks",
+      "settings": {}
     },
     "stats_YdmTqx": {
       "type": "stats",
@@ -184,19 +168,6 @@
         "strap": "(Our Impact)",
         "title_before": "Numbers that",
         "title_gradient": "matter"
-      }
-    },
-    "two_column_text_C8d8mg": {
-      "type": "two-column-text",
-      "name": "Two Column Text",
-      "settings": {
-        "layout": "overview",
-        "strap": "(Overview)",
-        "title_before": "Inside our",
-        "title_gradient": "Company Agent Builder",
-        "paragraph_1": "<p>Our Company Agent Builder helps brands create custom AI agents trained on their voice, offers, workflows, and internal knowledge making it easier to respond faster, support better, and maintain consistency across every touchpoint.</p>",
-        "paragraph_2": "<p>Designed to function like an extension of your team, these tailored agents can handle customer inquiries, support lead qualification, and streamline repetitive communication while staying aligned with your brand and business goals.<br/><br/></p>",
-        "title_included": "Everything You Need to Launch Your AI Agent"
       }
     },
     "icon_boxes_Fwkywn": {
@@ -386,6 +357,56 @@
         "paragraph_2": "<p>In an era where customer expectations are at an all-time high, having a consistent brand voice across every touchpoint is crucial. Our Company Agent Builder service creates bespoke AI agents trained on your brand guidelines, tone of voice, product knowledge, and company values. These agents become extensions of your team, handling everything from customer inquiries to lead qualification with the precision and personality your brand deserves.</p>",
         "title_included": "Everything You Need to Launch Your AI Agent"
       }
+    },
+    "177447655681b79605": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_221cf86_8CDHh7": {
+          "type": "ai_gen_block_221cf86",
+          "settings": {
+            "label": "SAMPLE WORK",
+            "headline": "How the system is actually built",
+            "supporting_text": "A closer look at the workflows, logic, and handoff points behind a production-ready company agent.",
+            "featured_image": "shopify://shop_images/company-agent-conversation-flow-ready.png",
+            "featured_title": "Agent conversation flow",
+            "featured_caption": "Placeholder for the main conversational path and branching logic.",
+            "card_1_image": "shopify://shop_images/company-agent-crm-handoff-ready.png",
+            "card_1_title": "Lead qualification logic",
+            "card_1_caption": "Placeholder for the qualification rules that filter and route inbound leads.",
+            "card_2_image": "shopify://shop_images/company-agent-knowledge-base-ready.png",
+            "card_2_title": "CRM handoff workflow",
+            "card_2_caption": "Placeholder for the automation that passes qualified conversations into the right pipeline or owner.",
+            "card_3_image": "shopify://shop_images/company-agent-qualification-logic-ready.png",
+            "card_3_title": "Knowledge base structure",
+            "card_3_caption": "Placeholder for the FAQ and internal content the agent uses to answer accurately.",
+            "background_color": "#000000",
+            "label_color": "#999999",
+            "headline_color": "#ffffff",
+            "supporting_color": "#999999",
+            "card_background": "#000000",
+            "card_border_color": "#1a1a1a",
+            "card_title_color": "#ffffff",
+            "card_caption_color": "#999999",
+            "placeholder_background": "#0a0a0a",
+            "placeholder_border": "#333333",
+            "placeholder_icon_color": "#666666",
+            "placeholder_text_color": "#666666",
+            "headline_size": 48,
+            "supporting_size": 18,
+            "card_title_size": 20,
+            "card_caption_size": 15,
+            "card_gap": 24,
+            "card_padding": 24,
+            "card_border_radius": 12,
+            "media_border_radius": 8
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_221cf86_8CDHh7"
+      ],
+      "settings": {}
     },
     "services_key_features_qwLJ4x": {
       "type": "services-key-features",
@@ -1091,14 +1112,14 @@
     "services_hero_Hfxecm",
     "services_intro_C3pYy7",
     "services_category_grid_nxbLPE",
-    "service_details_intro_yGMBf3",
+    "1774475570ef8882b2",
     "stats_YdmTqx",
-    "two_column_text_C8d8mg",
     "icon_boxes_Fwkywn",
     "icon_boxes_TzdEHE",
     "rich_text_EEHbYG",
     "services_rich_text_VBT9G7",
     "two_column_text_zCXJVY",
+    "177447655681b79605",
     "services_key_features_qwLJ4x",
     "services_timeline_jcmmxh",
     "services_plan_URffPE",
