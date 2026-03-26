@@ -1,6 +1,403 @@
+{% doc %}
+  @prompt
+    Create a new section named “Client Video” and place it directly after “Service Testimonial” and before “Use Cases”.
+    
+    Match the current page UI exactly:
+    - premium black background
+    - subtle borders
+    - rounded cards
+    - white headings
+    - muted gray supporting text
+    - no bright colors
+    - no redesign
+    - mobile friendly
+    
+    Layout:
+    - small label
+    - headline
+    - short intro sentence
+    - desktop: large 16:9 media upload field on the left and quote/speaker block on the right
+    - below that: 3 short outcome bullets
+    - mobile: stack vertically
+    - no CTA button
+    
+    Use this copy:
+    
+    Label: CLIENT STORY
+    Headline: Hear what changes once admin is handled
+    Intro text: Add a founder testimonial, client selfie video, or narrated walkthrough here when the file is ready.
+    
+    Media field label: Upload testimonial video or walkthrough
+    
+    Quote: “Getting this work off our plate created more space, more consistency, and a much cleaner day-to-day rhythm.”
+    Speaker: Client name / role
+    
+    Outcome bullet 1: More time back for higher-value work
+    Outcome bullet 2: Faster and cleaner communication handling
+    Outcome bullet 3: Better consistency across recurring admin tasks
+    
+    Important:
+    - keep the media field upload-ready
+    - do not add stock people or fake testimonials
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-client-video-{{ ai_gen_id }} {
+    display: block;
+    background-color: {{ block.settings.background_color }};
+    padding: 80px 20px;
+    width: 100%;
+  }
+
+  .ai-client-video__container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-client-video__label-{{ ai_gen_id }} {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: {{ block.settings.muted_color }};
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .ai-client-video__headline-{{ ai_gen_id }} {
+    font-size: 42px;
+    line-height: 1.2;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 16px 0;
+    font-weight: 600;
+  }
+
+  .ai-client-video__intro-{{ ai_gen_id }} {
+    font-size: 16px;
+    line-height: 1.6;
+    color: {{ block.settings.muted_color }};
+    margin-bottom: 48px;
+    max-width: 700px;
+  }
+
+  .ai-client-video__content-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    margin-bottom: 48px;
+  }
+
+  .ai-client-video__media-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: {{ block.settings.border_radius }}px;
+    overflow: hidden;
+    border: 1px solid {{ block.settings.border_color }};
+    background-color: #0a0a0a;
+  }
+
+  .ai-client-video__media-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    color: {{ block.settings.muted_color }};
+  }
+
+  .ai-client-video__media-placeholder-{{ ai_gen_id }} svg {
+    width: 64px;
+    height: 64px;
+    opacity: 0.3;
+  }
+
+  .ai-client-video__media-placeholder-text-{{ ai_gen_id }} {
+    font-size: 14px;
+    opacity: 0.6;
+  }
+
+  .ai-client-video__media-{{ ai_gen_id }} video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-client-video__quote-block-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 32px;
+    background-color: #0a0a0a;
+    border: 1px solid {{ block.settings.border_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  .ai-client-video__quote-{{ ai_gen_id }} {
+    font-size: 20px;
+    line-height: 1.5;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 24px 0;
+    font-weight: 400;
+  }
+
+  .ai-client-video__speaker-{{ ai_gen_id }} {
+    font-size: 14px;
+    color: {{ block.settings.muted_color }};
+    font-weight: 500;
+  }
+
+  .ai-client-video__outcomes-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .ai-client-video__outcome-{{ ai_gen_id }} {
+    padding: 24px;
+    background-color: #0a0a0a;
+    border: 1px solid {{ block.settings.border_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: {{ block.settings.text_color }};
+  }
+
+  @media screen and (max-width: 989px) {
+    .ai-client-video-{{ ai_gen_id }} {
+      padding: 60px 20px;
+    }
+
+    .ai-client-video__headline-{{ ai_gen_id }} {
+      font-size: 32px;
+    }
+
+    .ai-client-video__content-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .ai-client-video__outcomes-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-client-video__headline-{{ ai_gen_id }} {
+      font-size: 28px;
+    }
+
+    .ai-client-video__quote-{{ ai_gen_id }} {
+      font-size: 18px;
+    }
+  }
+{% endstyle %}
+
+<client-video-{{ ai_gen_id }} class="ai-client-video-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-client-video__container-{{ ai_gen_id }}">
+    {% if block.settings.label != blank %}
+      <div class="ai-client-video__label-{{ ai_gen_id }}">
+        {{ block.settings.label }}
+      </div>
+    {% endif %}
+
+    {% if block.settings.headline != blank %}
+      <h2 class="ai-client-video__headline-{{ ai_gen_id }}">
+        {{ block.settings.headline }}
+      </h2>
+    {% endif %}
+
+    {% if block.settings.intro_text != blank %}
+      <div class="ai-client-video__intro-{{ ai_gen_id }}">
+        {{ block.settings.intro_text }}
+      </div>
+    {% endif %}
+
+    <div class="ai-client-video__content-{{ ai_gen_id }}">
+      <div class="ai-client-video__media-{{ ai_gen_id }}">
+        {% if block.settings.video != blank %}
+          {{ block.settings.video | video_tag: autoplay: false, controls: true }}
+        {% else %}
+          <div class="ai-client-video__media-placeholder-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <div class="ai-client-video__media-placeholder-text-{{ ai_gen_id }}">
+              Upload testimonial video
+            </div>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="ai-client-video__quote-block-{{ ai_gen_id }}">
+        {% if block.settings.quote != blank %}
+          <blockquote class="ai-client-video__quote-{{ ai_gen_id }}">
+            "{{ block.settings.quote }}"
+          </blockquote>
+        {% endif %}
+
+        {% if block.settings.speaker != blank %}
+          <div class="ai-client-video__speaker-{{ ai_gen_id }}">
+            {{ block.settings.speaker }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="ai-client-video__outcomes-{{ ai_gen_id }}">
+      {% if block.settings.outcome_1 != blank %}
+        <div class="ai-client-video__outcome-{{ ai_gen_id }}">
+          {{ block.settings.outcome_1 }}
+        </div>
+      {% endif %}
+
+      {% if block.settings.outcome_2 != blank %}
+        <div class="ai-client-video__outcome-{{ ai_gen_id }}">
+          {{ block.settings.outcome_2 }}
+        </div>
+      {% endif %}
+
+      {% if block.settings.outcome_3 != blank %}
+        <div class="ai-client-video__outcome-{{ ai_gen_id }}">
+          {{ block.settings.outcome_3 }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</client-video-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ClientVideo{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        const video = this.querySelector('video');
+        if (video) {
+          video.addEventListener('loadedmetadata', function() {
+            video.style.opacity = '1';
+          });
+        }
+      }
+    }
+
+    customElements.define('client-video-{{ ai_gen_id }}', ClientVideo{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Client video",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "CLIENT STORY"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Hear what changes once admin is handled"
+    },
+    {
+      "type": "textarea",
+      "id": "intro_text",
+      "label": "Intro text",
+      "default": "Add a founder testimonial, client selfie video, or narrated walkthrough here when the file is ready."
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Upload testimonial video or walkthrough"
+    },
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Quote",
+      "default": "Getting this work off our plate created more space, more consistency, and a much cleaner day-to-day rhythm."
+    },
+    {
+      "type": "text",
+      "id": "speaker",
+      "label": "Speaker",
+      "default": "Client name / role"
+    },
+    {
+      "type": "header",
+      "content": "Outcomes"
+    },
+    {
+      "type": "text",
+      "id": "outcome_1",
+      "label": "Outcome 1",
+      "default": "More time back for higher-value work"
+    },
+    {
+      "type": "text",
+      "id": "outcome_2",
+      "label": "Outcome 2",
+      "default": "Faster and cleaner communication handling"
+    },
+    {
+      "type": "text",
+      "id": "outcome_3",
+      "label": "Outcome 3",
+      "default": "Better consistency across recurring admin tasks"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "muted_color",
+      "label": "Muted text",
+      "default": "#999999"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "Client video"
+    }
+  ]
+}
 {% endschema %}
