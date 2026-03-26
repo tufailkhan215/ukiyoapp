@@ -297,6 +297,42 @@
         "body": "<p>Streamlining your operations with intelligent solutions that automate tasks, enhance efficiency, and free up your time to focus on what matters most growing your business. We designed automated workflows that freed an average of 1000 monthly staff hours for key clients.</p>"
       }
     },
+    "177454561558f818a8": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_ffd5682_n9TQex": {
+          "type": "ai_gen_block_ffd5682",
+          "settings": {
+            "label": "SAMPLE WORK",
+            "headline": "What support looks like behind the scenes",
+            "supporting_text": "A closer look at the systems, workflows, and day-to-day execution that keep operations lighter and more organized.",
+            "card_1_title": "Inbox triage system",
+            "card_1_caption": "Messages are sorted, prioritized, and moved forward without letting important follow-ups slip.",
+            "card_2_title": "Calendar coordination view",
+            "card_2_caption": "Scheduling, rescheduling, reminders, and booking flow all managed in one clean system.",
+            "card_3_title": "Task tracker and SOP board",
+            "card_3_caption": "Recurring admin work is handled through clear checklists, repeatable processes, and visible ownership.",
+            "card_4_title": "CRM and admin workflow",
+            "card_4_caption": "Records stay updated, follow-ups stay on track, and back-office tasks stay organized.",
+            "background_color": "#000000",
+            "label_color": "#999999",
+            "heading_color": "#ffffff",
+            "supporting_text_color": "#999999",
+            "card_background": "#000000",
+            "border_color": "#1a1a1a",
+            "card_title_color": "#ffffff",
+            "card_caption_color": "#999999",
+            "border_width": 1,
+            "border_radius": 8
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_ffd5682_n9TQex"
+      ],
+      "settings": {}
+    },
     "two_column_text_zCXJVY": {
       "type": "two-column-text",
       "blocks": {
@@ -507,77 +543,52 @@
         "subtitle": "Our proven process ensures exceptional results every time."
       }
     },
-    "services_plan_URffPE": {
-      "type": "services-plan",
+    "1774545988bd8af3b3": {
+      "type": "_blocks",
       "blocks": {
-        "plan_HyVafM": {
-          "type": "plan",
+        "ai_gen_block_9d7b719_prdVGP": {
+          "type": "ai_gen_block_9d7b719",
           "settings": {
-            "name": "Part-Time",
-            "description": "Perfect for solopreneurs",
-            "price": "$1,000",
-            "period": "/ per month",
-            "badge": "",
-            "features_text": "20 hours/month\nDedicated VA\nEmail management\nCalendar coordination\nBasic research tasks\nEmail support\nNext-day response",
-            "cta_text": "Get Started",
-            "cta_url": "https://tidycal.com/dashboard/booking-types",
-            "cta_new_tab": true
-          }
-        },
-        "plan_FrHA6H": {
-          "type": "plan",
-          "settings": {
-            "name": "Standard",
-            "description": "Ideal for growing businesses",
-            "price": "$2,000",
-            "period": "/ per month",
-            "badge": "Most Popular",
-            "features_text": "40 hours/month\nDedicated VA\nAll Part-Time services\nCRM management\nTravel planning\nDocument preparation\nExpense tracking\nSame-day response",
-            "cta_text": "Get Started",
-            "cta_url": "https://tidycal.com/dashboard/booking-types",
-            "cta_new_tab": true
-          }
-        },
-        "plan_qWaeyc": {
-          "type": "plan",
-          "settings": {
-            "name": "Full-Time",
-            "description": "Complete back-office support",
-            "price": "$3,500",
-            "period": "/ per month",
-            "badge": "",
-            "features_text": "80+ hours/month\nDedicated VA\nAll Standard services\nProject coordination\nTeam communication\nProcess documentation\nBasic bookkeeping\nPriority response",
-            "cta_text": "Get Started",
-            "cta_url": "https://tidycal.com/dashboard/booking-types",
-            "cta_new_tab": true
-          }
+            "label": "PERFORMANCE SNAPSHOT",
+            "headline": "What support should improve",
+            "supporting_text": "This section highlights the operational gains a strong assistant setup is meant to create over time.",
+            "kpi_1_value": "00+",
+            "kpi_1_title": "Hours returned each week",
+            "kpi_1_body": "Time taken off the founder or internal team through consistent admin support.",
+            "kpi_2_value": "00h",
+            "kpi_2_title": "Inbox turnaround",
+            "kpi_2_body": "Communication gets reviewed, sorted, and answered faster and more consistently.",
+            "kpi_3_value": "00%",
+            "kpi_3_title": "Task follow-through",
+            "kpi_3_body": "Scheduling, admin tasks, and recurring workflows are handled with fewer misses and less friction.",
+            "cta_text": "Book a Consultation",
+            "cta_link": "",
+            "background_color": "#000000",
+            "headline_color": "#ffffff",
+            "label_color": "#999999",
+            "supporting_color": "#999999",
+            "border_color": "#333333",
+            "cta_bg_color": "#ffffff",
+            "cta_text_color": "#000000",
+            "cta_hover_bg_color": "#f0f0f0",
+            "cta_border_color": "#ffffff",
+            "headline_size": 42,
+            "supporting_size": 16,
+            "kpi_value_size": 48,
+            "kpi_title_size": 18,
+            "kpi_body_size": 14,
+            "cta_font_size": 15,
+            "border_radius": 8,
+            "cta_border_radius": 6,
+            "desktop_width_percent": 100
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "plan_HyVafM",
-        "plan_FrHA6H",
-        "plan_qWaeyc"
+        "ai_gen_block_9d7b719_prdVGP"
       ],
-      "name": "Services Plan",
-      "settings": {
-        "strap": "(Investment)",
-        "title_before": "Choose Your",
-        "title_gradient": "Plan",
-        "description": "Select the package that best fits your needs. All plans include our signature quality and support.",
-        "footer_before": "Need ongoing support? Add",
-        "footer_highlight": "35/hr",
-        "footer_after": "for Additional hours beyond package"
-      }
-    },
-    "service_testimonial_ekeHMB": {
-      "type": "service-testimonial",
-      "name": "Service Testimonial",
-      "settings": {
-        "quote": "\"Having a VA freed up 25 hours a week for me. I finally have time to work ON my business instead of just IN it. Game-changing for my productivity.\"",
-        "author_image": "shopify://shop_images/1_e7c2fda2-5a29-4e46-b56a-82da2e0d94c3.png",
-        "author_name": "Sarah Chen",
-        "author_role": "CEO, Growth Startup"
-      }
+      "settings": {}
     },
     "17715474998453bd5d": {
       "type": "_blocks",
@@ -684,6 +695,34 @@
         "title_gradient": "Cases",
         "description": "Click any use case to see how it transforms your business"
       }
+    },
+    "17745463271a7c5db2": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_88463a5_XnYiVE": {
+          "type": "ai_gen_block_88463a5",
+          "settings": {
+            "label": "CLIENT STORY",
+            "headline": "Hear what changes once admin is handled",
+            "intro_text": "Add a founder testimonial, client selfie video, or narrated walkthrough here when the file is ready.",
+            "quote": "Getting this work off our plate created more space, more consistency, and a much cleaner day-to-day rhythm.",
+            "speaker": "Client name / role",
+            "outcome_1": "More time back for higher-value work",
+            "outcome_2": "Faster and cleaner communication handling",
+            "outcome_3": "Better consistency across recurring admin tasks",
+            "background_color": "#000000",
+            "text_color": "#ffffff",
+            "muted_color": "#999999",
+            "border_color": "#1a1a1a",
+            "border_radius": 12
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_88463a5_XnYiVE"
+      ],
+      "settings": {}
     },
     "faq_RzHXCd": {
       "type": "faq",
@@ -1115,13 +1154,14 @@
     "icon_boxes_TzdEHE",
     "rich_text_EEHbYG",
     "services_rich_text_VBT9G7",
+    "177454561558f818a8",
     "two_column_text_zCXJVY",
     "services_key_features_qwLJ4x",
     "services_timeline_jcmmxh",
-    "services_plan_URffPE",
-    "service_testimonial_ekeHMB",
+    "1774545988bd8af3b3",
     "17715474998453bd5d",
     "use_cases_q3tjXM",
+    "17745463271a7c5db2",
     "faq_RzHXCd",
     "icon_boxes_1_p3ApL6",
     "icon_boxes_1_6xtMCE",
