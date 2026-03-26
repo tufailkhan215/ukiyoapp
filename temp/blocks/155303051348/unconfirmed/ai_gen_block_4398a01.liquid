@@ -1,6 +1,640 @@
+{% doc %}
+  @prompt
+    Create a new section named “Performance Snapshot” and place it directly after “Services Plan” and before “Service Testimonial”.
+    
+    Match the current page UI exactly:
+    - premium black background
+    - subtle borders
+    - same card style as pricing and use case cards
+    - white headings
+    - muted gray text
+    - no bright redesign
+    - mobile friendly
+    
+    Layout:
+    - small label
+    - strong headline
+    - short supporting sentence
+    - desktop: large image upload field on the left and 3 KPI cards on the right
+    - mobile: image first, KPI cards stacked below
+    - one CTA button at the bottom
+    
+    Use this copy:
+    
+    Label: PERFORMANCE SNAPSHOT
+    Headline: What the account should prove
+    Supporting text: Once the flows are live, this section is meant to show whether retention and revenue contribution are actually improving.
+    
+    Image field label: Upload Klaviyo dashboard or analytics image
+    
+    KPI 1 value: $0k
+    KPI 1 title: Flow revenue
+    KPI 1 body: Revenue contribution from automated email sequences.
+    
+    KPI 2 value: 00%
+    KPI 2 title: Open rate lift
+    KPI 2 body: Improvement in engagement across the highest-impact flows.
+    
+    KPI 3 value: 00%
+    KPI 3 title: Recovery or retention lift
+    KPI 3 body: Improvement in cart recovery, repeat purchase support, or post-purchase performance.
+    
+    CTA text: Book a Consultation
+    
+    Important:
+    - use placeholder values only
+    - keep the tone premium, strategic, and ecommerce-focused
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-performance-snapshot-{{ ai_gen_id }} {
+    display: block;
+    background-color: {{ block.settings.background_color }};
+    padding: 80px 20px;
+    width: 100%;
+  }
+
+  .ai-performance-snapshot__container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-performance-snapshot__header-{{ ai_gen_id }} {
+    margin-bottom: 60px;
+  }
+
+  .ai-performance-snapshot__label-{{ ai_gen_id }} {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: {{ block.settings.label_color }};
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .ai-performance-snapshot__headline-{{ ai_gen_id }} {
+    font-size: {{ block.settings.headline_size }}px;
+    color: {{ block.settings.headline_color }};
+    margin: 0 0 16px 0;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .ai-performance-snapshot__supporting-{{ ai_gen_id }} {
+    font-size: {{ block.settings.supporting_text_size }}px;
+    color: {{ block.settings.supporting_text_color }};
+    line-height: 1.6;
+    max-width: 600px;
+  }
+
+  .ai-performance-snapshot__content-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .ai-performance-snapshot__image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    border: 1px solid {{ block.settings.border_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    overflow: hidden;
+    background-color: {{ block.settings.card_background }};
+  }
+
+  .ai-performance-snapshot__image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ai-performance-snapshot__image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: {{ block.settings.card_background }};
+    position: relative;
+  }
+
+  .ai-performance-snapshot__image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 300px;
+    max-height: 300px;
+    opacity: 0.3;
+  }
+
+  .ai-performance-snapshot__empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 13px;
+    color: {{ block.settings.supporting_text_color }};
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .ai-performance-snapshot__kpis-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .ai-performance-snapshot__kpi-card-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_background }};
+    border: 1px solid {{ block.settings.border_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    padding: 24px;
+    transition: border-color 0.3s ease;
+  }
+
+  .ai-performance-snapshot__kpi-card-{{ ai_gen_id }}:hover {
+    border-color: {{ block.settings.border_hover_color }};
+  }
+
+  .ai-performance-snapshot__kpi-value-{{ ai_gen_id }} {
+    font-size: {{ block.settings.kpi_value_size }}px;
+    color: {{ block.settings.headline_color }};
+    font-weight: 600;
+    margin-bottom: 8px;
+    line-height: 1;
+  }
+
+  .ai-performance-snapshot__kpi-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.kpi_title_size }}px;
+    color: {{ block.settings.headline_color }};
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .ai-performance-snapshot__kpi-body-{{ ai_gen_id }} {
+    font-size: {{ block.settings.kpi_body_size }}px;
+    color: {{ block.settings.supporting_text_color }};
+    line-height: 1.5;
+  }
+
+  .ai-performance-snapshot__cta-wrapper-{{ ai_gen_id }} {
+    text-align: center;
+  }
+
+  .ai-performance-snapshot__cta-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 16px 32px;
+    background-color: {{ block.settings.cta_background }};
+    color: {{ block.settings.cta_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.cta_border_radius }}px;
+    font-size: {{ block.settings.cta_text_size }}px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    border: 1px solid {{ block.settings.cta_border_color }};
+  }
+
+  .ai-performance-snapshot__cta-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.cta_hover_background }};
+    border-color: {{ block.settings.cta_hover_border }};
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-performance-snapshot-{{ ai_gen_id }} {
+      padding: 60px 20px;
+    }
+
+    .ai-performance-snapshot__header-{{ ai_gen_id }} {
+      margin-bottom: 40px;
+    }
+
+    .ai-performance-snapshot__headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.headline_size | times: 0.7 }}px;
+    }
+
+    .ai-performance-snapshot__content-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .ai-performance-snapshot__image-placeholder-{{ ai_gen_id }} {
+      min-height: 300px;
+    }
+
+    .ai-performance-snapshot__kpi-value-{{ ai_gen_id }} {
+      font-size: {{ block.settings.kpi_value_size | times: 0.8 }}px;
+    }
+  }
+{% endstyle %}
+
+<performance-snapshot-{{ ai_gen_id }}
+  class="ai-performance-snapshot-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-performance-snapshot__container-{{ ai_gen_id }}">
+    <div class="ai-performance-snapshot__header-{{ ai_gen_id }}">
+      {% if block.settings.label != blank %}
+        <div class="ai-performance-snapshot__label-{{ ai_gen_id }}">
+          {{ block.settings.label }}
+        </div>
+      {% endif %}
+      
+      {% if block.settings.headline != blank %}
+        <h2 class="ai-performance-snapshot__headline-{{ ai_gen_id }}">
+          {{ block.settings.headline }}
+        </h2>
+      {% endif %}
+      
+      {% if block.settings.supporting_text != blank %}
+        <div class="ai-performance-snapshot__supporting-{{ ai_gen_id }}">
+          {{ block.settings.supporting_text }}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="ai-performance-snapshot__content-{{ ai_gen_id }}">
+      <div class="ai-performance-snapshot__image-wrapper-{{ ai_gen_id }}">
+        {% if block.settings.dashboard_image %}
+          <img
+            src="{{ block.settings.dashboard_image | image_url: width: 1200 }}"
+            alt="{{ block.settings.dashboard_image.alt | escape }}"
+            loading="lazy"
+            width="{{ block.settings.dashboard_image.width }}"
+            height="{{ block.settings.dashboard_image.height }}"
+            class="ai-performance-snapshot__image-{{ ai_gen_id }}"
+          >
+        {% else %}
+          <div class="ai-performance-snapshot__image-placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+            <div class="ai-performance-snapshot__empty-state-{{ ai_gen_id }}">
+              Upload Klaviyo dashboard or analytics image
+            </div>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="ai-performance-snapshot__kpis-{{ ai_gen_id }}">
+        <div class="ai-performance-snapshot__kpi-card-{{ ai_gen_id }}">
+          <div class="ai-performance-snapshot__kpi-value-{{ ai_gen_id }}">
+            {{ block.settings.kpi_1_value }}
+          </div>
+          <div class="ai-performance-snapshot__kpi-title-{{ ai_gen_id }}">
+            {{ block.settings.kpi_1_title }}
+          </div>
+          <div class="ai-performance-snapshot__kpi-body-{{ ai_gen_id }}">
+            {{ block.settings.kpi_1_body }}
+          </div>
+        </div>
+
+        <div class="ai-performance-snapshot__kpi-card-{{ ai_gen_id }}">
+          <div class="ai-performance-snapshot__kpi-value-{{ ai_gen_id }}">
+            {{ block.settings.kpi_2_value }}
+          </div>
+          <div class="ai-performance-snapshot__kpi-title-{{ ai_gen_id }}">
+            {{ block.settings.kpi_2_title }}
+          </div>
+          <div class="ai-performance-snapshot__kpi-body-{{ ai_gen_id }}">
+            {{ block.settings.kpi_2_body }}
+          </div>
+        </div>
+
+        <div class="ai-performance-snapshot__kpi-card-{{ ai_gen_id }}">
+          <div class="ai-performance-snapshot__kpi-value-{{ ai_gen_id }}">
+            {{ block.settings.kpi_3_value }}
+          </div>
+          <div class="ai-performance-snapshot__kpi-title-{{ ai_gen_id }}">
+            {{ block.settings.kpi_3_title }}
+          </div>
+          <div class="ai-performance-snapshot__kpi-body-{{ ai_gen_id }}">
+            {{ block.settings.kpi_3_body }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% if block.settings.cta_text != blank %}
+      <div class="ai-performance-snapshot__cta-wrapper-{{ ai_gen_id }}">
+        <a
+          href="{{ block.settings.cta_link }}"
+          class="ai-performance-snapshot__cta-{{ ai_gen_id }}"
+        >
+          {{ block.settings.cta_text }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</performance-snapshot-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class PerformanceSnapshot{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.init();
+      }
+
+      init() {
+        const kpiCards = this.querySelectorAll('.ai-performance-snapshot__kpi-card-{{ ai_gen_id }}');
+        kpiCards.forEach((card, index) => {
+          card.style.animationDelay = `${index * 0.1}s`;
+        });
+      }
+    }
+
+    customElements.define('performance-snapshot-{{ ai_gen_id }}', PerformanceSnapshot{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Performance snapshot",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "PERFORMANCE SNAPSHOT"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "What the account should prove"
+    },
+    {
+      "type": "textarea",
+      "id": "supporting_text",
+      "label": "Supporting text",
+      "default": "Once the flows are live, this section is meant to show whether retention and revenue contribution are actually improving."
+    },
+    {
+      "type": "header",
+      "content": "Dashboard image"
+    },
+    {
+      "type": "image_picker",
+      "id": "dashboard_image",
+      "label": "Upload Klaviyo dashboard or analytics image"
+    },
+    {
+      "type": "header",
+      "content": "KPI 1"
+    },
+    {
+      "type": "text",
+      "id": "kpi_1_value",
+      "label": "Value",
+      "default": "$0k"
+    },
+    {
+      "type": "text",
+      "id": "kpi_1_title",
+      "label": "Title",
+      "default": "Flow revenue"
+    },
+    {
+      "type": "textarea",
+      "id": "kpi_1_body",
+      "label": "Description",
+      "default": "Revenue contribution from automated email sequences."
+    },
+    {
+      "type": "header",
+      "content": "KPI 2"
+    },
+    {
+      "type": "text",
+      "id": "kpi_2_value",
+      "label": "Value",
+      "default": "00%"
+    },
+    {
+      "type": "text",
+      "id": "kpi_2_title",
+      "label": "Title",
+      "default": "Open rate lift"
+    },
+    {
+      "type": "textarea",
+      "id": "kpi_2_body",
+      "label": "Description",
+      "default": "Improvement in engagement across the highest-impact flows."
+    },
+    {
+      "type": "header",
+      "content": "KPI 3"
+    },
+    {
+      "type": "text",
+      "id": "kpi_3_value",
+      "label": "Value",
+      "default": "00%"
+    },
+    {
+      "type": "text",
+      "id": "kpi_3_title",
+      "label": "Title",
+      "default": "Recovery or retention lift"
+    },
+    {
+      "type": "textarea",
+      "id": "kpi_3_body",
+      "label": "Description",
+      "default": "Improvement in cart recovery, repeat purchase support, or post-purchase performance."
+    },
+    {
+      "type": "header",
+      "content": "Call to action"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button text",
+      "default": "Book a Consultation"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "border_hover_color",
+      "label": "Border hover",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Label",
+      "default": "#999999"
+    },
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Headline",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "supporting_text_color",
+      "label": "Supporting text",
+      "default": "#999999"
+    },
+    {
+      "type": "color",
+      "id": "cta_background",
+      "label": "CTA background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "CTA text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "cta_border_color",
+      "label": "CTA border",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "cta_hover_background",
+      "label": "CTA hover background",
+      "default": "#f0f0f0"
+    },
+    {
+      "type": "color",
+      "id": "cta_hover_border",
+      "label": "CTA hover border",
+      "default": "#f0f0f0"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "headline_size",
+      "label": "Headline size",
+      "min": 24,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "supporting_text_size",
+      "label": "Supporting text size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "kpi_value_size",
+      "label": "KPI value size",
+      "min": 24,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "kpi_title_size",
+      "label": "KPI title size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "kpi_body_size",
+      "label": "KPI body size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "cta_text_size",
+      "label": "CTA text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "cta_border_radius",
+      "label": "CTA border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Performance snapshot"
+    }
+  ]
+}
 {% endschema %}
