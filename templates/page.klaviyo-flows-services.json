@@ -297,6 +297,46 @@
         "body": "<p>This is not about sending more emails for the sake of it. It is about building a cleaner system that sends the right message at the right point in the customer journey.</p>"
       }
     },
+    "1774544787361d73b1": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_0e8762f_AGcaYe": {
+          "type": "ai_gen_block_0e8762f",
+          "settings": {
+            "label": "SAMPLE WORK",
+            "headline": "What a real flow setup looks like",
+            "supporting_text": "A closer look at the automations, email layouts, and account structure behind a functioning retention system.",
+            "card_1_title": "Welcome flow map",
+            "card_1_caption": "The core sequence that introduces the brand and turns new subscribers into first-time customers.",
+            "card_2_title": "Abandoned checkout flow",
+            "card_2_caption": "Recovery logic built to re-engage high-intent shoppers before they leave the buying journey.",
+            "card_3_title": "Email design example",
+            "card_3_caption": "A look at the messaging and layout used inside the flows to keep communication on-brand and effective.",
+            "card_4_title": "Analytics and segmentation view",
+            "card_4_caption": "Performance tracking and audience logic that help improve retention over time.",
+            "background_color": "#000000",
+            "label_color": "#999999",
+            "headline_color": "#ffffff",
+            "supporting_color": "#999999",
+            "card_background": "#000000",
+            "border_color": "#1a1a1a",
+            "card_title_color": "#ffffff",
+            "card_caption_color": "#999999",
+            "headline_size": 48,
+            "supporting_size": 16,
+            "card_title_size": 18,
+            "card_caption_size": 14,
+            "border_width": 1,
+            "border_radius": 8
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_0e8762f_AGcaYe"
+      ],
+      "settings": {}
+    },
     "two_column_text_zCXJVY": {
       "type": "two-column-text",
       "blocks": {
@@ -514,80 +554,80 @@
         "subtitle": "Our proven process ensures exceptional results every time."
       }
     },
-    "services_plan_URffPE": {
-      "type": "services-plan",
+    "177454510563be1466": {
+      "type": "_blocks",
       "blocks": {
-        "plan_HyVafM": {
-          "type": "plan",
+        "ai_gen_block_4398a01_k4B8Et": {
+          "type": "ai_gen_block_4398a01",
           "settings": {
-            "name": "Foundation",
-            "description": "For brands that need the essential flows in place and built properly.",
-            "price": "$2,000",
-            "period": "/ one-time",
-            "badge": "",
-            "features_text": "Klaviyo setup/migration\nWelcome series (5 emails)\nAbandoned cart flow\n2 email templates\nBasic segmentation\n30-day support",
-            "cta_text": "Get Started",
-            "cta_url": "https://tidycal.com/dashboard/booking-types",
-            "cta_new_tab": true
-          }
-        },
-        "plan_FrHA6H": {
-          "type": "plan",
-          "settings": {
-            "name": "Growth",
-            "description": "For brands ready to build a more complete lifecycle email system.",
-            "price": "$4,500",
-            "period": "/ one-time",
-            "badge": "Most Popular",
-            "features_text": "Everything in Foundation\nBrowse abandonment flow\nWin-back flow\n5 email templates\nAdvanced segmentation\nA/B testing setup\n60-day optimization",
-            "cta_text": "Get Started",
-            "cta_url": "https://tidycal.com/dashboard/booking-types",
-            "cta_new_tab": true
-          }
-        },
-        "plan_qWaeyc": {
-          "type": "plan",
-          "settings": {
-            "name": "Scale",
-            "description": "For brands that want a more advanced automation ecosystem with deeper retention support.",
-            "price": "$8,000",
-            "period": "/ one-time",
-            "badge": "",
-            "features_text": "Everything in Growth\nVIP/loyalty flows\nSunset flow\nReview request flow\nBirthday/anniversary flows\nCustom template library\nSMS integration\nCustom reporting",
-            "cta_text": "Get Started",
-            "cta_url": "https://tidycal.com/dashboard/booking-types",
-            "cta_new_tab": true
-          }
+            "label": "PERFORMANCE SNAPSHOT",
+            "headline": "What the account should prove",
+            "supporting_text": "Once the flows are live, this section is meant to show whether retention and revenue contribution are actually improving.",
+            "kpi_1_value": "$0k",
+            "kpi_1_title": "Flow revenue",
+            "kpi_1_body": "Revenue contribution from automated email sequences.",
+            "kpi_2_value": "00%",
+            "kpi_2_title": "Open rate lift",
+            "kpi_2_body": "Improvement in engagement across the highest-impact flows.",
+            "kpi_3_value": "00%",
+            "kpi_3_title": "Recovery or retention lift",
+            "kpi_3_body": "Improvement in cart recovery, repeat purchase support, or post-purchase performance.",
+            "cta_text": "Book a Consultation",
+            "cta_link": "",
+            "background_color": "#000000",
+            "card_background": "#0a0a0a",
+            "border_color": "#1a1a1a",
+            "border_hover_color": "#333333",
+            "label_color": "#999999",
+            "headline_color": "#ffffff",
+            "supporting_text_color": "#999999",
+            "cta_background": "#ffffff",
+            "cta_text_color": "#000000",
+            "cta_border_color": "#ffffff",
+            "cta_hover_background": "#f0f0f0",
+            "cta_hover_border": "#f0f0f0",
+            "headline_size": 42,
+            "supporting_text_size": 16,
+            "kpi_value_size": 36,
+            "kpi_title_size": 16,
+            "kpi_body_size": 14,
+            "cta_text_size": 15,
+            "border_radius": 8,
+            "cta_border_radius": 4
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "plan_HyVafM",
-        "plan_FrHA6H",
-        "plan_qWaeyc"
+        "ai_gen_block_4398a01_k4B8Et"
       ],
-      "name": "Services Plan",
-      "settings": {
-        "strap": "(Investment)",
-        "title_before": "Choose Your",
-        "title_gradient": "Plan",
-        "description": "Select the package that best fits your needs. All plans include our signature quality and support.",
-        "footer_before": "Need ongoing support? Add",
-        "footer_highlight": "$750/mo",
-        "footer_after": "for Ongoing campaign management and optimization"
-      }
-    },
-    "service_testimonial_ekeHMB": {
-      "type": "service-testimonial",
-      "name": "Service Testimonial",
-      "settings": {
-        "quote": "\"Our Klaviyo flows now generate 30% of our revenue completely on autopilot. The abandoned cart flow alone pays for the entire service every month.\"",
-        "author_image": "shopify://shop_images/6.png",
-        "author_name": "Marcus Williams",
-        "author_role": "Founder, Luxe Lifestyle"
-      }
+      "settings": {}
     },
     "17715474998453bd5d": {
       "type": "_blocks",
+      "settings": {}
+    },
+    "177454531808127932": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_cf48220_dnW8F8": {
+          "type": "ai_gen_block_cf48220",
+          "settings": {
+            "label": "CLIENT STORY",
+            "headline": "Hear what changes when flows are doing their job",
+            "intro_text": "Add a client story, Loom walkthrough, or account review video here once the file is ready.",
+            "quote": "Once the flows were set up properly, email stopped being background noise and started contributing real value.",
+            "speaker": "Client name / role",
+            "outcome_1": "More revenue from automated email flows",
+            "outcome_2": "Better retention after the first purchase",
+            "outcome_3": "Stronger customer journey from first touch to repeat order"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_cf48220_dnW8F8"
+      ],
       "settings": {}
     },
     "use_cases_q3tjXM": {
@@ -1122,12 +1162,13 @@
     "icon_boxes_TzdEHE",
     "rich_text_EEHbYG",
     "services_rich_text_VBT9G7",
+    "1774544787361d73b1",
     "two_column_text_zCXJVY",
     "services_key_features_qwLJ4x",
     "services_timeline_jcmmxh",
-    "services_plan_URffPE",
-    "service_testimonial_ekeHMB",
+    "177454510563be1466",
     "17715474998453bd5d",
+    "177454531808127932",
     "use_cases_q3tjXM",
     "faq_RzHXCd",
     "icon_boxes_1_p3ApL6",
