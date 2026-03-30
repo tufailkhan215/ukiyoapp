@@ -30,7 +30,7 @@
           "type": "tag",
           "settings": {
             "icon": "zap",
-            "label": "GPT-4 Powered",
+            "label": "Claude Optimized",
             "accent": false,
             "highlight": false
           }
@@ -44,13 +44,13 @@
       "settings": {
         "back_link_text": "Back to Shop",
         "back_link_url": "",
-        "category_label": "21 AI Agents",
+        "category_label": "50 Claude Skills",
         "category_icon": "bot",
         "category_icon_glow": true,
-        "title_line_1": "AI",
-        "title_line_2": "AGENTS",
+        "title_line_1": "CLAUDE",
+        "title_line_2": "SKILLS",
         "title_line_3": "READY TO DEPLOY",
-        "description": "Pre-trained AI assistants for your business. Deploy intelligent automation that works 24/7.",
+        "description": "Pre-built Claude skill products for brand strategy, content systems, research, customer communication, and growth operations. Designed by Ukiyo for teams that want sharper outputs, stronger consistency, and faster execution without sacrificing brand quality.",
         "color_theme": "emerald",
         "show_circle": true
       }
@@ -61,8 +61,8 @@
         "stat_L7NQyt": {
           "type": "stat",
           "settings": {
-            "value": "10",
-            "label": "Specialized Agents",
+            "value": "50",
+            "label": "Claude Skill Products",
             "use_gradient": false
           }
         },
@@ -77,7 +77,7 @@
         "stat_9CDJtG": {
           "type": "stat",
           "settings": {
-            "value": "GPT-4",
+            "value": "Claude",
             "label": "Powered By",
             "use_gradient": false
           }
@@ -94,66 +94,66 @@
           "type": "feature",
           "settings": {
             "icon": "brain",
-            "title": "Domain Expertise",
-            "description": "Pre-loaded with industry-specific knowledge and best practices"
+            "title": "Brand-First Prompt Architecture",
+            "description": "Built to keep messaging clear, strategic, and aligned with your positioning across content, campaigns, and customer touchpoints."
           }
         },
         "feature_U9kUL4": {
           "type": "feature",
           "settings": {
             "icon": "message_square",
-            "title": "Conversational Interface",
-            "description": "Natural language interaction—no technical setup required"
+            "title": "Long-Context Workflow Design",
+            "description": "Made for deeper inputs like briefs, notes, transcripts, product details, source documents, and internal references."
           }
         },
         "feature_6NyMUm": {
           "type": "feature",
           "settings": {
             "icon": "refresh_cw",
-            "title": "Continuous Learning",
-            "description": "Agents improve with each interaction and feedback"
+            "title": "Reusable Business Systems",
+            "description": "Adapt each skill across departments, retain consistency across projects, and turn one strong workflow into repeatable output."
           }
         },
         "capability_tttQca": {
           "type": "capability",
           "settings": {
             "icon": "target",
-            "label": "Lead Research"
+            "label": "Research & Summaries"
           }
         },
         "capability_ThdbNf": {
           "type": "capability",
           "settings": {
             "icon": "message_square",
-            "label": "Customer Support"
+            "label": "Brand Messaging"
           }
         },
         "capability_YgKRiU": {
           "type": "capability",
           "settings": {
             "icon": "book_open",
-            "label": "Course Design"
+            "label": "Long-Form Writing"
           }
         },
         "capability_ybeM7A": {
           "type": "capability",
           "settings": {
             "icon": "trending_up",
-            "label": "SEO Strategy"
+            "label": "Customer Support"
           }
         },
         "capability_ait7MU": {
           "type": "capability",
           "settings": {
             "icon": "palette",
-            "label": "Image Prompts"
+            "label": "Campaign Strategy"
           }
         },
         "capability_PibgjU": {
           "type": "capability",
           "settings": {
             "icon": "chart_column",
-            "label": "Ad Creation"
+            "label": "SOP Creation"
           }
         },
         "use_case_Czr4Gt": {
@@ -207,9 +207,9 @@
       "name": "Shop Sub Page About (AI Agents)",
       "settings": {
         "color_theme": "emerald",
-        "inside_eyebrow": "What Are AI Agents?",
-        "inside_heading": "Pre-Trained Specialists",
-        "inside_description": "Each AI agent is purpose-built for a specific task. Unlike generic chatbots, these agents come with custom system prompts, domain knowledge, and optimized workflows for their specialty.",
+        "inside_eyebrow": "BUILT FOR MODERN BRANDS",
+        "inside_heading": "Pre-Built Claude Specialists",
+        "inside_description": "These are not generic prompts. Each Claude skill is built as a structured workflow with clear role framing, output direction, and practical use cases for real business needs. From brand messaging and content production to research synthesis, support replies, SOP creation, and sales enablement, every skill is designed to help teams move faster while staying aligned.",
         "right_column_mode": "capabilities",
         "steps_eyebrow": "How It Works",
         "steps_heading": "Setup in 3 Steps",
@@ -218,15 +218,15 @@
         "show_cta_box": false,
         "cta_heading": "Free courses available!",
         "cta_subtext": "Start learning with no commitment",
-        "capability_eyebrow": "Agent Capabilities",
-        "capability_heading": "What They Can Do",
+        "capability_eyebrow": "WHAT THEY HELP YOU DO",
+        "capability_heading": "What Claude Skills Can Do",
         "show_agent_cta": true,
         "agent_cta_heading": "Always Online",
         "agent_cta_subtext": "Deploy once, available 24/7 without maintenance",
         "bottom_mode": "use_cases",
         "installation_eyebrow": "Installation",
         "installation_heading": "Add to Your Store in 3 Steps",
-        "use_cases_eyebrow": "Perfect For",
+        "use_cases_eyebrow": "Built for Real Output",
         "skills_eyebrow": "What You'll Master"
       }
     },
@@ -234,7 +234,7 @@
       "type": "shop-sub-page-products",
       "name": "Shop Sub Page Products (AI Agents)",
       "settings": {
-        "collection": "gpt-models",
+        "collection": "claude-skills",
         "card_style": "agents",
         "sections_type_label": "Section",
         "sections_cta_text": "View Details",
