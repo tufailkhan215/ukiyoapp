@@ -206,11 +206,11 @@
         "category_JQbWrB": {
           "type": "category",
           "settings": {
-            "icon": "workflow",
+            "icon": "bot",
             "title": "Claude Skills",
             "description": "Pre-trained AI assistants for your business. Deploy intelligent automation that works 24/7.",
             "item_count": "8+ items",
-            "url": ""
+            "url": "shopify://pages/claude-skill"
           }
         },
         "category_paVkyE": {
