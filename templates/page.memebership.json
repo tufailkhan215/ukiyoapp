@@ -203,6 +203,16 @@
     "membership_browse_library_yadRWa": {
       "type": "membership-browse-library",
       "blocks": {
+        "category_JQbWrB": {
+          "type": "category",
+          "settings": {
+            "icon": "workflow",
+            "title": "Claude Skills",
+            "description": "Pre-trained AI assistants for your business. Deploy intelligent automation that works 24/7.",
+            "item_count": "8+ items",
+            "url": ""
+          }
+        },
         "category_paVkyE": {
           "type": "category",
           "settings": {
@@ -245,6 +255,7 @@
         }
       },
       "block_order": [
+        "category_JQbWrB",
         "category_paVkyE",
         "category_6PpBqJ",
         "category_kqVgF3",
