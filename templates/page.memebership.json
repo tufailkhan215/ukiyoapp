@@ -206,7 +206,7 @@
         "category_DNK9QD": {
           "type": "category",
           "settings": {
-            "icon": "workflow",
+            "icon": "graduation_cap",
             "title": "Courses",
             "description": "Practical, self-paced AI courses built around real outcomes. Each course ships with structured modules, downloadable frameworks, and hands-on exercises so you leave with a working system — not just notes.",
             "item_count": "8+ items",
@@ -216,7 +216,7 @@
         "category_jUCWNQ": {
           "type": "category",
           "settings": {
-            "icon": "workflow",
+            "icon": "library",
             "title": "LLM Prompt Library",
             "description": "A curated library of professionally engineered prompts for ChatGPT, Claude, Gemini, and other leading models. Organised by use case across writing, research, marketing, strategy, and operations — copy, paste, and get results.",
             "item_count": "8+ items",
@@ -226,7 +226,7 @@
         "category_b9HAJk": {
           "type": "category",
           "settings": {
-            "icon": "workflow",
+            "icon": "git_branch",
             "title": "Make Templates",
             "description": "Pre-built Make.com scenario blueprints for AI-powered business automation. Import, connect your tools, and activate hands-free workflows for lead capture, CRM, content publishing, reporting, and more — no code required.",
             "item_count": "8+ items",
@@ -236,7 +236,7 @@
         "category_KPxGkg": {
           "type": "category",
           "settings": {
-            "icon": "workflow",
+            "icon": "palette",
             "title": "Content Creation & Visual Media Mastery",
             "description": "AI-powered writing systems, image prompt libraries, video scripting frameworks, and social content workflows built for modern brands. Produce more, publish faster, and maintain a consistent creative standard across every format and platform.",
             "item_count": "8+ items",
@@ -246,7 +246,7 @@
         "category_6NdzJH": {
           "type": "category",
           "settings": {
-            "icon": "workflow",
+            "icon": "cpu",
             "title": "GPT Models",
             "description": "Pre-built GPT model configurations, system prompts, and custom assistants designed for real business use. Deploy brand-aligned AI for sales, support, content, and operations — powered by OpenAI and ready out of the box.",
             "item_count": "8+ items",
@@ -256,27 +256,17 @@
         "category_eCLP7R": {
           "type": "category",
           "settings": {
-            "icon": "workflow",
+            "icon": "package",
             "title": "Bundles",
             "description": "Curated bundles combining Claude skills, GPT models, prompt packs, Make templates, and courses into complete AI business systems. Purpose-built for specific outcomes — content, operations, sales, or growth — at a fraction of the individual price.",
             "item_count": "8+ items",
             "url": "shopify://collections/bundles"
           }
         },
-        "category_jyycyQ": {
-          "type": "category",
-          "settings": {
-            "icon": "workflow",
-            "title": "Automation Templates",
-            "description": "Pre-built automation systems for Make.com. Download once, open START_HERE, and start generating assets today.",
-            "item_count": "8+ items",
-            "url": ""
-          }
-        },
         "category_JQbWrB": {
           "type": "category",
           "settings": {
-            "icon": "bot",
+            "icon": "claude",
             "title": "Claude Skills",
             "description": "Pre-trained AI assistants for your business. Deploy intelligent automation that works 24/7.",
             "item_count": "8+ items",
@@ -306,7 +296,7 @@
         "category_kqVgF3": {
           "type": "category",
           "settings": {
-            "icon": "bot",
+            "icon": "claude",
             "title": "AI Agents",
             "description": "Purpose-built agents focused on doing one thing really well. Click once, get clear results—no setup required.",
             "item_count": "10+ items",
@@ -331,7 +321,6 @@
         "category_KPxGkg",
         "category_6NdzJH",
         "category_eCLP7R",
-        "category_jyycyQ",
         "category_JQbWrB",
         "category_paVkyE",
         "category_6PpBqJ",
