@@ -203,6 +203,26 @@
     "membership_browse_library_yadRWa": {
       "type": "membership-browse-library",
       "blocks": {
+        "category_eCLP7R": {
+          "type": "category",
+          "settings": {
+            "icon": "workflow",
+            "title": "Bundles",
+            "description": "Curated bundles combining Claude skills, GPT models, prompt packs, Make templates, and courses into complete AI business systems. Purpose-built for specific outcomes — content, operations, sales, or growth — at a fraction of the individual price.",
+            "item_count": "8+ items",
+            "url": "shopify://collections/bundles"
+          }
+        },
+        "category_jyycyQ": {
+          "type": "category",
+          "settings": {
+            "icon": "workflow",
+            "title": "Automation Templates",
+            "description": "Pre-built automation systems for Make.com. Download once, open START_HERE, and start generating assets today.",
+            "item_count": "8+ items",
+            "url": ""
+          }
+        },
         "category_JQbWrB": {
           "type": "category",
           "settings": {
@@ -255,6 +275,8 @@
         }
       },
       "block_order": [
+        "category_eCLP7R",
+        "category_jyycyQ",
         "category_JQbWrB",
         "category_paVkyE",
         "category_6PpBqJ",
