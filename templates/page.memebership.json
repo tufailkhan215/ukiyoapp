@@ -203,6 +203,16 @@
     "membership_browse_library_yadRWa": {
       "type": "membership-browse-library",
       "blocks": {
+        "category_b9HAJk": {
+          "type": "category",
+          "settings": {
+            "icon": "workflow",
+            "title": "Make Templates",
+            "description": "Pre-built Make.com scenario blueprints for AI-powered business automation. Import, connect your tools, and activate hands-free workflows for lead capture, CRM, content publishing, reporting, and more — no code required.",
+            "item_count": "8+ items",
+            "url": "shopify://collections/make-templates"
+          }
+        },
         "category_KPxGkg": {
           "type": "category",
           "settings": {
@@ -295,6 +305,7 @@
         }
       },
       "block_order": [
+        "category_b9HAJk",
         "category_KPxGkg",
         "category_6NdzJH",
         "category_eCLP7R",
