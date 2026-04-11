@@ -203,6 +203,16 @@
     "membership_browse_library_yadRWa": {
       "type": "membership-browse-library",
       "blocks": {
+        "category_KPxGkg": {
+          "type": "category",
+          "settings": {
+            "icon": "workflow",
+            "title": "Content Creation & Visual Media Mastery",
+            "description": "AI-powered writing systems, image prompt libraries, video scripting frameworks, and social content workflows built for modern brands. Produce more, publish faster, and maintain a consistent creative standard across every format and platform.",
+            "item_count": "8+ items",
+            "url": "shopify://collections/content-creation-visual-media-mastery"
+          }
+        },
         "category_6NdzJH": {
           "type": "category",
           "settings": {
@@ -285,6 +295,7 @@
         }
       },
       "block_order": [
+        "category_KPxGkg",
         "category_6NdzJH",
         "category_eCLP7R",
         "category_jyycyQ",
