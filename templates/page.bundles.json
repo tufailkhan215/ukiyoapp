@@ -1,0 +1,263 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "shop_sub_page_intro_bundles": {
+      "type": "shop-sub-page-intro",
+      "blocks": {
+        "tag_bundles_1": {
+          "type": "tag",
+          "settings": {
+            "icon": "package",
+            "label": "Best Value",
+            "accent": true,
+            "highlight": false
+          }
+        },
+        "tag_bundles_2": {
+          "type": "tag",
+          "settings": {
+            "icon": "zap",
+            "label": "All-In-One Systems",
+            "accent": false,
+            "highlight": false
+          }
+        }
+      },
+      "block_order": [
+        "tag_bundles_1",
+        "tag_bundles_2"
+      ],
+      "name": "Shop Sub Page Intro (Bundles)",
+      "settings": {
+        "back_link_text": "Back to Shop",
+        "back_link_url": "",
+        "category_label": "Product Bundles",
+        "category_icon": "package",
+        "category_icon_glow": true,
+        "title_line_1": "PRODUCT",
+        "title_line_2": "BUNDLES",
+        "title_line_3": "BEST VALUE",
+        "description": "Curated bundles combining Claude skills, GPT models, prompt libraries, Make templates, and courses into complete AI-powered business systems. Built for teams and operators who want everything they need for a specific use case — content, operations, sales, or growth — in one purchase at a fraction of the individual price.",
+        "color_theme": "emerald",
+        "show_circle": true
+      }
+    },
+    "shop_sub_page_about_bundles": {
+      "type": "shop-sub-page-about",
+      "blocks": {
+        "stat_bundles_1": {
+          "type": "stat",
+          "settings": {
+            "value": "15+",
+            "label": "Curated Bundles",
+            "use_gradient": false
+          }
+        },
+        "stat_bundles_2": {
+          "type": "stat",
+          "settings": {
+            "value": "Save",
+            "label": "Up to 70%",
+            "use_gradient": false
+          }
+        },
+        "stat_bundles_3": {
+          "type": "stat",
+          "settings": {
+            "value": "Multi",
+            "label": "Product Types",
+            "use_gradient": false
+          }
+        },
+        "stat_bundles_4": {
+          "type": "stat",
+          "settings": {
+            "value": "∞",
+            "label": "Value Delivered",
+            "use_gradient": false
+          }
+        },
+        "feature_bundles_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "package",
+            "title": "Complete Use-Case Systems",
+            "description": "Each bundle is assembled around a specific outcome — not random products. You get everything needed to build and run a full AI workflow for your business area."
+          }
+        },
+        "feature_bundles_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "trending_up",
+            "title": "Cross-Product Integration",
+            "description": "Bundles combine Claude skills, prompt packs, Make templates, and course materials that are designed to work together as a unified system."
+          }
+        },
+        "feature_bundles_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "chart_column",
+            "title": "Maximum Value, Minimum Cost",
+            "description": "Bundle pricing delivers significant savings versus individual purchases — ideal for teams building out full AI capabilities across multiple workflows."
+          }
+        },
+        "capability_bundles_1": {
+          "type": "capability",
+          "settings": {
+            "icon": "palette",
+            "label": "Content System Bundles"
+          }
+        },
+        "capability_bundles_2": {
+          "type": "capability",
+          "settings": {
+            "icon": "trending_up",
+            "label": "Marketing Bundles"
+          }
+        },
+        "capability_bundles_3": {
+          "type": "capability",
+          "settings": {
+            "icon": "refresh_cw",
+            "label": "Operations Bundles"
+          }
+        },
+        "capability_bundles_4": {
+          "type": "capability",
+          "settings": {
+            "icon": "target",
+            "label": "Sales Enablement Bundles"
+          }
+        },
+        "capability_bundles_5": {
+          "type": "capability",
+          "settings": {
+            "icon": "message_square",
+            "label": "Customer Support Bundles"
+          }
+        },
+        "capability_bundles_6": {
+          "type": "capability",
+          "settings": {
+            "icon": "graduation_cap",
+            "label": "Starter Bundles"
+          }
+        },
+        "use_case_bundles_1": {
+          "type": "use_case",
+          "settings": {
+            "icon": "shopping_bag",
+            "label": "E-Commerce Brands"
+          }
+        },
+        "use_case_bundles_2": {
+          "type": "use_case",
+          "settings": {
+            "icon": "users",
+            "label": "Agencies"
+          }
+        },
+        "use_case_bundles_3": {
+          "type": "use_case",
+          "settings": {
+            "icon": "target",
+            "label": "Growth Teams"
+          }
+        },
+        "use_case_bundles_4": {
+          "type": "use_case",
+          "settings": {
+            "icon": "chart_column",
+            "label": "Operators"
+          }
+        }
+      },
+      "block_order": [
+        "stat_bundles_1",
+        "stat_bundles_2",
+        "stat_bundles_3",
+        "stat_bundles_4",
+        "feature_bundles_1",
+        "feature_bundles_2",
+        "feature_bundles_3",
+        "capability_bundles_1",
+        "capability_bundles_2",
+        "capability_bundles_3",
+        "capability_bundles_4",
+        "capability_bundles_5",
+        "capability_bundles_6",
+        "use_case_bundles_1",
+        "use_case_bundles_2",
+        "use_case_bundles_3",
+        "use_case_bundles_4"
+      ],
+      "name": "Shop Sub Page About (Bundles)",
+      "settings": {
+        "color_theme": "emerald",
+        "inside_eyebrow": "BUILT FOR COMPLETE SYSTEMS",
+        "inside_heading": "Everything in One Bundle",
+        "inside_description": "These are not random product groupings thrown together for a discount. Every bundle is purpose-built around a specific business function — combining the right Claude skills, prompt packs, automation templates, and learning resources to give you a complete, deployable AI system. Whether you are building out your content engine, automating your operations, or scaling your sales process, there is a bundle designed exactly for that outcome.",
+        "right_column_mode": "capabilities",
+        "capability_eyebrow": "BUNDLE CATEGORIES",
+        "capability_heading": "What Bundles Cover",
+        "show_agent_cta": true,
+        "agent_cta_heading": "Best Value in the Shop",
+        "agent_cta_subtext": "Save up to 70% versus buying products individually",
+        "bottom_mode": "use_cases",
+        "use_cases_eyebrow": "Who Bundles Are Built For",
+        "show_cta_box": true,
+        "cta_heading": "Want everything?",
+        "cta_subtext": "Membership gives you unlimited access to all bundles and products"
+      }
+    },
+    "shop_sub_page_products_bundles": {
+      "type": "shop-sub-page-products",
+      "name": "Shop Sub Page Products (Bundles)",
+      "settings": {
+        "collection": "bundles",
+        "card_style": "agents",
+        "sections_type_label": "Included",
+        "sections_cta_text": "View Bundle",
+        "show_active_badge": true,
+        "active_badge_text": "Best Value",
+        "agents_cta_text": "View Bundle",
+        "agents_max_tags": 3,
+        "eyebrow": "(Browse)",
+        "title_suffix": "Bundles Available",
+        "show_live_badge": false,
+        "products_per_page": 24,
+        "columns": "4"
+      }
+    },
+    "shop_sub_page_cta_bundles": {
+      "type": "shop-sub-page-cta",
+      "name": "Shop Sub Page CTA",
+      "settings": {
+        "heading": "Get Unlimited Access",
+        "description": "Join membership and download every bundle and product for one monthly price.",
+        "button_text": "View Membership Plans",
+        "button_url": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "shop_sub_page_intro_bundles",
+    "shop_sub_page_about_bundles",
+    "shop_sub_page_products_bundles",
+    "shop_sub_page_cta_bundles"
+  ]
+}

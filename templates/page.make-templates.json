@@ -1,0 +1,260 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "shop_sub_page_intro_make": {
+      "type": "shop-sub-page-intro",
+      "blocks": {
+        "tag_make_1": {
+          "type": "tag",
+          "settings": {
+            "icon": "git_branch",
+            "label": "Make.com Ready",
+            "accent": true,
+            "highlight": false
+          }
+        },
+        "tag_make_2": {
+          "type": "tag",
+          "settings": {
+            "icon": "zap",
+            "label": "No-Code Automation",
+            "accent": false,
+            "highlight": false
+          }
+        }
+      },
+      "block_order": [
+        "tag_make_1",
+        "tag_make_2"
+      ],
+      "name": "Shop Sub Page Intro (Make Templates)",
+      "settings": {
+        "back_link_text": "Back to Shop",
+        "back_link_url": "",
+        "category_label": "Make.com Templates",
+        "category_icon": "git_branch",
+        "category_icon_glow": true,
+        "title_line_1": "MAKE",
+        "title_line_2": "AUTOMATION",
+        "title_line_3": "TEMPLATES",
+        "description": "Pre-built Make.com scenario templates for AI-powered automation workflows. Connect your tools, automate repetitive tasks, and build hands-free business systems — all without writing a single line of code. Designed by Ukiyo for teams ready to run on autopilot.",
+        "color_theme": "amber",
+        "show_circle": true
+      }
+    },
+    "shop_sub_page_about_make": {
+      "type": "shop-sub-page-about",
+      "blocks": {
+        "stat_make_1": {
+          "type": "stat",
+          "settings": {
+            "value": "30+",
+            "label": "Make Templates",
+            "use_gradient": false
+          }
+        },
+        "stat_make_2": {
+          "type": "stat",
+          "settings": {
+            "value": "1-Click",
+            "label": "Import Ready",
+            "use_gradient": false
+          }
+        },
+        "stat_make_3": {
+          "type": "stat",
+          "settings": {
+            "value": "Make",
+            "label": "Powered By",
+            "use_gradient": false
+          }
+        },
+        "stat_make_4": {
+          "type": "stat",
+          "settings": {
+            "value": "∞",
+            "label": "Automations",
+            "use_gradient": false
+          }
+        },
+        "feature_make_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "git_branch",
+            "title": "Plug-and-Play Scenario Files",
+            "description": "Every template ships as an importable Make.com blueprint — just upload, connect your accounts, and activate. No rebuilding from scratch required."
+          }
+        },
+        "feature_make_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "brain",
+            "title": "AI-Enhanced Workflow Logic",
+            "description": "Templates are built with Claude and OpenAI module integration, enabling intelligent decision-making, content generation, and data processing inside your automations."
+          }
+        },
+        "feature_make_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "refresh_cw",
+            "title": "Multi-App Integration Ready",
+            "description": "Each scenario connects popular tools like Notion, Airtable, Gmail, Slack, Shopify, and Google Sheets — pre-wired for real business workflows."
+          }
+        },
+        "capability_make_1": {
+          "type": "capability",
+          "settings": {
+            "icon": "message_square",
+            "label": "Lead Capture Flows"
+          }
+        },
+        "capability_make_2": {
+          "type": "capability",
+          "settings": {
+            "icon": "refresh_cw",
+            "label": "CRM Automation"
+          }
+        },
+        "capability_make_3": {
+          "type": "capability",
+          "settings": {
+            "icon": "book_open",
+            "label": "Content Publishing"
+          }
+        },
+        "capability_make_4": {
+          "type": "capability",
+          "settings": {
+            "icon": "trending_up",
+            "label": "Sales Pipeline Ops"
+          }
+        },
+        "capability_make_5": {
+          "type": "capability",
+          "settings": {
+            "icon": "target",
+            "label": "AI Data Processing"
+          }
+        },
+        "capability_make_6": {
+          "type": "capability",
+          "settings": {
+            "icon": "chart_column",
+            "label": "Reporting Automation"
+          }
+        },
+        "use_case_make_1": {
+          "type": "use_case",
+          "settings": {
+            "icon": "shopping_bag",
+            "label": "E-Commerce"
+          }
+        },
+        "use_case_make_2": {
+          "type": "use_case",
+          "settings": {
+            "icon": "users",
+            "label": "Agencies"
+          }
+        },
+        "use_case_make_3": {
+          "type": "use_case",
+          "settings": {
+            "icon": "target",
+            "label": "Sales Teams"
+          }
+        },
+        "use_case_make_4": {
+          "type": "use_case",
+          "settings": {
+            "icon": "chart_column",
+            "label": "Operations Teams"
+          }
+        }
+      },
+      "block_order": [
+        "stat_make_1",
+        "stat_make_2",
+        "stat_make_3",
+        "stat_make_4",
+        "feature_make_1",
+        "feature_make_2",
+        "feature_make_3",
+        "capability_make_1",
+        "capability_make_2",
+        "capability_make_3",
+        "capability_make_4",
+        "capability_make_5",
+        "capability_make_6",
+        "use_case_make_1",
+        "use_case_make_2",
+        "use_case_make_3",
+        "use_case_make_4"
+      ],
+      "name": "Shop Sub Page About (Make Templates)",
+      "settings": {
+        "color_theme": "amber",
+        "inside_eyebrow": "BUILT FOR NO-CODE AUTOMATION",
+        "inside_heading": "Pre-Built Make Scenarios",
+        "inside_description": "These are not basic Zap alternatives. Each Make template is a structured, multi-step automation scenario with pre-configured module logic, filter rules, and AI integration points. From lead routing and client onboarding to content scheduling and reporting pipelines, every template is designed to eliminate manual work and keep your business running without you.",
+        "right_column_mode": "capabilities",
+        "capability_eyebrow": "WHAT THEY HELP YOU AUTOMATE",
+        "capability_heading": "What Make Templates Can Do",
+        "show_agent_cta": true,
+        "agent_cta_heading": "Import in Seconds",
+        "agent_cta_subtext": "Upload the blueprint and activate your automation instantly",
+        "bottom_mode": "use_cases",
+        "use_cases_eyebrow": "Built for Real Workflows"
+      }
+    },
+    "shop_sub_page_products_make": {
+      "type": "shop-sub-page-products",
+      "name": "Shop Sub Page Products (Make Templates)",
+      "settings": {
+        "collection": "make-templates",
+        "card_style": "agents",
+        "sections_type_label": "Section",
+        "sections_cta_text": "View Details",
+        "show_active_badge": true,
+        "active_badge_text": "Active",
+        "agents_cta_text": "View Details",
+        "agents_max_tags": 3,
+        "eyebrow": "(Browse)",
+        "title_suffix": "Templates Available",
+        "show_live_badge": true,
+        "products_per_page": 24,
+        "columns": "4"
+      }
+    },
+    "shop_sub_page_cta_make": {
+      "type": "shop-sub-page-cta",
+      "name": "Shop Sub Page CTA",
+      "settings": {
+        "heading": "Get Unlimited Access",
+        "description": "Join membership and download everything for one monthly price.",
+        "button_text": "View Membership Plans",
+        "button_url": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "shop_sub_page_intro_make",
+    "shop_sub_page_about_make",
+    "shop_sub_page_products_make",
+    "shop_sub_page_cta_make"
+  ]
+}

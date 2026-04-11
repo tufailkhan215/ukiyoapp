@@ -1,0 +1,260 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "shop_sub_page_intro_content": {
+      "type": "shop-sub-page-intro",
+      "blocks": {
+        "tag_content_1": {
+          "type": "tag",
+          "settings": {
+            "icon": "palette",
+            "label": "AI-Powered Creation",
+            "accent": true,
+            "highlight": false
+          }
+        },
+        "tag_content_2": {
+          "type": "tag",
+          "settings": {
+            "icon": "image",
+            "label": "Visual + Written",
+            "accent": false,
+            "highlight": false
+          }
+        }
+      },
+      "block_order": [
+        "tag_content_1",
+        "tag_content_2"
+      ],
+      "name": "Shop Sub Page Intro (Content Creation)",
+      "settings": {
+        "back_link_text": "Back to Shop",
+        "back_link_url": "",
+        "category_label": "Content & Visual Products",
+        "category_icon": "palette",
+        "category_icon_glow": true,
+        "title_line_1": "CONTENT",
+        "title_line_2": "& VISUAL",
+        "title_line_3": "MASTERY",
+        "description": "AI-powered content creation and visual media workflows built for modern brands. From long-form writing and social content systems to image prompt libraries and video scripting frameworks — every product is designed to help teams produce more, publish faster, and maintain a consistent creative standard.",
+        "color_theme": "rose",
+        "show_circle": true
+      }
+    },
+    "shop_sub_page_about_content": {
+      "type": "shop-sub-page-about",
+      "blocks": {
+        "stat_content_1": {
+          "type": "stat",
+          "settings": {
+            "value": "60+",
+            "label": "Content Products",
+            "use_gradient": false
+          }
+        },
+        "stat_content_2": {
+          "type": "stat",
+          "settings": {
+            "value": "Multi",
+            "label": "Format Coverage",
+            "use_gradient": false
+          }
+        },
+        "stat_content_3": {
+          "type": "stat",
+          "settings": {
+            "value": "AI",
+            "label": "Powered By",
+            "use_gradient": false
+          }
+        },
+        "stat_content_4": {
+          "type": "stat",
+          "settings": {
+            "value": "∞",
+            "label": "Content Ideas",
+            "use_gradient": false
+          }
+        },
+        "feature_content_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "book_open",
+            "title": "Long-Form & Short-Form Writing Systems",
+            "description": "Structured workflows for blog posts, newsletters, case studies, product copy, captions, and ad creative — built for consistent voice and rapid execution."
+          }
+        },
+        "feature_content_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "image",
+            "title": "Visual Media Prompt Libraries",
+            "description": "Curated image and video prompt systems for Midjourney, DALL·E, Runway, and Sora — engineered for brand-consistent visual output at scale."
+          }
+        },
+        "feature_content_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "refresh_cw",
+            "title": "Repurposing & Distribution Frameworks",
+            "description": "Turn one piece of content into ten. Each system includes repurposing logic to stretch every asset across platforms without repetition."
+          }
+        },
+        "capability_content_1": {
+          "type": "capability",
+          "settings": {
+            "icon": "book_open",
+            "label": "Blog & Article Writing"
+          }
+        },
+        "capability_content_2": {
+          "type": "capability",
+          "settings": {
+            "icon": "image",
+            "label": "Image Prompt Systems"
+          }
+        },
+        "capability_content_3": {
+          "type": "capability",
+          "settings": {
+            "icon": "video",
+            "label": "Video Scripting"
+          }
+        },
+        "capability_content_4": {
+          "type": "capability",
+          "settings": {
+            "icon": "trending_up",
+            "label": "Social Media Content"
+          }
+        },
+        "capability_content_5": {
+          "type": "capability",
+          "settings": {
+            "icon": "message_square",
+            "label": "Email & Newsletter Copy"
+          }
+        },
+        "capability_content_6": {
+          "type": "capability",
+          "settings": {
+            "icon": "palette",
+            "label": "Brand Visual Direction"
+          }
+        },
+        "use_case_content_1": {
+          "type": "use_case",
+          "settings": {
+            "icon": "users",
+            "label": "Content Creators"
+          }
+        },
+        "use_case_content_2": {
+          "type": "use_case",
+          "settings": {
+            "icon": "shopping_bag",
+            "label": "E-Commerce Brands"
+          }
+        },
+        "use_case_content_3": {
+          "type": "use_case",
+          "settings": {
+            "icon": "palette",
+            "label": "Creative Agencies"
+          }
+        },
+        "use_case_content_4": {
+          "type": "use_case",
+          "settings": {
+            "icon": "trending_up",
+            "label": "Marketing Teams"
+          }
+        }
+      },
+      "block_order": [
+        "stat_content_1",
+        "stat_content_2",
+        "stat_content_3",
+        "stat_content_4",
+        "feature_content_1",
+        "feature_content_2",
+        "feature_content_3",
+        "capability_content_1",
+        "capability_content_2",
+        "capability_content_3",
+        "capability_content_4",
+        "capability_content_5",
+        "capability_content_6",
+        "use_case_content_1",
+        "use_case_content_2",
+        "use_case_content_3",
+        "use_case_content_4"
+      ],
+      "name": "Shop Sub Page About (Content Creation)",
+      "settings": {
+        "color_theme": "rose",
+        "inside_eyebrow": "BUILT FOR CREATIVE OUTPUT",
+        "inside_heading": "AI Content & Visual Systems",
+        "inside_description": "These are not generic writing prompts or random image ideas. Each product is a structured creative system with defined output formats, platform-specific guidance, and reusable frameworks for consistent, high-quality content production. From written assets and visual direction to video scripting and social strategy, every product helps creative teams move from blank page to published content faster.",
+        "right_column_mode": "capabilities",
+        "capability_eyebrow": "WHAT THEY HELP YOU CREATE",
+        "capability_heading": "What Content Products Can Do",
+        "show_agent_cta": true,
+        "agent_cta_heading": "Create at Scale",
+        "agent_cta_subtext": "Produce consistent content across every format and platform",
+        "bottom_mode": "use_cases",
+        "use_cases_eyebrow": "Built for Real Creatives"
+      }
+    },
+    "shop_sub_page_products_content": {
+      "type": "shop-sub-page-products",
+      "name": "Shop Sub Page Products (Content Creation)",
+      "settings": {
+        "collection": "content-creation-visual-media",
+        "card_style": "agents",
+        "sections_type_label": "Section",
+        "sections_cta_text": "View Details",
+        "show_active_badge": true,
+        "active_badge_text": "Active",
+        "agents_cta_text": "View Details",
+        "agents_max_tags": 3,
+        "eyebrow": "(Browse)",
+        "title_suffix": "Products Available",
+        "show_live_badge": true,
+        "products_per_page": 24,
+        "columns": "4"
+      }
+    },
+    "shop_sub_page_cta_content": {
+      "type": "shop-sub-page-cta",
+      "name": "Shop Sub Page CTA",
+      "settings": {
+        "heading": "Get Unlimited Access",
+        "description": "Join membership and download everything for one monthly price.",
+        "button_text": "View Membership Plans",
+        "button_url": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "shop_sub_page_intro_content",
+    "shop_sub_page_about_content",
+    "shop_sub_page_products_content",
+    "shop_sub_page_cta_content"
+  ]
+}
