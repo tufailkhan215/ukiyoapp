@@ -203,6 +203,16 @@
     "membership_browse_library_yadRWa": {
       "type": "membership-browse-library",
       "blocks": {
+        "category_DNK9QD": {
+          "type": "category",
+          "settings": {
+            "icon": "workflow",
+            "title": "Courses",
+            "description": "Practical, self-paced AI courses built around real outcomes. Each course ships with structured modules, downloadable frameworks, and hands-on exercises so you leave with a working system — not just notes.",
+            "item_count": "8+ items",
+            "url": "shopify://pages/courses"
+          }
+        },
         "category_jUCWNQ": {
           "type": "category",
           "settings": {
@@ -315,6 +325,7 @@
         }
       },
       "block_order": [
+        "category_DNK9QD",
         "category_jUCWNQ",
         "category_b9HAJk",
         "category_KPxGkg",
