@@ -203,6 +203,16 @@
     "membership_browse_library_yadRWa": {
       "type": "membership-browse-library",
       "blocks": {
+        "category_6NdzJH": {
+          "type": "category",
+          "settings": {
+            "icon": "workflow",
+            "title": "GPT Models",
+            "description": "Pre-built GPT model configurations, system prompts, and custom assistants designed for real business use. Deploy brand-aligned AI for sales, support, content, and operations — powered by OpenAI and ready out of the box.",
+            "item_count": "8+ items",
+            "url": "shopify://collections/gpt-models"
+          }
+        },
         "category_eCLP7R": {
           "type": "category",
           "settings": {
@@ -275,6 +285,7 @@
         }
       },
       "block_order": [
+        "category_6NdzJH",
         "category_eCLP7R",
         "category_jyycyQ",
         "category_JQbWrB",
