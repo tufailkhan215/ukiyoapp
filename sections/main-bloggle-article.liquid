@@ -369,17 +369,11 @@
        
       <h1 id="bloggle--article-title" class="">{{article.title }}</h1>
       <div class="info_header">
-        <p id="bloggle--blog-item-author" >{{author}}<span id="author"> {{ article.author }}</span></p>
-        <p id="separator">|</p>
-         <p id="bloggle--blog-item-author" >{{datePublished}} <span>{{ article.published_at | time_tag: format: 'date'}}</span></p>
-          
-           
-        <p id="separator">|</p>
-        {% assign wordCount = article.content | strip_html | split: ' ' | size %}
-               {% if wordCount %}
-                 {% assign timeToReadMin = wordCount | divided_by: 225 %}
-                 <p id="bloggle--blog-item-ttread" >{{ timeToRead }} <span id='time'>{{ timeToReadMin }}</span> min</p>
-               {% endif %}
+        <p id="bloggle--blog-item-author" >{{author}}<span id="author"> {{ article.author }}</span></p><p class="separator">|</p><p id="bloggle--blog-item-author" >{{datePublished}} <span>{{ article.published_at | time_tag: format: 'date'}}</span></p><p class="separator">|</p>{% assign wordCount = article.content | strip_html | split: ' ' | size %}
+       {% if wordCount %}
+         {% assign timeToReadMin = wordCount | divided_by: 225 %}
+         <p id="bloggle--blog-item-ttread" >{{ timeToRead }} <span id='time'>{{ timeToReadMin }}</span> min</p>
+       {% endif %}
       </div>
     </div>
   </div>
@@ -479,6 +473,53 @@
         height: 120px;
         transform: translateY(120px);
         transition: all 0.3s ease;
+        background: #ffffff;
+      }
+      #bloggle_sideBar.bggle-sideBar--blocks .bggle_button-link {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      #bloggle_sideBar.bggle-sideBar--blocks .bggle--compare {
+        display: none;
+      }
+
+      .bloggle_sideBar-V2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      .bloggle_sideBar-V2 .bggle--sideBar-block {
+        display: none;
+        padding: 0 !important;
+      }
+      .bloggle_sideBar-V2 .bggle--sideBar-block--product {
+        display: block !important;
+      }
+      .bloggle_sideBar-V2 .bggle_button-link > div {
+        flex-direction: row !important;
+        align-items: center;
+      }
+      .bloggle_sideBar-V2 .bggle_button-link > div > button.button {
+        margin-top: 0px !important;
+      }
+      .bloggle_sideBar-V2 .bloggle_product--infos {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left !important;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 0 !important;
+      }
+      .bloggle_sideBar-V2 .bloggle_product--img, .bloggle_sideBar-V2 .bggle--product-item-img {
+        margin-bottom: 0 !important;
+      }
+      .bloggle_sideBar-V2 .bggle--product-price {
+        color: #646464;
+        font-size: 0.8em;
+        margin: 0px !important;
       }
       }
        
