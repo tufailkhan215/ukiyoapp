@@ -25,7 +25,7 @@
         "cta_primary_link": "#",
         "show_secondary": true,
         "cta_secondary_text": "View Our Work",
-        "cta_secondary_link": "#",
+        "cta_secondary_link": "shopify://pages/work",
         "show_statement_primary": true,
         "show_scroll": true,
         "scroll_label": "Scroll",
