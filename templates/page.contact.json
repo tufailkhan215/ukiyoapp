@@ -218,95 +218,6 @@
         "testimonial_author": "— John. L | Designer and Brand Owner"
       }
     },
-    "contact_prefer_to_talk_xyijFn": {
-      "type": "contact-prefer-to-talk",
-      "disabled": true,
-      "name": "Prefer to Talk",
-      "settings": {
-        "background_color": "rgba(0,0,0,0)",
-        "heading": "Prefer to Talk?",
-        "description": "Schedule a free 30-minute consultation to discuss your project goals and how we can help bring your vision to life.",
-        "tidycal_path": "salesautomateiq/consultation",
-        "tidycal_script_url": "",
-        "embed_min_height": 600,
-        "placeholder_text": "Set TidyCal path in section settings (e.g. salesautomateiq/consultation)."
-      }
-    },
-    "177146424609ae6256": {
-      "type": "_blocks",
-      "custom_css": [],
-      "settings": {}
-    },
-    "marquee_logos_p6q6xL": {
-      "type": "marquee-logos",
-      "blocks": {
-        "logo_MkCyM6": {
-          "type": "logo",
-          "settings": {
-            "name": "NIKE"
-          }
-        },
-        "logo_47xHCR": {
-          "type": "logo",
-          "settings": {
-            "name": "SPOTIFY"
-          }
-        },
-        "logo_3ybTEM": {
-          "type": "logo",
-          "settings": {
-            "name": "APPLE"
-          }
-        },
-        "logo_BQtbQc": {
-          "type": "logo",
-          "settings": {
-            "name": "ADIDAS"
-          }
-        },
-        "logo_CNF4DX": {
-          "type": "logo",
-          "settings": {
-            "name": "WANDRD"
-          }
-        },
-        "logo_CgRzje": {
-          "type": "logo",
-          "settings": {
-            "name": "COACHELLA"
-          }
-        },
-        "logo_eB7Deb": {
-          "type": "logo",
-          "settings": {
-            "name": "SXSW"
-          }
-        },
-        "logo_feiYaB": {
-          "type": "logo",
-          "settings": {
-            "name": "POLAROID"
-          }
-        }
-      },
-      "block_order": [
-        "logo_MkCyM6",
-        "logo_47xHCR",
-        "logo_3ybTEM",
-        "logo_BQtbQc",
-        "logo_CNF4DX",
-        "logo_CgRzje",
-        "logo_eB7Deb",
-        "logo_feiYaB"
-      ],
-      "name": "Marquee Logos",
-      "settings": {
-        "badge_text": "Trusted By Industry Leaders",
-        "title_before": "Brands That",
-        "title_gradient": "Trust Us",
-        "subtitle": "We've partnered with some of the most recognizable brands in the world."
-      }
-    },
     "gallery_icons_stats_EKhzMy": {
       "type": "gallery-icons-stats",
       "blocks": {
@@ -375,6 +286,125 @@
         "title_before": "Why Brands",
         "title_gradient": "Choose Us",
         "subtitle": "We transform brand visions into visual experiences that captivate, engage, and convert."
+      }
+    },
+    "contact_prefer_to_talk_xyijFn": {
+      "type": "contact-prefer-to-talk",
+      "disabled": true,
+      "name": "Prefer to Talk",
+      "settings": {
+        "background_color": "rgba(0,0,0,0)",
+        "heading": "Prefer to Talk?",
+        "description": "Schedule a free 30-minute consultation to discuss your project goals and how we can help bring your vision to life.",
+        "tidycal_path": "salesautomateiq/consultation",
+        "tidycal_script_url": "",
+        "embed_min_height": 600,
+        "placeholder_text": "Set TidyCal path in section settings (e.g. salesautomateiq/consultation)."
+      }
+    },
+    "177146424609ae6256": {
+      "type": "_blocks",
+      "custom_css": [],
+      "settings": {}
+    },
+    "marquee_logos_p6q6xL": {
+      "type": "marquee-logos",
+      "blocks": {
+        "logo_MkCyM6": {
+          "type": "logo",
+          "settings": {
+            "name": "NIKE",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
+          }
+        },
+        "logo_47xHCR": {
+          "type": "logo",
+          "settings": {
+            "name": "SPOTIFY",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
+          }
+        },
+        "logo_3ybTEM": {
+          "type": "logo",
+          "settings": {
+            "name": "APPLE",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
+          }
+        },
+        "logo_BQtbQc": {
+          "type": "logo",
+          "settings": {
+            "name": "ADIDAS",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
+          }
+        },
+        "logo_CNF4DX": {
+          "type": "logo",
+          "settings": {
+            "name": "WANDRD",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
+          }
+        },
+        "logo_CgRzje": {
+          "type": "logo",
+          "settings": {
+            "name": "COACHELLA",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
+          }
+        },
+        "logo_eB7Deb": {
+          "type": "logo",
+          "settings": {
+            "name": "SXSW",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
+          }
+        },
+        "logo_feiYaB": {
+          "type": "logo",
+          "settings": {
+            "name": "POLAROID",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_MkCyM6",
+        "logo_47xHCR",
+        "logo_3ybTEM",
+        "logo_BQtbQc",
+        "logo_CNF4DX",
+        "logo_CgRzje",
+        "logo_eB7Deb",
+        "logo_feiYaB"
+      ],
+      "name": "Marquee Logos",
+      "settings": {
+        "badge_text": "Trusted By Industry Leaders",
+        "title_before": "Brands That",
+        "title_gradient": "Trust Us",
+        "subtitle": "We've partnered with some of the most recognizable brands in the world.",
+        "background": "#080808",
+        "show_marquee": false,
+        "marquee_speed": 45,
+        "footer_text": "Built on connection. Brought to life through collaboration.",
+        "cta_text": "Explore our work",
+        "cta_link": ""
       }
     }
   },
