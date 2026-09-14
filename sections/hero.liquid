@@ -1,63 +1,1226 @@
-{% comment %} Source structure and Tailwind classes from reference (HeroSection) {% endcomment %}
-<section class="relative min-h-[110vh] flex items-center justify-center overflow-hidden bg-black" id="hero">
-  <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black" aria-hidden="true"></div>
-  <div class="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30" aria-hidden="true"></div>
-  <div class="absolute inset-0 opacity-[0.02]" aria-hidden="true" style="background-image: linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px); background-size: 80px 80px;"></div>
+{% comment %}
+  UKIYO — Cinematic Hero
+  Video hero + cloud transition + brand statement.
+  Native Shopify Liquid, CSS, and JavaScript.
+  No React, Tailwind, or animation libraries required.
+{% endcomment %}
 
-  <div class="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-12 text-center">
-    <div class="mb-10">
-      <div class="inline-flex items-center gap-4">
-        <span class="w-14 h-px bg-gradient-to-r from-transparent to-white/40" aria-hidden="true"></span>
-        <span class="text-[11px] font-medium text-white/50 tracking-[0.35em] uppercase">{{ section.settings.subtitle | default: 'Creative Branding Agency' }}</span>
-        <span class="w-14 h-px bg-gradient-to-l from-transparent to-white/40" aria-hidden="true"></span>
+<ukiyo-cinematic
+  id="UkiyoCinematic-{{ section.id }}"
+  class="uc"
+  style="--uc-red: {{ section.settings.statement_color | default: '#d92323' }};"
+>
+  <section class="uc__hero" aria-labelledby="UC-Title-{{ section.id }}">
+    <div class="uc__media" aria-hidden="true">
+      {% if section.settings.hero_poster != blank %}
+        {{
+          section.settings.hero_poster
+          | image_url: width: 2400
+          | image_tag:
+            class: 'uc__poster',
+            widths: '750, 1100, 1600, 2000, 2400',
+            sizes: '100vw',
+            loading: 'eager',
+            fetchpriority: 'high',
+            alt: ''
+        }}
+      {% endif %}
+
+      {% if section.settings.hero_video_url != blank %}
+        <video
+          class="uc__hero-video"
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          tabindex="-1"
+          {% if section.settings.hero_poster != blank %}
+            poster="{{ section.settings.hero_poster | image_url: width: 2400 }}"
+          {% endif %}
+          data-uc-video
+        >
+          <source
+            src="{{ section.settings.hero_video_url | escape }}"
+            type="video/mp4"
+          >
+        </video>
+      {% endif %}
+    </div>
+
+    <div class="uc__shade" aria-hidden="true"></div>
+
+    <div class="uc__hero-inner">
+      <div class="uc__top" data-uc-reveal>
+        <div class="uc__identity">
+          {% if section.settings.logo != blank %}
+            {{
+              section.settings.logo
+              | image_url: width: 400
+              | image_tag:
+                class: 'uc__logo',
+                widths: '160, 240, 400',
+                sizes: '160px',
+                loading: 'eager',
+                alt: 'UKIYO'
+            }}
+          {% else %}
+            <span class="uc__wordmark">UKIYO<span>®</span></span>
+          {% endif %}
+
+          {% if section.settings.subtitle != blank %}
+            <p class="uc__tagline">
+              {{ section.settings.subtitle | escape }}
+            </p>
+          {% endif %}
+        </div>
+
+        {% if section.settings.cta_primary_text != blank and section.settings.cta_primary_link != blank %}
+          <a
+            class="uc__oval"
+            href="{{ section.settings.cta_primary_link | escape }}"
+          >
+            <span>{{ section.settings.cta_primary_text | escape }}</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 17 17 7M7 7h10v10"/>
+            </svg>
+          </a>
+        {% endif %}
+      </div>
+
+      <div class="uc__composition">
+        <div class="uc__aside" data-uc-reveal>
+          <span class="uc__eyebrow">
+            Strategy. Creativity. Connection.
+          </span>
+
+          {% if section.settings.description != blank %}
+            <p class="uc__description">
+              {{ section.settings.description | escape }}
+            </p>
+          {% endif %}
+
+          {% if section.settings.cta_secondary_text != blank and section.settings.cta_secondary_link != blank %}
+            <a
+              class="uc__text-link"
+              href="{{ section.settings.cta_secondary_link | escape }}"
+            >
+              {{ section.settings.cta_secondary_text | escape }}
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 17 17 7M7 7h10v10"/>
+              </svg>
+            </a>
+          {% endif %}
+        </div>
+
+        <div class="uc__title-wrap">
+          <h1 id="UC-Title-{{ section.id }}" class="uc__title">
+            {% if section.settings.headline_line1 != blank %}
+              <span class="uc__line">
+                <span data-uc-reveal>
+                  {{ section.settings.headline_line1 | escape }}
+                </span>
+              </span>
+            {% endif %}
+
+            {% if section.settings.headline_line2 != blank %}
+              <span class="uc__line uc__line--accent">
+                <span data-uc-reveal>
+                  {{ section.settings.headline_line2 | escape }}
+                </span>
+              </span>
+            {% endif %}
+
+            {% if section.settings.headline_line3 != blank %}
+              <span class="uc__line">
+                <span data-uc-reveal>
+                  {{ section.settings.headline_line3 | escape }}
+                </span>
+              </span>
+            {% endif %}
+          </h1>
+        </div>
+      </div>
+
+      <div class="uc__bottom" data-uc-reveal>
+        <a
+          class="uc__scroll"
+          href="#UC-Statement-{{ section.id }}"
+          data-uc-scroll
+        >
+          <span>
+            {{ section.settings.scroll_label | default: 'Explore' | escape }}
+          </span>
+          <span class="uc__scroll-icon" aria-hidden="true">↓</span>
+        </a>
+
+        <span class="uc__bottom-note">
+          {{ section.settings.bottom_note | escape }}
+        </span>
+
+        <button
+          class="uc__motion"
+          type="button"
+          aria-pressed="false"
+          data-uc-motion
+          hidden
+        >
+          Pause motion
+        </button>
       </div>
     </div>
+  </section>
 
-    <div class="overflow-hidden mb-8">
-      <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-bold leading-[0.9] tracking-tight">
-        <span class="text-white">{{ section.settings.headline_line1 | default: 'We Create' }}</span><br>
-        <span class="text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-600">{{ section.settings.headline_line2 | default: 'Exceptional' }}</span><br>
-        <span class="text-white">{{ section.settings.headline_line3 | default: 'Brand Experiences' }}</span>
-      </h1>
-    </div>
+  <section
+    id="UC-Statement-{{ section.id }}"
+    class="uc__statement"
+    aria-labelledby="UC-StatementTitle-{{ section.id }}"
+  >
+    {% if section.settings.cloud_image != blank or section.settings.cloud_image_url != blank %}
+      <div class="uc__cloud" aria-hidden="true">
+        {% if section.settings.cloud_image != blank %}
+          {{
+            section.settings.cloud_image
+            | image_url: width: 2400
+            | image_tag:
+              widths: '750, 1100, 1600, 2000, 2400',
+              sizes: '100vw',
+              loading: 'lazy',
+              alt: ''
+          }}
+        {% else %}
+          <img
+            src="{{ section.settings.cloud_image_url | escape }}"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+        {% endif %}
+      </div>
+    {% endif %}
 
-    <p class="text-base md:text-lg lg:text-xl text-white/40 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
-      {{ section.settings.description | default: 'Through strategy, creativity, and cutting-edge automation—delivering impactful results that transform businesses.' }}
-    </p>
+    <div class="uc__statement-inner">
+      <div class="uc__statement-label" data-uc-reveal>
+        <span aria-hidden="true"></span>
+        UKIYO / OUR APPROACH
+      </div>
 
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      {% if section.settings.statement_heading != blank %}
+        <h2
+          id="UC-StatementTitle-{{ section.id }}"
+          class="uc__statement-title"
+          data-uc-reveal
+        >
+          {{ section.settings.statement_heading | escape }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.statement_intro != blank %}
+        <p class="uc__statement-intro" data-uc-reveal>
+          {{ section.settings.statement_intro | escape }}
+        </p>
+      {% endif %}
+
+      <div class="uc__signature" aria-hidden="true" data-uc-reveal>
+        Ukiyo.
+      </div>
+
+      <div class="uc__statement-copy">
+        {% if section.settings.statement_body != blank %}
+          <p data-uc-reveal>
+            {{ section.settings.statement_body | escape | newline_to_br }}
+          </p>
+        {% endif %}
+
+        {% if section.settings.statement_body_2 != blank %}
+          <p data-uc-reveal>
+            {{ section.settings.statement_body_2 | escape | newline_to_br }}
+          </p>
+        {% endif %}
+      </div>
+
       {% if section.settings.cta_primary_text != blank and section.settings.cta_primary_link != blank %}
-        <a href="{{ section.settings.cta_primary_link }}">
-          <button type="button" class="group relative px-8 py-4 bg-white text-black rounded-full font-semibold text-base overflow-hidden">
-            <span class="relative z-10 flex items-center gap-2">
-              {{ section.settings.cta_primary_text }}
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-            </span>
-          </button>
-        </a>
-      {% endif %}
-      {% if section.settings.cta_secondary_text != blank and section.settings.cta_secondary_link != blank %}
-        <a href="{{ section.settings.cta_secondary_link }}">
-          <button type="button" class="group px-8 py-4 border border-white/20 text-white rounded-full font-semibold text-base hover:bg-white/5 transition-all">
-            <span class="flex items-center gap-2">
-              {{ section.settings.cta_secondary_text }}
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right w-5 h-5" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-            </span>
-          </button>
+        <a
+          class="uc__statement-cta"
+          href="{{ section.settings.cta_primary_link | escape }}"
+          data-uc-reveal
+        >
+          {{ section.settings.cta_primary_text | escape }}
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 17 17 7M7 7h10v10"/>
+          </svg>
         </a>
       {% endif %}
     </div>
-  </div>
 
-  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
-    <button type="button" class="flex flex-col items-center gap-3 text-left cursor-pointer bg-transparent border-0 p-0 text-inherit" data-scroll-to-next aria-label="Scroll to content">
-      <span class="text-[10px] text-white/30 tracking-[0.4em] uppercase">{{ section.settings.scroll_label | default: 'Scroll' }}</span>
-      <div class="w-5 h-8 border border-white/20 rounded-full flex justify-center pt-1.5">
-        <div class="w-1 h-1.5 bg-white/50 rounded-full scroll-indicator-dot"></div>
+    {% if section.settings.statement_video_url != blank %}
+      <div class="uc__closing-media" aria-hidden="true">
+        <div class="uc__closing-fade"></div>
+        <video
+          class="uc__closing-video"
+          muted
+          loop
+          playsinline
+          preload="none"
+          tabindex="-1"
+          {% if section.settings.statement_poster != blank %}
+            poster="{{ section.settings.statement_poster | image_url: width: 2000 }}"
+          {% endif %}
+          data-uc-video
+        >
+          <source
+            src="{{ section.settings.statement_video_url | escape }}"
+            type="video/mp4"
+          >
+        </video>
       </div>
-    </button>
-  </div>
-</section>
+    {% endif %}
+  </section>
+</ukiyo-cinematic>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Italiana&family=Manrope:wght@400;500;600&family=Marck+Script&display=swap');
+
+  .uc {
+    --uc-white: #f7f5ef;
+    --uc-gutter: clamp(20px, 4.5vw, 72px);
+    display: block;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: #080909;
+    color: var(--uc-white);
+    font-family: "Manrope", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .uc *,
+  .uc *::before,
+  .uc *::after {
+    box-sizing: border-box;
+  }
+
+  .uc a {
+    color: inherit;
+  }
+
+  .uc svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+  }
+
+  .uc .uc__hero {
+    position: relative;
+    isolation: isolate;
+    min-height: 820px;
+    min-height: max(760px, 100svh);
+    display: flex;
+    background: #182321;
+    overflow: hidden;
+  }
+
+  .uc .uc__media {
+    position: absolute;
+    inset: -8% 0;
+    z-index: -3;
+    transform: translate3d(0, var(--uc-video-y, 0px), 0);
+    pointer-events: none;
+    background:
+      radial-gradient(
+        ellipse at 65% 20%,
+        #6c7d76,
+        #253d36 40%,
+        #111c19 80%
+      );
+  }
+
+  .uc .uc__poster,
+  .uc .uc__hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .uc .uc__shade {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0, 0, 0, .32),
+        rgba(0, 0, 0, .08) 30%,
+        rgba(0, 0, 0, .38) 65%,
+        rgba(0, 0, 0, .72)
+      ),
+      linear-gradient(
+        90deg,
+        rgba(0, 0, 0, .28),
+        transparent 75%
+      );
+  }
+
+  .uc .uc__hero-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 80px;
+    width: 100%;
+    max-width: 1800px;
+    min-width: 0;
+    margin-inline: auto;
+    padding:
+      clamp(28px, 4vw, 64px)
+      var(--uc-gutter)
+      30px;
+  }
+
+  .uc .uc__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 30px;
+  }
+
+  .uc .uc__identity {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    min-width: 0;
+  }
+
+  .uc .uc__wordmark {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 4px;
+    color: #ffffff;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: clamp(27px, 2.6vw, 42px);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -.055em;
+    white-space: nowrap;
+  }
+
+  .uc .uc__wordmark > span {
+    font-size: 10px;
+    line-height: 1;
+    margin-top: 3px;
+    letter-spacing: 0;
+  }
+
+  .uc .uc__logo {
+    display: block;
+    width: 150px;
+    max-width: 35vw;
+    height: auto;
+    max-height: 70px;
+    object-fit: contain;
+  }
+
+  .uc .uc__tagline {
+    max-width: 170px;
+    margin: 0;
+    padding-left: 23px;
+    border-left: 1px solid #ffffff60;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.65;
+    letter-spacing: .025em;
+    text-wrap: pretty;
+  }
+
+  .uc .uc__oval {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    min-height: 76px;
+    max-width: 290px;
+    padding: 20px 32px;
+    border: 1px solid #ffffffa6;
+    border-radius: 50%;
+    background: #00000012;
+    color: #ffffff;
+    font-family: "Italiana", Georgia, serif;
+    font-size: 19px;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    transition:
+      background .3s,
+      border-color .3s,
+      transform .3s;
+  }
+
+  .uc .uc__oval svg {
+    width: 19px;
+    height: 19px;
+    transition: transform .3s;
+  }
+
+  .uc .uc__composition {
+    display: grid;
+    grid-template-columns: minmax(210px, .72fr) minmax(0, 2.5fr);
+    align-items: end;
+    gap: clamp(30px, 5vw, 80px);
+    margin-top: auto;
+  }
+
+  .uc .uc__aside {
+    max-width: 310px;
+    padding-bottom: 8px;
+  }
+
+  .uc .uc__eyebrow {
+    display: block;
+    margin-bottom: 23px;
+    color: #ffffffce;
+    font-size: 9px;
+    line-height: 1.6;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+  }
+
+  .uc .uc__description {
+    margin: 0;
+    color: #f3f2ee;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.85;
+    text-wrap: pretty;
+  }
+
+  .uc .uc__text-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    min-height: 44px;
+    margin-top: 23px;
+    padding-block: 9px;
+    border-bottom: 1px solid #ffffff70;
+    color: #ffffff;
+    font-size: 11px;
+    line-height: 1.5;
+    text-decoration: none;
+  }
+
+  .uc .uc__text-link svg {
+    width: 17px;
+    height: 17px;
+    transition: transform .3s;
+  }
+
+  .uc .uc__title-wrap {
+    min-width: 0;
+  }
+
+  .uc .uc__title {
+    margin: 0;
+    color: #ffffff;
+    font-family: "Italiana", Georgia, serif;
+    font-size: clamp(50px, 6.3vw, 108px);
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -.04em;
+    text-align: right;
+    text-transform: none;
+    text-shadow: 0 2px 24px #0000001f;
+    overflow-wrap: anywhere;
+  }
+
+  .uc .uc__line {
+    display: block;
+    padding-block: .035em;
+  }
+
+  .uc .uc__line > span {
+    display: block;
+    text-wrap: balance;
+  }
+
+  .uc .uc__line--accent {
+    color: #e1e8dc;
+  }
+
+  .uc .uc__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #ffffff38;
+  }
+
+  .uc .uc__scroll {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    min-height: 44px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 9px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+  }
+
+  .uc .uc__scroll-icon {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 36px;
+    border: 1px solid #ffffff55;
+    border-radius: 30px;
+    font-size: 16px;
+    transition: transform .3s;
+  }
+
+  .uc .uc__bottom-note {
+    color: #ffffffbd;
+    font-size: 9px;
+    line-height: 1.6;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .uc .uc__motion {
+    min-height: 44px;
+    padding: 8px 0 8px 10px;
+    border: 0;
+    background: none;
+    color: #ffffffd4;
+    font-family: inherit;
+    font-size: 10px;
+    cursor: pointer;
+  }
+
+  .uc .uc__motion[hidden] {
+    display: none;
+  }
+
+  .uc .uc__statement {
+    position: relative;
+    background: var(--uc-red);
+    color: #ffffff;
+    scroll-margin-top: 60px;
+  }
+
+  .uc .uc__cloud {
+    position: absolute;
+    top: 0;
+    left: -2%;
+    width: 104%;
+    z-index: 2;
+    pointer-events: none;
+    transform:
+      translateY(calc(-50% + var(--uc-cloud-y, 0px)));
+  }
+
+  .uc .uc__cloud img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .uc .uc__statement-inner {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min(100%, 1040px);
+    margin-inline: auto;
+    padding:
+      clamp(170px, 23vw, 380px)
+      28px
+      clamp(60px, 8vw, 130px);
+    text-align: center;
+  }
+
+  .uc .uc__statement-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+    color: #ffffffe6;
+    font-size: 9px;
+    line-height: 1.6;
+    letter-spacing: .2em;
+  }
+
+  .uc .uc__statement-label > span {
+    width: 5px;
+    height: 5px;
+    background: #ffffff;
+    border-radius: 50%;
+  }
+
+  .uc .uc__statement-title {
+    max-width: 850px;
+    margin: 0 0 30px;
+    color: #ffffff;
+    font-family: "Italiana", Georgia, serif;
+    font-size: clamp(44px, 6.6vw, 90px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -.035em;
+    text-transform: none;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+  }
+
+  .uc .uc__statement-intro {
+    max-width: 540px;
+    margin: 0;
+    color: #fffffff0;
+    font-size: 13px;
+    line-height: 1.9;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    text-wrap: pretty;
+  }
+
+  .uc .uc__signature {
+    margin: 34px 0 28px;
+    color: #ffffff;
+    font-family: "Marck Script", cursive;
+    font-size: clamp(80px, 12vw, 140px);
+    line-height: 1;
+    transform: rotate(-7deg);
+  }
+
+  .uc .uc__statement-copy {
+    display: grid;
+    gap: 22px;
+    max-width: 470px;
+  }
+
+  .uc .uc__statement-copy p {
+    margin: 0;
+    color: #ffffffe8;
+    font-size: 14px;
+    line-height: 1.9;
+    text-wrap: pretty;
+  }
+
+  .uc .uc__statement-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 22px;
+    min-height: 50px;
+    margin-top: 32px;
+    padding: 12px 0;
+    border-bottom: 1px solid #ffffff90;
+    color: #ffffff;
+    font-size: 12px;
+    line-height: 1.5;
+    text-decoration: none;
+  }
+
+  .uc .uc__statement-cta svg {
+    transition: transform .3s;
+  }
+
+  .uc .uc__closing-media {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: var(--uc-red);
+  }
+
+  .uc .uc__closing-fade {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    height: clamp(70px, 10vw, 160px);
+    z-index: 1;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        to bottom,
+        var(--uc-red),
+        transparent
+      );
+  }
+
+  .uc .uc__closing-video {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 180px;
+    object-fit: contain;
+  }
+
+  .uc a:focus-visible,
+  .uc button:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 6px;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .uc .uc__oval:hover {
+      background: #ffffff1a;
+      border-color: #ffffff;
+      transform: translateY(-3px);
+    }
+
+    .uc .uc__oval:hover svg,
+    .uc .uc__text-link:hover svg,
+    .uc .uc__statement-cta:hover svg {
+      transform: translate(3px, -3px);
+    }
+
+    .uc .uc__scroll:hover .uc__scroll-icon {
+      transform: translateY(4px);
+    }
+  }
+
+  @media (max-width: 1050px) {
+    .uc .uc__composition {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .uc .uc__aside {
+      max-width: 390px;
+    }
+
+    .uc .uc__title {
+      font-size: clamp(56px, 8.3vw, 86px);
+    }
+
+    .uc .uc__hero-inner {
+      gap: 50px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .uc .uc__hero {
+      min-height: max(780px, 100svh);
+    }
+
+    .uc .uc__hero-inner {
+      padding-top: 26px;
+      padding-bottom: 20px;
+      gap: 44px;
+    }
+
+    .uc .uc__top {
+      gap: 18px;
+    }
+
+    .uc .uc__identity {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .uc .uc__wordmark {
+      font-size: 30px;
+    }
+
+    .uc .uc__logo {
+      width: 115px;
+      max-height: 55px;
+    }
+
+    .uc .uc__tagline {
+      max-width: 145px;
+      padding-left: 0;
+      border: 0;
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    .uc .uc__oval {
+      max-width: 175px;
+      min-height: 66px;
+      padding: 16px 18px;
+      gap: 9px;
+      font-size: 15px;
+    }
+
+    .uc .uc__oval svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .uc .uc__composition {
+      gap: 32px;
+    }
+
+    .uc .uc__aside {
+      max-width: 310px;
+      padding: 0;
+    }
+
+    .uc .uc__eyebrow {
+      margin-bottom: 14px;
+      font-size: 8px;
+    }
+
+    .uc .uc__description {
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .uc .uc__text-link {
+      margin-top: 14px;
+      font-size: 10px;
+    }
+
+    .uc .uc__title {
+      font-size: clamp(42px, 10vw, 64px);
+      line-height: 1.08;
+      letter-spacing: -.035em;
+      text-align: left;
+    }
+
+    .uc .uc__bottom {
+      gap: 12px;
+      padding-top: 14px;
+    }
+
+    .uc .uc__bottom-note {
+      display: none;
+    }
+
+    .uc .uc__scroll {
+      font-size: 8px;
+    }
+
+    .uc .uc__cloud {
+      left: -20%;
+      width: 140%;
+    }
+
+    .uc .uc__statement-inner {
+      padding-top: 150px;
+    }
+
+    .uc .uc__statement-intro {
+      font-size: 11px;
+    }
+
+    .uc .uc__statement-copy p {
+      font-size: 13px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .uc *,
+    .uc *::before,
+    .uc *::after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
+
+    .uc .uc__media {
+      transform: none;
+    }
+
+    .uc .uc__cloud {
+      transform: translateY(-50%);
+    }
+
+    .uc .uc__motion {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  if (!customElements.get('ukiyo-cinematic')) {
+    customElements.define(
+      'ukiyo-cinematic',
+      class extends HTMLElement {
+        connectedCallback() {
+          this.initFrame = requestAnimationFrame(() => this.init());
+        }
+
+        init() {
+          if (this.initialized || !this.isConnected) return;
+          this.initialized = true;
+
+          this.abort = new AbortController();
+          this.options = { signal: this.abort.signal };
+          this.animations = [];
+          this.paused = false;
+          this.inView = false;
+
+          this.reduced = window.matchMedia(
+            '(prefers-reduced-motion: reduce)'
+          );
+
+          this.hero = this.querySelector('.uc__hero');
+          this.statement = this.querySelector('.uc__statement');
+          this.motionButton = this.querySelector('[data-uc-motion]');
+          this.videos = [...this.querySelectorAll('[data-uc-video]')];
+
+          const editor = Boolean(
+            window.Shopify && window.Shopify.designMode
+          );
+
+          this.paused = editor;
+
+          this.videos.forEach(video => {
+            video.muted = true;
+            video.defaultMuted = true;
+          });
+
+          if (this.motionButton) {
+            this.motionButton.hidden = false;
+            this.updateButton();
+
+            this.motionButton.addEventListener(
+              'click',
+              () => {
+                this.paused = !this.paused;
+                this.updateButton();
+                this.syncMotion();
+              },
+              this.options
+            );
+          }
+
+          const scrollLink = this.querySelector('[data-uc-scroll]');
+
+          scrollLink?.addEventListener(
+            'click',
+            event => {
+              event.preventDefault();
+
+              this.statement.scrollIntoView({
+                behavior: this.reduced.matches ? 'auto' : 'smooth',
+                block: 'start'
+              });
+            },
+            this.options
+          );
+
+          this.reduced.addEventListener(
+            'change',
+            () => this.syncMotion(),
+            this.options
+          );
+
+          document.addEventListener(
+            'visibilitychange',
+            () => this.syncMotion(),
+            this.options
+          );
+
+          if ('IntersectionObserver' in window) {
+            this.videoObserver = new IntersectionObserver(
+              entries => {
+                entries.forEach(entry => {
+                  entry.target.dataset.ucVisible =
+                    String(entry.isIntersecting);
+                });
+
+                this.syncVideos();
+              },
+              { rootMargin: '100px 0px' }
+            );
+
+            this.videos.forEach(video => {
+              this.videoObserver.observe(video);
+            });
+
+            this.viewObserver = new IntersectionObserver(entries => {
+              this.inView = entries[0].isIntersecting;
+              if (this.inView) this.queueScroll();
+            });
+
+            this.viewObserver.observe(this);
+
+            this.revealObserver = new IntersectionObserver(
+              entries => {
+                const visible = entries.filter(
+                  entry => entry.isIntersecting
+                );
+
+                visible.forEach((entry, index) => {
+                  if (!this.paused && !this.reduced.matches) {
+                    this.reveal(entry.target, Math.min(index, 4) * 90);
+                  }
+
+                  this.revealObserver.unobserve(entry.target);
+                });
+              },
+              { threshold: .12 }
+            );
+
+            this.querySelectorAll('[data-uc-reveal]').forEach(element => {
+              this.revealObserver.observe(element);
+            });
+          } else {
+            this.inView = true;
+
+            this.videos.forEach(video => {
+              video.dataset.ucVisible = 'true';
+            });
+
+            this.syncVideos();
+          }
+
+          window.addEventListener(
+            'scroll',
+            () => this.queueScroll(),
+            { passive: true, signal: this.abort.signal }
+          );
+
+          window.addEventListener(
+            'resize',
+            () => this.queueScroll(),
+            this.options
+          );
+
+          this.syncMotion();
+        }
+
+        updateButton() {
+          if (!this.motionButton) return;
+
+          this.motionButton.setAttribute(
+            'aria-pressed',
+            String(this.paused)
+          );
+
+          this.motionButton.textContent = this.paused
+            ? 'Play motion'
+            : 'Pause motion';
+        }
+
+        syncVideos() {
+          const allowed =
+            !this.paused &&
+            !this.reduced.matches &&
+            !document.hidden;
+
+          this.videos.forEach(video => {
+            if (
+              allowed &&
+              video.dataset.ucVisible === 'true'
+            ) {
+              const promise = video.play();
+
+              if (promise && typeof promise.catch === 'function') {
+                promise.catch(() => {
+                  /* Keep the poster or background if autoplay is blocked. */
+                });
+              }
+            } else {
+              video.pause();
+            }
+          });
+        }
+
+        syncMotion() {
+          this.syncVideos();
+
+          if (this.paused || this.reduced.matches) {
+            this.animations.forEach(animation => animation.cancel());
+            this.animations = [];
+
+            this.style.setProperty('--uc-cloud-y', '0px');
+            this.style.setProperty('--uc-video-y', '0px');
+          } else {
+            this.queueScroll();
+          }
+        }
+
+        reveal(element, delay) {
+          if (!element.animate) return;
+
+          const animation = element.animate(
+            [
+              {
+                opacity: 0,
+                translate: '0 28px',
+                filter: 'blur(3px)'
+              },
+              {
+                opacity: 1,
+                translate: '0 0',
+                filter: 'blur(0px)'
+              }
+            ],
+            {
+              duration: 1000,
+              delay,
+              fill: 'backwards',
+              easing: 'cubic-bezier(.16,1,.3,1)'
+            }
+          );
+
+          this.animations.push(animation);
+        }
+
+        queueScroll() {
+          if (
+            this.scrollFrame ||
+            !this.inView ||
+            this.paused ||
+            this.reduced.matches
+          ) return;
+
+          this.scrollFrame = requestAnimationFrame(() => {
+            this.scrollFrame = null;
+
+            if (!this.isConnected) return;
+
+            const bounds = this.hero.getBoundingClientRect();
+            const distance = Math.max(0, -bounds.top);
+            const progress = Math.min(distance / 300, 1);
+            const mobile = window.innerWidth <= 650;
+
+            this.style.setProperty(
+              '--uc-cloud-y',
+              `${-progress * (mobile ? 24 : 100)}px`
+            );
+
+            this.style.setProperty(
+              '--uc-video-y',
+              `${Math.min(distance * .12, 60)}px`
+            );
+          });
+        }
+
+        disconnectedCallback() {
+          cancelAnimationFrame(this.initFrame);
+          cancelAnimationFrame(this.scrollFrame);
+
+          this.abort?.abort();
+          this.videoObserver?.disconnect();
+          this.viewObserver?.disconnect();
+          this.revealObserver?.disconnect();
+
+          this.animations?.forEach(animation => animation.cancel());
+          this.videos?.forEach(video => video.pause());
+
+          this.scrollFrame = null;
+          this.initialized = false;
+        }
+      }
+    );
+  }
+</script>
 
 {% schema %}
 {
@@ -65,17 +1228,167 @@
   "tag": "section",
   "class": "section-hero",
   "settings": [
-    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Creative Branding Agency" },
-    { "type": "text", "id": "headline_line1", "label": "Headline line 1", "default": "We Create" },
-    { "type": "text", "id": "headline_line2", "label": "Headline line 2 (gradient)", "default": "Exceptional" },
-    { "type": "text", "id": "headline_line3", "label": "Headline line 3", "default": "Brand Experiences" },
-    { "type": "textarea", "id": "description", "label": "Description", "default": "Through strategy, creativity, and cutting-edge automation—delivering impactful results that transform businesses." },
-    { "type": "text", "id": "cta_primary_text", "label": "Primary button text", "default": "Book Discovery Call" },
-    { "type": "url", "id": "cta_primary_link", "label": "Primary button link" },
-    { "type": "text", "id": "cta_secondary_text", "label": "Secondary button text", "default": "View Case Studies" },
-    { "type": "url", "id": "cta_secondary_link", "label": "Secondary button link" },
-    { "type": "text", "id": "scroll_label", "label": "Scroll indicator label", "default": "Scroll" }
+    {
+      "type": "header",
+      "content": "Brand and headline"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "White or light logo",
+      "info": "Optional. UKIYO lettering appears when no logo is selected."
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Creative Branding Agency"
+    },
+    {
+      "type": "text",
+      "id": "headline_line1",
+      "label": "Headline line 1",
+      "default": "We Create"
+    },
+    {
+      "type": "text",
+      "id": "headline_line2",
+      "label": "Headline line 2",
+      "default": "Exceptional"
+    },
+    {
+      "type": "text",
+      "id": "headline_line3",
+      "label": "Headline line 3",
+      "default": "Brand Experiences"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "We bring strategy, design, and technology together to build brands people connect with—and businesses ready for what comes next."
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "cta_primary_text",
+      "label": "Primary button text",
+      "default": "Let's Create"
+    },
+    {
+      "type": "url",
+      "id": "cta_primary_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "cta_secondary_text",
+      "label": "Secondary button text",
+      "default": "Explore Our Work"
+    },
+    {
+      "type": "url",
+      "id": "cta_secondary_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "text",
+      "id": "scroll_label",
+      "label": "Scroll indicator label",
+      "default": "Discover Ukiyo"
+    },
+    {
+      "type": "text",
+      "id": "bottom_note",
+      "label": "Bottom caption",
+      "default": "Independent thinking. Shared ambition."
+    },
+    {
+      "type": "header",
+      "content": "Hero video"
+    },
+    {
+      "type": "text",
+      "id": "hero_video_url",
+      "label": "Hero MP4 URL",
+      "default": "https://pub-86dc5b5484314368ac5436a674b0d919.r2.dev/cloudinarry%20to%20cloudflare/baby-track-video_crqby5.mp4"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_poster",
+      "label": "Hero poster image",
+      "info": "Shown while video loads and when motion is disabled."
+    },
+    {
+      "type": "header",
+      "content": "Cloud transition"
+    },
+    {
+      "type": "image_picker",
+      "id": "cloud_image",
+      "label": "Custom cloud image",
+      "info": "A transparent PNG works best. Overrides the cloud URL below."
+    },
+    {
+      "type": "text",
+      "id": "cloud_image_url",
+      "label": "Cloud image URL",
+      "default": "https://res.cloudinary.com/dsdhxhhqh/image/upload/v1781500777/cloude_vj4pjv.png"
+    },
+    {
+      "type": "header",
+      "content": "Brand statement"
+    },
+    {
+      "type": "color",
+      "id": "statement_color",
+      "label": "Statement background",
+      "default": "#d92323"
+    },
+    {
+      "type": "text",
+      "id": "statement_heading",
+      "label": "Statement heading",
+      "default": "Built to move your brand forward."
+    },
+    {
+      "type": "textarea",
+      "id": "statement_intro",
+      "label": "Statement introduction",
+      "default": "Every brand has something worth bringing into the world. We help you give it shape, presence, and purpose."
+    },
+    {
+      "type": "textarea",
+      "id": "statement_body",
+      "label": "First paragraph",
+      "default": "From the first idea to the experience your audience remembers, we connect brand strategy, design, digital experiences, and marketing around a clear direction."
+    },
+    {
+      "type": "textarea",
+      "id": "statement_body_2",
+      "label": "Second paragraph",
+      "default": "We work alongside your team to make the ambitious feel possible—with thoughtful creative, practical systems, and care for the details that make you different."
+    },
+    {
+      "type": "text",
+      "id": "statement_video_url",
+      "label": "Closing MP4 URL",
+      "default": "https://pub-86dc5b5484314368ac5436a674b0d919.r2.dev/cloudinarry%20to%20cloudflare/track-video_2_haxdch.mp4",
+      "info": "Clear this field to remove the closing video."
+    },
+    {
+      "type": "image_picker",
+      "id": "statement_poster",
+      "label": "Closing video poster"
+    }
   ],
-  "presets": [{ "name": "Hero" }]
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
 }
 {% endschema %}
