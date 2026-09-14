@@ -143,60 +143,6 @@
         "subtitle": "We transform brand visions into visual experiences that captivate, engage, and convert."
       }
     },
-    "trusted_by_v2_mzPTDC": {
-      "type": "trusted-by-v2",
-      "blocks": {
-        "brand_rTdhXf": {
-          "type": "brand",
-          "settings": {
-            "label": "Polaroid"
-          }
-        },
-        "brand_n3F7Lg": {
-          "type": "brand",
-          "settings": {
-            "label": "SXSW"
-          }
-        },
-        "brand_zAQgzA": {
-          "type": "brand",
-          "settings": {
-            "label": "Coachella"
-          }
-        },
-        "brand_n6Fjkp": {
-          "type": "brand",
-          "settings": {
-            "label": "Wandrd"
-          }
-        },
-        "brand_Na4gcN": {
-          "type": "brand",
-          "settings": {
-            "label": "Adidas"
-          }
-        },
-        "brand_th8QWE": {
-          "type": "brand",
-          "settings": {
-            "label": "Red Bull"
-          }
-        }
-      },
-      "block_order": [
-        "brand_rTdhXf",
-        "brand_n3F7Lg",
-        "brand_zAQgzA",
-        "brand_n6Fjkp",
-        "brand_Na4gcN",
-        "brand_th8QWE"
-      ],
-      "name": "Trusted By v2",
-      "settings": {
-        "badge": "(Trusted By)",
-        "title": "Brands We've Elevated"
-      }
-    },
     "gallery_featured_projects_xwFzEr": {
       "type": "gallery-featured-projects",
       "blocks": {
@@ -331,6 +277,60 @@
         "filters_text": "All\nBrand partnership\nAdventure travel\nEnergy & lifestyle\nFashion & lifestyle"
       }
     },
+    "trusted_by_v2_mzPTDC": {
+      "type": "trusted-by-v2",
+      "blocks": {
+        "brand_rTdhXf": {
+          "type": "brand",
+          "settings": {
+            "label": "Polaroid"
+          }
+        },
+        "brand_n3F7Lg": {
+          "type": "brand",
+          "settings": {
+            "label": "SXSW"
+          }
+        },
+        "brand_zAQgzA": {
+          "type": "brand",
+          "settings": {
+            "label": "Coachella"
+          }
+        },
+        "brand_n6Fjkp": {
+          "type": "brand",
+          "settings": {
+            "label": "Wandrd"
+          }
+        },
+        "brand_Na4gcN": {
+          "type": "brand",
+          "settings": {
+            "label": "Adidas"
+          }
+        },
+        "brand_th8QWE": {
+          "type": "brand",
+          "settings": {
+            "label": "Red Bull"
+          }
+        }
+      },
+      "block_order": [
+        "brand_rTdhXf",
+        "brand_n3F7Lg",
+        "brand_zAQgzA",
+        "brand_n6Fjkp",
+        "brand_Na4gcN",
+        "brand_th8QWE"
+      ],
+      "name": "Trusted By v2",
+      "settings": {
+        "badge": "(Trusted By)",
+        "title": "Brands We've Elevated"
+      }
+    },
     "gallery_featured_cta_GkryRU": {
       "type": "gallery-featured-cta",
       "disabled": true,
@@ -350,8 +350,8 @@
     "gallery_intro_F3mGTE",
     "gallery_stats_cdWYPB",
     "gallery_icons_stats_wVmBPV",
-    "trusted_by_v2_mzPTDC",
     "gallery_featured_projects_xwFzEr",
+    "trusted_by_v2_mzPTDC",
     "gallery_featured_cta_GkryRU"
   ]
 }
