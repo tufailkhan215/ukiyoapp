@@ -1,1536 +1,1371 @@
 {% comment %}
-  UKIYO — Split Work Hero
-  Frosted glass cutout, mirrored HLS/MP4 video, responsive panels.
-  Preserves existing headings, description, and stat blocks.
+  UKIYO — cinematic scroll-driven Work Hero.
+  Self-contained Shopify section. No React or Tailwind required.
 {% endcomment %}
 
-{% assign stats = section.blocks | where: 'type', 'stat' %}
-{% assign buttons = section.blocks | where: 'type', 'button' %}
+{% liquid
+  assign stats = section.blocks | where: 'type', 'stat'
+  assign projects = section.blocks | where: 'type', 'project'
+  assign buttons = section.blocks | where: 'type', 'button'
+  assign screen_count = section.settings.scroll_length | divided_by: 100.0
+%}
 
-{% capture arrow %}
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M7 17 17 7M7 7h10v10"/>
-  </svg>
-{% endcapture %}
-
-<div
-  id="UkiyoWork-{{ section.id }}"
-  class="uw"
+<section
+  id="UkiyoCinema-{{ section.id }}"
+  class="uc"
   data-testid="work-hero"
-  style="
-    --uw-accent: {{ section.settings.accent | default: '#ff5c35' }};
-    --uw-mirror: {% if section.settings.mirror_video %}-1{% else %}1{% endif %};
-  "
+  style="--uc-screens: {{ screen_count }};"
 >
-  <div class="uw__background" aria-hidden="true">
-    {% if section.settings.poster != blank %}
-      {{
-        section.settings.poster
-        | image_url: width: 2400
-        | image_tag:
-          class: 'uw__poster',
-          widths: '750, 1100, 1600, 2000, 2400',
-          sizes: '100vw',
-          loading: 'eager',
-          fetchpriority: 'high',
-          alt: ''
-      }}
-    {% endif %}
+  <div class="uc__frame">
 
-    {% if section.settings.video_url != blank %}
-      <video
-        class="uw__video"
-        data-uw-video
-        data-source="{{ section.settings.video_url | escape }}"
-        muted
-        loop
-        playsinline
-        preload="metadata"
-        tabindex="-1"
-        {% if section.settings.poster != blank %}
-          poster="{{ section.settings.poster | image_url: width: 2400 }}"
-        {% endif %}
-      ></video>
-    {% endif %}
-
-    <div class="uw__video-shade"></div>
-  </div>
-
-  <header class="uw__header">
-    <a class="uw__logo" href="{{ routes.root_url }}">
-      <span class="uw__logo-icon" aria-hidden="true">
-        <i></i><i></i><i></i><i></i>
-      </span>
-      <span>UKIYO<span class="uw__logo-small">.studio</span></span>
-    </a>
-
-    {% if section.settings.menu != blank %}
-      <nav class="uw__desktop-nav" aria-label="Work page navigation">
-        {% for link in section.settings.menu.links %}
-          <a href="{{ link.url | escape }}">
-            <span aria-hidden="true"></span>
-            {{ link.title | escape }}
-          </a>
-        {% endfor %}
-      </nav>
-    {% endif %}
-
-    <div class="uw__header-actions">
-      {% if section.settings.contact_label != blank and section.settings.contact_link != blank %}
-        <a
-          class="uw__contact"
-          href="{{ section.settings.contact_link | escape }}"
-        >
-          {{ section.settings.contact_label | escape }}
-          {{ arrow }}
-        </a>
-      {% endif %}
-
-      {% if section.settings.menu != blank %}
-        <button
-          class="uw__menu-toggle"
-          type="button"
-          aria-label="Open navigation"
-          aria-haspopup="dialog"
-          aria-controls="UW-Menu-{{ section.id }}"
-          data-uw-open
-          hidden
-        >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M4 8h16M4 16h16"/>
-          </svg>
-        </button>
+    <div class="uc__backdrop" aria-hidden="true">
+      {% if section.settings.poster != blank %}
+        {{
+          section.settings.poster
+          | image_url: width: 2400
+          | image_tag:
+            class: 'uc__poster',
+            loading: 'eager',
+            fetchpriority: 'high',
+            alt: ''
+        }}
       {% endif %}
     </div>
-  </header>
 
-  <div class="uw__panels">
-    <section
-      class="uw__left"
-      aria-labelledby="UW-Title-{{ section.id }}"
-    >
-      <div class="uw__glass" aria-hidden="true"></div>
-      <div class="uw__left-shade" aria-hidden="true"></div>
-
-      <div class="uw__left-inner">
-        <div class="uw__cutout" data-uw-cutout aria-hidden="true">
-          <svg
-            viewBox="0 0 1000 240"
-            preserveAspectRatio="none"
-            class="uw__cutout-fallback"
-          >
-            <text
-              x="0"
-              y="200"
-              textLength="1000"
-              lengthAdjust="spacingAndGlyphs"
-              font-family="Arial, Helvetica, sans-serif"
-              font-weight="900"
-              font-size="240"
-              fill="white"
-            >{{ section.settings.left_word | default: 'UKIYO' | escape }}</text>
-          </svg>
-        </div>
-
-        <div class="uw__rule" aria-hidden="true">
-          <span></span>
-        </div>
-
-        <div class="uw__copy" data-uw-reveal>
-          {% if section.settings.strap != blank %}
-            <span class="uw__eyebrow">
-              {{ section.settings.strap | escape }}
-            </span>
+    {% for layer in (0..2) %}
+      <div
+        class="uc__media-layer {% if layer == 0 %}uc__base{% else %}uc__wipe uc__wipe--{{ layer }}{% endif %}"
+        data-layer="{{ layer }}"
+        aria-hidden="true"
+      >
+        <div class="uc__media-inner">
+          {% if section.settings.video_url != blank %}
+            <video
+              class="uc__video"
+              data-video="{{ layer }}"
+              data-src="{{ section.settings.video_url | escape }}"
+              muted
+              playsinline
+              preload="metadata"
+              disablepictureinpicture
+              tabindex="-1"
+              {% if section.settings.poster != blank %}
+                poster="{{ section.settings.poster | image_url: width: 2000 }}"
+              {% endif %}
+            ></video>
           {% endif %}
+          <div class="uc__shade"></div>
+        </div>
+      </div>
+    {% endfor %}
 
-          <h1 id="UW-Title-{{ section.id }}" class="uw__title">
+    <header class="uc__header">
+      <a class="uc__brand" href="{{ routes.root_url }}">
+        {{ section.settings.brand_name | escape }}
+      </a>
+
+      <div class="uc__header-actions">
+        {% if section.settings.contact_label != blank and section.settings.contact_link != blank %}
+          <a class="uc__contact" href="{{ section.settings.contact_link | escape }}">
+            {{ section.settings.contact_label | escape }}
+            <span aria-hidden="true">↗</span>
+          </a>
+        {% endif %}
+
+        <button
+          class="uc__mode"
+          type="button"
+          data-mode
+          aria-pressed="false"
+          hidden
+        >
+          View all content
+        </button>
+      </div>
+    </header>
+
+    <div class="uc__intro" data-scene="intro">
+      {% if section.settings.strap != blank %}
+        <p class="uc__eyebrow">{{ section.settings.strap | escape }}</p>
+      {% endif %}
+
+      <h1 class="uc__wordmark">
+        <span class="uc__sr-only">
+          {{ section.settings.brand_name | escape }}
+        </span>
+
+        <svg
+          viewBox="0 0 1000 240"
+          role="presentation"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <text
+            x="500"
+            y="200"
+            text-anchor="middle"
+            textLength="960"
+            lengthAdjust="spacingAndGlyphs"
+          >{{ section.settings.brand_name | escape }}</text>
+        </svg>
+      </h1>
+
+      <button class="uc__scroll" type="button" data-explore hidden>
+        <span>{{ section.settings.scroll_label | escape }}</span>
+        <span class="uc__scroll-track" aria-hidden="true">
+          <span></span>
+        </span>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 4v15m-6-6 6 6 6-6"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="uc__about" data-scene="about">
+      <p class="uc__eyebrow">Strategy. Creativity. Connection.</p>
+
+      {% if section.settings.description != blank %}
+        <p class="uc__about-copy">
+          {{ section.settings.description | escape | newline_to_br }}
+        </p>
+      {% endif %}
+    </div>
+
+    <div class="uc__works" data-scene="works">
+      <div class="uc__works-inner" data-works-inner>
+        <div class="uc__works-heading">
+          <p class="uc__eyebrow">{{ section.settings.work_label | escape }}</p>
+
+          <h2 class="uc__work-title">
             {% if section.settings.title_line_1 != blank %}
               <span>{{ section.settings.title_line_1 | escape }}</span>
             {% endif %}
-            {% if section.settings.title_line_2 != blank %}
-              <span>{{ section.settings.title_line_2 | escape }}</span>
-            {% endif %}
-          </h1>
 
-          {% if section.settings.description != blank %}
-            <p class="uw__description">
-              {{ section.settings.description | escape }}
-            </p>
-          {% endif %}
+            {% if section.settings.title_line_2 != blank %}
+              <span class="uc__work-title-secondary">
+                {{ section.settings.title_line_2 | escape }}
+              </span>
+            {% endif %}
+          </h2>
         </div>
 
-        {% if stats.size > 0 %}
-          <div class="uw__stats">
-            {% for block in stats %}
-              <div
-                class="uw__stat"
-                data-uw-reveal
+        {% if section.settings.work_intro != blank %}
+          <p class="uc__work-intro">
+            {{ section.settings.work_intro | escape | newline_to_br }}
+          </p>
+        {% endif %}
+
+        {% if projects.size > 0 %}
+          <div class="uc__project-list">
+            {% for block in projects %}
+              <article
+                class="uc__project"
+                data-project
                 {{ block.shopify_attributes }}
               >
-                {% if block.settings.value != blank %}
-                  <strong>{{ block.settings.value | escape }}</strong>
-                {% endif %}
-                {% if block.settings.label != blank %}
-                  <span>{{ block.settings.label | escape }}</span>
-                {% endif %}
-              </div>
-            {% endfor %}
-          </div>
-        {% endif %}
-
-        <div class="uw__footer">
-          <div class="uw__buttons">
-            {% for block in buttons %}
-              {% if block.settings.label != blank and block.settings.link != blank %}
-                <a
-                  class="uw__button"
-                  href="{{ block.settings.link | escape }}"
-                  {{ block.shopify_attributes }}
-                >
-                  <span>{{ block.settings.label | escape }}</span>
-                  {{ arrow }}
-                </a>
-              {% endif %}
-            {% endfor %}
-
-            {% if section.settings.show_explore %}
-              <button
-                class="uw__button"
-                type="button"
-                data-uw-explore
-                hidden
-              >
-                <span>
-                  {{ section.settings.explore_label | default: 'Explore our work' | escape }}
+                <span class="uc__project-index">
+                  {% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}
                 </span>
-                {{ arrow }}
-              </button>
-            {% endif %}
+
+                <div class="uc__project-copy">
+                  <h3>
+                    {% if block.settings.link != blank %}
+                      <a href="{{ block.settings.link | escape }}">
+                        {{ block.settings.title | escape }}
+                        <span aria-hidden="true">↗</span>
+                      </a>
+                    {% else %}
+                      {{ block.settings.title | escape }}
+                    {% endif %}
+                  </h3>
+
+                  {% if block.settings.category != blank %}
+                    <p>{{ block.settings.category | escape }}</p>
+                  {% endif %}
+                </div>
+
+                {% if block.settings.year != blank %}
+                  <span class="uc__project-year">
+                    {{ block.settings.year | escape }}
+                  </span>
+                {% endif %}
+              </article>
+            {% endfor %}
           </div>
-
-          <div class="uw__socials">
-            {% if section.settings.instagram_url != blank %}
-              <a href="{{ section.settings.instagram_url | escape }}">
-                <span aria-hidden="true"></span>Instagram
-              </a>
-            {% endif %}
-            {% if section.settings.linkedin_url != blank %}
-              <a href="{{ section.settings.linkedin_url | escape }}">
-                <span aria-hidden="true"></span>LinkedIn
-              </a>
-            {% endif %}
-          </div>
-
-          {% if section.settings.footer_note != blank %}
-            <p class="uw__footer-note">
-              {{ section.settings.footer_note | escape | newline_to_br }}
-            </p>
-          {% endif %}
-        </div>
-      </div>
-    </section>
-
-    <div class="uw__right">
-      <div class="uw__circles" aria-hidden="true">
-        <span></span>
-        <span></span>
-      </div>
-
-      <div class="uw__right-top">
-        {% if section.settings.right_caption != blank %}
-          <span>{{ section.settings.right_caption | escape }}</span>
         {% endif %}
 
-        <button
-          class="uw__motion"
-          type="button"
-          aria-pressed="false"
-          data-uw-motion
-          hidden
-        >
-          Pause motion
-        </button>
-      </div>
-
-      <div class="uw__right-word" aria-hidden="true" data-uw-reveal>
-        <svg viewBox="0 0 1000 250" preserveAspectRatio="none">
-          <text
-            x="0"
-            y="220"
-            textLength="1000"
-            lengthAdjust="spacingAndGlyphs"
-            font-family="Arial, Helvetica, sans-serif"
-            font-weight="900"
-            font-size="250"
-            fill="white"
-          >{{ section.settings.right_word | default: 'WORK' | escape }}</text>
-        </svg>
+        {% if section.settings.work_note != blank %}
+          <p class="uc__work-note">
+            {{ section.settings.work_note | escape }}
+          </p>
+        {% endif %}
       </div>
     </div>
-  </div>
 
-  {% if section.settings.menu != blank %}
-    <dialog
-      id="UW-Menu-{{ section.id }}"
-      class="uw__menu"
-      aria-label="Navigation"
-      data-uw-dialog
-    >
-      <div class="uw__menu-head">
-        <span class="uw__menu-brand">UKIYO.studio</span>
-        <button
-          class="uw__menu-close"
-          type="button"
-          aria-label="Close navigation"
-          data-uw-close
-          autofocus
-        >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="m6 6 12 12M18 6 6 18"/>
-          </svg>
-        </button>
-      </div>
+    {% if stats.size > 0 %}
+      <div class="uc__stats">
+        {% for block in stats %}
+          <dl
+            class="uc__stat"
+            data-stat
+            {{ block.shopify_attributes }}
+          >
+            {% if block.settings.label != blank %}
+              <dt>{{ block.settings.label | escape }}</dt>
+            {% endif %}
 
-      <nav class="uw__menu-links" aria-label="Mobile navigation">
-        {% for link in section.settings.menu.links %}
-          <a href="{{ link.url | escape }}">
-            {{ link.title | escape }}
-          </a>
+            {% if block.settings.value != blank %}
+              <dd>{{ block.settings.value | escape }}</dd>
+            {% endif %}
+          </dl>
         {% endfor %}
+      </div>
+    {% endif %}
 
-        {% if section.settings.contact_label != blank and section.settings.contact_link != blank %}
-          <a href="{{ section.settings.contact_link | escape }}">
-            {{ section.settings.contact_label | escape }}
-          </a>
-        {% endif %}
-      </nav>
+    <div class="uc__outro" data-scene="outro">
+      <p class="uc__eyebrow">{{ section.settings.end_label | escape }}</p>
 
-      <p class="uw__menu-note">
-        {{ section.settings.footer_note | escape }}
-      </p>
-    </dialog>
-  {% endif %}
-</div>
+      <h2>{{ section.settings.end_title | escape | newline_to_br }}</h2>
+
+      {% if buttons.size > 0 %}
+        <div class="uc__buttons">
+          {% for block in buttons %}
+            <div class="uc__button-block" {{ block.shopify_attributes }}>
+              {% if block.settings.label != blank and block.settings.link != blank %}
+                <a class="uc__button" href="{{ block.settings.link | escape }}">
+                  {{ block.settings.label | escape }}
+                  <span aria-hidden="true">↗</span>
+                </a>
+              {% elsif request.design_mode %}
+                <span class="uc__button-placeholder">
+                  Add a button label and link
+                </span>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <button class="uc__continue" type="button" data-next hidden>
+        {{ section.settings.continue_label | escape }}
+        <span aria-hidden="true">↓</span>
+      </button>
+    </div>
+
+    <div class="uc__progress" aria-hidden="true">
+      <span data-progress></span>
+    </div>
+  </div>
+</section>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=BBH+Bartle&family=Alex+Brush&family=Inter+Tight:wght@400;500;600&display=swap');
 
-  .uw {
-    --uw-pad: clamp(24px, 3vw, 48px);
+  #UkiyoCinema-{{ section.id }} {
+    --uc-pad: clamp(20px, 4vw, 72px);
     position: relative;
     isolation: isolate;
-    background: #080808;
     color: #fff;
-    font-family: "Inter", Arial, sans-serif;
+    background: #000;
+    font-family: "Inter Tight", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 
-  .uw *,
-  .uw *::before,
-  .uw *::after {
+  #UkiyoCinema-{{ section.id }} *,
+  #UkiyoCinema-{{ section.id }} *::before,
+  #UkiyoCinema-{{ section.id }} *::after {
     box-sizing: border-box;
   }
 
-  .uw .uw__background {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-    pointer-events: none;
-    background:
-      radial-gradient(ellipse at 70% 20%, #784b35, #24201e 45%, #080808);
+  #UkiyoCinema-{{ section.id }} :is(h1, h2, h3, p, dl, dd) {
+    margin: 0;
+    color: inherit;
   }
 
-  .uw .uw__poster,
-  .uw .uw__video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    transform: scaleX(var(--uw-mirror));
-  }
-
-  .uw .uw__video-shade {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, #0003, transparent 40%, #0005);
-  }
-
-  .uw .uw__header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 5;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px 30px;
-    padding: 24px var(--uw-pad);
-  }
-
-  .uw .uw__logo {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    color: #fff;
+  #UkiyoCinema-{{ section.id }} a {
+    color: inherit;
     text-decoration: none;
-    font-size: 22px;
-    font-weight: 800;
-    letter-spacing: -.055em;
+  }
+
+  #UkiyoCinema-{{ section.id }} button {
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  #UkiyoCinema-{{ section.id }} [hidden] {
+    display: none !important;
+  }
+
+  #UkiyoCinema-{{ section.id }} :is(a, button):focus-visible {
+    outline: 2px solid #eb0004;
+    outline-offset: 6px;
+    box-shadow: 0 0 0 8px #000;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
     white-space: nowrap;
   }
 
-  .uw .uw__logo-small {
-    font-size: 17px;
-    font-weight: 500;
-  }
-
-  .uw .uw__logo-icon {
-    display: grid;
-    grid-template-columns: repeat(2, 8px);
-    gap: 3px;
-  }
-
-  .uw .uw__logo-icon i {
-    width: 8px;
-    height: 8px;
-    background: var(--uw-accent);
-  }
-
-  .uw .uw__desktop-nav {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 12px 24px;
-    max-width: 48%;
-  }
-
-  .uw .uw__desktop-nav a,
-  .uw .uw__socials a {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    min-height: 36px;
-    color: #ffffffc7;
-    font-size: 10px;
-    font-weight: 500;
-    line-height: 1.5;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: color .25s;
-  }
-
-  .uw .uw__desktop-nav a > span,
-  .uw .uw__socials a > span {
-    width: 4px;
-    height: 4px;
-    flex-shrink: 0;
-    border-radius: 50%;
-    background: currentColor;
-    opacity: .6;
-  }
-
-  .uw .uw__header-actions {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .uw .uw__contact {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    min-height: 44px;
-    padding: 11px 20px;
-    border: 1px solid #ffffff50;
-    border-radius: 999px;
-    background: #ffffff0d;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    color: #fff;
-    font-size: 10px;
-    font-weight: 500;
-    line-height: 1.5;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: background .25s, color .25s;
-  }
-
-  .uw svg:not(.uw__cutout-fallback) {
-    display: block;
-  }
-
-  .uw .uw__contact svg,
-  .uw .uw__button svg,
-  .uw .uw__menu-toggle svg,
-  .uw .uw__menu-close svg {
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  .uw .uw__menu-toggle,
-  .uw .uw__menu-close {
-    display: grid;
-    place-items: center;
-    width: 44px;
-    height: 44px;
-    padding: 10px;
-    border: 0;
-    background: transparent;
-    color: #fff;
-    cursor: pointer;
-  }
-
-  .uw .uw__menu-toggle,
-  .uw .uw__menu-toggle[hidden] {
-    display: none;
-  }
-
-  .uw .uw__panels {
+  #UkiyoCinema-{{ section.id }} .uc__frame {
     position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    min-height: 840px;
-    min-height: max(840px, 100svh);
-  }
-
-  .uw .uw__left {
-    position: relative;
-    min-width: 0;
-    border-right: 1px solid #ffffff20;
     isolation: isolate;
+    background: #000;
   }
 
-  .uw .uw__glass {
+  #UkiyoCinema-{{ section.id }} .uc__backdrop {
     position: absolute;
     inset: 0;
-    z-index: 0;
-    background: rgba(131, 131, 131, .3);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
+    z-index: -1;
+    overflow: hidden;
+    opacity: .45;
   }
 
-  .uw .uw__left-shade {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    background: linear-gradient(180deg, transparent 22%, #0003 45%, #0008);
-  }
-
-  .uw .uw__left-inner {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
-    padding: 120px var(--uw-pad) 34px;
-  }
-
-  .uw .uw__cutout {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1000 / 240;
-    flex-shrink: 0;
-    pointer-events: none;
-  }
-
-  .uw .uw__cutout-fallback {
+  #UkiyoCinema-{{ section.id }} .uc__poster,
+  #UkiyoCinema-{{ section.id }} .uc__video {
     display: block;
     width: 100%;
     height: 100%;
+    object-fit: cover;
   }
 
-  .uw[data-mask-ready] .uw__cutout-fallback {
-    opacity: 0;
-  }
-
-  .uw .uw__rule {
-    display: flex;
-    flex: 1;
-    min-height: 75px;
-    padding-block: 18px;
-  }
-
-  .uw .uw__rule > span {
-    display: block;
-    width: 1px;
-    min-height: 50px;
-    background: #ffffff40;
-  }
-
-  .uw .uw__eyebrow {
-    display: block;
-    margin-bottom: 18px;
-    color: #e1dfdc;
-    font-size: 9px;
-    font-weight: 600;
-    line-height: 1.5;
-    letter-spacing: .22em;
-    text-transform: uppercase;
-  }
-
-  .uw .uw__title {
-    margin: 0 0 18px;
-    color: #fff;
-    font-family: inherit;
-    font-size: clamp(25px, 2.8vw, 42px);
-    font-weight: 500;
-    line-height: 1.1;
-    letter-spacing: -.045em;
-    text-transform: none;
-    overflow-wrap: break-word;
-  }
-
-  .uw .uw__title > span {
-    display: block;
-  }
-
-  .uw .uw__description {
-    max-width: 580px;
-    margin: 0;
-    color: #f2efeb;
-    font-size: clamp(14px, 1.25vw, 18px);
-    font-weight: 400;
-    line-height: 1.65;
-    text-wrap: pretty;
-  }
-
-  .uw .uw__stats {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 22px;
-    margin-top: 30px;
-    padding-top: 24px;
-    border-top: 1px solid #ffffff30;
-  }
-
-  .uw .uw__stat {
-    min-width: 0;
-  }
-
-  .uw .uw__stat strong {
-    display: block;
-    color: #fff;
-    font-size: clamp(24px, 2.4vw, 34px);
-    font-weight: 600;
-    letter-spacing: -.04em;
-    line-height: 1.15;
-    overflow-wrap: anywhere;
-  }
-
-  .uw .uw__stat > span {
-    display: block;
-    margin-top: 7px;
-    color: #e0ddd8;
-    font-size: 9px;
-    line-height: 1.5;
-    letter-spacing: .07em;
-    text-transform: uppercase;
-  }
-
-  .uw .uw__footer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: end;
-    gap: 22px;
-    margin-top: 30px;
-    padding-top: 22px;
-    border-top: 1px solid #ffffff30;
-  }
-
-  .uw .uw__buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 20px;
-  }
-
-  .uw .uw__button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 18px;
-    min-height: 44px;
-    max-width: 100%;
-    padding: 9px 0;
-    border: 0;
-    border-bottom: 1px solid #ffffff60;
-    background: transparent;
-    color: #fff;
-    font-family: inherit;
-    font-size: 10px;
-    font-weight: 600;
-    line-height: 1.5;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
-  .uw .uw__button[hidden] {
+  #UkiyoCinema-{{ section.id }} .uc__media-layer {
     display: none;
-  }
-
-  .uw .uw__button svg {
-    transition: transform .3s;
-  }
-
-  .uw .uw__socials {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .uw .uw__footer-note {
-    max-width: 170px;
-    margin: 0;
-    color: #d9d4ce;
-    font-size: 9px;
-    line-height: 1.7;
-    letter-spacing: .03em;
-  }
-
-  .uw .uw__right {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-width: 0;
-    min-height: 100%;
-    padding: 122px var(--uw-pad) 12px;
-    overflow: hidden;
-  }
-
-  .uw .uw__circles {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
     pointer-events: none;
   }
 
-  .uw .uw__circles > span {
-    position: absolute;
-    left: 50%;
-    width: min(60vh, 95%);
-    aspect-ratio: 1;
-    border: 1px solid #ffffff50;
-    border-radius: 50%;
-    transform: translateX(-50%);
-  }
-
-  .uw .uw__circles > span:first-child {
-    top: -15vh;
-  }
-
-  .uw .uw__circles > span:last-child {
-    top: 28vh;
-  }
-
-  .uw .uw__right-top {
+  #UkiyoCinema-{{ section.id }} .uc__header {
     position: relative;
-    z-index: 1;
+    z-index: 12;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 24px var(--uc-pad);
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__brand {
+    font-size: clamp(17px, 1.7vw, 26px);
+    font-weight: 600;
+    letter-spacing: -.06em;
+    overflow-wrap: anywhere;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__header-actions {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 18px;
-    color: #ffffffdf;
-    font-size: 9px;
+    justify-content: flex-end;
+    gap: 24px;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__contact,
+  #UkiyoCinema-{{ section.id }} .uc__mode {
+    font-size: 11px;
+    line-height: 1.3;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 44px;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__mode {
+    min-height: 44px;
+    padding: 10px 15px;
+    border: 1px solid #ffffff40;
+    border-radius: 999px;
+    background: #0007;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__eyebrow {
+    font-size: clamp(11px, 1.05vw, 15px);
     font-weight: 500;
-    line-height: 1.6;
+    line-height: 1.5;
     letter-spacing: .12em;
     text-transform: uppercase;
   }
 
-  .uw .uw__motion {
-    min-height: 44px;
-    margin-left: auto;
-    padding: 10px 0;
-    border: 0;
-    background: transparent;
-    color: #fff;
-    font: inherit;
-    cursor: pointer;
+  #UkiyoCinema-{{ section.id }} .uc__intro {
+    padding: 120px var(--uc-pad) 70px;
+    text-align: center;
   }
 
-  .uw .uw__motion[hidden] {
-    display: none;
-  }
-
-  .uw .uw__right-word {
-    position: relative;
-    z-index: 1;
+  #UkiyoCinema-{{ section.id }} .uc__wordmark {
     width: 100%;
-    margin-top: 100px;
-    aspect-ratio: 1000 / 250;
+    line-height: 1;
   }
 
-  .uw .uw__right-word svg {
+  #UkiyoCinema-{{ section.id }} .uc__wordmark svg {
+    display: block;
     width: 100%;
-    height: 100%;
+    height: auto;
+    overflow: visible;
   }
 
-  .uw .uw__menu {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    max-width: none;
-    height: 100%;
-    max-height: none;
-    margin: 0;
-    padding: 24px;
-    border: 0;
-    background: #080808;
-    color: #fff;
-    overflow-y: auto;
+  #UkiyoCinema-{{ section.id }} .uc__wordmark text {
+    fill: #fff;
+    font-family: "BBH Bartle", Arial, sans-serif;
+    font-size: 200px;
+    font-weight: 400;
   }
 
-  .uw .uw__menu[open] {
-    display: flex;
+  #UkiyoCinema-{{ section.id }} .uc__scroll {
+    display: inline-flex;
     flex-direction: column;
-  }
-
-  .uw .uw__menu::backdrop {
-    background: #000b;
-  }
-
-  .uw .uw__menu-head {
-    display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+    gap: 10px;
+    min-width: 100px;
+    min-height: 44px;
+    margin-top: 24px;
+    padding: 8px;
+    border: 0;
+    background: none;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .16em;
   }
 
-  .uw .uw__menu-brand {
-    font-size: 23px;
-    font-weight: 800;
-    letter-spacing: -.05em;
+  #UkiyoCinema-{{ section.id }} .uc__scroll-track {
+    position: relative;
+    display: block;
+    width: 1px;
+    height: 42px;
+    overflow: hidden;
+    background: #ffffff30;
   }
 
-  .uw .uw__menu-links {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 24px;
-    padding: 54px 0;
+  #UkiyoCinema-{{ section.id }} .uc__scroll-track span {
+    position: absolute;
+    inset: -45% 0 auto;
+    height: 45%;
+    background: #fff;
+    animation: uc-scroll-line 1.6s ease-in-out 3;
   }
 
-  .uw .uw__menu-links a {
-    color: #fff;
-    font-size: clamp(28px, 8vw, 46px);
-    font-weight: 600;
-    line-height: 1.15;
-    letter-spacing: -.045em;
-    text-decoration: none;
+  #UkiyoCinema-{{ section.id }} .uc__scroll svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+  }
+
+  @keyframes uc-scroll-line {
+    from { transform: translateY(0); }
+    to { transform: translateY(140px); }
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__about {
+    padding: 80px var(--uc-pad);
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__about-copy {
+    max-width: 880px;
+    margin-top: 24px;
+    font-size: clamp(23px, 3.3vw, 52px);
+    font-weight: 500;
+    line-height: 1.14;
+    letter-spacing: -.035em;
+    text-wrap: pretty;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__works {
+    position: relative;
+    background: #000;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__works-inner {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 100px var(--uc-pad);
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__work-title {
+    max-width: 1150px;
+    margin-top: 24px;
+    font-family: "BBH Bartle", Arial, sans-serif;
+    font-size: clamp(25px, 5vw, 78px);
+    font-weight: 400;
+    line-height: 1.22;
     overflow-wrap: anywhere;
   }
 
-  .uw .uw__menu-note {
-    margin: 0;
-    padding-top: 24px;
-    border-top: 1px solid #ffffff25;
-    color: #c9c9c9;
+  #UkiyoCinema-{{ section.id }} .uc__work-title span {
+    display: block;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__work-title-secondary {
+    color: #ffffffa6;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__work-intro {
+    max-width: 560px;
+    margin: 48px 0 60px auto;
+    font-size: clamp(18px, 2.1vw, 30px);
+    line-height: 1.35;
+    text-wrap: pretty;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__project-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 6vw;
+    margin-top: 56px;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__project {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    min-width: 0;
+    padding: 26px 0;
+    border-top: 1px solid #ffffff30;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__project-index,
+  #UkiyoCinema-{{ section.id }} .uc__project-year {
     font-size: 11px;
+    color: #ffffffa6;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__project-copy {
+    flex: 1;
+    min-width: 0;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__project h3 {
+    font: 500 clamp(21px, 2.3vw, 34px)/1.2 "Inter Tight", Arial, sans-serif;
+    letter-spacing: -.03em;
+    overflow-wrap: anywhere;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__project h3 a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 5px;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__project-copy p {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #ffffffa6;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__work-note {
+    max-width: 600px;
+    margin: 64px auto 0;
+    text-align: center;
+    font-size: 14px;
     line-height: 1.6;
+    color: #ffffffb3;
   }
 
-  .uw a:focus-visible,
-  .uw button:focus-visible {
-    outline: 2px solid var(--uw-accent);
-    outline-offset: 5px;
+  #UkiyoCinema-{{ section.id }} .uc__stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 48px;
+    padding: 90px var(--uc-pad);
   }
 
-  @media (hover: hover) and (pointer: fine) {
-    .uw .uw__desktop-nav a:hover,
-    .uw .uw__socials a:hover {
-      color: #fff;
-    }
-
-    .uw .uw__contact:hover {
-      background: #fff;
-      color: #111;
-    }
-
-    .uw .uw__button:hover svg {
-      transform: translate(3px, -3px);
-    }
-
-    .uw .uw__menu-links a:hover {
-      color: var(--uw-accent);
-    }
+  #UkiyoCinema-{{ section.id }} .uc__stat {
+    min-width: 0;
+    text-align: center;
   }
 
-  @media (max-width: 1023px) {
-    .uw .uw__desktop-nav {
-      display: none;
-    }
-
-    .uw .uw__menu-toggle:not([hidden]) {
-      display: grid;
-    }
-
-    .uw .uw__panels {
-      grid-template-columns: minmax(0, 1fr);
-      min-height: auto;
-    }
-
-    .uw .uw__left {
-      border-right: 0;
-      border-bottom: 1px solid #ffffff30;
-    }
-
-    .uw .uw__left-inner {
-      min-height: 90svh;
-      padding-top: 110px;
-    }
-
-    .uw .uw__cutout {
-      max-width: 760px;
-    }
-
-    .uw .uw__title {
-      font-size: clamp(30px, 5.5vw, 48px);
-    }
-
-    .uw .uw__description {
-      max-width: 650px;
-      font-size: 16px;
-    }
-
-    .uw .uw__stats {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
-    .uw .uw__right {
-      min-height: 50svh;
-      padding-top: 24px;
-      padding-bottom: 20px;
-    }
-
-    .uw .uw__circles > span {
-      width: min(48vh, 85%);
-    }
-
-    .uw .uw__circles > span:first-child {
-      top: -20vh;
-    }
-
-    .uw .uw__circles > span:last-child {
-      top: 12vh;
-    }
+  #UkiyoCinema-{{ section.id }} .uc__stat dt {
+    font-size: clamp(12px, 1.7vw, 24px);
+    letter-spacing: .06em;
+    text-transform: uppercase;
   }
 
-  @media (max-width: 600px) {
-    .uw {
-      --uw-pad: 22px;
-    }
+  #UkiyoCinema-{{ section.id }} .uc__stat dd {
+    margin-top: 15px;
+    font-family: "Alex Brush", Georgia, serif;
+    font-size: clamp(60px, 12vw, 180px);
+    line-height: 1;
+    overflow-wrap: anywhere;
+  }
 
-    .uw .uw__header {
-      padding-block: 20px;
+  #UkiyoCinema-{{ section.id }} .uc__outro {
+    padding: 110px var(--uc-pad);
+    text-align: center;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__outro h2 {
+    max-width: 1100px;
+    margin: 24px auto 0;
+    font-size: clamp(40px, 8vw, 120px);
+    font-weight: 500;
+    line-height: .98;
+    letter-spacing: -.065em;
+    text-wrap: balance;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 36px;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 26px;
+    min-height: 52px;
+    padding: 15px 26px;
+    border: 1px solid #ffffff80;
+    border-radius: 999px;
+    font-size: 14px;
+    background: #0005;
+    transition: background .2s, color .2s;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__button:hover {
+    color: #000;
+    background: #fff;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__button-placeholder {
+    display: block;
+    padding: 16px;
+    border: 1px dashed #ffffff60;
+    font-size: 13px;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__continue {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    min-height: 44px;
+    margin-top: 32px;
+    padding: 10px 0;
+    border: 0;
+    border-bottom: 1px solid #ffffff60;
+    background: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__progress {
+    display: none;
+  }
+
+  /* Scroll mode is enabled only after JavaScript initializes. */
+
+  #UkiyoCinema-{{ section.id }}.uc--animated {
+    height: calc(100vh * var(--uc-screens));
+    height: calc(100svh * var(--uc-screens));
+  }
+
+  #UkiyoCinema-{{ section.id }}.uc--animated .uc__frame {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+    perspective: 1200px;
+  }
+
+  #UkiyoCinema-{{ section.id }}.uc--animated .uc__header {
+    position: absolute;
+    inset: 0 0 auto;
+    padding-top: max(20px, env(safe-area-inset-top));
+    background: linear-gradient(#0006, transparent);
+  }
+
+  #UkiyoCinema-{{ section.id }}.uc--animated .uc__media-layer {
+    display: block;
+    position: absolute;
+    overflow: hidden;
+    background: #000;
+  }
+
+  #UkiyoCinema-{{ section.id }}.uc--animated .uc__base {
+    inset: 0;
+    z-index: 0;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__media-inner {
+    position: absolute;
+    inset: 0;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      #0004 0%,
+      #0001 30%,
+      #0006 65%,
+      #000c 100%
+    );
+  }
+
+  #UkiyoCinema-{{ section.id }}.uc--animated .uc__wipe {
+    top: 50%;
+    left: 50%;
+    width: 0;
+    visibility: hidden;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__wipe--1 {
+    z-index: 5;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__wipe--2 {
+    z-index: 7;
+  }
+
+  #UkiyoCinema-{{ section.id }}.uc--animated .uc__wipe .uc__media-inner {
+    inset: auto;
+    top: 50%;
+    left: 50%;
+    width: var(--uc-width);
+    height: var(--uc-height);
+  }
+
+  #UkiyoCinema-{{ section.id }}.uc--animated .uc__intro {
+    position: absolute;
+    inset: auto 0 5%;
+    z-index: 8;
+    padding: 0 var(--uc-pad);
+    transform-origin: 50% 100%;
+    will-change: transform, opacity;
+  }
+
+  #UkiyoCinema-{{ section.id }}.uc--animated .uc__about {
+    position: absolute;
+    inset: auto 0 13%;
+    z-index: 4;
+    padding: 0 var(--uc-pad);
+  }
+
+  #UkiyoCinema-{{ section.id }}.uc--animated .uc__works {
+    position: absolute;
+    inset: 0;
+    z-index: 6;
+    overflow: hidden;
+    background: transparent;
+  }
+
+  #UkiyoCinema-{{ section.id }}.uc--animated .uc__works-inner {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin: 0;
+    will-change: transform;
+  }
+
+  #UkiyoCinema-{{ section.id }}.uc--animated .uc__stats {
+    display: contents;
+  }
+
+  #UkiyoCinema-{{ section.id }}.uc--animated .uc__stat {
+    position: absolute;
+    inset: auto var(--uc-pad) 10%;
+    z-index: 8;
+    transform-origin: 50% 100%;
+    will-change: transform, opacity;
+  }
+
+  #UkiyoCinema-{{ section.id }}.uc--animated .uc__outro {
+    position: absolute;
+    inset: 0;
+    z-index: 8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px var(--uc-pad) 50px;
+  }
+
+  #UkiyoCinema-{{ section.id }}.uc--animated .uc__progress {
+    display: block;
+    position: absolute;
+    inset: auto 0 0;
+    z-index: 15;
+    height: 2px;
+    background: #ffffff20;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__progress span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  @media (max-width: 749px) {
+    #UkiyoCinema-{{ section.id }} .uc__header {
       gap: 12px;
     }
 
-    .uw .uw__logo {
-      font-size: 20px;
+    #UkiyoCinema-{{ section.id }} .uc__header-actions {
+      gap: 12px;
     }
 
-    .uw .uw__logo-small {
-      font-size: 15px;
+    #UkiyoCinema-{{ section.id }} .uc__mode {
+      max-width: 110px;
+      font-size: 9px;
+      padding: 8px 12px;
     }
 
-    .uw .uw__contact {
-      display: none;
+    #UkiyoCinema-{{ section.id }} .uc__contact {
+      font-size: 10px;
+      gap: 6px;
     }
 
-    .uw .uw__left-inner {
-      min-height: 100svh;
-      padding-top: 104px;
-      padding-bottom: 28px;
+    #UkiyoCinema-{{ section.id }} .uc__project-list {
+      grid-template-columns: 1fr;
+      margin-top: 36px;
     }
 
-    .uw .uw__rule {
-      min-height: 65px;
+    #UkiyoCinema-{{ section.id }} .uc__project {
+      padding: 22px 0;
+      gap: 12px;
     }
 
-    .uw .uw__title {
-      font-size: clamp(29px, 7.5vw, 38px);
+    #UkiyoCinema-{{ section.id }} .uc__works-inner {
+      padding-top: 95px;
+      padding-bottom: 60px;
     }
 
-    .uw .uw__description {
-      font-size: 14px;
-      line-height: 1.75;
+    #UkiyoCinema-{{ section.id }} .uc__work-intro {
+      margin: 30px 0;
     }
 
-    .uw .uw__stats {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px 18px;
+    #UkiyoCinema-{{ section.id }} .uc__stats {
+      gap: 40px 20px;
     }
 
-    .uw .uw__stat strong {
-      font-size: 28px;
+    #UkiyoCinema-{{ section.id }}.uc--animated .uc__intro {
+      bottom: 9%;
     }
 
-    .uw .uw__footer {
-      align-items: flex-start;
-      gap: 22px;
+    #UkiyoCinema-{{ section.id }}.uc--animated .uc__intro .uc__eyebrow {
+      max-width: 260px;
+      margin: 0 auto 22px;
     }
 
-    .uw .uw__buttons {
-      width: 100%;
-      flex-direction: column;
+    #UkiyoCinema-{{ section.id }}.uc--animated .uc__about {
+      bottom: 16%;
     }
 
-    .uw .uw__button {
-      width: 100%;
-      min-height: 48px;
+    #UkiyoCinema-{{ section.id }}.uc--animated .uc__stat {
+      bottom: 20%;
     }
 
-    .uw .uw__socials {
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .uw .uw__footer-note {
-      max-width: none;
+    #UkiyoCinema-{{ section.id }} .uc__buttons {
       width: 100%;
     }
 
-    .uw .uw__right {
-      min-height: 42svh;
-    }
-
-    .uw .uw__right-word {
-      margin-top: 80px;
+    #UkiyoCinema-{{ section.id }} .uc__button-block,
+    #UkiyoCinema-{{ section.id }} .uc__button {
+      width: 100%;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .uw *,
-    .uw *::before,
-    .uw *::after {
+    #UkiyoCinema-{{ section.id }} *,
+    #UkiyoCinema-{{ section.id }} *::before,
+    #UkiyoCinema-{{ section.id }} *::after {
       animation: none !important;
       transition: none !important;
       scroll-behavior: auto !important;
-    }
-
-    .uw .uw__motion {
-      display: none;
     }
   }
 </style>
 
 <script>
-(function () {
-  const rootId = 'UkiyoWork-{{ section.id }}';
+(() => {
+  const id = 'UkiyoCinema-{{ section.id }}';
   const wrapperId = 'shopify-section-{{ section.id }}';
 
-  window.__ukiyoWorkControllers = window.__ukiyoWorkControllers || {};
-
-  if (window.__ukiyoWorkControllers[rootId]) {
-    window.__ukiyoWorkControllers[rootId]();
-  }
+  window.__ukiyoCinema = window.__ukiyoCinema || {};
+  window.__ukiyoCinema[id]?.destroy();
 
   const lifecycle = new AbortController();
-  let cleanup = null;
-
-  function loadHls() {
-    if (window.Hls) return Promise.resolve(window.Hls);
-
-    if (!window.__ukiyoHlsPromise) {
-      window.__ukiyoHlsPromise = new Promise((resolve, reject) => {
-        const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js';
-        script.async = true;
-
-        script.onload = () => {
-          if (window.Hls) resolve(window.Hls);
-          else reject(new Error('HLS player unavailable'));
-        };
-
-        script.onerror = () => reject(new Error('HLS player failed to load'));
-        document.head.appendChild(script);
-      }).catch(error => {
-        window.__ukiyoHlsPromise = null;
-        throw error;
-      });
-    }
-
-    return window.__ukiyoHlsPromise;
-  }
+  let cleanup = () => {};
 
   function init() {
-    const root = document.getElementById(rootId);
+    cleanup();
+
+    const root = document.getElementById(id);
     if (!root) return;
-    if (cleanup) cleanup();
 
     const events = new AbortController();
     const signal = events.signal;
-
-    const video = root.querySelector('[data-uw-video]');
-    const left = root.querySelector('.uw__left');
-    const cutout = root.querySelector('[data-uw-cutout]');
-    const glass = root.querySelector('.uw__glass');
-    const motionButton = root.querySelector('[data-uw-motion]');
-    const dialog = root.querySelector('[data-uw-dialog]');
-    const menuButton = root.querySelector('[data-uw-open]');
+    const frame = root.querySelector('.uc__frame');
+    const intro = root.querySelector('[data-scene="intro"]');
+    const about = root.querySelector('[data-scene="about"]');
+    const works = root.querySelector('[data-scene="works"]');
+    const outro = root.querySelector('[data-scene="outro"]');
+    const strip = root.querySelector('[data-works-inner]');
+    const stats = [...root.querySelectorAll('[data-stat]')];
+    const projects = [...root.querySelectorAll('[data-project]')];
+    const layers = [...root.querySelectorAll('[data-layer]')];
+    const videos = [...root.querySelectorAll('[data-video]')];
+    const scenes = [intro, about, works, ...stats, outro];
+    const progressBar = root.querySelector('[data-progress]');
+    const modeButton = root.querySelector('[data-mode]');
+    const exploreButton = root.querySelector('[data-explore]');
+    const nextButton = root.querySelector('[data-next]');
 
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-    const animations = new Set();
-    const revealed = new Set();
+    const shortScreen = matchMedia('(max-height: 480px)');
 
-    let hls = null;
+    let enabled = false;
+    let manualStatic = false;
     let destroyed = false;
-    let paused = false;
-    let blocked = false;
-    let failed = false;
-    let visible = true;
-    let loading = false;
-    let attached = false;
-    let playingRequest = false;
-    let resizeFrame = null;
-    let menuAnimation = null;
+    let raf = 0;
+    let width = 1;
+    let height = 1;
+    let stripHeight = 1;
+    let active = true;
 
-    function animate(element, delay) {
-      if (
-        paused ||
-        reduced.matches ||
-        !element.animate ||
-        revealed.has(element)
-      ) return;
+    const clamp = value => Math.min(1, Math.max(0, value));
+    const range = (value, start, end) =>
+      clamp((value - start) / Math.max(.0001, end - start));
 
-      revealed.add(element);
+    const ease = value => value * value * (3 - 2 * value);
 
-      const animation = element.animate(
-        [
-          { opacity: 0, translate: '0 20px' },
-          { opacity: 1, translate: '0 0' }
-        ],
-        {
-          duration: 850,
-          delay,
-          fill: 'backwards',
-          easing: 'cubic-bezier(.16,1,.3,1)'
-        }
-      );
-
-      animations.add(animation);
-      animation.finished
-        .then(() => animations.delete(animation))
-        .catch(() => animations.delete(animation));
+    function listen(target, name, handler, options = {}) {
+      target.addEventListener(name, handler, { ...options, signal });
     }
 
-    /*
-      Build a transparent-letter mask from the actual
-      wordmark position. White keeps the blur; black
-      removes it to reveal the sharp video underneath.
-    */
-    function updateMask() {
-      resizeFrame = null;
-      if (destroyed || !left || !cutout || !glass) return;
+    function visible(element, show) {
+      if (!element) return;
 
-      const supportsMask =
-        CSS.supports('mask-image', 'linear-gradient(white, white)') ||
-        CSS.supports('-webkit-mask-image', 'linear-gradient(white, white)');
+      element.style.visibility = show ? 'visible' : 'hidden';
+      element.inert = !show;
 
-      const supportsBlur =
-        CSS.supports('backdrop-filter', 'blur(20px)') ||
-        CSS.supports('-webkit-backdrop-filter', 'blur(20px)');
-
-      if (!supportsMask || !supportsBlur) return;
-
-      const panelBounds = left.getBoundingClientRect();
-      const wordBounds = cutout.getBoundingClientRect();
-
-      if (!panelBounds.width || !panelBounds.height) return;
-
-      const namespace = 'http://www.w3.org/2000/svg';
-      const svg = document.createElementNS(namespace, 'svg');
-
-      svg.setAttribute('xmlns', namespace);
-      svg.setAttribute('width', panelBounds.width);
-      svg.setAttribute('height', panelBounds.height);
-      svg.setAttribute(
-        'viewBox',
-        `0 0 ${panelBounds.width} ${panelBounds.height}`
-      );
-
-      const defs = document.createElementNS(namespace, 'defs');
-      const mask = document.createElementNS(namespace, 'mask');
-
-      mask.setAttribute('id', 'cut');
-      mask.setAttribute('maskUnits', 'userSpaceOnUse');
-      mask.setAttribute('x', '0');
-      mask.setAttribute('y', '0');
-      mask.setAttribute('width', panelBounds.width);
-      mask.setAttribute('height', panelBounds.height);
-      mask.setAttribute('style', 'mask-type:luminance');
-
-      const base = document.createElementNS(namespace, 'rect');
-      base.setAttribute('width', '100%');
-      base.setAttribute('height', '100%');
-      base.setAttribute('fill', 'white');
-
-      const wordSvg = cutout.querySelector('svg').cloneNode(true);
-      wordSvg.removeAttribute('class');
-      wordSvg.setAttribute('x', wordBounds.left - panelBounds.left);
-      wordSvg.setAttribute('y', wordBounds.top - panelBounds.top);
-      wordSvg.setAttribute('width', wordBounds.width);
-      wordSvg.setAttribute('height', wordBounds.height);
-      wordSvg.querySelector('text').setAttribute('fill', 'black');
-
-      mask.append(base, wordSvg);
-      defs.appendChild(mask);
-
-      const surface = document.createElementNS(namespace, 'rect');
-      surface.setAttribute('width', '100%');
-      surface.setAttribute('height', '100%');
-      surface.setAttribute('fill', 'white');
-      surface.setAttribute('mask', 'url(#cut)');
-
-      svg.append(defs, surface);
-
-      const markup = new XMLSerializer().serializeToString(svg);
-      const image = `url("data:image/svg+xml,${encodeURIComponent(markup)}")`;
-
-      glass.style.maskImage = image;
-      glass.style.webkitMaskImage = image;
-      root.setAttribute('data-mask-ready', '');
-    }
-
-    function scheduleMask() {
-      if (resizeFrame !== null || destroyed) return;
-      resizeFrame = requestAnimationFrame(updateMask);
-    }
-
-    function updateMotionButton() {
-      if (!motionButton) return;
-
-      motionButton.hidden = !video || reduced.matches;
-      motionButton.setAttribute('aria-pressed', String(paused));
-      motionButton.textContent = failed
-        ? 'Retry video'
-        : blocked || paused
-          ? 'Play motion'
-          : 'Pause motion';
-    }
-
-    function shouldPlay() {
-      return (
-        !destroyed &&
-        !paused &&
-        !reduced.matches &&
-        visible &&
-        !document.hidden &&
-        !(dialog && dialog.open)
-      );
-    }
-
-    function playVideo() {
-      if (!video || !attached) return;
-
-      if (!shouldPlay()) {
-        video.pause();
-        return;
-      }
-
-      if (!video.paused || playingRequest || blocked || failed) return;
-
-      video.muted = true;
-      video.defaultMuted = true;
-      video.playbackRate = .7;
-      playingRequest = true;
-
-      const promise = video.play();
-
-      if (promise && promise.then) {
-        promise.then(() => {
-          playingRequest = false;
-          if (destroyed) return;
-          blocked = false;
-          if (!shouldPlay()) video.pause();
-          updateMotionButton();
-        }).catch(error => {
-          playingRequest = false;
-          if (destroyed || !shouldPlay()) return;
-
-          if (error.name === 'NotAllowedError') blocked = true;
-          if (error.name === 'NotSupportedError') failed = true;
-          updateMotionButton();
-        });
+      if (show) {
+        element.removeAttribute('aria-hidden');
       } else {
-        playingRequest = false;
+        element.setAttribute('aria-hidden', 'true');
       }
     }
 
-    async function attachVideo() {
-      if (
-        !video ||
-        loading ||
-        attached ||
-        destroyed ||
-        reduced.matches
-      ) return;
-
-      const source = video.dataset.source;
-      if (!source) return;
-
-      loading = true;
-
-      try {
-        video.muted = true;
-        video.defaultMuted = true;
-        video.playsInline = true;
-        video.loop = true;
-
-        const isHls = /\.m3u8(?:$|\?)/i.test(source);
-
-        if (!isHls || video.canPlayType('application/vnd.apple.mpegurl')) {
-          video.src = source;
-          attached = true;
-          video.load();
-        } else {
-          const Hls = await loadHls();
-          if (destroyed) return;
-          if (!Hls.isSupported()) throw new Error('HLS unsupported');
-
-          hls = new Hls({
-            capLevelToPlayerSize: true,
-            maxBufferLength: 20
-          });
-
-          hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            if (!destroyed) playVideo();
-          });
-
-          hls.on(Hls.Events.ERROR, (event, data) => {
-            if (data.fatal && !destroyed) {
-              failed = true;
-              video.pause();
-              updateMotionButton();
-            }
-          });
-
-          attached = true;
-          hls.loadSource(source);
-          hls.attachMedia(video);
-        }
-
-        failed = false;
-      } catch (error) {
-        failed = true;
-      } finally {
-        loading = false;
-        if (!destroyed) updateMotionButton();
-      }
-    }
-
-    function syncVideo() {
-      if (!video) return;
-
-      if (shouldPlay() && !attached && !failed) {
-        attachVideo();
-      } else {
-        playVideo();
-      }
-    }
-
-    motionButton?.addEventListener('click', () => {
-      if (failed) {
-        hls?.destroy();
-        hls = null;
-        attached = false;
-        failed = false;
-        blocked = false;
-        paused = false;
-        video?.removeAttribute('src');
-      } else if (blocked) {
-        blocked = false;
-        paused = false;
-      } else {
-        paused = !paused;
-      }
-
-      if (paused) {
-        animations.forEach(animation => animation.cancel());
-        animations.clear();
-      }
-
-      updateMotionButton();
-      syncVideo();
-    }, { signal });
-
-    video?.addEventListener('loadedmetadata', playVideo, { signal });
-    video?.addEventListener('canplay', playVideo, { signal });
-    video?.addEventListener('error', () => {
-      if (destroyed) return;
-      failed = true;
-      updateMotionButton();
-    }, { signal });
-
-    reduced.addEventListener('change', () => {
-      if (reduced.matches) {
-        animations.forEach(animation => animation.cancel());
-        animations.clear();
-      }
-      updateMotionButton();
-      syncVideo();
-    }, { signal });
-
-    document.addEventListener('visibilitychange', syncVideo, { signal });
-
-    let viewObserver = null;
-    let revealObserver = null;
-
-    if ('IntersectionObserver' in window) {
-      viewObserver = new IntersectionObserver(entries => {
-        visible = entries[0].isIntersecting;
-        syncVideo();
-      });
-      viewObserver.observe(root);
-
-      revealObserver = new IntersectionObserver(entries => {
-        let index = 0;
-
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            animate(entry.target, index++ * 80);
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: .1 });
-
-      root.querySelectorAll('[data-uw-reveal]').forEach(element => {
-        revealObserver.observe(element);
-      });
-    }
-
-    /*
-      Native dialog supplies focus containment and Escape
-      handling without replacing Shopify's main navigation.
-    */
-    if (dialog && typeof dialog.showModal === 'function') {
-      if (menuButton) menuButton.hidden = false;
-
-      menuButton?.addEventListener('click', () => {
-        dialog.showModal();
-        syncVideo();
-
-        if (!reduced.matches && dialog.animate) {
-          menuAnimation = dialog.animate(
-            [
-              { opacity: 0, transform: 'translateX(30px)' },
-              { opacity: 1, transform: 'translateX(0)' }
-            ],
-            {
-              duration: 350,
-              easing: 'cubic-bezier(.16,1,.3,1)'
-            }
-          );
-        }
-      }, { signal });
-
-      root.querySelector('[data-uw-close]')?.addEventListener(
-        'click',
-        () => dialog.close(),
-        { signal }
-      );
-
-      dialog.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => dialog.close(), { signal });
-      });
-
-      dialog.addEventListener('close', syncVideo, { signal });
+    function scene(element, opacity, transform = 'none', blur = 0) {
+      const show = opacity > .015;
+      visible(element, show);
+      element.style.opacity = opacity.toFixed(3);
+      element.style.transform = transform;
+      element.style.filter = blur > .1 ? `blur(${blur.toFixed(2)}px)` : 'none';
     }
 
     function nextSection() {
-      const wrapper = document.getElementById(wrapperId);
-      let next = wrapper?.nextElementSibling;
+      let next = document.getElementById(wrapperId)?.nextElementSibling;
 
-      while (next && (
-        ['SCRIPT', 'STYLE'].includes(next.tagName) ||
-        next.getClientRects().length === 0
-      )) {
+      while (next && (!next.getClientRects().length ||
+        /^(SCRIPT|STYLE|LINK)$/.test(next.tagName))) {
         next = next.nextElementSibling;
       }
 
       return next;
     }
 
-    const explore = root.querySelector('[data-uw-explore]');
+    function scrollToProgress(p) {
+      const top = root.getBoundingClientRect().top + window.scrollY;
+      const travel = Math.max(1, root.offsetHeight - frame.offsetHeight);
 
-    if (explore && nextSection()) {
-      explore.hidden = false;
-
-      explore.addEventListener('click', () => {
-        nextSection()?.scrollIntoView({
-          behavior: reduced.matches ? 'auto' : 'smooth',
-          block: 'start'
-        });
-      }, { signal });
+      window.scrollTo({
+        top: top + travel * clamp(p),
+        behavior: reduced.matches ? 'auto' : 'smooth'
+      });
     }
 
-    let resizeObserver = null;
+    /*
+      Seek only after the previous seek completes.
+      Each video receives the newest scroll target.
+    */
+    const clips = videos.map(video => {
+      const state = {
+        video,
+        index: Number(video.dataset.video),
+        target: 0,
+        loaded: false,
+        failed: false,
+        needed: false
+      };
 
-    if ('ResizeObserver' in window) {
-      resizeObserver = new ResizeObserver(scheduleMask);
-      resizeObserver.observe(left);
-      resizeObserver.observe(cutout);
-    }
+      video.muted = true;
+      video.defaultMuted = true;
 
-    window.addEventListener('resize', () => {
-      scheduleMask();
-      if (innerWidth >= 1024 && dialog?.open) dialog.close();
-    }, { signal });
+      function seek() {
+        if (
+          destroyed || !enabled || !active || !state.needed ||
+          state.failed || video.seeking ||
+          video.readyState < 1 ||
+          !Number.isFinite(video.duration) ||
+          video.duration <= 0
+        ) return;
 
-    document.fonts?.ready.then(() => {
-      if (!destroyed) scheduleMask();
+        const target = Math.min(
+          Math.max(0, video.duration - .05),
+          Math.max(.001, state.target)
+        );
+
+        if (Math.abs(video.currentTime - target) < .04) return;
+
+        try {
+          video.currentTime = target;
+        } catch (_) {
+          /* A later media event can retry when seeking is available. */
+        }
+      }
+
+      state.seek = seek;
+
+      listen(video, 'loadedmetadata', () => {
+        video.pause();
+        schedule();
+      });
+
+      listen(video, 'loadeddata', () => {
+        seek();
+        schedule();
+      });
+
+      listen(video, 'seeked', seek);
+      listen(video, 'canplay', seek);
+      listen(video, 'error', () => {
+        state.failed = true;
+        video.style.opacity = '0';
+      });
+
+      return state;
     });
 
-    scheduleMask();
-    updateMotionButton();
-    syncVideo();
+    function loadClip(clip) {
+      if (clip.loaded || clip.failed || !clip.video.dataset.src) return;
 
-    cleanup = function () {
+      clip.loaded = true;
+      clip.video.src = clip.video.dataset.src;
+      clip.video.load();
+    }
+
+    function measure() {
+      if (destroyed) return;
+
+      width = frame.clientWidth || window.innerWidth;
+      height = frame.clientHeight || window.innerHeight;
+      stripHeight = strip.offsetHeight;
+
+      root.style.setProperty('--uc-width', `${width}px`);
+      root.style.setProperty('--uc-height', `${height}px`);
+
+      nextButton.hidden = !nextSection();
+      schedule();
+    }
+
+    function wipe(layer, amount, angle, spanWidth, spanHeight) {
+      const rotation = amount * angle;
+
+      layer.style.visibility = amount > 0 ? 'visible' : 'hidden';
+      layer.style.width = `${amount * spanWidth}px`;
+      layer.style.height = `${spanHeight}px`;
+      layer.style.transform =
+        `translate(-50%, -50%) rotate(${rotation}deg)`;
+
+      layer.querySelector('.uc__media-inner').style.transform =
+        `translate(-50%, -50%) rotate(${-rotation}deg)`;
+    }
+
+    function render() {
+      raf = 0;
+      if (!enabled || destroyed || document.hidden) return;
+
+      const rect = root.getBoundingClientRect();
+      active = rect.bottom > 0 && rect.top < window.innerHeight;
+
+      if (!active) return;
+
+      const travel = Math.max(1, root.offsetHeight - height);
+      const p = clamp(-rect.top / travel);
+
+      progressBar.style.transform = `scaleX(${p})`;
+
+      /* Opening title: projects toward the viewer as you scroll. */
+      const titleExit = range(p, .01, .13);
+
+      scene(
+        intro,
+        1 - titleExit * titleExit,
+        `translate3d(0, ${titleExit * 55}px, ${titleExit * 680}px)`,
+        titleExit * titleExit * 8
+      );
+
+      /* Studio introduction rises into view and then leaves. */
+      const aboutIn = ease(range(p, .13, .20));
+      const aboutOut = ease(range(p, .29, .35));
+      const aboutOpacity = aboutIn * (1 - aboutOut);
+
+      scene(
+        about,
+        aboutOpacity,
+        `translateY(${(1 - aboutIn) * 65 - aboutOut * 25}px)`,
+        (1 - aboutOpacity) * 4
+      );
+
+      /* Wipe A rotates while its video counter-rotates. */
+      const a = range(p, .333, .433);
+      const b = range(p, .69, .77);
+      const diagonal = Math.hypot(width, height) * 1.03;
+
+      wipe(layers[1], a, -45, diagonal, diagonal);
+      wipe(layers[2], b, 0, width * 1.02, height * 1.02);
+
+      layers[0].style.opacity = 1 - range(a, .90, 1);
+      layers[0].style.visibility = a >= 1 ? 'hidden' : 'visible';
+
+      if (b >= 1) layers[1].style.visibility = 'hidden';
+
+      /*
+        Work content travels through the viewport.
+        Its measured height determines travel on mobile and desktop.
+      */
+      const worksIn = ease(range(p, .435, .475));
+      const worksOut = ease(range(p, .70, .765));
+      const workOpacity = worksIn * (1 - worksOut);
+
+      scene(works, workOpacity);
+
+      const stripStart = height * .36;
+      const stripEnd = Math.min(0, height * .78 - stripHeight);
+      const stripMove = range(p, .47, .665);
+      const stripY = stripStart + (stripEnd - stripStart) * stripMove;
+
+      strip.style.transform = `translate(-50%, ${stripY}px)`;
+
+      projects.forEach((project, index) => {
+        const rowPair = Math.floor(index / 2);
+        const leave = ease(range(
+          p,
+          .668 + rowPair * .009,
+          .715 + rowPair * .009
+        ));
+
+        const direction = index % 2 === 0 ? -1 : 1;
+
+        project.style.transform =
+          `translateX(${direction * leave * width * .65}px)`;
+
+        project.style.opacity = 1 - leave;
+      });
+
+      /* Saved stat values appear one after another. */
+      const statsStart = .775;
+      const statsEnd = .935;
+      const slot = (statsEnd - statsStart) / Math.max(1, stats.length);
+
+      stats.forEach((stat, index) => {
+        const local = (p - statsStart - index * slot) / slot;
+
+        if (local <= 0 || local >= 1) {
+          scene(stat, 0);
+          return;
+        }
+
+        const arrival = ease(range(local, 0, .30));
+        const departure = range(local, .72, 1);
+        const opacity = arrival * (1 - departure * departure);
+
+        scene(
+          stat,
+          opacity,
+          `translate3d(0, ${(1 - arrival) * 70}px, ${departure * 464}px)`,
+          (1 - arrival) * 4 + departure * departure * 6
+        );
+      });
+
+      /* Final heading and editable CTA blocks. */
+      const endIn = ease(range(p, stats.length ? .94 : .80, .985));
+
+      scene(
+        outro,
+        endIn,
+        `translateY(${(1 - endIn) * 55}px)`,
+        (1 - endIn) * 5
+      );
+
+      /*
+        One continuous source, with a small reserved lead per layer.
+        No autoplay loop: scroll position controls the video timeline.
+      */
+      clips.forEach(clip => {
+        const i = clip.index;
+
+        clip.needed =
+          i === 0 ? a < 1 :
+          i === 1 ? a > 0 && b < 1 :
+          b > 0;
+
+        const preload =
+          i === 0 ||
+          (i === 1 && p > .27) ||
+          (i === 2 && p > .63);
+
+        if (preload) loadClip(clip);
+
+        const duration = clip.video.duration;
+
+        if (Number.isFinite(duration) && duration > 0) {
+          const lead = Math.min(1, duration / 12);
+          const usable = Math.max(0, duration - lead * 2 - .05);
+          clip.target = p * usable + i * lead;
+          clip.seek();
+        }
+      });
+    }
+
+    function schedule() {
+      if (!raf && enabled && !destroyed) {
+        raf = requestAnimationFrame(render);
+      }
+    }
+
+    function resetContent() {
+      scenes.forEach(element => {
+        element.style.removeProperty('visibility');
+        element.style.removeProperty('opacity');
+        element.style.removeProperty('transform');
+        element.style.removeProperty('filter');
+        element.removeAttribute('aria-hidden');
+        element.inert = false;
+      });
+
+      strip.style.removeProperty('transform');
+
+      projects.forEach(project => {
+        project.style.removeProperty('transform');
+        project.style.removeProperty('opacity');
+      });
+
+      videos.forEach(video => video.pause());
+    }
+
+    function setMode(preservePosition = false) {
+      const previous = enabled;
+      const top = root.getBoundingClientRect().top + window.scrollY;
+
+      enabled = !manualStatic && !reduced.matches && !shortScreen.matches;
+
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+
+      root.classList.toggle('uc--animated', enabled);
+
+      if (!enabled) resetContent();
+
+      exploreButton.hidden = !enabled;
+      modeButton.hidden = reduced.matches || shortScreen.matches;
+      modeButton.textContent = enabled ? 'View all content' : 'Enable animation';
+      modeButton.setAttribute('aria-pressed', String(!enabled));
+
+      if (preservePosition && previous !== enabled) {
+        window.scrollTo({ top, behavior: 'instant' });
+      }
+
+      measure();
+
+      /* Avoid a flash of overlapping scenes before the next frame. */
+      if (enabled) render();
+    }
+
+    listen(modeButton, 'click', () => {
+      manualStatic = !manualStatic;
+      setMode(true);
+    });
+
+    listen(exploreButton, 'click', () => {
+      scrollToProgress(.20);
+    });
+
+    listen(nextButton, 'click', () => {
+      nextSection()?.scrollIntoView({
+        behavior: reduced.matches ? 'auto' : 'smooth',
+        block: 'start'
+      });
+    });
+
+    listen(window, 'scroll', schedule, { passive: true });
+    listen(window, 'resize', measure, { passive: true });
+    listen(window, 'orientationchange', measure);
+    listen(window, 'pageshow', measure);
+    listen(reduced, 'change', () => setMode(true));
+    listen(shortScreen, 'change', () => setMode(true));
+
+    listen(document, 'visibilitychange', () => {
+      if (!document.hidden) schedule();
+    });
+
+    /*
+      When a merchant selects a block in the theme editor,
+      show all content so that block is immediately editable.
+    */
+    listen(document, 'shopify:block:select', event => {
+      if (!root.contains(event.target)) return;
+
+      manualStatic = true;
+      setMode(false);
+
+      requestAnimationFrame(() => {
+        if (!destroyed) {
+          event.target.scrollIntoView({
+            behavior: 'auto',
+            block: 'center'
+          });
+        }
+      });
+    });
+
+    const observer = typeof ResizeObserver !== 'undefined'
+      ? new ResizeObserver(measure)
+      : null;
+
+    observer?.observe(frame);
+    observer?.observe(strip);
+
+    document.fonts?.ready.then(() => {
+      if (!destroyed) measure();
+    });
+
+    setMode();
+
+    cleanup = () => {
       destroyed = true;
       events.abort();
-      viewObserver?.disconnect();
-      revealObserver?.disconnect();
-      resizeObserver?.disconnect();
+      observer?.disconnect();
 
-      if (resizeFrame !== null) cancelAnimationFrame(resizeFrame);
+      if (raf) cancelAnimationFrame(raf);
 
-      animations.forEach(animation => animation.cancel());
-      menuAnimation?.cancel();
-      if (dialog?.open) dialog.close();
+      root.classList.remove('uc--animated');
+      resetContent();
 
-      video?.pause();
-      hls?.destroy();
-
-      if (video) {
+      videos.forEach(video => {
+        video.pause();
         video.removeAttribute('src');
         video.load();
-      }
+      });
     };
   }
 
@@ -1539,15 +1374,14 @@
   }, { signal: lifecycle.signal });
 
   document.addEventListener('shopify:section:unload', event => {
-    if (event.target.id === wrapperId) {
-      cleanup?.();
-      cleanup = null;
-    }
+    if (event.target.id === wrapperId) cleanup();
   }, { signal: lifecycle.signal });
 
-  window.__ukiyoWorkControllers[rootId] = function () {
-    lifecycle.abort();
-    cleanup?.();
+  window.__ukiyoCinema[id] = {
+    destroy() {
+      cleanup();
+      lifecycle.abort();
+    }
   };
 
   if (document.readyState === 'loading') {
@@ -1566,46 +1400,88 @@
   "name": "Work Hero",
   "tag": "section",
   "class": "section-work-hero",
-  "max_blocks": 12,
+  "max_blocks": 16,
   "settings": [
     {
       "type": "header",
-      "content": "Split-panel design"
+      "content": "Opening"
     },
     {
       "type": "text",
-      "id": "left_word",
-      "label": "Left cutout word",
-      "default": "UKIYO",
-      "info": "A short word works best."
-    },
-    {
-      "type": "text",
-      "id": "right_word",
-      "label": "Right large word",
-      "default": "WORK"
-    },
-    {
-      "type": "text",
-      "id": "right_caption",
-      "label": "Right panel caption",
-      "default": "Independent creative studio"
-    },
-    {
-      "type": "color",
-      "id": "accent",
-      "label": "Accent color",
-      "default": "#ff5c35"
-    },
-    {
-      "type": "header",
-      "content": "Work page content"
+      "id": "brand_name",
+      "label": "Opening wordmark",
+      "default": "UKIYO"
     },
     {
       "type": "text",
       "id": "strap",
       "label": "Small label",
       "default": "(Our Work)"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Studio introduction",
+      "default": "Discover our diverse projects and activations tailored to meet your needs. We're committed to delivering innovative solutions that drive success."
+    },
+    {
+      "type": "text",
+      "id": "scroll_label",
+      "label": "Scroll button label",
+      "default": "Scroll to explore"
+    },
+    {
+      "type": "header",
+      "content": "Video and animation"
+    },
+    {
+      "type": "text",
+  "id": "video_url",
+  "label": "Direct MP4 video URL",
+  "default": "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260811_035902_54447887-412b-4a6b-8708-4ea68bde19f8.mp4",
+  "info": "Paste a direct MP4 link, not a YouTube or Vimeo page."
+    },
+    {
+      "type": "image_picker",
+      "id": "poster",
+      "label": "Video poster and fallback image"
+    },
+    {
+      "type": "range",
+      "id": "scroll_length",
+      "label": "Scroll sequence length",
+      "min": 600,
+      "max": 1200,
+      "step": 100,
+      "unit": "vh",
+      "default": 900,
+      "info": "Higher values give visitors more scrolling distance to read each scene."
+    },
+    {
+      "type": "header",
+      "content": "Header contact button"
+    },
+    {
+      "type": "text",
+      "id": "contact_label",
+      "label": "Contact button label",
+      "default": "Contact"
+    },
+    {
+      "type": "url",
+      "id": "contact_link",
+      "label": "Contact button link",
+      "info": "Leave blank to hide the header contact button."
+    },
+    {
+      "type": "header",
+      "content": "Selected work"
+    },
+    {
+      "type": "text",
+      "id": "work_label",
+      "label": "Work eyebrow",
+      "default": "Selected work"
     },
     {
       "type": "text",
@@ -1621,88 +1497,44 @@
     },
     {
       "type": "textarea",
-      "id": "description",
-      "label": "Description",
-      "default": "Discover our diverse projects and activations tailored to meet your needs. We're committed to delivering innovative solutions that drive success."
-    },
-    {
-      "type": "header",
-      "content": "Background video"
-    },
-    {
-      "type": "text",
-      "id": "video_url",
-      "label": "HLS or MP4 video URL",
-      "default": "https://stream.mux.com/Q3hYHAcLU82ceOUgwDeO4HiwOc3WZn9JD02PugwzxHOI.m3u8",
-      "info": "Supports an .m3u8 stream or a direct .mp4 URL."
-    },
-    {
-      "type": "image_picker",
-      "id": "poster",
-      "label": "Video poster image",
-      "info": "Shown while video loads and when reduced motion is enabled."
-    },
-    {
-      "type": "checkbox",
-      "id": "mirror_video",
-      "label": "Mirror video horizontally",
-      "default": true
-    },
-    {
-      "type": "header",
-      "content": "Navigation and contact"
-    },
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "Section navigation menu",
-      "info": "Optional. Uses top-level links. Appears as a mobile menu on smaller screens."
-    },
-    {
-      "type": "text",
-      "id": "contact_label",
-      "label": "Header contact button label",
-      "default": "Let's Talk"
-    },
-    {
-      "type": "url",
-      "id": "contact_link",
-      "label": "Header contact button link",
-      "info": "Clear the link to remove this button."
-    },
-    {
-      "type": "checkbox",
-      "id": "show_explore",
-      "label": "Show scroll-to-work button",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "explore_label",
-      "label": "Scroll-to-work button label",
-      "default": "Explore Our Work"
-    },
-    {
-      "type": "url",
-      "id": "instagram_url",
-      "label": "Instagram link"
-    },
-    {
-      "type": "url",
-      "id": "linkedin_url",
-      "label": "LinkedIn link"
+      "id": "work_intro",
+      "label": "Work introduction",
+      "default": "We blend storytelling with strategy to capture attention and drive growth."
     },
     {
       "type": "textarea",
-      "id": "footer_note",
-      "label": "Small footer note",
-      "default": "Strategy. Creativity. Connection."
+      "id": "work_note",
+      "label": "Text below projects",
+      "default": "Positioning, storytelling, and execution. Built to help brands become easier to understand, easier to trust, and easier to grow."
+    },
+    {
+      "type": "header",
+      "content": "Closing"
+    },
+    {
+      "type": "text",
+      "id": "end_label",
+      "label": "Closing eyebrow",
+      "default": "Your next chapter"
+    },
+    {
+      "type": "textarea",
+      "id": "end_title",
+      "label": "Closing heading",
+      "default": "Let's make\nsomething matter."
+    },
+    {
+      "type": "text",
+      "id": "continue_label",
+      "label": "Continue button label",
+      "default": "Continue exploring"
     }
   ],
   "blocks": [
     {
       "type": "stat",
       "name": "Stat",
+      "limit": 6,
       "settings": [
         {
           "type": "text",
@@ -1717,20 +1549,49 @@
       ]
     },
     {
-      "type": "button",
-      "name": "Button",
+      "type": "project",
+      "name": "Project",
+      "limit": 6,
       "settings": [
         {
           "type": "text",
-          "id": "label",
-          "label": "Button text",
-          "default": "View a Project"
+          "id": "title",
+          "label": "Project or client name",
+          "default": "Project name"
+        },
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Services or project description",
+          "default": "Brand strategy and creative direction"
+        },
+        {
+          "type": "text",
+          "id": "year",
+          "label": "Year"
         },
         {
           "type": "url",
           "id": "link",
-          "label": "Button link",
-          "info": "Add a link to display the button."
+          "label": "Project link"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Closing button",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Button label",
+          "default": "Book a Discovery Call"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button link"
         }
       ]
     }
@@ -1765,6 +1626,12 @@
           "settings": {
             "value": "40+",
             "label": "Brand Partners"
+          }
+        },
+        {
+          "type": "button",
+          "settings": {
+            "label": "Book a Discovery Call"
           }
         }
       ]
