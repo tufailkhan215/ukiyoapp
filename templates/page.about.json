@@ -37,38 +37,36 @@
     },
     "about_cards_rafhfB": {
       "type": "about-cards",
-      "blocks": {
-        "card_Kzfq8H": {
-          "type": "card",
-          "settings": {
-            "style": "light",
-            "badge": "(Brand Development)",
-            "title": "UKIYO PRODUCTIONS",
-            "paragraph_1": "At Ukiyo Productions, we build the strategy, creative, and content systems that help brands become easier to understand, easier to trust, and easier to grow.",
-            "paragraph_1_highlight": "Our work blends positioning, storytelling, and execution so the brand does more than look good it performs better.",
-            "paragraph_2": "We blend storytelling with strategy to capture attention and drive growth.",
-            "tags": "Branding\nContent\nStrategy"
-          }
-        },
-        "card_jtBcpW": {
-          "type": "card",
-          "settings": {
-            "style": "dark",
-            "badge": "(AI Solutions)",
-            "title": "AUTOMATEIQ",
-            "paragraph_1": "We use AI automation and operational systems to help brands reduce friction, respond faster, and scale more intelligently. The goal is not automation for its own sake.",
-            "paragraph_1_highlight": "",
-            "paragraph_2": "It is more clarity, more efficiency, and better business support behind the scenes.",
-            "tags": "AI\nAutomation\nData"
-          }
-        }
-      },
-      "block_order": [
-        "card_Kzfq8H",
-        "card_jtBcpW"
-      ],
       "name": "About Cards",
-      "settings": {}
+      "settings": {
+        "watermark": "SERVICES",
+        "strap": "Our Services",
+        "title_line1": "We build the systems behind",
+        "title_line2": "modern brand growth",
+        "description": "Our work sits at the intersection of strategy, creative, and automation helping businesses build a stronger presence, operate more efficiently, and move with more intention as they grow.",
+        "scroll_text": "Scroll to explore",
+        "video_url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260521_064421_279656fd-e76f-40a0-8fed-7456d4f7715a.mp4",
+        "overview": "We blend storytelling with strategy to capture attention and drive growth.",
+        "brand_label": "Brand Development",
+        "brand_title": "UKIYO PRODUCTIONS",
+        "brand_body": "<p>At Ukiyo Productions, we build the strategy, creative, and content systems that help brands become easier to understand, easier to trust, and easier to grow.</p><p><strong>Our work blends positioning, storytelling, and execution so the brand does more than look good—it performs better.</strong></p>",
+        "brand_tags": "Branding, Content, Strategy",
+        "ai_label": "AI Solutions",
+        "ai_title": "AUTOMATEIQ",
+        "ai_body": "<p>We use AI automation and operational systems to help brands reduce friction, respond faster, and scale more intelligently.</p><p>The goal is greater clarity, efficiency, and better business support behind the scenes.</p>",
+        "ai_tags": "AI, Automation, Data",
+        "process_title": "How We Deliver",
+        "process_intro": "A focused methodology that turns ideas into meaningful work and measurable progress.",
+        "step_1_title": "Discovery",
+        "step_1_body": "We start by understanding the brand, the audience, the friction points, and what success actually needs to look like.",
+        "step_2_title": "Strategy",
+        "step_2_body": "We build a focused roadmap that connects positioning, creative direction, and operational priorities.",
+        "step_3_title": "Creation",
+        "step_3_body": "We turn strategy into real assets, systems, and experiences that people can engage with.",
+        "step_4_title": "Launch & Iterate",
+        "step_4_body": "We put the work into motion, review how it performs, and refine from there.",
+        "closing_title": "What are you ready to build?"
+      }
     },
     "about_stats_PUgd3f": {
       "type": "about-stats",
@@ -419,49 +417,73 @@
         "logo_htLreq": {
           "type": "logo",
           "settings": {
-            "name": "NIKE"
+            "name": "NIKE",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
           }
         },
         "logo_tJPQzm": {
           "type": "logo",
           "settings": {
-            "name": "SPOTIFY"
+            "name": "SPOTIFY",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
           }
         },
         "logo_x6GxcA": {
           "type": "logo",
           "settings": {
-            "name": "APPLE"
+            "name": "APPLE",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
           }
         },
         "logo_RJEMm6": {
           "type": "logo",
           "settings": {
-            "name": "ADIDAS"
+            "name": "ADIDAS",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
           }
         },
         "logo_yP8d9h": {
           "type": "logo",
           "settings": {
-            "name": "WANDRD"
+            "name": "WANDRD",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
           }
         },
         "logo_PPpJHC": {
           "type": "logo",
           "settings": {
-            "name": "COACHELLA"
+            "name": "COACHELLA",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
           }
         },
         "logo_dnTzU9": {
           "type": "logo",
           "settings": {
-            "name": "SXSW"
+            "name": "SXSW",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
           }
         },
         "logo_g8QWbK": {
           "type": "logo",
           "settings": {
-            "name": "POLAROID"
+            "name": "POLAROID",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
           }
         }
       },
@@ -480,7 +502,13 @@
         "badge_text": "Trusted By Industry Leaders",
         "title_before": "Brands That",
         "title_gradient": "Trust Us",
-        "subtitle": "We have had the opportunity to support brands across culture, retail, hospitality, technology, and beyond."
+        "subtitle": "We have had the opportunity to support brands across culture, retail, hospitality, technology, and beyond.",
+        "background": "#080808",
+        "show_marquee": false,
+        "marquee_speed": 45,
+        "footer_text": "Built on connection. Brought to life through collaboration.",
+        "cta_text": "Explore our work",
+        "cta_link": ""
       }
     },
     "contact_form_DKbNiK": {
