@@ -21,7 +21,16 @@
         "cta_primary_link": "#",
         "cta_secondary_text": "View Our Work",
         "cta_secondary_link": "#",
-        "scroll_label": "Scroll"
+        "scroll_label": "Scroll",
+        "bottom_note": "Independent thinking. Shared ambition.",
+        "hero_video_url": "https://pub-86dc5b5484314368ac5436a674b0d919.r2.dev/cloudinarry%20to%20cloudflare/baby-track-video_crqby5.mp4",
+        "cloud_image_url": "https://res.cloudinary.com/dsdhxhhqh/image/upload/v1781500777/cloude_vj4pjv.png",
+        "statement_color": "#d92323",
+        "statement_heading": "Built to move your brand forward.",
+        "statement_intro": "Every brand has something worth bringing into the world. We help you give it shape, presence, and purpose.",
+        "statement_body": "From the first idea to the experience your audience remembers, we connect brand strategy, design, digital experiences, and marketing around a clear direction.",
+        "statement_body_2": "We work alongside your team to make the ambitious feel possible—with thoughtful creative, practical systems, and care for the details that make you different.",
+        "statement_video_url": "https://pub-86dc5b5484314368ac5436a674b0d919.r2.dev/cloudinarry%20to%20cloudflare/track-video_2_haxdch.mp4"
       }
     },
     "marquee": {
@@ -116,7 +125,7 @@
         "title_gradient": "COLLABORATIONS",
         "subtitle": "We've partnered with some of the most recognizable brands in the world.",
         "background": "#080808",
-        "show_marquee": true,
+        "show_marquee": false,
         "marquee_speed": 45,
         "footer_text": "Built on connection. Brought to life through collaboration.",
         "cta_text": "Explore our work",
