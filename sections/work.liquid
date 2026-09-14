@@ -14,13 +14,12 @@
   - Optional Shopify video or image per project
   - Alternating editorial compositions
   - Oversized background typography
-  - Sticky project index on desktop
   - Scroll reveal animation
-  - Subtle image parallax
+  - Subtle desktop image parallax
   - Premium metrics / result chips
   - Mobile horizontal swipe rail for compact projects
+  - Mobile-optimized featured cards
   - Section-specific color controls
-  - Mobile controls
   - No max_blocks
   - No enabled_on
 {%- endcomment -%}
@@ -71,12 +70,6 @@
   "
 >
 
-  {%- comment -%}
-    ============================================================
-    ATMOSPHERE
-    ============================================================
-  {%- endcomment -%}
-
   <div
     class="ukiyo-work__display"
     aria-hidden="true"
@@ -101,12 +94,6 @@
 
 
   <div class="ukiyo-work__container">
-
-    {%- comment -%}
-      ============================================================
-      HEADER
-      ============================================================
-    {%- endcomment -%}
 
     <header class="ukiyo-work__header">
 
@@ -207,12 +194,6 @@
     </header>
 
 
-
-    {%- comment -%}
-      ============================================================
-      FEATURED PROJECTS
-      ============================================================
-    {%- endcomment -%}
 
     {%- if featured_count > 0 -%}
 
@@ -492,12 +473,6 @@
 
 
 
-    {%- comment -%}
-      ============================================================
-      COMPACT PROJECTS
-      ============================================================
-    {%- endcomment -%}
-
     {%- if compact_count > 0 -%}
 
       <section class="ukiyo-work__more">
@@ -673,12 +648,6 @@
 
 
 
-    {%- comment -%}
-      ============================================================
-      BOTTOM CTA
-      ============================================================
-    {%- endcomment -%}
-
     {%- if section.settings.show_footer_cta -%}
 
       <footer
@@ -741,10 +710,6 @@
 
 
 {% style %}
-
-/* ============================================================
-   SHOPIFY WRAPPER
-   ============================================================ */
 
 #shopify-section-{{ section.id }} {
   position: relative;
@@ -855,10 +820,11 @@
   display: block;
 
   color:
-    color-mix(
-      in srgb,
-      var(--uw-text) 2.2%,
-      transparent
+    rgba(
+      255,
+      255,
+      255,
+      .018
     );
 
   font-size:
@@ -2290,7 +2256,9 @@
   .ukiyo-work--{{ uid }}
   .ukiyo-work__project-media {
     min-height: 0;
-    aspect-ratio: 16 / 10;
+
+    aspect-ratio:
+      16 / 10;
   }
 
 
@@ -2303,12 +2271,19 @@
 
 
 /* ============================================================
-   MOBILE
+   MOBILE — REFINED
+   Desktop remains unchanged
    ============================================================ */
 
 @media (max-width: 749px) {
 
-  .ukiyo-work--{{ uid }} .ukiyo-work__container {
+  .ukiyo-work--{{ uid }} {
+    --uw-mobile-gutter: 16px;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__container {
     width:
       calc(
         100% -
@@ -2317,16 +2292,22 @@
   }
 
 
-  .ukiyo-work--{{ uid }} .ukiyo-work__grid-texture {
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__grid-texture {
+    opacity: .18;
+
     background-size:
-      56px
-      56px;
+      52px
+      52px;
   }
 
 
-  .ukiyo-work--{{ uid }} .ukiyo-work__display {
-    top: 3%;
-    left: -5%;
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__display {
+    top: 2%;
+    left: -8%;
+
+    width: 125%;
   }
 
 
@@ -2334,43 +2315,129 @@
   .ukiyo-work__display span {
     font-size:
       clamp(
-        100px,
-        32vw,
-        180px
+        84px,
+        30vw,
+        150px
       );
+
+    line-height: .82;
   }
 
 
-  .ukiyo-work--{{ uid }} .ukiyo-work__header {
-    margin-bottom: 62px;
+  /* Header */
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__header {
+    margin-bottom: 52px;
   }
 
 
-  .ukiyo-work--{{ uid }} .ukiyo-work__title {
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__header-main {
+    gap: 28px;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__eyebrow {
+    margin-bottom: 16px;
+
+    font-size: 9px;
+    letter-spacing: .18em;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__eyebrow-line {
+    width: 24px;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__title {
     font-size:
       clamp(
-        50px,
-        16vw,
-        82px
+        46px,
+        14vw,
+        72px
       );
 
-    line-height: .86;
+    line-height: .9;
+    letter-spacing: -.055em;
   }
 
 
-  .ukiyo-work--{{ uid }} .ukiyo-work__header-meta {
-    flex-direction: column;
-
-    gap: 5px;
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__header-aside {
+    padding-bottom: 0;
   }
 
 
-  .ukiyo-work--{{ uid }} .ukiyo-work__featured {
-    gap: 72px;
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__intro {
+    max-width: 34ch;
+
+    margin-bottom: 22px;
+
+    font-size: 14px;
+    line-height: 1.55;
   }
 
 
-  .ukiyo-work--{{ uid }} .ukiyo-work__project-link {
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__header-meta {
+    margin-bottom: 22px;
+
+    padding:
+      12px
+      0;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    font-size: 8px;
+    letter-spacing: .1em;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__header-meta span:last-child {
+    text-align: right;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__text-link {
+    gap: 10px;
+
+    font-size: 12px;
+  }
+
+
+  /* Featured cards */
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__featured {
+    gap: 56px;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project {
+    transform:
+      translateY(30px);
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-link {
+    display: block;
+
+    min-height: 0;
+
     border-radius:
       min(
         var(--uw-radius),
@@ -2379,105 +2446,295 @@
   }
 
 
-  .ukiyo-work--{{ uid }} .ukiyo-work__project-media {
-    aspect-ratio: 4 / 3;
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project--reverse
+  .ukiyo-work__project-media,
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project--reverse
+  .ukiyo-work__project-copy {
+    order: initial;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-media {
+    min-height: 0;
+
+    aspect-ratio:
+      4 / 3;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-image-wrap {
+    position: absolute;
+    inset: 0;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-image {
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    transform: none;
+
+    object-fit: cover;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-link:hover
+  .ukiyo-work__project-image {
+    transform: none;
   }
 
 
   .ukiyo-work--{{ uid }}
   .ukiyo-work__project-number {
-    top: 18px;
-    left: 18px;
+    top: 16px;
+    left: 16px;
 
-    font-size: 48px;
+    font-size: 42px;
+
+    opacity: .85;
   }
 
 
   .ukiyo-work--{{ uid }}
   .ukiyo-work__media-arrow {
-    right: 16px;
-    bottom: 16px;
+    right: 14px;
+    bottom: 14px;
 
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
 
     opacity: 1;
 
     transform: none;
+
+    background:
+      rgba(
+        0,
+        0,
+        0,
+        .22
+      );
+
+    backdrop-filter:
+      blur(10px);
   }
 
 
-  .ukiyo-work--{{ uid }} .ukiyo-work__project-copy {
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__media-arrow svg {
+    width: 18px;
+    height: 18px;
+  }
+
+
+  /* Featured content */
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-copy {
     min-height: 0;
 
     padding:
-      26px
       22px
-      24px;
+      18px
+      20px;
   }
 
 
   .ukiyo-work--{{ uid }}
   .ukiyo-work__project-copy-top {
-    margin-bottom: 50px;
+    margin-bottom: 34px;
+
+    align-items: center;
   }
 
 
-  .ukiyo-work--{{ uid }} .ukiyo-work__project-title {
-    max-width: 12ch;
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-ident {
+    gap:
+      6px
+      10px;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-category,
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-year {
+    font-size: 8px;
+    letter-spacing: .12em;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-year::before {
+    width: 12px;
+
+    margin-right: 8px;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__client {
+    max-width: 42%;
+
+    font-size: 10px;
+    line-height: 1.3;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-title {
+    max-width: 11ch;
 
     font-size:
       clamp(
-        34px,
-        10vw,
-        54px
+        31px,
+        9vw,
+        46px
       );
+
+    line-height: .98;
+    letter-spacing: -.045em;
   }
 
 
   .ukiyo-work--{{ uid }}
   .ukiyo-work__project-description {
-    margin-top: 22px;
+    max-width: none;
 
-    font-size: 14px;
+    margin-top: 18px;
+
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__services {
+    margin-top: 18px;
+
+    font-size: 8px;
+    letter-spacing: .09em;
   }
 
 
   .ukiyo-work--{{ uid }}
   .ukiyo-work__project-copy-bottom {
-    margin-top: 46px;
+    margin-top: 34px;
 
-    padding-top: 22px;
+    padding-top: 18px;
 
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
 
-    gap: 22px;
+    gap: 18px;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__results {
+    gap: 6px;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__result {
+    min-height: 29px;
+
+    padding:
+      0
+      10px;
+
+    font-size: 8px;
+    letter-spacing: .07em;
   }
 
 
   .ukiyo-work--{{ uid }}
   .ukiyo-work__project-cta {
+    width: 100%;
+
+    min-height: 48px;
+
+    padding:
+      0
+      16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border:
+      1px
+      solid
+      var(--uw-line);
+
+    border-radius: 999px;
+
     color: var(--uw-text);
+
+    font-size: 10px;
+    letter-spacing: .08em;
+
+    text-transform: uppercase;
   }
 
 
-  .ukiyo-work--{{ uid }} .ukiyo-work__more {
-    margin-top: 88px;
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-cta svg {
+    width: 16px;
+    height: 16px;
   }
 
 
-  .ukiyo-work--{{ uid }} .ukiyo-work__more-header span {
+  /* Compact projects */
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__more {
+    margin-top: 74px;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__more-header {
+    margin-bottom: 18px;
+
+    padding:
+      12px
+      0;
+
+    font-size: 8px;
+    letter-spacing: .12em;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__more-header span {
     display: block;
+
+    opacity: .55;
   }
 
 
-  .ukiyo-work--{{ uid }} .ukiyo-work__compact-grid {
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__compact-grid {
     width:
       calc(
         100% +
         16px
       );
+
+    margin-right: -16px;
 
     padding-right: 16px;
 
@@ -2486,14 +2743,22 @@
     gap: 12px;
 
     overflow-x: auto;
-    overscroll-behavior-inline: contain;
+    overflow-y: visible;
+
+    overscroll-behavior-inline:
+      contain;
 
     scroll-snap-type:
       x mandatory;
 
-    scrollbar-width: none;
+    scroll-padding-inline:
+      0;
 
-    -webkit-overflow-scrolling: touch;
+    scrollbar-width:
+      none;
+
+    -webkit-overflow-scrolling:
+      touch;
   }
 
 
@@ -2503,64 +2768,280 @@
   }
 
 
-  .ukiyo-work--{{ uid }} .ukiyo-work__compact {
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__compact {
     flex:
       0
       0
       min(
-        82vw,
-        360px
+        78vw,
+        340px
       );
 
-    scroll-snap-align: start;
+    scroll-snap-align:
+      start;
   }
 
 
   .ukiyo-work--{{ uid }}
   .ukiyo-work__compact-media {
-    aspect-ratio: 4 / 3;
+    aspect-ratio:
+      4 / 3;
 
     border-radius:
       min(
         var(--uw-radius),
-        16px
+        15px
       );
   }
 
 
   .ukiyo-work--{{ uid }}
   .ukiyo-work__compact-arrow {
+    top: 13px;
+    right: 13px;
+
+    width: 40px;
+    height: 40px;
+
     opacity: 1;
 
     transform: none;
   }
 
 
-  .ukiyo-work--{{ uid }} .ukiyo-work__footer {
-    margin-top: 100px;
-
-    padding-top: 50px;
-
-    flex-direction: column;
-    align-items: flex-start;
-
-    gap: 35px;
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__compact-copy {
+    padding:
+      15px
+      2px
+      3px;
   }
 
 
-  .ukiyo-work--{{ uid }} .ukiyo-work__footer h3 {
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__compact-meta {
+    margin-bottom: 8px;
+
+    font-size: 8px;
+    letter-spacing: .1em;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__compact-copy h3 {
+    max-width: 15ch;
+
     font-size:
       clamp(
-        42px,
-        13vw,
-        64px
+        22px,
+        7vw,
+        30px
       );
+
+    line-height: 1;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__compact-copy p {
+    margin-top: 7px;
+
+    font-size: 11px;
+  }
+
+
+  /* Footer CTA */
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__footer {
+    margin-top: 82px;
+
+    padding-top: 42px;
+
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 28px;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__footer-eyebrow {
+    margin-bottom: 12px;
+
+    font-size: 8px;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__footer h3 {
+    max-width: 10ch;
+
+    font-size:
+      clamp(
+        38px,
+        12vw,
+        58px
+      );
+
+    line-height: .94;
   }
 
 
   .ukiyo-work--{{ uid }}
   .ukiyo-work__footer-button {
     width: 100%;
+
+    min-height: 54px;
+
+    padding:
+      0
+      20px;
+
+    justify-content:
+      space-between;
+
+    font-size: 10px;
+  }
+
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 430px) {
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__container {
+    width:
+      calc(
+        100% -
+        28px
+      );
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__title {
+    font-size:
+      clamp(
+        42px,
+        13.8vw,
+        62px
+      );
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__header-meta {
+    font-size: 7px;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-media {
+    aspect-ratio:
+      1.05 / 1;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-copy {
+    padding:
+      20px
+      16px
+      18px;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-copy-top {
+    margin-bottom: 28px;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-title {
+    font-size:
+      clamp(
+        29px,
+        9vw,
+        40px
+      );
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-description {
+    font-size: 13px;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__compact {
+    flex-basis:
+      min(
+        82vw,
+        330px
+      );
+  }
+
+}
+
+
+/* ============================================================
+   VERY SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 360px) {
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__container {
+    width:
+      calc(
+        100% -
+        24px
+      );
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__header-meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__header-meta span:last-child {
+    text-align: left;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-copy-top {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 8px;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__client {
+    max-width: none;
+
+    text-align: left;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__result {
+    font-size: 7px;
   }
 
 }
