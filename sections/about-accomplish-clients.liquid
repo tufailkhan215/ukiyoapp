@@ -1,3087 +1,1562 @@
-{%- comment -%}
-  ============================================================
-  UKIYO — CLIENT IMPACT / OUTCOMES
-  Animated editorial bento section
-  ============================================================
+{% comment %}
+  UKIYO — Services Experience
+  Scroll-controlled video, service pillars, and process.
+  Existing Services Hero setting IDs are preserved.
+{% endcomment %}
 
-  SAVE IN:
-  sections/about-accomplish-clients.liquid
+{% assign buttons = section.blocks | where: 'type', 'button' %}
 
-  FEATURES
-  - Asymmetric bento layout
-  - Animated metric count-up
-  - Scroll reveal animation
-  - Pointer-reactive card spotlight
-  - Subtle desktop tilt
-  - Animated icon system
-  - Oversized ambient typography
-  - Moving capability marquee
-  - Mobile-specific layout
-  - Editable colors, spacing, copy and blocks
-{%- endcomment -%}
+{% capture arrow %}
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M4 12h15M13 5l7 7-7 7"/>
+  </svg>
+{% endcapture %}
 
-
-{%- liquid
-  assign uid = section.id | replace: '_', '' | replace: '-', '' | downcase
-  assign card_blocks = section.blocks | where: 'type', 'card'
-  assign card_count = card_blocks.size
-
-  assign background_word = section.settings.background_word
-
-  if background_word == blank
-    assign background_word = 'IMPACT'
-  endif
--%}
-
-
-<section
-  id="UkiyoImpact-{{ uid }}"
-  class="ukiyo-impact ukiyo-impact--{{ uid }}"
-  data-ukiyo-impact
-  style="
-    --ui-bg: {{ section.settings.background_color }};
-    --ui-surface: {{ section.settings.card_color }};
-    --ui-surface-hover: {{ section.settings.card_hover_color }};
-    --ui-text: {{ section.settings.text_color }};
-    --ui-muted: {{ section.settings.muted_color }};
-    --ui-line: {{ section.settings.line_color }};
-    --ui-accent: {{ section.settings.accent_color }};
-    --ui-accent-soft: {{ section.settings.accent_soft }};
-    --ui-radius: {{ section.settings.card_radius }}px;
-    --ui-top: {{ section.settings.padding_top }}px;
-    --ui-bottom: {{ section.settings.padding_bottom }}px;
-  "
+<div
+  id="UkiyoServices-{{ section.id }}"
+  class="us"
+  data-services-experience
 >
+  <div class="us__backdrop" aria-hidden="true">
+    {% if section.settings.poster != blank %}
+      {{
+        section.settings.poster
+        | image_url: width: 2400
+        | image_tag:
+          class: 'us__poster',
+          widths: '750, 1100, 1600, 2000, 2400',
+          sizes: '100vw',
+          loading: 'eager',
+          fetchpriority: 'high',
+          alt: ''
+      }}
+    {% endif %}
 
-  {%- comment -%}
-    ============================================================
-    AMBIENT BACKGROUND
-    ============================================================
-  {%- endcomment -%}
+    {% if section.settings.video_url != blank %}
+      <video
+        class="us__video"
+        muted
+        playsinline
+        preload="metadata"
+        tabindex="-1"
+        {% if section.settings.poster != blank %}
+          poster="{{ section.settings.poster | image_url: width: 2400 }}"
+        {% endif %}
+        data-us-video
+      >
+        <source
+          src="{{ section.settings.video_url | escape }}"
+          type="video/mp4"
+        >
+      </video>
+    {% endif %}
 
-  <div
-    class="ukiyo-impact__grid"
-    aria-hidden="true"
-  ></div>
-
-
-  <div
-    class="ukiyo-impact__glow ukiyo-impact__glow--one"
-    aria-hidden="true"
-  ></div>
-
-
-  <div
-    class="ukiyo-impact__glow ukiyo-impact__glow--two"
-    aria-hidden="true"
-  ></div>
-
-
-  <div
-    class="ukiyo-impact__background-word"
-    aria-hidden="true"
-  >
-    {{ background_word }}
+    <div class="us__shade"></div>
   </div>
 
-
-  <div
-    class="ukiyo-impact__line"
-    aria-hidden="true"
-  ></div>
-
-
-
-  <div class="ukiyo-impact__shell">
-
-    {%- comment -%}
-      ============================================================
-      INTRO
-      ============================================================
-    {%- endcomment -%}
-
-    <header
-      class="ukiyo-impact__header"
-      data-ui-reveal
+  <div class="us__content">
+    <section
+      class="us__hero us__container"
+      data-testid="services-hero"
+      aria-labelledby="US-Title-{{ section.id }}"
     >
+      <div class="us__masthead" data-us-reveal>
+        <span class="us__brand">UKIYO</span>
 
-      <div class="ukiyo-impact__header-top">
-
-        {%- if section.settings.badge != blank -%}
-
-          <p class="ukiyo-impact__eyebrow">
-
-            <span class="ukiyo-impact__eyebrow-dot"></span>
-
-            {{ section.settings.badge }}
-
-          </p>
-
-        {%- endif -%}
-
-
-        <div class="ukiyo-impact__header-index">
-
-          <span>
-            {{ card_count | prepend: '0' | slice: -2, 2 }}
+        {% if section.settings.strap != blank %}
+          <span class="us__mono us__masthead-label">
+            {{ section.settings.strap | escape }}
           </span>
+        {% endif %}
 
-          <small>
-            Areas of<br>Impact
-          </small>
-
-        </div>
-
-      </div>
-
-
-      <div class="ukiyo-impact__header-grid">
-
-        <h2 class="ukiyo-impact__title">
-
-          {%- if section.settings.title_before != blank -%}
-
-            <span>
-              {{ section.settings.title_before }}
-            </span>
-
-          {%- endif -%}
-
-
-          {%- if section.settings.title_gradient != blank -%}
-
-            <em>
-              {{ section.settings.title_gradient }}
-            </em>
-
-          {%- endif -%}
-
-        </h2>
-
-
-        <div class="ukiyo-impact__intro">
-
-          {%- if section.settings.intro_text != blank -%}
-
-            <p>
-              {{ section.settings.intro_text }}
-            </p>
-
-          {%- endif -%}
-
-
-          <div class="ukiyo-impact__intro-rule">
-
-            <span>
-              Strategy
-            </span>
-
-            <span>
-              Creative
-            </span>
-
-            <span>
-              Technology
-            </span>
-
-            <span>
-              Growth
-            </span>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </header>
-
-
-
-    {%- comment -%}
-      ============================================================
-      IMPACT BENTO
-      ============================================================
-    {%- endcomment -%}
-
-    <div class="ukiyo-impact__bento">
-
-      {%- for block in card_blocks -%}
-
-        {%- assign card_index = forloop.index -%}
-        {%- assign card_number = card_index | prepend: '0' | slice: -2, 2 -%}
-
-        <article
-          class="ukiyo-impact__card ukiyo-impact__card--{{ card_index }}"
-          data-ui-card
-          data-ui-reveal
-          style="--ui-delay: {{ forloop.index0 | times: 75 }}ms;"
-          {{ block.shopify_attributes }}
+        <button
+          class="us__motion"
+          type="button"
+          aria-pressed="false"
+          data-us-motion
+          hidden
         >
+          Pause motion
+        </button>
+      </div>
 
-          <div
-            class="ukiyo-impact__spotlight"
-            aria-hidden="true"
-          ></div>
+      <div class="us__hero-grid">
+        {% if section.settings.description != blank %}
+          <p class="us__description" data-us-reveal>
+            {{ section.settings.description | escape }}
+          </p>
+        {% endif %}
 
+        <h1
+          id="US-Title-{{ section.id }}"
+          class="us__title"
+          data-us-reveal
+        >
+          <span>{{ section.settings.title_line1 | escape }}</span>
+          <span>{{ section.settings.title_line2 | escape }}</span>
+        </h1>
 
-          <div
-            class="ukiyo-impact__card-grid"
-            aria-hidden="true"
-          ></div>
+        <div class="us__hero-actions">
+          {% for block in buttons %}
+            {% if block.settings.placement == 'hero' %}
+              {% if block.settings.label != blank and block.settings.link != blank %}
+                <a
+                  class="us__button"
+                  href="{{ block.settings.link | escape }}"
+                  {{ block.shopify_attributes }}
+                >
+                  <span>{{ block.settings.label | escape }}</span>
+                  <i>{{ arrow }}</i>
+                </a>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
 
+          {% if section.settings.scroll_text != blank %}
+            <a
+              class="us__scroll us__mono"
+              href="#US-Services-{{ section.id }}"
+              data-us-scroll
+            >
+              {{ section.settings.scroll_text | escape }}
+              <span aria-hidden="true">↓</span>
+            </a>
+          {% endif %}
+        </div>
+      </div>
 
-          <div class="ukiyo-impact__card-top">
+      {% if section.settings.watermark != blank %}
+        <span class="us__watermark" aria-hidden="true">
+          {{ section.settings.watermark | escape }}
+        </span>
+      {% endif %}
+    </section>
 
-            <div class="ukiyo-impact__icon">
+    <section
+      id="US-Services-{{ section.id }}"
+      class="us__services us__container"
+      aria-labelledby="US-Overview-{{ section.id }}"
+    >
+      <div class="us__section-meta us__mono" data-us-reveal>
+        <span>01 / Our expertise</span>
+        <span>Strategy meets execution</span>
+      </div>
 
-              <span class="ukiyo-impact__icon-ring"></span>
+      <h2
+        id="US-Overview-{{ section.id }}"
+        class="us__overview"
+        data-us-words
+      >
+        {{ section.settings.overview | escape }}
+      </h2>
 
-              <span class="ukiyo-impact__icon-core">
-
-                {% case block.settings.icon %}
-
-                  {% when 'trending_up' %}
-
-                    <svg
-                      viewBox="0 0 24 24"
-                      width="25"
-                      height="25"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      aria-hidden="true"
-                    >
-                      <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
-                      <polyline points="16 7 22 7 22 13"/>
-                    </svg>
-
-
-                  {% when 'workflow' %}
-
-                    <svg
-                      viewBox="0 0 24 24"
-                      width="25"
-                      height="25"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      aria-hidden="true"
-                    >
-                      <rect width="8" height="8" x="3" y="3" rx="2"/>
-                      <path d="M7 11v4a2 2 0 0 0 2 2h4"/>
-                      <rect width="8" height="8" x="13" y="13" rx="2"/>
-                    </svg>
-
-
-                  {% when 'target' %}
-
-                    <svg
-                      viewBox="0 0 24 24"
-                      width="25"
-                      height="25"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      aria-hidden="true"
-                    >
-                      <circle cx="12" cy="12" r="9"/>
-                      <circle cx="12" cy="12" r="5"/>
-                      <circle cx="12" cy="12" r="1.5"/>
-                    </svg>
-
-
-                  {% when 'globe' %}
-
-                    <svg
-                      viewBox="0 0 24 24"
-                      width="25"
-                      height="25"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      aria-hidden="true"
-                    >
-                      <circle cx="12" cy="12" r="9"/>
-                      <path d="M12 3a14 14 0 0 0 0 18a14 14 0 0 0 0-18"/>
-                      <path d="M3 12h18"/>
-                    </svg>
-
-
-                  {% when 'bot' %}
-
-                    <svg
-                      viewBox="0 0 24 24"
-                      width="25"
-                      height="25"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      aria-hidden="true"
-                    >
-                      <path d="M12 8V4H8"/>
-                      <rect width="16" height="12" x="4" y="8" rx="2"/>
-                      <path d="M2 14h2"/>
-                      <path d="M20 14h2"/>
-                      <path d="M15 13v2"/>
-                      <path d="M9 13v2"/>
-                    </svg>
-
-
-                  {% when 'users' %}
-
-                    <svg
-                      viewBox="0 0 24 24"
-                      width="25"
-                      height="25"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      aria-hidden="true"
-                    >
-                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                      <path d="M16 3a4 4 0 0 1 0 8"/>
-                      <path d="M22 21v-2a4 4 0 0 0-3-4"/>
-                      <circle cx="9" cy="7" r="4"/>
-                    </svg>
-
-
-                  {% else %}
-
-                    <svg
-                      viewBox="0 0 24 24"
-                      width="25"
-                      height="25"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      aria-hidden="true"
-                    >
-                      <circle cx="12" cy="12" r="9"/>
-                    </svg>
-
-                {% endcase %}
-
-              </span>
-
-            </div>
-
-
-            <div class="ukiyo-impact__number">
-              {{ card_number }}
-            </div>
-
+      <div class="us__pillars">
+        <article class="us__pillar" data-us-reveal>
+          <div class="us__pillar-top us__mono">
+            <span>{{ section.settings.brand_label | escape }}</span>
+            <span aria-hidden="true">01</span>
           </div>
 
-
-
-          <div class="ukiyo-impact__card-content">
-
-            {%- if block.settings.metric != blank -%}
-
-              <div
-                class="ukiyo-impact__metric"
-                data-ui-metric="{{ block.settings.metric | escape }}"
-              >
-                {{ block.settings.metric }}
-              </div>
-
-            {%- endif -%}
-
-
-            {%- if block.settings.card_title != blank -%}
-
-              <h3>
-                {{ block.settings.card_title }}
-              </h3>
-
-            {%- endif -%}
-
-
-            {%- if block.settings.description != blank -%}
-
-              <p>
-                {{ block.settings.description }}
-              </p>
-
-            {%- endif -%}
-
+          <div class="us__pillar-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64">
+              <circle cx="32" cy="32" r="25"/>
+              <ellipse cx="32" cy="32" rx="12" ry="25"/>
+              <path d="M7 32h50M11 18h42M11 46h42"/>
+            </svg>
           </div>
 
+          <h3>{{ section.settings.brand_title | escape }}</h3>
 
-
-          <div class="ukiyo-impact__card-footer">
-
-            <span>
-              Outcome
-            </span>
-
-            <span class="ukiyo-impact__pulse">
-              <i></i>
-              Active
-            </span>
-
+          <div class="us__body">
+            {{ section.settings.brand_body }}
           </div>
 
+          {% if section.settings.brand_tags != blank %}
+            <ul class="us__tags us__mono" role="list">
+              {% assign brand_tags = section.settings.brand_tags | split: ',' %}
+              {% for tag in brand_tags %}
+                <li>{{ tag | strip | escape }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+
+          <div class="us__pillar-actions">
+            {% for block in buttons %}
+              {% if block.settings.placement == 'brand' %}
+                {% if block.settings.label != blank and block.settings.link != blank %}
+                  <a
+                    class="us__button"
+                    href="{{ block.settings.link | escape }}"
+                    {{ block.shopify_attributes }}
+                  >
+                    <span>{{ block.settings.label | escape }}</span>
+                    <i>{{ arrow }}</i>
+                  </a>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </div>
         </article>
 
-      {%- endfor -%}
-
-    </div>
-
-  </div>
-
-
-
-  {%- comment -%}
-    ============================================================
-    MOVING CAPABILITY RAIL
-    ============================================================
-  {%- endcomment -%}
-
-  {%- if section.settings.show_marquee -%}
-
-    <div
-      class="ukiyo-impact__marquee"
-      aria-hidden="true"
-    >
-
-      <div class="ukiyo-impact__marquee-track">
-
-        {%- for copy in (1..2) -%}
-
-          <div class="ukiyo-impact__marquee-set">
-
-            <span>
-              Strategy
-            </span>
-
-            <i>✦</i>
-
-            <span>
-              Creative
-            </span>
-
-            <i>✦</i>
-
-            <span>
-              Technology
-            </span>
-
-            <i>✦</i>
-
-            <span>
-              Automation
-            </span>
-
-            <i>✦</i>
-
-            <span>
-              Growth
-            </span>
-
-            <i>✦</i>
-
-            <span>
-              Transformation
-            </span>
-
-            <i>✦</i>
-
+        <article class="us__pillar" data-us-reveal>
+          <div class="us__pillar-top us__mono">
+            <span>{{ section.settings.ai_label | escape }}</span>
+            <span aria-hidden="true">02</span>
           </div>
 
-        {%- endfor -%}
+          <div class="us__pillar-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64">
+              <rect x="23" y="23" width="18" height="18" rx="3"/>
+              <path d="M32 23V9M32 41v14M23 32H9M41 32h14"/>
+              <path d="M23 23 13 13M41 23l10-10M23 41 13 51M41 41l10 10"/>
+              <circle cx="32" cy="7" r="2"/>
+              <circle cx="32" cy="57" r="2"/>
+              <circle cx="7" cy="32" r="2"/>
+              <circle cx="57" cy="32" r="2"/>
+            </svg>
+          </div>
 
+          <h3>{{ section.settings.ai_title | escape }}</h3>
+
+          <div class="us__body">
+            {{ section.settings.ai_body }}
+          </div>
+
+          {% if section.settings.ai_tags != blank %}
+            <ul class="us__tags us__mono" role="list">
+              {% assign ai_tags = section.settings.ai_tags | split: ',' %}
+              {% for tag in ai_tags %}
+                <li>{{ tag | strip | escape }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+
+          <div class="us__pillar-actions">
+            {% for block in buttons %}
+              {% if block.settings.placement == 'ai' %}
+                {% if block.settings.label != blank and block.settings.link != blank %}
+                  <a
+                    class="us__button"
+                    href="{{ block.settings.link | escape }}"
+                    {{ block.shopify_attributes }}
+                  >
+                    <span>{{ block.settings.label | escape }}</span>
+                    <i>{{ arrow }}</i>
+                  </a>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        </article>
       </div>
+    </section>
 
-    </div>
+    <section
+      class="us__process-wrap us__container"
+      aria-labelledby="US-Process-{{ section.id }}"
+      data-us-endpoint
+    >
+      <div class="us__glass">
+        <div class="us__process-heading">
+          <div data-us-reveal>
+            <span class="us__mono us__kicker">02 / Our process</span>
+            <h2 id="US-Process-{{ section.id }}">
+              {{ section.settings.process_title | escape }}
+            </h2>
+          </div>
 
-  {%- endif -%}
+          <p data-us-reveal>
+            {{ section.settings.process_intro | escape }}
+          </p>
+        </div>
 
-</section>
+        <ol class="us__steps" role="list">
+          {% for index in (1..4) %}
+            {% assign title_key = 'step_' | append: index | append: '_title' %}
+            {% assign body_key = 'step_' | append: index | append: '_body' %}
 
+            <li class="us__step" data-us-reveal>
+              <span class="us__step-number us__mono">
+                0{{ index }}
+              </span>
+              <h3>{{ section.settings[title_key] | escape }}</h3>
+              <p>{{ section.settings[body_key] | escape }}</p>
+            </li>
+          {% endfor %}
+        </ol>
 
+        <div class="us__closing">
+          <h2 data-us-reveal>
+            {{ section.settings.closing_title | escape }}
+          </h2>
 
-{% style %}
+          <div class="us__closing-actions">
+            {% for block in buttons %}
+              {% if block.settings.placement == 'process' %}
+                {% if block.settings.label != blank and block.settings.link != blank %}
+                  <a
+                    class="us__button us__button--white"
+                    href="{{ block.settings.link | escape }}"
+                    {{ block.shopify_attributes }}
+                  >
+                    <span>{{ block.settings.label | escape }}</span>
+                    <i>{{ arrow }}</i>
+                  </a>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
 
-/* ============================================================
-   SHOPIFY WRAPPER
-   ============================================================ */
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap');
 
-#shopify-section-{{ section.id }} {
-  width: 100%;
-  max-width: none;
-
-  margin: 0;
-  padding: 0;
-}
-
-
-/* ============================================================
-   ROOT
-   ============================================================ */
-
-.ukiyo-impact--{{ uid }} {
-  position: relative;
-  isolation: isolate;
-
-  width: 100%;
-  overflow: hidden;
-
-  padding:
-    var(--ui-top)
-    0
-    var(--ui-bottom);
-
-  color: var(--ui-text);
-  background: var(--ui-bg);
-
-  font-family:
-    'Inter Tight',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-
-  -webkit-font-smoothing:
-    antialiased;
-
-  text-rendering:
-    geometricPrecision;
-}
-
-
-.ukiyo-impact--{{ uid }} *,
-.ukiyo-impact--{{ uid }} *::before,
-.ukiyo-impact--{{ uid }} *::after {
-  box-sizing: border-box;
-}
-
-
-.ukiyo-impact--{{ uid }} ::selection {
-  color: var(--ui-bg);
-  background: var(--ui-text);
-}
-
-
-/* ============================================================
-   AMBIENT BACKGROUND
-   ============================================================ */
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__grid {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-
-  pointer-events: none;
-
-  opacity: .34;
-
-  background-image:
-    linear-gradient(
-      rgba(255,255,255,.025)
-      1px,
-      transparent
-      1px
-    ),
-
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.025)
-      1px,
-      transparent
-      1px
-    );
-
-  background-size:
-    80px
-    80px;
-
-  mask-image:
-    linear-gradient(
-      to bottom,
-      black,
-      transparent 78%
-    );
-
-  -webkit-mask-image:
-    linear-gradient(
-      to bottom,
-      black,
-      transparent 78%
-    );
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__glow {
-  position: absolute;
-  z-index: 0;
-
-  width: 700px;
-  height: 700px;
-
-  border-radius: 50%;
-
-  pointer-events: none;
-
-  filter:
-    blur(130px);
-
-  opacity: .12;
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__glow--one {
-  top: -260px;
-  right: -190px;
-
-  background:
-    var(--ui-accent);
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__glow--two {
-  bottom: 5%;
-  left: -340px;
-
-  background:
-    var(--ui-accent-soft);
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__background-word {
-  position: absolute;
-  top: 4%;
-  left: -3%;
-  z-index: 0;
-
-  color:
-    rgba(
-      255,
-      255,
-      255,
-      .018
-    );
-
-  font-size:
-    clamp(
-      180px,
-      27vw,
-      520px
-    );
-
-  font-weight: 700;
-  line-height: .72;
-  letter-spacing: -.08em;
-
-  text-transform: uppercase;
-  white-space: nowrap;
-
-  user-select: none;
-  pointer-events: none;
-
-  animation:
-    ukiyo-impact-drift-{{ uid }}
-    18s
-    ease-in-out
-    infinite
-    alternate;
-}
-
-
-@keyframes ukiyo-impact-drift-{{ uid }} {
-
-  from {
-    transform:
-      translateX(0);
+  .us {
+    display: grid;
+    position: relative;
+    isolation: isolate;
+    background: #050606;
+    color: #fff;
+    font-family: "Manrope", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
 
-  to {
-    transform:
-      translateX(-4vw);
+  .us *,
+  .us *::before,
+  .us *::after {
+    box-sizing: border-box;
   }
 
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__line {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-
-  height: 1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      var(--ui-line),
-      transparent
-    );
-}
-
-
-/* ============================================================
-   SHELL
-   ============================================================ */
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__shell {
-  position: relative;
-  z-index: 2;
-
-  width:
-    min(
-      calc(
-        100% -
-        64px
-      ),
-      1500px
-    );
-
-  margin:
-    0
-    auto;
-}
-
-
-/* ============================================================
-   HEADER
-   ============================================================ */
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__header {
-  margin-bottom:
-    clamp(
-      76px,
-      10vw,
-      150px
-    );
-
-  opacity: 0;
-
-  filter:
-    blur(12px);
-
-  transform:
-    translateY(50px);
-
-  transition:
-    opacity
-    1s
-    cubic-bezier(.16,1,.3,1),
-
-    filter
-    1s
-    cubic-bezier(.16,1,.3,1),
-
-    transform
-    1s
-    cubic-bezier(.16,1,.3,1);
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__header.is-visible {
-  opacity: 1;
-
-  filter:
-    blur(0);
-
-  transform:
-    translateY(0);
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__header-top {
-  margin-bottom:
-    clamp(
-      36px,
-      5vw,
-      72px
-    );
-
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-
-  gap: 30px;
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__eyebrow {
-  margin: 0;
-
-  display: inline-flex;
-  align-items: center;
-
-  gap: 11px;
-
-  color: var(--ui-muted);
-
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: .20em;
-
-  text-transform: uppercase;
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__eyebrow-dot {
-  width: 7px;
-  height: 7px;
-
-  border-radius: 50%;
-
-  background:
-    var(--ui-accent);
-
-  box-shadow:
-    0 0
-    0
-    5px
-    rgba(255,255,255,.04);
-
-  animation:
-    ukiyo-impact-pulse-dot-{{ uid }}
-    2.2s
-    ease-in-out
-    infinite;
-}
-
-
-@keyframes ukiyo-impact-pulse-dot-{{ uid }} {
-
-  0%,
-  100% {
-    opacity: .45;
-    transform: scale(.8);
+  .us .us__backdrop {
+    grid-area: 1 / 1;
+    position: sticky;
+    top: 0;
+    align-self: start;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse at 65% 25%, #394644, #101918 55%, #050606);
   }
 
-  50% {
-    opacity: 1;
-    transform: scale(1);
+  .us .us__poster,
+  .us .us__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__header-index {
-  display: flex;
-  align-items: flex-start;
-
-  gap: 12px;
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__header-index > span {
-  font-size:
-    clamp(
-      30px,
-      3vw,
-      48px
-    );
-
-  font-weight: 500;
-  line-height: .8;
-  letter-spacing: -.05em;
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__header-index small {
-  color: var(--ui-muted);
-
-  font-size: 8px;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: .12em;
-
-  text-transform: uppercase;
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__header-grid {
-  display: grid;
-
-  grid-template-columns:
-    minmax(0, 1.4fr)
-    minmax(300px, .6fr);
-
-  align-items: end;
-
-  gap:
-    clamp(
-      60px,
-      9vw,
-      150px
-    );
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__title {
-  margin: 0;
-
-  color: var(--ui-text);
-
-  font-size:
-    clamp(
-      70px,
-      10vw,
-      170px
-    );
-
-  font-weight: 650;
-  line-height: .79;
-  letter-spacing: -.068em;
-
-  text-transform: uppercase;
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__title span,
-.ukiyo-impact--{{ uid }} .ukiyo-impact__title em {
-  display: block;
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__title em {
-  color:
-    transparent;
-
-  background:
-    linear-gradient(
-      95deg,
-      var(--ui-text) 0%,
-      var(--ui-muted) 48%,
-      var(--ui-text) 100%
-    );
-
-  background-size:
-    220%
-    100%;
-
-  -webkit-background-clip:
-    text;
-
-  background-clip:
-    text;
-
-  font-weight: 400;
-  font-style: normal;
-
-  animation:
-    ukiyo-impact-title-shimmer-{{ uid }}
-    7s
-    linear
-    infinite;
-}
-
-
-@keyframes ukiyo-impact-title-shimmer-{{ uid }} {
-
-  from {
-    background-position:
-      100%
-      0;
+  .us .us__shade {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, #0005, #0002 28%, #0009 100%),
+      linear-gradient(90deg, #0006, #0003);
   }
 
-  to {
-    background-position:
-      -120%
-      0;
+  .us .us__content {
+    grid-area: 1 / 1;
+    position: relative;
+    z-index: 1;
+    min-width: 0;
   }
 
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__intro > p {
-  max-width: 36ch;
-
-  margin:
-    0
-    0
-    30px;
-
-  color: var(--ui-muted);
-
-  font-size:
-    clamp(
-      14px,
-      1.15vw,
-      17px
-    );
-
-  line-height: 1.62;
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__intro-rule {
-  padding:
-    15px
-    0;
-
-  display: grid;
-
-  grid-template-columns:
-    1fr
-    1fr;
-
-  gap:
-    9px
-    20px;
-
-  border-top:
-    1px
-    solid
-    var(--ui-line);
-
-  border-bottom:
-    1px
-    solid
-    var(--ui-line);
-
-  color: var(--ui-muted);
-
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: .12em;
-
-  text-transform: uppercase;
-}
-
-
-/* ============================================================
-   BENTO GRID
-   ============================================================ */
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__bento {
-  display: grid;
-
-  grid-template-columns:
-    repeat(
-      12,
-      minmax(0, 1fr)
-    );
-
-  gap: 14px;
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__card {
-  --ui-card-x: 50%;
-  --ui-card-y: 50%;
-  --ui-tilt-x: 0deg;
-  --ui-tilt-y: 0deg;
-
-  position: relative;
-  isolation: isolate;
-
-  min-height: 410px;
-
-  padding:
-    clamp(
-      24px,
-      2.6vw,
-      40px
-    );
-
-  display: flex;
-  flex-direction: column;
-
-  overflow: hidden;
-
-  border:
-    1px
-    solid
-    var(--ui-line);
-
-  border-radius:
-    var(--ui-radius);
-
-  color: var(--ui-text);
-  background: var(--ui-surface);
-
-  opacity: 0;
-
-  filter:
-    blur(12px);
-
-  transform:
-    perspective(1000px)
-    rotateX(var(--ui-tilt-x))
-    rotateY(var(--ui-tilt-y))
-    translateY(46px);
-
-  transform-style:
-    preserve-3d;
-
-  transition:
-    opacity
-    .8s
-    cubic-bezier(.16,1,.3,1)
-    var(--ui-delay),
-
-    filter
-    .8s
-    cubic-bezier(.16,1,.3,1)
-    var(--ui-delay),
-
-    transform
-    .55s
-    cubic-bezier(.16,1,.3,1),
-
-    border-color
-    .4s
-    ease,
-
-    background
-    .4s
-    ease;
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__card.is-visible {
-  opacity: 1;
-
-  filter:
-    blur(0);
-
-  transform:
-    perspective(1000px)
-    rotateX(var(--ui-tilt-x))
-    rotateY(var(--ui-tilt-y))
-    translateY(0);
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__card:hover {
-  border-color:
-    rgba(
-      255,
-      255,
-      255,
-      .24
-    );
-
-  background:
-    var(--ui-surface-hover);
-}
-
-
-/* Asymmetric editorial pattern */
-
-.ukiyo-impact--{{ uid }}
-.ukiyo-impact__card:nth-child(6n + 1) {
-  grid-column:
-    span 7;
-
-  min-height: 500px;
-}
-
-
-.ukiyo-impact--{{ uid }}
-.ukiyo-impact__card:nth-child(6n + 2) {
-  grid-column:
-    span 5;
-
-  min-height: 500px;
-}
-
-
-.ukiyo-impact--{{ uid }}
-.ukiyo-impact__card:nth-child(6n + 3) {
-  grid-column:
-    span 4;
-}
-
-
-.ukiyo-impact--{{ uid }}
-.ukiyo-impact__card:nth-child(6n + 4) {
-  grid-column:
-    span 8;
-}
-
-
-.ukiyo-impact--{{ uid }}
-.ukiyo-impact__card:nth-child(6n + 5) {
-  grid-column:
-    span 5;
-}
-
-
-.ukiyo-impact--{{ uid }}
-.ukiyo-impact__card:nth-child(6n + 6) {
-  grid-column:
-    span 7;
-}
-
-
-/* ============================================================
-   CARD ATMOSPHERE
-   ============================================================ */
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__spotlight {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-
-  opacity: 0;
-
-  background:
-    radial-gradient(
-      430px
-      circle
-      at
-      var(--ui-card-x)
-      var(--ui-card-y),
-
-      rgba(
-        255,
-        255,
-        255,
-        .105
-      ),
-
-      transparent
-      56%
-    );
-
-  transition:
-    opacity
-    .35s
-    ease;
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__card:hover .ukiyo-impact__spotlight {
-  opacity: 1;
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__card-grid {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-
-  opacity: .24;
-
-  background-image:
-    linear-gradient(
-      rgba(255,255,255,.025)
-      1px,
-      transparent
-      1px
-    ),
-
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.025)
-      1px,
-      transparent
-      1px
-    );
-
-  background-size:
-    42px
-    42px;
-
-  mask-image:
-    linear-gradient(
-      135deg,
-      black,
-      transparent 70%
-    );
-
-  -webkit-mask-image:
-    linear-gradient(
-      135deg,
-      black,
-      transparent 70%
-    );
-}
-
-
-/* ============================================================
-   CARD TOP
-   ============================================================ */
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__card-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-
-  gap: 20px;
-
-  transform:
-    translateZ(20px);
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__icon {
-  position: relative;
-
-  width: 58px;
-  height: 58px;
-
-  display: grid;
-  place-items: center;
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__icon-ring {
-  position: absolute;
-  inset: 0;
-
-  border:
-    1px
-    solid
-    var(--ui-line);
-
-  border-radius: 50%;
-
-  transition:
-    transform
-    .6s
-    cubic-bezier(.16,1,.3,1),
-
-    border-color
-    .4s
-    ease;
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__icon-ring::before {
-  content: '';
-
-  position: absolute;
-  top: -2px;
-  left: 50%;
-
-  width: 4px;
-  height: 4px;
-
-  border-radius: 50%;
-
-  background:
-    var(--ui-accent);
-
-  transform:
-    translateX(-50%);
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__icon-core {
-  width: 44px;
-  height: 44px;
-
-  display: grid;
-  place-items: center;
-
-  border-radius: 50%;
-
-  color:
-    rgba(
-      255,
-      255,
-      255,
-      .76
-    );
-
-  background:
-    rgba(
-      255,
-      255,
-      255,
-      .04
-    );
-
-  transition:
-    color
-    .35s
-    ease,
-
-    background
-    .35s
-    ease,
-
-    transform
-    .5s
-    cubic-bezier(.16,1,.3,1);
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__card:hover .ukiyo-impact__icon-ring {
-  border-color:
-    rgba(
-      255,
-      255,
-      255,
-      .30
-    );
-
-  transform:
-    rotate(90deg);
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__card:hover .ukiyo-impact__icon-core {
-  color:
-    var(--ui-text);
-
-  background:
-    rgba(
-      255,
-      255,
-      255,
-      .08
-    );
-
-  transform:
-    scale(1.06);
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__number {
-  color:
-    rgba(
-      255,
-      255,
-      255,
-      .18
-    );
-
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: .14em;
-}
-
-
-/* ============================================================
-   CARD CONTENT
-   ============================================================ */
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__card-content {
-  margin-top: auto;
-
-  padding-top: 70px;
-
-  transform:
-    translateZ(28px);
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__metric {
-  margin-bottom:
-    clamp(
-      18px,
-      2.2vw,
-      28px
-    );
-
-  color: var(--ui-text);
-
-  font-size:
-    clamp(
-      62px,
-      8vw,
-      132px
-    );
-
-  font-weight: 600;
-  line-height: .76;
-  letter-spacing: -.07em;
-
-  white-space: nowrap;
-}
-
-
-.ukiyo-impact--{{ uid }}
-.ukiyo-impact__card:nth-child(6n + 3)
-.ukiyo-impact__metric,
-
-.ukiyo-impact--{{ uid }}
-.ukiyo-impact__card:nth-child(6n + 5)
-.ukiyo-impact__metric {
-  font-size:
-    clamp(
-      54px,
-      6vw,
-      96px
-    );
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__card-content h3 {
-  margin:
-    0
-    0
-    12px;
-
-  color: var(--ui-text);
-
-  font-size:
-    clamp(
-      19px,
-      1.8vw,
-      28px
-    );
-
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -.035em;
-
-  text-transform: uppercase;
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__card-content p {
-  max-width: 36ch;
-
-  margin: 0;
-
-  color: var(--ui-muted);
-
-  font-size:
-    clamp(
-      13px,
-      1vw,
-      15px
-    );
-
-  line-height: 1.6;
-}
-
-
-/* ============================================================
-   CARD FOOTER
-   ============================================================ */
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__card-footer {
-  margin-top:
-    clamp(
-      32px,
-      4vw,
-      60px
-    );
-
-  padding-top: 15px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  gap: 20px;
-
-  border-top:
-    1px
-    solid
-    var(--ui-line);
-
-  color: var(--ui-muted);
-
-  font-size: 8px;
-  font-weight: 600;
-  letter-spacing: .14em;
-
-  text-transform: uppercase;
-
-  transform:
-    translateZ(18px);
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__pulse {
-  display: inline-flex;
-  align-items: center;
-
-  gap: 7px;
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__pulse i {
-  width: 5px;
-  height: 5px;
-
-  display: block;
-
-  border-radius: 50%;
-
-  background:
-    var(--ui-accent);
-
-  box-shadow:
-    0
-    0
-    0
-    0
-    rgba(255,255,255,.25);
-
-  animation:
-    ukiyo-impact-live-{{ uid }}
-    2s
-    ease-out
-    infinite;
-}
-
-
-@keyframes ukiyo-impact-live-{{ uid }} {
-
-  0% {
-    box-shadow:
-      0
-      0
-      0
-      0
-      rgba(255,255,255,.25);
+  .us .us__container {
+    width: min(1440px, 90%);
+    margin-inline: auto;
   }
 
-  70% {
-    box-shadow:
-      0
-      0
-      0
-      8px
-      rgba(255,255,255,0);
+  .us .us__mono {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: .08em;
+    text-transform: uppercase;
   }
 
-  100% {
-    box-shadow:
-      0
-      0
-      0
-      0
-      rgba(255,255,255,0);
-  }
-
-}
-
-
-/* ============================================================
-   MARQUEE
-   ============================================================ */
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__marquee {
-  position: relative;
-  z-index: 2;
-
-  width: 100%;
-
-  margin-top:
-    clamp(
-      90px,
-      11vw,
-      160px
-    );
-
-  padding:
-    22px
-    0;
-
-  overflow: hidden;
-
-  border-top:
-    1px
-    solid
-    var(--ui-line);
-
-  border-bottom:
-    1px
-    solid
-    var(--ui-line);
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__marquee-track {
-  width: max-content;
-
-  display: flex;
-
-  animation:
-    ukiyo-impact-marquee-{{ uid }}
-    30s
-    linear
-    infinite;
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__marquee-set {
-  display: flex;
-  align-items: center;
-  flex: 0 0 auto;
-
-  gap:
-    clamp(
-      22px,
-      3vw,
-      50px
-    );
-
-  padding-right:
-    clamp(
-      22px,
-      3vw,
-      50px
-    );
-
-  color:
-    rgba(
-      255,
-      255,
-      255,
-      .74
-    );
-
-  font-size:
-    clamp(
-      18px,
-      2vw,
-      32px
-    );
-
-  font-weight: 500;
-  letter-spacing: -.03em;
-
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-
-.ukiyo-impact--{{ uid }} .ukiyo-impact__marquee-set i {
-  color: var(--ui-muted);
-
-  font-size: 11px;
-  font-style: normal;
-}
-
-
-@keyframes ukiyo-impact-marquee-{{ uid }} {
-
-  from {
-    transform:
-      translateX(0);
-  }
-
-  to {
-    transform:
-      translateX(-50%);
-  }
-
-}
-
-
-/* ============================================================
-   TABLET
-   ============================================================ */
-
-@media (max-width: 989px) {
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__header-grid {
-    grid-template-columns:
-      1fr;
-
-    gap: 36px;
-  }
-
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__intro {
-    max-width: 600px;
-  }
-
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__bento {
-    grid-template-columns:
-      repeat(
-        2,
-        minmax(0, 1fr)
-      );
-  }
-
-
-  .ukiyo-impact--{{ uid }}
-  .ukiyo-impact__card:nth-child(n) {
-    grid-column:
-      span 1;
-
-    min-height: 410px;
-  }
-
-
-  .ukiyo-impact--{{ uid }}
-  .ukiyo-impact__card:nth-child(3n + 1) {
-    grid-column:
-      span 2;
-  }
-
-}
-
-
-/* ============================================================
-   MOBILE
-   ============================================================ */
-
-@media (max-width: 749px) {
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__shell {
-    width:
-      calc(
-        100% -
-        32px
-      );
-  }
-
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__grid {
-    opacity: .20;
-
-    background-size:
-      52px
-      52px;
-  }
-
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__background-word {
-    top: 1%;
-    left: -8%;
-
-    font-size:
-      clamp(
-        110px,
-        37vw,
-        190px
-      );
-  }
-
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__glow {
-    width: 350px;
-    height: 350px;
-
-    filter:
-      blur(90px);
-  }
-
-
-  /* Header */
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__header {
-    margin-bottom: 54px;
-  }
-
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__header-top {
-    margin-bottom: 28px;
-  }
-
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__eyebrow {
-    font-size: 8px;
-  }
-
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__header-index > span {
-    font-size: 28px;
-  }
-
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__header-index small {
-    font-size: 7px;
-  }
-
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__title {
-    font-size:
-      clamp(
-        50px,
-        15.5vw,
-        78px
-      );
-
-    line-height: .84;
-  }
-
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__header-grid {
-    gap: 28px;
-  }
-
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__intro > p {
-    max-width: 34ch;
-
-    margin-bottom: 22px;
-
-    font-size: 14px;
-    line-height: 1.55;
-  }
-
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__intro-rule {
-    padding:
-      12px
-      0;
-
-    font-size: 8px;
-  }
-
-
-  /* Cards */
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__bento {
+  .us .us__hero {
+    position: relative;
     display: flex;
     flex-direction: column;
+    min-height: 760px;
+    min-height: max(700px, 100svh);
+    padding-block: clamp(28px, 4vw, 64px) 54px;
+  }
 
+  .us .us__masthead {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+  }
+
+  .us .us__brand {
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -.065em;
+  }
+
+  .us .us__masthead-label {
+    padding-left: 24px;
+    border-left: 1px solid #ffffff55;
+    color: #e4e8e2;
+  }
+
+  .us .us__motion {
+    min-height: 44px;
+    padding: 8px 0 8px 12px;
+    margin-left: auto;
+    border: 0;
+    background: transparent;
+    color: #d5dad4;
+    font-family: inherit;
+    font-size: 10px;
+    cursor: pointer;
+  }
+
+  .us .us__motion[hidden] {
+    display: none;
+  }
+
+  .us .us__hero-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    grid-template-rows: minmax(240px, 1fr) auto;
+    grid-template-areas:
+      ". description"
+      "title actions";
+    align-items: end;
+    gap: 44px;
+    flex: 1;
+    padding-top: 80px;
+  }
+
+  .us .us__title {
+    grid-area: title;
+    margin: 0;
+    color: #fff;
+    font-family: inherit;
+    font-size: clamp(48px, 6.3vw, 94px);
+    font-weight: 500;
+    line-height: 1.04;
+    letter-spacing: -.055em;
+    text-transform: none;
+    overflow-wrap: break-word;
+  }
+
+  .us .us__title span {
+    display: block;
+    text-wrap: balance;
+  }
+
+  .us .us__title span + span {
+    color: #e1e7df;
+  }
+
+  .us .us__description {
+    grid-area: description;
+    align-self: center;
+    max-width: 460px;
+    margin: 0 0 0 auto;
+    color: #ecefe9;
+    font-size: clamp(17px, 1.65vw, 22px);
+    font-weight: 400;
+    line-height: 1.55;
+    text-align: right;
+    text-wrap: pretty;
+  }
+
+  .us .us__hero-actions {
+    grid-area: actions;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 18px;
+  }
+
+  .us .us__button {
+    display: inline-flex;
+    align-items: stretch;
+    gap: 3px;
+    max-width: 100%;
+    color: #fff;
+    text-decoration: none;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: .015em;
+    text-transform: uppercase;
+  }
+
+  .us .us__button > span,
+  .us .us__button > i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 56px;
+    background: #ffffff15;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    transition: background .3s, color .3s;
+  }
+
+  .us .us__button > span {
+    padding: 17px 24px;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .us .us__button > i {
+    position: relative;
+    flex: 0 0 56px;
+    width: 56px;
+    overflow: hidden;
+    font-style: normal;
+  }
+
+  .us .us__button svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .us .us__button--white {
+    color: #101410;
+  }
+
+  .us .us__button--white > span,
+  .us .us__button--white > i {
+    background: #f3f5ef;
+  }
+
+  .us .us__scroll {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    min-height: 44px;
+    color: #d5ddd2;
+    text-decoration: none;
+  }
+
+  .us .us__scroll > span {
+    font-size: 20px;
+  }
+
+  .us .us__watermark {
+    position: absolute;
+    bottom: 20%;
+    left: 0;
+    max-width: 100%;
+    overflow: hidden;
+    color: #ffffff04;
+    font-size: 15vw;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -.07em;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .us .us__services {
+    padding-block: clamp(100px, 13vw, 200px);
+    scroll-margin-top: 40px;
+  }
+
+  .us .us__section-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 36px;
+    color: #e0e7dd;
+  }
+
+  .us .us__overview {
+    max-width: 1200px;
+    margin: 0;
+    color: #fff;
+    font-family: inherit;
+    font-size: clamp(30px, 4.5vw, 64px);
+    font-weight: 500;
+    line-height: 1.16;
+    letter-spacing: -.045em;
+    text-transform: none;
+    text-wrap: pretty;
+  }
+
+  .us .us__word {
+    display: inline-block;
+  }
+
+  .us .us__pillars {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(32px, 7vw, 110px);
+    margin-top: clamp(54px, 8vw, 112px);
+  }
+
+  .us .us__pillar {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding-top: 24px;
+    border-top: 1px solid #ffffff50;
+  }
+
+  .us .us__pillar-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    color: #d7e0d3;
+  }
+
+  .us .us__pillar-icon {
+    margin-block: 34px 24px;
+  }
+
+  .us .us__pillar-icon svg {
+    display: block;
+    width: 58px;
+    height: 58px;
+    fill: none;
+    stroke: #e5ecdf;
+    stroke-width: 1.1;
+  }
+
+  .us .us__pillar h3 {
+    margin: 0 0 24px;
+    color: #fff;
+    font-family: inherit;
+    font-size: clamp(24px, 2.5vw, 36px);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -.035em;
+    overflow-wrap: break-word;
+  }
+
+  .us .us__body {
+    max-width: 560px;
+    color: #e1e6dd;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .us .us__body p {
+    margin: 0 0 18px;
+  }
+
+  .us .us__body strong {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .us .us__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    margin: auto 0 0;
+    padding: 20px 0 0;
+  }
+
+  .us .us__tags li {
+    padding: 7px 12px;
+    border: 1px solid #ffffff38;
+    color: #e7ede3;
+    background: #00000020;
+    font-size: 9px;
+  }
+
+  .us .us__pillar-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 25px;
+  }
+
+  .us .us__pillar-actions:empty {
+    display: none;
+  }
+
+  .us .us__process-wrap {
+    padding-bottom: clamp(32px, 5vw, 80px);
+  }
+
+  .us .us__glass {
+    padding: clamp(28px, 4.5vw, 68px);
+    background: rgba(20, 24, 22, .8);
+    border: 1px solid #ffffff28;
+    backdrop-filter: blur(36px);
+    -webkit-backdrop-filter: blur(36px);
+  }
+
+  .us .us__process-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    align-items: end;
+    gap: 36px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid #ffffff28;
+  }
+
+  .us .us__kicker {
+    display: block;
+    color: #c6d1c1;
+    margin-bottom: 18px;
+  }
+
+  .us .us__process-heading h2,
+  .us .us__closing h2 {
+    margin: 0;
+    color: #fff;
+    font-family: inherit;
+    font-size: clamp(30px, 3.7vw, 52px);
+    font-weight: 500;
+    letter-spacing: -.045em;
+    line-height: 1.1;
+    text-transform: none;
+    text-wrap: balance;
+  }
+
+  .us .us__process-heading > p {
+    max-width: 350px;
+    margin: 0;
+    color: #d1d8cc;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .us .us__steps {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 28px;
+    list-style: none;
+    margin: 0;
+    padding: 48px 0;
+  }
+
+  .us .us__step {
+    min-width: 0;
+  }
+
+  .us .us__step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    margin-bottom: 24px;
+    border: 1px solid #ffffff40;
+    color: #e2ebdc;
+  }
+
+  .us .us__step h3 {
+    margin: 0 0 14px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -.02em;
+  }
+
+  .us .us__step p {
+    margin: 0;
+    color: #c9d1c4;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .us .us__closing {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding-top: 42px;
+    border-top: 1px solid #ffffff28;
+  }
+
+  .us .us__closing h2 {
+    max-width: 600px;
+    font-size: clamp(28px, 3.2vw, 44px);
+  }
+
+  .us .us__closing-actions {
+    display: flex;
+    flex-wrap: wrap;
     gap: 12px;
   }
 
-
-  .ukiyo-impact--{{ uid }}
-  .ukiyo-impact__card:nth-child(n) {
-    min-height: 350px;
-
-    padding:
-      22px
-      18px
-      18px;
+  .us .us__sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
-
-  .ukiyo-impact--{{ uid }}
-  .ukiyo-impact__card:nth-child(3n + 1) {
-    grid-column:
-      auto;
+  .us a:focus-visible,
+  .us button:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 5px;
   }
 
+  @media (hover: hover) and (pointer: fine) {
+    .us .us__button:hover > span,
+    .us .us__button:hover > i {
+      background: #fff;
+      color: #111;
+    }
 
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__card {
-    --ui-tilt-x: 0deg !important;
-    --ui-tilt-y: 0deg !important;
-
-    transform:
-      translateY(32px);
-
-    border-radius:
-      min(
-        var(--ui-radius),
-        18px
-      );
+    .us .us__button:hover svg {
+      animation: us-arrow .45s ease both;
+    }
   }
 
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__card.is-visible {
-    transform:
-      translateY(0);
+  @keyframes us-arrow {
+    0% { transform: translateX(0); opacity: 1; }
+    45% { transform: translateX(32px); opacity: 0; }
+    46% { transform: translateX(-32px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
   }
 
+  @media (max-width: 1000px) {
+    .us .us__steps {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 36px;
+    }
 
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__spotlight {
-    display: none;
+    .us .us__hero-grid {
+      gap: 30px;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    }
+
+    .us .us__button > span {
+      padding-inline: 18px;
+    }
   }
 
+  @media (max-width: 700px) {
+    .us .us__container {
+      width: calc(100% - 40px);
+    }
 
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__icon {
-    width: 50px;
-    height: 50px;
+    .us .us__hero {
+      min-height: 100svh;
+      padding-block: 24px 36px;
+    }
+
+    .us .us__masthead {
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .us .us__brand {
+      font-size: 27px;
+    }
+
+    .us .us__masthead-label {
+      font-size: 8px;
+      padding-left: 16px;
+    }
+
+    .us .us__hero-grid {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: minmax(90px, 1fr) auto auto auto;
+      grid-template-areas: "." "title" "description" "actions";
+      gap: 26px;
+      padding-top: 20px;
+    }
+
+    .us .us__title {
+      font-size: clamp(42px, 11vw, 68px);
+      line-height: 1.06;
+    }
+
+    .us .us__description {
+      align-self: start;
+      max-width: 38ch;
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.7;
+      text-align: left;
+    }
+
+    .us .us__hero-actions {
+      align-items: stretch;
+      gap: 12px;
+    }
+
+    .us .us__button {
+      width: 100%;
+    }
+
+    .us .us__button > span {
+      justify-content: flex-start;
+      flex: 1;
+    }
+
+    .us .us__scroll {
+      justify-content: flex-start;
+    }
+
+    .us .us__shade {
+      background: linear-gradient(180deg, #0006, #0005 20%, #000b 65%, #000d);
+    }
+
+    .us .us__services {
+      padding-block: 80px;
+    }
+
+    .us .us__section-meta {
+      margin-bottom: 26px;
+      font-size: 8px;
+    }
+
+    .us .us__section-meta > span:last-child {
+      display: none;
+    }
+
+    .us .us__overview {
+      font-size: clamp(29px, 7.5vw, 42px);
+      line-height: 1.2;
+    }
+
+    .us .us__pillars {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 54px;
+      margin-top: 48px;
+    }
+
+    .us .us__body {
+      font-size: 14px;
+    }
+
+    .us .us__glass {
+      padding: 28px 22px;
+    }
+
+    .us .us__process-heading {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 22px;
+      padding-bottom: 32px;
+    }
+
+    .us .us__steps {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+      padding-block: 12px;
+    }
+
+    .us .us__step {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr);
+      gap: 8px 18px;
+      padding-block: 25px;
+      border-bottom: 1px solid #ffffff18;
+    }
+
+    .us .us__step:last-child {
+      border-bottom: 0;
+    }
+
+    .us .us__step-number {
+      grid-row: span 2;
+      margin: 0;
+    }
+
+    .us .us__step h3 {
+      margin: 0;
+    }
+
+    .us .us__step p {
+      grid-column: 2;
+    }
+
+    .us .us__closing-actions {
+      width: 100%;
+    }
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .us *,
+    .us *::before,
+    .us *::after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
 
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__icon-core {
-    width: 38px;
-    height: 38px;
+    .us .us__motion {
+      display: none;
+    }
   }
-
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__icon-core svg {
-    width: 21px;
-    height: 21px;
-  }
-
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__card-content {
-    padding-top: 52px;
-  }
-
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__metric,
-  .ukiyo-impact--{{ uid }}
-  .ukiyo-impact__card:nth-child(6n + 3)
-  .ukiyo-impact__metric,
-  .ukiyo-impact--{{ uid }}
-  .ukiyo-impact__card:nth-child(6n + 5)
-  .ukiyo-impact__metric {
-    margin-bottom: 17px;
-
-    font-size:
-      clamp(
-        58px,
-        19vw,
-        86px
-      );
-  }
-
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__card-content h3 {
-    margin-bottom: 9px;
-
-    font-size:
-      clamp(
-        19px,
-        6vw,
-        25px
-      );
-  }
-
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__card-content p {
-    max-width: 33ch;
-
-    font-size: 13px;
-    line-height: 1.55;
-  }
-
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__card-footer {
-    margin-top: 30px;
-
-    font-size: 7px;
-  }
-
-
-  /* Marquee */
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__marquee {
-    margin-top: 64px;
-
-    padding:
-      17px
-      0;
-  }
-
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__marquee-set {
-    gap: 20px;
-
-    padding-right: 20px;
-
-    font-size: 17px;
-  }
-
-}
-
-
-/* ============================================================
-   SMALL MOBILE
-   ============================================================ */
-
-@media (max-width: 390px) {
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__shell {
-    width:
-      calc(
-        100% -
-        26px
-      );
-  }
-
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__title {
-    font-size:
-      clamp(
-        46px,
-        15vw,
-        64px
-      );
-  }
-
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__header-index small {
-    display: none;
-  }
-
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__intro-rule {
-    grid-template-columns:
-      1fr;
-  }
-
-
-  .ukiyo-impact--{{ uid }}
-  .ukiyo-impact__card:nth-child(n) {
-    min-height: 330px;
-  }
-
-}
-
-
-/* ============================================================
-   REDUCED MOTION
-   ============================================================ */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .ukiyo-impact--{{ uid }} [data-ui-reveal] {
-    opacity: 1 !important;
-
-    filter: none !important;
-
-    transform: none !important;
-
-    transition: none !important;
-  }
-
-
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__background-word,
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__marquee-track,
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__eyebrow-dot,
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__pulse i,
-  .ukiyo-impact--{{ uid }} .ukiyo-impact__title em {
-    animation: none !important;
-  }
-
-}
-
-{% endstyle %}
-
-
+</style>
 
 <script>
 (function () {
-  var root =
-    document.getElementById(
-      'UkiyoImpact-{{ uid }}'
-    );
+  const rootId = 'UkiyoServices-{{ section.id }}';
+  const wrapperId = 'shopify-section-{{ section.id }}';
 
-  if (!root) {
-    return;
+  window.__ukiyoServices = window.__ukiyoServices || {};
+
+  if (window.__ukiyoServices[rootId]) {
+    window.__ukiyoServices[rootId]();
   }
 
+  const lifecycle = new AbortController();
+  let cleanup = null;
 
-  if (
-    root.__ukiyoImpactCleanup &&
-    typeof root.__ukiyoImpactCleanup === 'function'
-  ) {
-    root.__ukiyoImpactCleanup();
-  }
+  function init() {
+    const root = document.getElementById(rootId);
+    if (!root) return;
+    if (cleanup) cleanup();
 
+    const events = new AbortController();
+    const signal = events.signal;
+    const video = root.querySelector('[data-us-video]');
+    const endpoint = root.querySelector('[data-us-endpoint]');
+    const motionButton = root.querySelector('[data-us-motion]');
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const revealElements = [...root.querySelectorAll('[data-us-reveal]')];
 
-  var revealItems =
-    Array.prototype.slice.call(
-      root.querySelectorAll(
-        '[data-ui-reveal]'
-      )
-    );
+    let paused = false;
+    let destroyed = false;
+    let frame = null;
+    let targetTime = 0;
+    let words = [];
+    let originalText = '';
 
+    const revealed = new Set();
+    const animations = new Set();
+    const wordHeading = root.querySelector('[data-us-words]');
 
-  var cards =
-    Array.prototype.slice.call(
-      root.querySelectorAll(
-        '[data-ui-card]'
-      )
-    );
+    /*
+      Keep one accessible copy of the heading.
+      Animate a separate visual copy word by word.
+    */
+    if (wordHeading) {
+      originalText = wordHeading.textContent.trim();
+      wordHeading.textContent = '';
 
+      const accessible = document.createElement('span');
+      accessible.className = 'us__sr';
+      accessible.textContent = originalText;
 
-  var metrics =
-    Array.prototype.slice.call(
-      root.querySelectorAll(
-        '[data-ui-metric]'
-      )
-    );
+      const visual = document.createElement('span');
+      visual.setAttribute('aria-hidden', 'true');
 
+      originalText.split(/\s+/).filter(Boolean).forEach((word, index) => {
+        if (index) visual.appendChild(document.createTextNode(' '));
 
-  var reduceMotion =
-    window.matchMedia &&
-    window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches;
+        const span = document.createElement('span');
+        span.className = 'us__word';
+        span.textContent = word;
+        visual.appendChild(span);
+      });
 
-
-  var revealObserver = null;
-  var metricObserver = null;
-
-  var metricFrames = [];
-
-  var cardListeners = [];
-
-  var destroyed = false;
-
-
-  /* ============================================================
-     REVEAL
-     ============================================================ */
-
-  function revealEverything() {
-    revealItems.forEach(
-      function (item) {
-        item.classList.add(
-          'is-visible'
-        );
-      }
-    );
-  }
-
-
-  function initializeReveal() {
-    if (
-      reduceMotion ||
-      !(
-        'IntersectionObserver'
-        in window
-      )
-    ) {
-      revealEverything();
-
-      return;
+      wordHeading.append(accessible, visual);
+      words = [...visual.querySelectorAll('.us__word')];
     }
 
+    function allowed() {
+      return !paused && !reduced.matches;
+    }
 
-    revealObserver =
-      new IntersectionObserver(
-        function (entries) {
-          entries.forEach(
-            function (entry) {
-              if (
-                !entry.isIntersecting
-              ) {
-                return;
-              }
+    function updateButton() {
+      if (!motionButton) return;
+      motionButton.hidden = reduced.matches;
+      motionButton.setAttribute('aria-pressed', String(paused));
+      motionButton.textContent = paused ? 'Enable motion' : 'Pause motion';
+    }
 
+    function seekVideo() {
+      if (
+        destroyed ||
+        !video ||
+        !allowed() ||
+        document.hidden ||
+        video.seeking ||
+        video.readyState < 1 ||
+        !Number.isFinite(video.duration)
+      ) return;
 
-              entry.target.classList.add(
-                'is-visible'
-              );
+      const safeTime = Math.max(
+        0,
+        Math.min(targetTime, Math.max(0, video.duration - .05))
+      );
 
+      if (Math.abs(video.currentTime - safeTime) < .04) return;
 
-              revealObserver.unobserve(
-                entry.target
-              );
-            }
-          );
-        },
+      try {
+        video.currentTime = safeTime;
+      } catch (error) {
+        /* Keep the poster or last decoded frame while media loads. */
+      }
+    }
+
+    function reveal(element, delay) {
+      if (!element.animate || revealed.has(element)) return;
+      revealed.add(element);
+
+      const animation = element.animate(
+        [
+          { opacity: 0, transform: 'translateY(25px)' },
+          { opacity: 1, transform: 'translateY(0)' }
+        ],
         {
-          threshold: .12,
-
-          rootMargin:
-            '0px 0px -7% 0px'
+          duration: 850,
+          delay,
+          fill: 'backwards',
+          easing: 'cubic-bezier(.16,1,.3,1)'
         }
       );
 
+      animations.add(animation);
+      animation.finished
+        .then(() => animations.delete(animation))
+        .catch(() => animations.delete(animation));
+    }
 
-    revealItems.forEach(
-      function (item) {
-        revealObserver.observe(
-          item
-        );
+    function updateWords() {
+      if (!wordHeading || !words.length) return;
+
+      if (!allowed()) {
+        words.forEach(word => {
+          word.style.opacity = '1';
+          word.style.filter = 'none';
+        });
+        return;
       }
-    );
-  }
 
+      const rect = wordHeading.getBoundingClientRect();
+      const viewport = window.innerHeight;
+      const range = Math.max(viewport * .55, rect.height);
 
-  /* ============================================================
-     METRIC PARSER
-     Automatically handles:
-     $100K+
-     1000hrs
-     +30%
-     50+
-     10x
-     3x
-     etc.
-     ============================================================ */
-
-  function parseMetric(value) {
-    var match =
-      String(value)
-      .trim()
-      .match(
-        /^([^0-9]*)([\d,.]+)(.*)$/
+      const progress = Math.max(
+        0,
+        Math.min(1, (viewport * .9 - rect.top) / range)
       );
 
+      words.forEach((word, index) => {
+        const start = (index / words.length) * .65;
+        const amount = Math.max(0, Math.min(1, (progress - start) / .35));
 
-    if (!match) {
-      return null;
+        word.style.opacity = String(.3 + amount * .7);
+        word.style.filter = `blur(${(1 - amount) * 2}px)`;
+      });
     }
 
+    function update() {
+      frame = null;
+      if (destroyed || !root.isConnected) return;
 
-    var prefix =
-      match[1] || '';
+      const rect = root.getBoundingClientRect();
+      const visible = rect.bottom > 0 && rect.top < innerHeight;
 
+      if (!visible) return;
 
-    var rawNumber =
-      match[2] || '0';
+      if (allowed()) {
+        let index = 0;
 
+        revealElements.forEach(element => {
+          const bounds = element.getBoundingClientRect();
 
-    var suffix =
-      match[3] || '';
+          if (bounds.top < innerHeight * .96 && bounds.bottom > 0) {
+            reveal(element, Math.min(index++, 4) * 80);
+          }
+        });
 
+        if (video && endpoint && Number.isFinite(video.duration)) {
+          const endpointRect = endpoint.getBoundingClientRect();
+          const endpointWithinRoot = endpointRect.top - rect.top;
+          const travel = Math.max(1, endpointWithinRoot - innerHeight * .2);
+          const progress = Math.max(0, Math.min(1, -rect.top / travel));
 
-    var numericValue =
-      parseFloat(
-        rawNumber.replace(
-          /,/g,
-          ''
-        )
-      );
+          targetTime = progress * video.duration;
+          seekVideo();
+        }
+      }
 
-
-    if (!Number.isFinite(numericValue)) {
-      return null;
+      updateWords();
     }
 
-
-    var decimals = 0;
-
-
-    if (rawNumber.indexOf('.') !== -1) {
-      decimals =
-        rawNumber.split('.')[1].length;
+    function schedule() {
+      if (frame !== null || destroyed) return;
+      frame = requestAnimationFrame(update);
     }
 
+    function stopAnimations() {
+      animations.forEach(animation => animation.cancel());
+      animations.clear();
+    }
 
-    return {
-      prefix: prefix,
-      value: numericValue,
-      suffix: suffix,
-      decimals: decimals
+    motionButton?.addEventListener('click', () => {
+      paused = !paused;
+      if (paused) stopAnimations();
+      updateButton();
+      updateWords();
+      schedule();
+    }, { signal });
+
+    reduced.addEventListener('change', () => {
+      if (reduced.matches) stopAnimations();
+      updateButton();
+      updateWords();
+      schedule();
+    }, { signal });
+
+    root.querySelector('[data-us-scroll]')?.addEventListener('click', event => {
+      event.preventDefault();
+      root.querySelector('.us__services').scrollIntoView({
+        behavior: reduced.matches ? 'auto' : 'smooth',
+        block: 'start'
+      });
+    }, { signal });
+
+    if (video) {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.pause();
+
+      video.addEventListener('loadedmetadata', schedule, { signal });
+      video.addEventListener('loadeddata', schedule, { signal });
+
+      /*
+        Once the current seek finishes, apply the latest target.
+        This avoids losing the final scroll position during a seek.
+      */
+      video.addEventListener('seeked', seekVideo, { signal });
+    }
+
+    document.addEventListener('scroll', schedule, {
+      passive: true,
+      capture: true,
+      signal
+    });
+
+    window.addEventListener('resize', schedule, { passive: true, signal });
+    document.addEventListener('visibilitychange', schedule, { signal });
+
+    let resizeObserver = null;
+
+    if ('ResizeObserver' in window) {
+      resizeObserver = new ResizeObserver(schedule);
+      resizeObserver.observe(root);
+    }
+
+    updateButton();
+    schedule();
+
+    cleanup = function () {
+      destroyed = true;
+      events.abort();
+      resizeObserver?.disconnect();
+      if (frame !== null) cancelAnimationFrame(frame);
+      stopAnimations();
+      video?.pause();
+
+      if (wordHeading) {
+        wordHeading.textContent = originalText;
+      }
     };
   }
 
-
-  function formatNumber(
-    value,
-    decimals
-  ) {
-    if (decimals > 0) {
-      return value.toFixed(
-        decimals
-      );
-    }
-
-
-    return Math.round(value)
-      .toLocaleString(
-        'en-US'
-      );
-  }
-
-
-  function animateMetric(element) {
-    if (
-      !element ||
-      element.getAttribute(
-        'data-ui-counted'
-      ) === 'true'
-    ) {
-      return;
-    }
-
-
-    element.setAttribute(
-      'data-ui-counted',
-      'true'
-    );
-
-
-    var original =
-      element.getAttribute(
-        'data-ui-metric'
-      ) || '';
-
-
-    var parsed =
-      parseMetric(
-        original
-      );
-
-
-    if (
-      !parsed ||
-      reduceMotion
-    ) {
-      element.textContent =
-        original;
-
-      return;
-    }
-
-
-    var startTime = null;
-
-    var duration = 1500;
-
-
-    function frame(timestamp) {
-      if (destroyed) {
-        return;
-      }
-
-
-      if (startTime === null) {
-        startTime =
-          timestamp;
-      }
-
-
-      var progress =
-        Math.min(
-          1,
-          (
-            timestamp -
-            startTime
-          ) /
-          duration
-        );
-
-
-      var eased =
-        1 -
-        Math.pow(
-          1 -
-          progress,
-          4
-        );
-
-
-      var current =
-        parsed.value *
-        eased;
-
-
-      element.textContent =
-        parsed.prefix +
-        formatNumber(
-          current,
-          parsed.decimals
-        ) +
-        parsed.suffix;
-
-
-      if (progress < 1) {
-        var frameId =
-          window.requestAnimationFrame(
-            frame
-          );
-
-
-        metricFrames.push(
-          frameId
-        );
-      } else {
-        element.textContent =
-          original;
-      }
-    }
-
-
-    var firstFrame =
-      window.requestAnimationFrame(
-        frame
-      );
-
-
-    metricFrames.push(
-      firstFrame
-    );
-  }
-
-
-  function initializeMetrics() {
-    if (
-      reduceMotion ||
-      !(
-        'IntersectionObserver'
-        in window
-      )
-    ) {
-      metrics.forEach(
-        function (metric) {
-          metric.textContent =
-            metric.getAttribute(
-              'data-ui-metric'
-            ) || '';
-        }
-      );
-
-      return;
-    }
-
-
-    metricObserver =
-      new IntersectionObserver(
-        function (entries) {
-          entries.forEach(
-            function (entry) {
-              if (
-                !entry.isIntersecting
-              ) {
-                return;
-              }
-
-
-              animateMetric(
-                entry.target
-              );
-
-
-              metricObserver.unobserve(
-                entry.target
-              );
-            }
-          );
-        },
-        {
-          threshold: .55
-        }
-      );
-
-
-    metrics.forEach(
-      function (metric) {
-        metricObserver.observe(
-          metric
-        );
-      }
-    );
-  }
-
-
-  /* ============================================================
-     POINTER SPOTLIGHT + SUBTLE TILT
-     ============================================================ */
-
-  function initializeCards() {
-    if (
-      reduceMotion ||
-      !window.matchMedia ||
-      !window.matchMedia(
-        '(hover: hover) and (pointer: fine)'
-      ).matches
-    ) {
-      return;
-    }
-
-
-    cards.forEach(
-      function (card) {
-
-        function move(event) {
-          var rect =
-            card.getBoundingClientRect();
-
-
-          var x =
-            event.clientX -
-            rect.left;
-
-
-          var y =
-            event.clientY -
-            rect.top;
-
-
-          var xPercent =
-            (
-              x /
-              rect.width
-            ) *
-            100;
-
-
-          var yPercent =
-            (
-              y /
-              rect.height
-            ) *
-            100;
-
-
-          var rotateY =
-            (
-              (
-                x /
-                rect.width
-              ) -
-              .5
-            ) *
-            2.2;
-
-
-          var rotateX =
-            (
-              .5 -
-              (
-                y /
-                rect.height
-              )
-            ) *
-            2.2;
-
-
-          card.style.setProperty(
-            '--ui-card-x',
-            xPercent.toFixed(2) +
-            '%'
-          );
-
-
-          card.style.setProperty(
-            '--ui-card-y',
-            yPercent.toFixed(2) +
-            '%'
-          );
-
-
-          card.style.setProperty(
-            '--ui-tilt-x',
-            rotateX.toFixed(2) +
-            'deg'
-          );
-
-
-          card.style.setProperty(
-            '--ui-tilt-y',
-            rotateY.toFixed(2) +
-            'deg'
-          );
-        }
-
-
-        function leave() {
-          card.style.setProperty(
-            '--ui-tilt-x',
-            '0deg'
-          );
-
-
-          card.style.setProperty(
-            '--ui-tilt-y',
-            '0deg'
-          );
-        }
-
-
-        card.addEventListener(
-          'pointermove',
-          move
-        );
-
-
-        card.addEventListener(
-          'pointerleave',
-          leave
-        );
-
-
-        cardListeners.push({
-          card: card,
-          move: move,
-          leave: leave
-        });
-      }
-    );
-  }
-
-
-  /* ============================================================
-     CLEANUP
-     ============================================================ */
-
-  function cleanup() {
-    destroyed = true;
-
-
-    if (revealObserver) {
-      revealObserver.disconnect();
-    }
-
-
-    if (metricObserver) {
-      metricObserver.disconnect();
-    }
-
-
-    metricFrames.forEach(
-      function (frame) {
-        window.cancelAnimationFrame(
-          frame
-        );
-      }
-    );
-
-
-    cardListeners.forEach(
-      function (entry) {
-        entry.card.removeEventListener(
-          'pointermove',
-          entry.move
-        );
-
-
-        entry.card.removeEventListener(
-          'pointerleave',
-          entry.leave
-        );
-      }
-    );
-
-
-    root.removeAttribute(
-      'data-ui-ready'
-    );
-  }
-
-
-  root.__ukiyoImpactCleanup =
-    cleanup;
-
-
-  root.setAttribute(
-    'data-ui-ready',
-    'true'
-  );
-
-
-  initializeReveal();
-  initializeMetrics();
-  initializeCards();
-
-
-  document.addEventListener(
-    'shopify:section:unload',
-    function onSectionUnload(event) {
-      if (
-        !event.target ||
-        !event.target.contains(root)
-      ) {
-        return;
-      }
-
-
+  document.addEventListener('shopify:section:load', event => {
+    if (event.target.id === wrapperId) init();
+  }, { signal: lifecycle.signal });
+
+  document.addEventListener('shopify:section:unload', event => {
+    if (event.target.id === wrapperId && cleanup) {
       cleanup();
-
-
-      document.removeEventListener(
-        'shopify:section:unload',
-        onSectionUnload
-      );
+      cleanup = null;
     }
-  );
+  }, { signal: lifecycle.signal });
+
+  window.__ukiyoServices[rootId] = function () {
+    lifecycle.abort();
+    if (cleanup) cleanup();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, {
+      once: true,
+      signal: lifecycle.signal
+    });
+  } else {
+    init();
+  }
 })();
 </script>
 
-
-
 {% schema %}
 {
-  "name": "Client Impact",
+  "name": "Services Hero",
   "tag": "section",
-  "class": "section-client-impact",
-
+  "class": "section-services-hero",
+  "max_blocks": 8,
   "settings": [
-
     {
       "type": "header",
-      "content": "Heading"
+      "content": "Hero"
     },
-
     {
       "type": "text",
-      "id": "badge",
-      "label": "Eyebrow",
-      "default": "(What We Accomplish)"
+      "id": "watermark",
+      "label": "Background watermark text",
+      "default": "SERVICES"
     },
-
     {
       "type": "text",
-      "id": "title_before",
+      "id": "strap",
+      "label": "Small label",
+      "default": "Our Services"
+    },
+    {
+      "type": "text",
+      "id": "title_line1",
       "label": "Title line 1",
-      "default": "For Our"
+      "default": "Let's Plant"
     },
-
     {
       "type": "text",
-      "id": "title_gradient",
+      "id": "title_line2",
       "label": "Title line 2",
-      "default": "Clients"
+      "default": "Your Flag"
     },
-
     {
       "type": "textarea",
-      "id": "intro_text",
-      "label": "Introduction",
-      "default": "We build for outcomes, not output. Every engagement is designed to create clearer positioning, stronger systems, better customer experiences, and measurable momentum."
+      "id": "description",
+      "label": "Hero description",
+      "default": "We work with founders, CEOs, and leadership teams to shape defining ideas and build strategy and design systems for growth at scale."
     },
-
     {
       "type": "text",
-      "id": "background_word",
-      "label": "Large background word",
-      "default": "IMPACT"
+      "id": "scroll_text",
+      "label": "Scroll link text",
+      "default": "Scroll to explore"
     },
-
-
     {
       "type": "header",
-      "content": "Marquee"
+      "content": "Background video"
     },
-
     {
-      "type": "checkbox",
-      "id": "show_marquee",
-      "label": "Show moving capability rail",
-      "default": true
+      "type": "text",
+      "id": "video_url",
+      "label": "Scroll-controlled MP4 URL",
+      "default": "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260521_064421_279656fd-e76f-40a0-8fed-7456d4f7715a.mp4",
+      "info": "The video advances as visitors scroll. Short videos encoded with frequent keyframes scrub most smoothly."
     },
-
-
     {
-      "type": "header",
-      "content": "Colors"
+      "type": "image_picker",
+      "id": "poster",
+      "label": "Video poster",
+      "info": "Shown while video loads and when reduced motion is enabled."
     },
-
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Section background",
-      "default": "#050505"
-    },
-
-    {
-      "type": "color",
-      "id": "card_color",
-      "label": "Card background",
-      "default": "#090909"
-    },
-
-    {
-      "type": "color",
-      "id": "card_hover_color",
-      "label": "Card hover background",
-      "default": "#0D0D0D"
-    },
-
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Primary text",
-      "default": "#F5F5F2"
-    },
-
-    {
-      "type": "color",
-      "id": "muted_color",
-      "label": "Secondary text",
-      "default": "#777774"
-    },
-
-    {
-      "type": "color",
-      "id": "line_color",
-      "label": "Lines",
-      "default": "#242424"
-    },
-
-    {
-      "type": "color",
-      "id": "accent_color",
-      "label": "Accent",
-      "default": "#FFFFFF"
-    },
-
-    {
-      "type": "color",
-      "id": "accent_soft",
-      "label": "Secondary ambient glow",
-      "default": "#555555"
-    },
-
-
     {
       "type": "header",
-      "content": "Layout"
+      "content": "Services overview"
     },
-
     {
-      "type": "range",
-      "id": "card_radius",
-      "label": "Card corner radius",
-      "min": 0,
-      "max": 30,
-      "step": 2,
-      "unit": "px",
-      "default": 8
+      "type": "textarea",
+      "id": "overview",
+      "label": "Large animated statement",
+      "default": "We blend storytelling with strategy to capture attention and drive growth."
     },
-
     {
-      "type": "range",
-      "id": "padding_top",
-      "label": "Top spacing",
-      "min": 60,
-      "max": 220,
-      "step": 10,
-      "unit": "px",
-      "default": 150
+      "type": "text",
+      "id": "brand_label",
+      "label": "Brand service label",
+      "default": "Brand Development"
     },
-
     {
-      "type": "range",
-      "id": "padding_bottom",
-      "label": "Bottom spacing",
-      "min": 60,
-      "max": 240,
-      "step": 10,
-      "unit": "px",
-      "default": 150
+      "type": "text",
+      "id": "brand_title",
+      "label": "Brand service title",
+      "default": "UKIYO PRODUCTIONS"
+    },
+    {
+      "type": "richtext",
+      "id": "brand_body",
+      "label": "Brand service description",
+      "default": "<p>At Ukiyo Productions, we build the strategy, creative, and content systems that help brands become easier to understand, easier to trust, and easier to grow.</p><p><strong>Our work blends positioning, storytelling, and execution so the brand does more than look good—it performs better.</strong></p>"
+    },
+    {
+      "type": "text",
+      "id": "brand_tags",
+      "label": "Brand service tags",
+      "default": "Branding, Content, Strategy",
+      "info": "Separate tags with commas."
+    },
+    {
+      "type": "text",
+      "id": "ai_label",
+      "label": "AI service label",
+      "default": "AI Solutions"
+    },
+    {
+      "type": "text",
+      "id": "ai_title",
+      "label": "AI service title",
+      "default": "AUTOMATEIQ"
+    },
+    {
+      "type": "richtext",
+      "id": "ai_body",
+      "label": "AI service description",
+      "default": "<p>We use AI automation and operational systems to help brands reduce friction, respond faster, and scale more intelligently.</p><p>The goal is greater clarity, efficiency, and better business support behind the scenes.</p>"
+    },
+    {
+      "type": "text",
+      "id": "ai_tags",
+      "label": "AI service tags",
+      "default": "AI, Automation, Data",
+      "info": "Separate tags with commas."
+    },
+    {
+      "type": "header",
+      "content": "Our process"
+    },
+    {
+      "type": "text",
+      "id": "process_title",
+      "label": "Process heading",
+      "default": "How We Deliver"
+    },
+    {
+      "type": "textarea",
+      "id": "process_intro",
+      "label": "Process introduction",
+      "default": "A focused methodology that turns ideas into meaningful work and measurable progress."
+    },
+    {
+      "type": "text",
+      "id": "step_1_title",
+      "label": "Step 1 title",
+      "default": "Discovery"
+    },
+    {
+      "type": "textarea",
+      "id": "step_1_body",
+      "label": "Step 1 description",
+      "default": "We start by understanding the brand, the audience, the friction points, and what success actually needs to look like."
+    },
+    {
+      "type": "text",
+      "id": "step_2_title",
+      "label": "Step 2 title",
+      "default": "Strategy"
+    },
+    {
+      "type": "textarea",
+      "id": "step_2_body",
+      "label": "Step 2 description",
+      "default": "We build a focused roadmap that connects positioning, creative direction, and operational priorities."
+    },
+    {
+      "type": "text",
+      "id": "step_3_title",
+      "label": "Step 3 title",
+      "default": "Creation"
+    },
+    {
+      "type": "textarea",
+      "id": "step_3_body",
+      "label": "Step 3 description",
+      "default": "We turn strategy into real assets, systems, and experiences that people can engage with."
+    },
+    {
+      "type": "text",
+      "id": "step_4_title",
+      "label": "Step 4 title",
+      "default": "Launch & Iterate"
+    },
+    {
+      "type": "textarea",
+      "id": "step_4_body",
+      "label": "Step 4 description",
+      "default": "We put the work into motion, review how it performs, and refine from there."
+    },
+    {
+      "type": "text",
+      "id": "closing_title",
+      "label": "Closing heading",
+      "default": "What are you ready to build?"
     }
-
   ],
-
   "blocks": [
-
     {
-      "type": "card",
-      "name": "Impact outcome",
-
+      "type": "button",
+      "name": "Button",
       "settings": [
-
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Button text",
+          "default": "Let's Talk"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button link",
+          "info": "Choose a link to display the button."
+        },
         {
           "type": "select",
-          "id": "icon",
-          "label": "Icon",
+          "id": "placement",
+          "label": "Button placement",
           "options": [
             {
-              "value": "trending_up",
-              "label": "Trending up"
+              "value": "hero",
+              "label": "Hero"
             },
             {
-              "value": "workflow",
-              "label": "Workflow"
+              "value": "brand",
+              "label": "UKIYO Productions"
             },
             {
-              "value": "target",
-              "label": "Target"
+              "value": "ai",
+              "label": "AutomateIQ"
             },
             {
-              "value": "globe",
-              "label": "Globe"
-            },
-            {
-              "value": "bot",
-              "label": "AI / Bot"
-            },
-            {
-              "value": "users",
-              "label": "Users"
+              "value": "process",
+              "label": "Process closing"
             }
           ],
-          "default": "trending_up"
-        },
-
-        {
-          "type": "text",
-          "id": "metric",
-          "label": "Metric / value",
-          "default": "$100K+",
-          "info": "Numbers automatically count up when the card enters view."
-        },
-
-        {
-          "type": "text",
-          "id": "card_title",
-          "label": "Outcome title",
-          "default": "Revenue Growth"
-        },
-
-        {
-          "type": "textarea",
-          "id": "description",
-          "label": "Description",
-          "default": "Scaled monthly sales from $2k to $100k+ for multiple clients."
+          "default": "hero"
         }
-
       ]
     }
-
   ],
-
   "presets": [
-
     {
-      "name": "Client Impact",
-
-      "blocks": [
-
-        {
-          "type": "card",
-          "settings": {
-            "icon": "trending_up",
-            "metric": "$100K+",
-            "card_title": "Revenue Growth",
-            "description": "Scaled monthly sales from $2k to $100k+ for multiple clients."
-          }
-        },
-
-        {
-          "type": "card",
-          "settings": {
-            "icon": "workflow",
-            "metric": "1000hrs",
-            "card_title": "Workflow Optimization",
-            "description": "Freed an average of 1,000 monthly staff hours through connected systems and automation."
-          }
-        },
-
-        {
-          "type": "card",
-          "settings": {
-            "icon": "target",
-            "metric": "+30%",
-            "card_title": "Brand Elevation",
-            "description": "Repositioned organizations around clearer stories, stronger identities, and measurable engagement."
-          }
-        },
-
-        {
-          "type": "card",
-          "settings": {
-            "icon": "globe",
-            "metric": "50+",
-            "card_title": "Web Ecosystems",
-            "description": "Built custom digital experiences designed to convert attention into meaningful action."
-          }
-        },
-
-        {
-          "type": "card",
-          "settings": {
-            "icon": "bot",
-            "metric": "10x",
-            "card_title": "AI Content Engine",
-            "description": "Created AI-supported systems that dramatically expand creative output without losing the human point of view."
-          }
-        },
-
-        {
-          "type": "card",
-          "settings": {
-            "icon": "users",
-            "metric": "3x",
-            "card_title": "Customer Value",
-            "description": "Built smarter customer journeys, retention systems, and strategic upsells to increase long-term value."
-          }
-        }
-
-      ]
+      "name": "Services Hero"
     }
-
   ]
 }
 {% endschema %}
