@@ -16,6 +16,7 @@
     },
     "services_hero_7xAyQh": {
       "type": "services-hero",
+      "disabled": true,
       "name": "Services Hero",
       "settings": {
         "watermark": "SERVICES",
