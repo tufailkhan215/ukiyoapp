@@ -29,6 +29,7 @@
     },
     "text_marquee_Hxikpp": {
       "type": "text-marquee",
+      "disabled": true,
       "custom_css": [],
       "name": "Text Marquee",
       "settings": {
