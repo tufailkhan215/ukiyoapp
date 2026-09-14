@@ -1,7 +1,8 @@
 {% comment %}
   UKIYO — Responsive Cinematic Hero
-  Preserves existing content and video settings.
-  Adds removable button blocks and mobile layout controls.
+  Mobile autoplay and playback-state correction.
+  Optional upper-left logo.
+  Existing content, layout, buttons, and settings preserved.
 {% endcomment %}
 
 {% assign custom_buttons = section.blocks | where: 'type', 'button' %}
@@ -134,10 +135,11 @@
       {% if section.settings.hero_video_url != blank %}
         <video
           class="uc__hero-video"
+          autoplay
           muted
           loop
           playsinline
-          preload="metadata"
+          preload="auto"
           tabindex="-1"
           {% if section.settings.hero_poster != blank %}
             poster="{{ section.settings.hero_poster | image_url: width: 2400 }}"
@@ -155,20 +157,25 @@
     <div class="uc__shade" aria-hidden="true"></div>
 
     <div class="uc__hero-inner">
-      <div class="uc__identity" data-uc-reveal>
-        {% if section.settings.logo != blank %}
-          {{
-            section.settings.logo
-            | image_url: width: 400
-            | image_tag:
-              class: 'uc__logo',
-              widths: '160, 240, 400',
-              sizes: '(max-width: 760px) 115px, 150px',
-              loading: 'eager',
-              alt: 'UKIYO'
-          }}
-        {% else %}
-          <span class="uc__wordmark">UKIYO</span>
+      <div
+        class="uc__identity{% if section.settings.show_logo == false %} uc__identity--no-logo{% endif %}"
+        data-uc-reveal
+      >
+        {% if section.settings.show_logo != false %}
+          {% if section.settings.logo != blank %}
+            {{
+              section.settings.logo
+              | image_url: width: 400
+              | image_tag:
+                class: 'uc__logo',
+                widths: '160, 240, 400',
+                sizes: '(max-width: 760px) 115px, 150px',
+                loading: 'eager',
+                alt: 'UKIYO'
+            }}
+          {% else %}
+            <span class="uc__wordmark">UKIYO</span>
+          {% endif %}
         {% endif %}
 
         {% if section.settings.subtitle != blank %}
@@ -253,7 +260,7 @@
           data-uc-motion
           hidden
         >
-          Pause motion
+          Play motion
         </button>
       </div>
     </div>
@@ -408,13 +415,12 @@
     z-index: 0;
     transform: translate3d(0, var(--uc-video-y, 0px), 0);
     pointer-events: none;
-    background:
-      radial-gradient(
-        ellipse at 65% 20%,
-        #6c7d76,
-        #253d36 40%,
-        #111c19 80%
-      );
+    background: radial-gradient(
+      ellipse at 65% 20%,
+      #6c7d76,
+      #253d36 40%,
+      #111c19 80%
+    );
   }
 
   .uc .uc__poster,
@@ -886,7 +892,6 @@
     }
   }
 
-  /* Mobile: headline, description, primary actions, secondary actions. */
   @media (max-width: 760px) {
     .uc {
       --uc-gutter: clamp(20px, 5vw, 30px);
@@ -945,15 +950,14 @@
     }
 
     .uc .uc__shade {
-      background:
-        linear-gradient(
-          180deg,
-          rgba(0,0,0,.3) 0%,
-          rgba(0,0,0,.2) 15%,
-          rgba(0,0,0,.46) 35%,
-          rgba(0,0,0,.76) 68%,
-          rgba(0,0,0,.9) 100%
-        );
+      background: linear-gradient(
+        180deg,
+        rgba(0,0,0,.3) 0%,
+        rgba(0,0,0,.2) 15%,
+        rgba(0,0,0,.46) 35%,
+        rgba(0,0,0,.76) 68%,
+        rgba(0,0,0,.9) 100%
+      );
     }
 
     .uc .uc__title {
@@ -1078,6 +1082,11 @@
       display: none;
     }
   }
+
+  #UkiyoCinematic-{{ section.id }} .uc__identity--no-logo .uc__tagline {
+    padding-left: 0;
+    border-left: 0;
+  }
 </style>
 
 <script>
@@ -1127,20 +1136,70 @@
       return !paused && !reduced.matches;
     }
 
-    function hasBlockedVideo() {
-      return videos.some(video => video.dataset.ucPlayback === 'blocked');
+    function isVisible(video) {
+      const bounds = video.getBoundingClientRect();
+
+      return bounds.width > 0 &&
+        bounds.height > 0 &&
+        bounds.bottom > 0 &&
+        bounds.top < window.innerHeight;
+    }
+
+    function shouldPlay(video) {
+      return !destroyed &&
+        canAnimate() &&
+        isVisible(video) &&
+        !document.hidden;
+    }
+
+    function isPlaying(video) {
+      return !video.paused &&
+        !video.ended &&
+        video.dataset.ucPlayback === 'playing';
     }
 
     function updateButton() {
-      if (!button) return;
+      if (!button || destroyed) return;
+
+      const visibleVideos = videos.filter(isVisible);
+      const playing = visibleVideos.some(isPlaying);
+
+      const blocked = visibleVideos.some(
+        video => video.dataset.ucPlayback === 'blocked'
+      );
+
+      const failed = visibleVideos.some(
+        video => video.dataset.ucPlayback === 'failed'
+      );
+
+      const waiting = visibleVideos.some(
+        video => playbackAttempts.has(video) ||
+          video.dataset.ucPlayback === 'waiting'
+      );
 
       button.hidden = reduced.matches;
       button.setAttribute('aria-pressed', String(paused));
+
       button.textContent = paused
         ? 'Play motion'
-        : hasBlockedVideo()
-          ? 'Play video'
-          : 'Pause motion';
+        : playing
+          ? 'Pause motion'
+          : failed
+            ? 'Retry video'
+            : blocked
+              ? 'Play video'
+              : waiting
+                ? 'Loading video…'
+                : visibleVideos.length
+                  ? 'Play video'
+                  : 'Pause motion';
+
+      button.setAttribute(
+        'aria-label',
+        playing && !paused
+          ? 'Video playing. Pause motion'
+          : button.textContent
+      );
     }
 
     function animateElement(element, index) {
@@ -1191,26 +1250,30 @@
       });
     }
 
-    function updateVideos(force) {
+    function updateVideos(force, retryBlocked = false) {
+      if (destroyed) return;
+
       videos.forEach(video => {
-        const bounds = video.getBoundingClientRect();
+        const wanted = shouldPlay(video);
+        const previous = videoStates.get(video);
 
-        const visible =
-          bounds.bottom > -100 &&
-          bounds.top < window.innerHeight + 100;
+        videoStates.set(video, wanted);
 
-        const shouldPlay =
-          canAnimate() &&
-          visible &&
-          !document.hidden;
+        video.autoplay =
+          video.classList.contains('uc__hero-video') && wanted;
 
-        if (!force && videoStates.get(video) === shouldPlay) return;
-        videoStates.set(video, shouldPlay);
-
-        if (!shouldPlay) {
+        if (!wanted) {
           video.pause();
           return;
         }
+
+        if (!force && previous === wanted) return;
+        if (playbackAttempts.has(video)) return;
+
+        if (
+          !retryBlocked &&
+          /^(blocked|failed)$/.test(video.dataset.ucPlayback || '')
+        ) return;
 
         video.muted = true;
         video.defaultMuted = true;
@@ -1221,38 +1284,77 @@
         video.setAttribute('playsinline', '');
         video.setAttribute('webkit-playsinline', '');
 
-        if (!video.paused) return;
+        if (isPlaying(video)) return;
+
+        if (
+          retryBlocked &&
+          video.dataset.ucPlayback === 'failed'
+        ) {
+          delete video.dataset.ucPlayback;
+          video.load();
+        }
 
         const attempt = {};
+
         playbackAttempts.set(video, attempt);
+        video.dataset.ucPlayback = 'waiting';
 
-        const promise = video.play();
+        function failed(error) {
+          if (
+            destroyed ||
+            playbackAttempts.get(video) !== attempt
+          ) return;
 
-        if (promise && typeof promise.then === 'function') {
-          promise.then(() => {
-            if (
-              destroyed ||
-              playbackAttempts.get(video) !== attempt
-            ) return;
+          if (!shouldPlay(video)) return;
 
-            delete video.dataset.ucPlayback;
+          video.dataset.ucPlayback =
+            error.name === 'NotAllowedError'
+              ? 'blocked'
+              : error.name === 'AbortError'
+                ? 'paused'
+                : 'failed';
 
-            if (!videoStates.get(video)) video.pause();
-            updateButton();
-          }).catch(error => {
-            if (
-              destroyed ||
-              playbackAttempts.get(video) !== attempt ||
-              !videoStates.get(video)
-            ) return;
+          if (error.name === 'AbortError') {
+            videoStates.delete(video);
+          }
+        }
 
-            if (error.name === 'NotAllowedError') {
-              video.dataset.ucPlayback = 'blocked';
-              updateButton();
-            }
-          });
+        function finished() {
+          if (playbackAttempts.get(video) === attempt) {
+            playbackAttempts.delete(video);
+          }
+
+          if (destroyed) return;
+
+          updateButton();
+          requestUpdate();
+        }
+
+        try {
+          const result = video.play();
+
+          Promise.resolve(result)
+            .then(() => {
+              if (
+                destroyed ||
+                playbackAttempts.get(video) !== attempt
+              ) return;
+
+              if (!shouldPlay(video)) {
+                video.pause();
+              } else if (!video.paused) {
+                video.dataset.ucPlayback = 'playing';
+              }
+            })
+            .catch(failed)
+            .finally(finished);
+        } catch (error) {
+          failed(error);
+          finished();
         }
       });
+
+      updateButton();
     }
 
     function updateParallax() {
@@ -1280,6 +1382,7 @@
 
     function update() {
       frame = null;
+
       if (destroyed || !root.isConnected) return;
 
       updateParallax();
@@ -1299,6 +1402,7 @@
 
     function syncMotion(forceVideo) {
       updateButton();
+
       if (!canAnimate()) stopAnimations();
 
       updateParallax();
@@ -1307,17 +1411,49 @@
     }
 
     button?.addEventListener('click', () => {
-      if (hasBlockedVideo() && !paused) {
-        videos.forEach(video => {
-          delete video.dataset.ucPlayback;
-        });
+      const visibleVideos = videos.filter(isVisible);
+      const playing = visibleVideos.some(isPlaying);
+
+      if (paused || (visibleVideos.length && !playing)) {
+        paused = false;
+        revealed.clear();
+        updateVideos(true, true);
       } else {
-        paused = !paused;
-        if (!paused) revealed.clear();
+        paused = true;
       }
 
       syncMotion(true);
     }, { signal });
+
+    function retryOnGesture(event) {
+      if (
+        !event.isTrusted ||
+        !canAnimate() ||
+        destroyed
+      ) return;
+
+      if (button?.contains(event.target)) return;
+
+      if (
+        event.type === 'keydown' &&
+        !['Enter', ' '].includes(event.key)
+      ) return;
+
+      updateVideos(true, true);
+    }
+
+    root.addEventListener('pointerup', retryOnGesture, {
+      passive: true,
+      signal
+    });
+
+    root.addEventListener('keydown', retryOnGesture, { signal });
+
+    window.addEventListener(
+      'pageshow',
+      () => syncMotion(true),
+      { signal }
+    );
 
     if (scrollLink && statement) {
       scrollLink.addEventListener('click', event => {
@@ -1330,7 +1466,11 @@
       }, { signal });
     }
 
-    reduced.addEventListener('change', () => syncMotion(true), { signal });
+    reduced.addEventListener(
+      'change',
+      () => syncMotion(true),
+      { signal }
+    );
 
     document.addEventListener(
       'visibilitychange',
@@ -1354,16 +1494,56 @@
       video.defaultMuted = true;
       video.playsInline = true;
 
-      video.addEventListener(
-        'loadeddata',
-        () => updateVideos(true),
-        { signal }
-      );
+      delete video.dataset.ucPlayback;
+
+      ['loadedmetadata', 'loadeddata', 'canplay'].forEach(name => {
+        video.addEventListener(
+          name,
+          () => updateVideos(true),
+          { signal }
+        );
+      });
 
       video.addEventListener('playing', () => {
-        delete video.dataset.ucPlayback;
+        if (!shouldPlay(video)) {
+          video.pause();
+          return;
+        }
+
+        video.dataset.ucPlayback = 'playing';
         updateButton();
       }, { signal });
+
+      video.addEventListener('pause', () => {
+        if (
+          !/^(blocked|failed)$/.test(video.dataset.ucPlayback || '')
+        ) {
+          video.dataset.ucPlayback = 'paused';
+        }
+
+        updateButton();
+      }, { signal });
+
+      video.addEventListener('waiting', () => {
+        if (
+          !/^(blocked|failed)$/.test(video.dataset.ucPlayback || '')
+        ) {
+          video.dataset.ucPlayback = 'waiting';
+        }
+
+        updateButton();
+      }, { signal });
+
+      function mediaError() {
+        video.dataset.ucPlayback = 'failed';
+        updateButton();
+      }
+
+      video.addEventListener('error', mediaError, { signal });
+
+      video.querySelectorAll('source').forEach(source => {
+        source.addEventListener('error', mediaError, { signal });
+      });
     });
 
     root.querySelectorAll('img').forEach(image => {
@@ -1387,7 +1567,11 @@
       if (frame !== null) cancelAnimationFrame(frame);
 
       stopAnimations();
-      videos.forEach(video => video.pause());
+
+      videos.forEach(video => {
+        video.autoplay = false;
+        video.pause();
+      });
     };
   }
 
@@ -1433,6 +1617,13 @@
     {
       "type": "header",
       "content": "Brand and headline"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_logo",
+      "label": "Show upper-left logo",
+      "default": true,
+      "info": "Show or hide the uploaded logo or UKIYO lettering. The subtitle stays visible."
     },
     {
       "type": "image_picker",
