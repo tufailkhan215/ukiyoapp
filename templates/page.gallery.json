@@ -333,6 +333,7 @@
     },
     "gallery_featured_cta_GkryRU": {
       "type": "gallery-featured-cta",
+      "disabled": true,
       "name": "Gallery Featured CTA",
       "settings": {
         "show_icon": true,
