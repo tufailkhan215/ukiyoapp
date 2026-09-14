@@ -1,81 +1,397 @@
-{% comment %} Source structure and Tailwind classes from reference (HeroSection) {% endcomment %}
-<section class="relative min-h-[110vh] flex items-center justify-center overflow-hidden bg-black" id="hero">
-  <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black" aria-hidden="true"></div>
-  <div class="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30" aria-hidden="true"></div>
-  <div class="absolute inset-0 opacity-[0.02]" aria-hidden="true" style="background-image: linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px); background-size: 80px 80px;"></div>
+<script>
+(function () {
+  const rootId = 'UkiyoCinematic-{{ section.id }}';
+  const registryKey = '__ukiyoCinematicControllers';
 
-  <div class="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-12 text-center">
-    <div class="mb-10">
-      <div class="inline-flex items-center gap-4">
-        <span class="w-14 h-px bg-gradient-to-r from-transparent to-white/40" aria-hidden="true"></span>
-        <span class="text-[11px] font-medium text-white/50 tracking-[0.35em] uppercase">{{ section.settings.subtitle | default: 'Creative Branding Agency' }}</span>
-        <span class="w-14 h-px bg-gradient-to-l from-transparent to-white/40" aria-hidden="true"></span>
-      </div>
-    </div>
+  window[registryKey] = window[registryKey] || {};
 
-    <div class="overflow-hidden mb-8">
-      <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-bold leading-[0.9] tracking-tight">
-        <span class="text-white">{{ section.settings.headline_line1 | default: 'We Create' }}</span><br>
-        <span class="text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-600">{{ section.settings.headline_line2 | default: 'Exceptional' }}</span><br>
-        <span class="text-white">{{ section.settings.headline_line3 | default: 'Brand Experiences' }}</span>
-      </h1>
-    </div>
+  /*
+    Remove the previous controller when Shopify reloads
+    this section without refreshing the page.
+  */
+  if (window[registryKey][rootId]) {
+    window[registryKey][rootId]();
+  }
 
-    <p class="text-base md:text-lg lg:text-xl text-white/40 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
-      {{ section.settings.description | default: 'Through strategy, creativity, and cutting-edge automation—delivering impactful results that transform businesses.' }}
-    </p>
+  const lifecycle = new AbortController();
+  let cleanup = null;
 
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-      {% if section.settings.cta_primary_text != blank and section.settings.cta_primary_link != blank %}
-        <a href="{{ section.settings.cta_primary_link }}">
-          <button type="button" class="group relative px-8 py-4 bg-white text-black rounded-full font-semibold text-base overflow-hidden">
-            <span class="relative z-10 flex items-center gap-2">
-              {{ section.settings.cta_primary_text }}
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-            </span>
-          </button>
-        </a>
-      {% endif %}
-      {% if section.settings.cta_secondary_text != blank and section.settings.cta_secondary_link != blank %}
-        <a href="{{ section.settings.cta_secondary_link }}">
-          <button type="button" class="group px-8 py-4 border border-white/20 text-white rounded-full font-semibold text-base hover:bg-white/5 transition-all">
-            <span class="flex items-center gap-2">
-              {{ section.settings.cta_secondary_text }}
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right w-5 h-5" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-            </span>
-          </button>
-        </a>
-      {% endif %}
-    </div>
-  </div>
+  function initialize() {
+    const root = document.getElementById(rootId);
+    if (!root) return;
 
-  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
-    <button type="button" class="flex flex-col items-center gap-3 text-left cursor-pointer bg-transparent border-0 p-0 text-inherit" data-scroll-to-next aria-label="Scroll to content">
-      <span class="text-[10px] text-white/30 tracking-[0.4em] uppercase">{{ section.settings.scroll_label | default: 'Scroll' }}</span>
-      <div class="w-5 h-8 border border-white/20 rounded-full flex justify-center pt-1.5">
-        <div class="w-1 h-1.5 bg-white/50 rounded-full scroll-indicator-dot"></div>
-      </div>
-    </button>
-  </div>
-</section>
+    if (cleanup) cleanup();
 
-{% schema %}
-{
-  "name": "Hero",
-  "tag": "section",
-  "class": "section-hero",
-  "settings": [
-    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Creative Branding Agency" },
-    { "type": "text", "id": "headline_line1", "label": "Headline line 1", "default": "We Create" },
-    { "type": "text", "id": "headline_line2", "label": "Headline line 2 (gradient)", "default": "Exceptional" },
-    { "type": "text", "id": "headline_line3", "label": "Headline line 3", "default": "Brand Experiences" },
-    { "type": "textarea", "id": "description", "label": "Description", "default": "Through strategy, creativity, and cutting-edge automation—delivering impactful results that transform businesses." },
-    { "type": "text", "id": "cta_primary_text", "label": "Primary button text", "default": "Book Discovery Call" },
-    { "type": "url", "id": "cta_primary_link", "label": "Primary button link" },
-    { "type": "text", "id": "cta_secondary_text", "label": "Secondary button text", "default": "View Case Studies" },
-    { "type": "url", "id": "cta_secondary_link", "label": "Secondary button link" },
-    { "type": "text", "id": "scroll_label", "label": "Scroll indicator label", "default": "Scroll" }
-  ],
-  "presets": [{ "name": "Hero" }]
-}
-{% endschema %}
+    /*
+      Stop the old custom-element implementation if it is
+      still registered in the current Shopify preview.
+    */
+    cancelAnimationFrame(root.initFrame);
+    cancelAnimationFrame(root.scrollFrame);
+
+    root.abort?.abort();
+    root.videoObserver?.disconnect();
+    root.viewObserver?.disconnect();
+    root.revealObserver?.disconnect();
+    root.animations?.forEach(animation => animation.cancel());
+
+    const events = new AbortController();
+    const signal = events.signal;
+
+    const hero = root.querySelector('.uc__hero');
+    const statement = root.querySelector('.uc__statement');
+    const button = root.querySelector('[data-uc-motion]');
+    const scrollLink = root.querySelector('[data-uc-scroll]');
+    const videos = [...root.querySelectorAll('[data-uc-video]')];
+    const revealElements = [
+      ...root.querySelectorAll('[data-uc-reveal]')
+    ];
+
+    if (!hero) return;
+
+    const reduced = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    );
+
+    let paused = false;
+    let frame = null;
+    let destroyed = false;
+
+    const animations = new Set();
+    const revealed = new Set();
+    const videoStates = new Map();
+
+    function canAnimate() {
+      return !paused && !reduced.matches;
+    }
+
+    function updateButton() {
+      if (!button) return;
+
+      button.hidden = reduced.matches;
+      button.setAttribute('aria-pressed', String(paused));
+      button.textContent = paused
+        ? 'Play motion'
+        : 'Pause motion';
+    }
+
+    function animateElement(element, index) {
+      if (
+        revealed.has(element) ||
+        !canAnimate() ||
+        !element.animate
+      ) return;
+
+      revealed.add(element);
+
+      const animation = element.animate(
+        [
+          {
+            opacity: 0,
+            transform: 'translateY(30px)'
+          },
+          {
+            opacity: 1,
+            transform: 'translateY(0)'
+          }
+        ],
+        {
+          duration: 1100,
+          delay: Math.min(index, 5) * 100,
+          easing: 'cubic-bezier(.16,1,.3,1)',
+          fill: 'backwards'
+        }
+      );
+
+      animations.add(animation);
+
+      animation.finished
+        .then(() => animations.delete(animation))
+        .catch(() => animations.delete(animation));
+    }
+
+    function revealVisibleElements() {
+      if (!canAnimate()) return;
+
+      let index = 0;
+
+      revealElements.forEach(element => {
+        if (revealed.has(element)) return;
+
+        const bounds = element.getBoundingClientRect();
+
+        if (
+          bounds.top < window.innerHeight * 0.98 &&
+          bounds.bottom > 0
+        ) {
+          animateElement(element, index);
+          index += 1;
+        }
+      });
+    }
+
+    function updateVideos(force) {
+      videos.forEach(video => {
+        const bounds = video.getBoundingClientRect();
+
+        const visible =
+          bounds.bottom > -100 &&
+          bounds.top < window.innerHeight + 100;
+
+        const shouldPlay =
+          canAnimate() &&
+          visible &&
+          !document.hidden;
+
+        if (
+          !force &&
+          videoStates.get(video) === shouldPlay
+        ) return;
+
+        videoStates.set(video, shouldPlay);
+
+        if (!shouldPlay) {
+          video.pause();
+          return;
+        }
+
+        /*
+          Set both attributes and properties for Safari,
+          mobile browsers, and Shopify's preview.
+        */
+        video.muted = true;
+        video.defaultMuted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.autoplay = true;
+
+        video.setAttribute('muted', '');
+        video.setAttribute('playsinline', '');
+        video.setAttribute('webkit-playsinline', '');
+
+        const promise = video.play();
+
+        if (promise && typeof promise.catch === 'function') {
+          promise.catch(() => {
+            /*
+              A browser may still block autoplay.
+              Clicking Play motion retries from a user gesture.
+            */
+            video.dataset.ucPlayback = 'blocked';
+          });
+        }
+      });
+    }
+
+    function updateParallax() {
+      if (!canAnimate()) {
+        root.style.setProperty('--uc-video-y', '0px');
+        root.style.setProperty('--uc-cloud-y', '0px');
+        return;
+      }
+
+      const bounds = hero.getBoundingClientRect();
+      const distance = Math.max(0, -bounds.top);
+      const progress = Math.min(distance / 300, 1);
+      const mobile = window.innerWidth <= 650;
+
+      root.style.setProperty(
+        '--uc-video-y',
+        `${Math.min(distance * 0.12, 60)}px`
+      );
+
+      root.style.setProperty(
+        '--uc-cloud-y',
+        `${-progress * (mobile ? 24 : 100)}px`
+      );
+    }
+
+    function update() {
+      frame = null;
+
+      if (destroyed || !root.isConnected) return;
+
+      updateParallax();
+      revealVisibleElements();
+      updateVideos(false);
+    }
+
+    function requestUpdate() {
+      if (frame !== null || destroyed) return;
+      frame = requestAnimationFrame(update);
+    }
+
+    function stopAnimations() {
+      animations.forEach(animation => animation.cancel());
+      animations.clear();
+    }
+
+    function syncMotion(forceVideo) {
+      updateButton();
+
+      if (!canAnimate()) {
+        stopAnimations();
+      }
+
+      updateParallax();
+      updateVideos(Boolean(forceVideo));
+      requestUpdate();
+    }
+
+    if (button) {
+      button.addEventListener(
+        'click',
+        () => {
+          const blockedVideo = videos.some(video =>
+            video.dataset.ucPlayback === 'blocked'
+          );
+
+          /*
+            If autoplay was blocked, the first click
+            retries playback instead of pausing.
+          */
+          paused = blockedVideo ? false : !paused;
+
+          videos.forEach(video => {
+            delete video.dataset.ucPlayback;
+          });
+
+          if (!paused) {
+            revealed.clear();
+          }
+
+          syncMotion(true);
+        },
+        { signal }
+      );
+    }
+
+    if (scrollLink && statement) {
+      scrollLink.addEventListener(
+        'click',
+        event => {
+          event.preventDefault();
+
+          statement.scrollIntoView({
+            behavior: reduced.matches ? 'auto' : 'smooth',
+            block: 'start'
+          });
+        },
+        { signal }
+      );
+    }
+
+    reduced.addEventListener(
+      'change',
+      () => syncMotion(true),
+      { signal }
+    );
+
+    document.addEventListener(
+      'visibilitychange',
+      () => syncMotion(true),
+      { signal }
+    );
+
+    /*
+      Capture scroll events from the page and nested
+      preview containers.
+    */
+    document.addEventListener(
+      'scroll',
+      requestUpdate,
+      {
+        passive: true,
+        capture: true,
+        signal
+      }
+    );
+
+    window.addEventListener(
+      'resize',
+      requestUpdate,
+      { passive: true, signal }
+    );
+
+    videos.forEach(video => {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+
+      video.addEventListener(
+        'loadeddata',
+        () => updateVideos(true),
+        { signal }
+      );
+
+      video.addEventListener(
+        'playing',
+        () => {
+          delete video.dataset.ucPlayback;
+        },
+        { signal }
+      );
+    });
+
+    /*
+      Initialize immediately, including in Shopify's editor.
+      No editor-only pause and no observer required.
+    */
+    syncMotion(true);
+
+    cleanup = function () {
+      destroyed = true;
+      events.abort();
+
+      if (frame !== null) {
+        cancelAnimationFrame(frame);
+      }
+
+      stopAnimations();
+      videos.forEach(video => video.pause());
+    };
+  }
+
+  document.addEventListener(
+    'shopify:section:load',
+    event => {
+      if (
+        event.target.id === 'shopify-section-{{ section.id }}' ||
+        event.target.querySelector('[id="' + rootId + '"]')
+      ) {
+        initialize();
+      }
+    },
+    { signal: lifecycle.signal }
+  );
+
+  document.addEventListener(
+    'shopify:section:unload',
+    event => {
+      if (event.target.id === 'shopify-section-{{ section.id }}') {
+        if (cleanup) cleanup();
+        cleanup = null;
+      }
+    },
+    { signal: lifecycle.signal }
+  );
+
+  window[registryKey][rootId] = function () {
+    lifecycle.abort();
+    if (cleanup) cleanup();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener(
+      'DOMContentLoaded',
+      initialize,
+      {
+        once: true,
+        signal: lifecycle.signal
+      }
+    );
+  } else {
+    initialize();
+  }
+})();
+</script>
