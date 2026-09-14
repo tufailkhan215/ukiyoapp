@@ -12,14 +12,15 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "subtitle": "CREATIVE GROWTH STUDIO",
+        "show_logo": false,
+        "subtitle": "",
         "headline_line1": "We build the strategy,",
         "headline_line2": "content, and systems brands need to",
         "headline_line3": "scale with intention.",
         "eyebrow": "Strategy. Creativity. Connection.",
         "description": "We help founders and marketing teams sharpen positioning, create content that converts, and automate the work that slows growth.",
-        "mobile_heading_size": 40,
-        "mobile_video_position": 50,
+        "mobile_heading_size": 41,
+        "mobile_video_position": 75,
         "show_primary": false,
         "cta_primary_text": "Book a Discovery Call",
         "cta_primary_link": "#",
