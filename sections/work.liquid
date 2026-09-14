@@ -1,36 +1,42 @@
 {%- comment -%}
   ============================================================
-  UKIYO — SELECTED WORK
-  Premium editorial case-study section
+  UKIYO — SELECTED WORK / EDITORIAL 2.0
   ============================================================
 
-  SAVE IN:
+  SAVE AS:
   sections/ukiyo-selected-work.liquid
 
-  FEATURES
-  - Native Shopify SECTION
-  - Editable case-study blocks
-  - Featured + compact layouts
-  - Optional Shopify video or image per project
-  - Alternating editorial compositions
-  - Oversized background typography
-  - Scroll reveal animation
-  - Subtle desktop image parallax
-  - Premium metrics / result chips
-  - Mobile horizontal swipe rail for compact projects
-  - Mobile-optimized featured cards
-  - Section-specific color controls
-  - No max_blocks
-  - No enabled_on
+  Desktop:
+  - Oversized editorial intro
+  - Alternating cinematic featured projects
+  - Huge project numerals
+  - Split-screen media / narrative
+  - Scroll reveal + restrained parallax
+  - Large impact statistics
+  - More-work visual grid
+  - Premium closing CTA
+
+  Mobile:
+  - Purpose-built vertical composition
+  - Strong image-first storytelling
+  - Compact metadata
+  - Full-width touch CTAs
+  - Swipeable secondary projects
+
+  Shopify:
+  - Native section
+  - Local case-study blocks
+  - Image or native Shopify video
+  - No unsupported schema attributes
 {%- endcomment -%}
 
 
 {%- liquid
   assign uid = section.id | replace: '_', '' | replace: '-', '' | downcase
 
+  assign project_count = 0
   assign featured_count = 0
   assign compact_count = 0
-  assign project_count = 0
 
   for block in section.blocks
     if block.type == 'case_study'
@@ -44,114 +50,124 @@
     endif
   endfor
 
-  assign display_text = section.settings.background_word
+  assign giant_word = section.settings.background_word
 
-  if display_text == blank
-    assign display_text = 'SELECTED WORK'
+  if giant_word == blank
+    assign giant_word = 'WORK'
   endif
 -%}
 
 
 <section
   id="UkiyoWork-{{ uid }}"
-  class="ukiyo-work ukiyo-work--{{ uid }}"
-  data-ukiyo-work
+  class="uw2 uw2--{{ uid }}"
+  data-uw2-root
   style="
-    --uw-bg: {{ section.settings.background_color }};
-    --uw-text: {{ section.settings.text_color }};
-    --uw-muted: {{ section.settings.muted_color }};
-    --uw-line: {{ section.settings.line_color }};
-    --uw-card: {{ section.settings.card_color }};
-    --uw-accent: {{ section.settings.accent_color }};
-    --uw-image-overlay: {{ section.settings.image_overlay | divided_by: 100.0 }};
-    --uw-top-space: {{ section.settings.padding_top }}px;
-    --uw-bottom-space: {{ section.settings.padding_bottom }}px;
-    --uw-radius: {{ section.settings.card_radius }}px;
+    --uw2-bg: {{ section.settings.background_color }};
+    --uw2-surface: {{ section.settings.surface_color }};
+    --uw2-ink: {{ section.settings.text_color }};
+    --uw2-muted: {{ section.settings.muted_color }};
+    --uw2-line: {{ section.settings.line_color }};
+    --uw2-accent: {{ section.settings.accent_color }};
+    --uw2-overlay: {{ section.settings.image_overlay | divided_by: 100.0 }};
+    --uw2-radius: {{ section.settings.card_radius }}px;
+    --uw2-top: {{ section.settings.padding_top }}px;
+    --uw2-bottom: {{ section.settings.padding_bottom }}px;
   "
 >
 
   <div
-    class="ukiyo-work__display"
+    class="uw2__noise"
+    aria-hidden="true"
+  ></div>
+
+
+  <div
+    class="uw2__giant"
     aria-hidden="true"
   >
-    <span>
-      {{ display_text }}
-    </span>
+    {{ giant_word }}
   </div>
 
 
-  <div
-    class="ukiyo-work__grid-texture"
-    aria-hidden="true"
-  ></div>
+  <div class="uw2__shell">
+
+    {%- comment -%}
+      ============================================================
+      INTRO
+      ============================================================
+    {%- endcomment -%}
+
+    <header class="uw2__intro">
+
+      <div class="uw2__intro-top">
+
+        <p class="uw2__eyebrow">
+
+          <span aria-hidden="true"></span>
+
+          {{ section.settings.strap }}
+
+        </p>
 
 
-  <div
-    class="ukiyo-work__top-rule"
-    aria-hidden="true"
-  ></div>
+        <div class="uw2__count">
 
+          <span>
+            {{ project_count | prepend: '0' | slice: -2, 2 }}
+          </span>
 
-
-  <div class="ukiyo-work__container">
-
-    <header class="ukiyo-work__header">
-
-      <div class="ukiyo-work__header-main">
-
-        <div>
-
-          {%- if section.settings.strap != blank -%}
-
-            <p class="ukiyo-work__eyebrow">
-
-              <span
-                class="ukiyo-work__eyebrow-line"
-                aria-hidden="true"
-              ></span>
-
-              {{ section.settings.strap }}
-
-            </p>
-
-          {%- endif -%}
-
-
-          <h2 class="ukiyo-work__title">
-
-            <span>
-              {{ section.settings.title_line1 }}
-            </span>
-
-            <em>
-              {{ section.settings.title_line2 }}
-            </em>
-
-          </h2>
+          <small>
+            Selected<br>Projects
+          </small>
 
         </div>
 
+      </div>
 
-        <div class="ukiyo-work__header-aside">
+
+      <div class="uw2__intro-grid">
+
+        <h2 class="uw2__heading">
+
+          <span>
+            {{ section.settings.title_line1 }}
+          </span>
+
+          <em>
+            {{ section.settings.title_line2 }}
+          </em>
+
+        </h2>
+
+
+        <div class="uw2__intro-copy">
 
           {%- if section.settings.intro != blank -%}
 
-            <p class="ukiyo-work__intro">
+            <p>
               {{ section.settings.intro }}
             </p>
 
           {%- endif -%}
 
 
-          <div class="ukiyo-work__header-meta">
+          <div class="uw2__intro-meta">
 
             <span>
-              {{ project_count | prepend: '0' | slice: -2, 2 }}
-              projects
+              Brand
             </span>
 
             <span>
-              Strategy · Creative · Build
+              Digital
+            </span>
+
+            <span>
+              Growth
+            </span>
+
+            <span>
+              Technology
             </span>
 
           </div>
@@ -160,7 +176,7 @@
           {%- if section.settings.view_all_text != blank and section.settings.view_all_url != blank -%}
 
             <a
-              class="ukiyo-work__text-link"
+              class="uw2__arrow-link"
               href="{{ section.settings.view_all_url }}"
             >
 
@@ -168,20 +184,24 @@
                 {{ section.settings.view_all_text }}
               </span>
 
-              <svg
-                viewBox="0 0 24 24"
-                width="18"
-                height="18"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.7"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M5 12h14"/>
-                <path d="m13 6 6 6-6 6"/>
-              </svg>
+              <span class="uw2__arrow-circle">
+
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 19 19 5"/>
+                  <path d="M9 5h10v10"/>
+                </svg>
+
+              </span>
 
             </a>
 
@@ -195,9 +215,15 @@
 
 
 
+    {%- comment -%}
+      ============================================================
+      FEATURED CASE STUDIES
+      ============================================================
+    {%- endcomment -%}
+
     {%- if featured_count > 0 -%}
 
-      <div class="ukiyo-work__featured">
+      <div class="uw2__featured">
 
         {%- assign featured_index = 0 -%}
 
@@ -206,8 +232,10 @@
           {%- if block.type == 'case_study' and block.settings.layout == 'featured' -%}
 
             {%- assign featured_index = featured_index | plus: 1 -%}
-            {%- assign project_number = featured_index | prepend: '0' | slice: -2, 2 -%}
-            {%- assign is_even = featured_index | modulo: 2 -%}
+
+            {%- assign project_num = featured_index | prepend: '0' | slice: -2, 2 -%}
+
+            {%- assign even = featured_index | modulo: 2 -%}
 
             {%- assign project_link = block.settings.link -%}
 
@@ -217,27 +245,26 @@
 
 
             <article
-              id="UkiyoProject-{{ block.id }}"
               class="
-                ukiyo-work__project
-                {% if is_even == 0 %}
-                  ukiyo-work__project--reverse
+                uw2__feature
+                {% if even == 0 %}
+                  uw2__feature--reverse
                 {% endif %}
               "
-              data-ukiyo-reveal
+              data-uw2-reveal
               {{ block.shopify_attributes }}
             >
 
               <a
-                class="ukiyo-work__project-link"
+                class="uw2__feature-link"
                 href="{{ project_link | default: '#' }}"
               >
 
-                <div class="ukiyo-work__project-media">
+                <div class="uw2__feature-media">
 
                   <div
-                    class="ukiyo-work__project-image-wrap"
-                    data-ukiyo-parallax
+                    class="uw2__feature-media-inner"
+                    data-uw2-parallax
                   >
 
                     {%- if block.settings.video != blank -%}
@@ -251,14 +278,14 @@
                           controls: false,
                           playsinline: true,
                           preload: 'metadata',
-                          class: 'ukiyo-work__project-image'
+                          class: 'uw2__feature-image'
                       }}
 
 
                     {%- elsif block.settings.image != blank -%}
 
                       <img
-                        class="ukiyo-work__project-image"
+                        class="uw2__feature-image"
                         src="{{ block.settings.image | image_url: width: 1800 }}"
                         srcset="
                           {{ block.settings.image | image_url: width: 700 }} 700w,
@@ -266,7 +293,7 @@
                           {{ block.settings.image | image_url: width: 1500 }} 1500w,
                           {{ block.settings.image | image_url: width: 1800 }} 1800w
                         "
-                        sizes="(max-width: 899px) 100vw, 58vw"
+                        sizes="(max-width: 899px) 100vw, 63vw"
                         width="{{ block.settings.image.width }}"
                         height="{{ block.settings.image.height }}"
                         alt="{{ block.settings.image.alt | default: block.settings.title | escape }}"
@@ -276,14 +303,14 @@
 
                     {%- else -%}
 
-                      <div class="ukiyo-work__media-placeholder">
+                      <div class="uw2__feature-placeholder">
 
                         <span>
-                          {{ project_number }}
+                          {{ project_num }}
                         </span>
 
                         <small>
-                          Add project media
+                          Add project image or video
                         </small>
 
                       </div>
@@ -292,31 +319,43 @@
 
 
                     <span
-                      class="ukiyo-work__media-overlay"
+                      class="uw2__feature-wash"
                       aria-hidden="true"
                     ></span>
 
 
-                    <span
-                      class="ukiyo-work__project-number"
+                    <div
+                      class="uw2__feature-index"
                       aria-hidden="true"
                     >
-                      {{ project_number }}
-                    </span>
+
+                      <span>
+                        {{ project_num }}
+                      </span>
+
+                      <small>
+                        / {{ featured_count | prepend: '0' | slice: -2, 2 }}
+                      </small>
+
+                    </div>
 
 
-                    <span
-                      class="ukiyo-work__media-arrow"
+                    <div
+                      class="uw2__feature-cursor"
                       aria-hidden="true"
                     >
+
+                      <span>
+                        View
+                      </span>
 
                       <svg
                         viewBox="0 0 24 24"
-                        width="24"
-                        height="24"
+                        width="18"
+                        height="18"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="1.5"
+                        stroke-width="1.6"
                         stroke-linecap="round"
                         stroke-linejoin="round"
                       >
@@ -324,60 +363,62 @@
                         <path d="M9 5h10v10"/>
                       </svg>
 
-                    </span>
+                    </div>
 
                   </div>
 
                 </div>
 
 
-                <div class="ukiyo-work__project-copy">
 
-                  <div class="ukiyo-work__project-copy-top">
+                <div class="uw2__feature-info">
 
-                    <div class="ukiyo-work__project-ident">
+                  <div class="uw2__feature-top">
+
+                    <div>
 
                       {%- if block.settings.category != blank -%}
 
-                        <span class="ukiyo-work__project-category">
+                        <span class="uw2__category">
                           {{ block.settings.category }}
                         </span>
 
                       {%- endif -%}
 
 
-                      {%- if block.settings.year != blank -%}
+                      {%- if block.settings.client != blank -%}
 
-                        <span class="ukiyo-work__project-year">
-                          {{ block.settings.year }}
-                        </span>
+                        <p class="uw2__client">
+                          {{ block.settings.client }}
+                        </p>
 
                       {%- endif -%}
 
                     </div>
 
 
-                    {%- if block.settings.client != blank -%}
+                    {%- if block.settings.year != blank -%}
 
-                      <p class="ukiyo-work__client">
-                        {{ block.settings.client }}
-                      </p>
+                      <span class="uw2__year">
+                        {{ block.settings.year }}
+                      </span>
 
                     {%- endif -%}
 
                   </div>
 
 
-                  <div class="ukiyo-work__project-copy-main">
 
-                    <h3 class="ukiyo-work__project-title">
+                  <div class="uw2__feature-middle">
+
+                    <h3 class="uw2__feature-title">
                       {{ block.settings.title }}
                     </h3>
 
 
                     {%- if block.settings.description != blank -%}
 
-                      <p class="ukiyo-work__project-description">
+                      <p class="uw2__feature-description">
                         {{ block.settings.description }}
                       </p>
 
@@ -386,44 +427,65 @@
 
                     {%- if block.settings.services != blank -%}
 
-                      <p class="ukiyo-work__services">
-                        {{ block.settings.services }}
-                      </p>
+                      <div class="uw2__services">
+
+                        <span>
+                          Scope
+                        </span>
+
+                        <p>
+                          {{ block.settings.services }}
+                        </p>
+
+                      </div>
 
                     {%- endif -%}
 
                   </div>
 
 
-                  <div class="ukiyo-work__project-copy-bottom">
+
+                  <div class="uw2__feature-bottom">
 
                     {%- if block.settings.result_1 != blank or block.settings.result_2 != blank or block.settings.result_3 != blank -%}
 
-                      <div class="ukiyo-work__results">
+                      <div class="uw2__metrics">
 
                         {%- if block.settings.result_1 != blank -%}
 
-                          <span class="ukiyo-work__result">
-                            {{ block.settings.result_1 }}
-                          </span>
+                          <div class="uw2__metric">
+
+                            <strong>
+                              {{ block.settings.result_1 }}
+                            </strong>
+
+                          </div>
 
                         {%- endif -%}
 
 
                         {%- if block.settings.result_2 != blank -%}
 
-                          <span class="ukiyo-work__result">
-                            {{ block.settings.result_2 }}
-                          </span>
+                          <div class="uw2__metric">
+
+                            <strong>
+                              {{ block.settings.result_2 }}
+                            </strong>
+
+                          </div>
 
                         {%- endif -%}
 
 
                         {%- if block.settings.result_3 != blank -%}
 
-                          <span class="ukiyo-work__result">
-                            {{ block.settings.result_3 }}
-                          </span>
+                          <div class="uw2__metric">
+
+                            <strong>
+                              {{ block.settings.result_3 }}
+                            </strong>
+
+                          </div>
 
                         {%- endif -%}
 
@@ -432,7 +494,7 @@
                     {%- endif -%}
 
 
-                    <span class="ukiyo-work__project-cta">
+                    <span class="uw2__case-link">
 
                       <span>
                         {{ block.settings.cta_text | default: 'View case study' }}
@@ -440,8 +502,8 @@
 
                       <svg
                         viewBox="0 0 24 24"
-                        width="17"
-                        height="17"
+                        width="18"
+                        height="18"
                         fill="none"
                         stroke="currentColor"
                         stroke-width="1.6"
@@ -473,25 +535,39 @@
 
 
 
+    {%- comment -%}
+      ============================================================
+      MORE SELECTED WORK
+      ============================================================
+    {%- endcomment -%}
+
     {%- if compact_count > 0 -%}
 
-      <section class="ukiyo-work__more">
+      <section class="uw2__more">
 
-        <header class="ukiyo-work__more-header">
+        <header class="uw2__more-heading">
 
-          <p>
-            {{ section.settings.compact_label }}
-          </p>
+          <div>
+
+            <span>
+              03
+            </span>
+
+            <p>
+              {{ section.settings.compact_label }}
+            </p>
+
+          </div>
 
 
-          <span>
-            Swipe / Explore
+          <span class="uw2__more-direction">
+            Explore →
           </span>
 
         </header>
 
 
-        <div class="ukiyo-work__compact-grid">
+        <div class="uw2__compact-grid">
 
           {%- assign compact_index = 0 -%}
 
@@ -501,6 +577,9 @@
 
               {%- assign compact_index = compact_index | plus: 1 -%}
 
+              {%- assign compact_num = compact_index | prepend: '0' | slice: -2, 2 -%}
+
+
               {%- assign project_link = block.settings.link -%}
 
               {%- if project_link == blank -%}
@@ -509,17 +588,17 @@
 
 
               <article
-                class="ukiyo-work__compact"
-                data-ukiyo-reveal
+                class="uw2__compact"
+                data-uw2-reveal
                 {{ block.shopify_attributes }}
               >
 
                 <a
-                  class="ukiyo-work__compact-link"
                   href="{{ project_link | default: '#' }}"
+                  class="uw2__compact-link"
                 >
 
-                  <div class="ukiyo-work__compact-media">
+                  <div class="uw2__compact-media">
 
                     {%- if block.settings.video != blank -%}
 
@@ -532,14 +611,14 @@
                           controls: false,
                           playsinline: true,
                           preload: 'metadata',
-                          class: 'ukiyo-work__compact-image'
+                          class: 'uw2__compact-image'
                       }}
 
 
                     {%- elsif block.settings.image != blank -%}
 
                       <img
-                        class="ukiyo-work__compact-image"
+                        class="uw2__compact-image"
                         src="{{ block.settings.image | image_url: width: 1200 }}"
                         srcset="
                           {{ block.settings.image | image_url: width: 500 }} 500w,
@@ -556,63 +635,65 @@
 
                     {%- else -%}
 
-                      <div class="ukiyo-work__compact-placeholder">
-                        {{ compact_index | prepend: '0' | slice: -2, 2 }}
+                      <div class="uw2__compact-placeholder">
+
+                        <span>
+                          {{ compact_num }}
+                        </span>
+
                       </div>
 
                     {%- endif -%}
 
 
                     <span
-                      class="ukiyo-work__compact-overlay"
+                      class="uw2__compact-wash"
                       aria-hidden="true"
                     ></span>
 
 
-                    <span
-                      class="ukiyo-work__compact-arrow"
-                      aria-hidden="true"
-                    >
+                    <div class="uw2__compact-top">
 
-                      <svg
-                        viewBox="0 0 24 24"
-                        width="20"
-                        height="20"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.6"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path d="M5 19 19 5"/>
-                        <path d="M9 5h10v10"/>
-                      </svg>
+                      <span>
+                        {{ compact_num }}
+                      </span>
 
-                    </span>
+
+                      <span class="uw2__compact-arrow">
+
+                        <svg
+                          viewBox="0 0 24 24"
+                          width="18"
+                          height="18"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M5 19 19 5"/>
+                          <path d="M9 5h10v10"/>
+                        </svg>
+
+                      </span>
+
+                    </div>
 
                   </div>
 
 
-                  <div class="ukiyo-work__compact-copy">
+                  <div class="uw2__compact-copy">
 
-                    <div class="ukiyo-work__compact-meta">
+                    <div class="uw2__compact-meta">
 
-                      {%- if block.settings.category != blank -%}
+                      <span>
+                        {{ block.settings.category }}
+                      </span>
 
-                        <span>
-                          {{ block.settings.category }}
-                        </span>
-
-                      {%- endif -%}
-
-
-                      {%- if block.settings.year != blank -%}
-
-                        <span>
-                          {{ block.settings.year }}
-                        </span>
-
-                      {%- endif -%}
+                      <span>
+                        {{ block.settings.year }}
+                      </span>
 
                     </div>
 
@@ -648,56 +729,82 @@
 
 
 
+    {%- comment -%}
+      ============================================================
+      END CTA
+      ============================================================
+    {%- endcomment -%}
+
     {%- if section.settings.show_footer_cta -%}
 
       <footer
-        class="ukiyo-work__footer"
-        data-ukiyo-reveal
+        class="uw2__footer"
+        data-uw2-reveal
       >
 
-        <div>
+        <div class="uw2__footer-top">
 
-          <p class="ukiyo-work__footer-eyebrow">
-            {{ section.settings.footer_eyebrow }}
-          </p>
+          <span>
+            04 / Next
+          </span>
 
-
-          <h3>
-            {{ section.settings.footer_title }}
-          </h3>
+          <span>
+            Start a project
+          </span>
 
         </div>
 
 
-        {%- if section.settings.footer_button_text != blank and section.settings.footer_button_url != blank -%}
+        <div class="uw2__footer-main">
 
-          <a
-            class="ukiyo-work__footer-button"
-            href="{{ section.settings.footer_button_url }}"
-          >
+          <div>
 
-            <span>
-              {{ section.settings.footer_button_text }}
-            </span>
+            <p>
+              {{ section.settings.footer_eyebrow }}
+            </p>
 
-            <svg
-              viewBox="0 0 24 24"
-              width="20"
-              height="20"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.6"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
+            <h3>
+              {{ section.settings.footer_title }}
+            </h3>
+
+          </div>
+
+
+          {%- if section.settings.footer_button_text != blank and section.settings.footer_button_url != blank -%}
+
+            <a
+              href="{{ section.settings.footer_button_url }}"
+              class="uw2__footer-button"
             >
-              <path d="M5 12h14"/>
-              <path d="m13 6 6 6-6 6"/>
-            </svg>
 
-          </a>
+              <span>
+                {{ section.settings.footer_button_text }}
+              </span>
 
-        {%- endif -%}
+              <span class="uw2__footer-button-arrow">
+
+                <svg
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 19 19 5"/>
+                  <path d="M9 5h10v10"/>
+                </svg>
+
+              </span>
+
+            </a>
+
+          {%- endif -%}
+
+        </div>
 
       </footer>
 
@@ -711,6 +818,10 @@
 
 {% style %}
 
+/* ============================================================
+   SHOPIFY WRAPPER
+   ============================================================ */
+
 #shopify-section-{{ section.id }} {
   position: relative;
 
@@ -723,23 +834,24 @@
 
 
 /* ============================================================
-   SECTION ROOT
+   ROOT
    ============================================================ */
 
-.ukiyo-work--{{ uid }} {
+.uw2--{{ uid }} {
   position: relative;
   isolation: isolate;
 
   width: 100%;
+
   overflow: hidden;
 
   padding:
-    var(--uw-top-space)
+    var(--uw2-top)
     0
-    var(--uw-bottom-space);
+    var(--uw2-bottom);
 
-  color: var(--uw-text);
-  background: var(--uw-bg);
+  color: var(--uw2-ink);
+  background: var(--uw2-bg);
 
   font-family:
     'Inter Tight',
@@ -749,46 +861,133 @@
     Arial,
     sans-serif;
 
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing:
+    antialiased;
+
+  text-rendering:
+    geometricPrecision;
 }
 
 
-.ukiyo-work--{{ uid }} *,
-.ukiyo-work--{{ uid }} *::before,
-.ukiyo-work--{{ uid }} *::after {
+.uw2--{{ uid }} *,
+.uw2--{{ uid }} *::before,
+.uw2--{{ uid }} *::after {
   box-sizing: border-box;
 }
 
 
-.ukiyo-work--{{ uid }} a {
+.uw2--{{ uid }} a {
   color: inherit;
   text-decoration: none;
 }
 
 
-.ukiyo-work--{{ uid }} :focus-visible {
+.uw2--{{ uid }} :focus-visible {
   outline:
     1px
     solid
-    var(--uw-text);
+    var(--uw2-ink);
 
-  outline-offset: 5px;
+  outline-offset:
+    5px;
 }
 
 
 /* ============================================================
-   CONTAINER
+   AMBIENCE
    ============================================================ */
 
-.ukiyo-work--{{ uid }} .ukiyo-work__container {
+.uw2--{{ uid }} .uw2__noise {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  pointer-events: none;
+
+  opacity: .24;
+
+  background-image:
+    radial-gradient(
+      rgba(
+        255,
+        255,
+        255,
+        .025
+      )
+      1px,
+      transparent
+      1px
+    );
+
+  background-size:
+    4px
+    4px;
+
+  mask-image:
+    linear-gradient(
+      black,
+      transparent
+      85%
+    );
+
+  -webkit-mask-image:
+    linear-gradient(
+      black,
+      transparent
+      85%
+    );
+}
+
+
+.uw2--{{ uid }} .uw2__giant {
+  position: absolute;
+  top: 2.5%;
+  left: -3%;
+  z-index: 0;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      .017
+    );
+
+  font-size:
+    clamp(
+      180px,
+      28vw,
+      560px
+    );
+
+  font-weight: 700;
+  line-height: .72;
+  letter-spacing: -.085em;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+
+/* ============================================================
+   SHELL
+   ============================================================ */
+
+.uw2--{{ uid }} .uw2__shell {
   position: relative;
-  z-index: 3;
+  z-index: 2;
 
   width:
     min(
-      calc(100% - 48px),
-      1540px
+      calc(
+        100% -
+        64px
+      ),
+      1580px
     );
 
   margin:
@@ -798,171 +997,55 @@
 
 
 /* ============================================================
-   AMBIENT BACKGROUND
+   INTRO
    ============================================================ */
 
-.ukiyo-work--{{ uid }} .ukiyo-work__display {
-  position: absolute;
-  top: 6%;
-  left: -1%;
-  z-index: 0;
-
-  width: 110%;
-
-  overflow: hidden;
-
-  pointer-events: none;
-  user-select: none;
-}
-
-
-.ukiyo-work--{{ uid }} .ukiyo-work__display span {
-  display: block;
-
-  color:
-    rgba(
-      255,
-      255,
-      255,
-      .018
-    );
-
-  font-size:
-    clamp(
-      130px,
-      19vw,
-      370px
-    );
-
-  font-weight: 700;
-  line-height: .76;
-  letter-spacing: -.075em;
-
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-
-.ukiyo-work--{{ uid }} .ukiyo-work__grid-texture {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-
-  opacity: .28;
-
-  pointer-events: none;
-
-  background-image:
-    linear-gradient(
-      rgba(255,255,255,.022)
-      1px,
-      transparent
-      1px
-    ),
-
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.022)
-      1px,
-      transparent
-      1px
-    );
-
-  background-size:
-    88px
-    88px;
-
-  mask-image:
-    linear-gradient(
-      to bottom,
-      black,
-      transparent 72%
-    );
-
-  -webkit-mask-image:
-    linear-gradient(
-      to bottom,
-      black,
-      transparent 72%
-    );
-}
-
-
-.ukiyo-work--{{ uid }} .ukiyo-work__top-rule {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-
-  height: 1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      var(--uw-line),
-      transparent
-    );
-}
-
-
-/* ============================================================
-   HEADER
-   ============================================================ */
-
-.ukiyo-work--{{ uid }} .ukiyo-work__header {
-  position: relative;
-
+.uw2--{{ uid }} .uw2__intro {
   margin-bottom:
     clamp(
-      70px,
-      9vw,
-      145px
+      100px,
+      12vw,
+      190px
     );
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__header-main {
-  display: grid;
-
-  grid-template-columns:
-    minmax(0, 1.35fr)
-    minmax(280px, .65fr);
-
-  gap:
+.uw2--{{ uid }} .uw2__intro-top {
+  margin-bottom:
     clamp(
-      50px,
-      8vw,
-      130px
+      38px,
+      5vw,
+      80px
     );
 
-  align-items: end;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  gap: 30px;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__eyebrow {
-  margin:
-    0
-    0
-    22px;
+.uw2--{{ uid }} .uw2__eyebrow {
+  margin: 0;
 
   display: flex;
   align-items: center;
 
   gap: 12px;
 
-  color: var(--uw-muted);
+  color: var(--uw2-muted);
 
   font-size: 10px;
   font-weight: 600;
-  letter-spacing: .22em;
+  letter-spacing: .18em;
 
   text-transform: uppercase;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__eyebrow-line {
-  width: 34px;
+.uw2--{{ uid }} .uw2__eyebrow span {
+  width: 32px;
   height: 1px;
 
   background:
@@ -970,91 +1053,148 @@
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__title {
-  margin: 0;
+.uw2--{{ uid }} .uw2__count {
+  display: flex;
+  align-items: flex-start;
 
-  color: var(--uw-text);
+  gap: 12px;
+}
+
+
+.uw2--{{ uid }} .uw2__count > span {
+  color: var(--uw2-ink);
 
   font-size:
     clamp(
-      58px,
-      8.8vw,
-      154px
+      32px,
+      3.2vw,
+      54px
     );
 
-  font-weight: 650;
-  line-height: .82;
-  letter-spacing: -.065em;
+  font-weight: 500;
+  line-height: .8;
+  letter-spacing: -.05em;
+}
+
+
+.uw2--{{ uid }} .uw2__count small {
+  color: var(--uw2-muted);
+
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: .12em;
 
   text-transform: uppercase;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__title span,
-.ukiyo-work--{{ uid }} .ukiyo-work__title em {
+.uw2--{{ uid }} .uw2__intro-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.45fr)
+    minmax(320px, .55fr);
+
+  align-items: end;
+
+  gap:
+    clamp(
+      60px,
+      9vw,
+      160px
+    );
+}
+
+
+.uw2--{{ uid }} .uw2__heading {
+  margin: 0;
+
+  color: var(--uw2-ink);
+
+  font-size:
+    clamp(
+      74px,
+      11vw,
+      190px
+    );
+
+  font-weight: 650;
+  line-height: .76;
+  letter-spacing: -.072em;
+
+  text-transform: uppercase;
+}
+
+
+.uw2--{{ uid }} .uw2__heading span,
+.uw2--{{ uid }} .uw2__heading em {
   display: block;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__title em {
-  color: var(--uw-muted);
+.uw2--{{ uid }} .uw2__heading em {
+  color: var(--uw2-muted);
 
   font-weight: 400;
   font-style: normal;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__header-aside {
-  padding-bottom: 4px;
+.uw2--{{ uid }} .uw2__intro-copy {
+  padding-bottom: 5px;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__intro {
-  max-width: 39ch;
+.uw2--{{ uid }} .uw2__intro-copy > p {
+  max-width: 37ch;
 
   margin:
     0
     0
-    30px;
+    34px;
 
-  color: var(--uw-muted);
+  color: var(--uw2-muted);
 
   font-size:
     clamp(
       14px,
-      1.1vw,
+      1.15vw,
       17px
     );
 
-  font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.62;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__header-meta {
-  margin-bottom: 30px;
-
+.uw2--{{ uid }} .uw2__intro-meta {
   padding:
-    15px
+    14px
     0;
 
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap:
+    10px
+    20px;
 
   border-top:
     1px
     solid
-    var(--uw-line);
+    var(--uw2-line);
 
   border-bottom:
     1px
     solid
-    var(--uw-line);
+    var(--uw2-line);
 
-  color: var(--uw-muted);
+  color: var(--uw2-muted);
 
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 600;
   letter-spacing: .12em;
 
@@ -1062,27 +1202,44 @@
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__text-link {
+.uw2--{{ uid }} .uw2__arrow-link {
+  margin-top: 28px;
+
   display: inline-flex;
   align-items: center;
 
-  gap: 12px;
+  gap: 18px;
 
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: .04em;
-
-  transition:
-    opacity
-    .22s
-    ease;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__text-link svg {
+.uw2--{{ uid }} .uw2__arrow-circle {
+  width: 42px;
+  height: 42px;
+
+  display: grid;
+  place-items: center;
+
+  border:
+    1px
+    solid
+    var(--uw2-line);
+
+  border-radius: 50%;
+
   transition:
+    color
+    .3s
+    ease,
+
+    background
+    .3s
+    ease,
+
     transform
-    .35s
+    .4s
     cubic-bezier(
       .16,
       1,
@@ -1092,48 +1249,48 @@
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__text-link:hover {
-  opacity: .64;
-}
+.uw2--{{ uid }} .uw2__arrow-link:hover .uw2__arrow-circle {
+  color: var(--uw2-bg);
+  background: var(--uw2-ink);
 
-
-.ukiyo-work--{{ uid }} .ukiyo-work__text-link:hover svg {
   transform:
-    translateX(4px);
+    rotate(45deg);
 }
 
 
 /* ============================================================
-   FEATURED PROJECTS
+   FEATURED WRAPPER
    ============================================================ */
 
-.ukiyo-work--{{ uid }} .ukiyo-work__featured {
+.uw2--{{ uid }} .uw2__featured {
   display: flex;
   flex-direction: column;
 
   gap:
     clamp(
-      90px,
-      12vw,
-      185px
+      130px,
+      16vw,
+      260px
     );
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__project {
-  position: relative;
+/* ============================================================
+   FEATURED PROJECT
+   ============================================================ */
 
+.uw2--{{ uid }} .uw2__feature {
   opacity: 0;
 
   filter:
-    blur(10px);
+    blur(12px);
 
   transform:
-    translateY(54px);
+    translateY(70px);
 
   transition:
     opacity
-    .9s
+    1s
     cubic-bezier(
       .16,
       1,
@@ -1142,7 +1299,7 @@
     ),
 
     filter
-    .9s
+    1s
     cubic-bezier(
       .16,
       1,
@@ -1151,7 +1308,7 @@
     ),
 
     transform
-    .9s
+    1s
     cubic-bezier(
       .16,
       1,
@@ -1161,7 +1318,7 @@
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__project.is-visible {
+.uw2--{{ uid }} .uw2__feature.is-visible {
   opacity: 1;
 
   filter:
@@ -1172,69 +1329,80 @@
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__project-link {
+.uw2--{{ uid }} .uw2__feature-link {
   display: grid;
 
   grid-template-columns:
-    minmax(0, 1.2fr)
-    minmax(340px, .8fr);
+    minmax(0, 1.38fr)
+    minmax(340px, .62fr);
 
   min-height:
     min(
-      720px,
-      72vh
+      780px,
+      78vh
     );
 
   overflow: hidden;
 
-  border:
+  border-top:
     1px
     solid
-    var(--uw-line);
+    var(--uw2-line);
 
-  border-radius:
-    var(--uw-radius);
+  border-bottom:
+    1px
+    solid
+    var(--uw2-line);
 
   background:
-    var(--uw-card);
+    var(--uw2-surface);
 }
 
 
-.ukiyo-work--{{ uid }}
-.ukiyo-work__project--reverse
-.ukiyo-work__project-media {
+.uw2--{{ uid }} .uw2__feature--reverse .uw2__feature-media {
   order: 2;
 }
 
 
-.ukiyo-work--{{ uid }}
-.ukiyo-work__project--reverse
-.ukiyo-work__project-copy {
+.uw2--{{ uid }} .uw2__feature--reverse .uw2__feature-info {
   order: 1;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__project-media {
+/* ============================================================
+   FEATURED MEDIA
+   ============================================================ */
+
+.uw2--{{ uid }} .uw2__feature-media {
   position: relative;
 
-  min-height: 560px;
-}
-
-
-.ukiyo-work--{{ uid }} .ukiyo-work__project-image-wrap {
-  position: absolute;
-  inset: 0;
+  min-height: 620px;
 
   overflow: hidden;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__project-image {
+.uw2--{{ uid }} .uw2__feature-media-inner {
   position: absolute;
-  inset: -4% 0;
+  inset: 0;
+
+  overflow: hidden;
+
+  background:
+    #111111;
+}
+
+
+.uw2--{{ uid }} .uw2__feature-image {
+  position: absolute;
+
+  top: -5%;
+  right: 0;
+  bottom: auto;
+  left: 0;
 
   width: 100%;
-  height: 108%;
+  height: 110%;
   max-width: none;
 
   display: block;
@@ -1245,33 +1413,34 @@
     translate3d(
       0,
       var(
-        --uw-parallax,
+        --uw2-parallax,
         0px
       ),
       0
     )
-    scale(1.015);
+    scale(1.01);
 
   transition:
     transform
-    .9s
+    1.1s
     cubic-bezier(
       .16,
       1,
       .3,
       1
     );
+
+  will-change:
+    transform;
 }
 
 
-.ukiyo-work--{{ uid }}
-.ukiyo-work__project-link:hover
-.ukiyo-work__project-image {
+.uw2--{{ uid }} .uw2__feature-link:hover .uw2__feature-image {
   transform:
     translate3d(
       0,
       var(
-        --uw-parallax,
+        --uw2-parallax,
         0px
       ),
       0
@@ -1280,9 +1449,10 @@
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__media-overlay {
+.uw2--{{ uid }} .uw2__feature-wash {
   position: absolute;
   inset: 0;
+  z-index: 1;
 
   background:
     linear-gradient(
@@ -1292,111 +1462,127 @@
         0,
         0,
         calc(
-          var(--uw-image-overlay) *
-          .34
+          var(--uw2-overlay) *
+          .30
         )
       ),
+      transparent
+      42%,
       rgba(
         0,
         0,
         0,
         calc(
-          var(--uw-image-overlay) *
-          .12
-        )
-      )
-      45%,
-      rgba(
-        0,
-        0,
-        0,
-        calc(
-          var(--uw-image-overlay) *
-          .70
+          var(--uw2-overlay) *
+          .74
         )
       )
     );
 
   transition:
-    background
-    .65s
+    opacity
+    .6s
     ease;
 }
 
 
-.ukiyo-work--{{ uid }}
-.ukiyo-work__project-link:hover
-.ukiyo-work__media-overlay {
-  background:
-    linear-gradient(
-      180deg,
-      rgba(0,0,0,.05),
-      rgba(0,0,0,.04) 55%,
-      rgba(0,0,0,.34)
-    );
+.uw2--{{ uid }} .uw2__feature-link:hover .uw2__feature-wash {
+  opacity: .64;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__project-number {
+.uw2--{{ uid }} .uw2__feature-index {
   position: absolute;
-  top: 28px;
+  top: 27px;
   left: 28px;
+  z-index: 3;
 
-  z-index: 2;
+  display: flex;
+  align-items: baseline;
 
-  color: rgba(255,255,255,.34);
+  gap: 8px;
 
+  color: #ffffff;
+}
+
+
+.uw2--{{ uid }} .uw2__feature-index > span {
   font-size:
     clamp(
-      54px,
-      6vw,
-      100px
+      58px,
+      7vw,
+      112px
     );
 
-  font-weight: 600;
-  line-height: 1;
+  font-weight: 500;
+  line-height: .8;
   letter-spacing: -.06em;
+
+  opacity: .28;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__media-arrow {
+.uw2--{{ uid }} .uw2__feature-index small {
+  font-size: 9px;
+  letter-spacing: .14em;
+
+  opacity: .5;
+}
+
+
+.uw2--{{ uid }} .uw2__feature-cursor {
   position: absolute;
-  right: 26px;
-  bottom: 26px;
-  z-index: 2;
+  right: 28px;
+  bottom: 28px;
+  z-index: 3;
 
-  width: 54px;
-  height: 54px;
+  width: 74px;
+  height: 74px;
 
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 3px;
 
   border:
     1px
     solid
-    rgba(255,255,255,.24);
+    rgba(
+      255,
+      255,
+      255,
+      .35
+    );
 
   border-radius: 50%;
 
   color: #ffffff;
-  background: rgba(0,0,0,.12);
+  background:
+    rgba(
+      0,
+      0,
+      0,
+      .12
+    );
 
   backdrop-filter:
-    blur(14px);
-
-  transform:
-    scale(.8)
-    rotate(-15deg);
+    blur(12px);
 
   opacity: 0;
 
+  transform:
+    scale(.7)
+    rotate(-20deg);
+
   transition:
     opacity
-    .4s
+    .45s
     ease,
 
     transform
-    .5s
+    .55s
     cubic-bezier(
       .16,
       1,
@@ -1406,18 +1592,25 @@
 }
 
 
-.ukiyo-work--{{ uid }}
-.ukiyo-work__project-link:hover
-.ukiyo-work__media-arrow {
+.uw2--{{ uid }} .uw2__feature-cursor span {
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: .12em;
+
+  text-transform: uppercase;
+}
+
+
+.uw2--{{ uid }} .uw2__feature-link:hover .uw2__feature-cursor {
   opacity: 1;
 
   transform:
     scale(1)
-    rotate(0);
+    rotate(0deg);
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__media-placeholder {
+.uw2--{{ uid }} .uw2__feature-placeholder {
   position: absolute;
   inset: 0;
 
@@ -1428,30 +1621,27 @@
 
   gap: 14px;
 
-  color: var(--uw-muted);
+  color: rgba(255,255,255,.3);
 
   background:
     linear-gradient(
       145deg,
-      #111111,
+      #181818,
       #090909
     );
 }
 
 
-.ukiyo-work--{{ uid }}
-.ukiyo-work__media-placeholder span {
-  font-size: 90px;
-  font-weight: 600;
+.uw2--{{ uid }} .uw2__feature-placeholder span {
+  font-size: 120px;
   line-height: 1;
 
   opacity: .12;
 }
 
 
-.ukiyo-work--{{ uid }}
-.ukiyo-work__media-placeholder small {
-  font-size: 10px;
+.uw2--{{ uid }} .uw2__feature-placeholder small {
+  font-size: 9px;
   letter-spacing: .16em;
 
   text-transform: uppercase;
@@ -1459,17 +1649,17 @@
 
 
 /* ============================================================
-   FEATURED COPY
+   FEATURED INFORMATION
    ============================================================ */
 
-.ukiyo-work--{{ uid }} .ukiyo-work__project-copy {
+.uw2--{{ uid }} .uw2__feature-info {
   min-height: 100%;
 
   padding:
     clamp(
-      32px,
-      4vw,
-      68px
+      34px,
+      4.2vw,
+      72px
     );
 
   display: flex;
@@ -1477,29 +1667,17 @@
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__project-copy-top {
+.uw2--{{ uid }} .uw2__feature-top {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
 
-  gap: 20px;
+  gap: 24px;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__project-ident {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-
-  gap:
-    8px
-    18px;
-}
-
-
-.ukiyo-work--{{ uid }} .ukiyo-work__project-category,
-.ukiyo-work--{{ uid }} .ukiyo-work__project-year {
-  color: var(--uw-muted);
+.uw2--{{ uid }} .uw2__category {
+  color: var(--uw2-muted);
 
   font-size: 9px;
   font-weight: 600;
@@ -1509,71 +1687,65 @@
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__project-year::before {
-  content: '';
+.uw2--{{ uid }} .uw2__client {
+  margin:
+    10px
+    0
+    0;
 
-  width: 22px;
-  height: 1px;
-
-  margin-right: 14px;
-
-  display: inline-block;
-  vertical-align: middle;
-
-  background:
-    var(--uw-line);
-}
-
-
-.ukiyo-work--{{ uid }} .ukiyo-work__client {
-  margin: 0;
-
-  color: var(--uw-muted);
+  color: var(--uw2-ink);
 
   font-size: 12px;
-
-  text-align: right;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__project-copy-main {
+.uw2--{{ uid }} .uw2__year {
+  color: var(--uw2-muted);
+
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .12em;
+}
+
+
+.uw2--{{ uid }} .uw2__feature-middle {
   margin:
     auto
     0;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__project-title {
+.uw2--{{ uid }} .uw2__feature-title {
+  max-width: 8.5ch;
+
   margin: 0;
 
-  max-width: 10ch;
-
-  color: var(--uw-text);
+  color: var(--uw2-ink);
 
   font-size:
     clamp(
-      38px,
-      4.4vw,
-      72px
+      48px,
+      5vw,
+      82px
     );
 
   font-weight: 600;
-  line-height: .95;
-  letter-spacing: -.055em;
+  line-height: .9;
+  letter-spacing: -.06em;
 
   text-transform: uppercase;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__project-description {
-  max-width: 38ch;
+.uw2--{{ uid }} .uw2__feature-description {
+  max-width: 37ch;
 
   margin:
-    30px
+    32px
     0
     0;
 
-  color: var(--uw-muted);
+  color: var(--uw2-muted);
 
   font-size:
     clamp(
@@ -1586,101 +1758,159 @@
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__services {
-  margin:
-    25px
-    0
-    0;
+.uw2--{{ uid }} .uw2__services {
+  margin-top: 32px;
 
-  color: var(--uw-muted);
+  padding-top: 18px;
 
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: .10em;
+  display: grid;
 
-  text-transform: uppercase;
-}
+  grid-template-columns:
+    80px
+    1fr;
 
-
-.ukiyo-work--{{ uid }} .ukiyo-work__project-copy-bottom {
-  margin-top: auto;
-
-  padding-top: 40px;
-
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-
-  gap: 30px;
+  gap: 20px;
 
   border-top:
     1px
     solid
-    var(--uw-line);
+    var(--uw2-line);
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__results {
-  display: flex;
-  flex-wrap: wrap;
+.uw2--{{ uid }} .uw2__services span {
+  color: var(--uw2-muted);
 
-  gap: 7px;
-}
-
-
-.ukiyo-work--{{ uid }} .ukiyo-work__result {
-  min-height: 33px;
-
-  padding:
-    0
-    13px;
-
-  display: inline-flex;
-  align-items: center;
-
-  border:
-    1px
-    solid
-    var(--uw-line);
-
-  border-radius:
-    999px;
-
-  color: var(--uw-muted);
-
-  background:
-    rgba(255,255,255,.015);
-
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 600;
-  letter-spacing: .08em;
+  letter-spacing: .14em;
 
   text-transform: uppercase;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__project-cta {
-  flex: 0 0 auto;
+.uw2--{{ uid }} .uw2__services p {
+  margin: 0;
 
-  display: inline-flex;
+  color: var(--uw2-muted);
+
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.55;
+  letter-spacing: .06em;
+
+  text-transform: uppercase;
+}
+
+
+/* ============================================================
+   RESULTS
+   ============================================================ */
+
+.uw2--{{ uid }} .uw2__feature-bottom {
+  margin-top: auto;
+
+  padding-top: 36px;
+
+  border-top:
+    1px
+    solid
+    var(--uw2-line);
+}
+
+
+.uw2--{{ uid }} .uw2__metrics {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
+
+  gap: 1px;
+
+  background:
+    var(--uw2-line);
+}
+
+
+.uw2--{{ uid }} .uw2__metric {
+  min-width: 0;
+
+  padding:
+    19px
+    12px;
+
+  background:
+    var(--uw2-surface);
+}
+
+
+.uw2--{{ uid }} .uw2__metric strong {
+  display: block;
+
+  overflow-wrap: anywhere;
+
+  color: var(--uw2-ink);
+
+  font-size:
+    clamp(
+      11px,
+      1vw,
+      15px
+    );
+
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+
+.uw2--{{ uid }} .uw2__case-link {
+  margin-top: 28px;
+
+  min-height: 48px;
+
+  padding:
+    0
+    16px;
+
+  display: flex;
   align-items: center;
+  justify-content: space-between;
 
-  gap: 11px;
+  border:
+    1px
+    solid
+    var(--uw2-line);
 
-  color: var(--uw-muted);
+  border-radius:
+    999px;
 
-  font-size: 12px;
+  color: var(--uw2-muted);
+
+  font-size: 10px;
   font-weight: 600;
+  letter-spacing: .10em;
+
+  text-transform: uppercase;
 
   transition:
     color
-    .3s
+    .25s
+    ease,
+
+    border-color
+    .25s
+    ease,
+
+    background
+    .25s
     ease;
 }
 
 
-.ukiyo-work--{{ uid }}
-.ukiyo-work__project-cta svg {
+.uw2--{{ uid }} .uw2__case-link svg {
   transition:
     transform
     .4s
@@ -1693,40 +1923,43 @@
 }
 
 
-.ukiyo-work--{{ uid }}
-.ukiyo-work__project-link:hover
-.ukiyo-work__project-cta {
-  color: var(--uw-text);
+.uw2--{{ uid }} .uw2__feature-link:hover .uw2__case-link {
+  color: var(--uw2-ink);
+
+  border-color:
+    color-mix(
+      in srgb,
+      var(--uw2-ink) 35%,
+      transparent
+    );
 }
 
 
-.ukiyo-work--{{ uid }}
-.ukiyo-work__project-link:hover
-.ukiyo-work__project-cta svg {
+.uw2--{{ uid }} .uw2__feature-link:hover .uw2__case-link svg {
   transform:
     translateX(5px);
 }
 
 
 /* ============================================================
-   MORE PROJECTS
+   MORE WORK
    ============================================================ */
 
-.ukiyo-work--{{ uid }} .ukiyo-work__more {
+.uw2--{{ uid }} .uw2__more {
   margin-top:
     clamp(
-      110px,
-      14vw,
-      210px
+      150px,
+      18vw,
+      300px
     );
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__more-header {
-  margin-bottom: 24px;
+.uw2--{{ uid }} .uw2__more-heading {
+  margin-bottom: 30px;
 
   padding:
-    15px
+    18px
     0;
 
   display: flex;
@@ -1736,14 +1969,28 @@
   border-top:
     1px
     solid
-    var(--uw-line);
+    var(--uw2-line);
 
   border-bottom:
     1px
     solid
-    var(--uw-line);
+    var(--uw2-line);
+}
 
-  color: var(--uw-muted);
+
+.uw2--{{ uid }} .uw2__more-heading > div {
+  display: flex;
+  align-items: center;
+
+  gap: 20px;
+}
+
+
+.uw2--{{ uid }} .uw2__more-heading span,
+.uw2--{{ uid }} .uw2__more-heading p {
+  margin: 0;
+
+  color: var(--uw2-muted);
 
   font-size: 9px;
   font-weight: 600;
@@ -1753,13 +2000,12 @@
 }
 
 
-.ukiyo-work--{{ uid }}
-.ukiyo-work__more-header p {
-  margin: 0;
+.uw2--{{ uid }} .uw2__more-heading > div > span {
+  color: var(--uw2-ink);
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__compact-grid {
+.uw2--{{ uid }} .uw2__compact-grid {
   display: grid;
 
   grid-template-columns:
@@ -1768,22 +2014,27 @@
       minmax(0, 1fr)
     );
 
-  gap: 16px;
+  gap:
+    clamp(
+      18px,
+      2vw,
+      30px
+    );
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__compact {
+.uw2--{{ uid }} .uw2__compact {
   opacity: 0;
 
   filter:
-    blur(9px);
+    blur(10px);
 
   transform:
-    translateY(40px);
+    translateY(42px);
 
   transition:
     opacity
-    .8s
+    .9s
     cubic-bezier(
       .16,
       1,
@@ -1792,7 +2043,7 @@
     ),
 
     filter
-    .8s
+    .9s
     cubic-bezier(
       .16,
       1,
@@ -1801,7 +2052,7 @@
     ),
 
     transform
-    .8s
+    .9s
     cubic-bezier(
       .16,
       1,
@@ -1811,7 +2062,7 @@
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__compact.is-visible {
+.uw2--{{ uid }} .uw2__compact.is-visible {
   opacity: 1;
 
   filter:
@@ -1822,32 +2073,28 @@
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__compact-link {
+.uw2--{{ uid }} .uw2__compact-link {
   display: block;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__compact-media {
+.uw2--{{ uid }} .uw2__compact-media {
   position: relative;
 
-  aspect-ratio: 16 / 11;
+  aspect-ratio:
+    16 / 10;
 
   overflow: hidden;
 
-  border:
-    1px
-    solid
-    var(--uw-line);
-
   border-radius:
-    var(--uw-radius);
+    var(--uw2-radius);
 
   background:
-    var(--uw-card);
+    #111111;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__compact-image {
+.uw2--{{ uid }} .uw2__compact-image {
   position: absolute;
   inset: 0;
 
@@ -1860,7 +2107,7 @@
 
   transition:
     transform
-    .9s
+    1s
     cubic-bezier(
       .16,
       1,
@@ -1870,34 +2117,50 @@
 }
 
 
-.ukiyo-work--{{ uid }}
-.ukiyo-work__compact-link:hover
-.ukiyo-work__compact-image {
+.uw2--{{ uid }} .uw2__compact-link:hover .uw2__compact-image {
   transform:
-    scale(1.06);
+    scale(1.065);
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__compact-overlay {
+.uw2--{{ uid }} .uw2__compact-wash {
   position: absolute;
   inset: 0;
 
   background:
     linear-gradient(
-      to top,
-      rgba(0,0,0,.60),
-      rgba(0,0,0,.02) 62%
+      180deg,
+      rgba(0,0,0,.12),
+      transparent 52%,
+      rgba(0,0,0,.52)
     );
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__compact-arrow {
+.uw2--{{ uid }} .uw2__compact-top {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 18px;
+  right: 18px;
+  left: 18px;
 
-  width: 46px;
-  height: 46px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: #ffffff;
+}
+
+
+.uw2--{{ uid }} .uw2__compact-top > span:first-child {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .12em;
+}
+
+
+.uw2--{{ uid }} .uw2__compact-arrow {
+  width: 42px;
+  height: 42px;
 
   display: grid;
   place-items: center;
@@ -1905,22 +2168,15 @@
   border:
     1px
     solid
-    rgba(255,255,255,.28);
+    rgba(255,255,255,.3);
 
   border-radius: 50%;
-
-  color: #ffffff;
-  background:
-    rgba(0,0,0,.15);
-
-  backdrop-filter:
-    blur(12px);
 
   opacity: 0;
 
   transform:
-    scale(.75)
-    rotate(-15deg);
+    scale(.76)
+    rotate(-20deg);
 
   transition:
     opacity
@@ -1938,9 +2194,7 @@
 }
 
 
-.ukiyo-work--{{ uid }}
-.ukiyo-work__compact-link:hover
-.ukiyo-work__compact-arrow {
+.uw2--{{ uid }} .uw2__compact-link:hover .uw2__compact-arrow {
   opacity: 1;
 
   transform:
@@ -1949,117 +2203,113 @@
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__compact-placeholder {
+.uw2--{{ uid }} .uw2__compact-placeholder {
   position: absolute;
   inset: 0;
 
   display: grid;
   place-items: center;
 
-  color: rgba(255,255,255,.08);
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      .08
+    );
 
   background:
     linear-gradient(
       145deg,
-      #151515,
-      #090909
+      #171717,
+      #0a0a0a
+    );
+}
+
+
+.uw2--{{ uid }} .uw2__compact-placeholder span {
+  font-size:
+    clamp(
+      72px,
+      10vw,
+      150px
     );
 
-  font-size: 100px;
-  font-weight: 600;
+  line-height: 1;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__compact-copy {
+.uw2--{{ uid }} .uw2__compact-copy {
   padding:
-    20px
-    3px
-    5px;
+    22px
+    2px
+    0;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__compact-meta {
-  margin-bottom: 10px;
+.uw2--{{ uid }} .uw2__compact-meta {
+  margin-bottom: 12px;
 
   display: flex;
-  align-items: center;
   justify-content: space-between;
 
-  gap: 16px;
+  gap: 14px;
 
-  color: var(--uw-muted);
+  color: var(--uw2-muted);
 
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 600;
-  letter-spacing: .14em;
+  letter-spacing: .12em;
 
   text-transform: uppercase;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__compact-copy h3 {
+.uw2--{{ uid }} .uw2__compact-copy h3 {
+  max-width: 17ch;
+
   margin: 0;
 
-  max-width: 18ch;
-
-  color: var(--uw-text);
+  color: var(--uw2-ink);
 
   font-size:
     clamp(
-      23px,
-      2.6vw,
-      38px
+      28px,
+      3.2vw,
+      48px
     );
 
   font-weight: 600;
-  line-height: 1;
-  letter-spacing: -.045em;
+  line-height: .95;
+  letter-spacing: -.05em;
 
   text-transform: uppercase;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__compact-copy p {
+.uw2--{{ uid }} .uw2__compact-copy p {
   margin:
-    10px
+    11px
     0
     0;
 
-  color: var(--uw-muted);
+  color: var(--uw2-muted);
 
   font-size: 12px;
 }
 
 
 /* ============================================================
-   FOOTER CTA
+   FOOTER
    ============================================================ */
 
-.ukiyo-work--{{ uid }} .ukiyo-work__footer {
+.uw2--{{ uid }} .uw2__footer {
   margin-top:
     clamp(
-      120px,
-      16vw,
-      240px
+      150px,
+      20vw,
+      340px
     );
-
-  padding-top:
-    clamp(
-      50px,
-      6vw,
-      90px
-    );
-
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-
-  gap: 60px;
-
-  border-top:
-    1px
-    solid
-    var(--uw-line);
 
   opacity: 0;
 
@@ -2067,11 +2317,11 @@
     blur(10px);
 
   transform:
-    translateY(40px);
+    translateY(44px);
 
   transition:
     opacity
-    .9s
+    1s
     cubic-bezier(
       .16,
       1,
@@ -2080,7 +2330,7 @@
     ),
 
     filter
-    .9s
+    1s
     cubic-bezier(
       .16,
       1,
@@ -2089,7 +2339,7 @@
     ),
 
     transform
-    .9s
+    1s
     cubic-bezier(
       .16,
       1,
@@ -2099,7 +2349,7 @@
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__footer.is-visible {
+.uw2--{{ uid }} .uw2__footer.is-visible {
   opacity: 1;
 
   filter:
@@ -2110,71 +2360,116 @@
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__footer-eyebrow {
-  margin:
-    0
-    0
-    16px;
+.uw2--{{ uid }} .uw2__footer-top {
+  padding:
+    16px
+    0;
 
-  color: var(--uw-muted);
+  display: flex;
+  justify-content: space-between;
+
+  border-top:
+    1px
+    solid
+    var(--uw2-line);
+
+  color: var(--uw2-muted);
 
   font-size: 9px;
   font-weight: 600;
-  letter-spacing: .16em;
+  letter-spacing: .14em;
 
   text-transform: uppercase;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__footer h3 {
-  max-width: 12ch;
+.uw2--{{ uid }} .uw2__footer-main {
+  padding-top:
+    clamp(
+      50px,
+      7vw,
+      110px
+    );
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.25fr)
+    minmax(260px, .75fr);
+
+  align-items: end;
+
+  gap:
+    clamp(
+      50px,
+      8vw,
+      120px
+    );
+}
+
+
+.uw2--{{ uid }} .uw2__footer-main p {
+  margin:
+    0
+    0
+    20px;
+
+  color: var(--uw2-muted);
+
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .14em;
+
+  text-transform: uppercase;
+}
+
+
+.uw2--{{ uid }} .uw2__footer-main h3 {
+  max-width: 9ch;
 
   margin: 0;
 
-  color: var(--uw-text);
+  color: var(--uw2-ink);
 
   font-size:
     clamp(
-      44px,
-      6vw,
-      92px
+      64px,
+      9vw,
+      150px
     );
 
   font-weight: 600;
-  line-height: .92;
-  letter-spacing: -.055em;
+  line-height: .82;
+  letter-spacing: -.07em;
 
   text-transform: uppercase;
 }
 
 
-.ukiyo-work--{{ uid }} .ukiyo-work__footer-button {
-  min-height: 58px;
+.uw2--{{ uid }} .uw2__footer-button {
+  min-height: 78px;
 
   padding:
     0
-    26px;
+    20px
+    0
+    30px;
 
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
-  gap: 14px;
-
-  flex: 0 0 auto;
+  gap: 30px;
 
   border:
     1px
     solid
-    var(--uw-line);
+    var(--uw2-line);
 
   border-radius:
     999px;
 
-  color: var(--uw-text);
-
-  background:
-    rgba(255,255,255,.02);
+  color: var(--uw2-ink);
 
   font-size: 11px;
   font-weight: 600;
@@ -2183,16 +2478,16 @@
   text-transform: uppercase;
 
   transition:
-    background
-    .3s
+    color
+    .35s
     ease,
 
-    color
-    .3s
+    background
+    .35s
     ease,
 
     transform
-    .3s
+    .35s
     cubic-bezier(
       .16,
       1,
@@ -2202,13 +2497,44 @@
 }
 
 
-.ukiyo-work--{{ uid }}
-.ukiyo-work__footer-button:hover {
-  color: var(--uw-bg);
-  background: var(--uw-text);
+.uw2--{{ uid }} .uw2__footer-button-arrow {
+  width: 54px;
+  height: 54px;
+
+  display: grid;
+  place-items: center;
+
+  border:
+    1px
+    solid
+    var(--uw2-line);
+
+  border-radius: 50%;
+
+  transition:
+    transform
+    .45s
+    cubic-bezier(
+      .16,
+      1,
+      .3,
+      1
+    );
+}
+
+
+.uw2--{{ uid }} .uw2__footer-button:hover {
+  color: var(--uw2-bg);
+  background: var(--uw2-ink);
 
   transform:
     translateY(-3px);
+}
+
+
+.uw2--{{ uid }} .uw2__footer-button:hover .uw2__footer-button-arrow {
+  transform:
+    rotate(45deg);
 }
 
 
@@ -2218,23 +2544,20 @@
 
 @media (max-width: 989px) {
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__header-main {
+  .uw2--{{ uid }} .uw2__intro-grid {
     grid-template-columns:
       1fr;
 
-    gap: 36px;
+    gap: 38px;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__header-aside {
+  .uw2--{{ uid }} .uw2__intro-copy {
     max-width: 600px;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-link {
+  .uw2--{{ uid }} .uw2__feature-link {
     grid-template-columns:
       1fr;
 
@@ -2242,19 +2565,13 @@
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project--reverse
-  .ukiyo-work__project-media,
-
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project--reverse
-  .ukiyo-work__project-copy {
+  .uw2--{{ uid }} .uw2__feature--reverse .uw2__feature-media,
+  .uw2--{{ uid }} .uw2__feature--reverse .uw2__feature-info {
     order: initial;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-media {
+  .uw2--{{ uid }} .uw2__feature-media {
     min-height: 0;
 
     aspect-ratio:
@@ -2262,28 +2579,29 @@
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-copy {
-    min-height: 470px;
+  .uw2--{{ uid }} .uw2__feature-info {
+    min-height: 560px;
   }
 
 }
 
 
 /* ============================================================
-   MOBILE — REFINED
-   Desktop remains unchanged
+   MOBILE
    ============================================================ */
 
 @media (max-width: 749px) {
 
-  .ukiyo-work--{{ uid }} {
-    --uw-mobile-gutter: 16px;
+  .uw2--{{ uid }} {
+    --uw2-radius:
+      min(
+        var(--uw2-radius),
+        16px
+      );
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__container {
+  .uw2--{{ uid }} .uw2__shell {
     width:
       calc(
         100% -
@@ -2292,326 +2610,234 @@
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__grid-texture {
-    opacity: .18;
-
-    background-size:
-      52px
-      52px;
+  .uw2--{{ uid }} .uw2__noise {
+    opacity: .13;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__display {
-    top: 2%;
-    left: -8%;
+  .uw2--{{ uid }} .uw2__giant {
+    top: 1%;
+    left: -7%;
 
-    width: 125%;
-  }
-
-
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__display span {
     font-size:
       clamp(
-        84px,
-        30vw,
-        150px
+        100px,
+        38vw,
+        190px
       );
-
-    line-height: .82;
   }
 
 
-  /* Header */
+  /* Intro */
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__header {
-    margin-bottom: 52px;
+  .uw2--{{ uid }} .uw2__intro {
+    margin-bottom: 68px;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__header-main {
-    gap: 28px;
+  .uw2--{{ uid }} .uw2__intro-top {
+    margin-bottom: 28px;
+
+    align-items: center;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__eyebrow {
-    margin-bottom: 16px;
-
-    font-size: 9px;
-    letter-spacing: .18em;
+  .uw2--{{ uid }} .uw2__count > span {
+    font-size: 30px;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__eyebrow-line {
-    width: 24px;
+  .uw2--{{ uid }} .uw2__count small {
+    font-size: 7px;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__title {
+  .uw2--{{ uid }} .uw2__heading {
     font-size:
       clamp(
-        46px,
-        14vw,
-        72px
+        52px,
+        16.5vw,
+        82px
       );
 
-    line-height: .9;
-    letter-spacing: -.055em;
+    line-height: .84;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__header-aside {
-    padding-bottom: 0;
+  .uw2--{{ uid }} .uw2__intro-grid {
+    gap: 30px;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__intro {
+  .uw2--{{ uid }} .uw2__intro-copy > p {
     max-width: 34ch;
 
-    margin-bottom: 22px;
+    margin-bottom: 25px;
 
     font-size: 14px;
     line-height: 1.55;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__header-meta {
-    margin-bottom: 22px;
-
-    padding:
-      12px
-      0;
-
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 10px;
-
+  .uw2--{{ uid }} .uw2__intro-meta {
     font-size: 8px;
-    letter-spacing: .1em;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__header-meta span:last-child {
-    text-align: right;
+  .uw2--{{ uid }} .uw2__arrow-link {
+    margin-top: 22px;
+
+    font-size: 11px;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__text-link {
-    gap: 10px;
-
-    font-size: 12px;
+  .uw2--{{ uid }} .uw2__arrow-circle {
+    width: 38px;
+    height: 38px;
   }
 
 
-  /* Featured cards */
+  /* Featured */
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__featured {
-    gap: 56px;
+  .uw2--{{ uid }} .uw2__featured {
+    gap: 72px;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project {
+  .uw2--{{ uid }} .uw2__feature {
     transform:
-      translateY(30px);
+      translateY(36px);
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-link {
+  .uw2--{{ uid }} .uw2__feature-link {
     display: block;
 
-    min-height: 0;
+    border:
+      1px
+      solid
+      var(--uw2-line);
 
     border-radius:
-      min(
-        var(--uw-radius),
-        18px
-      );
+      var(--uw2-radius);
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project--reverse
-  .ukiyo-work__project-media,
-
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project--reverse
-  .ukiyo-work__project-copy {
-    order: initial;
-  }
-
-
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-media {
-    min-height: 0;
-
+  .uw2--{{ uid }} .uw2__feature-media {
     aspect-ratio:
-      4 / 3;
+      1.08 / 1;
+
+    overflow: hidden;
+
+    border-radius:
+      var(--uw2-radius)
+      var(--uw2-radius)
+      0
+      0;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-image-wrap {
-    position: absolute;
-    inset: 0;
-  }
-
-
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-image {
-    inset: 0;
+  .uw2--{{ uid }} .uw2__feature-image {
+    top: 0;
 
     width: 100%;
     height: 100%;
 
     transform: none;
-
-    object-fit: cover;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-link:hover
-  .ukiyo-work__project-image {
+  .uw2--{{ uid }} .uw2__feature-link:hover .uw2__feature-image {
     transform: none;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-number {
-    top: 16px;
-    left: 16px;
-
-    font-size: 42px;
-
-    opacity: .85;
+  .uw2--{{ uid }} .uw2__feature-index {
+    top: 15px;
+    left: 15px;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__media-arrow {
+  .uw2--{{ uid }} .uw2__feature-index > span {
+    font-size: 44px;
+  }
+
+
+  .uw2--{{ uid }} .uw2__feature-cursor {
     right: 14px;
     bottom: 14px;
 
-    width: 42px;
-    height: 42px;
+    width: 48px;
+    height: 48px;
 
     opacity: 1;
 
     transform: none;
-
-    background:
-      rgba(
-        0,
-        0,
-        0,
-        .22
-      );
-
-    backdrop-filter:
-      blur(10px);
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__media-arrow svg {
-    width: 18px;
-    height: 18px;
+  .uw2--{{ uid }} .uw2__feature-cursor span {
+    display: none;
   }
 
 
-  /* Featured content */
+  /* Info */
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-copy {
+  .uw2--{{ uid }} .uw2__feature-info {
     min-height: 0;
 
     padding:
       22px
       18px
-      20px;
+      18px;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-copy-top {
-    margin-bottom: 34px;
-
+  .uw2--{{ uid }} .uw2__feature-top {
     align-items: center;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-ident {
-    gap:
-      6px
-      10px;
-  }
-
-
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-category,
-
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-year {
+  .uw2--{{ uid }} .uw2__category {
     font-size: 8px;
-    letter-spacing: .12em;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-year::before {
-    width: 12px;
-
-    margin-right: 8px;
-  }
-
-
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__client {
-    max-width: 42%;
+  .uw2--{{ uid }} .uw2__client {
+    margin-top: 7px;
 
     font-size: 10px;
-    line-height: 1.3;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-title {
-    max-width: 11ch;
+  .uw2--{{ uid }} .uw2__year {
+    font-size: 9px;
+  }
+
+
+  .uw2--{{ uid }} .uw2__feature-middle {
+    margin:
+      34px
+      0
+      0;
+  }
+
+
+  .uw2--{{ uid }} .uw2__feature-title {
+    max-width: 10ch;
 
     font-size:
       clamp(
-        31px,
-        9vw,
-        46px
+        34px,
+        10vw,
+        48px
       );
 
-    line-height: .98;
-    letter-spacing: -.045em;
+    line-height: .94;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-description {
-    max-width: none;
-
+  .uw2--{{ uid }} .uw2__feature-description {
     margin-top: 18px;
 
     font-size: 13px;
@@ -2619,140 +2845,112 @@
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__services {
-    margin-top: 18px;
+  .uw2--{{ uid }} .uw2__services {
+    margin-top: 22px;
+    padding-top: 14px;
 
-    font-size: 8px;
-    letter-spacing: .09em;
+    grid-template-columns:
+      58px
+      1fr;
+
+    gap: 12px;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-copy-bottom {
-    margin-top: 34px;
+  .uw2--{{ uid }} .uw2__services span,
+  .uw2--{{ uid }} .uw2__services p {
+    font-size: 8px;
+  }
 
+
+  .uw2--{{ uid }} .uw2__feature-bottom {
+    margin-top: 32px;
     padding-top: 18px;
-
-    flex-direction: column;
-    align-items: stretch;
-
-    gap: 18px;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__results {
-    gap: 6px;
+  .uw2--{{ uid }} .uw2__metrics {
+    grid-template-columns:
+      1fr;
+
+    gap: 1px;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__result {
-    min-height: 29px;
-
-    padding:
-      0
-      10px;
-
-    font-size: 8px;
-    letter-spacing: .07em;
-  }
-
-
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-cta {
-    width: 100%;
-
-    min-height: 48px;
-
-    padding:
-      0
-      16px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    border:
-      1px
-      solid
-      var(--uw-line);
-
-    border-radius: 999px;
-
-    color: var(--uw-text);
-
-    font-size: 10px;
-    letter-spacing: .08em;
-
-    text-transform: uppercase;
-  }
-
-
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-cta svg {
-    width: 16px;
-    height: 16px;
-  }
-
-
-  /* Compact projects */
-
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__more {
-    margin-top: 74px;
-  }
-
-
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__more-header {
-    margin-bottom: 18px;
+  .uw2--{{ uid }} .uw2__metric {
+    min-height: 42px;
 
     padding:
       12px
+      13px;
+
+    display: flex;
+    align-items: center;
+  }
+
+
+  .uw2--{{ uid }} .uw2__metric strong {
+    font-size: 11px;
+  }
+
+
+  .uw2--{{ uid }} .uw2__case-link {
+    min-height: 50px;
+
+    margin-top: 16px;
+
+    color: var(--uw2-ink);
+
+    font-size: 9px;
+  }
+
+
+  /* More work */
+
+  .uw2--{{ uid }} .uw2__more {
+    margin-top: 96px;
+  }
+
+
+  .uw2--{{ uid }} .uw2__more-heading {
+    margin-bottom: 18px;
+
+    padding:
+      13px
       0;
-
-    font-size: 8px;
-    letter-spacing: .12em;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__more-header span {
-    display: block;
-
-    opacity: .55;
+  .uw2--{{ uid }} .uw2__more-direction {
+    opacity: .5;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__compact-grid {
+  .uw2--{{ uid }} .uw2__compact-grid {
     width:
       calc(
         100% +
         16px
       );
 
-    margin-right: -16px;
+    margin-right:
+      -16px;
 
-    padding-right: 16px;
+    padding-right:
+      16px;
 
     display: flex;
 
     gap: 12px;
 
     overflow-x: auto;
-    overflow-y: visible;
-
-    overscroll-behavior-inline:
-      contain;
+    overflow-y: hidden;
 
     scroll-snap-type:
       x mandatory;
 
-    scroll-padding-inline:
-      0;
+    overscroll-behavior-x:
+      contain;
 
     scrollbar-width:
       none;
@@ -2762,19 +2960,17 @@
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__compact-grid::-webkit-scrollbar {
+  .uw2--{{ uid }} .uw2__compact-grid::-webkit-scrollbar {
     display: none;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__compact {
+  .uw2--{{ uid }} .uw2__compact {
     flex:
       0
       0
       min(
-        78vw,
+        80vw,
         340px
       );
 
@@ -2783,126 +2979,92 @@
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__compact-media {
+  .uw2--{{ uid }} .uw2__compact-media {
     aspect-ratio:
       4 / 3;
 
     border-radius:
-      min(
-        var(--uw-radius),
-        15px
-      );
+      var(--uw2-radius);
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__compact-arrow {
-    top: 13px;
-    right: 13px;
-
-    width: 40px;
-    height: 40px;
-
+  .uw2--{{ uid }} .uw2__compact-arrow {
     opacity: 1;
 
     transform: none;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__compact-copy {
-    padding:
-      15px
-      2px
-      3px;
+  .uw2--{{ uid }} .uw2__compact-copy {
+    padding-top: 15px;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__compact-meta {
-    margin-bottom: 8px;
-
-    font-size: 8px;
-    letter-spacing: .1em;
-  }
-
-
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__compact-copy h3 {
-    max-width: 15ch;
-
+  .uw2--{{ uid }} .uw2__compact-copy h3 {
     font-size:
       clamp(
         22px,
         7vw,
         30px
       );
-
-    line-height: 1;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__compact-copy p {
-    margin-top: 7px;
-
+  .uw2--{{ uid }} .uw2__compact-copy p {
     font-size: 11px;
   }
 
 
-  /* Footer CTA */
+  /* Footer */
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__footer {
-    margin-top: 82px;
-
-    padding-top: 42px;
-
-    flex-direction: column;
-    align-items: stretch;
-
-    gap: 28px;
+  .uw2--{{ uid }} .uw2__footer {
+    margin-top: 105px;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__footer-eyebrow {
-    margin-bottom: 12px;
-
+  .uw2--{{ uid }} .uw2__footer-top {
     font-size: 8px;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__footer h3 {
-    max-width: 10ch;
+  .uw2--{{ uid }} .uw2__footer-main {
+    padding-top: 42px;
 
-    font-size:
-      clamp(
-        38px,
-        12vw,
-        58px
-      );
+    grid-template-columns:
+      1fr;
 
-    line-height: .94;
+    gap: 32px;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__footer-button {
-    width: 100%;
+  .uw2--{{ uid }} .uw2__footer-main h3 {
+    font-size:
+      clamp(
+        48px,
+        14vw,
+        70px
+      );
 
-    min-height: 54px;
+    line-height: .86;
+  }
+
+
+  .uw2--{{ uid }} .uw2__footer-button {
+    min-height: 62px;
 
     padding:
       0
+      10px
+      0
       20px;
 
-    justify-content:
-      space-between;
+    width: 100%;
+  }
 
-    font-size: 10px;
+
+  .uw2--{{ uid }} .uw2__footer-button-arrow {
+    width: 46px;
+    height: 46px;
   }
 
 }
@@ -2912,10 +3074,9 @@
    SMALL MOBILE
    ============================================================ */
 
-@media (max-width: 430px) {
+@media (max-width: 420px) {
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__container {
+  .uw2--{{ uid }} .uw2__shell {
     width:
       calc(
         100% -
@@ -2924,68 +3085,45 @@
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__title {
+  .uw2--{{ uid }} .uw2__heading {
     font-size:
       clamp(
-        42px,
-        13.8vw,
-        62px
+        47px,
+        15.5vw,
+        68px
       );
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__header-meta {
-    font-size: 7px;
-  }
-
-
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-media {
+  .uw2--{{ uid }} .uw2__feature-media {
     aspect-ratio:
-      1.05 / 1;
+      1 / 1;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-copy {
+  .uw2--{{ uid }} .uw2__feature-info {
     padding:
-      20px
+      19px
       16px
-      18px;
+      16px;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-copy-top {
-    margin-bottom: 28px;
-  }
-
-
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-title {
+  .uw2--{{ uid }} .uw2__feature-title {
     font-size:
       clamp(
-        29px,
-        9vw,
-        40px
+        31px,
+        9.5vw,
+        42px
       );
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-description {
-    font-size: 13px;
-  }
-
-
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__compact {
+  .uw2--{{ uid }} .uw2__compact {
     flex-basis:
       min(
-        82vw,
-        330px
+        83vw,
+        325px
       );
   }
 
@@ -2993,13 +3131,12 @@
 
 
 /* ============================================================
-   VERY SMALL MOBILE
+   VERY SMALL
    ============================================================ */
 
 @media (max-width: 360px) {
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__container {
+  .uw2--{{ uid }} .uw2__shell {
     width:
       calc(
         100% -
@@ -3008,40 +3145,25 @@
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__header-meta {
-    flex-direction: column;
+  .uw2--{{ uid }} .uw2__intro-top {
     align-items: flex-start;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__header-meta span:last-child {
-    text-align: left;
+  .uw2--{{ uid }} .uw2__count small {
+    display: none;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-copy-top {
+  .uw2--{{ uid }} .uw2__feature-top {
     align-items: flex-start;
 
     flex-direction: column;
-
-    gap: 8px;
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__client {
-    max-width: none;
-
-    text-align: left;
-  }
-
-
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__result {
-    font-size: 7px;
+  .uw2--{{ uid }} .uw2__year {
+    margin-top: 2px;
   }
 
 }
@@ -3053,8 +3175,7 @@
 
 @media (prefers-reduced-motion: reduce) {
 
-  .ukiyo-work--{{ uid }}
-  [data-ukiyo-reveal] {
+  .uw2--{{ uid }} [data-uw2-reveal] {
     opacity: 1 !important;
 
     filter: none !important;
@@ -3065,8 +3186,8 @@
   }
 
 
-  .ukiyo-work--{{ uid }}
-  .ukiyo-work__project-image {
+  .uw2--{{ uid }} .uw2__feature-image,
+  .uw2--{{ uid }} .uw2__compact-image {
     transform: none !important;
 
     transition: none !important;
@@ -3091,25 +3212,25 @@
 
 
   if (
-    root.__ukiyoWorkCleanup &&
-    typeof root.__ukiyoWorkCleanup === 'function'
+    root.__uw2Cleanup &&
+    typeof root.__uw2Cleanup === 'function'
   ) {
-    root.__ukiyoWorkCleanup();
+    root.__uw2Cleanup();
   }
 
 
-  var revealElements =
+  var reveals =
     Array.prototype.slice.call(
       root.querySelectorAll(
-        '[data-ukiyo-reveal]'
+        '[data-uw2-reveal]'
       )
     );
 
 
-  var parallaxElements =
+  var parallaxItems =
     Array.prototype.slice.call(
       root.querySelectorAll(
-        '[data-ukiyo-parallax]'
+        '[data-uw2-parallax]'
       )
     );
 
@@ -3122,13 +3243,16 @@
 
 
   var observer = null;
-  var scrollFrame = 0;
-  var scrollTicking = false;
+
+  var frame = 0;
+
+  var ticking = false;
+
   var destroyed = false;
 
 
-  function revealEverything() {
-    revealElements.forEach(
+  function showEverything() {
+    reveals.forEach(
       function (element) {
         element.classList.add(
           'is-visible'
@@ -3138,7 +3262,7 @@
   }
 
 
-  function initializeReveal() {
+  function initReveal() {
     if (
       reduceMotion ||
       !(
@@ -3146,7 +3270,8 @@
         in window
       )
     ) {
-      revealEverything();
+      showEverything();
+
       return;
     }
 
@@ -3175,16 +3300,15 @@
           );
         },
         {
-          rootMargin:
-            '0px 0px -8% 0px',
+          threshold: .10,
 
-          threshold:
-            0.10
+          rootMargin:
+            '0px 0px -7% 0px'
         }
       );
 
 
-    revealElements.forEach(
+    reveals.forEach(
       function (element) {
         observer.observe(
           element
@@ -3195,14 +3319,13 @@
 
 
   function updateParallax() {
-    scrollTicking = false;
+    ticking = false;
 
 
     if (
       destroyed ||
       reduceMotion ||
-      window.innerWidth <
-      990
+      window.innerWidth < 990
     ) {
       return;
     }
@@ -3212,16 +3335,15 @@
       window.innerHeight;
 
 
-    parallaxElements.forEach(
-      function (element) {
+    parallaxItems.forEach(
+      function (item) {
         var rect =
-          element.getBoundingClientRect();
+          item.getBoundingClientRect();
 
 
         if (
           rect.bottom < 0 ||
-          rect.top >
-          viewportHeight
+          rect.top > viewportHeight
         ) {
           return;
         }
@@ -3235,7 +3357,7 @@
           );
 
 
-        var distance =
+        var delta =
           center -
           (
             viewportHeight /
@@ -3243,20 +3365,20 @@
           );
 
 
-        var movement =
+        var shift =
           Math.max(
-            -24,
+            -28,
             Math.min(
-              24,
-              distance *
-              -0.035
+              28,
+              delta *
+              -.04
             )
           );
 
 
-        element.style.setProperty(
-          '--uw-parallax',
-          movement.toFixed(2) +
+        item.style.setProperty(
+          '--uw2-parallax',
+          shift.toFixed(2) +
           'px'
         );
       }
@@ -3265,33 +3387,38 @@
 
 
   function requestParallax() {
-    if (scrollTicking) {
+    if (ticking) {
       return;
     }
 
 
-    scrollTicking = true;
+    ticking = true;
 
 
-    scrollFrame =
+    frame =
       window.requestAnimationFrame(
         updateParallax
       );
   }
 
 
-  function initializeVideos() {
+  function initVideos() {
     root
-      .querySelectorAll('video')
+      .querySelectorAll(
+        'video'
+      )
       .forEach(
         function (video) {
           video.muted = true;
+
           video.defaultMuted = true;
+
 
           video.setAttribute(
             'muted',
             ''
           );
+
 
           video.setAttribute(
             'playsinline',
@@ -3339,28 +3466,30 @@
 
 
     window.cancelAnimationFrame(
-      scrollFrame
+      frame
     );
 
 
     root.removeAttribute(
-      'data-ukiyo-work-ready'
+      'data-uw2-ready'
     );
   }
 
 
-  root.__ukiyoWorkCleanup =
+  root.__uw2Cleanup =
     cleanup;
 
 
   root.setAttribute(
-    'data-ukiyo-work-ready',
+    'data-uw2-ready',
     'true'
   );
 
 
-  initializeReveal();
-  initializeVideos();
+  initReveal();
+
+  initVideos();
+
   updateParallax();
 
 
@@ -3381,7 +3510,7 @@
 
   document.addEventListener(
     'shopify:section:unload',
-    function onUkiyoWorkUnload(event) {
+    function onUnload(event) {
       if (
         !event.target ||
         !event.target.contains(root)
@@ -3395,7 +3524,7 @@
 
       document.removeEventListener(
         'shopify:section:unload',
-        onUkiyoWorkUnload
+        onUnload
       );
     }
   );
@@ -3408,13 +3537,13 @@
 {
   "name": "Selected Work",
   "tag": "section",
-  "class": "ukiyo-selected-work-section",
+  "class": "ukiyo-selected-work",
 
   "settings": [
 
     {
       "type": "header",
-      "content": "Header"
+      "content": "Section header"
     },
 
     {
@@ -3448,33 +3577,33 @@
     {
       "type": "text",
       "id": "view_all_text",
-      "label": "View all link text",
+      "label": "View all projects text",
       "default": "View all projects"
     },
 
     {
       "type": "url",
       "id": "view_all_url",
-      "label": "View all link URL"
+      "label": "View all projects link"
     },
 
     {
       "type": "text",
       "id": "background_word",
-      "label": "Large background text",
-      "default": "SELECTED WORK"
+      "label": "Large background word",
+      "default": "WORK"
     },
 
 
     {
       "type": "header",
-      "content": "Additional work"
+      "content": "Secondary projects"
     },
 
     {
       "type": "text",
       "id": "compact_label",
-      "label": "Compact project heading",
+      "label": "Secondary projects label",
       "default": "More selected projects"
     },
 
@@ -3508,7 +3637,7 @@
     {
       "type": "text",
       "id": "footer_button_text",
-      "label": "Closing button text",
+      "label": "Closing button",
       "default": "Start a Conversation"
     },
 
@@ -3521,14 +3650,21 @@
 
     {
       "type": "header",
-      "content": "Colors"
+      "content": "Appearance"
     },
 
     {
       "type": "color",
       "id": "background_color",
-      "label": "Background",
+      "label": "Section background",
       "default": "#050505"
+    },
+
+    {
+      "type": "color",
+      "id": "surface_color",
+      "label": "Project surface",
+      "default": "#090909"
     },
 
     {
@@ -3541,22 +3677,15 @@
     {
       "type": "color",
       "id": "muted_color",
-      "label": "Muted text",
-      "default": "#777774"
+      "label": "Secondary text",
+      "default": "#747471"
     },
 
     {
       "type": "color",
       "id": "line_color",
-      "label": "Borders and rules",
+      "label": "Lines and borders",
       "default": "#242424"
-    },
-
-    {
-      "type": "color",
-      "id": "card_color",
-      "label": "Card background",
-      "default": "#090909"
     },
 
     {
@@ -3569,12 +3698,23 @@
     {
       "type": "range",
       "id": "image_overlay",
-      "label": "Image overlay strength",
+      "label": "Image overlay",
       "min": 0,
       "max": 100,
       "step": 5,
       "unit": "%",
-      "default": 45
+      "default": 40
+    },
+
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Corner radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 0
     },
 
 
@@ -3591,7 +3731,7 @@
       "max": 220,
       "step": 10,
       "unit": "px",
-      "default": 140
+      "default": 150
     },
 
     {
@@ -3599,24 +3739,14 @@
       "id": "padding_bottom",
       "label": "Bottom spacing",
       "min": 60,
-      "max": 240,
+      "max": 260,
       "step": 10,
       "unit": "px",
-      "default": 160
-    },
-
-    {
-      "type": "range",
-      "id": "card_radius",
-      "label": "Card corner radius",
-      "min": 0,
-      "max": 30,
-      "step": 2,
-      "unit": "px",
-      "default": 0
+      "default": 180
     }
 
   ],
+
 
   "blocks": [
 
@@ -3629,7 +3759,7 @@
         {
           "type": "select",
           "id": "layout",
-          "label": "Layout",
+          "label": "Project layout",
           "options": [
             {
               "value": "featured",
@@ -3653,7 +3783,7 @@
           "type": "video",
           "id": "video",
           "label": "Project video",
-          "info": "Video replaces the image when selected."
+          "info": "When selected, this replaces the image."
         },
 
         {
@@ -3686,39 +3816,39 @@
         {
           "type": "textarea",
           "id": "description",
-          "label": "Description",
-          "default": "A connected brand, creative, and digital transformation built to move the business into its next chapter."
+          "label": "Project description",
+          "default": "A connected brand, creative, and digital transformation built around what the business is becoming next."
         },
 
         {
           "type": "text",
           "id": "services",
-          "label": "Services",
+          "label": "Scope / services",
           "default": "Strategy · Brand · Web · Growth"
         },
 
         {
           "type": "text",
           "id": "result_1",
-          "label": "Result 1"
+          "label": "Result / metric 1"
         },
 
         {
           "type": "text",
           "id": "result_2",
-          "label": "Result 2"
+          "label": "Result / metric 2"
         },
 
         {
           "type": "text",
           "id": "result_3",
-          "label": "Result 3"
+          "label": "Result / metric 3"
         },
 
         {
           "type": "text",
           "id": "cta_text",
-          "label": "Project CTA",
+          "label": "Case study CTA",
           "default": "View case study"
         },
 
@@ -3733,6 +3863,7 @@
 
   ],
 
+
   "presets": [
 
     {
@@ -3742,7 +3873,7 @@
         "strap": "(Selected Work)",
         "title_line1": "Selected",
         "title_line2": "Work",
-        "view_all_text": "View all projects"
+        "background_word": "WORK"
       },
 
       "blocks": [
@@ -3758,7 +3889,8 @@
             "description": "A full digital and brand transformation designed around where the company is going next.",
             "services": "Strategy · Brand · Web · Growth",
             "result_1": "Brand Strategy",
-            "result_2": "Digital Build"
+            "result_2": "Digital Build",
+            "result_3": "Growth System"
           }
         },
 
@@ -3772,8 +3904,9 @@
             "title": "Turning Attention Into Momentum",
             "description": "A connected commerce and marketing ecosystem built to make every channel work harder together.",
             "services": "E-Commerce · Email · Automation",
-            "result_1": "Growth",
-            "result_2": "Automation"
+            "result_1": "Commerce",
+            "result_2": "Automation",
+            "result_3": "Growth"
           }
         },
 
