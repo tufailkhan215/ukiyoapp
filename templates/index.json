@@ -30,49 +30,73 @@
         "logo_gtXMwV": {
           "type": "logo",
           "settings": {
-            "name": "ADIDAS"
+            "name": "ADIDAS",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
           }
         },
         "logo_w86fX9": {
           "type": "logo",
           "settings": {
-            "name": "SPOTIFY"
+            "name": "SPOTIFY",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
           }
         },
         "logo_rWRt8M": {
           "type": "logo",
           "settings": {
-            "name": "APPLE"
+            "name": "APPLE",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
           }
         },
         "logo_BEnFJa": {
           "type": "logo",
           "settings": {
-            "name": "AMAZON"
+            "name": "AMAZON",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
           }
         },
         "logo_VRnNgD": {
           "type": "logo",
           "settings": {
-            "name": "ARTBASEL"
+            "name": "ARTBASEL",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
           }
         },
         "logo_debhPJ": {
           "type": "logo",
           "settings": {
-            "name": "COACHELA"
+            "name": "COACHELA",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
           }
         },
         "logo_Ft3KYp": {
           "type": "logo",
           "settings": {
-            "name": "SXSW"
+            "name": "SXSW",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
           }
         },
         "logo_kRbck3": {
           "type": "logo",
           "settings": {
-            "name": "POLAROID"
+            "name": "POLAROID",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
           }
         }
       },
@@ -90,7 +114,13 @@
         "badge_text": "Trusted By Industry Leaders",
         "title_before": "CLIENTS AND",
         "title_gradient": "COLLABORATIONS",
-        "subtitle": "We've partnered with some of the most recognizable brands in the world."
+        "subtitle": "We've partnered with some of the most recognizable brands in the world.",
+        "background": "#080808",
+        "show_marquee": true,
+        "marquee_speed": 45,
+        "footer_text": "Built on connection. Brought to life through collaboration.",
+        "cta_text": "Explore our work",
+        "cta_link": ""
       }
     },
     "big_statement_8bQy8a": {
@@ -937,6 +967,7 @@
         "benefit_GjwNLT",
         "benefit_h6KEhz"
       ],
+      "disabled": true,
       "name": "Urgency",
       "settings": {
         "strap": "(Limited Availability)",
