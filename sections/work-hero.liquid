@@ -1,109 +1,1563 @@
-{% comment %} Work page hero: canvas starfield background, strap, two-line gradient title, description, stats grid. {% endcomment %}
-{% assign canvas_id = 'work-hero-canvas-' | append: section.id %}
-<section class="relative min-h-screen flex items-center overflow-hidden bg-black" data-testid="work-hero">
-  <canvas id="{{ canvas_id }}" class="absolute inset-0 w-full h-full" width="1920" height="1080" aria-hidden="true"></canvas>
-  <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 pt-32 pb-20 w-full">
-    <div class="text-center">
-      {% if section.settings.strap != blank %}
-        <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-6">{{ section.settings.strap }}</span>
-      {% endif %}
-      {% if section.settings.title_line_1 != blank or section.settings.title_line_2 != blank %}
-        <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9] tracking-tight mb-8">
-          {% if section.settings.title_line_1 != blank %}
-            <span class="block text-transparent bg-clip-text bg-gradient-to-b from-white via-white/70 to-white/40">{{ section.settings.title_line_1 }}</span>
-          {% endif %}
-          {% if section.settings.title_line_2 != blank %}
-            <span class="block text-transparent bg-clip-text bg-gradient-to-b from-white/60 via-white/40 to-white/20">{{ section.settings.title_line_2 }}</span>
-          {% endif %}
-        </h1>
-      {% endif %}
-      {% if section.settings.description != blank %}
-        <p class="text-lg md:text-xl text-white/50 max-w-2xl mx-auto mb-12">{{ section.settings.description }}</p>
+{% comment %}
+  UKIYO — Split Work Hero
+  Frosted glass cutout, mirrored HLS/MP4 video, responsive panels.
+  Preserves existing headings, description, and stat blocks.
+{% endcomment %}
+
+{% assign stats = section.blocks | where: 'type', 'stat' %}
+{% assign buttons = section.blocks | where: 'type', 'button' %}
+
+{% capture arrow %}
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M7 17 17 7M7 7h10v10"/>
+  </svg>
+{% endcapture %}
+
+<div
+  id="UkiyoWork-{{ section.id }}"
+  class="uw"
+  data-testid="work-hero"
+  style="
+    --uw-accent: {{ section.settings.accent | default: '#ff5c35' }};
+    --uw-mirror: {% if section.settings.mirror_video %}-1{% else %}1{% endif %};
+  "
+>
+  <div class="uw__background" aria-hidden="true">
+    {% if section.settings.poster != blank %}
+      {{
+        section.settings.poster
+        | image_url: width: 2400
+        | image_tag:
+          class: 'uw__poster',
+          widths: '750, 1100, 1600, 2000, 2400',
+          sizes: '100vw',
+          loading: 'eager',
+          fetchpriority: 'high',
+          alt: ''
+      }}
+    {% endif %}
+
+    {% if section.settings.video_url != blank %}
+      <video
+        class="uw__video"
+        data-uw-video
+        data-source="{{ section.settings.video_url | escape }}"
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        tabindex="-1"
+        {% if section.settings.poster != blank %}
+          poster="{{ section.settings.poster | image_url: width: 2400 }}"
+        {% endif %}
+      ></video>
+    {% endif %}
+
+    <div class="uw__video-shade"></div>
+  </div>
+
+  <header class="uw__header">
+    <a class="uw__logo" href="{{ routes.root_url }}">
+      <span class="uw__logo-icon" aria-hidden="true">
+        <i></i><i></i><i></i><i></i>
+      </span>
+      <span>UKIYO<span class="uw__logo-small">.studio</span></span>
+    </a>
+
+    {% if section.settings.menu != blank %}
+      <nav class="uw__desktop-nav" aria-label="Work page navigation">
+        {% for link in section.settings.menu.links %}
+          <a href="{{ link.url | escape }}">
+            <span aria-hidden="true"></span>
+            {{ link.title | escape }}
+          </a>
+        {% endfor %}
+      </nav>
+    {% endif %}
+
+    <div class="uw__header-actions">
+      {% if section.settings.contact_label != blank and section.settings.contact_link != blank %}
+        <a
+          class="uw__contact"
+          href="{{ section.settings.contact_link | escape }}"
+        >
+          {{ section.settings.contact_label | escape }}
+          {{ arrow }}
+        </a>
       {% endif %}
 
-      {% assign stat_blocks = section.blocks | where: 'type', 'stat' %}
-      {% if stat_blocks.size > 0 %}
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
-          {% for block in stat_blocks %}
-            <div class="text-center" {{ block.shopify_attributes }}>
-              {% if block.settings.value != blank %}
-                <div class="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-2">{{ block.settings.value }}</div>
-              {% endif %}
-              {% if block.settings.label != blank %}
-                <p class="text-white/40 text-sm uppercase tracking-wider">{{ block.settings.label }}</p>
-              {% endif %}
-            </div>
-          {% endfor %}
-        </div>
+      {% if section.settings.menu != blank %}
+        <button
+          class="uw__menu-toggle"
+          type="button"
+          aria-label="Open navigation"
+          aria-haspopup="dialog"
+          aria-controls="UW-Menu-{{ section.id }}"
+          data-uw-open
+          hidden
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 8h16M4 16h16"/>
+          </svg>
+        </button>
       {% endif %}
     </div>
+  </header>
+
+  <div class="uw__panels">
+    <section
+      class="uw__left"
+      aria-labelledby="UW-Title-{{ section.id }}"
+    >
+      <div class="uw__glass" aria-hidden="true"></div>
+      <div class="uw__left-shade" aria-hidden="true"></div>
+
+      <div class="uw__left-inner">
+        <div class="uw__cutout" data-uw-cutout aria-hidden="true">
+          <svg
+            viewBox="0 0 1000 240"
+            preserveAspectRatio="none"
+            class="uw__cutout-fallback"
+          >
+            <text
+              x="0"
+              y="200"
+              textLength="1000"
+              lengthAdjust="spacingAndGlyphs"
+              font-family="Arial, Helvetica, sans-serif"
+              font-weight="900"
+              font-size="240"
+              fill="white"
+            >{{ section.settings.left_word | default: 'UKIYO' | escape }}</text>
+          </svg>
+        </div>
+
+        <div class="uw__rule" aria-hidden="true">
+          <span></span>
+        </div>
+
+        <div class="uw__copy" data-uw-reveal>
+          {% if section.settings.strap != blank %}
+            <span class="uw__eyebrow">
+              {{ section.settings.strap | escape }}
+            </span>
+          {% endif %}
+
+          <h1 id="UW-Title-{{ section.id }}" class="uw__title">
+            {% if section.settings.title_line_1 != blank %}
+              <span>{{ section.settings.title_line_1 | escape }}</span>
+            {% endif %}
+            {% if section.settings.title_line_2 != blank %}
+              <span>{{ section.settings.title_line_2 | escape }}</span>
+            {% endif %}
+          </h1>
+
+          {% if section.settings.description != blank %}
+            <p class="uw__description">
+              {{ section.settings.description | escape }}
+            </p>
+          {% endif %}
+        </div>
+
+        {% if stats.size > 0 %}
+          <div class="uw__stats">
+            {% for block in stats %}
+              <div
+                class="uw__stat"
+                data-uw-reveal
+                {{ block.shopify_attributes }}
+              >
+                {% if block.settings.value != blank %}
+                  <strong>{{ block.settings.value | escape }}</strong>
+                {% endif %}
+                {% if block.settings.label != blank %}
+                  <span>{{ block.settings.label | escape }}</span>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <div class="uw__footer">
+          <div class="uw__buttons">
+            {% for block in buttons %}
+              {% if block.settings.label != blank and block.settings.link != blank %}
+                <a
+                  class="uw__button"
+                  href="{{ block.settings.link | escape }}"
+                  {{ block.shopify_attributes }}
+                >
+                  <span>{{ block.settings.label | escape }}</span>
+                  {{ arrow }}
+                </a>
+              {% endif %}
+            {% endfor %}
+
+            {% if section.settings.show_explore %}
+              <button
+                class="uw__button"
+                type="button"
+                data-uw-explore
+                hidden
+              >
+                <span>
+                  {{ section.settings.explore_label | default: 'Explore our work' | escape }}
+                </span>
+                {{ arrow }}
+              </button>
+            {% endif %}
+          </div>
+
+          <div class="uw__socials">
+            {% if section.settings.instagram_url != blank %}
+              <a href="{{ section.settings.instagram_url | escape }}">
+                <span aria-hidden="true"></span>Instagram
+              </a>
+            {% endif %}
+            {% if section.settings.linkedin_url != blank %}
+              <a href="{{ section.settings.linkedin_url | escape }}">
+                <span aria-hidden="true"></span>LinkedIn
+              </a>
+            {% endif %}
+          </div>
+
+          {% if section.settings.footer_note != blank %}
+            <p class="uw__footer-note">
+              {{ section.settings.footer_note | escape | newline_to_br }}
+            </p>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+
+    <div class="uw__right">
+      <div class="uw__circles" aria-hidden="true">
+        <span></span>
+        <span></span>
+      </div>
+
+      <div class="uw__right-top">
+        {% if section.settings.right_caption != blank %}
+          <span>{{ section.settings.right_caption | escape }}</span>
+        {% endif %}
+
+        <button
+          class="uw__motion"
+          type="button"
+          aria-pressed="false"
+          data-uw-motion
+          hidden
+        >
+          Pause motion
+        </button>
+      </div>
+
+      <div class="uw__right-word" aria-hidden="true" data-uw-reveal>
+        <svg viewBox="0 0 1000 250" preserveAspectRatio="none">
+          <text
+            x="0"
+            y="220"
+            textLength="1000"
+            lengthAdjust="spacingAndGlyphs"
+            font-family="Arial, Helvetica, sans-serif"
+            font-weight="900"
+            font-size="250"
+            fill="white"
+          >{{ section.settings.right_word | default: 'WORK' | escape }}</text>
+        </svg>
+      </div>
+    </div>
   </div>
-</section>
+
+  {% if section.settings.menu != blank %}
+    <dialog
+      id="UW-Menu-{{ section.id }}"
+      class="uw__menu"
+      aria-label="Navigation"
+      data-uw-dialog
+    >
+      <div class="uw__menu-head">
+        <span class="uw__menu-brand">UKIYO.studio</span>
+        <button
+          class="uw__menu-close"
+          type="button"
+          aria-label="Close navigation"
+          data-uw-close
+          autofocus
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m6 6 12 12M18 6 6 18"/>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="uw__menu-links" aria-label="Mobile navigation">
+        {% for link in section.settings.menu.links %}
+          <a href="{{ link.url | escape }}">
+            {{ link.title | escape }}
+          </a>
+        {% endfor %}
+
+        {% if section.settings.contact_label != blank and section.settings.contact_link != blank %}
+          <a href="{{ section.settings.contact_link | escape }}">
+            {{ section.settings.contact_label | escape }}
+          </a>
+        {% endif %}
+      </nav>
+
+      <p class="uw__menu-note">
+        {{ section.settings.footer_note | escape }}
+      </p>
+    </dialog>
+  {% endif %}
+</div>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  .uw {
+    --uw-pad: clamp(24px, 3vw, 48px);
+    position: relative;
+    isolation: isolate;
+    background: #080808;
+    color: #fff;
+    font-family: "Inter", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .uw *,
+  .uw *::before,
+  .uw *::after {
+    box-sizing: border-box;
+  }
+
+  .uw .uw__background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse at 70% 20%, #784b35, #24201e 45%, #080808);
+  }
+
+  .uw .uw__poster,
+  .uw .uw__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transform: scaleX(var(--uw-mirror));
+  }
+
+  .uw .uw__video-shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, #0003, transparent 40%, #0005);
+  }
+
+  .uw .uw__header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px 30px;
+    padding: 24px var(--uw-pad);
+  }
+
+  .uw .uw__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -.055em;
+    white-space: nowrap;
+  }
+
+  .uw .uw__logo-small {
+    font-size: 17px;
+    font-weight: 500;
+  }
+
+  .uw .uw__logo-icon {
+    display: grid;
+    grid-template-columns: repeat(2, 8px);
+    gap: 3px;
+  }
+
+  .uw .uw__logo-icon i {
+    width: 8px;
+    height: 8px;
+    background: var(--uw-accent);
+  }
+
+  .uw .uw__desktop-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px 24px;
+    max-width: 48%;
+  }
+
+  .uw .uw__desktop-nav a,
+  .uw .uw__socials a {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    min-height: 36px;
+    color: #ffffffc7;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color .25s;
+  }
+
+  .uw .uw__desktop-nav a > span,
+  .uw .uw__socials a > span {
+    width: 4px;
+    height: 4px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: .6;
+  }
+
+  .uw .uw__header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .uw .uw__contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 44px;
+    padding: 11px 20px;
+    border: 1px solid #ffffff50;
+    border-radius: 999px;
+    background: #ffffff0d;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background .25s, color .25s;
+  }
+
+  .uw svg:not(.uw__cutout-fallback) {
+    display: block;
+  }
+
+  .uw .uw__contact svg,
+  .uw .uw__button svg,
+  .uw .uw__menu-toggle svg,
+  .uw .uw__menu-close svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .uw .uw__menu-toggle,
+  .uw .uw__menu-close {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .uw .uw__menu-toggle,
+  .uw .uw__menu-toggle[hidden] {
+    display: none;
+  }
+
+  .uw .uw__panels {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-height: 840px;
+    min-height: max(840px, 100svh);
+  }
+
+  .uw .uw__left {
+    position: relative;
+    min-width: 0;
+    border-right: 1px solid #ffffff20;
+    isolation: isolate;
+  }
+
+  .uw .uw__glass {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: rgba(131, 131, 131, .3);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+  }
+
+  .uw .uw__left-shade {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(180deg, transparent 22%, #0003 45%, #0008);
+  }
+
+  .uw .uw__left-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    padding: 120px var(--uw-pad) 34px;
+  }
+
+  .uw .uw__cutout {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1000 / 240;
+    flex-shrink: 0;
+    pointer-events: none;
+  }
+
+  .uw .uw__cutout-fallback {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .uw[data-mask-ready] .uw__cutout-fallback {
+    opacity: 0;
+  }
+
+  .uw .uw__rule {
+    display: flex;
+    flex: 1;
+    min-height: 75px;
+    padding-block: 18px;
+  }
+
+  .uw .uw__rule > span {
+    display: block;
+    width: 1px;
+    min-height: 50px;
+    background: #ffffff40;
+  }
+
+  .uw .uw__eyebrow {
+    display: block;
+    margin-bottom: 18px;
+    color: #e1dfdc;
+    font-size: 9px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+  }
+
+  .uw .uw__title {
+    margin: 0 0 18px;
+    color: #fff;
+    font-family: inherit;
+    font-size: clamp(25px, 2.8vw, 42px);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -.045em;
+    text-transform: none;
+    overflow-wrap: break-word;
+  }
+
+  .uw .uw__title > span {
+    display: block;
+  }
+
+  .uw .uw__description {
+    max-width: 580px;
+    margin: 0;
+    color: #f2efeb;
+    font-size: clamp(14px, 1.25vw, 18px);
+    font-weight: 400;
+    line-height: 1.65;
+    text-wrap: pretty;
+  }
+
+  .uw .uw__stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    margin-top: 30px;
+    padding-top: 24px;
+    border-top: 1px solid #ffffff30;
+  }
+
+  .uw .uw__stat {
+    min-width: 0;
+  }
+
+  .uw .uw__stat strong {
+    display: block;
+    color: #fff;
+    font-size: clamp(24px, 2.4vw, 34px);
+    font-weight: 600;
+    letter-spacing: -.04em;
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+  }
+
+  .uw .uw__stat > span {
+    display: block;
+    margin-top: 7px;
+    color: #e0ddd8;
+    font-size: 9px;
+    line-height: 1.5;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+  }
+
+  .uw .uw__footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: end;
+    gap: 22px;
+    margin-top: 30px;
+    padding-top: 22px;
+    border-top: 1px solid #ffffff30;
+  }
+
+  .uw .uw__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+  }
+
+  .uw .uw__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    min-height: 44px;
+    max-width: 100%;
+    padding: 9px 0;
+    border: 0;
+    border-bottom: 1px solid #ffffff60;
+    background: transparent;
+    color: #fff;
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .uw .uw__button[hidden] {
+    display: none;
+  }
+
+  .uw .uw__button svg {
+    transition: transform .3s;
+  }
+
+  .uw .uw__socials {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .uw .uw__footer-note {
+    max-width: 170px;
+    margin: 0;
+    color: #d9d4ce;
+    font-size: 9px;
+    line-height: 1.7;
+    letter-spacing: .03em;
+  }
+
+  .uw .uw__right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+    min-height: 100%;
+    padding: 122px var(--uw-pad) 12px;
+    overflow: hidden;
+  }
+
+  .uw .uw__circles {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .uw .uw__circles > span {
+    position: absolute;
+    left: 50%;
+    width: min(60vh, 95%);
+    aspect-ratio: 1;
+    border: 1px solid #ffffff50;
+    border-radius: 50%;
+    transform: translateX(-50%);
+  }
+
+  .uw .uw__circles > span:first-child {
+    top: -15vh;
+  }
+
+  .uw .uw__circles > span:last-child {
+    top: 28vh;
+  }
+
+  .uw .uw__right-top {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    color: #ffffffdf;
+    font-size: 9px;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .uw .uw__motion {
+    min-height: 44px;
+    margin-left: auto;
+    padding: 10px 0;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .uw .uw__motion[hidden] {
+    display: none;
+  }
+
+  .uw .uw__right-word {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    margin-top: 100px;
+    aspect-ratio: 1000 / 250;
+  }
+
+  .uw .uw__right-word svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .uw .uw__menu {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    padding: 24px;
+    border: 0;
+    background: #080808;
+    color: #fff;
+    overflow-y: auto;
+  }
+
+  .uw .uw__menu[open] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .uw .uw__menu::backdrop {
+    background: #000b;
+  }
+
+  .uw .uw__menu-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .uw .uw__menu-brand {
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: -.05em;
+  }
+
+  .uw .uw__menu-links {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 54px 0;
+  }
+
+  .uw .uw__menu-links a {
+    color: #fff;
+    font-size: clamp(28px, 8vw, 46px);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -.045em;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+
+  .uw .uw__menu-note {
+    margin: 0;
+    padding-top: 24px;
+    border-top: 1px solid #ffffff25;
+    color: #c9c9c9;
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  .uw a:focus-visible,
+  .uw button:focus-visible {
+    outline: 2px solid var(--uw-accent);
+    outline-offset: 5px;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .uw .uw__desktop-nav a:hover,
+    .uw .uw__socials a:hover {
+      color: #fff;
+    }
+
+    .uw .uw__contact:hover {
+      background: #fff;
+      color: #111;
+    }
+
+    .uw .uw__button:hover svg {
+      transform: translate(3px, -3px);
+    }
+
+    .uw .uw__menu-links a:hover {
+      color: var(--uw-accent);
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .uw .uw__desktop-nav {
+      display: none;
+    }
+
+    .uw .uw__menu-toggle:not([hidden]) {
+      display: grid;
+    }
+
+    .uw .uw__panels {
+      grid-template-columns: minmax(0, 1fr);
+      min-height: auto;
+    }
+
+    .uw .uw__left {
+      border-right: 0;
+      border-bottom: 1px solid #ffffff30;
+    }
+
+    .uw .uw__left-inner {
+      min-height: 90svh;
+      padding-top: 110px;
+    }
+
+    .uw .uw__cutout {
+      max-width: 760px;
+    }
+
+    .uw .uw__title {
+      font-size: clamp(30px, 5.5vw, 48px);
+    }
+
+    .uw .uw__description {
+      max-width: 650px;
+      font-size: 16px;
+    }
+
+    .uw .uw__stats {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .uw .uw__right {
+      min-height: 50svh;
+      padding-top: 24px;
+      padding-bottom: 20px;
+    }
+
+    .uw .uw__circles > span {
+      width: min(48vh, 85%);
+    }
+
+    .uw .uw__circles > span:first-child {
+      top: -20vh;
+    }
+
+    .uw .uw__circles > span:last-child {
+      top: 12vh;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .uw {
+      --uw-pad: 22px;
+    }
+
+    .uw .uw__header {
+      padding-block: 20px;
+      gap: 12px;
+    }
+
+    .uw .uw__logo {
+      font-size: 20px;
+    }
+
+    .uw .uw__logo-small {
+      font-size: 15px;
+    }
+
+    .uw .uw__contact {
+      display: none;
+    }
+
+    .uw .uw__left-inner {
+      min-height: 100svh;
+      padding-top: 104px;
+      padding-bottom: 28px;
+    }
+
+    .uw .uw__rule {
+      min-height: 65px;
+    }
+
+    .uw .uw__title {
+      font-size: clamp(29px, 7.5vw, 38px);
+    }
+
+    .uw .uw__description {
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .uw .uw__stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px 18px;
+    }
+
+    .uw .uw__stat strong {
+      font-size: 28px;
+    }
+
+    .uw .uw__footer {
+      align-items: flex-start;
+      gap: 22px;
+    }
+
+    .uw .uw__buttons {
+      width: 100%;
+      flex-direction: column;
+    }
+
+    .uw .uw__button {
+      width: 100%;
+      min-height: 48px;
+    }
+
+    .uw .uw__socials {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .uw .uw__footer-note {
+      max-width: none;
+      width: 100%;
+    }
+
+    .uw .uw__right {
+      min-height: 42svh;
+    }
+
+    .uw .uw__right-word {
+      margin-top: 80px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .uw *,
+    .uw *::before,
+    .uw *::after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
+
+    .uw .uw__motion {
+      display: none;
+    }
+  }
+</style>
 
 <script>
-(function() {
-  var canvas = document.getElementById('{{ canvas_id }}');
-  if (!canvas) return;
-  var ctx = canvas.getContext('2d');
-  var dots = [];
-  var dotCount = 180;
-  var frame = 0;
+(function () {
+  const rootId = 'UkiyoWork-{{ section.id }}';
+  const wrapperId = 'shopify-section-{{ section.id }}';
 
-  function resize() {
-    var w = canvas.offsetWidth;
-    var h = canvas.offsetHeight;
-    canvas.width = w;
-    canvas.height = h;
-    if (dots.length === 0) {
-      for (var i = 0; i < dotCount; i++) {
-        dots.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          r: 0.5 + Math.random() * 1.2,
-          baseOpacity: 0.2 + Math.random() * 0.5,
-          phase: Math.random() * Math.PI * 2
-        });
-      }
-    } else {
-      for (var i = 0; i < dots.length; i++) {
-        if (dots[i].x > w || dots[i].y > h) {
-          dots[i].x = Math.random() * w;
-          dots[i].y = Math.random() * h;
+  window.__ukiyoWorkControllers = window.__ukiyoWorkControllers || {};
+
+  if (window.__ukiyoWorkControllers[rootId]) {
+    window.__ukiyoWorkControllers[rootId]();
+  }
+
+  const lifecycle = new AbortController();
+  let cleanup = null;
+
+  function loadHls() {
+    if (window.Hls) return Promise.resolve(window.Hls);
+
+    if (!window.__ukiyoHlsPromise) {
+      window.__ukiyoHlsPromise = new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js';
+        script.async = true;
+
+        script.onload = () => {
+          if (window.Hls) resolve(window.Hls);
+          else reject(new Error('HLS player unavailable'));
+        };
+
+        script.onerror = () => reject(new Error('HLS player failed to load'));
+        document.head.appendChild(script);
+      }).catch(error => {
+        window.__ukiyoHlsPromise = null;
+        throw error;
+      });
+    }
+
+    return window.__ukiyoHlsPromise;
+  }
+
+  function init() {
+    const root = document.getElementById(rootId);
+    if (!root) return;
+    if (cleanup) cleanup();
+
+    const events = new AbortController();
+    const signal = events.signal;
+
+    const video = root.querySelector('[data-uw-video]');
+    const left = root.querySelector('.uw__left');
+    const cutout = root.querySelector('[data-uw-cutout]');
+    const glass = root.querySelector('.uw__glass');
+    const motionButton = root.querySelector('[data-uw-motion]');
+    const dialog = root.querySelector('[data-uw-dialog]');
+    const menuButton = root.querySelector('[data-uw-open]');
+
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const animations = new Set();
+    const revealed = new Set();
+
+    let hls = null;
+    let destroyed = false;
+    let paused = false;
+    let blocked = false;
+    let failed = false;
+    let visible = true;
+    let loading = false;
+    let attached = false;
+    let playingRequest = false;
+    let resizeFrame = null;
+    let menuAnimation = null;
+
+    function animate(element, delay) {
+      if (
+        paused ||
+        reduced.matches ||
+        !element.animate ||
+        revealed.has(element)
+      ) return;
+
+      revealed.add(element);
+
+      const animation = element.animate(
+        [
+          { opacity: 0, translate: '0 20px' },
+          { opacity: 1, translate: '0 0' }
+        ],
+        {
+          duration: 850,
+          delay,
+          fill: 'backwards',
+          easing: 'cubic-bezier(.16,1,.3,1)'
         }
+      );
+
+      animations.add(animation);
+      animation.finished
+        .then(() => animations.delete(animation))
+        .catch(() => animations.delete(animation));
+    }
+
+    /*
+      Build a transparent-letter mask from the actual
+      wordmark position. White keeps the blur; black
+      removes it to reveal the sharp video underneath.
+    */
+    function updateMask() {
+      resizeFrame = null;
+      if (destroyed || !left || !cutout || !glass) return;
+
+      const supportsMask =
+        CSS.supports('mask-image', 'linear-gradient(white, white)') ||
+        CSS.supports('-webkit-mask-image', 'linear-gradient(white, white)');
+
+      const supportsBlur =
+        CSS.supports('backdrop-filter', 'blur(20px)') ||
+        CSS.supports('-webkit-backdrop-filter', 'blur(20px)');
+
+      if (!supportsMask || !supportsBlur) return;
+
+      const panelBounds = left.getBoundingClientRect();
+      const wordBounds = cutout.getBoundingClientRect();
+
+      if (!panelBounds.width || !panelBounds.height) return;
+
+      const namespace = 'http://www.w3.org/2000/svg';
+      const svg = document.createElementNS(namespace, 'svg');
+
+      svg.setAttribute('xmlns', namespace);
+      svg.setAttribute('width', panelBounds.width);
+      svg.setAttribute('height', panelBounds.height);
+      svg.setAttribute(
+        'viewBox',
+        `0 0 ${panelBounds.width} ${panelBounds.height}`
+      );
+
+      const defs = document.createElementNS(namespace, 'defs');
+      const mask = document.createElementNS(namespace, 'mask');
+
+      mask.setAttribute('id', 'cut');
+      mask.setAttribute('maskUnits', 'userSpaceOnUse');
+      mask.setAttribute('x', '0');
+      mask.setAttribute('y', '0');
+      mask.setAttribute('width', panelBounds.width);
+      mask.setAttribute('height', panelBounds.height);
+      mask.setAttribute('style', 'mask-type:luminance');
+
+      const base = document.createElementNS(namespace, 'rect');
+      base.setAttribute('width', '100%');
+      base.setAttribute('height', '100%');
+      base.setAttribute('fill', 'white');
+
+      const wordSvg = cutout.querySelector('svg').cloneNode(true);
+      wordSvg.removeAttribute('class');
+      wordSvg.setAttribute('x', wordBounds.left - panelBounds.left);
+      wordSvg.setAttribute('y', wordBounds.top - panelBounds.top);
+      wordSvg.setAttribute('width', wordBounds.width);
+      wordSvg.setAttribute('height', wordBounds.height);
+      wordSvg.querySelector('text').setAttribute('fill', 'black');
+
+      mask.append(base, wordSvg);
+      defs.appendChild(mask);
+
+      const surface = document.createElementNS(namespace, 'rect');
+      surface.setAttribute('width', '100%');
+      surface.setAttribute('height', '100%');
+      surface.setAttribute('fill', 'white');
+      surface.setAttribute('mask', 'url(#cut)');
+
+      svg.append(defs, surface);
+
+      const markup = new XMLSerializer().serializeToString(svg);
+      const image = `url("data:image/svg+xml,${encodeURIComponent(markup)}")`;
+
+      glass.style.maskImage = image;
+      glass.style.webkitMaskImage = image;
+      root.setAttribute('data-mask-ready', '');
+    }
+
+    function scheduleMask() {
+      if (resizeFrame !== null || destroyed) return;
+      resizeFrame = requestAnimationFrame(updateMask);
+    }
+
+    function updateMotionButton() {
+      if (!motionButton) return;
+
+      motionButton.hidden = !video || reduced.matches;
+      motionButton.setAttribute('aria-pressed', String(paused));
+      motionButton.textContent = failed
+        ? 'Retry video'
+        : blocked || paused
+          ? 'Play motion'
+          : 'Pause motion';
+    }
+
+    function shouldPlay() {
+      return (
+        !destroyed &&
+        !paused &&
+        !reduced.matches &&
+        visible &&
+        !document.hidden &&
+        !(dialog && dialog.open)
+      );
+    }
+
+    function playVideo() {
+      if (!video || !attached) return;
+
+      if (!shouldPlay()) {
+        video.pause();
+        return;
+      }
+
+      if (!video.paused || playingRequest || blocked || failed) return;
+
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playbackRate = .7;
+      playingRequest = true;
+
+      const promise = video.play();
+
+      if (promise && promise.then) {
+        promise.then(() => {
+          playingRequest = false;
+          if (destroyed) return;
+          blocked = false;
+          if (!shouldPlay()) video.pause();
+          updateMotionButton();
+        }).catch(error => {
+          playingRequest = false;
+          if (destroyed || !shouldPlay()) return;
+
+          if (error.name === 'NotAllowedError') blocked = true;
+          if (error.name === 'NotSupportedError') failed = true;
+          updateMotionButton();
+        });
+      } else {
+        playingRequest = false;
       }
     }
-    draw();
-  }
 
-  function draw() {
-    var w = canvas.width;
-    var h = canvas.height;
-    if (!w || !h) return;
-    ctx.fillStyle = '#000000';
-    ctx.fillRect(0, 0, w, h);
-    frame++;
-    for (var i = 0; i < dots.length; i++) {
-      var d = dots[i];
-      var twinkle = 0.7 + 0.3 * Math.sin(frame * 0.02 + d.phase);
-      var opacity = d.baseOpacity * twinkle;
-      ctx.beginPath();
-      ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(255,255,255,' + opacity + ')';
-      ctx.fill();
+    async function attachVideo() {
+      if (
+        !video ||
+        loading ||
+        attached ||
+        destroyed ||
+        reduced.matches
+      ) return;
+
+      const source = video.dataset.source;
+      if (!source) return;
+
+      loading = true;
+
+      try {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.playsInline = true;
+        video.loop = true;
+
+        const isHls = /\.m3u8(?:$|\?)/i.test(source);
+
+        if (!isHls || video.canPlayType('application/vnd.apple.mpegurl')) {
+          video.src = source;
+          attached = true;
+          video.load();
+        } else {
+          const Hls = await loadHls();
+          if (destroyed) return;
+          if (!Hls.isSupported()) throw new Error('HLS unsupported');
+
+          hls = new Hls({
+            capLevelToPlayerSize: true,
+            maxBufferLength: 20
+          });
+
+          hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            if (!destroyed) playVideo();
+          });
+
+          hls.on(Hls.Events.ERROR, (event, data) => {
+            if (data.fatal && !destroyed) {
+              failed = true;
+              video.pause();
+              updateMotionButton();
+            }
+          });
+
+          attached = true;
+          hls.loadSource(source);
+          hls.attachMedia(video);
+        }
+
+        failed = false;
+      } catch (error) {
+        failed = true;
+      } finally {
+        loading = false;
+        if (!destroyed) updateMotionButton();
+      }
     }
+
+    function syncVideo() {
+      if (!video) return;
+
+      if (shouldPlay() && !attached && !failed) {
+        attachVideo();
+      } else {
+        playVideo();
+      }
+    }
+
+    motionButton?.addEventListener('click', () => {
+      if (failed) {
+        hls?.destroy();
+        hls = null;
+        attached = false;
+        failed = false;
+        blocked = false;
+        paused = false;
+        video?.removeAttribute('src');
+      } else if (blocked) {
+        blocked = false;
+        paused = false;
+      } else {
+        paused = !paused;
+      }
+
+      if (paused) {
+        animations.forEach(animation => animation.cancel());
+        animations.clear();
+      }
+
+      updateMotionButton();
+      syncVideo();
+    }, { signal });
+
+    video?.addEventListener('loadedmetadata', playVideo, { signal });
+    video?.addEventListener('canplay', playVideo, { signal });
+    video?.addEventListener('error', () => {
+      if (destroyed) return;
+      failed = true;
+      updateMotionButton();
+    }, { signal });
+
+    reduced.addEventListener('change', () => {
+      if (reduced.matches) {
+        animations.forEach(animation => animation.cancel());
+        animations.clear();
+      }
+      updateMotionButton();
+      syncVideo();
+    }, { signal });
+
+    document.addEventListener('visibilitychange', syncVideo, { signal });
+
+    let viewObserver = null;
+    let revealObserver = null;
+
+    if ('IntersectionObserver' in window) {
+      viewObserver = new IntersectionObserver(entries => {
+        visible = entries[0].isIntersecting;
+        syncVideo();
+      });
+      viewObserver.observe(root);
+
+      revealObserver = new IntersectionObserver(entries => {
+        let index = 0;
+
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animate(entry.target, index++ * 80);
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .1 });
+
+      root.querySelectorAll('[data-uw-reveal]').forEach(element => {
+        revealObserver.observe(element);
+      });
+    }
+
+    /*
+      Native dialog supplies focus containment and Escape
+      handling without replacing Shopify's main navigation.
+    */
+    if (dialog && typeof dialog.showModal === 'function') {
+      if (menuButton) menuButton.hidden = false;
+
+      menuButton?.addEventListener('click', () => {
+        dialog.showModal();
+        syncVideo();
+
+        if (!reduced.matches && dialog.animate) {
+          menuAnimation = dialog.animate(
+            [
+              { opacity: 0, transform: 'translateX(30px)' },
+              { opacity: 1, transform: 'translateX(0)' }
+            ],
+            {
+              duration: 350,
+              easing: 'cubic-bezier(.16,1,.3,1)'
+            }
+          );
+        }
+      }, { signal });
+
+      root.querySelector('[data-uw-close]')?.addEventListener(
+        'click',
+        () => dialog.close(),
+        { signal }
+      );
+
+      dialog.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => dialog.close(), { signal });
+      });
+
+      dialog.addEventListener('close', syncVideo, { signal });
+    }
+
+    function nextSection() {
+      const wrapper = document.getElementById(wrapperId);
+      let next = wrapper?.nextElementSibling;
+
+      while (next && (
+        ['SCRIPT', 'STYLE'].includes(next.tagName) ||
+        next.getClientRects().length === 0
+      )) {
+        next = next.nextElementSibling;
+      }
+
+      return next;
+    }
+
+    const explore = root.querySelector('[data-uw-explore]');
+
+    if (explore && nextSection()) {
+      explore.hidden = false;
+
+      explore.addEventListener('click', () => {
+        nextSection()?.scrollIntoView({
+          behavior: reduced.matches ? 'auto' : 'smooth',
+          block: 'start'
+        });
+      }, { signal });
+    }
+
+    let resizeObserver = null;
+
+    if ('ResizeObserver' in window) {
+      resizeObserver = new ResizeObserver(scheduleMask);
+      resizeObserver.observe(left);
+      resizeObserver.observe(cutout);
+    }
+
+    window.addEventListener('resize', () => {
+      scheduleMask();
+      if (innerWidth >= 1024 && dialog?.open) dialog.close();
+    }, { signal });
+
+    document.fonts?.ready.then(() => {
+      if (!destroyed) scheduleMask();
+    });
+
+    scheduleMask();
+    updateMotionButton();
+    syncVideo();
+
+    cleanup = function () {
+      destroyed = true;
+      events.abort();
+      viewObserver?.disconnect();
+      revealObserver?.disconnect();
+      resizeObserver?.disconnect();
+
+      if (resizeFrame !== null) cancelAnimationFrame(resizeFrame);
+
+      animations.forEach(animation => animation.cancel());
+      menuAnimation?.cancel();
+      if (dialog?.open) dialog.close();
+
+      video?.pause();
+      hls?.destroy();
+
+      if (video) {
+        video.removeAttribute('src');
+        video.load();
+      }
+    };
   }
 
-  function loop() {
-    draw();
-    requestAnimationFrame(loop);
-  }
+  document.addEventListener('shopify:section:load', event => {
+    if (event.target.id === wrapperId) init();
+  }, { signal: lifecycle.signal });
 
-  if (typeof ResizeObserver !== 'undefined') {
-    var ro = new ResizeObserver(function() { resize(); });
-    ro.observe(canvas.parentElement);
+  document.addEventListener('shopify:section:unload', event => {
+    if (event.target.id === wrapperId) {
+      cleanup?.();
+      cleanup = null;
+    }
+  }, { signal: lifecycle.signal });
+
+  window.__ukiyoWorkControllers[rootId] = function () {
+    lifecycle.abort();
+    cleanup?.();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, {
+      once: true,
+      signal: lifecycle.signal
+    });
+  } else {
+    init();
   }
-  resize();
-  loop();
 })();
 </script>
 
@@ -112,11 +1566,45 @@
   "name": "Work Hero",
   "tag": "section",
   "class": "section-work-hero",
+  "max_blocks": 12,
   "settings": [
+    {
+      "type": "header",
+      "content": "Split-panel design"
+    },
+    {
+      "type": "text",
+      "id": "left_word",
+      "label": "Left cutout word",
+      "default": "UKIYO",
+      "info": "A short word works best."
+    },
+    {
+      "type": "text",
+      "id": "right_word",
+      "label": "Right large word",
+      "default": "WORK"
+    },
+    {
+      "type": "text",
+      "id": "right_caption",
+      "label": "Right panel caption",
+      "default": "Independent creative studio"
+    },
+    {
+      "type": "color",
+      "id": "accent",
+      "label": "Accent color",
+      "default": "#ff5c35"
+    },
+    {
+      "type": "header",
+      "content": "Work page content"
+    },
     {
       "type": "text",
       "id": "strap",
-      "label": "Strap (small label above title)",
+      "label": "Small label",
       "default": "(Our Work)"
     },
     {
@@ -136,6 +1624,79 @@
       "id": "description",
       "label": "Description",
       "default": "Discover our diverse projects and activations tailored to meet your needs. We're committed to delivering innovative solutions that drive success."
+    },
+    {
+      "type": "header",
+      "content": "Background video"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "HLS or MP4 video URL",
+      "default": "https://stream.mux.com/Q3hYHAcLU82ceOUgwDeO4HiwOc3WZn9JD02PugwzxHOI.m3u8",
+      "info": "Supports an .m3u8 stream or a direct .mp4 URL."
+    },
+    {
+      "type": "image_picker",
+      "id": "poster",
+      "label": "Video poster image",
+      "info": "Shown while video loads and when reduced motion is enabled."
+    },
+    {
+      "type": "checkbox",
+      "id": "mirror_video",
+      "label": "Mirror video horizontally",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Navigation and contact"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Section navigation menu",
+      "info": "Optional. Uses top-level links. Appears as a mobile menu on smaller screens."
+    },
+    {
+      "type": "text",
+      "id": "contact_label",
+      "label": "Header contact button label",
+      "default": "Let's Talk"
+    },
+    {
+      "type": "url",
+      "id": "contact_link",
+      "label": "Header contact button link",
+      "info": "Clear the link to remove this button."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_explore",
+      "label": "Show scroll-to-work button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "explore_label",
+      "label": "Scroll-to-work button label",
+      "default": "Explore Our Work"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram link"
+    },
+    {
+      "type": "url",
+      "id": "linkedin_url",
+      "label": "LinkedIn link"
+    },
+    {
+      "type": "textarea",
+      "id": "footer_note",
+      "label": "Small footer note",
+      "default": "Strategy. Creativity. Connection."
     }
   ],
   "blocks": [
@@ -146,12 +1707,30 @@
         {
           "type": "text",
           "id": "value",
-          "label": "Value (e.g. 150+)"
+          "label": "Value"
         },
         {
           "type": "text",
           "id": "label",
-          "label": "Label (e.g. Projects Delivered)"
+          "label": "Label"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Button text",
+          "default": "View a Project"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button link",
+          "info": "Add a link to display the button."
         }
       ]
     }
@@ -159,17 +1738,35 @@
   "presets": [
     {
       "name": "Work Hero",
-      "settings": {
-        "strap": "(Our Work)",
-        "title_line_1": "ACTIVATIONS &",
-        "title_line_2": "CASE STUDIES",
-        "description": "Discover our diverse projects and activations tailored to meet your needs. We're committed to delivering innovative solutions that drive success."
-      },
       "blocks": [
-        { "type": "stat", "settings": { "value": "150+", "label": "Projects Delivered" } },
-        { "type": "stat", "settings": { "value": "$50M+", "label": "Revenue Generated" } },
-        { "type": "stat", "settings": { "value": "98%", "label": "Client Satisfaction" } },
-        { "type": "stat", "settings": { "value": "40+", "label": "Brand Partners" } }
+        {
+          "type": "stat",
+          "settings": {
+            "value": "150+",
+            "label": "Projects Delivered"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "$50M+",
+            "label": "Revenue Generated"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "98%",
+            "label": "Client Satisfaction"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "40+",
+            "label": "Brand Partners"
+          }
+        }
       ]
     }
   ]
