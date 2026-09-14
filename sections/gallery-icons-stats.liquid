@@ -1,216 +1,3047 @@
-{% comment %} Gallery Icons Stats: header (badge + gradient title), grid of service cards with icon, description, two stats each. {% endcomment %}
-{% assign card_blocks = section.blocks | where: 'type', 'card' %}
-<section class="relative py-16 lg:py-24 bg-black">
-  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
-  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
-    <div class="text-center mb-16">
-      {% if section.settings.badge != blank %}
-        <span class="text-[10px] font-medium text-amber-400 tracking-[0.3em] uppercase block mb-4">{{ section.settings.badge }}</span>
-      {% endif %}
-      {% if section.settings.title_before != blank or section.settings.title_gradient != blank %}
-        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
-          {{ section.settings.title_before }}
-          {% if section.settings.title_gradient != blank %}
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">{{ section.settings.title_gradient }}</span>
-          {% endif %}
+{%- comment -%}
+  ============================================================
+  UKIYO — WHY BRANDS CHOOSE US
+  Premium services / proof section
+
+  Desktop:
+  - 4-column premium cards
+  - reactive glow
+  - animated gradients
+  - staggered scroll reveal
+  - subtle 3D hover
+
+  Mobile:
+  - horizontal swipe carousel
+  - one focused service at a time
+  - compact card height
+  - previous / next controls
+  - pagination indicators
+  - much less vertical scrolling
+
+  All existing information preserved.
+  ============================================================
+{%- endcomment -%}
+
+
+{%- liquid
+  assign uid = section.id | replace: '_', '' | replace: '-', '' | downcase
+  assign card_blocks = section.blocks | where: 'type', 'card'
+  assign card_count = card_blocks.size
+-%}
+
+
+<section
+  id="UkiyoServices-{{ uid }}"
+  class="usv usv--{{ uid }}"
+  data-usv-root
+>
+
+  {%- comment -%}
+    ============================================================
+    AMBIENT BACKGROUND
+    ============================================================
+  {%- endcomment -%}
+
+  <div
+    class="usv__grid-bg"
+    aria-hidden="true"
+  ></div>
+
+  <div
+    class="usv__orb usv__orb--one"
+    aria-hidden="true"
+  ></div>
+
+  <div
+    class="usv__orb usv__orb--two"
+    aria-hidden="true"
+  ></div>
+
+  <div
+    class="usv__top-line"
+    aria-hidden="true"
+  ></div>
+
+
+
+  <div class="usv__shell">
+
+    {%- comment -%}
+      ============================================================
+      HEADER
+      ============================================================
+    {%- endcomment -%}
+
+    <header
+      class="usv__header"
+      data-usv-reveal
+    >
+
+      <div class="usv__header-top">
+
+        {%- if section.settings.badge != blank -%}
+
+          <p class="usv__eyebrow">
+
+            <span
+              class="usv__eyebrow-dot"
+              aria-hidden="true"
+            ></span>
+
+            {{ section.settings.badge }}
+
+          </p>
+
+        {%- endif -%}
+
+
+        <div class="usv__service-count">
+
+          <strong>
+            {{ card_count | prepend: '0' | slice: -2, 2 }}
+          </strong>
+
+          <span>
+            Core<br>Capabilities
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="usv__header-grid">
+
+        <h2 class="usv__title">
+
+          {%- if section.settings.title_before != blank -%}
+
+            <span>
+              {{ section.settings.title_before }}
+            </span>
+
+          {%- endif -%}
+
+
+          {%- if section.settings.title_gradient != blank -%}
+
+            <em>
+              {{ section.settings.title_gradient }}
+            </em>
+
+          {%- endif -%}
+
         </h2>
-      {% endif %}
-      {% if section.settings.subtitle != blank %}
-        <p class="text-white/50 max-w-2xl mx-auto">{{ section.settings.subtitle }}</p>
-      {% endif %}
+
+
+        <div class="usv__header-copy">
+
+          {%- if section.settings.subtitle != blank -%}
+
+            <p>
+              {{ section.settings.subtitle }}
+            </p>
+
+          {%- endif -%}
+
+
+          <div class="usv__header-key">
+
+            <span>
+              Visual
+            </span>
+
+            <span>
+              Strategy
+            </span>
+
+            <span>
+              Experience
+            </span>
+
+            <span>
+              Growth
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+
+    {%- comment -%}
+      ============================================================
+      SERVICE CARDS
+      ============================================================
+    {%- endcomment -%}
+
+    <div
+      class="usv__viewport"
+      data-usv-viewport
+    >
+
+      <div
+        class="usv__cards"
+        data-usv-track
+      >
+
+        {%- for block in card_blocks -%}
+
+          {%- assign g = block.settings.gradient -%}
+          {%- assign number = forloop.index | prepend: '0' | slice: -2, 2 -%}
+
+
+          <article
+            class="
+              usv__card
+              usv__card--{{ g }}
+            "
+            data-usv-card
+            data-usv-reveal
+            data-index="{{ forloop.index0 }}"
+            style="--usv-delay: {{ forloop.index0 | times: 80 }}ms;"
+            {{ block.shopify_attributes }}
+          >
+
+            <div
+              class="usv__card-glow"
+              aria-hidden="true"
+            ></div>
+
+
+            <div
+              class="usv__card-grid"
+              aria-hidden="true"
+            ></div>
+
+
+            <div class="usv__card-top">
+
+              <div class="usv__icon-wrap">
+
+                <div class="usv__icon">
+
+                  {% case block.settings.icon %}
+
+                    {% when 'camera' %}
+
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="26"
+                        height="26"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+                        <circle cx="12" cy="13" r="3"/>
+                      </svg>
+
+
+                    {% when 'video' %}
+
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="26"
+                        height="26"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/>
+                        <rect x="2" y="6" width="14" height="12" rx="2"/>
+                      </svg>
+
+
+                    {% when 'palette' %}
+
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="26"
+                        height="26"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/>
+                        <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/>
+                        <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/>
+                        <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/>
+                        <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/>
+                      </svg>
+
+
+                    {% when 'target' %}
+
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="26"
+                        height="26"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <circle cx="12" cy="12" r="9"/>
+                        <circle cx="12" cy="12" r="5"/>
+                        <circle cx="12" cy="12" r="1.5"/>
+                      </svg>
+
+
+                    {% else %}
+
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="26"
+                        height="26"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        aria-hidden="true"
+                      >
+                        <circle cx="12" cy="12" r="9"/>
+                      </svg>
+
+                  {% endcase %}
+
+                </div>
+
+
+                <span
+                  class="usv__icon-orbit"
+                  aria-hidden="true"
+                ></span>
+
+              </div>
+
+
+              <span class="usv__number">
+                {{ number }}
+              </span>
+
+            </div>
+
+
+
+            <div class="usv__card-body">
+
+              {%- if block.settings.title != blank -%}
+
+                <h3>
+                  {{ block.settings.title }}
+                </h3>
+
+              {%- endif -%}
+
+
+              {%- if block.settings.description != blank -%}
+
+                <p>
+                  {{ block.settings.description }}
+                </p>
+
+              {%- endif -%}
+
+            </div>
+
+
+
+            <div class="usv__stats">
+
+              {%- if block.settings.stat1_number != blank or block.settings.stat1_label != blank -%}
+
+                <div class="usv__stat">
+
+                  {%- if block.settings.stat1_number != blank -%}
+
+                    <strong>
+                      {{ block.settings.stat1_number }}
+                    </strong>
+
+                  {%- endif -%}
+
+
+                  {%- if block.settings.stat1_label != blank -%}
+
+                    <span>
+                      {{ block.settings.stat1_label }}
+                    </span>
+
+                  {%- endif -%}
+
+                </div>
+
+              {%- endif -%}
+
+
+              {%- if block.settings.stat2_number != blank or block.settings.stat2_label != blank -%}
+
+                <div class="usv__stat">
+
+                  {%- if block.settings.stat2_number != blank -%}
+
+                    <strong>
+                      {{ block.settings.stat2_number }}
+                    </strong>
+
+                  {%- endif -%}
+
+
+                  {%- if block.settings.stat2_label != blank -%}
+
+                    <span>
+                      {{ block.settings.stat2_label }}
+                    </span>
+
+                  {%- endif -%}
+
+                </div>
+
+              {%- endif -%}
+
+            </div>
+
+
+            <div class="usv__card-footer">
+
+              <span>
+                Capability
+              </span>
+
+              <span class="usv__status">
+
+                <i aria-hidden="true"></i>
+
+                Active
+
+              </span>
+
+            </div>
+
+          </article>
+
+        {%- endfor -%}
+
+      </div>
+
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {% for block in card_blocks %}
-        {% assign g = block.settings.gradient %}
-        <div class="group relative" {{ block.shopify_attributes }}>
-          {% if g == 'amber_orange' %}
-            <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 opacity-0 group-hover:opacity-10 blur-xl transition-all duration-500" aria-hidden="true"></div>
-          {% elsif g == 'purple_pink' %}
-            <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover:opacity-10 blur-xl transition-all duration-500" aria-hidden="true"></div>
-          {% elsif g == 'blue_cyan' %}
-            <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-10 blur-xl transition-all duration-500" aria-hidden="true"></div>
-          {% elsif g == 'emerald_teal' %}
-            <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 opacity-0 group-hover:opacity-10 blur-xl transition-all duration-500" aria-hidden="true"></div>
-          {% else %}
-            <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 opacity-0 group-hover:opacity-10 blur-xl transition-all duration-500" aria-hidden="true"></div>
-          {% endif %}
-          <div class="relative p-8 rounded-2xl bg-white/[0.02] border border-white/10 group-hover:border-white/20 transition-all duration-300 h-full">
-            {% if g == 'amber_orange' %}
-              <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-            {% elsif g == 'purple_pink' %}
-              <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-            {% elsif g == 'blue_cyan' %}
-              <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-            {% elsif g == 'emerald_teal' %}
-              <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-            {% else %}
-              <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-            {% endif %}
-              {% case block.settings.icon %}
-                {% when 'camera' %}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-white" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>
-                {% when 'video' %}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-white" aria-hidden="true"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"></path><rect x="2" y="6" width="14" height="12" rx="2"></rect></svg>
-                {% when 'palette' %}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-white" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg>
-                {% when 'target' %}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-white" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
-                {% else %}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-7 h-7 text-white"><circle cx="12" cy="12" r="10"></circle></svg>
-              {% endcase %}
-            </div>
-            {% if block.settings.title != blank %}
-              <h3 class="text-xl font-bold text-white mb-3">{{ block.settings.title }}</h3>
-            {% endif %}
-            {% if block.settings.description != blank %}
-              <p class="text-white/50 text-sm leading-relaxed mb-6">{{ block.settings.description }}</p>
-            {% endif %}
-            <div class="flex gap-6 pt-4 border-t border-white/10">
-              {% if block.settings.stat1_number != blank or block.settings.stat1_label != blank %}
-                <div>
-                  {% if block.settings.stat1_number != blank %}
-                    <div class="text-2xl font-bold text-white">{{ block.settings.stat1_number }}</div>
-                  {% endif %}
-                  {% if block.settings.stat1_label != blank %}
-                    <div class="text-white/40 text-xs">{{ block.settings.stat1_label }}</div>
-                  {% endif %}
-                </div>
-              {% endif %}
-              {% if block.settings.stat2_number != blank or block.settings.stat2_label != blank %}
-                <div>
-                  {% if block.settings.stat2_number != blank %}
-                    <div class="text-2xl font-bold text-white">{{ block.settings.stat2_number }}</div>
-                  {% endif %}
-                  {% if block.settings.stat2_label != blank %}
-                    <div class="text-white/40 text-xs">{{ block.settings.stat2_label }}</div>
-                  {% endif %}
-                </div>
-              {% endif %}
-            </div>
+
+
+    {%- comment -%}
+      ============================================================
+      MOBILE CAROUSEL CONTROLS
+      ============================================================
+    {%- endcomment -%}
+
+    {%- if card_count > 1 -%}
+
+      <div
+        class="usv__mobile-controls"
+        data-usv-controls
+      >
+
+        <div class="usv__mobile-progress">
+
+          <span data-usv-current>
+            01
+          </span>
+
+          <div class="usv__progress-line">
+
+            <span
+              class="usv__progress-fill"
+              data-usv-progress
+            ></span>
+
           </div>
+
+          <span>
+            {{ card_count | prepend: '0' | slice: -2, 2 }}
+          </span>
+
         </div>
-      {% endfor %}
-    </div>
+
+
+        <div class="usv__mobile-buttons">
+
+          <button
+            type="button"
+            class="usv__nav-button"
+            data-usv-prev
+            aria-label="Previous service"
+          >
+
+            <svg
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M19 12H5"/>
+              <path d="m11 18-6-6 6-6"/>
+            </svg>
+
+          </button>
+
+
+          <button
+            type="button"
+            class="usv__nav-button"
+            data-usv-next
+            aria-label="Next service"
+          >
+
+            <svg
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14"/>
+              <path d="m13 6 6 6-6 6"/>
+            </svg>
+
+          </button>
+
+        </div>
+
+      </div>
+
+    {%- endif -%}
+
   </div>
+
 </section>
+
+
+
+{% style %}
+
+/* ============================================================
+   SHOPIFY WRAPPER
+   ============================================================ */
+
+#shopify-section-{{ section.id }} {
+  width: 100%;
+  max-width: none;
+
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ============================================================
+   ROOT
+   ============================================================ */
+
+.usv--{{ uid }} {
+  position: relative;
+  isolation: isolate;
+
+  width: 100%;
+
+  padding:
+    110px
+    0
+    120px;
+
+  overflow: hidden;
+
+  color: #f5f5f2;
+  background: #050505;
+
+  font-family:
+    'Inter Tight',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+
+  -webkit-font-smoothing:
+    antialiased;
+}
+
+
+.usv--{{ uid }} *,
+.usv--{{ uid }} *::before,
+.usv--{{ uid }} *::after {
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   BACKGROUND
+   ============================================================ */
+
+.usv--{{ uid }} .usv__grid-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  pointer-events: none;
+
+  opacity: .35;
+
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,.023)
+      1px,
+      transparent
+      1px
+    ),
+
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.023)
+      1px,
+      transparent
+      1px
+    );
+
+  background-size:
+    84px
+    84px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black,
+      transparent 82%
+    );
+
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      black,
+      transparent 82%
+    );
+}
+
+
+.usv--{{ uid }} .usv__orb {
+  position: absolute;
+  z-index: 0;
+
+  width: 550px;
+  height: 550px;
+
+  border-radius: 50%;
+
+  filter:
+    blur(130px);
+
+  opacity: .09;
+
+  pointer-events: none;
+}
+
+
+.usv--{{ uid }} .usv__orb--one {
+  top: -230px;
+  right: -100px;
+
+  background:
+    #f59e0b;
+}
+
+
+.usv--{{ uid }} .usv__orb--two {
+  bottom: -260px;
+  left: -120px;
+
+  background:
+    #7c3aed;
+}
+
+
+.usv--{{ uid }} .usv__top-line {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.12),
+      transparent
+    );
+}
+
+
+/* ============================================================
+   SHELL
+   ============================================================ */
+
+.usv--{{ uid }} .usv__shell {
+  position: relative;
+  z-index: 2;
+
+  width:
+    min(
+      calc(
+        100% -
+        64px
+      ),
+      1400px
+    );
+
+  margin:
+    0
+    auto;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.usv--{{ uid }} .usv__header {
+  margin-bottom: 70px;
+
+  opacity: 0;
+
+  filter:
+    blur(12px);
+
+  transform:
+    translateY(40px);
+
+  transition:
+    opacity
+    .9s
+    cubic-bezier(.16,1,.3,1),
+
+    filter
+    .9s
+    cubic-bezier(.16,1,.3,1),
+
+    transform
+    .9s
+    cubic-bezier(.16,1,.3,1);
+}
+
+
+.usv--{{ uid }} .usv__header.is-visible {
+  opacity: 1;
+
+  filter: none;
+
+  transform:
+    translateY(0);
+}
+
+
+.usv--{{ uid }} .usv__header-top {
+  margin-bottom: 34px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  gap: 30px;
+}
+
+
+.usv--{{ uid }} .usv__eyebrow {
+  margin: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  color:
+    rgba(
+      245,
+      158,
+      11,
+      .84
+    );
+
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .22em;
+
+  text-transform: uppercase;
+}
+
+
+.usv--{{ uid }} .usv__eyebrow-dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background:
+    #f59e0b;
+
+  box-shadow:
+    0
+    0
+    0
+    5px
+    rgba(245,158,11,.07);
+
+  animation:
+    usv-dot-pulse-{{ uid }}
+    2.2s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes usv-dot-pulse-{{ uid }} {
+
+  0%,
+  100% {
+    opacity: .4;
+    transform: scale(.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+}
+
+
+.usv--{{ uid }} .usv__service-count {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 10px;
+}
+
+
+.usv--{{ uid }} .usv__service-count strong {
+  font-size: 34px;
+  font-weight: 500;
+  line-height: .82;
+  letter-spacing: -.055em;
+}
+
+
+.usv--{{ uid }} .usv__service-count span {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      .35
+    );
+
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: .12em;
+
+  text-transform: uppercase;
+}
+
+
+.usv--{{ uid }} .usv__header-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.3fr)
+    minmax(290px, .7fr);
+
+  align-items: end;
+
+  gap:
+    clamp(
+      50px,
+      7vw,
+      110px
+    );
+}
+
+
+.usv--{{ uid }} .usv__title {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size:
+    clamp(
+      56px,
+      7.6vw,
+      118px
+    );
+
+  font-weight: 650;
+  line-height: .85;
+  letter-spacing: -.06em;
+
+  text-transform: uppercase;
+}
+
+
+.usv--{{ uid }} .usv__title span,
+.usv--{{ uid }} .usv__title em {
+  display: block;
+}
+
+
+.usv--{{ uid }} .usv__title em {
+  color: transparent;
+
+  background:
+    linear-gradient(
+      95deg,
+      #fbbf24,
+      #f97316,
+      #fbbf24
+    );
+
+  background-size:
+    200%
+    100%;
+
+  -webkit-background-clip:
+    text;
+
+  background-clip:
+    text;
+
+  font-weight: 400;
+  font-style: normal;
+
+  animation:
+    usv-title-shift-{{ uid }}
+    7s
+    linear
+    infinite;
+}
+
+
+@keyframes usv-title-shift-{{ uid }} {
+
+  from {
+    background-position:
+      100%
+      0;
+  }
+
+  to {
+    background-position:
+      -100%
+      0;
+  }
+
+}
+
+
+.usv--{{ uid }} .usv__header-copy > p {
+  max-width: 37ch;
+
+  margin:
+    0
+    0
+    26px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      .46
+    );
+
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+
+.usv--{{ uid }} .usv__header-key {
+  padding:
+    13px
+    0;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap:
+    8px
+    18px;
+
+  border-top:
+    1px
+    solid
+    rgba(255,255,255,.09);
+
+  border-bottom:
+    1px
+    solid
+    rgba(255,255,255,.09);
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      .30
+    );
+
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: .12em;
+
+  text-transform: uppercase;
+}
+
+
+/* ============================================================
+   VIEWPORT
+   ============================================================ */
+
+.usv--{{ uid }} .usv__viewport {
+  position: relative;
+}
+
+
+/* ============================================================
+   DESKTOP CARDS
+   ============================================================ */
+
+.usv--{{ uid }} .usv__cards {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      4,
+      minmax(0, 1fr)
+    );
+
+  gap: 14px;
+}
+
+
+.usv--{{ uid }} .usv__card {
+  --usv-x: 50%;
+  --usv-y: 50%;
+  --usv-rx: 0deg;
+  --usv-ry: 0deg;
+
+  position: relative;
+  isolation: isolate;
+
+  min-height: 430px;
+
+  padding:
+    28px
+    26px
+    22px;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  border:
+    1px
+    solid
+    rgba(255,255,255,.09);
+
+  border-radius: 18px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      .018
+    );
+
+  opacity: 0;
+
+  filter:
+    blur(10px);
+
+  transform:
+    perspective(900px)
+    rotateX(var(--usv-rx))
+    rotateY(var(--usv-ry))
+    translateY(36px);
+
+  transform-style:
+    preserve-3d;
+
+  transition:
+    opacity
+    .75s
+    cubic-bezier(.16,1,.3,1)
+    var(--usv-delay),
+
+    filter
+    .75s
+    cubic-bezier(.16,1,.3,1)
+    var(--usv-delay),
+
+    transform
+    .5s
+    cubic-bezier(.16,1,.3,1),
+
+    border-color
+    .35s
+    ease,
+
+    background
+    .35s
+    ease;
+}
+
+
+.usv--{{ uid }} .usv__card.is-visible {
+  opacity: 1;
+
+  filter: none;
+
+  transform:
+    perspective(900px)
+    rotateX(var(--usv-rx))
+    rotateY(var(--usv-ry))
+    translateY(0);
+}
+
+
+.usv--{{ uid }} .usv__card:hover {
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      .20
+    );
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      .035
+    );
+}
+
+
+/* ============================================================
+   CARD GRADIENTS
+   ============================================================ */
+
+.usv--{{ uid }} .usv__card--amber_orange {
+  --usv-color-one: #f59e0b;
+  --usv-color-two: #f97316;
+}
+
+
+.usv--{{ uid }} .usv__card--purple_pink {
+  --usv-color-one: #a855f7;
+  --usv-color-two: #ec4899;
+}
+
+
+.usv--{{ uid }} .usv__card--blue_cyan {
+  --usv-color-one: #3b82f6;
+  --usv-color-two: #06b6d4;
+}
+
+
+.usv--{{ uid }} .usv__card--emerald_teal {
+  --usv-color-one: #10b981;
+  --usv-color-two: #14b8a6;
+}
+
+
+/* ============================================================
+   CARD BACKGROUND EFFECTS
+   ============================================================ */
+
+.usv--{{ uid }} .usv__card-glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  opacity: 0;
+
+  background:
+    radial-gradient(
+      360px
+      circle
+      at
+      var(--usv-x)
+      var(--usv-y),
+
+      color-mix(
+        in srgb,
+        var(--usv-color-one) 17%,
+        transparent
+      ),
+
+      transparent 56%
+    );
+
+  transition:
+    opacity
+    .3s
+    ease;
+}
+
+
+.usv--{{ uid }} .usv__card:hover .usv__card-glow {
+  opacity: 1;
+}
+
+
+.usv--{{ uid }} .usv__card-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+
+  opacity: .18;
+
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,.03)
+      1px,
+      transparent
+      1px
+    ),
+
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.03)
+      1px,
+      transparent
+      1px
+    );
+
+  background-size:
+    40px
+    40px;
+
+  mask-image:
+    linear-gradient(
+      135deg,
+      black,
+      transparent 72%
+    );
+
+  -webkit-mask-image:
+    linear-gradient(
+      135deg,
+      black,
+      transparent 72%
+    );
+}
+
+
+/* ============================================================
+   CARD TOP
+   ============================================================ */
+
+.usv--{{ uid }} .usv__card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+
+.usv--{{ uid }} .usv__icon-wrap {
+  position: relative;
+
+  width: 58px;
+  height: 58px;
+
+  display: grid;
+  place-items: center;
+}
+
+
+.usv--{{ uid }} .usv__icon {
+  position: relative;
+  z-index: 2;
+
+  width: 48px;
+  height: 48px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 14px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--usv-color-one),
+      var(--usv-color-two)
+    );
+
+  box-shadow:
+    0
+    16px
+    40px
+    -20px
+    var(--usv-color-one);
+
+  transition:
+    transform
+    .5s
+    cubic-bezier(.16,1,.3,1);
+}
+
+
+.usv--{{ uid }} .usv__icon-orbit {
+  position: absolute;
+  inset: 0;
+
+  border:
+    1px
+    solid
+    color-mix(
+      in srgb,
+      var(--usv-color-one) 30%,
+      transparent
+    );
+
+  border-radius: 18px;
+
+  opacity: .55;
+
+  transform:
+    rotate(8deg);
+
+  transition:
+    transform
+    .65s
+    cubic-bezier(.16,1,.3,1);
+}
+
+
+.usv--{{ uid }} .usv__card:hover .usv__icon {
+  transform:
+    scale(1.07)
+    rotate(-4deg);
+}
+
+
+.usv--{{ uid }} .usv__card:hover .usv__icon-orbit {
+  transform:
+    rotate(28deg)
+    scale(1.05);
+}
+
+
+.usv--{{ uid }} .usv__number {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      .18
+    );
+
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .14em;
+}
+
+
+/* ============================================================
+   CARD BODY
+   ============================================================ */
+
+.usv--{{ uid }} .usv__card-body {
+  margin-top: 52px;
+}
+
+
+.usv--{{ uid }} .usv__card-body h3 {
+  margin:
+    0
+    0
+    12px;
+
+  color: #ffffff;
+
+  font-size:
+    clamp(
+      19px,
+      1.7vw,
+      25px
+    );
+
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -.035em;
+}
+
+
+.usv--{{ uid }} .usv__card-body p {
+  margin: 0;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      .46
+    );
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+
+/* ============================================================
+   STATS
+   ============================================================ */
+
+.usv--{{ uid }} .usv__stats {
+  margin-top: auto;
+  padding-top: 28px;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap: 1px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      .09
+    );
+}
+
+
+.usv--{{ uid }} .usv__stat {
+  min-width: 0;
+
+  padding:
+    17px
+    12px;
+
+  background:
+    #090909;
+}
+
+
+.usv--{{ uid }} .usv__stat strong {
+  display: block;
+
+  color: #ffffff;
+
+  font-size:
+    clamp(
+      20px,
+      2vw,
+      28px
+    );
+
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -.045em;
+}
+
+
+.usv--{{ uid }} .usv__stat span {
+  margin-top: 6px;
+
+  display: block;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      .34
+    );
+
+  font-size: 9px;
+}
+
+
+/* ============================================================
+   CARD FOOTER
+   ============================================================ */
+
+.usv--{{ uid }} .usv__card-footer {
+  margin-top: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      .27
+    );
+
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: .14em;
+
+  text-transform: uppercase;
+}
+
+
+.usv--{{ uid }} .usv__status {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 6px;
+}
+
+
+.usv--{{ uid }} .usv__status i {
+  width: 4px;
+  height: 4px;
+
+  display: block;
+
+  border-radius: 50%;
+
+  background:
+    var(--usv-color-one);
+
+  box-shadow:
+    0
+    0
+    0
+    0
+    color-mix(
+      in srgb,
+      var(--usv-color-one) 32%,
+      transparent
+    );
+
+  animation:
+    usv-status-pulse-{{ uid }}
+    2s
+    ease-out
+    infinite;
+}
+
+
+@keyframes usv-status-pulse-{{ uid }} {
+
+  0% {
+    box-shadow:
+      0
+      0
+      0
+      0
+      color-mix(
+        in srgb,
+        var(--usv-color-one) 32%,
+        transparent
+      );
+  }
+
+  80% {
+    box-shadow:
+      0
+      0
+      0
+      8px
+      transparent;
+  }
+
+  100% {
+    box-shadow:
+      0
+      0
+      0
+      0
+      transparent;
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE CONTROLS — HIDDEN DESKTOP
+   ============================================================ */
+
+.usv--{{ uid }} .usv__mobile-controls {
+  display: none;
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 1050px) {
+
+  .usv--{{ uid }} .usv__cards {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0,1fr)
+      );
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 749px) {
+
+  .usv--{{ uid }} {
+    padding:
+      68px
+      0
+      70px;
+  }
+
+
+  .usv--{{ uid }} .usv__shell {
+    width:
+      calc(
+        100% -
+        32px
+      );
+  }
+
+
+  .usv--{{ uid }} .usv__grid-bg {
+    opacity: .18;
+
+    background-size:
+      52px
+      52px;
+  }
+
+
+  .usv--{{ uid }} .usv__orb {
+    width: 300px;
+    height: 300px;
+
+    filter:
+      blur(95px);
+  }
+
+
+  /* ============================================================
+     MOBILE HEADER
+     ============================================================ */
+
+  .usv--{{ uid }} .usv__header {
+    margin-bottom: 36px;
+  }
+
+
+  .usv--{{ uid }} .usv__header-top {
+    margin-bottom: 23px;
+  }
+
+
+  .usv--{{ uid }} .usv__eyebrow {
+    font-size: 8px;
+    letter-spacing: .18em;
+  }
+
+
+  .usv--{{ uid }} .usv__service-count strong {
+    font-size: 27px;
+  }
+
+
+  .usv--{{ uid }} .usv__service-count span {
+    font-size: 7px;
+  }
+
+
+  .usv--{{ uid }} .usv__header-grid {
+    grid-template-columns:
+      1fr;
+
+    gap: 23px;
+  }
+
+
+  .usv--{{ uid }} .usv__title {
+    max-width: 9ch;
+
+    font-size:
+      clamp(
+        44px,
+        13.5vw,
+        66px
+      );
+
+    line-height: .89;
+  }
+
+
+  .usv--{{ uid }} .usv__header-copy > p {
+    max-width: 34ch;
+
+    margin-bottom: 19px;
+
+    font-size: 13px;
+    line-height: 1.52;
+  }
+
+
+  .usv--{{ uid }} .usv__header-key {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap:
+      7px
+      18px;
+
+    padding:
+      11px
+      0;
+
+    font-size: 7px;
+  }
+
+
+  /* ============================================================
+     MOBILE CAROUSEL
+     ============================================================ */
+
+  .usv--{{ uid }} .usv__viewport {
+    width:
+      calc(
+        100% +
+        16px
+      );
+
+    margin-right:
+      -16px;
+
+    overflow: visible;
+  }
+
+
+  .usv--{{ uid }} .usv__cards {
+    display: flex;
+
+    gap: 11px;
+
+    padding-right: 16px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scroll-snap-type:
+      x mandatory;
+
+    scroll-padding-left:
+      0;
+
+    overscroll-behavior-x:
+      contain;
+
+    scrollbar-width:
+      none;
+
+    -webkit-overflow-scrolling:
+      touch;
+  }
+
+
+  .usv--{{ uid }} .usv__cards::-webkit-scrollbar {
+    display: none;
+  }
+
+
+  .usv--{{ uid }} .usv__card {
+    flex:
+      0
+      0
+      min(
+        84vw,
+        350px
+      );
+
+    min-height: 355px;
+
+    padding:
+      20px
+      17px
+      16px;
+
+    scroll-snap-align:
+      start;
+
+    border-radius: 16px;
+
+    transform:
+      translateY(25px);
+
+    --usv-rx: 0deg !important;
+    --usv-ry: 0deg !important;
+  }
+
+
+  .usv--{{ uid }} .usv__card.is-visible {
+    transform:
+      translateY(0);
+  }
+
+
+  .usv--{{ uid }} .usv__card-glow {
+    display: none;
+  }
+
+
+  .usv--{{ uid }} .usv__card-grid {
+    opacity: .13;
+
+    background-size:
+      36px
+      36px;
+  }
+
+
+  .usv--{{ uid }} .usv__icon-wrap {
+    width: 50px;
+    height: 50px;
+  }
+
+
+  .usv--{{ uid }} .usv__icon {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+  }
+
+
+  .usv--{{ uid }} .usv__icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+
+  .usv--{{ uid }} .usv__icon-orbit {
+    border-radius: 14px;
+  }
+
+
+  .usv--{{ uid }} .usv__card-body {
+    margin-top: 36px;
+  }
+
+
+  .usv--{{ uid }} .usv__card-body h3 {
+    margin-bottom: 9px;
+
+    font-size:
+      clamp(
+        20px,
+        6vw,
+        25px
+      );
+  }
+
+
+  .usv--{{ uid }} .usv__card-body p {
+    max-width: 31ch;
+
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+
+  .usv--{{ uid }} .usv__stats {
+    padding-top: 21px;
+  }
+
+
+  .usv--{{ uid }} .usv__stat {
+    padding:
+      13px
+      10px;
+  }
+
+
+  .usv--{{ uid }} .usv__stat strong {
+    font-size: 22px;
+  }
+
+
+  .usv--{{ uid }} .usv__stat span {
+    margin-top: 4px;
+
+    font-size: 8px;
+  }
+
+
+  .usv--{{ uid }} .usv__card-footer {
+    margin-top: 12px;
+
+    font-size: 6px;
+  }
+
+
+  /* ============================================================
+     MOBILE CONTROLS
+     ============================================================ */
+
+  .usv--{{ uid }} .usv__mobile-controls {
+    margin-top: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+  }
+
+
+  .usv--{{ uid }} .usv__mobile-progress {
+    flex:
+      1
+      1
+      auto;
+
+    display: grid;
+
+    grid-template-columns:
+      auto
+      1fr
+      auto;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color:
+      rgba(
+        255,
+        255,
+        255,
+        .34
+      );
+
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: .10em;
+  }
+
+
+  .usv--{{ uid }} .usv__progress-line {
+    position: relative;
+
+    height: 1px;
+
+    overflow: hidden;
+
+    background:
+      rgba(
+        255,
+        255,
+        255,
+        .12
+      );
+  }
+
+
+  .usv--{{ uid }} .usv__progress-fill {
+    position: absolute;
+    inset:
+      0
+      auto
+      0
+      0;
+
+    width: 25%;
+
+    background:
+      #ffffff;
+
+    transform-origin:
+      left center;
+
+    transition:
+      width
+      .3s
+      cubic-bezier(.16,1,.3,1);
+  }
+
+
+  .usv--{{ uid }} .usv__mobile-buttons {
+    display: flex;
+
+    gap: 6px;
+  }
+
+
+  .usv--{{ uid }} .usv__nav-button {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+
+    display: grid;
+    place-items: center;
+
+    border:
+      1px
+      solid
+      rgba(255,255,255,.12);
+
+    border-radius: 50%;
+
+    color:
+      rgba(
+        255,
+        255,
+        255,
+        .72
+      );
+
+    background:
+      rgba(
+        255,
+        255,
+        255,
+        .025
+      );
+
+    cursor: pointer;
+
+    transition:
+      color
+      .2s
+      ease,
+
+      background
+      .2s
+      ease,
+
+      transform
+      .2s
+      ease;
+  }
+
+
+  .usv--{{ uid }} .usv__nav-button:active {
+    transform:
+      scale(.94);
+  }
+
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 390px) {
+
+  .usv--{{ uid }} .usv__shell {
+    width:
+      calc(
+        100% -
+        26px
+      );
+  }
+
+
+  .usv--{{ uid }} .usv__title {
+    font-size:
+      clamp(
+        40px,
+        13vw,
+        54px
+      );
+  }
+
+
+  .usv--{{ uid }} .usv__service-count span {
+    display: none;
+  }
+
+
+  .usv--{{ uid }} .usv__card {
+    flex-basis:
+      min(
+        86vw,
+        325px
+      );
+
+    min-height: 340px;
+  }
+
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .usv--{{ uid }}
+  [data-usv-reveal] {
+    opacity: 1 !important;
+
+    filter: none !important;
+
+    transform: none !important;
+
+    transition: none !important;
+  }
+
+
+  .usv--{{ uid }} .usv__eyebrow-dot,
+  .usv--{{ uid }} .usv__title em,
+  .usv--{{ uid }} .usv__status i {
+    animation: none !important;
+  }
+
+}
+
+{% endstyle %}
+
+
+
+<script>
+(function () {
+
+  var root =
+    document.getElementById(
+      'UkiyoServices-{{ uid }}'
+    );
+
+
+  if (!root) {
+    return;
+  }
+
+
+  if (
+    root.__usvCleanup &&
+    typeof root.__usvCleanup === 'function'
+  ) {
+    root.__usvCleanup();
+  }
+
+
+  var cards =
+    Array.prototype.slice.call(
+      root.querySelectorAll(
+        '[data-usv-card]'
+      )
+    );
+
+
+  var revealItems =
+    Array.prototype.slice.call(
+      root.querySelectorAll(
+        '[data-usv-reveal]'
+      )
+    );
+
+
+  var track =
+    root.querySelector(
+      '[data-usv-track]'
+    );
+
+
+  var previousButton =
+    root.querySelector(
+      '[data-usv-prev]'
+    );
+
+
+  var nextButton =
+    root.querySelector(
+      '[data-usv-next]'
+    );
+
+
+  var currentLabel =
+    root.querySelector(
+      '[data-usv-current]'
+    );
+
+
+  var progress =
+    root.querySelector(
+      '[data-usv-progress]'
+    );
+
+
+  var reduceMotion =
+    window.matchMedia &&
+    window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+
+  var revealObserver = null;
+
+  var cardListeners = [];
+
+  var scrollTimer = 0;
+
+  var activeIndex = 0;
+
+
+  /* ============================================================
+     REVEAL
+     ============================================================ */
+
+  function revealAll() {
+
+    revealItems.forEach(
+      function(item) {
+
+        item.classList.add(
+          'is-visible'
+        );
+
+      }
+    );
+
+  }
+
+
+  function initReveal() {
+
+    if (
+      reduceMotion ||
+      !(
+        'IntersectionObserver'
+        in window
+      )
+    ) {
+      revealAll();
+
+      return;
+    }
+
+
+    revealObserver =
+      new IntersectionObserver(
+        function(entries) {
+
+          entries.forEach(
+            function(entry) {
+
+              if (
+                !entry.isIntersecting
+              ) {
+                return;
+              }
+
+
+              entry.target.classList.add(
+                'is-visible'
+              );
+
+
+              revealObserver.unobserve(
+                entry.target
+              );
+
+            }
+          );
+
+        },
+        {
+          threshold: .12,
+
+          rootMargin:
+            '0px 0px -7% 0px'
+        }
+      );
+
+
+    revealItems.forEach(
+      function(item) {
+
+        revealObserver.observe(
+          item
+        );
+
+      }
+    );
+
+  }
+
+
+  /* ============================================================
+     DESKTOP CARD REACTION
+     ============================================================ */
+
+  function initCardInteraction() {
+
+    if (
+      reduceMotion ||
+      !window.matchMedia ||
+      !window.matchMedia(
+        '(hover: hover) and (pointer: fine)'
+      ).matches
+    ) {
+      return;
+    }
+
+
+    cards.forEach(
+      function(card) {
+
+        function onMove(event) {
+
+          var rect =
+            card.getBoundingClientRect();
+
+
+          var x =
+            event.clientX -
+            rect.left;
+
+
+          var y =
+            event.clientY -
+            rect.top;
+
+
+          var xp =
+            (
+              x /
+              rect.width
+            ) *
+            100;
+
+
+          var yp =
+            (
+              y /
+              rect.height
+            ) *
+            100;
+
+
+          var ry =
+            (
+              (
+                x /
+                rect.width
+              ) -
+              .5
+            ) *
+            2.2;
+
+
+          var rx =
+            (
+              .5 -
+              (
+                y /
+                rect.height
+              )
+            ) *
+            2.2;
+
+
+          card.style.setProperty(
+            '--usv-x',
+            xp.toFixed(2) +
+            '%'
+          );
+
+
+          card.style.setProperty(
+            '--usv-y',
+            yp.toFixed(2) +
+            '%'
+          );
+
+
+          card.style.setProperty(
+            '--usv-rx',
+            rx.toFixed(2) +
+            'deg'
+          );
+
+
+          card.style.setProperty(
+            '--usv-ry',
+            ry.toFixed(2) +
+            'deg'
+          );
+
+        }
+
+
+        function onLeave() {
+
+          card.style.setProperty(
+            '--usv-rx',
+            '0deg'
+          );
+
+
+          card.style.setProperty(
+            '--usv-ry',
+            '0deg'
+          );
+
+        }
+
+
+        card.addEventListener(
+          'pointermove',
+          onMove
+        );
+
+
+        card.addEventListener(
+          'pointerleave',
+          onLeave
+        );
+
+
+        cardListeners.push({
+          card: card,
+          move: onMove,
+          leave: onLeave
+        });
+
+      }
+    );
+
+  }
+
+
+  /* ============================================================
+     MOBILE CAROUSEL
+     ============================================================ */
+
+  function isMobile() {
+
+    return (
+      window.matchMedia &&
+      window.matchMedia(
+        '(max-width: 749px)'
+      ).matches
+    );
+
+  }
+
+
+  function getNearestCardIndex() {
+
+    if (
+      !track ||
+      !cards.length
+    ) {
+      return 0;
+    }
+
+
+    var trackRect =
+      track.getBoundingClientRect();
+
+
+    var targetLeft =
+      trackRect.left;
+
+
+    var closestIndex = 0;
+
+    var closestDistance =
+      Infinity;
+
+
+    cards.forEach(
+      function(card, index) {
+
+        var rect =
+          card.getBoundingClientRect();
+
+
+        var distance =
+          Math.abs(
+            rect.left -
+            targetLeft
+          );
+
+
+        if (
+          distance <
+          closestDistance
+        ) {
+          closestDistance =
+            distance;
+
+          closestIndex =
+            index;
+        }
+
+      }
+    );
+
+
+    return closestIndex;
+
+  }
+
+
+  function updateControls(index) {
+
+    activeIndex =
+      Math.max(
+        0,
+        Math.min(
+          cards.length - 1,
+          index
+        )
+      );
+
+
+    if (currentLabel) {
+
+      currentLabel.textContent =
+        String(
+          activeIndex + 1
+        ).padStart(
+          2,
+          '0'
+        );
+
+    }
+
+
+    if (progress) {
+
+      var percentage =
+        (
+          (
+            activeIndex + 1
+          ) /
+          cards.length
+        ) *
+        100;
+
+
+      progress.style.width =
+        percentage +
+        '%';
+
+    }
+
+  }
+
+
+  function scrollToCard(index) {
+
+    if (
+      !track ||
+      !cards[index]
+    ) {
+      return;
+    }
+
+
+    var card =
+      cards[index];
+
+
+    var target =
+      card.offsetLeft -
+      track.offsetLeft;
+
+
+    track.scrollTo({
+      left: target,
+      behavior:
+        reduceMotion
+          ? 'auto'
+          : 'smooth'
+    });
+
+
+    updateControls(
+      index
+    );
+
+  }
+
+
+  function handleTrackScroll() {
+
+    if (!isMobile()) {
+      return;
+    }
+
+
+    window.clearTimeout(
+      scrollTimer
+    );
+
+
+    scrollTimer =
+      window.setTimeout(
+        function() {
+
+          updateControls(
+            getNearestCardIndex()
+          );
+
+        },
+        80
+      );
+
+  }
+
+
+  function handlePrevious() {
+
+    scrollToCard(
+      Math.max(
+        0,
+        activeIndex - 1
+      )
+    );
+
+  }
+
+
+  function handleNext() {
+
+    scrollToCard(
+      Math.min(
+        cards.length - 1,
+        activeIndex + 1
+      )
+    );
+
+  }
+
+
+  if (track) {
+
+    track.addEventListener(
+      'scroll',
+      handleTrackScroll,
+      {
+        passive: true
+      }
+    );
+
+  }
+
+
+  if (previousButton) {
+
+    previousButton.addEventListener(
+      'click',
+      handlePrevious
+    );
+
+  }
+
+
+  if (nextButton) {
+
+    nextButton.addEventListener(
+      'click',
+      handleNext
+    );
+
+  }
+
+
+  /* ============================================================
+     CLEANUP
+     ============================================================ */
+
+  function cleanup() {
+
+    if (revealObserver) {
+
+      revealObserver.disconnect();
+
+    }
+
+
+    cardListeners.forEach(
+      function(entry) {
+
+        entry.card.removeEventListener(
+          'pointermove',
+          entry.move
+        );
+
+
+        entry.card.removeEventListener(
+          'pointerleave',
+          entry.leave
+        );
+
+      }
+    );
+
+
+    if (track) {
+
+      track.removeEventListener(
+        'scroll',
+        handleTrackScroll
+      );
+
+    }
+
+
+    if (previousButton) {
+
+      previousButton.removeEventListener(
+        'click',
+        handlePrevious
+      );
+
+    }
+
+
+    if (nextButton) {
+
+      nextButton.removeEventListener(
+        'click',
+        handleNext
+      );
+
+    }
+
+
+    window.clearTimeout(
+      scrollTimer
+    );
+
+  }
+
+
+  root.__usvCleanup =
+    cleanup;
+
+
+  initReveal();
+
+  initCardInteraction();
+
+  updateControls(0);
+
+
+  document.addEventListener(
+    'shopify:section:unload',
+    function onUnload(event) {
+
+      if (
+        !event.target ||
+        !event.target.contains(root)
+      ) {
+        return;
+      }
+
+
+      cleanup();
+
+
+      document.removeEventListener(
+        'shopify:section:unload',
+        onUnload
+      );
+
+    }
+  );
+
+})();
+</script>
+
+
 
 {% schema %}
 {
   "name": "Gallery Icons Stats",
   "tag": "section",
   "class": "section-gallery-icons-stats",
+
   "settings": [
+
     {
       "type": "text",
       "id": "badge",
       "label": "Badge (small label above title)",
       "default": "(What We Do)"
     },
+
     {
       "type": "text",
       "id": "title_before",
       "label": "Title (before gradient part)",
       "default": "Why Brands "
     },
+
     {
       "type": "text",
       "id": "title_gradient",
       "label": "Title (gradient part)",
       "default": "Choose Us"
     },
+
     {
       "type": "textarea",
       "id": "subtitle",
       "label": "Subtitle",
       "default": "We transform brand visions into visual experiences that captivate, engage, and convert."
     }
+
   ],
+
+
   "blocks": [
+
     {
       "type": "card",
       "name": "Service card",
       "limit": 6,
+
       "settings": [
+
         {
           "type": "select",
           "id": "gradient",
           "label": "Card & icon gradient",
+
           "options": [
-            { "value": "amber_orange", "label": "Amber / Orange" },
-            { "value": "purple_pink", "label": "Purple / Pink" },
-            { "value": "blue_cyan", "label": "Blue / Cyan" },
-            { "value": "emerald_teal", "label": "Emerald / Teal" }
+
+            {
+              "value": "amber_orange",
+              "label": "Amber / Orange"
+            },
+
+            {
+              "value": "purple_pink",
+              "label": "Purple / Pink"
+            },
+
+            {
+              "value": "blue_cyan",
+              "label": "Blue / Cyan"
+            },
+
+            {
+              "value": "emerald_teal",
+              "label": "Emerald / Teal"
+            }
+
           ],
+
           "default": "amber_orange"
         },
+
         {
           "type": "select",
           "id": "icon",
           "label": "Icon",
+
           "options": [
-            { "value": "camera", "label": "Camera" },
-            { "value": "video", "label": "Video" },
-            { "value": "palette", "label": "Palette" },
-            { "value": "target", "label": "Target" }
+
+            {
+              "value": "camera",
+              "label": "Camera"
+            },
+
+            {
+              "value": "video",
+              "label": "Video"
+            },
+
+            {
+              "value": "palette",
+              "label": "Palette"
+            },
+
+            {
+              "value": "target",
+              "label": "Target"
+            }
+
           ],
+
           "default": "camera"
         },
+
         {
           "type": "text",
           "id": "title",
           "label": "Card title",
           "default": "Brand Photography"
         },
+
         {
           "type": "textarea",
           "id": "description",
           "label": "Description",
           "default": "Capturing the essence of your brand through stunning visual storytelling that resonates with your audience."
         },
+
         {
           "type": "text",
           "id": "stat1_number",
           "label": "Stat 1 number",
           "default": "500+"
         },
+
         {
           "type": "text",
           "id": "stat1_label",
           "label": "Stat 1 label",
           "default": "Shoots"
         },
+
         {
           "type": "text",
           "id": "stat2_number",
           "label": "Stat 2 number",
           "default": "50+"
         },
+
         {
           "type": "text",
           "id": "stat2_label",
           "label": "Stat 2 label",
           "default": "Brands"
         }
+
       ]
     }
+
   ],
+
+
   "presets": [
+
     {
       "name": "Gallery Icons Stats",
+
       "settings": {
         "badge": "(What We Do)",
         "title_before": "Why Brands ",
         "title_gradient": "Choose Us",
         "subtitle": "We transform brand visions into visual experiences that captivate, engage, and convert."
       },
+
       "blocks": [
-        { "type": "card", "settings": { "gradient": "amber_orange", "icon": "camera", "title": "Brand Photography", "description": "Capturing the essence of your brand through stunning visual storytelling that resonates with your audience.", "stat1_number": "500+", "stat1_label": "Shoots", "stat2_number": "50+", "stat2_label": "Brands" } },
-        { "type": "card", "settings": { "gradient": "purple_pink", "icon": "video", "title": "Video Production", "description": "From concept to delivery, we create cinematic content that elevates your brand and drives engagement.", "stat1_number": "200+", "stat1_label": "Videos", "stat2_number": "10M+", "stat2_label": "Views" } },
-        { "type": "card", "settings": { "gradient": "blue_cyan", "icon": "palette", "title": "Creative Direction", "description": "Strategic creative vision that aligns every visual element with your brand story and business goals.", "stat1_number": "100+", "stat1_label": "Campaigns", "stat2_number": "30%", "stat2_label": "Avg ROI Lift" } },
-        { "type": "card", "settings": { "gradient": "emerald_teal", "icon": "target", "title": "Event Coverage", "description": "Immersive event documentation that captures the energy, emotion, and impact of your activations.", "stat1_number": "75+", "stat1_label": "Events", "stat2_number": "25+", "stat2_label": "Countries" } }
+
+        {
+          "type": "card",
+          "settings": {
+            "gradient": "amber_orange",
+            "icon": "camera",
+            "title": "Brand Photography",
+            "description": "Capturing the essence of your brand through stunning visual storytelling that resonates with your audience.",
+            "stat1_number": "500+",
+            "stat1_label": "Shoots",
+            "stat2_number": "50+",
+            "stat2_label": "Brands"
+          }
+        },
+
+        {
+          "type": "card",
+          "settings": {
+            "gradient": "purple_pink",
+            "icon": "video",
+            "title": "Video Production",
+            "description": "From concept to delivery, we create cinematic content that elevates your brand and drives engagement.",
+            "stat1_number": "200+",
+            "stat1_label": "Videos",
+            "stat2_number": "10M+",
+            "stat2_label": "Views"
+          }
+        },
+
+        {
+          "type": "card",
+          "settings": {
+            "gradient": "blue_cyan",
+            "icon": "palette",
+            "title": "Creative Direction",
+            "description": "Strategic creative vision that aligns every visual element with your brand story and business goals.",
+            "stat1_number": "100+",
+            "stat1_label": "Campaigns",
+            "stat2_number": "30%",
+            "stat2_label": "Avg ROI Lift"
+          }
+        },
+
+        {
+          "type": "card",
+          "settings": {
+            "gradient": "emerald_teal",
+            "icon": "target",
+            "title": "Event Coverage",
+            "description": "Immersive event documentation that captures the energy, emotion, and impact of your activations.",
+            "stat1_number": "75+",
+            "stat1_label": "Events",
+            "stat2_number": "25+",
+            "stat2_label": "Countries"
+          }
+        }
+
       ]
     }
+
   ]
 }
 {% endschema %}
