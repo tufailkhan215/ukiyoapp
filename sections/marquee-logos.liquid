@@ -1,116 +1,887 @@
-{% comment %} Trusted-by: badge, title, subtitle, 8-cell grid (glass cards, alternating highlight), two scrolling marquee rows with gradient fades. {% endcomment %}
-<section class="relative py-20 lg:py-28 bg-black overflow-hidden" data-testid="trusted-by-section">
-  <div class="absolute inset-0" aria-hidden="true">
-    <div class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-white blur-[150px] opacity-[0.03]"></div>
-    <div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-white blur-[120px] opacity-[0.03]"></div>
-  </div>
-  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+{% comment %}
+  UKIYO — Clients & Collaborations
+  Complete replacement for the original Marquee Logos section.
+  Preserves existing setting IDs and brand blocks.
+  No Tailwind or external animation libraries required.
+{% endcomment %}
 
-  <div class="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-12">
-    <div class="text-center mb-16">
-      <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-white/10 bg-white/[0.02] backdrop-blur-sm mb-6">
-        <span class="w-2 h-2 rounded-full bg-white/50" aria-hidden="true"></span>
-        <span class="text-[11px] font-medium text-white/50 tracking-[0.3em] uppercase">{{ section.settings.badge_text | default: 'Trusted By Industry Leaders' }}</span>
-      </div>
-      {% if section.settings.title_before != blank or section.settings.title_gradient != blank %}
-        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-          {{ section.settings.title_before }}
-          {% if section.settings.title_gradient != blank %}
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_gradient }}</span>
-          {% endif %}
-        </h2>
-      {% endif %}
-      {% if section.settings.subtitle != blank %}
-        <p class="text-white/40 max-w-lg mx-auto">{{ section.settings.subtitle }}</p>
-      {% endif %}
-    </div>
+{% assign logo_blocks = section.blocks | where: 'type', 'logo' %}
 
-    {% assign logo_blocks = section.blocks | where: 'type', 'logo' %}
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-      {% for block in logo_blocks %}
-        {% assign is_highlight = false %}
-        {% assign idx = forloop.index0 | plus: 0 %}
-        {% if idx == 0 or idx == 2 or idx == 4 or idx == 6 %}
-          {% assign is_highlight = true %}
-        {% endif %}
-        <div class="group relative" {{ block.shopify_attributes }}>
-          <div class="relative h-28 flex items-center justify-center glass-card overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" aria-hidden="true"></div>
-            {% if is_highlight %}
-              <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent" aria-hidden="true"></div>
-              <span class="relative text-2xl md:text-3xl font-bold transition-all duration-500 text-white/40 group-hover:text-white/70" style="text-shadow: rgba(255, 255, 255, 0.2) 0px 0px 40px;">{{ block.settings.name | default: 'Brand' }}</span>
-            {% else %}
-              <span class="relative text-2xl md:text-3xl font-bold transition-all duration-500 text-white/20 group-hover:text-white/50">{{ block.settings.name | default: 'Brand' }}</span>
-            {% endif %}
-          </div>
+<ukiyo-partners
+  id="UkiyoPartners-{{ section.id }}"
+  class="up"
+  data-testid="trusted-by-section"
+  style="
+    --up-bg: {{ section.settings.background | default: '#080808' }};
+    --up-speed: {{ section.settings.marquee_speed | default: 45 }}s;
+  "
+>
+  <div class="up__inner">
+    <header class="up__header">
+      {% if section.settings.badge_text != blank %}
+        <div class="up__eyebrow" data-up-reveal>
+          <span class="up__dot" aria-hidden="true"></span>
+          {{ section.settings.badge_text | escape }}
         </div>
-      {% endfor %}
-    </div>
+      {% endif %}
+
+      <div class="up__intro">
+        {% if section.settings.title_before != blank or section.settings.title_gradient != blank %}
+          <h2 class="up__title" data-up-reveal>
+            {{ section.settings.title_before | escape }}
+            {% if section.settings.title_gradient != blank %}
+              <span>{{ section.settings.title_gradient | escape }}</span>
+            {% endif %}
+          </h2>
+        {% endif %}
+
+        {% if section.settings.subtitle != blank %}
+          <p class="up__description" data-up-reveal>
+            {{ section.settings.subtitle | escape }}
+          </p>
+        {% endif %}
+      </div>
+    </header>
 
     {% if logo_blocks.size > 0 %}
-      {% comment %} Row 1: filled subtle text, scrolls left {% endcomment %}
-      <div class="relative overflow-hidden py-4 mb-2">
-        <div class="flex whitespace-nowrap animate-marquee w-max">
-          {% for i in (1..2) %}
-            {% for block in logo_blocks %}
-              {% if block.type == 'logo' %}
-                <span class="mx-8 text-4xl md:text-5xl font-black text-white/[0.04] hover:text-white/10 transition-colors cursor-default select-none">{{ block.settings.name | default: 'Brand' }}</span>
-              {% endif %}
-            {% endfor %}
-          {% endfor %}
-        </div>
-        <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" aria-hidden="true"></div>
-        <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" aria-hidden="true"></div>
+      <div class="up__label" data-up-reveal>
+        <span>Selected relationships</span>
+        <span>
+          {{ logo_blocks.size | prepend: '00' | slice: -2, 2 }}
+        </span>
       </div>
-      {% comment %} Row 2: outline/stroke text, scrolls right (reverse); reversed order to match opposite flow {% endcomment %}
-      <div class="relative overflow-hidden py-4">
-        <div class="flex whitespace-nowrap animate-marquee-reverse w-max">
-          {% for i in (1..2) %}
-            {% for block in logo_blocks reversed %}
-              {% if block.type == 'logo' %}
-                <span class="mx-8 text-4xl md:text-5xl font-black text-transparent hover:text-white/10 transition-colors cursor-default select-none" style="-webkit-text-stroke: 1px rgba(255, 255, 255, 0.06);">{{ block.settings.name | default: 'Brand' }}</span>
+
+      <ul class="up__grid" role="list">
+        {% for block in logo_blocks %}
+          {% assign brand_name = block.settings.name | default: 'Brand' %}
+
+          <li
+            class="up__cell"
+            data-up-reveal
+            style="--up-logo-width: {{ block.settings.logo_width | default: 160 }}px;"
+            {{ block.shopify_attributes }}
+          >
+            {% if block.settings.link != blank %}
+              <a
+                class="up__brand"
+                href="{{ block.settings.link | escape }}"
+                aria-label="{{ brand_name | escape }}"
+              >
+            {% else %}
+              <div class="up__brand">
+            {% endif %}
+
+              <span class="up__number" aria-hidden="true">
+                {{ forloop.index | prepend: '00' | slice: -2, 2 }}
+              </span>
+
+              {% if block.settings.image != blank %}
+                {{
+                  block.settings.image
+                  | image_url: width: 600
+                  | image_tag:
+                    class: 'up__logo',
+                    widths: '160, 240, 320, 480, 600',
+                    sizes: '(max-width: 600px) 130px, 220px',
+                    loading: 'lazy',
+                    alt: brand_name
+                }}
+              {% else %}
+                <span class="up__wordmark">
+                  {{ brand_name | escape }}
+                </span>
               {% endif %}
-            {% endfor %}
-          {% endfor %}
+
+              {% if block.settings.caption != blank %}
+                <span class="up__caption">
+                  {{ block.settings.caption | escape }}
+                </span>
+              {% endif %}
+
+              {% if block.settings.link != blank %}
+                <span class="up__arrow" aria-hidden="true">↗</span>
+              {% endif %}
+
+            {% if block.settings.link != blank %}
+              </a>
+            {% else %}
+              </div>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+
+      {% if section.settings.show_marquee %}
+        <div class="up__marquee-wrap">
+          <div class="up__marquee" aria-hidden="true">
+            <div class="up__track">
+              {% for repetition in (1..2) %}
+                <div class="up__group">
+                  {% for block in logo_blocks %}
+                    <span>
+                      {{ block.settings.name | default: 'Brand' | escape }}
+                    </span>
+                    <i>✳</i>
+                  {% endfor %}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <button
+            class="up__pause"
+            type="button"
+            aria-pressed="false"
+            hidden
+          >
+            Pause motion
+          </button>
         </div>
-        <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" aria-hidden="true"></div>
-        <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" aria-hidden="true"></div>
-      </div>
+      {% endif %}
+
+    {% elsif request.design_mode %}
+      <p class="up__empty">
+        Add Brand blocks to build your client showcase.
+      </p>
+    {% endif %}
+
+    {% if section.settings.footer_text != blank or section.settings.cta_link != blank %}
+      <footer class="up__footer">
+        {% if section.settings.footer_text != blank %}
+          <p>{{ section.settings.footer_text | escape }}</p>
+        {% endif %}
+
+        {% if section.settings.cta_link != blank and section.settings.cta_text != blank %}
+          <a href="{{ section.settings.cta_link | escape }}">
+            {{ section.settings.cta_text | escape }}
+            <span aria-hidden="true">↗</span>
+          </a>
+        {% endif %}
+      </footer>
     {% endif %}
   </div>
+</ukiyo-partners>
 
-  <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
-</section>
+<style>
+  .up {
+    display: block;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: var(--up-bg);
+    color: #f4f2ed;
+    padding: clamp(64px, 8vw, 128px) 0 36px;
+    font-family: var(--font-body-family, Arial, sans-serif);
+    border-top: 1px solid #ffffff20;
+  }
+
+  .up *,
+  .up *::before,
+  .up *::after {
+    box-sizing: border-box;
+  }
+
+  .up::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background:
+      radial-gradient(
+        ellipse at 80% 0%,
+        #ffffff09,
+        transparent 55%
+      );
+  }
+
+  .up .up__inner {
+    width: min(1440px, calc(100% - 96px));
+    margin: auto;
+  }
+
+  .up .up__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #bbb9b3;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  .up .up__dot {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #ede8dc;
+    box-shadow: 0 0 14px #ffffff55;
+  }
+
+  .up .up__intro {
+    display: grid;
+    grid-template-columns:
+      minmax(0, 1.7fr)
+      minmax(0, 1fr);
+    align-items: end;
+    gap: 64px;
+    margin-bottom: 72px;
+  }
+
+  .up .up__title {
+    margin: 0;
+    color: inherit;
+    font-family: var(--font-heading-family, Arial, sans-serif);
+    font-size: clamp(40px, 5.7vw, 88px);
+    font-weight: 500;
+    letter-spacing: -0.055em;
+    line-height: 1.04;
+    text-transform: none;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+
+  .up .up__title span {
+    display: block;
+    color: #aeaaa2;
+  }
+
+  .up .up__description {
+    max-width: 340px;
+    margin: 0 0 4px auto;
+    font-size: clamp(15px, 1.2vw, 18px);
+    line-height: 1.7;
+    letter-spacing: 0;
+    color: #b1afa9;
+    text-wrap: pretty;
+  }
+
+  .up .up__label {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    line-height: 1.5;
+    text-transform: uppercase;
+    color: #aba9a3;
+  }
+
+  .up .up__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    margin: 0;
+    padding: 1px;
+    list-style: none;
+    background: #ffffff24;
+  }
+
+  .up .up__cell {
+    position: relative;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    background: var(--up-bg);
+  }
+
+  .up .up__brand {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: clamp(156px, 14vw, 210px);
+    padding: 42px 24px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #e5e2db;
+    background:
+      linear-gradient(
+        135deg,
+        #ffffff04,
+        transparent
+      );
+  }
+
+  .up .up__brand::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    background:
+      radial-gradient(
+        ellipse at var(--up-x, 50%) var(--up-y, 50%),
+        #ffffff16,
+        transparent 72%
+      );
+    transition: opacity 0.4s;
+  }
+
+  .up .up__number {
+    position: absolute;
+    top: 17px;
+    left: 19px;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: #92908a;
+  }
+
+  .up .up__wordmark {
+    position: relative;
+    font-family: var(--font-heading-family, Arial, sans-serif);
+    font-size: clamp(19px, 2.1vw, 31px);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    text-align: center;
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+    transition:
+      transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      color 0.4s;
+  }
+
+  .up .up__logo {
+    display: block;
+    position: relative;
+    width: var(--up-logo-width);
+    max-width: 100%;
+    height: 70px;
+    object-fit: contain;
+    transition:
+      transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .up .up__caption {
+    position: absolute;
+    left: 18px;
+    right: 32px;
+    bottom: 16px;
+    font-size: 10px;
+    line-height: 1.4;
+    color: #aaa79f;
+    letter-spacing: 0.04em;
+  }
+
+  .up .up__arrow {
+    position: absolute;
+    bottom: 14px;
+    right: 18px;
+    font-size: 20px;
+    color: #c9c5bc;
+    transition: transform 0.3s;
+  }
+
+  .up .up__brand:focus-visible {
+    outline: 2px solid #f4f2ed;
+    outline-offset: -4px;
+  }
+
+  .up .up__brand:focus-visible::before {
+    opacity: 1;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .up .up__brand:hover::before {
+      opacity: 1;
+    }
+
+    .up .up__brand:hover .up__wordmark,
+    .up .up__brand:hover .up__logo {
+      transform: translateY(-3px) scale(1.035);
+      color: #ffffff;
+    }
+
+    .up .up__brand:hover .up__arrow {
+      transform: translate(2px, -2px);
+    }
+  }
+
+  .up .up__marquee-wrap {
+    position: relative;
+    margin-top: 44px;
+  }
+
+  .up .up__marquee {
+    overflow: hidden;
+    -webkit-mask-image:
+      linear-gradient(
+        to right,
+        transparent,
+        #000000 7%,
+        #000000 93%,
+        transparent
+      );
+    mask-image:
+      linear-gradient(
+        to right,
+        transparent,
+        #000000 7%,
+        #000000 93%,
+        transparent
+      );
+  }
+
+  .up .up__track {
+    display: flex;
+    width: 100%;
+  }
+
+  .up .up__group {
+    display: flex;
+    flex: 0 0 auto;
+    min-width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    gap: 40px;
+    padding-right: 40px;
+  }
+
+  .up .up__group span {
+    white-space: nowrap;
+    font-family: var(--font-heading-family, Arial, sans-serif);
+    font-size: clamp(32px, 4.5vw, 66px);
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.04em;
+    color: #96928a;
+  }
+
+  .up .up__group i {
+    font-size: 24px;
+    font-style: normal;
+    color: #77736b;
+  }
+
+  .up[data-ready] .up__group {
+    animation:
+      up-marquee var(--up-speed) linear infinite;
+  }
+
+  .up[data-paused] .up__group,
+  .up[data-offscreen] .up__group,
+  .up .up__marquee-wrap:hover .up__group,
+  .up .up__marquee-wrap:focus-within .up__group {
+    animation-play-state: paused;
+  }
+
+  .up .up__pause {
+    display: block;
+    margin: 16px 0 0 auto;
+    padding: 8px 0 8px 16px;
+    min-height: 44px;
+    background: none;
+    border: 0;
+    color: #aaa79f;
+    font: inherit;
+    font-size: 11px;
+    cursor: pointer;
+  }
+
+  .up .up__pause[hidden] {
+    display: none;
+  }
+
+  .up .up__pause:focus-visible,
+  .up .up__footer a:focus-visible {
+    outline: 2px solid #f4f2ed;
+    outline-offset: 4px;
+  }
+
+  .up .up__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-top: 38px;
+    padding-top: 24px;
+    border-top: 1px solid #ffffff24;
+  }
+
+  .up .up__footer p {
+    margin: 0;
+    color: #a8a59e;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .up .up__footer a {
+    display: inline-flex;
+    align-items: center;
+    gap: 24px;
+    color: #f4f2ed;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 10px 0;
+    text-decoration: none;
+    border-bottom: 1px solid #ffffff70;
+  }
+
+  .up .up__footer a span {
+    font-size: 20px;
+  }
+
+  .up .up__empty {
+    padding: 40px;
+    border: 1px dashed #ffffff40;
+    color: #bbbbbb;
+  }
+
+  @keyframes up-marquee {
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .up .up__intro {
+      gap: 32px;
+      grid-template-columns:
+        minmax(0, 1.5fr)
+        minmax(0, 1fr);
+    }
+
+    .up .up__inner {
+      width: calc(100% - 48px);
+    }
+
+    .up .up__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .up .up__brand {
+      height: 164px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .up .up__inner {
+      width: calc(100% - 36px);
+    }
+
+    .up .up__intro {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .up .up__description {
+      margin: 0;
+      max-width: 36ch;
+    }
+
+    .up .up__eyebrow {
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      margin-bottom: 24px;
+    }
+
+    .up .up__brand {
+      height: 145px;
+      padding: 34px 16px;
+    }
+
+    .up .up__logo {
+      height: 55px;
+    }
+
+    .up .up__number {
+      top: 12px;
+      left: 13px;
+    }
+
+    .up .up__caption {
+      left: 13px;
+      font-size: 9px;
+      bottom: 12px;
+    }
+
+    .up .up__group {
+      gap: 24px;
+      padding-right: 24px;
+    }
+
+    .up .up__footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .up[data-ready] .up__group {
+      animation: none;
+    }
+
+    .up .up__marquee-wrap {
+      display: none;
+    }
+
+    .up *,
+    .up *::before {
+      transition: none !important;
+    }
+  }
+</style>
+
+<script>
+  if (!customElements.get('ukiyo-partners')) {
+    customElements.define(
+      'ukiyo-partners',
+      class extends HTMLElement {
+        connectedCallback() {
+          this.abort = new AbortController();
+
+          const options = {
+            signal: this.abort.signal
+          };
+
+          const reduced = window.matchMedia(
+            '(prefers-reduced-motion: reduce)'
+          );
+
+          const designMode = Boolean(
+            window.Shopify && window.Shopify.designMode
+          );
+
+          this.animations = [];
+          this.reveal = null;
+
+          if (
+            'IntersectionObserver' in window &&
+            !reduced.matches &&
+            !designMode
+          ) {
+            this.reveal = new IntersectionObserver(
+              entries => {
+                entries.forEach(entry => {
+                  if (!entry.isIntersecting) return;
+
+                  const index = [
+                    ...this.querySelectorAll('.up__cell')
+                  ].indexOf(entry.target);
+
+                  if (entry.target.animate) {
+                    this.animations.push(
+                      entry.target.animate(
+                        [
+                          {
+                            opacity: 0.25,
+                            transform: 'translateY(20px)'
+                          },
+                          {
+                            opacity: 1,
+                            transform: 'translateY(0)'
+                          }
+                        ],
+                        {
+                          duration: 750,
+                          delay: Math.max(0, index % 4) * 70,
+                          easing: 'cubic-bezier(.16,1,.3,1)'
+                        }
+                      )
+                    );
+                  }
+
+                  this.reveal.unobserve(entry.target);
+                });
+              },
+              {
+                threshold: 0.1
+              }
+            );
+
+            this.querySelectorAll('[data-up-reveal]')
+              .forEach(element => {
+                this.reveal.observe(element);
+              });
+          }
+
+          const pause = this.querySelector('.up__pause');
+
+          if (pause) {
+            pause.hidden = false;
+
+            pause.addEventListener(
+              'click',
+              () => {
+                const paused = this.toggleAttribute(
+                  'data-paused'
+                );
+
+                pause.setAttribute(
+                  'aria-pressed',
+                  String(paused)
+                );
+
+                pause.textContent = paused
+                  ? 'Resume motion'
+                  : 'Pause motion';
+              },
+              options
+            );
+          }
+
+          if (designMode) {
+            this.setAttribute('data-paused', '');
+          }
+
+          if (
+            pause &&
+            this.hasAttribute('data-paused')
+          ) {
+            pause.setAttribute('aria-pressed', 'true');
+            pause.textContent = 'Resume motion';
+          }
+
+          this.addEventListener(
+            'pointermove',
+            event => {
+              if (
+                reduced.matches ||
+                event.pointerType !== 'mouse'
+              ) {
+                return;
+              }
+
+              const card = event.target.closest(
+                '.up__brand'
+              );
+
+              if (!card) return;
+
+              const rect = card.getBoundingClientRect();
+
+              card.style.setProperty(
+                '--up-x',
+                `${event.clientX - rect.left}px`
+              );
+
+              card.style.setProperty(
+                '--up-y',
+                `${event.clientY - rect.top}px`
+              );
+            },
+            options
+          );
+
+          reduced.addEventListener(
+            'change',
+            () => {
+              if (reduced.matches) {
+                this.reveal?.disconnect();
+
+                this.animations.forEach(animation => {
+                  animation.cancel();
+                });
+              }
+            },
+            options
+          );
+
+          if ('IntersectionObserver' in window) {
+            this.visibility = new IntersectionObserver(
+              entries => {
+                this.toggleAttribute(
+                  'data-offscreen',
+                  !entries[0].isIntersecting
+                );
+              }
+            );
+
+            this.visibility.observe(this);
+          }
+
+          this.setAttribute('data-ready', '');
+        }
+
+        disconnectedCallback() {
+          this.abort?.abort();
+          this.reveal?.disconnect();
+          this.visibility?.disconnect();
+
+          this.animations?.forEach(animation => {
+            animation.cancel();
+          });
+        }
+      }
+    );
+  }
+</script>
 
 {% schema %}
 {
   "name": "Marquee Logos",
   "tag": "section",
   "class": "section-marquee-logos",
+  "max_blocks": 24,
   "settings": [
     {
       "type": "text",
       "id": "badge_text",
-      "label": "Badge text",
-      "default": "Trusted By Industry Leaders"
+      "label": "Eyebrow",
+      "default": "UKIYO / Selected relationships"
     },
     {
       "type": "text",
       "id": "title_before",
-      "label": "Title (before gradient part)",
-      "default": "Brands That "
+      "label": "Heading first line",
+      "default": "Clients &"
     },
     {
       "type": "text",
       "id": "title_gradient",
-      "label": "Title (gradient part)",
-      "default": "Trust Us"
+      "label": "Heading second line",
+      "default": "collaborations."
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Introduction",
+      "default": "A shared vision. A lasting impression. Meet the brands we've created alongside."
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#080808"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_marquee",
+      "label": "Show scrolling brand strip",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "marquee_speed",
+      "label": "Scroll duration",
+      "min": 20,
+      "max": 90,
+      "step": 5,
+      "unit": "s",
+      "default": 45
     },
     {
       "type": "text",
-      "id": "subtitle",
-      "label": "Subtitle",
-      "default": "We've partnered with some of the most recognizable brands in the world."
+      "id": "footer_text",
+      "label": "Footer text",
+      "default": "Built on connection. Brought to life through collaboration."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Link label",
+      "default": "Explore our work"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Link destination"
     }
   ],
   "blocks": [
@@ -122,6 +893,32 @@
           "type": "text",
           "id": "name",
           "label": "Brand name"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Logo image",
+          "info": "Use a light logo with a transparent background. Brand name appears when no image is selected."
+        },
+        {
+          "type": "range",
+          "id": "logo_width",
+          "label": "Logo width",
+          "min": 60,
+          "max": 240,
+          "step": 10,
+          "unit": "px",
+          "default": 160
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Optional description"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Optional project link"
         }
       ]
     }
@@ -129,21 +926,55 @@
   "presets": [
     {
       "name": "Marquee Logos",
-      "settings": {
-        "badge_text": "Trusted By Industry Leaders",
-        "title_before": "Brands That ",
-        "title_gradient": "Trust Us",
-        "subtitle": "We've partnered with some of the most recognizable brands in the world."
-      },
       "blocks": [
-        { "type": "logo", "settings": { "name": "NIKE" } },
-        { "type": "logo", "settings": { "name": "SPOTIFY" } },
-        { "type": "logo", "settings": { "name": "APPLE" } },
-        { "type": "logo", "settings": { "name": "ADIDAS" } },
-        { "type": "logo", "settings": { "name": "WANDRD" } },
-        { "type": "logo", "settings": { "name": "COACHELLA" } },
-        { "type": "logo", "settings": { "name": "SXSW" } },
-        { "type": "logo", "settings": { "name": "POLAROID" } }
+        {
+          "type": "logo",
+          "settings": {
+            "name": "NIKE"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "name": "SPOTIFY"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "name": "APPLE"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "name": "ADIDAS"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "name": "WANDRD"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "name": "COACHELLA"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "name": "SXSW"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "name": "POLAROID"
+          }
+        }
       ]
     }
   ]
