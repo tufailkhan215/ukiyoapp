@@ -1,129 +1,3024 @@
-{% comment %} About Accomplish Clients: "For Our Clients" (gradient), grid of achievement cards with icon, metric, title, description. {% endcomment %}
-{% assign card_blocks = section.blocks | where: 'type', 'card' %}
-<section class="relative py-24 lg:py-32 overflow-hidden bg-black">
-  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
-  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
-    <div class="text-center mb-16">
-      {% if section.settings.badge != blank %}
-        <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-4">{{ section.settings.badge }}</span>
-      {% endif %}
-      {% if section.settings.title_before != blank or section.settings.title_gradient != blank %}
-        <h2 class="text-4xl md:text-5xl font-bold text-white">
-          {{ section.settings.title_before }}
-          {% if section.settings.title_gradient != blank %}
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">{{ section.settings.title_gradient }}</span>
-          {% endif %}
+{%- comment -%}
+  ============================================================
+  UKIYO — CLIENT IMPACT / OUTCOMES
+  Animated editorial bento section
+  ============================================================
+
+  SAVE IN:
+  sections/about-accomplish-clients.liquid
+
+  FEATURES
+  - Asymmetric bento layout
+  - Animated metric count-up
+  - Scroll reveal animation
+  - Pointer-reactive card spotlight
+  - Subtle desktop tilt
+  - Animated icon system
+  - Oversized ambient typography
+  - Moving capability marquee
+  - Mobile-specific layout
+  - Editable colors, spacing, copy and blocks
+{%- endcomment -%}
+
+
+{%- liquid
+  assign uid = section.id | replace: '_', '' | replace: '-', '' | downcase
+  assign card_blocks = section.blocks | where: 'type', 'card'
+  assign card_count = card_blocks.size
+
+  assign background_word = section.settings.background_word
+
+  if background_word == blank
+    assign background_word = 'IMPACT'
+  endif
+-%}
+
+
+<section
+  id="UkiyoImpact-{{ uid }}"
+  class="ukiyo-impact ukiyo-impact--{{ uid }}"
+  data-ukiyo-impact
+  style="
+    --ui-bg: {{ section.settings.background_color }};
+    --ui-surface: {{ section.settings.card_color }};
+    --ui-surface-hover: {{ section.settings.card_hover_color }};
+    --ui-text: {{ section.settings.text_color }};
+    --ui-muted: {{ section.settings.muted_color }};
+    --ui-line: {{ section.settings.line_color }};
+    --ui-accent: {{ section.settings.accent_color }};
+    --ui-accent-soft: {{ section.settings.accent_soft }};
+    --ui-radius: {{ section.settings.card_radius }}px;
+    --ui-top: {{ section.settings.padding_top }}px;
+    --ui-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+
+  {%- comment -%}
+    ============================================================
+    AMBIENT BACKGROUND
+    ============================================================
+  {%- endcomment -%}
+
+  <div
+    class="ukiyo-impact__grid"
+    aria-hidden="true"
+  ></div>
+
+
+  <div
+    class="ukiyo-impact__glow ukiyo-impact__glow--one"
+    aria-hidden="true"
+  ></div>
+
+
+  <div
+    class="ukiyo-impact__glow ukiyo-impact__glow--two"
+    aria-hidden="true"
+  ></div>
+
+
+  <div
+    class="ukiyo-impact__background-word"
+    aria-hidden="true"
+  >
+    {{ background_word }}
+  </div>
+
+
+  <div
+    class="ukiyo-impact__line"
+    aria-hidden="true"
+  ></div>
+
+
+
+  <div class="ukiyo-impact__shell">
+
+    {%- comment -%}
+      ============================================================
+      INTRO
+      ============================================================
+    {%- endcomment -%}
+
+    <header
+      class="ukiyo-impact__header"
+      data-ui-reveal
+    >
+
+      <div class="ukiyo-impact__header-top">
+
+        {%- if section.settings.badge != blank -%}
+
+          <p class="ukiyo-impact__eyebrow">
+
+            <span class="ukiyo-impact__eyebrow-dot"></span>
+
+            {{ section.settings.badge }}
+
+          </p>
+
+        {%- endif -%}
+
+
+        <div class="ukiyo-impact__header-index">
+
+          <span>
+            {{ card_count | prepend: '0' | slice: -2, 2 }}
+          </span>
+
+          <small>
+            Areas of<br>Impact
+          </small>
+
+        </div>
+
+      </div>
+
+
+      <div class="ukiyo-impact__header-grid">
+
+        <h2 class="ukiyo-impact__title">
+
+          {%- if section.settings.title_before != blank -%}
+
+            <span>
+              {{ section.settings.title_before }}
+            </span>
+
+          {%- endif -%}
+
+
+          {%- if section.settings.title_gradient != blank -%}
+
+            <em>
+              {{ section.settings.title_gradient }}
+            </em>
+
+          {%- endif -%}
+
         </h2>
-      {% endif %}
+
+
+        <div class="ukiyo-impact__intro">
+
+          {%- if section.settings.intro_text != blank -%}
+
+            <p>
+              {{ section.settings.intro_text }}
+            </p>
+
+          {%- endif -%}
+
+
+          <div class="ukiyo-impact__intro-rule">
+
+            <span>
+              Strategy
+            </span>
+
+            <span>
+              Creative
+            </span>
+
+            <span>
+              Technology
+            </span>
+
+            <span>
+              Growth
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+
+    {%- comment -%}
+      ============================================================
+      IMPACT BENTO
+      ============================================================
+    {%- endcomment -%}
+
+    <div class="ukiyo-impact__bento">
+
+      {%- for block in card_blocks -%}
+
+        {%- assign card_index = forloop.index -%}
+        {%- assign card_number = card_index | prepend: '0' | slice: -2, 2 -%}
+
+        <article
+          class="ukiyo-impact__card ukiyo-impact__card--{{ card_index }}"
+          data-ui-card
+          data-ui-reveal
+          style="--ui-delay: {{ forloop.index0 | times: 75 }}ms;"
+          {{ block.shopify_attributes }}
+        >
+
+          <div
+            class="ukiyo-impact__spotlight"
+            aria-hidden="true"
+          ></div>
+
+
+          <div
+            class="ukiyo-impact__card-grid"
+            aria-hidden="true"
+          ></div>
+
+
+          <div class="ukiyo-impact__card-top">
+
+            <div class="ukiyo-impact__icon">
+
+              <span class="ukiyo-impact__icon-ring"></span>
+
+              <span class="ukiyo-impact__icon-core">
+
+                {% case block.settings.icon %}
+
+                  {% when 'trending_up' %}
+
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="25"
+                      height="25"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+                      <polyline points="16 7 22 7 22 13"/>
+                    </svg>
+
+
+                  {% when 'workflow' %}
+
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="25"
+                      height="25"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect width="8" height="8" x="3" y="3" rx="2"/>
+                      <path d="M7 11v4a2 2 0 0 0 2 2h4"/>
+                      <rect width="8" height="8" x="13" y="13" rx="2"/>
+                    </svg>
+
+
+                  {% when 'target' %}
+
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="25"
+                      height="25"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <circle cx="12" cy="12" r="9"/>
+                      <circle cx="12" cy="12" r="5"/>
+                      <circle cx="12" cy="12" r="1.5"/>
+                    </svg>
+
+
+                  {% when 'globe' %}
+
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="25"
+                      height="25"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <circle cx="12" cy="12" r="9"/>
+                      <path d="M12 3a14 14 0 0 0 0 18a14 14 0 0 0 0-18"/>
+                      <path d="M3 12h18"/>
+                    </svg>
+
+
+                  {% when 'bot' %}
+
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="25"
+                      height="25"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M12 8V4H8"/>
+                      <rect width="16" height="12" x="4" y="8" rx="2"/>
+                      <path d="M2 14h2"/>
+                      <path d="M20 14h2"/>
+                      <path d="M15 13v2"/>
+                      <path d="M9 13v2"/>
+                    </svg>
+
+
+                  {% when 'users' %}
+
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="25"
+                      height="25"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                      <path d="M16 3a4 4 0 0 1 0 8"/>
+                      <path d="M22 21v-2a4 4 0 0 0-3-4"/>
+                      <circle cx="9" cy="7" r="4"/>
+                    </svg>
+
+
+                  {% else %}
+
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="25"
+                      height="25"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      aria-hidden="true"
+                    >
+                      <circle cx="12" cy="12" r="9"/>
+                    </svg>
+
+                {% endcase %}
+
+              </span>
+
+            </div>
+
+
+            <div class="ukiyo-impact__number">
+              {{ card_number }}
+            </div>
+
+          </div>
+
+
+
+          <div class="ukiyo-impact__card-content">
+
+            {%- if block.settings.metric != blank -%}
+
+              <div
+                class="ukiyo-impact__metric"
+                data-ui-metric="{{ block.settings.metric | escape }}"
+              >
+                {{ block.settings.metric }}
+              </div>
+
+            {%- endif -%}
+
+
+            {%- if block.settings.card_title != blank -%}
+
+              <h3>
+                {{ block.settings.card_title }}
+              </h3>
+
+            {%- endif -%}
+
+
+            {%- if block.settings.description != blank -%}
+
+              <p>
+                {{ block.settings.description }}
+              </p>
+
+            {%- endif -%}
+
+          </div>
+
+
+
+          <div class="ukiyo-impact__card-footer">
+
+            <span>
+              Outcome
+            </span>
+
+            <span class="ukiyo-impact__pulse">
+              <i></i>
+              Active
+            </span>
+
+          </div>
+
+        </article>
+
+      {%- endfor -%}
+
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {% for block in card_blocks %}
-        <div class="group" {{ block.shopify_attributes }}>
-          <div class="h-full p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 hover:bg-white/[0.04] transition-all duration-500">
-            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-white/10 to-gray-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-              {% case block.settings.icon %}
-                {% when 'trending_up' %}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up w-7 h-7 text-white/70" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
-                {% when 'workflow' %}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-workflow w-7 h-7 text-white/70" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"></rect><path d="M7 11v4a2 2 0 0 0 2 2h4"></path><rect width="8" height="8" x="13" y="13" rx="2"></rect></svg>
-                {% when 'target' %}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target w-7 h-7 text-white/70" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
-                {% when 'globe' %}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe w-7 h-7 text-white/70" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
-                {% when 'bot' %}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot w-7 h-7 text-white/70" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg>
-                {% when 'users' %}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users w-7 h-7 text-white/70" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>
-                {% else %}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-7 h-7 text-white/70"><circle cx="12" cy="12" r="10"></circle></svg>
-              {% endcase %}
-            </div>
-            {% if block.settings.metric != blank %}
-              <div class="text-3xl font-black text-white mb-2">{{ block.settings.metric }}</div>
-            {% endif %}
-            {% if block.settings.card_title != blank %}
-              <h3 class="text-lg font-bold text-white mb-2">{{ block.settings.card_title }}</h3>
-            {% endif %}
-            {% if block.settings.description != blank %}
-              <p class="text-white/40 text-sm leading-relaxed">{{ block.settings.description }}</p>
-            {% endif %}
-          </div>
-        </div>
-      {% endfor %}
-    </div>
   </div>
+
+
+
+  {%- comment -%}
+    ============================================================
+    MOVING CAPABILITY RAIL
+    ============================================================
+  {%- endcomment -%}
+
+  {%- if section.settings.show_marquee -%}
+
+    <div
+      class="ukiyo-impact__marquee"
+      aria-hidden="true"
+    >
+
+      <div class="ukiyo-impact__marquee-track">
+
+        {%- for copy in (1..2) -%}
+
+          <div class="ukiyo-impact__marquee-set">
+
+            <span>
+              Strategy
+            </span>
+
+            <i>✦</i>
+
+            <span>
+              Creative
+            </span>
+
+            <i>✦</i>
+
+            <span>
+              Technology
+            </span>
+
+            <i>✦</i>
+
+            <span>
+              Automation
+            </span>
+
+            <i>✦</i>
+
+            <span>
+              Growth
+            </span>
+
+            <i>✦</i>
+
+            <span>
+              Transformation
+            </span>
+
+            <i>✦</i>
+
+          </div>
+
+        {%- endfor -%}
+
+      </div>
+
+    </div>
+
+  {%- endif -%}
+
 </section>
+
+
+
+{% style %}
+
+/* ============================================================
+   SHOPIFY WRAPPER
+   ============================================================ */
+
+#shopify-section-{{ section.id }} {
+  width: 100%;
+  max-width: none;
+
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ============================================================
+   ROOT
+   ============================================================ */
+
+.ukiyo-impact--{{ uid }} {
+  position: relative;
+  isolation: isolate;
+
+  width: 100%;
+  overflow: hidden;
+
+  padding:
+    var(--ui-top)
+    0
+    var(--ui-bottom);
+
+  color: var(--ui-text);
+  background: var(--ui-bg);
+
+  font-family:
+    'Inter Tight',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+
+  -webkit-font-smoothing:
+    antialiased;
+
+  text-rendering:
+    geometricPrecision;
+}
+
+
+.ukiyo-impact--{{ uid }} *,
+.ukiyo-impact--{{ uid }} *::before,
+.ukiyo-impact--{{ uid }} *::after {
+  box-sizing: border-box;
+}
+
+
+.ukiyo-impact--{{ uid }} ::selection {
+  color: var(--ui-bg);
+  background: var(--ui-text);
+}
+
+
+/* ============================================================
+   AMBIENT BACKGROUND
+   ============================================================ */
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  pointer-events: none;
+
+  opacity: .34;
+
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,.025)
+      1px,
+      transparent
+      1px
+    ),
+
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.025)
+      1px,
+      transparent
+      1px
+    );
+
+  background-size:
+    80px
+    80px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black,
+      transparent 78%
+    );
+
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      black,
+      transparent 78%
+    );
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__glow {
+  position: absolute;
+  z-index: 0;
+
+  width: 700px;
+  height: 700px;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  filter:
+    blur(130px);
+
+  opacity: .12;
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__glow--one {
+  top: -260px;
+  right: -190px;
+
+  background:
+    var(--ui-accent);
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__glow--two {
+  bottom: 5%;
+  left: -340px;
+
+  background:
+    var(--ui-accent-soft);
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__background-word {
+  position: absolute;
+  top: 4%;
+  left: -3%;
+  z-index: 0;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      .018
+    );
+
+  font-size:
+    clamp(
+      180px,
+      27vw,
+      520px
+    );
+
+  font-weight: 700;
+  line-height: .72;
+  letter-spacing: -.08em;
+
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  user-select: none;
+  pointer-events: none;
+
+  animation:
+    ukiyo-impact-drift-{{ uid }}
+    18s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+
+@keyframes ukiyo-impact-drift-{{ uid }} {
+
+  from {
+    transform:
+      translateX(0);
+  }
+
+  to {
+    transform:
+      translateX(-4vw);
+  }
+
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__line {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--ui-line),
+      transparent
+    );
+}
+
+
+/* ============================================================
+   SHELL
+   ============================================================ */
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__shell {
+  position: relative;
+  z-index: 2;
+
+  width:
+    min(
+      calc(
+        100% -
+        64px
+      ),
+      1500px
+    );
+
+  margin:
+    0
+    auto;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__header {
+  margin-bottom:
+    clamp(
+      76px,
+      10vw,
+      150px
+    );
+
+  opacity: 0;
+
+  filter:
+    blur(12px);
+
+  transform:
+    translateY(50px);
+
+  transition:
+    opacity
+    1s
+    cubic-bezier(.16,1,.3,1),
+
+    filter
+    1s
+    cubic-bezier(.16,1,.3,1),
+
+    transform
+    1s
+    cubic-bezier(.16,1,.3,1);
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__header.is-visible {
+  opacity: 1;
+
+  filter:
+    blur(0);
+
+  transform:
+    translateY(0);
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__header-top {
+  margin-bottom:
+    clamp(
+      36px,
+      5vw,
+      72px
+    );
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 30px;
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__eyebrow {
+  margin: 0;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 11px;
+
+  color: var(--ui-muted);
+
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .20em;
+
+  text-transform: uppercase;
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__eyebrow-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background:
+    var(--ui-accent);
+
+  box-shadow:
+    0 0
+    0
+    5px
+    rgba(255,255,255,.04);
+
+  animation:
+    ukiyo-impact-pulse-dot-{{ uid }}
+    2.2s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes ukiyo-impact-pulse-dot-{{ uid }} {
+
+  0%,
+  100% {
+    opacity: .45;
+    transform: scale(.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__header-index {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 12px;
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__header-index > span {
+  font-size:
+    clamp(
+      30px,
+      3vw,
+      48px
+    );
+
+  font-weight: 500;
+  line-height: .8;
+  letter-spacing: -.05em;
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__header-index small {
+  color: var(--ui-muted);
+
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: .12em;
+
+  text-transform: uppercase;
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__header-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.4fr)
+    minmax(300px, .6fr);
+
+  align-items: end;
+
+  gap:
+    clamp(
+      60px,
+      9vw,
+      150px
+    );
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__title {
+  margin: 0;
+
+  color: var(--ui-text);
+
+  font-size:
+    clamp(
+      70px,
+      10vw,
+      170px
+    );
+
+  font-weight: 650;
+  line-height: .79;
+  letter-spacing: -.068em;
+
+  text-transform: uppercase;
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__title span,
+.ukiyo-impact--{{ uid }} .ukiyo-impact__title em {
+  display: block;
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__title em {
+  color:
+    transparent;
+
+  background:
+    linear-gradient(
+      95deg,
+      var(--ui-text) 0%,
+      var(--ui-muted) 48%,
+      var(--ui-text) 100%
+    );
+
+  background-size:
+    220%
+    100%;
+
+  -webkit-background-clip:
+    text;
+
+  background-clip:
+    text;
+
+  font-weight: 400;
+  font-style: normal;
+
+  animation:
+    ukiyo-impact-title-shimmer-{{ uid }}
+    7s
+    linear
+    infinite;
+}
+
+
+@keyframes ukiyo-impact-title-shimmer-{{ uid }} {
+
+  from {
+    background-position:
+      100%
+      0;
+  }
+
+  to {
+    background-position:
+      -120%
+      0;
+  }
+
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__intro > p {
+  max-width: 36ch;
+
+  margin:
+    0
+    0
+    30px;
+
+  color: var(--ui-muted);
+
+  font-size:
+    clamp(
+      14px,
+      1.15vw,
+      17px
+    );
+
+  line-height: 1.62;
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__intro-rule {
+  padding:
+    15px
+    0;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap:
+    9px
+    20px;
+
+  border-top:
+    1px
+    solid
+    var(--ui-line);
+
+  border-bottom:
+    1px
+    solid
+    var(--ui-line);
+
+  color: var(--ui-muted);
+
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .12em;
+
+  text-transform: uppercase;
+}
+
+
+/* ============================================================
+   BENTO GRID
+   ============================================================ */
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__bento {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      12,
+      minmax(0, 1fr)
+    );
+
+  gap: 14px;
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__card {
+  --ui-card-x: 50%;
+  --ui-card-y: 50%;
+  --ui-tilt-x: 0deg;
+  --ui-tilt-y: 0deg;
+
+  position: relative;
+  isolation: isolate;
+
+  min-height: 410px;
+
+  padding:
+    clamp(
+      24px,
+      2.6vw,
+      40px
+    );
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  border:
+    1px
+    solid
+    var(--ui-line);
+
+  border-radius:
+    var(--ui-radius);
+
+  color: var(--ui-text);
+  background: var(--ui-surface);
+
+  opacity: 0;
+
+  filter:
+    blur(12px);
+
+  transform:
+    perspective(1000px)
+    rotateX(var(--ui-tilt-x))
+    rotateY(var(--ui-tilt-y))
+    translateY(46px);
+
+  transform-style:
+    preserve-3d;
+
+  transition:
+    opacity
+    .8s
+    cubic-bezier(.16,1,.3,1)
+    var(--ui-delay),
+
+    filter
+    .8s
+    cubic-bezier(.16,1,.3,1)
+    var(--ui-delay),
+
+    transform
+    .55s
+    cubic-bezier(.16,1,.3,1),
+
+    border-color
+    .4s
+    ease,
+
+    background
+    .4s
+    ease;
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__card.is-visible {
+  opacity: 1;
+
+  filter:
+    blur(0);
+
+  transform:
+    perspective(1000px)
+    rotateX(var(--ui-tilt-x))
+    rotateY(var(--ui-tilt-y))
+    translateY(0);
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__card:hover {
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      .24
+    );
+
+  background:
+    var(--ui-surface-hover);
+}
+
+
+/* Asymmetric editorial pattern */
+
+.ukiyo-impact--{{ uid }}
+.ukiyo-impact__card:nth-child(6n + 1) {
+  grid-column:
+    span 7;
+
+  min-height: 500px;
+}
+
+
+.ukiyo-impact--{{ uid }}
+.ukiyo-impact__card:nth-child(6n + 2) {
+  grid-column:
+    span 5;
+
+  min-height: 500px;
+}
+
+
+.ukiyo-impact--{{ uid }}
+.ukiyo-impact__card:nth-child(6n + 3) {
+  grid-column:
+    span 4;
+}
+
+
+.ukiyo-impact--{{ uid }}
+.ukiyo-impact__card:nth-child(6n + 4) {
+  grid-column:
+    span 8;
+}
+
+
+.ukiyo-impact--{{ uid }}
+.ukiyo-impact__card:nth-child(6n + 5) {
+  grid-column:
+    span 5;
+}
+
+
+.ukiyo-impact--{{ uid }}
+.ukiyo-impact__card:nth-child(6n + 6) {
+  grid-column:
+    span 7;
+}
+
+
+/* ============================================================
+   CARD ATMOSPHERE
+   ============================================================ */
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  opacity: 0;
+
+  background:
+    radial-gradient(
+      430px
+      circle
+      at
+      var(--ui-card-x)
+      var(--ui-card-y),
+
+      rgba(
+        255,
+        255,
+        255,
+        .105
+      ),
+
+      transparent
+      56%
+    );
+
+  transition:
+    opacity
+    .35s
+    ease;
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__card:hover .ukiyo-impact__spotlight {
+  opacity: 1;
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__card-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+
+  opacity: .24;
+
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,.025)
+      1px,
+      transparent
+      1px
+    ),
+
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.025)
+      1px,
+      transparent
+      1px
+    );
+
+  background-size:
+    42px
+    42px;
+
+  mask-image:
+    linear-gradient(
+      135deg,
+      black,
+      transparent 70%
+    );
+
+  -webkit-mask-image:
+    linear-gradient(
+      135deg,
+      black,
+      transparent 70%
+    );
+}
+
+
+/* ============================================================
+   CARD TOP
+   ============================================================ */
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  transform:
+    translateZ(20px);
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__icon {
+  position: relative;
+
+  width: 58px;
+  height: 58px;
+
+  display: grid;
+  place-items: center;
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__icon-ring {
+  position: absolute;
+  inset: 0;
+
+  border:
+    1px
+    solid
+    var(--ui-line);
+
+  border-radius: 50%;
+
+  transition:
+    transform
+    .6s
+    cubic-bezier(.16,1,.3,1),
+
+    border-color
+    .4s
+    ease;
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__icon-ring::before {
+  content: '';
+
+  position: absolute;
+  top: -2px;
+  left: 50%;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background:
+    var(--ui-accent);
+
+  transform:
+    translateX(-50%);
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__icon-core {
+  width: 44px;
+  height: 44px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      .76
+    );
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      .04
+    );
+
+  transition:
+    color
+    .35s
+    ease,
+
+    background
+    .35s
+    ease,
+
+    transform
+    .5s
+    cubic-bezier(.16,1,.3,1);
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__card:hover .ukiyo-impact__icon-ring {
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      .30
+    );
+
+  transform:
+    rotate(90deg);
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__card:hover .ukiyo-impact__icon-core {
+  color:
+    var(--ui-text);
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      .08
+    );
+
+  transform:
+    scale(1.06);
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__number {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      .18
+    );
+
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .14em;
+}
+
+
+/* ============================================================
+   CARD CONTENT
+   ============================================================ */
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__card-content {
+  margin-top: auto;
+
+  padding-top: 70px;
+
+  transform:
+    translateZ(28px);
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__metric {
+  margin-bottom:
+    clamp(
+      18px,
+      2.2vw,
+      28px
+    );
+
+  color: var(--ui-text);
+
+  font-size:
+    clamp(
+      62px,
+      8vw,
+      132px
+    );
+
+  font-weight: 600;
+  line-height: .76;
+  letter-spacing: -.07em;
+
+  white-space: nowrap;
+}
+
+
+.ukiyo-impact--{{ uid }}
+.ukiyo-impact__card:nth-child(6n + 3)
+.ukiyo-impact__metric,
+
+.ukiyo-impact--{{ uid }}
+.ukiyo-impact__card:nth-child(6n + 5)
+.ukiyo-impact__metric {
+  font-size:
+    clamp(
+      54px,
+      6vw,
+      96px
+    );
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__card-content h3 {
+  margin:
+    0
+    0
+    12px;
+
+  color: var(--ui-text);
+
+  font-size:
+    clamp(
+      19px,
+      1.8vw,
+      28px
+    );
+
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -.035em;
+
+  text-transform: uppercase;
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__card-content p {
+  max-width: 36ch;
+
+  margin: 0;
+
+  color: var(--ui-muted);
+
+  font-size:
+    clamp(
+      13px,
+      1vw,
+      15px
+    );
+
+  line-height: 1.6;
+}
+
+
+/* ============================================================
+   CARD FOOTER
+   ============================================================ */
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__card-footer {
+  margin-top:
+    clamp(
+      32px,
+      4vw,
+      60px
+    );
+
+  padding-top: 15px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 20px;
+
+  border-top:
+    1px
+    solid
+    var(--ui-line);
+
+  color: var(--ui-muted);
+
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: .14em;
+
+  text-transform: uppercase;
+
+  transform:
+    translateZ(18px);
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__pulse {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__pulse i {
+  width: 5px;
+  height: 5px;
+
+  display: block;
+
+  border-radius: 50%;
+
+  background:
+    var(--ui-accent);
+
+  box-shadow:
+    0
+    0
+    0
+    0
+    rgba(255,255,255,.25);
+
+  animation:
+    ukiyo-impact-live-{{ uid }}
+    2s
+    ease-out
+    infinite;
+}
+
+
+@keyframes ukiyo-impact-live-{{ uid }} {
+
+  0% {
+    box-shadow:
+      0
+      0
+      0
+      0
+      rgba(255,255,255,.25);
+  }
+
+  70% {
+    box-shadow:
+      0
+      0
+      0
+      8px
+      rgba(255,255,255,0);
+  }
+
+  100% {
+    box-shadow:
+      0
+      0
+      0
+      0
+      rgba(255,255,255,0);
+  }
+
+}
+
+
+/* ============================================================
+   MARQUEE
+   ============================================================ */
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__marquee {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+
+  margin-top:
+    clamp(
+      90px,
+      11vw,
+      160px
+    );
+
+  padding:
+    22px
+    0;
+
+  overflow: hidden;
+
+  border-top:
+    1px
+    solid
+    var(--ui-line);
+
+  border-bottom:
+    1px
+    solid
+    var(--ui-line);
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__marquee-track {
+  width: max-content;
+
+  display: flex;
+
+  animation:
+    ukiyo-impact-marquee-{{ uid }}
+    30s
+    linear
+    infinite;
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__marquee-set {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+
+  gap:
+    clamp(
+      22px,
+      3vw,
+      50px
+    );
+
+  padding-right:
+    clamp(
+      22px,
+      3vw,
+      50px
+    );
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      .74
+    );
+
+  font-size:
+    clamp(
+      18px,
+      2vw,
+      32px
+    );
+
+  font-weight: 500;
+  letter-spacing: -.03em;
+
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+
+.ukiyo-impact--{{ uid }} .ukiyo-impact__marquee-set i {
+  color: var(--ui-muted);
+
+  font-size: 11px;
+  font-style: normal;
+}
+
+
+@keyframes ukiyo-impact-marquee-{{ uid }} {
+
+  from {
+    transform:
+      translateX(0);
+  }
+
+  to {
+    transform:
+      translateX(-50%);
+  }
+
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 989px) {
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__header-grid {
+    grid-template-columns:
+      1fr;
+
+    gap: 36px;
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__intro {
+    max-width: 600px;
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__bento {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+  }
+
+
+  .ukiyo-impact--{{ uid }}
+  .ukiyo-impact__card:nth-child(n) {
+    grid-column:
+      span 1;
+
+    min-height: 410px;
+  }
+
+
+  .ukiyo-impact--{{ uid }}
+  .ukiyo-impact__card:nth-child(3n + 1) {
+    grid-column:
+      span 2;
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 749px) {
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__shell {
+    width:
+      calc(
+        100% -
+        32px
+      );
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__grid {
+    opacity: .20;
+
+    background-size:
+      52px
+      52px;
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__background-word {
+    top: 1%;
+    left: -8%;
+
+    font-size:
+      clamp(
+        110px,
+        37vw,
+        190px
+      );
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__glow {
+    width: 350px;
+    height: 350px;
+
+    filter:
+      blur(90px);
+  }
+
+
+  /* Header */
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__header {
+    margin-bottom: 54px;
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__header-top {
+    margin-bottom: 28px;
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__eyebrow {
+    font-size: 8px;
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__header-index > span {
+    font-size: 28px;
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__header-index small {
+    font-size: 7px;
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__title {
+    font-size:
+      clamp(
+        50px,
+        15.5vw,
+        78px
+      );
+
+    line-height: .84;
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__header-grid {
+    gap: 28px;
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__intro > p {
+    max-width: 34ch;
+
+    margin-bottom: 22px;
+
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__intro-rule {
+    padding:
+      12px
+      0;
+
+    font-size: 8px;
+  }
+
+
+  /* Cards */
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__bento {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+  }
+
+
+  .ukiyo-impact--{{ uid }}
+  .ukiyo-impact__card:nth-child(n) {
+    min-height: 350px;
+
+    padding:
+      22px
+      18px
+      18px;
+  }
+
+
+  .ukiyo-impact--{{ uid }}
+  .ukiyo-impact__card:nth-child(3n + 1) {
+    grid-column:
+      auto;
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__card {
+    --ui-tilt-x: 0deg !important;
+    --ui-tilt-y: 0deg !important;
+
+    transform:
+      translateY(32px);
+
+    border-radius:
+      min(
+        var(--ui-radius),
+        18px
+      );
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__card.is-visible {
+    transform:
+      translateY(0);
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__spotlight {
+    display: none;
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__icon {
+    width: 50px;
+    height: 50px;
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__icon-core {
+    width: 38px;
+    height: 38px;
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__icon-core svg {
+    width: 21px;
+    height: 21px;
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__card-content {
+    padding-top: 52px;
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__metric,
+  .ukiyo-impact--{{ uid }}
+  .ukiyo-impact__card:nth-child(6n + 3)
+  .ukiyo-impact__metric,
+  .ukiyo-impact--{{ uid }}
+  .ukiyo-impact__card:nth-child(6n + 5)
+  .ukiyo-impact__metric {
+    margin-bottom: 17px;
+
+    font-size:
+      clamp(
+        58px,
+        19vw,
+        86px
+      );
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__card-content h3 {
+    margin-bottom: 9px;
+
+    font-size:
+      clamp(
+        19px,
+        6vw,
+        25px
+      );
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__card-content p {
+    max-width: 33ch;
+
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__card-footer {
+    margin-top: 30px;
+
+    font-size: 7px;
+  }
+
+
+  /* Marquee */
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__marquee {
+    margin-top: 64px;
+
+    padding:
+      17px
+      0;
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__marquee-set {
+    gap: 20px;
+
+    padding-right: 20px;
+
+    font-size: 17px;
+  }
+
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 390px) {
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__shell {
+    width:
+      calc(
+        100% -
+        26px
+      );
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__title {
+    font-size:
+      clamp(
+        46px,
+        15vw,
+        64px
+      );
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__header-index small {
+    display: none;
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__intro-rule {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .ukiyo-impact--{{ uid }}
+  .ukiyo-impact__card:nth-child(n) {
+    min-height: 330px;
+  }
+
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .ukiyo-impact--{{ uid }} [data-ui-reveal] {
+    opacity: 1 !important;
+
+    filter: none !important;
+
+    transform: none !important;
+
+    transition: none !important;
+  }
+
+
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__background-word,
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__marquee-track,
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__eyebrow-dot,
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__pulse i,
+  .ukiyo-impact--{{ uid }} .ukiyo-impact__title em {
+    animation: none !important;
+  }
+
+}
+
+{% endstyle %}
+
+
+
+<script>
+(function () {
+  var root =
+    document.getElementById(
+      'UkiyoImpact-{{ uid }}'
+    );
+
+  if (!root) {
+    return;
+  }
+
+
+  if (
+    root.__ukiyoImpactCleanup &&
+    typeof root.__ukiyoImpactCleanup === 'function'
+  ) {
+    root.__ukiyoImpactCleanup();
+  }
+
+
+  var revealItems =
+    Array.prototype.slice.call(
+      root.querySelectorAll(
+        '[data-ui-reveal]'
+      )
+    );
+
+
+  var cards =
+    Array.prototype.slice.call(
+      root.querySelectorAll(
+        '[data-ui-card]'
+      )
+    );
+
+
+  var metrics =
+    Array.prototype.slice.call(
+      root.querySelectorAll(
+        '[data-ui-metric]'
+      )
+    );
+
+
+  var reduceMotion =
+    window.matchMedia &&
+    window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+
+  var revealObserver = null;
+  var metricObserver = null;
+
+  var metricFrames = [];
+
+  var cardListeners = [];
+
+  var destroyed = false;
+
+
+  /* ============================================================
+     REVEAL
+     ============================================================ */
+
+  function revealEverything() {
+    revealItems.forEach(
+      function (item) {
+        item.classList.add(
+          'is-visible'
+        );
+      }
+    );
+  }
+
+
+  function initializeReveal() {
+    if (
+      reduceMotion ||
+      !(
+        'IntersectionObserver'
+        in window
+      )
+    ) {
+      revealEverything();
+
+      return;
+    }
+
+
+    revealObserver =
+      new IntersectionObserver(
+        function (entries) {
+          entries.forEach(
+            function (entry) {
+              if (
+                !entry.isIntersecting
+              ) {
+                return;
+              }
+
+
+              entry.target.classList.add(
+                'is-visible'
+              );
+
+
+              revealObserver.unobserve(
+                entry.target
+              );
+            }
+          );
+        },
+        {
+          threshold: .12,
+
+          rootMargin:
+            '0px 0px -7% 0px'
+        }
+      );
+
+
+    revealItems.forEach(
+      function (item) {
+        revealObserver.observe(
+          item
+        );
+      }
+    );
+  }
+
+
+  /* ============================================================
+     METRIC PARSER
+     Automatically handles:
+     $100K+
+     1000hrs
+     +30%
+     50+
+     10x
+     3x
+     etc.
+     ============================================================ */
+
+  function parseMetric(value) {
+    var match =
+      String(value)
+      .trim()
+      .match(
+        /^([^0-9]*)([\d,.]+)(.*)$/
+      );
+
+
+    if (!match) {
+      return null;
+    }
+
+
+    var prefix =
+      match[1] || '';
+
+
+    var rawNumber =
+      match[2] || '0';
+
+
+    var suffix =
+      match[3] || '';
+
+
+    var numericValue =
+      parseFloat(
+        rawNumber.replace(
+          /,/g,
+          ''
+        )
+      );
+
+
+    if (!Number.isFinite(numericValue)) {
+      return null;
+    }
+
+
+    var decimals = 0;
+
+
+    if (rawNumber.indexOf('.') !== -1) {
+      decimals =
+        rawNumber.split('.')[1].length;
+    }
+
+
+    return {
+      prefix: prefix,
+      value: numericValue,
+      suffix: suffix,
+      decimals: decimals
+    };
+  }
+
+
+  function formatNumber(
+    value,
+    decimals
+  ) {
+    if (decimals > 0) {
+      return value.toFixed(
+        decimals
+      );
+    }
+
+
+    return Math.round(value)
+      .toLocaleString(
+        'en-US'
+      );
+  }
+
+
+  function animateMetric(element) {
+    if (
+      !element ||
+      element.getAttribute(
+        'data-ui-counted'
+      ) === 'true'
+    ) {
+      return;
+    }
+
+
+    element.setAttribute(
+      'data-ui-counted',
+      'true'
+    );
+
+
+    var original =
+      element.getAttribute(
+        'data-ui-metric'
+      ) || '';
+
+
+    var parsed =
+      parseMetric(
+        original
+      );
+
+
+    if (
+      !parsed ||
+      reduceMotion
+    ) {
+      element.textContent =
+        original;
+
+      return;
+    }
+
+
+    var startTime = null;
+
+    var duration = 1500;
+
+
+    function frame(timestamp) {
+      if (destroyed) {
+        return;
+      }
+
+
+      if (startTime === null) {
+        startTime =
+          timestamp;
+      }
+
+
+      var progress =
+        Math.min(
+          1,
+          (
+            timestamp -
+            startTime
+          ) /
+          duration
+        );
+
+
+      var eased =
+        1 -
+        Math.pow(
+          1 -
+          progress,
+          4
+        );
+
+
+      var current =
+        parsed.value *
+        eased;
+
+
+      element.textContent =
+        parsed.prefix +
+        formatNumber(
+          current,
+          parsed.decimals
+        ) +
+        parsed.suffix;
+
+
+      if (progress < 1) {
+        var frameId =
+          window.requestAnimationFrame(
+            frame
+          );
+
+
+        metricFrames.push(
+          frameId
+        );
+      } else {
+        element.textContent =
+          original;
+      }
+    }
+
+
+    var firstFrame =
+      window.requestAnimationFrame(
+        frame
+      );
+
+
+    metricFrames.push(
+      firstFrame
+    );
+  }
+
+
+  function initializeMetrics() {
+    if (
+      reduceMotion ||
+      !(
+        'IntersectionObserver'
+        in window
+      )
+    ) {
+      metrics.forEach(
+        function (metric) {
+          metric.textContent =
+            metric.getAttribute(
+              'data-ui-metric'
+            ) || '';
+        }
+      );
+
+      return;
+    }
+
+
+    metricObserver =
+      new IntersectionObserver(
+        function (entries) {
+          entries.forEach(
+            function (entry) {
+              if (
+                !entry.isIntersecting
+              ) {
+                return;
+              }
+
+
+              animateMetric(
+                entry.target
+              );
+
+
+              metricObserver.unobserve(
+                entry.target
+              );
+            }
+          );
+        },
+        {
+          threshold: .55
+        }
+      );
+
+
+    metrics.forEach(
+      function (metric) {
+        metricObserver.observe(
+          metric
+        );
+      }
+    );
+  }
+
+
+  /* ============================================================
+     POINTER SPOTLIGHT + SUBTLE TILT
+     ============================================================ */
+
+  function initializeCards() {
+    if (
+      reduceMotion ||
+      !window.matchMedia ||
+      !window.matchMedia(
+        '(hover: hover) and (pointer: fine)'
+      ).matches
+    ) {
+      return;
+    }
+
+
+    cards.forEach(
+      function (card) {
+
+        function move(event) {
+          var rect =
+            card.getBoundingClientRect();
+
+
+          var x =
+            event.clientX -
+            rect.left;
+
+
+          var y =
+            event.clientY -
+            rect.top;
+
+
+          var xPercent =
+            (
+              x /
+              rect.width
+            ) *
+            100;
+
+
+          var yPercent =
+            (
+              y /
+              rect.height
+            ) *
+            100;
+
+
+          var rotateY =
+            (
+              (
+                x /
+                rect.width
+              ) -
+              .5
+            ) *
+            2.2;
+
+
+          var rotateX =
+            (
+              .5 -
+              (
+                y /
+                rect.height
+              )
+            ) *
+            2.2;
+
+
+          card.style.setProperty(
+            '--ui-card-x',
+            xPercent.toFixed(2) +
+            '%'
+          );
+
+
+          card.style.setProperty(
+            '--ui-card-y',
+            yPercent.toFixed(2) +
+            '%'
+          );
+
+
+          card.style.setProperty(
+            '--ui-tilt-x',
+            rotateX.toFixed(2) +
+            'deg'
+          );
+
+
+          card.style.setProperty(
+            '--ui-tilt-y',
+            rotateY.toFixed(2) +
+            'deg'
+          );
+        }
+
+
+        function leave() {
+          card.style.setProperty(
+            '--ui-tilt-x',
+            '0deg'
+          );
+
+
+          card.style.setProperty(
+            '--ui-tilt-y',
+            '0deg'
+          );
+        }
+
+
+        card.addEventListener(
+          'pointermove',
+          move
+        );
+
+
+        card.addEventListener(
+          'pointerleave',
+          leave
+        );
+
+
+        cardListeners.push({
+          card: card,
+          move: move,
+          leave: leave
+        });
+      }
+    );
+  }
+
+
+  /* ============================================================
+     CLEANUP
+     ============================================================ */
+
+  function cleanup() {
+    destroyed = true;
+
+
+    if (revealObserver) {
+      revealObserver.disconnect();
+    }
+
+
+    if (metricObserver) {
+      metricObserver.disconnect();
+    }
+
+
+    metricFrames.forEach(
+      function (frame) {
+        window.cancelAnimationFrame(
+          frame
+        );
+      }
+    );
+
+
+    cardListeners.forEach(
+      function (entry) {
+        entry.card.removeEventListener(
+          'pointermove',
+          entry.move
+        );
+
+
+        entry.card.removeEventListener(
+          'pointerleave',
+          entry.leave
+        );
+      }
+    );
+
+
+    root.removeAttribute(
+      'data-ui-ready'
+    );
+  }
+
+
+  root.__ukiyoImpactCleanup =
+    cleanup;
+
+
+  root.setAttribute(
+    'data-ui-ready',
+    'true'
+  );
+
+
+  initializeReveal();
+  initializeMetrics();
+  initializeCards();
+
+
+  document.addEventListener(
+    'shopify:section:unload',
+    function onSectionUnload(event) {
+      if (
+        !event.target ||
+        !event.target.contains(root)
+      ) {
+        return;
+      }
+
+
+      cleanup();
+
+
+      document.removeEventListener(
+        'shopify:section:unload',
+        onSectionUnload
+      );
+    }
+  );
+})();
+</script>
+
+
 
 {% schema %}
 {
-  "name": "About Accomplish Clients",
+  "name": "Client Impact",
   "tag": "section",
-  "class": "section-about-accomplish-clients",
+  "class": "section-client-impact",
+
   "settings": [
+
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+
     {
       "type": "text",
       "id": "badge",
-      "label": "Badge",
+      "label": "Eyebrow",
       "default": "(What We Accomplish)"
     },
+
     {
       "type": "text",
       "id": "title_before",
-      "label": "Title (before gradient)",
-      "default": "For Our "
+      "label": "Title line 1",
+      "default": "For Our"
     },
+
     {
       "type": "text",
       "id": "title_gradient",
-      "label": "Title (gradient word)",
+      "label": "Title line 2",
       "default": "Clients"
+    },
+
+    {
+      "type": "textarea",
+      "id": "intro_text",
+      "label": "Introduction",
+      "default": "We build for outcomes, not output. Every engagement is designed to create clearer positioning, stronger systems, better customer experiences, and measurable momentum."
+    },
+
+    {
+      "type": "text",
+      "id": "background_word",
+      "label": "Large background word",
+      "default": "IMPACT"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Marquee"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "show_marquee",
+      "label": "Show moving capability rail",
+      "default": true
+    },
+
+
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#050505"
+    },
+
+    {
+      "type": "color",
+      "id": "card_color",
+      "label": "Card background",
+      "default": "#090909"
+    },
+
+    {
+      "type": "color",
+      "id": "card_hover_color",
+      "label": "Card hover background",
+      "default": "#0D0D0D"
+    },
+
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Primary text",
+      "default": "#F5F5F2"
+    },
+
+    {
+      "type": "color",
+      "id": "muted_color",
+      "label": "Secondary text",
+      "default": "#777774"
+    },
+
+    {
+      "type": "color",
+      "id": "line_color",
+      "label": "Lines",
+      "default": "#242424"
+    },
+
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent",
+      "default": "#FFFFFF"
+    },
+
+    {
+      "type": "color",
+      "id": "accent_soft",
+      "label": "Secondary ambient glow",
+      "default": "#555555"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card corner radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top spacing",
+      "min": 60,
+      "max": 220,
+      "step": 10,
+      "unit": "px",
+      "default": 150
+    },
+
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom spacing",
+      "min": 60,
+      "max": 240,
+      "step": 10,
+      "unit": "px",
+      "default": 150
     }
+
   ],
+
   "blocks": [
+
     {
       "type": "card",
-      "name": "Achievement card",
+      "name": "Impact outcome",
+
       "settings": [
+
         {
           "type": "select",
           "id": "icon",
           "label": "Icon",
           "options": [
-            { "value": "trending_up", "label": "Trending up" },
-            { "value": "workflow", "label": "Workflow" },
-            { "value": "target", "label": "Target" },
-            { "value": "globe", "label": "Globe" },
-            { "value": "bot", "label": "Bot" },
-            { "value": "users", "label": "Users" }
+            {
+              "value": "trending_up",
+              "label": "Trending up"
+            },
+            {
+              "value": "workflow",
+              "label": "Workflow"
+            },
+            {
+              "value": "target",
+              "label": "Target"
+            },
+            {
+              "value": "globe",
+              "label": "Globe"
+            },
+            {
+              "value": "bot",
+              "label": "AI / Bot"
+            },
+            {
+              "value": "users",
+              "label": "Users"
+            }
           ],
           "default": "trending_up"
         },
+
         {
           "type": "text",
           "id": "metric",
           "label": "Metric / value",
-          "default": "$100K+"
+          "default": "$100K+",
+          "info": "Numbers automatically count up when the card enters view."
         },
+
         {
           "type": "text",
           "id": "card_title",
-          "label": "Card title",
+          "label": "Outcome title",
           "default": "Revenue Growth"
         },
+
         {
           "type": "textarea",
           "id": "description",
           "label": "Description",
           "default": "Scaled monthly sales from $2k to $100k+ for multiple clients."
         }
+
       ]
     }
+
   ],
+
   "presets": [
+
     {
-      "name": "About Accomplish Clients",
+      "name": "Client Impact",
+
       "blocks": [
+
         {
           "type": "card",
           "settings": {
@@ -133,53 +3028,60 @@
             "description": "Scaled monthly sales from $2k to $100k+ for multiple clients."
           }
         },
+
         {
           "type": "card",
           "settings": {
             "icon": "workflow",
             "metric": "1000hrs",
             "card_title": "Workflow Optimization",
-            "description": "Freed an average of 1000 monthly staff hours."
+            "description": "Freed an average of 1,000 monthly staff hours through connected systems and automation."
           }
         },
+
         {
           "type": "card",
           "settings": {
             "icon": "target",
             "metric": "+30%",
             "card_title": "Brand Elevation",
-            "description": "Rebranded organizations with 30% rise in engagement."
+            "description": "Repositioned organizations around clearer stories, stronger identities, and measurable engagement."
           }
         },
+
         {
           "type": "card",
           "settings": {
             "icon": "globe",
             "metric": "50+",
             "card_title": "Web Ecosystems",
-            "description": "50+ custom websites with 35% increase in lead capture."
+            "description": "Built custom digital experiences designed to convert attention into meaningful action."
           }
         },
+
         {
           "type": "card",
           "settings": {
             "icon": "bot",
             "metric": "10x",
             "card_title": "AI Content Engine",
-            "description": "AI-enhanced content strategy at scale."
+            "description": "Created AI-supported systems that dramatically expand creative output without losing the human point of view."
           }
         },
+
         {
           "type": "card",
           "settings": {
             "icon": "users",
             "metric": "3x",
-            "card_title": "Tripled LTV",
-            "description": "Strategic upsells dramatically increasing customer worth."
+            "card_title": "Customer Value",
+            "description": "Built smarter customer journeys, retention systems, and strategic upsells to increase long-term value."
           }
         }
+
       ]
     }
+
   ]
 }
 {% endschema %}
