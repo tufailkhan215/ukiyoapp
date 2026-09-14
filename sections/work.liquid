@@ -1,163 +1,3324 @@
-{% comment %} Source structure and Tailwind classes from reference (WorkSection) {% endcomment %}
-<section class="relative py-28 lg:py-40 bg-black overflow-hidden">
-  <div class="absolute top-1/2 -translate-y-1/2 left-0 whitespace-nowrap pointer-events-none select-none" aria-hidden="true">
-    <span class="text-[20vw] font-bold text-white/[0.015] leading-none">SELECTED WORK</span>
-  </div>
-  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+{%- comment -%}
+  ============================================================
+  UKIYO — SELECTED WORK
+  Premium editorial case-study section
+  ============================================================
 
-  <div class="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-12">
-    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
-      <div>
-        {% if section.settings.strap != blank %}
-          <span class="text-[10px] font-medium text-white/40 tracking-[0.3em] uppercase block mb-5">{{ section.settings.strap }}</span>
-        {% endif %}
-        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.05]">
-          {{ section.settings.title_line1 | default: 'Recent' }}<br>
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">{{ section.settings.title_line2 | default: 'case studies' }}</span>
-        </h2>
+  SAVE IN:
+  sections/ukiyo-selected-work.liquid
+
+  FEATURES
+  - Native Shopify SECTION
+  - Editable case-study blocks
+  - Featured + compact layouts
+  - Optional Shopify video or image per project
+  - Alternating editorial compositions
+  - Oversized background typography
+  - Sticky project index on desktop
+  - Scroll reveal animation
+  - Subtle image parallax
+  - Premium metrics / result chips
+  - Mobile horizontal swipe rail for compact projects
+  - Section-specific color controls
+  - Mobile controls
+  - No max_blocks
+  - No enabled_on
+{%- endcomment -%}
+
+
+{%- liquid
+  assign uid = section.id | replace: '_', '' | replace: '-', '' | downcase
+
+  assign featured_count = 0
+  assign compact_count = 0
+  assign project_count = 0
+
+  for block in section.blocks
+    if block.type == 'case_study'
+      assign project_count = project_count | plus: 1
+
+      if block.settings.layout == 'featured'
+        assign featured_count = featured_count | plus: 1
+      else
+        assign compact_count = compact_count | plus: 1
+      endif
+    endif
+  endfor
+
+  assign display_text = section.settings.background_word
+
+  if display_text == blank
+    assign display_text = 'SELECTED WORK'
+  endif
+-%}
+
+
+<section
+  id="UkiyoWork-{{ uid }}"
+  class="ukiyo-work ukiyo-work--{{ uid }}"
+  data-ukiyo-work
+  style="
+    --uw-bg: {{ section.settings.background_color }};
+    --uw-text: {{ section.settings.text_color }};
+    --uw-muted: {{ section.settings.muted_color }};
+    --uw-line: {{ section.settings.line_color }};
+    --uw-card: {{ section.settings.card_color }};
+    --uw-accent: {{ section.settings.accent_color }};
+    --uw-image-overlay: {{ section.settings.image_overlay | divided_by: 100.0 }};
+    --uw-top-space: {{ section.settings.padding_top }}px;
+    --uw-bottom-space: {{ section.settings.padding_bottom }}px;
+    --uw-radius: {{ section.settings.card_radius }}px;
+  "
+>
+
+  {%- comment -%}
+    ============================================================
+    ATMOSPHERE
+    ============================================================
+  {%- endcomment -%}
+
+  <div
+    class="ukiyo-work__display"
+    aria-hidden="true"
+  >
+    <span>
+      {{ display_text }}
+    </span>
+  </div>
+
+
+  <div
+    class="ukiyo-work__grid-texture"
+    aria-hidden="true"
+  ></div>
+
+
+  <div
+    class="ukiyo-work__top-rule"
+    aria-hidden="true"
+  ></div>
+
+
+
+  <div class="ukiyo-work__container">
+
+    {%- comment -%}
+      ============================================================
+      HEADER
+      ============================================================
+    {%- endcomment -%}
+
+    <header class="ukiyo-work__header">
+
+      <div class="ukiyo-work__header-main">
+
+        <div>
+
+          {%- if section.settings.strap != blank -%}
+
+            <p class="ukiyo-work__eyebrow">
+
+              <span
+                class="ukiyo-work__eyebrow-line"
+                aria-hidden="true"
+              ></span>
+
+              {{ section.settings.strap }}
+
+            </p>
+
+          {%- endif -%}
+
+
+          <h2 class="ukiyo-work__title">
+
+            <span>
+              {{ section.settings.title_line1 }}
+            </span>
+
+            <em>
+              {{ section.settings.title_line2 }}
+            </em>
+
+          </h2>
+
+        </div>
+
+
+        <div class="ukiyo-work__header-aside">
+
+          {%- if section.settings.intro != blank -%}
+
+            <p class="ukiyo-work__intro">
+              {{ section.settings.intro }}
+            </p>
+
+          {%- endif -%}
+
+
+          <div class="ukiyo-work__header-meta">
+
+            <span>
+              {{ project_count | prepend: '0' | slice: -2, 2 }}
+              projects
+            </span>
+
+            <span>
+              Strategy · Creative · Build
+            </span>
+
+          </div>
+
+
+          {%- if section.settings.view_all_text != blank and section.settings.view_all_url != blank -%}
+
+            <a
+              class="ukiyo-work__text-link"
+              href="{{ section.settings.view_all_url }}"
+            >
+
+              <span>
+                {{ section.settings.view_all_text }}
+              </span>
+
+              <svg
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14"/>
+                <path d="m13 6 6 6-6 6"/>
+              </svg>
+
+            </a>
+
+          {%- endif -%}
+
+        </div>
+
       </div>
-      {% if section.settings.view_all_url != blank %}
-        <a class="group inline-flex items-center gap-2 text-white font-medium hover:text-white/70 transition-colors" href="{{ section.settings.view_all_url }}">
-          {{ section.settings.view_all_text | default: 'View all projects' }}
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-arrow-up-right w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-        </a>
-      {% endif %}
-    </div>
 
-    {% assign featured = section.blocks | where: 'type', 'case_study' | where: 'settings.layout', 'featured' %}
-    {% assign compact = section.blocks | where: 'type', 'case_study' | where: 'settings.layout', 'compact' %}
+    </header>
 
-    <div class="space-y-3 mb-3">
-      {% for block in section.blocks %}
-        {% if block.type == 'case_study' and block.settings.layout == 'featured' %}
-          {% assign num = forloop.index | prepend: '0' | slice: -2, 2 %}
-          <div {{ block.shopify_attributes }}>
-            <a class="group block" href="{{ block.settings.link | default: section.settings.view_all_url }}">
-              <div class="relative bg-white/[0.02] border border-white/[0.05] overflow-hidden hover:border-white/10 transition-all duration-700">
-                <div class="grid lg:grid-cols-2">
-                  <div class="relative aspect-[16/10] lg:aspect-auto lg:min-h-[500px] overflow-hidden">
-                    {% if block.settings.image != blank %}
-                      <img alt="{{ block.settings.title | escape }}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" src="{{ block.settings.image | image_url: width: 800 }}" width="800" height="500" loading="lazy">
-                    {% else %}
-                      <div class="absolute inset-0 bg-white/[0.05] flex items-center justify-center"><span class="text-white/20 text-sm">Image</span></div>
-                    {% endif %}
-                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-700"></div>
-                    <div class="absolute top-6 left-6">
-                      <span class="text-7xl font-bold text-white/10">{{ num }}</span>
-                    </div>
-                  </div>
-                  <div class="p-8 lg:p-14 flex flex-col justify-center">
-                    {% if block.settings.category != blank %}
-                      <span class="text-[10px] font-medium text-white/30 tracking-[0.3em] uppercase block mb-5">{{ block.settings.category }}</span>
-                    {% endif %}
-                    {% if block.settings.client != blank %}
-                      <p class="text-sm text-white/40 mb-2">{{ block.settings.client }}</p>
-                    {% endif %}
-                    <h3 class="text-2xl lg:text-3xl font-bold text-white mb-4 group-hover:text-gray-200 transition-colors">{{ block.settings.title }}</h3>
-                    {% if block.settings.description != blank %}
-                      <p class="text-white/40 leading-relaxed mb-6">{{ block.settings.description }}</p>
-                    {% endif %}
-                    {% if block.settings.result_1 != blank or block.settings.result_2 != blank %}
-                      <div class="flex flex-wrap gap-2 mb-8">
-                        {% if block.settings.result_1 != blank %}
-                          <span class="px-3 py-1.5 text-xs font-medium uppercase tracking-wider bg-white/[0.03] text-white/50 border border-white/[0.05] rounded-full">{{ block.settings.result_1 }}</span>
-                        {% endif %}
-                        {% if block.settings.result_2 != blank %}
-                          <span class="px-3 py-1.5 text-xs font-medium uppercase tracking-wider bg-white/[0.03] text-white/50 border border-white/[0.05] rounded-full">{{ block.settings.result_2 }}</span>
-                        {% endif %}
-                      </div>
-                    {% endif %}
-                    <span class="inline-flex items-center gap-2 text-white/40 group-hover:text-white transition-colors text-sm font-medium">
-                      View case study
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-        {% endif %}
-      {% endfor %}
-    </div>
 
-    <div class="grid md:grid-cols-2 gap-3">
-      {% for block in section.blocks %}
-        {% if block.type == 'case_study' and block.settings.layout == 'compact' %}
-          <div {{ block.shopify_attributes }}>
-            <a class="group block" href="{{ block.settings.link | default: section.settings.view_all_url }}">
-              <div class="relative aspect-[4/3] overflow-hidden bg-white/[0.02] border border-white/[0.05] hover:border-white/10 transition-all duration-700">
-                {% if block.settings.image != blank %}
-                  <img alt="{{ block.settings.title | escape }}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="{{ block.settings.image | image_url: width: 800 }}" width="800" height="600" loading="lazy">
-                {% else %}
-                  <div class="absolute inset-0 bg-white/[0.05] flex items-center justify-center"><span class="text-white/20 text-sm">Image</span></div>
+
+    {%- comment -%}
+      ============================================================
+      FEATURED PROJECTS
+      ============================================================
+    {%- endcomment -%}
+
+    {%- if featured_count > 0 -%}
+
+      <div class="ukiyo-work__featured">
+
+        {%- assign featured_index = 0 -%}
+
+        {%- for block in section.blocks -%}
+
+          {%- if block.type == 'case_study' and block.settings.layout == 'featured' -%}
+
+            {%- assign featured_index = featured_index | plus: 1 -%}
+            {%- assign project_number = featured_index | prepend: '0' | slice: -2, 2 -%}
+            {%- assign is_even = featured_index | modulo: 2 -%}
+
+            {%- assign project_link = block.settings.link -%}
+
+            {%- if project_link == blank -%}
+              {%- assign project_link = section.settings.view_all_url -%}
+            {%- endif -%}
+
+
+            <article
+              id="UkiyoProject-{{ block.id }}"
+              class="
+                ukiyo-work__project
+                {% if is_even == 0 %}
+                  ukiyo-work__project--reverse
                 {% endif %}
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-6">
-                  {% if block.settings.category != blank %}
-                    <span class="text-[10px] font-medium text-white/40 tracking-[0.2em] uppercase block mb-2">{{ block.settings.category }}</span>
-                  {% endif %}
-                  <h3 class="text-xl font-bold text-white group-hover:text-gray-200 transition-colors">{{ block.settings.title }}</h3>
+              "
+              data-ukiyo-reveal
+              {{ block.shopify_attributes }}
+            >
+
+              <a
+                class="ukiyo-work__project-link"
+                href="{{ project_link | default: '#' }}"
+              >
+
+                <div class="ukiyo-work__project-media">
+
+                  <div
+                    class="ukiyo-work__project-image-wrap"
+                    data-ukiyo-parallax
+                  >
+
+                    {%- if block.settings.video != blank -%}
+
+                      {{
+                        block.settings.video
+                        | video_tag:
+                          autoplay: true,
+                          loop: true,
+                          muted: true,
+                          controls: false,
+                          playsinline: true,
+                          preload: 'metadata',
+                          class: 'ukiyo-work__project-image'
+                      }}
+
+
+                    {%- elsif block.settings.image != blank -%}
+
+                      <img
+                        class="ukiyo-work__project-image"
+                        src="{{ block.settings.image | image_url: width: 1800 }}"
+                        srcset="
+                          {{ block.settings.image | image_url: width: 700 }} 700w,
+                          {{ block.settings.image | image_url: width: 1100 }} 1100w,
+                          {{ block.settings.image | image_url: width: 1500 }} 1500w,
+                          {{ block.settings.image | image_url: width: 1800 }} 1800w
+                        "
+                        sizes="(max-width: 899px) 100vw, 58vw"
+                        width="{{ block.settings.image.width }}"
+                        height="{{ block.settings.image.height }}"
+                        alt="{{ block.settings.image.alt | default: block.settings.title | escape }}"
+                        loading="lazy"
+                      >
+
+
+                    {%- else -%}
+
+                      <div class="ukiyo-work__media-placeholder">
+
+                        <span>
+                          {{ project_number }}
+                        </span>
+
+                        <small>
+                          Add project media
+                        </small>
+
+                      </div>
+
+                    {%- endif -%}
+
+
+                    <span
+                      class="ukiyo-work__media-overlay"
+                      aria-hidden="true"
+                    ></span>
+
+
+                    <span
+                      class="ukiyo-work__project-number"
+                      aria-hidden="true"
+                    >
+                      {{ project_number }}
+                    </span>
+
+
+                    <span
+                      class="ukiyo-work__media-arrow"
+                      aria-hidden="true"
+                    >
+
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M5 19 19 5"/>
+                        <path d="M9 5h10v10"/>
+                      </svg>
+
+                    </span>
+
+                  </div>
+
                 </div>
-                <div class="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-arrow-up-right w-5 h-5 text-white" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+
+
+                <div class="ukiyo-work__project-copy">
+
+                  <div class="ukiyo-work__project-copy-top">
+
+                    <div class="ukiyo-work__project-ident">
+
+                      {%- if block.settings.category != blank -%}
+
+                        <span class="ukiyo-work__project-category">
+                          {{ block.settings.category }}
+                        </span>
+
+                      {%- endif -%}
+
+
+                      {%- if block.settings.year != blank -%}
+
+                        <span class="ukiyo-work__project-year">
+                          {{ block.settings.year }}
+                        </span>
+
+                      {%- endif -%}
+
+                    </div>
+
+
+                    {%- if block.settings.client != blank -%}
+
+                      <p class="ukiyo-work__client">
+                        {{ block.settings.client }}
+                      </p>
+
+                    {%- endif -%}
+
+                  </div>
+
+
+                  <div class="ukiyo-work__project-copy-main">
+
+                    <h3 class="ukiyo-work__project-title">
+                      {{ block.settings.title }}
+                    </h3>
+
+
+                    {%- if block.settings.description != blank -%}
+
+                      <p class="ukiyo-work__project-description">
+                        {{ block.settings.description }}
+                      </p>
+
+                    {%- endif -%}
+
+
+                    {%- if block.settings.services != blank -%}
+
+                      <p class="ukiyo-work__services">
+                        {{ block.settings.services }}
+                      </p>
+
+                    {%- endif -%}
+
+                  </div>
+
+
+                  <div class="ukiyo-work__project-copy-bottom">
+
+                    {%- if block.settings.result_1 != blank or block.settings.result_2 != blank or block.settings.result_3 != blank -%}
+
+                      <div class="ukiyo-work__results">
+
+                        {%- if block.settings.result_1 != blank -%}
+
+                          <span class="ukiyo-work__result">
+                            {{ block.settings.result_1 }}
+                          </span>
+
+                        {%- endif -%}
+
+
+                        {%- if block.settings.result_2 != blank -%}
+
+                          <span class="ukiyo-work__result">
+                            {{ block.settings.result_2 }}
+                          </span>
+
+                        {%- endif -%}
+
+
+                        {%- if block.settings.result_3 != blank -%}
+
+                          <span class="ukiyo-work__result">
+                            {{ block.settings.result_3 }}
+                          </span>
+
+                        {%- endif -%}
+
+                      </div>
+
+                    {%- endif -%}
+
+
+                    <span class="ukiyo-work__project-cta">
+
+                      <span>
+                        {{ block.settings.cta_text | default: 'View case study' }}
+                      </span>
+
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="17"
+                        height="17"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M5 12h14"/>
+                        <path d="m13 6 6 6-6 6"/>
+                      </svg>
+
+                    </span>
+
+                  </div>
+
                 </div>
-              </div>
-            </a>
-          </div>
-        {% endif %}
-      {% endfor %}
-    </div>
+
+              </a>
+
+            </article>
+
+          {%- endif -%}
+
+        {%- endfor -%}
+
+      </div>
+
+    {%- endif -%}
+
+
+
+    {%- comment -%}
+      ============================================================
+      COMPACT PROJECTS
+      ============================================================
+    {%- endcomment -%}
+
+    {%- if compact_count > 0 -%}
+
+      <section class="ukiyo-work__more">
+
+        <header class="ukiyo-work__more-header">
+
+          <p>
+            {{ section.settings.compact_label }}
+          </p>
+
+
+          <span>
+            Swipe / Explore
+          </span>
+
+        </header>
+
+
+        <div class="ukiyo-work__compact-grid">
+
+          {%- assign compact_index = 0 -%}
+
+          {%- for block in section.blocks -%}
+
+            {%- if block.type == 'case_study' and block.settings.layout == 'compact' -%}
+
+              {%- assign compact_index = compact_index | plus: 1 -%}
+
+              {%- assign project_link = block.settings.link -%}
+
+              {%- if project_link == blank -%}
+                {%- assign project_link = section.settings.view_all_url -%}
+              {%- endif -%}
+
+
+              <article
+                class="ukiyo-work__compact"
+                data-ukiyo-reveal
+                {{ block.shopify_attributes }}
+              >
+
+                <a
+                  class="ukiyo-work__compact-link"
+                  href="{{ project_link | default: '#' }}"
+                >
+
+                  <div class="ukiyo-work__compact-media">
+
+                    {%- if block.settings.video != blank -%}
+
+                      {{
+                        block.settings.video
+                        | video_tag:
+                          autoplay: true,
+                          loop: true,
+                          muted: true,
+                          controls: false,
+                          playsinline: true,
+                          preload: 'metadata',
+                          class: 'ukiyo-work__compact-image'
+                      }}
+
+
+                    {%- elsif block.settings.image != blank -%}
+
+                      <img
+                        class="ukiyo-work__compact-image"
+                        src="{{ block.settings.image | image_url: width: 1200 }}"
+                        srcset="
+                          {{ block.settings.image | image_url: width: 500 }} 500w,
+                          {{ block.settings.image | image_url: width: 800 }} 800w,
+                          {{ block.settings.image | image_url: width: 1200 }} 1200w
+                        "
+                        sizes="(max-width: 749px) 82vw, 50vw"
+                        width="{{ block.settings.image.width }}"
+                        height="{{ block.settings.image.height }}"
+                        alt="{{ block.settings.image.alt | default: block.settings.title | escape }}"
+                        loading="lazy"
+                      >
+
+
+                    {%- else -%}
+
+                      <div class="ukiyo-work__compact-placeholder">
+                        {{ compact_index | prepend: '0' | slice: -2, 2 }}
+                      </div>
+
+                    {%- endif -%}
+
+
+                    <span
+                      class="ukiyo-work__compact-overlay"
+                      aria-hidden="true"
+                    ></span>
+
+
+                    <span
+                      class="ukiyo-work__compact-arrow"
+                      aria-hidden="true"
+                    >
+
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="20"
+                        height="20"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M5 19 19 5"/>
+                        <path d="M9 5h10v10"/>
+                      </svg>
+
+                    </span>
+
+                  </div>
+
+
+                  <div class="ukiyo-work__compact-copy">
+
+                    <div class="ukiyo-work__compact-meta">
+
+                      {%- if block.settings.category != blank -%}
+
+                        <span>
+                          {{ block.settings.category }}
+                        </span>
+
+                      {%- endif -%}
+
+
+                      {%- if block.settings.year != blank -%}
+
+                        <span>
+                          {{ block.settings.year }}
+                        </span>
+
+                      {%- endif -%}
+
+                    </div>
+
+
+                    <h3>
+                      {{ block.settings.title }}
+                    </h3>
+
+
+                    {%- if block.settings.client != blank -%}
+
+                      <p>
+                        {{ block.settings.client }}
+                      </p>
+
+                    {%- endif -%}
+
+                  </div>
+
+                </a>
+
+              </article>
+
+            {%- endif -%}
+
+          {%- endfor -%}
+
+        </div>
+
+      </section>
+
+    {%- endif -%}
+
+
+
+    {%- comment -%}
+      ============================================================
+      BOTTOM CTA
+      ============================================================
+    {%- endcomment -%}
+
+    {%- if section.settings.show_footer_cta -%}
+
+      <footer
+        class="ukiyo-work__footer"
+        data-ukiyo-reveal
+      >
+
+        <div>
+
+          <p class="ukiyo-work__footer-eyebrow">
+            {{ section.settings.footer_eyebrow }}
+          </p>
+
+
+          <h3>
+            {{ section.settings.footer_title }}
+          </h3>
+
+        </div>
+
+
+        {%- if section.settings.footer_button_text != blank and section.settings.footer_button_url != blank -%}
+
+          <a
+            class="ukiyo-work__footer-button"
+            href="{{ section.settings.footer_button_url }}"
+          >
+
+            <span>
+              {{ section.settings.footer_button_text }}
+            </span>
+
+            <svg
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14"/>
+              <path d="m13 6 6 6-6 6"/>
+            </svg>
+
+          </a>
+
+        {%- endif -%}
+
+      </footer>
+
+    {%- endif -%}
+
   </div>
+
 </section>
+
+
+
+{% style %}
+
+/* ============================================================
+   SHOPIFY WRAPPER
+   ============================================================ */
+
+#shopify-section-{{ section.id }} {
+  position: relative;
+
+  width: 100%;
+  max-width: none;
+
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ============================================================
+   SECTION ROOT
+   ============================================================ */
+
+.ukiyo-work--{{ uid }} {
+  position: relative;
+  isolation: isolate;
+
+  width: 100%;
+  overflow: hidden;
+
+  padding:
+    var(--uw-top-space)
+    0
+    var(--uw-bottom-space);
+
+  color: var(--uw-text);
+  background: var(--uw-bg);
+
+  font-family:
+    'Inter Tight',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.ukiyo-work--{{ uid }} *,
+.ukiyo-work--{{ uid }} *::before,
+.ukiyo-work--{{ uid }} *::after {
+  box-sizing: border-box;
+}
+
+
+.ukiyo-work--{{ uid }} a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+.ukiyo-work--{{ uid }} :focus-visible {
+  outline:
+    1px
+    solid
+    var(--uw-text);
+
+  outline-offset: 5px;
+}
+
+
+/* ============================================================
+   CONTAINER
+   ============================================================ */
+
+.ukiyo-work--{{ uid }} .ukiyo-work__container {
+  position: relative;
+  z-index: 3;
+
+  width:
+    min(
+      calc(100% - 48px),
+      1540px
+    );
+
+  margin:
+    0
+    auto;
+}
+
+
+/* ============================================================
+   AMBIENT BACKGROUND
+   ============================================================ */
+
+.ukiyo-work--{{ uid }} .ukiyo-work__display {
+  position: absolute;
+  top: 6%;
+  left: -1%;
+  z-index: 0;
+
+  width: 110%;
+
+  overflow: hidden;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__display span {
+  display: block;
+
+  color:
+    color-mix(
+      in srgb,
+      var(--uw-text) 2.2%,
+      transparent
+    );
+
+  font-size:
+    clamp(
+      130px,
+      19vw,
+      370px
+    );
+
+  font-weight: 700;
+  line-height: .76;
+  letter-spacing: -.075em;
+
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__grid-texture {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  opacity: .28;
+
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,.022)
+      1px,
+      transparent
+      1px
+    ),
+
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.022)
+      1px,
+      transparent
+      1px
+    );
+
+  background-size:
+    88px
+    88px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black,
+      transparent 72%
+    );
+
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      black,
+      transparent 72%
+    );
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__top-rule {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--uw-line),
+      transparent
+    );
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.ukiyo-work--{{ uid }} .ukiyo-work__header {
+  position: relative;
+
+  margin-bottom:
+    clamp(
+      70px,
+      9vw,
+      145px
+    );
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__header-main {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.35fr)
+    minmax(280px, .65fr);
+
+  gap:
+    clamp(
+      50px,
+      8vw,
+      130px
+    );
+
+  align-items: end;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__eyebrow {
+  margin:
+    0
+    0
+    22px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  color: var(--uw-muted);
+
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .22em;
+
+  text-transform: uppercase;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__eyebrow-line {
+  width: 34px;
+  height: 1px;
+
+  background:
+    currentColor;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__title {
+  margin: 0;
+
+  color: var(--uw-text);
+
+  font-size:
+    clamp(
+      58px,
+      8.8vw,
+      154px
+    );
+
+  font-weight: 650;
+  line-height: .82;
+  letter-spacing: -.065em;
+
+  text-transform: uppercase;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__title span,
+.ukiyo-work--{{ uid }} .ukiyo-work__title em {
+  display: block;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__title em {
+  color: var(--uw-muted);
+
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__header-aside {
+  padding-bottom: 4px;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__intro {
+  max-width: 39ch;
+
+  margin:
+    0
+    0
+    30px;
+
+  color: var(--uw-muted);
+
+  font-size:
+    clamp(
+      14px,
+      1.1vw,
+      17px
+    );
+
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__header-meta {
+  margin-bottom: 30px;
+
+  padding:
+    15px
+    0;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+
+  border-top:
+    1px
+    solid
+    var(--uw-line);
+
+  border-bottom:
+    1px
+    solid
+    var(--uw-line);
+
+  color: var(--uw-muted);
+
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .12em;
+
+  text-transform: uppercase;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__text-link {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 12px;
+
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .04em;
+
+  transition:
+    opacity
+    .22s
+    ease;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__text-link svg {
+  transition:
+    transform
+    .35s
+    cubic-bezier(
+      .16,
+      1,
+      .3,
+      1
+    );
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__text-link:hover {
+  opacity: .64;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__text-link:hover svg {
+  transform:
+    translateX(4px);
+}
+
+
+/* ============================================================
+   FEATURED PROJECTS
+   ============================================================ */
+
+.ukiyo-work--{{ uid }} .ukiyo-work__featured {
+  display: flex;
+  flex-direction: column;
+
+  gap:
+    clamp(
+      90px,
+      12vw,
+      185px
+    );
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__project {
+  position: relative;
+
+  opacity: 0;
+
+  filter:
+    blur(10px);
+
+  transform:
+    translateY(54px);
+
+  transition:
+    opacity
+    .9s
+    cubic-bezier(
+      .16,
+      1,
+      .3,
+      1
+    ),
+
+    filter
+    .9s
+    cubic-bezier(
+      .16,
+      1,
+      .3,
+      1
+    ),
+
+    transform
+    .9s
+    cubic-bezier(
+      .16,
+      1,
+      .3,
+      1
+    );
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__project.is-visible {
+  opacity: 1;
+
+  filter:
+    blur(0);
+
+  transform:
+    translateY(0);
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__project-link {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.2fr)
+    minmax(340px, .8fr);
+
+  min-height:
+    min(
+      720px,
+      72vh
+    );
+
+  overflow: hidden;
+
+  border:
+    1px
+    solid
+    var(--uw-line);
+
+  border-radius:
+    var(--uw-radius);
+
+  background:
+    var(--uw-card);
+}
+
+
+.ukiyo-work--{{ uid }}
+.ukiyo-work__project--reverse
+.ukiyo-work__project-media {
+  order: 2;
+}
+
+
+.ukiyo-work--{{ uid }}
+.ukiyo-work__project--reverse
+.ukiyo-work__project-copy {
+  order: 1;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__project-media {
+  position: relative;
+
+  min-height: 560px;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__project-image-wrap {
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__project-image {
+  position: absolute;
+  inset: -4% 0;
+
+  width: 100%;
+  height: 108%;
+  max-width: none;
+
+  display: block;
+
+  object-fit: cover;
+
+  transform:
+    translate3d(
+      0,
+      var(
+        --uw-parallax,
+        0px
+      ),
+      0
+    )
+    scale(1.015);
+
+  transition:
+    transform
+    .9s
+    cubic-bezier(
+      .16,
+      1,
+      .3,
+      1
+    );
+}
+
+
+.ukiyo-work--{{ uid }}
+.ukiyo-work__project-link:hover
+.ukiyo-work__project-image {
+  transform:
+    translate3d(
+      0,
+      var(
+        --uw-parallax,
+        0px
+      ),
+      0
+    )
+    scale(1.055);
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__media-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(
+        0,
+        0,
+        0,
+        calc(
+          var(--uw-image-overlay) *
+          .34
+        )
+      ),
+      rgba(
+        0,
+        0,
+        0,
+        calc(
+          var(--uw-image-overlay) *
+          .12
+        )
+      )
+      45%,
+      rgba(
+        0,
+        0,
+        0,
+        calc(
+          var(--uw-image-overlay) *
+          .70
+        )
+      )
+    );
+
+  transition:
+    background
+    .65s
+    ease;
+}
+
+
+.ukiyo-work--{{ uid }}
+.ukiyo-work__project-link:hover
+.ukiyo-work__media-overlay {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.05),
+      rgba(0,0,0,.04) 55%,
+      rgba(0,0,0,.34)
+    );
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__project-number {
+  position: absolute;
+  top: 28px;
+  left: 28px;
+
+  z-index: 2;
+
+  color: rgba(255,255,255,.34);
+
+  font-size:
+    clamp(
+      54px,
+      6vw,
+      100px
+    );
+
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -.06em;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__media-arrow {
+  position: absolute;
+  right: 26px;
+  bottom: 26px;
+  z-index: 2;
+
+  width: 54px;
+  height: 54px;
+
+  display: grid;
+  place-items: center;
+
+  border:
+    1px
+    solid
+    rgba(255,255,255,.24);
+
+  border-radius: 50%;
+
+  color: #ffffff;
+  background: rgba(0,0,0,.12);
+
+  backdrop-filter:
+    blur(14px);
+
+  transform:
+    scale(.8)
+    rotate(-15deg);
+
+  opacity: 0;
+
+  transition:
+    opacity
+    .4s
+    ease,
+
+    transform
+    .5s
+    cubic-bezier(
+      .16,
+      1,
+      .3,
+      1
+    );
+}
+
+
+.ukiyo-work--{{ uid }}
+.ukiyo-work__project-link:hover
+.ukiyo-work__media-arrow {
+  opacity: 1;
+
+  transform:
+    scale(1)
+    rotate(0);
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__media-placeholder {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 14px;
+
+  color: var(--uw-muted);
+
+  background:
+    linear-gradient(
+      145deg,
+      #111111,
+      #090909
+    );
+}
+
+
+.ukiyo-work--{{ uid }}
+.ukiyo-work__media-placeholder span {
+  font-size: 90px;
+  font-weight: 600;
+  line-height: 1;
+
+  opacity: .12;
+}
+
+
+.ukiyo-work--{{ uid }}
+.ukiyo-work__media-placeholder small {
+  font-size: 10px;
+  letter-spacing: .16em;
+
+  text-transform: uppercase;
+}
+
+
+/* ============================================================
+   FEATURED COPY
+   ============================================================ */
+
+.ukiyo-work--{{ uid }} .ukiyo-work__project-copy {
+  min-height: 100%;
+
+  padding:
+    clamp(
+      32px,
+      4vw,
+      68px
+    );
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__project-copy-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__project-ident {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  gap:
+    8px
+    18px;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__project-category,
+.ukiyo-work--{{ uid }} .ukiyo-work__project-year {
+  color: var(--uw-muted);
+
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .15em;
+
+  text-transform: uppercase;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__project-year::before {
+  content: '';
+
+  width: 22px;
+  height: 1px;
+
+  margin-right: 14px;
+
+  display: inline-block;
+  vertical-align: middle;
+
+  background:
+    var(--uw-line);
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__client {
+  margin: 0;
+
+  color: var(--uw-muted);
+
+  font-size: 12px;
+
+  text-align: right;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__project-copy-main {
+  margin:
+    auto
+    0;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__project-title {
+  margin: 0;
+
+  max-width: 10ch;
+
+  color: var(--uw-text);
+
+  font-size:
+    clamp(
+      38px,
+      4.4vw,
+      72px
+    );
+
+  font-weight: 600;
+  line-height: .95;
+  letter-spacing: -.055em;
+
+  text-transform: uppercase;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__project-description {
+  max-width: 38ch;
+
+  margin:
+    30px
+    0
+    0;
+
+  color: var(--uw-muted);
+
+  font-size:
+    clamp(
+      14px,
+      1.1vw,
+      16px
+    );
+
+  line-height: 1.62;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__services {
+  margin:
+    25px
+    0
+    0;
+
+  color: var(--uw-muted);
+
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .10em;
+
+  text-transform: uppercase;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__project-copy-bottom {
+  margin-top: auto;
+
+  padding-top: 40px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 30px;
+
+  border-top:
+    1px
+    solid
+    var(--uw-line);
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__results {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 7px;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__result {
+  min-height: 33px;
+
+  padding:
+    0
+    13px;
+
+  display: inline-flex;
+  align-items: center;
+
+  border:
+    1px
+    solid
+    var(--uw-line);
+
+  border-radius:
+    999px;
+
+  color: var(--uw-muted);
+
+  background:
+    rgba(255,255,255,.015);
+
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .08em;
+
+  text-transform: uppercase;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__project-cta {
+  flex: 0 0 auto;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 11px;
+
+  color: var(--uw-muted);
+
+  font-size: 12px;
+  font-weight: 600;
+
+  transition:
+    color
+    .3s
+    ease;
+}
+
+
+.ukiyo-work--{{ uid }}
+.ukiyo-work__project-cta svg {
+  transition:
+    transform
+    .4s
+    cubic-bezier(
+      .16,
+      1,
+      .3,
+      1
+    );
+}
+
+
+.ukiyo-work--{{ uid }}
+.ukiyo-work__project-link:hover
+.ukiyo-work__project-cta {
+  color: var(--uw-text);
+}
+
+
+.ukiyo-work--{{ uid }}
+.ukiyo-work__project-link:hover
+.ukiyo-work__project-cta svg {
+  transform:
+    translateX(5px);
+}
+
+
+/* ============================================================
+   MORE PROJECTS
+   ============================================================ */
+
+.ukiyo-work--{{ uid }} .ukiyo-work__more {
+  margin-top:
+    clamp(
+      110px,
+      14vw,
+      210px
+    );
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__more-header {
+  margin-bottom: 24px;
+
+  padding:
+    15px
+    0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-top:
+    1px
+    solid
+    var(--uw-line);
+
+  border-bottom:
+    1px
+    solid
+    var(--uw-line);
+
+  color: var(--uw-muted);
+
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .14em;
+
+  text-transform: uppercase;
+}
+
+
+.ukiyo-work--{{ uid }}
+.ukiyo-work__more-header p {
+  margin: 0;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__compact-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap: 16px;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__compact {
+  opacity: 0;
+
+  filter:
+    blur(9px);
+
+  transform:
+    translateY(40px);
+
+  transition:
+    opacity
+    .8s
+    cubic-bezier(
+      .16,
+      1,
+      .3,
+      1
+    ),
+
+    filter
+    .8s
+    cubic-bezier(
+      .16,
+      1,
+      .3,
+      1
+    ),
+
+    transform
+    .8s
+    cubic-bezier(
+      .16,
+      1,
+      .3,
+      1
+    );
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__compact.is-visible {
+  opacity: 1;
+
+  filter:
+    blur(0);
+
+  transform:
+    translateY(0);
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__compact-link {
+  display: block;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__compact-media {
+  position: relative;
+
+  aspect-ratio: 16 / 11;
+
+  overflow: hidden;
+
+  border:
+    1px
+    solid
+    var(--uw-line);
+
+  border-radius:
+    var(--uw-radius);
+
+  background:
+    var(--uw-card);
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__compact-image {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition:
+    transform
+    .9s
+    cubic-bezier(
+      .16,
+      1,
+      .3,
+      1
+    );
+}
+
+
+.ukiyo-work--{{ uid }}
+.ukiyo-work__compact-link:hover
+.ukiyo-work__compact-image {
+  transform:
+    scale(1.06);
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__compact-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0,0,0,.60),
+      rgba(0,0,0,.02) 62%
+    );
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__compact-arrow {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  width: 46px;
+  height: 46px;
+
+  display: grid;
+  place-items: center;
+
+  border:
+    1px
+    solid
+    rgba(255,255,255,.28);
+
+  border-radius: 50%;
+
+  color: #ffffff;
+  background:
+    rgba(0,0,0,.15);
+
+  backdrop-filter:
+    blur(12px);
+
+  opacity: 0;
+
+  transform:
+    scale(.75)
+    rotate(-15deg);
+
+  transition:
+    opacity
+    .35s
+    ease,
+
+    transform
+    .45s
+    cubic-bezier(
+      .16,
+      1,
+      .3,
+      1
+    );
+}
+
+
+.ukiyo-work--{{ uid }}
+.ukiyo-work__compact-link:hover
+.ukiyo-work__compact-arrow {
+  opacity: 1;
+
+  transform:
+    scale(1)
+    rotate(0);
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__compact-placeholder {
+  position: absolute;
+  inset: 0;
+
+  display: grid;
+  place-items: center;
+
+  color: rgba(255,255,255,.08);
+
+  background:
+    linear-gradient(
+      145deg,
+      #151515,
+      #090909
+    );
+
+  font-size: 100px;
+  font-weight: 600;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__compact-copy {
+  padding:
+    20px
+    3px
+    5px;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__compact-meta {
+  margin-bottom: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  color: var(--uw-muted);
+
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .14em;
+
+  text-transform: uppercase;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__compact-copy h3 {
+  margin: 0;
+
+  max-width: 18ch;
+
+  color: var(--uw-text);
+
+  font-size:
+    clamp(
+      23px,
+      2.6vw,
+      38px
+    );
+
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -.045em;
+
+  text-transform: uppercase;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__compact-copy p {
+  margin:
+    10px
+    0
+    0;
+
+  color: var(--uw-muted);
+
+  font-size: 12px;
+}
+
+
+/* ============================================================
+   FOOTER CTA
+   ============================================================ */
+
+.ukiyo-work--{{ uid }} .ukiyo-work__footer {
+  margin-top:
+    clamp(
+      120px,
+      16vw,
+      240px
+    );
+
+  padding-top:
+    clamp(
+      50px,
+      6vw,
+      90px
+    );
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 60px;
+
+  border-top:
+    1px
+    solid
+    var(--uw-line);
+
+  opacity: 0;
+
+  filter:
+    blur(10px);
+
+  transform:
+    translateY(40px);
+
+  transition:
+    opacity
+    .9s
+    cubic-bezier(
+      .16,
+      1,
+      .3,
+      1
+    ),
+
+    filter
+    .9s
+    cubic-bezier(
+      .16,
+      1,
+      .3,
+      1
+    ),
+
+    transform
+    .9s
+    cubic-bezier(
+      .16,
+      1,
+      .3,
+      1
+    );
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__footer.is-visible {
+  opacity: 1;
+
+  filter:
+    blur(0);
+
+  transform:
+    translateY(0);
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__footer-eyebrow {
+  margin:
+    0
+    0
+    16px;
+
+  color: var(--uw-muted);
+
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .16em;
+
+  text-transform: uppercase;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__footer h3 {
+  max-width: 12ch;
+
+  margin: 0;
+
+  color: var(--uw-text);
+
+  font-size:
+    clamp(
+      44px,
+      6vw,
+      92px
+    );
+
+  font-weight: 600;
+  line-height: .92;
+  letter-spacing: -.055em;
+
+  text-transform: uppercase;
+}
+
+
+.ukiyo-work--{{ uid }} .ukiyo-work__footer-button {
+  min-height: 58px;
+
+  padding:
+    0
+    26px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 14px;
+
+  flex: 0 0 auto;
+
+  border:
+    1px
+    solid
+    var(--uw-line);
+
+  border-radius:
+    999px;
+
+  color: var(--uw-text);
+
+  background:
+    rgba(255,255,255,.02);
+
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .10em;
+
+  text-transform: uppercase;
+
+  transition:
+    background
+    .3s
+    ease,
+
+    color
+    .3s
+    ease,
+
+    transform
+    .3s
+    cubic-bezier(
+      .16,
+      1,
+      .3,
+      1
+    );
+}
+
+
+.ukiyo-work--{{ uid }}
+.ukiyo-work__footer-button:hover {
+  color: var(--uw-bg);
+  background: var(--uw-text);
+
+  transform:
+    translateY(-3px);
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 989px) {
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__header-main {
+    grid-template-columns:
+      1fr;
+
+    gap: 36px;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__header-aside {
+    max-width: 600px;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-link {
+    grid-template-columns:
+      1fr;
+
+    min-height: 0;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project--reverse
+  .ukiyo-work__project-media,
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project--reverse
+  .ukiyo-work__project-copy {
+    order: initial;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-media {
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-copy {
+    min-height: 470px;
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 749px) {
+
+  .ukiyo-work--{{ uid }} .ukiyo-work__container {
+    width:
+      calc(
+        100% -
+        32px
+      );
+  }
+
+
+  .ukiyo-work--{{ uid }} .ukiyo-work__grid-texture {
+    background-size:
+      56px
+      56px;
+  }
+
+
+  .ukiyo-work--{{ uid }} .ukiyo-work__display {
+    top: 3%;
+    left: -5%;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__display span {
+    font-size:
+      clamp(
+        100px,
+        32vw,
+        180px
+      );
+  }
+
+
+  .ukiyo-work--{{ uid }} .ukiyo-work__header {
+    margin-bottom: 62px;
+  }
+
+
+  .ukiyo-work--{{ uid }} .ukiyo-work__title {
+    font-size:
+      clamp(
+        50px,
+        16vw,
+        82px
+      );
+
+    line-height: .86;
+  }
+
+
+  .ukiyo-work--{{ uid }} .ukiyo-work__header-meta {
+    flex-direction: column;
+
+    gap: 5px;
+  }
+
+
+  .ukiyo-work--{{ uid }} .ukiyo-work__featured {
+    gap: 72px;
+  }
+
+
+  .ukiyo-work--{{ uid }} .ukiyo-work__project-link {
+    border-radius:
+      min(
+        var(--uw-radius),
+        18px
+      );
+  }
+
+
+  .ukiyo-work--{{ uid }} .ukiyo-work__project-media {
+    aspect-ratio: 4 / 3;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-number {
+    top: 18px;
+    left: 18px;
+
+    font-size: 48px;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__media-arrow {
+    right: 16px;
+    bottom: 16px;
+
+    width: 44px;
+    height: 44px;
+
+    opacity: 1;
+
+    transform: none;
+  }
+
+
+  .ukiyo-work--{{ uid }} .ukiyo-work__project-copy {
+    min-height: 0;
+
+    padding:
+      26px
+      22px
+      24px;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-copy-top {
+    margin-bottom: 50px;
+  }
+
+
+  .ukiyo-work--{{ uid }} .ukiyo-work__project-title {
+    max-width: 12ch;
+
+    font-size:
+      clamp(
+        34px,
+        10vw,
+        54px
+      );
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-description {
+    margin-top: 22px;
+
+    font-size: 14px;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-copy-bottom {
+    margin-top: 46px;
+
+    padding-top: 22px;
+
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 22px;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-cta {
+    color: var(--uw-text);
+  }
+
+
+  .ukiyo-work--{{ uid }} .ukiyo-work__more {
+    margin-top: 88px;
+  }
+
+
+  .ukiyo-work--{{ uid }} .ukiyo-work__more-header span {
+    display: block;
+  }
+
+
+  .ukiyo-work--{{ uid }} .ukiyo-work__compact-grid {
+    width:
+      calc(
+        100% +
+        16px
+      );
+
+    padding-right: 16px;
+
+    display: flex;
+
+    gap: 12px;
+
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+
+    scroll-snap-type:
+      x mandatory;
+
+    scrollbar-width: none;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__compact-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+
+  .ukiyo-work--{{ uid }} .ukiyo-work__compact {
+    flex:
+      0
+      0
+      min(
+        82vw,
+        360px
+      );
+
+    scroll-snap-align: start;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__compact-media {
+    aspect-ratio: 4 / 3;
+
+    border-radius:
+      min(
+        var(--uw-radius),
+        16px
+      );
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__compact-arrow {
+    opacity: 1;
+
+    transform: none;
+  }
+
+
+  .ukiyo-work--{{ uid }} .ukiyo-work__footer {
+    margin-top: 100px;
+
+    padding-top: 50px;
+
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 35px;
+  }
+
+
+  .ukiyo-work--{{ uid }} .ukiyo-work__footer h3 {
+    font-size:
+      clamp(
+        42px,
+        13vw,
+        64px
+      );
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__footer-button {
+    width: 100%;
+  }
+
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .ukiyo-work--{{ uid }}
+  [data-ukiyo-reveal] {
+    opacity: 1 !important;
+
+    filter: none !important;
+
+    transform: none !important;
+
+    transition: none !important;
+  }
+
+
+  .ukiyo-work--{{ uid }}
+  .ukiyo-work__project-image {
+    transform: none !important;
+
+    transition: none !important;
+  }
+
+}
+
+{% endstyle %}
+
+
+
+<script>
+(function () {
+  var root =
+    document.getElementById(
+      'UkiyoWork-{{ uid }}'
+    );
+
+  if (!root) {
+    return;
+  }
+
+
+  if (
+    root.__ukiyoWorkCleanup &&
+    typeof root.__ukiyoWorkCleanup === 'function'
+  ) {
+    root.__ukiyoWorkCleanup();
+  }
+
+
+  var revealElements =
+    Array.prototype.slice.call(
+      root.querySelectorAll(
+        '[data-ukiyo-reveal]'
+      )
+    );
+
+
+  var parallaxElements =
+    Array.prototype.slice.call(
+      root.querySelectorAll(
+        '[data-ukiyo-parallax]'
+      )
+    );
+
+
+  var reduceMotion =
+    window.matchMedia &&
+    window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+
+  var observer = null;
+  var scrollFrame = 0;
+  var scrollTicking = false;
+  var destroyed = false;
+
+
+  function revealEverything() {
+    revealElements.forEach(
+      function (element) {
+        element.classList.add(
+          'is-visible'
+        );
+      }
+    );
+  }
+
+
+  function initializeReveal() {
+    if (
+      reduceMotion ||
+      !(
+        'IntersectionObserver'
+        in window
+      )
+    ) {
+      revealEverything();
+      return;
+    }
+
+
+    observer =
+      new IntersectionObserver(
+        function (entries) {
+          entries.forEach(
+            function (entry) {
+              if (
+                !entry.isIntersecting
+              ) {
+                return;
+              }
+
+
+              entry.target.classList.add(
+                'is-visible'
+              );
+
+
+              observer.unobserve(
+                entry.target
+              );
+            }
+          );
+        },
+        {
+          rootMargin:
+            '0px 0px -8% 0px',
+
+          threshold:
+            0.10
+        }
+      );
+
+
+    revealElements.forEach(
+      function (element) {
+        observer.observe(
+          element
+        );
+      }
+    );
+  }
+
+
+  function updateParallax() {
+    scrollTicking = false;
+
+
+    if (
+      destroyed ||
+      reduceMotion ||
+      window.innerWidth <
+      990
+    ) {
+      return;
+    }
+
+
+    var viewportHeight =
+      window.innerHeight;
+
+
+    parallaxElements.forEach(
+      function (element) {
+        var rect =
+          element.getBoundingClientRect();
+
+
+        if (
+          rect.bottom < 0 ||
+          rect.top >
+          viewportHeight
+        ) {
+          return;
+        }
+
+
+        var center =
+          rect.top +
+          (
+            rect.height /
+            2
+          );
+
+
+        var distance =
+          center -
+          (
+            viewportHeight /
+            2
+          );
+
+
+        var movement =
+          Math.max(
+            -24,
+            Math.min(
+              24,
+              distance *
+              -0.035
+            )
+          );
+
+
+        element.style.setProperty(
+          '--uw-parallax',
+          movement.toFixed(2) +
+          'px'
+        );
+      }
+    );
+  }
+
+
+  function requestParallax() {
+    if (scrollTicking) {
+      return;
+    }
+
+
+    scrollTicking = true;
+
+
+    scrollFrame =
+      window.requestAnimationFrame(
+        updateParallax
+      );
+  }
+
+
+  function initializeVideos() {
+    root
+      .querySelectorAll('video')
+      .forEach(
+        function (video) {
+          video.muted = true;
+          video.defaultMuted = true;
+
+          video.setAttribute(
+            'muted',
+            ''
+          );
+
+          video.setAttribute(
+            'playsinline',
+            ''
+          );
+
+
+          var promise =
+            video.play();
+
+
+          if (
+            promise &&
+            typeof promise.catch ===
+            'function'
+          ) {
+            promise.catch(
+              function () {}
+            );
+          }
+        }
+      );
+  }
+
+
+  function cleanup() {
+    destroyed = true;
+
+
+    if (observer) {
+      observer.disconnect();
+    }
+
+
+    window.removeEventListener(
+      'scroll',
+      requestParallax
+    );
+
+
+    window.removeEventListener(
+      'resize',
+      requestParallax
+    );
+
+
+    window.cancelAnimationFrame(
+      scrollFrame
+    );
+
+
+    root.removeAttribute(
+      'data-ukiyo-work-ready'
+    );
+  }
+
+
+  root.__ukiyoWorkCleanup =
+    cleanup;
+
+
+  root.setAttribute(
+    'data-ukiyo-work-ready',
+    'true'
+  );
+
+
+  initializeReveal();
+  initializeVideos();
+  updateParallax();
+
+
+  window.addEventListener(
+    'scroll',
+    requestParallax,
+    {
+      passive: true
+    }
+  );
+
+
+  window.addEventListener(
+    'resize',
+    requestParallax
+  );
+
+
+  document.addEventListener(
+    'shopify:section:unload',
+    function onUkiyoWorkUnload(event) {
+      if (
+        !event.target ||
+        !event.target.contains(root)
+      ) {
+        return;
+      }
+
+
+      cleanup();
+
+
+      document.removeEventListener(
+        'shopify:section:unload',
+        onUkiyoWorkUnload
+      );
+    }
+  );
+})();
+</script>
+
+
 
 {% schema %}
 {
-  "name": "Work",
+  "name": "Selected Work",
   "tag": "section",
-  "class": "section-work",
+  "class": "ukiyo-selected-work-section",
+
   "settings": [
-    { "type": "text", "id": "strap", "label": "Strap line", "default": "(Selected Work)" },
-    { "type": "text", "id": "title_line1", "label": "Title line 1", "default": "Recent" },
-    { "type": "text", "id": "title_line2", "label": "Title line 2 (gradient)", "default": "case studies" },
-    { "type": "text", "id": "view_all_text", "label": "View all link text", "default": "View all projects" },
-    { "type": "url", "id": "view_all_url", "label": "View all link URL" }
+
+    {
+      "type": "header",
+      "content": "Header"
+    },
+
+    {
+      "type": "text",
+      "id": "strap",
+      "label": "Eyebrow",
+      "default": "(Selected Work)"
+    },
+
+    {
+      "type": "text",
+      "id": "title_line1",
+      "label": "Title line 1",
+      "default": "Selected"
+    },
+
+    {
+      "type": "text",
+      "id": "title_line2",
+      "label": "Title line 2",
+      "default": "Work"
+    },
+
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Introduction",
+      "default": "A selection of brands, platforms, and digital ecosystems we’ve helped reposition, rebuild, and move forward."
+    },
+
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "View all link text",
+      "default": "View all projects"
+    },
+
+    {
+      "type": "url",
+      "id": "view_all_url",
+      "label": "View all link URL"
+    },
+
+    {
+      "type": "text",
+      "id": "background_word",
+      "label": "Large background text",
+      "default": "SELECTED WORK"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Additional work"
+    },
+
+    {
+      "type": "text",
+      "id": "compact_label",
+      "label": "Compact project heading",
+      "default": "More selected projects"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Closing CTA"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "show_footer_cta",
+      "label": "Show closing CTA",
+      "default": true
+    },
+
+    {
+      "type": "text",
+      "id": "footer_eyebrow",
+      "label": "Closing eyebrow",
+      "default": "Have something ambitious in mind?"
+    },
+
+    {
+      "type": "text",
+      "id": "footer_title",
+      "label": "Closing heading",
+      "default": "Let’s build what comes next."
+    },
+
+    {
+      "type": "text",
+      "id": "footer_button_text",
+      "label": "Closing button text",
+      "default": "Start a Conversation"
+    },
+
+    {
+      "type": "url",
+      "id": "footer_button_url",
+      "label": "Closing button link"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#050505"
+    },
+
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Primary text",
+      "default": "#F5F5F2"
+    },
+
+    {
+      "type": "color",
+      "id": "muted_color",
+      "label": "Muted text",
+      "default": "#777774"
+    },
+
+    {
+      "type": "color",
+      "id": "line_color",
+      "label": "Borders and rules",
+      "default": "#242424"
+    },
+
+    {
+      "type": "color",
+      "id": "card_color",
+      "label": "Card background",
+      "default": "#090909"
+    },
+
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent",
+      "default": "#FFFFFF"
+    },
+
+    {
+      "type": "range",
+      "id": "image_overlay",
+      "label": "Image overlay strength",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 45
+    },
+
+
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top spacing",
+      "min": 60,
+      "max": 220,
+      "step": 10,
+      "unit": "px",
+      "default": 140
+    },
+
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom spacing",
+      "min": 60,
+      "max": 240,
+      "step": 10,
+      "unit": "px",
+      "default": 160
+    },
+
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card corner radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    }
+
   ],
+
   "blocks": [
+
     {
       "type": "case_study",
       "name": "Case study",
+
       "settings": [
-        { "type": "select", "id": "layout", "label": "Layout", "default": "featured", "options": [
-          { "value": "featured", "label": "Featured (large horizontal)" },
-          { "value": "compact", "label": "Compact (small card)" }
-        ]},
-        { "type": "image_picker", "id": "image", "label": "Image" },
-        { "type": "text", "id": "category", "label": "Category" },
-        { "type": "text", "id": "title", "label": "Title" },
-        { "type": "url", "id": "link", "label": "Link" },
-        { "type": "text", "id": "client", "label": "Client (featured only)" },
-        { "type": "textarea", "id": "description", "label": "Description (featured only)" },
-        { "type": "text", "id": "result_1", "label": "Result tag 1 (featured only)" },
-        { "type": "text", "id": "result_2", "label": "Result tag 2 (featured only)" }
+
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Layout",
+          "options": [
+            {
+              "value": "featured",
+              "label": "Featured"
+            },
+            {
+              "value": "compact",
+              "label": "Compact"
+            }
+          ],
+          "default": "featured"
+        },
+
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Project image"
+        },
+
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Project video",
+          "info": "Video replaces the image when selected."
+        },
+
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Category",
+          "default": "Brand + Digital"
+        },
+
+        {
+          "type": "text",
+          "id": "year",
+          "label": "Year",
+          "default": "2026"
+        },
+
+        {
+          "type": "text",
+          "id": "client",
+          "label": "Client"
+        },
+
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Project title",
+          "default": "Project Title"
+        },
+
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "A connected brand, creative, and digital transformation built to move the business into its next chapter."
+        },
+
+        {
+          "type": "text",
+          "id": "services",
+          "label": "Services",
+          "default": "Strategy · Brand · Web · Growth"
+        },
+
+        {
+          "type": "text",
+          "id": "result_1",
+          "label": "Result 1"
+        },
+
+        {
+          "type": "text",
+          "id": "result_2",
+          "label": "Result 2"
+        },
+
+        {
+          "type": "text",
+          "id": "result_3",
+          "label": "Result 3"
+        },
+
+        {
+          "type": "text",
+          "id": "cta_text",
+          "label": "Project CTA",
+          "default": "View case study"
+        },
+
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Project link"
+        }
+
       ]
     }
+
   ],
+
   "presets": [
+
     {
-      "name": "Work",
+      "name": "Selected Work",
+
       "settings": {
         "strap": "(Selected Work)",
-        "title_line1": "Recent",
-        "title_line2": "case studies",
+        "title_line1": "Selected",
+        "title_line2": "Work",
         "view_all_text": "View all projects"
       },
+
       "blocks": [
-        { "type": "case_study", "settings": { "layout": "featured", "category": "AI & Technology", "client": "TechVenture AI", "title": "Revolutionizing Customer Experience", "description": "Complete brand transformation and AI automation implementation that increased customer engagement by 340%.", "result_1": "340% engagement", "result_2": "$2.4M revenue" } },
-        { "type": "case_study", "settings": { "layout": "featured", "category": "Lifestyle & Fashion", "client": "Luxe Lifestyle", "title": "Building a Premium Brand Identity", "description": "End-to-end branding and content strategy that positioned a startup as a market leader in luxury lifestyle.", "result_1": "500K+ followers", "result_2": "Featured in Vogue" } },
-        { "type": "case_study", "settings": { "layout": "compact", "category": "Sustainability", "title": "Sustainable Growth Through Innovation" } },
-        { "type": "case_study", "settings": { "layout": "compact", "category": "Food & Beverage", "title": "From Local to National Recognition" } }
+
+        {
+          "type": "case_study",
+          "settings": {
+            "layout": "featured",
+            "category": "Brand + Digital",
+            "year": "2026",
+            "client": "Featured Client",
+            "title": "Building the Next Chapter",
+            "description": "A full digital and brand transformation designed around where the company is going next.",
+            "services": "Strategy · Brand · Web · Growth",
+            "result_1": "Brand Strategy",
+            "result_2": "Digital Build"
+          }
+        },
+
+        {
+          "type": "case_study",
+          "settings": {
+            "layout": "featured",
+            "category": "Commerce + Growth",
+            "year": "2026",
+            "client": "Featured Client",
+            "title": "Turning Attention Into Momentum",
+            "description": "A connected commerce and marketing ecosystem built to make every channel work harder together.",
+            "services": "E-Commerce · Email · Automation",
+            "result_1": "Growth",
+            "result_2": "Automation"
+          }
+        },
+
+        {
+          "type": "case_study",
+          "settings": {
+            "layout": "compact",
+            "category": "Web + Experience",
+            "year": "2026",
+            "title": "A New Digital Flagship"
+          }
+        },
+
+        {
+          "type": "case_study",
+          "settings": {
+            "layout": "compact",
+            "category": "Strategy + Systems",
+            "year": "2026",
+            "title": "Building a Connected Ecosystem"
+          }
+        }
+
       ]
     }
+
   ]
 }
 {% endschema %}
