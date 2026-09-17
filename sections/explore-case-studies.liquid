@@ -1,241 +1,1221 @@
 {% comment %}
-  Section: Explore Case Studies
-  File: sections/explore-case-studies.liquid
-  Template: templates/page.explore-case-studies.json
+  Explore Case Studies
+  Video introduction, scroll-reactive background, project dial.
+  Styles and behavior are scoped to this section.
 {% endcomment %}
 
+{% liquid
+  assign projects = section.blocks | where: 'type', 'case_study'
+
+  assign hero_video = section.settings.video_url | default: 'https://d2ol7oe51mr4n9.cloudfront.net/user_3GJaYKPxdnQG0Q9O26lu6DPmcHu/3abfc4bb-a49d-4a22-93e6-3ebb0f7fa9ac.mp4'
+
+  assign hero_poster = 'https://d2ol7oe51mr4n9.cloudfront.net/user_3GJaYKPxdnQG0Q9O26lu6DPmcHu/c34fa15e-fad4-4c37-a7a0-1a325b39e8bf.jpg'
+
+  if section.settings.cover_image != blank
+    assign hero_poster = section.settings.cover_image | image_url: width: 2400
+  endif
+
+  assign accent = section.settings.accent | default: '#e8472a'
+  assign ending_color = section.settings.end_color | default: '#a82d22'
+%}
+
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap');
 
   #ecs-{{ section.id }} {
-    --bg:      #000;
-    --border:  rgba(255,255,255,0.07);
-    --muted:   rgba(255,255,255,0.42);
-    background: var(--bg);
-    color: #fff;
-    font-family: inherit;
-    padding: 5rem 1.5rem 6rem;
-    position: relative;
-  }
-
-  #ecs-{{ section.id }} * { box-sizing: border-box; }
-  #ecs-{{ section.id }} img { display: block; width: 100%; height: 100%; object-fit: cover; }
-
-  /* Header */
-  .ecs-header {
-    max-width: 1200px;
-    margin: 0 auto 3rem;
-    text-align: center;
-  }
-
-  .ecs-eyebrow {
-    font-family: 'DM Sans', sans-serif;
-    font-size: .62rem; font-weight: 500; letter-spacing: .28em;
-    text-transform: uppercase; color: rgba(255,255,255,.28);
-    display: flex; align-items: center; justify-content: center; gap: .65rem;
-    margin-bottom: 1.25rem;
-  }
-  .ecs-eyebrow::before, .ecs-eyebrow::after {
-    content: ''; display: block; width: 24px; height: 1px;
-    background: rgba(255,255,255,.18);
-  }
-
-  .ecs-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.8rem, 7vw, 5.5rem);
-    letter-spacing: .03em; line-height: .92;
-    margin: 0 0 1rem; color: #fff;
-  }
-
-  .ecs-desc {
-    font-family: 'DM Sans', sans-serif;
-    font-size: .92rem; font-weight: 300; line-height: 1.75;
-    color: var(--muted); max-width: 36rem; margin: 0 auto;
-  }
-
-  /* Grid */
-  .ecs-grid {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: .5rem;
-  }
-
-  @media (min-width: 640px) { .ecs-grid { grid-template-columns: repeat(2, 1fr); } }
-
-  /* Card */
-  .ecs-card {
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: 4/3;
-    background: #0a0a0a;
-    cursor: pointer;
+    --ecs-bg: #0d0e10;
+    --ecs-accent: {{ accent }};
+    --ecs-dial-color: {{ accent }};
+    --ecs-ink: #f4f4f2;
+    --ecs-pad: clamp(20px, 4vw, 72px);
     display: block;
+    position: relative;
+    isolation: isolate;
+    background-color: var(--ecs-bg);
+    color: var(--ecs-ink);
+    font-family: 'Inter Tight', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #ecs-{{ section.id }} *,
+  #ecs-{{ section.id }} *::before,
+  #ecs-{{ section.id }} *::after {
+    box-sizing: border-box;
+  }
+
+  #ecs-{{ section.id }} :is(h2, h3, p) {
+    margin: 0;
+    font-family: inherit;
+    color: inherit;
+  }
+
+  #ecs-{{ section.id }} a {
+    color: inherit;
     text-decoration: none;
   }
 
-  .ecs-card-img {
-    position: absolute; inset: 0;
-    transition: transform .9s cubic-bezier(.165,.84,.44,1), filter .7s, opacity .7s;
-    filter: saturate(0.15) brightness(0.6);
-    opacity: 1;
+  #ecs-{{ section.id }} :is(a, button):focus-visible {
+    outline: 2px solid var(--ecs-ink);
+    outline-offset: 6px;
   }
 
-  .ecs-card:hover .ecs-card-img {
-    transform: scale(1.06);
-    filter: saturate(0.65) brightness(0.55);
+  /* VIDEO INTRODUCTION */
+
+  #ecs-{{ section.id }} .ecs-hero {
+    position: relative;
+    min-height: 92vh;
+    min-height: 92svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 90px;
+    padding: clamp(48px, 7vw, 100px) var(--ecs-pad) 52px;
+    overflow: hidden;
+    background: #0d0e10;
   }
 
-  .ecs-card-grad {
-    position: absolute; inset: 0; z-index: 1;
-    background: linear-gradient(
-      to top,
-      rgba(0,0,0,0.82) 0%,
-      rgba(0,0,0,0.3) 45%,
-      rgba(0,0,0,0.05) 100%
-    );
-    transition: background .5s;
+  #ecs-{{ section.id }} .ecs-hero-media {
+    position: absolute;
+    inset: -5% 0;
+    transform: translate3d(0, var(--ecs-hero-y, 0px), 0);
+    pointer-events: none;
   }
 
-  .ecs-card:hover .ecs-card-grad {
-    background: linear-gradient(
-      to top,
-      rgba(0,0,0,0.88) 0%,
-      rgba(0,0,0,0.45) 55%,
-      rgba(0,0,0,0.1) 100%
-    );
-  }
-
-  .ecs-card-body {
-    position: relative; z-index: 2;
-    height: 100%;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 1.5rem 1.75rem;
-  }
-
-  @media (min-width: 768px) { .ecs-card-body { padding: 2rem 2.25rem; } }
-
-  .ecs-card-tag {
-    font-family: 'DM Sans', sans-serif;
-    font-size: .58rem; font-weight: 500; letter-spacing: .22em;
-    text-transform: uppercase; color: rgba(255,255,255,.35);
-    margin-bottom: .5rem;
+  #ecs-{{ section.id }} .ecs-video,
+  #ecs-{{ section.id }} .ecs-poster {
+    position: absolute;
+    inset: 0;
     display: block;
-    transform: translateY(4px);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  #ecs-{{ section.id }} .ecs-poster {
+    filter: grayscale(1) brightness(.7);
+  }
+
+  #ecs-{{ section.id }} .ecs-video {
     opacity: 0;
-    transition: opacity .4s .1s, transform .4s .1s;
+    filter: saturate(.3) brightness(.72);
+    transition: opacity .6s ease;
   }
 
-  .ecs-card:hover .ecs-card-tag { opacity: 1; transform: none; }
-
-  .ecs-card-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-    letter-spacing: .04em; line-height: 1;
-    color: #fff; margin: 0;
-    transition: letter-spacing .4s;
-  }
-
-  .ecs-card:hover .ecs-card-name { letter-spacing: .07em; }
-
-  /* Arrow reveal on hover */
-  .ecs-card-arrow {
-    position: absolute; top: 1.5rem; right: 1.5rem; z-index: 3;
-    width: 36px; height: 36px; border-radius: 50%;
-    background: rgba(255,255,255,.08);
-    border: 1px solid rgba(255,255,255,.14);
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0;
-    transform: scale(0.7) rotate(-45deg);
-    transition: opacity .4s, transform .4s;
-  }
-
-  .ecs-card:hover .ecs-card-arrow {
+  #ecs-{{ section.id }}[data-video-ready] .ecs-video {
     opacity: 1;
-    transform: scale(1) rotate(0deg);
   }
 
-  /* Scroll reveal */
-  #ecs-{{ section.id }} .rv {
-    opacity: 0; transform: translateY(20px);
-    transition: opacity .65s cubic-bezier(.4,0,.2,1), transform .65s cubic-bezier(.4,0,.2,1);
+  #ecs-{{ section.id }} .ecs-hero-shade {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,.25), transparent 40%, var(--ecs-bg)),
+      linear-gradient(90deg, rgba(0,0,0,.18), transparent);
   }
-  #ecs-{{ section.id }} .rv.in { opacity: 1; transform: none; }
+
+  #ecs-{{ section.id }} .ecs-hero-top,
+  #ecs-{{ section.id }} .ecs-hero-bottom {
+    position: relative;
+    z-index: 1;
+  }
+
+  #ecs-{{ section.id }} .ecs-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .18em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  #ecs-{{ section.id }} .ecs-eyebrow::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background: var(--ecs-accent);
+    flex-shrink: 0;
+  }
+
+  #ecs-{{ section.id }} .ecs-title {
+    max-width: 12ch;
+    color: var(--ecs-accent);
+    font-size: clamp(64px, 12vw, 210px);
+    font-weight: 400;
+    line-height: .87;
+    letter-spacing: -.065em;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+
+  #ecs-{{ section.id }} .ecs-rule {
+    height: clamp(3px, .4vw, 7px);
+    margin-top: clamp(24px, 4vw, 56px);
+    background: var(--ecs-accent);
+    transform-origin: left;
+    transform: scaleX(var(--ecs-rule-scale, 1));
+  }
+
+  #ecs-{{ section.id }} .ecs-hero-bottom {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 640px);
+    align-items: end;
+    gap: 32px;
+  }
+
+  #ecs-{{ section.id }} .ecs-desc {
+    font-size: clamp(21px, 2.5vw, 38px);
+    font-weight: 400;
+    line-height: 1.24;
+    letter-spacing: -.025em;
+    text-wrap: pretty;
+  }
+
+  #ecs-{{ section.id }} .ecs-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  #ecs-{{ section.id }} .ecs-control {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 44px;
+    padding: 10px 16px;
+    border: 1px solid rgba(255,255,255,.4);
+    border-radius: 100px;
+    background: rgba(0,0,0,.25);
+    color: #fff;
+    font: inherit;
+    font-size: 11px;
+    line-height: 1.3;
+    cursor: pointer;
+  }
+
+  #ecs-{{ section.id }} .ecs-control[hidden] {
+    display: none;
+  }
+
+  #ecs-{{ section.id }} .ecs-control:hover {
+    background: rgba(255,255,255,.12);
+  }
+
+  #ecs-{{ section.id }} .ecs-scroll-mark {
+    display: inline-block;
+    font-size: 18px;
+    animation: ecs-scroll-{{ section.id }} 1.8s ease-in-out infinite;
+  }
+
+  @keyframes ecs-scroll-{{ section.id }} {
+    0%, 100% { transform: translateY(-3px); }
+    50% { transform: translateY(3px); }
+  }
+
+  /* SCROLL GALLERY */
+
+  #ecs-{{ section.id }} .ecs-gallery {
+    position: relative;
+    display: grid;
+  }
+
+  #ecs-{{ section.id }} .ecs-dial,
+  #ecs-{{ section.id }} .ecs-grid {
+    grid-area: 1 / 1;
+    min-width: 0;
+  }
+
+  #ecs-{{ section.id }} .ecs-dial {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+    visibility: hidden;
+  }
+
+  #ecs-{{ section.id }}[data-ready] .ecs-dial {
+    visibility: visible;
+  }
+
+  #ecs-{{ section.id }} .ecs-dial svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  #ecs-{{ section.id }} .ecs-rail,
+  #ecs-{{ section.id }} .ecs-inner-rail,
+  #ecs-{{ section.id }} .ecs-progress {
+    fill: none;
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+
+  #ecs-{{ section.id }} .ecs-rail {
+    stroke: rgba(244,244,242,.19);
+  }
+
+  #ecs-{{ section.id }} .ecs-inner-rail {
+    stroke: rgba(244,244,242,.07);
+  }
+
+  #ecs-{{ section.id }} .ecs-progress {
+    stroke: var(--ecs-dial-color);
+    stroke-width: 2;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+
+  #ecs-{{ section.id }} .ecs-tick {
+    stroke: rgba(244,244,242,.2);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+
+  #ecs-{{ section.id }} .ecs-tick.is-lit {
+    stroke: var(--ecs-dial-color);
+  }
+
+  #ecs-{{ section.id }} .ecs-needle {
+    fill: var(--ecs-dial-color);
+    opacity: .5;
+  }
+
+  #ecs-{{ section.id }} .ecs-hub {
+    fill: var(--ecs-dial-color);
+  }
+
+  #ecs-{{ section.id }} .ecs-tip {
+    fill: var(--ecs-dial-color);
+  }
+
+  #ecs-{{ section.id }} .ecs-dial-readout {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  #ecs-{{ section.id }} .ecs-current {
+    font-size: 36px;
+    letter-spacing: -.055em;
+    line-height: 1;
+  }
+
+  #ecs-{{ section.id }} .ecs-total {
+    font-size: 12px;
+    opacity: .55;
+  }
+
+  #ecs-{{ section.id }} .ecs-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(16, minmax(0, 1fr));
+    column-gap: 20px;
+    row-gap: clamp(100px, 15vw, 240px);
+    padding: clamp(80px, 12vw, 180px) var(--ecs-pad) 140px;
+  }
+
+  #ecs-{{ section.id }} .ecs-project {
+    position: relative;
+    min-width: 0;
+    grid-row: var(--ecs-row);
+    grid-column: 2 / span 7;
+    transition: opacity .4s ease;
+  }
+
+  #ecs-{{ section.id }} .ecs-project:nth-child(4n + 2) {
+    grid-column: 10 / span 6;
+  }
+
+  #ecs-{{ section.id }} .ecs-project:nth-child(4n + 3) {
+    grid-column: 3 / span 8;
+  }
+
+  #ecs-{{ section.id }} .ecs-project:nth-child(4n + 4) {
+    grid-column: 10 / span 5;
+  }
+
+  #ecs-{{ section.id }} .ecs-card {
+    position: relative;
+    display: block;
+  }
+
+  #ecs-{{ section.id }} .ecs-media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #17191c;
+    clip-path: inset(0);
+    transition: clip-path .7s cubic-bezier(.22,1,.36,1);
+  }
+
+  #ecs-{{ section.id }} .ecs-project:nth-child(even) .ecs-media {
+    aspect-ratio: 3 / 4;
+  }
+
+  #ecs-{{ section.id }} .ecs-image {
+    position: absolute;
+    inset: -8% 0;
+    width: 100%;
+    height: 116%;
+    display: block;
+    object-fit: cover;
+    filter: grayscale(1) brightness(.82);
+    transform: translate3d(0, var(--ecs-image-y, 0px), 0);
+    transition: filter .6s;
+  }
+
+  #ecs-{{ section.id }} .ecs-media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: .12;
+    background-image: radial-gradient(#000 .7px, transparent .9px);
+    background-size: 3px 3px;
+  }
+
+  #ecs-{{ section.id }} .ecs-placeholder {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: clamp(90px, 13vw, 220px);
+    color: rgba(255,255,255,.15);
+    letter-spacing: -.07em;
+  }
+
+  #ecs-{{ section.id }} .ecs-body {
+    margin-top: 24px;
+  }
+
+  #ecs-{{ section.id }} .ecs-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 12px;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+
+  #ecs-{{ section.id }} .ecs-number {
+    color: var(--ecs-dial-color);
+    flex-shrink: 0;
+  }
+
+  #ecs-{{ section.id }} .ecs-category {
+    color: rgba(244,244,242,.8);
+  }
+
+  #ecs-{{ section.id }} .ecs-name-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  #ecs-{{ section.id }} .ecs-name {
+    flex: 1;
+    min-width: 0;
+    font-size: clamp(27px, 3.3vw, 58px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -.045em;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+
+  #ecs-{{ section.id }} .ecs-arrow {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    border: 1px solid rgba(255,255,255,.4);
+    border-radius: 50%;
+    transition: background .3s, color .3s;
+  }
+
+  #ecs-{{ section.id }} .ecs-arrow svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    #ecs-{{ section.id }} .ecs-grid:has(a.ecs-card:hover) .ecs-project {
+      opacity: .45;
+    }
+
+    #ecs-{{ section.id }} .ecs-grid .ecs-project:hover,
+    #ecs-{{ section.id }} .ecs-grid .ecs-project:focus-within {
+      opacity: 1;
+    }
+
+    #ecs-{{ section.id }} a.ecs-card:hover .ecs-media {
+      clip-path: inset(3%);
+    }
+
+    #ecs-{{ section.id }} a.ecs-card:hover .ecs-image {
+      filter: grayscale(0) brightness(1);
+    }
+
+    #ecs-{{ section.id }} a.ecs-card:hover .ecs-arrow {
+      background: #f4f4f2;
+      color: #0d0e10;
+    }
+  }
+
+  #ecs-{{ section.id }} a:focus-visible .ecs-image {
+    filter: grayscale(0);
+  }
+
+  @media (max-width: 767px) {
+    #ecs-{{ section.id }} .ecs-hero {
+      min-height: 86svh;
+      padding-top: 48px;
+      padding-bottom: 40px;
+      gap: 80px;
+    }
+
+    #ecs-{{ section.id }} .ecs-title {
+      font-size: clamp(58px, 17vw, 128px);
+    }
+
+    #ecs-{{ section.id }} .ecs-hero-bottom {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 28px;
+    }
+
+    #ecs-{{ section.id }} .ecs-desc {
+      grid-row: 1;
+      font-size: clamp(21px, 5.5vw, 28px);
+    }
+
+    #ecs-{{ section.id }} .ecs-grid {
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: 72px;
+      padding-top: 48px;
+      padding-bottom: 120px;
+    }
+
+    #ecs-{{ section.id }} .ecs-project:nth-child(n) {
+      grid-column: 1;
+    }
+
+    #ecs-{{ section.id }} .ecs-project:nth-child(n) .ecs-media {
+      aspect-ratio: 4 / 3;
+    }
+
+    #ecs-{{ section.id }} .ecs-name {
+      font-size: clamp(27px, 7vw, 42px);
+    }
+
+    #ecs-{{ section.id }} .ecs-body {
+      margin-top: 18px;
+    }
+
+    #ecs-{{ section.id }} .ecs-dial {
+      opacity: .7;
+    }
+  }
 
   @media (prefers-reduced-motion: reduce) {
-    #ecs-{{ section.id }} .rv { opacity: 1 !important; transform: none !important; }
+    #ecs-{{ section.id }} *,
+    #ecs-{{ section.id }} *::before,
+    #ecs-{{ section.id }} *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+
+    #ecs-{{ section.id }} .ecs-hero-media,
+    #ecs-{{ section.id }} .ecs-image,
+    #ecs-{{ section.id }} .ecs-rule {
+      transform: none !important;
+    }
+
+    #ecs-{{ section.id }} .ecs-media {
+      clip-path: none !important;
+    }
+
+    #ecs-{{ section.id }} .ecs-dial {
+      display: none;
+    }
   }
 </style>
 
-<div id="ecs-{{ section.id }}">
+<ukiyo-case-motion-v2
+  id="ecs-{{ section.id }}"
+  data-accent="{{ accent }}"
+  data-end="{{ ending_color }}"
+  data-color-scroll="{{ section.settings.scroll_color }}"
+>
+  <header class="ecs-hero">
+    <div class="ecs-hero-media" aria-hidden="true">
+      <img
+        class="ecs-poster"
+        src="{{ hero_poster | escape }}"
+        alt=""
+        width="2400"
+        height="1600"
+        loading="eager"
+      >
 
-  <!-- Header -->
-  <div class="ecs-header rv">
-    {%- if section.settings.eyebrow != blank -%}
-      <p class="ecs-eyebrow">{{ section.settings.eyebrow }}</p>
-    {%- endif -%}
-    <h2 class="ecs-title">{{ section.settings.title }}</h2>
-    {%- if section.settings.description != blank -%}
-      <p class="ecs-desc">{{ section.settings.description }}</p>
-    {%- endif -%}
-  </div>
+      <video
+        class="ecs-video"
+        muted
+        playsinline
+        loop
+        preload="metadata"
+        poster="{{ hero_poster | escape }}"
+        tabindex="-1"
+      >
+        <source src="{{ hero_video | escape }}" type="video/mp4">
+      </video>
+    </div>
 
-  <!-- Cards Grid -->
-  <div class="ecs-grid">
-    {%- for block in section.blocks -%}
-      {%- if block.type == 'case_study' -%}
-        <a class="ecs-card rv"
-          href="{{ block.settings.url | default: '#' }}"
-          {{ block.shopify_attributes }}>
+    <div class="ecs-hero-shade" aria-hidden="true"></div>
 
-          {%- if block.settings.image -%}
-            <img class="ecs-card-img"
-              src="{{ block.settings.image | img_url: '900x' }}"
-              alt="{{ block.settings.name }}"
-              loading="{% if forloop.index <= 2 %}eager{% else %}lazy{% endif %}">
-          {%- endif -%}
+    <div class="ecs-hero-top">
+      {% if section.settings.eyebrow != blank %}
+        <p class="ecs-eyebrow">
+          {{ section.settings.eyebrow | escape }}
+        </p>
+      {% endif %}
 
-          <div class="ecs-card-grad"></div>
+      {% if section.settings.title != blank %}
+        <h2 class="ecs-title">
+          {{ section.settings.title | escape }}
+        </h2>
+      {% endif %}
 
-          <div class="ecs-card-arrow">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-            </svg>
+      <div class="ecs-rule" aria-hidden="true"></div>
+    </div>
+
+    <div class="ecs-hero-bottom">
+      <div class="ecs-controls">
+        {% if projects.size > 0 %}
+          <a
+            class="ecs-control"
+            href="#ecs-projects-{{ section.id }}"
+            data-scroll-link
+          >
+            Explore projects
+            <span class="ecs-scroll-mark" aria-hidden="true">↓</span>
+          </a>
+        {% endif %}
+
+        <button
+          class="ecs-control"
+          type="button"
+          data-video-toggle
+          hidden
+        >
+          Play video
+        </button>
+      </div>
+
+      {% if section.settings.description != blank %}
+        <p class="ecs-desc">
+          {{ section.settings.description | escape | newline_to_br }}
+        </p>
+      {% endif %}
+    </div>
+  </header>
+
+  {% if projects.size > 0 %}
+    <div
+      class="ecs-gallery"
+      id="ecs-projects-{{ section.id }}"
+    >
+      {% if section.settings.show_dial %}
+        <div class="ecs-dial" aria-hidden="true">
+          <svg focusable="false">
+            <path class="ecs-rail"></path>
+            <path class="ecs-inner-rail"></path>
+            <path class="ecs-progress" pathLength="1"></path>
+            <g class="ecs-ticks"></g>
+            <polygon class="ecs-needle"></polygon>
+            <circle class="ecs-hub" r="4"></circle>
+            <circle class="ecs-tip" r="4"></circle>
+          </svg>
+
+          <div class="ecs-dial-readout">
+            <span class="ecs-current">01</span>
+            <span class="ecs-total">
+              / {% if projects.size < 10 %}0{% endif %}{{ projects.size }}
+            </span>
           </div>
+        </div>
+      {% endif %}
 
-          <div class="ecs-card-body">
-            {%- if block.settings.tag != blank -%}
-              <span class="ecs-card-tag">{{ block.settings.tag }}</span>
-            {%- endif -%}
-            <p class="ecs-card-name">{{ block.settings.name }}</p>
-          </div>
+      <div class="ecs-grid">
+        {% for block in projects %}
+          {% liquid
+            assign card_element = 'div'
+            if block.settings.url != blank
+              assign card_element = 'a'
+            endif
 
-        </a>
-      {%- endif -%}
-    {%- endfor -%}
-  </div>
+            assign image_loading = 'lazy'
+            if forloop.index <= 2
+              assign image_loading = 'eager'
+            endif
 
-</div>
+            assign image_alt = block.settings.image.alt | default: block.settings.name
+          %}
+
+          <article
+            class="ecs-project"
+            style="--ecs-row: {{ forloop.index }};"
+            {{ block.shopify_attributes }}
+          >
+            <{{ card_element }}
+              class="ecs-card"
+              {% if block.settings.url != blank %}
+                href="{{ block.settings.url | escape }}"
+              {% endif %}
+            >
+              <div class="ecs-media">
+                {% if block.settings.image != blank %}
+                  {{
+                    block.settings.image
+                    | image_url: width: 1600
+                    | image_tag:
+                      class: 'ecs-image',
+                      widths: '400, 600, 800, 1000, 1200, 1600',
+                      sizes: '(min-width: 768px) 50vw, 100vw',
+                      loading: image_loading,
+                      alt: image_alt
+                  }}
+                {% else %}
+                  <div class="ecs-placeholder" aria-hidden="true">
+                    {% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="ecs-body">
+                <div class="ecs-meta">
+                  <span class="ecs-number" aria-hidden="true">
+                    {% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}
+                  </span>
+
+                  {% if block.settings.tag != blank %}
+                    <span class="ecs-category">
+                      {{ block.settings.tag | escape }}
+                    </span>
+                  {% endif %}
+                </div>
+
+                <div class="ecs-name-row">
+                  <h3 class="ecs-name">
+                    {{ block.settings.name | escape }}
+                  </h3>
+
+                  {% if block.settings.url != blank %}
+                    <span class="ecs-arrow" aria-hidden="true">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M7 17 17 7M7 7h10v10"></path>
+                      </svg>
+                    </span>
+                  {% endif %}
+                </div>
+              </div>
+            </{{ card_element }}>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+</ukiyo-case-motion-v2>
 
 <script>
-(function(){
-  var root = document.getElementById('ecs-{{ section.id }}');
-  if (!root) return;
-  var els = root.querySelectorAll('.rv');
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+(() => {
+  const tag = 'ukiyo-case-motion-v2';
+  if (customElements.get(tag)) return;
+
+  class UkiyoCaseMotion extends HTMLElement {
+    connectedCallback() {
+      this.boot = requestAnimationFrame(() => {
+        if (this.isConnected) this.init();
       });
-    }, { threshold: 0.06 });
-    els.forEach(function(el, i){
-      el.style.transitionDelay = Math.min(i * 0.06, 0.4) + 's';
-      io.observe(el);
-    });
-  } else {
-    els.forEach(function(el){ el.classList.add('in'); });
+    }
+
+    init() {
+      if (this.controller) return;
+
+      this.controller = new AbortController();
+      const signal = this.controller.signal;
+
+      this.reduced = matchMedia('(prefers-reduced-motion: reduce)');
+      this.hero = this.querySelector('.ecs-hero');
+      this.gallery = this.querySelector('.ecs-gallery');
+      this.video = this.querySelector('video');
+      this.toggle = this.querySelector('[data-video-toggle]');
+      this.dial = this.querySelector('.ecs-dial');
+      this.svg = this.querySelector('.ecs-dial svg');
+      this.readout = this.querySelector('.ecs-current');
+      this.animations = new Set();
+      this.ticks = [];
+      this.heroVisible = true;
+      this.userPaused = false;
+      this.manualPlay = false;
+      this.playPending = false;
+
+      this.items = Array.from(
+        this.querySelectorAll('.ecs-project')
+      ).map(element => ({
+        element,
+        image: element.querySelector('.ecs-image')
+      }));
+
+      this.parseColor = hex => {
+        let value = String(hex).replace('#', '');
+        if (value.length === 3) {
+          value = value.split('').map(c => c + c).join('');
+        }
+        if (!/^[0-9a-f]{6}$/i.test(value)) return [168,45,34];
+        return [0,2,4].map(i => parseInt(value.slice(i, i + 2), 16));
+      };
+
+      this.accentRGB = this.parseColor(this.dataset.accent);
+      this.endRGB = this.parseColor(this.dataset.end);
+      this.clamp = n => Math.max(0, Math.min(1, n));
+      this.mix = (a, b, t) => a.map(
+        (n, i) => Math.round(n + (b[i] - n) * t)
+      );
+
+      this.schedule = () => {
+        if (this.frame) return;
+        this.frame = requestAnimationFrame(() => {
+          this.frame = 0;
+          this.update();
+        });
+      };
+
+      this.resize = () => {
+        this.measureDial();
+        this.schedule();
+      };
+
+      window.addEventListener('scroll', this.schedule, {
+        passive: true, signal
+      });
+
+      window.addEventListener('resize', this.resize, {
+        passive: true, signal
+      });
+
+      this.reduced.addEventListener('change', () => {
+        this.manualPlay = false;
+        this.animations.forEach(a => a.cancel());
+        this.syncVideo();
+        this.schedule();
+      }, { signal });
+
+      document.addEventListener('visibilitychange', () => {
+        this.syncVideo();
+      }, { signal });
+
+      this.querySelector('[data-scroll-link]')?.addEventListener(
+        'click',
+        event => {
+          if (
+            event.metaKey || event.ctrlKey ||
+            event.shiftKey || event.altKey
+          ) return;
+
+          event.preventDefault();
+          this.gallery?.scrollIntoView({
+            behavior: this.reduced.matches ? 'auto' : 'smooth',
+            block: 'start'
+          });
+        },
+        { signal }
+      );
+
+      this.addEventListener('shopify:block:select', event => {
+        const item = event.target.closest('.ecs-project');
+        if (!item) return;
+
+        this.animations.forEach(a => a.cancel());
+        item.scrollIntoView({ block: 'center', behavior: 'auto' });
+      }, { signal });
+
+      this.setupVideo(signal);
+      this.setupObservers();
+
+      if ('ResizeObserver' in window) {
+        this.ro = new ResizeObserver(this.resize);
+        this.ro.observe(this);
+      }
+
+      this.measureDial();
+      this.setAttribute('data-ready', '');
+      this.update();
+    }
+
+    setupVideo(signal) {
+      if (!this.video) return;
+
+      this.video.muted = true;
+      this.video.defaultMuted = true;
+      this.video.playsInline = true;
+      this.video.playbackRate = .7;
+
+      if (this.toggle) {
+        this.toggle.hidden = false;
+
+        this.toggle.addEventListener('click', () => {
+          if (this.video.paused) {
+            this.userPaused = false;
+            this.manualPlay = true;
+            this.playVideo();
+          } else {
+            this.userPaused = true;
+            this.manualPlay = false;
+            this.video.pause();
+          }
+        }, { signal });
+      }
+
+      this.video.addEventListener('playing', () => {
+        this.setAttribute('data-video-ready', '');
+        if (this.toggle) this.toggle.textContent = 'Pause video';
+      }, { signal });
+
+      this.video.addEventListener('pause', () => {
+        if (this.toggle) this.toggle.textContent = 'Play video';
+      }, { signal });
+
+      this.video.addEventListener('error', () => {
+        this.removeAttribute('data-video-ready');
+        if (this.toggle) this.toggle.hidden = true;
+      }, { signal });
+
+      this.video.addEventListener('loadedmetadata', () => {
+        this.video.playbackRate = .7;
+        this.syncVideo();
+      }, { signal });
+
+      this.syncVideo();
+    }
+
+    playVideo() {
+      if (!this.video || this.playPending) return;
+
+      this.playPending = true;
+      const result = this.video.play();
+
+      if (result && typeof result.then === 'function') {
+        result.catch(() => {
+          if (this.toggle && this.isConnected) {
+            this.toggle.textContent = 'Play video';
+          }
+        }).finally(() => {
+          this.playPending = false;
+
+          if (
+            !this.isConnected ||
+            document.hidden ||
+            !this.heroVisible ||
+            this.userPaused ||
+            (this.reduced.matches && !this.manualPlay)
+          ) this.video.pause();
+        });
+      } else {
+        this.playPending = false;
+      }
+    }
+
+    syncVideo() {
+      if (!this.video) return;
+
+      const shouldPlay =
+        this.isConnected &&
+        this.heroVisible &&
+        !document.hidden &&
+        !this.userPaused &&
+        (!this.reduced.matches || this.manualPlay);
+
+      if (shouldPlay) {
+        this.playVideo();
+      } else {
+        this.video.pause();
+      }
+    }
+
+    setupObservers() {
+      if (!('IntersectionObserver' in window)) return;
+
+      this.heroObserver = new IntersectionObserver(entries => {
+        this.heroVisible = entries[0].isIntersecting;
+        this.syncVideo();
+      }, { threshold: 0 });
+
+      this.heroObserver.observe(this.hero);
+
+      this.revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          this.revealObserver.unobserve(entry.target);
+          if (this.reduced.matches) return;
+
+          const media = entry.target.querySelector('.ecs-media');
+          const body = entry.target.querySelector('.ecs-body');
+
+          if (media?.animate) {
+            this.track(media.animate([
+              { clipPath: 'inset(0 0 100% 0)' },
+              { clipPath: 'inset(0 0 0% 0)' }
+            ], {
+              duration: 1000,
+              easing: 'cubic-bezier(.22,1,.36,1)'
+            }));
+          }
+
+          if (body?.animate) {
+            this.track(body.animate([
+              { opacity: 0, transform: 'translateY(20px)' },
+              { opacity: 1, transform: 'translateY(0)' }
+            ], {
+              duration: 850,
+              easing: 'cubic-bezier(.22,1,.36,1)'
+            }));
+          }
+        });
+      }, { threshold: .06 });
+
+      this.items.forEach(item => {
+        this.revealObserver.observe(item.element);
+      });
+    }
+
+    track(animation) {
+      this.animations.add(animation);
+      animation.finished.catch(() => {}).finally(() => {
+        this.animations.delete(animation);
+      });
+    }
+
+    measureDial() {
+      if (!this.dial || !this.svg) return;
+
+      const w = this.dial.clientWidth;
+      const h = this.dial.clientHeight;
+      if (!w || !h) return;
+
+      this.cx = w / 2;
+      this.cy = h - 74;
+      this.radius = Math.max(1, Math.min(w / 2 - 24, h - 118));
+
+      this.svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+
+      const arc = r =>
+        `M ${this.cx-r} ${this.cy} A ${r} ${r} 0 0 1 ${this.cx+r} ${this.cy}`;
+
+      this.svg.querySelector('.ecs-rail').setAttribute(
+        'd', arc(this.radius)
+      );
+
+      this.svg.querySelector('.ecs-inner-rail').setAttribute(
+        'd', arc(Math.max(1, this.radius - 32))
+      );
+
+      this.progress = this.svg.querySelector('.ecs-progress');
+      this.progress.setAttribute('d', arc(this.radius));
+
+      this.needle = this.svg.querySelector('.ecs-needle');
+      this.needle.setAttribute('points', [
+        `${this.cx},${this.cy-1.5}`,
+        `${this.cx+this.radius-40},${this.cy}`,
+        `${this.cx},${this.cy+1.5}`
+      ].join(' '));
+
+      const hub = this.svg.querySelector('.ecs-hub');
+      hub.setAttribute('cx', this.cx);
+      hub.setAttribute('cy', this.cy);
+      this.tip = this.svg.querySelector('.ecs-tip');
+
+      const holder = this.svg.querySelector('.ecs-ticks');
+      holder.replaceChildren();
+      this.ticks = [];
+
+      for (let i = 0; i <= 48; i++) {
+        const angle = Math.PI + (i / 48) * Math.PI;
+        const major = i % 4 === 0;
+        const outer = this.radius - 7;
+        const inner = outer - (major ? 16 : 7);
+
+        const line = document.createElementNS(
+          'http://www.w3.org/2000/svg', 'line'
+        );
+
+        line.setAttribute('class', 'ecs-tick');
+        line.setAttribute('x1', this.cx + Math.cos(angle) * inner);
+        line.setAttribute('y1', this.cy + Math.sin(angle) * inner);
+        line.setAttribute('x2', this.cx + Math.cos(angle) * outer);
+        line.setAttribute('y2', this.cy + Math.sin(angle) * outer);
+
+        holder.appendChild(line);
+        this.ticks.push(line);
+      }
+    }
+
+    update() {
+      const vh = window.innerHeight;
+      const reduced = this.reduced.matches;
+      const heroRect = this.hero.getBoundingClientRect();
+
+      const heroAmount = this.clamp(
+        -heroRect.top / Math.max(1, heroRect.height)
+      );
+
+      this.style.setProperty(
+        '--ecs-hero-y',
+        `${reduced ? 0 : heroAmount * 45}px`
+      );
+
+      this.style.setProperty(
+        '--ecs-rule-scale',
+        reduced ? '1' : String(1 - heroAmount * .15)
+      );
+
+      let progress = 0;
+
+      if (this.gallery) {
+        const rect = this.gallery.getBoundingClientRect();
+        progress = this.clamp(
+          -rect.top / Math.max(1, rect.height - vh)
+        );
+      }
+
+      /* Black -> burgundy -> selected ending color */
+      let bg = [13,14,16];
+      let dial = this.accentRGB;
+
+      if (this.dataset.colorScroll !== 'false' && !reduced) {
+        const middle = [49,17,24];
+
+        bg = progress < .48
+          ? this.mix(bg, middle, progress / .48)
+          : this.mix(middle, this.endRGB, (progress - .48) / .52);
+
+        dial = this.mix(
+          this.accentRGB,
+          [244,244,242],
+          this.clamp((progress - .25) / .55)
+        );
+      }
+
+      this.style.setProperty('--ecs-bg', `rgb(${bg.join(',')})`);
+      this.style.setProperty(
+        '--ecs-dial-color', `rgb(${dial.join(',')})`
+      );
+
+      if (this.progress && this.needle) {
+        this.progress.style.strokeDashoffset = String(1 - progress);
+
+        this.needle.setAttribute(
+          'transform',
+          `rotate(${-180 + progress * 180} ${this.cx} ${this.cy})`
+        );
+
+        const angle = Math.PI + progress * Math.PI;
+        this.tip.setAttribute(
+          'cx', this.cx + Math.cos(angle) * this.radius
+        );
+        this.tip.setAttribute(
+          'cy', this.cy + Math.sin(angle) * this.radius
+        );
+
+        this.ticks.forEach((tick, index) => {
+          tick.classList.toggle('is-lit', index / 48 <= progress);
+        });
+      }
+
+      let nearest = 0;
+      let nearestDistance = Infinity;
+
+      this.items.forEach((item, index) => {
+        const rect = item.element.getBoundingClientRect();
+        const distance = Math.abs(
+          rect.top + rect.height / 2 - vh / 2
+        );
+
+        if (distance < nearestDistance) {
+          nearest = index;
+          nearestDistance = distance;
+        }
+
+        if (!item.image) return;
+
+        if (reduced) {
+          item.image.style.setProperty('--ecs-image-y', '0px');
+          return;
+        }
+
+        if (rect.bottom < 0 || rect.top > vh) return;
+
+        const position = this.clamp(
+          (vh - rect.top) / (vh + rect.height)
+        );
+
+        const amplitude = Math.min(24, rect.height * .035);
+
+        item.image.style.setProperty(
+          '--ecs-image-y',
+          `${((position - .5) * amplitude * 2).toFixed(2)}px`
+        );
+      });
+
+      if (this.readout) {
+        this.readout.textContent = String(nearest + 1).padStart(2, '0');
+      }
+    }
+
+    disconnectedCallback() {
+      cancelAnimationFrame(this.boot);
+      cancelAnimationFrame(this.frame);
+      this.frame = 0;
+      this.controller?.abort();
+      this.controller = null;
+      this.heroObserver?.disconnect();
+      this.revealObserver?.disconnect();
+      this.ro?.disconnect();
+      this.animations?.forEach(a => a.cancel());
+      this.video?.pause();
+      this.removeAttribute('data-ready');
+    }
   }
+
+  customElements.define(tag, UkiyoCaseMotion);
 })();
 </script>
 
@@ -244,20 +1224,100 @@
   "name": "Explore Case Studies",
   "tag": "section",
   "settings": [
-    { "type": "header",   "content": "Header" },
-    { "type": "text",     "id": "eyebrow",     "label": "Eyebrow",     "default": "Our Latest Projects" },
-    { "type": "text",     "id": "title",       "label": "Title",       "default": "CASE STUDIES" },
-    { "type": "textarea", "id": "description", "label": "Description", "default": "Browse our work across branding, e-commerce, content creation, and digital marketing." }
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Our Latest Projects"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "CASE STUDIES"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Browse our work across branding, e-commerce, content creation, and digital marketing."
+    },
+    {
+      "type": "header",
+      "content": "Opening video"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "MP4 video URL",
+      "info": "Leave empty to use the car video from the reference."
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image",
+      "label": "Video poster image",
+      "info": "Leave empty to use the reference video poster."
+    },
+    {
+      "type": "header",
+      "content": "Colors and animation"
+    },
+    {
+      "type": "color",
+      "id": "accent",
+      "label": "Opening accent color",
+      "default": "#e8472a"
+    },
+    {
+      "type": "checkbox",
+      "id": "scroll_color",
+      "label": "Change background while scrolling",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "end_color",
+      "label": "Ending background color",
+      "default": "#a82d22"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dial",
+      "label": "Show animated project dial",
+      "default": true
+    }
   ],
   "blocks": [
     {
       "type": "case_study",
       "name": "Case Study",
       "settings": [
-        { "type": "image_picker", "id": "image", "label": "Image" },
-        { "type": "text",         "id": "name",  "label": "Project name", "default": "RESIKLO" },
-        { "type": "text",         "id": "tag",   "label": "Category tag", "default": "Branding" },
-        { "type": "url",          "id": "url",   "label": "Link URL" }
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Project name",
+          "default": "RESIKLO"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Category tag",
+          "default": "Branding"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link URL"
+        }
       ]
     }
   ],
@@ -265,18 +1325,90 @@
     {
       "name": "Explore Case Studies",
       "blocks": [
-        { "type": "case_study", "settings": { "name": "RESIKLO",                 "tag": "Branding / Sustainability" } },
-        { "type": "case_study", "settings": { "name": "FUR TRADERS",             "tag": "E-commerce / Fashion" } },
-        { "type": "case_study", "settings": { "name": "THE PLACE ON SOUTH PINE", "tag": "Hospitality / Content" } },
-        { "type": "case_study", "settings": { "name": "DYNAMIC AUTOWORKS",       "tag": "E-commerce / Automotive" } },
-        { "type": "case_study", "settings": { "name": "SUPRAMOOD",               "tag": "Branding / Wellness" } },
-        { "type": "case_study", "settings": { "name": "MANO BEACH HOUSE",        "tag": "Hospitality / Travel" } },
-        { "type": "case_study", "settings": { "name": "HOTEL TUGU | BALI",       "tag": "Hospitality / Luxury" } },
-        { "type": "case_study", "settings": { "name": "LIFE FORCE ACADEMY",      "tag": "Branding / Wellness" } },
-        { "type": "case_study", "settings": { "name": "POLAROID",                "tag": "Content / Photography" } },
-        { "type": "case_study", "settings": { "name": "ACADEMY OF ORACLE ARTS",  "tag": "Branding / Education" } },
-        { "type": "case_study", "settings": { "name": "COACHELLA",               "tag": "Events / Content" } },
-        { "type": "case_study", "settings": { "name": "WANDRD",                  "tag": "Content / Gear" } }
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "RESIKLO",
+            "tag": "Branding / Sustainability"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "FUR TRADERS",
+            "tag": "E-commerce / Fashion"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "THE PLACE ON SOUTH PINE",
+            "tag": "Hospitality / Content"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "DYNAMIC AUTOWORKS",
+            "tag": "E-commerce / Automotive"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "SUPRAMOOD",
+            "tag": "Branding / Wellness"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "MANO BEACH HOUSE",
+            "tag": "Hospitality / Travel"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "HOTEL TUGU | BALI",
+            "tag": "Hospitality / Luxury"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "LIFE FORCE ACADEMY",
+            "tag": "Branding / Wellness"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "POLAROID",
+            "tag": "Content / Photography"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "ACADEMY OF ORACLE ARTS",
+            "tag": "Branding / Education"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "COACHELLA",
+            "tag": "Events / Content"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "WANDRD",
+            "tag": "Content / Gear"
+          }
+        }
       ]
     }
   ]
