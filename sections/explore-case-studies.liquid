@@ -1,1518 +1,1526 @@
 {% comment %}
-  Church of Truth — cinematic landing and navigation.
-  Preserves the original header setting IDs.
-  Includes three scroll-controlled videos, glass cards,
-  mission transitions, accessible navigation, and Shopify signup.
+  Explore Case Studies — corrected scroll version.
+  Existing setting IDs and project blocks are preserved.
 {% endcomment %}
 
 {% liquid
-  assign selected_menu = section.settings.menu
-  if selected_menu == blank
-    assign selected_menu = 'gl-main-nav'
-  endif
-  assign navigation = linklists[selected_menu]
+  assign projects = section.blocks | where: 'type', 'case_study'
+  assign accent = section.settings.accent | default: '#e8472a'
+  assign end_color = section.settings.end_color | default: '#a82d22'
+  assign pin_offset = section.settings.pin_offset | default: 0
 
-  assign conversation_url = section.settings.apply_link
-  if conversation_url == blank
-    assign conversation_url = pages['conversation'].url | default: '/pages/conversation'
-  endif
+  assign video_url = section.settings.video_url | default: 'https://d2ol7oe51mr4n9.cloudfront.net/user_3GJaYKPxdnQG0Q9O26lu6DPmcHu/3abfc4bb-a49d-4a22-93e6-3ebb0f7fa9ac.mp4'
 
-  assign show_landing = false
-  if request.page_type == 'index' or section.settings.show_on_all_pages
-    assign show_landing = true
+  assign poster_url = 'https://d2ol7oe51mr4n9.cloudfront.net/user_3GJaYKPxdnQG0Q9O26lu6DPmcHu/c34fa15e-fad4-4c37-a7a0-1a325b39e8bf.jpg'
+
+  if section.settings.cover_image != blank
+    assign poster_url = section.settings.cover_image | image_url: width: 2400
   endif
 
-  assign screens = section.settings.scroll_length | divided_by: 100.0
-  assign signup_id = 'CT-Signup-' | append: section.id
+  assign title_words = section.settings.title | split: ' '
+  assign title_first = title_words | first
+  assign title_rest = section.settings.title | remove_first: title_first | strip
 %}
 
-{% capture arrow %}
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M5 12h14m-6-6 6 6-6 6"/>
-  </svg>
-{% endcapture %}
-
-{% capture brand %}
-  {% if section.settings.show_logo and section.settings.logo_url != blank %}
-    <img
-      class="ct-logo"
-      src="{{ section.settings.logo_url | escape }}"
-      alt=""
-      width="48"
-      height="48"
-      loading="eager"
-    >
-  {% endif %}
-  <span class="ct-brand-copy">
-    <span class="ct-brand-name">{{ section.settings.brand_name | escape }}</span>
-    {% if section.settings.brand_tagline != blank %}
-      <span class="ct-brand-tag">{{ section.settings.brand_tagline | escape }}</span>
-    {% endif %}
-  </span>
-{% endcapture %}
-
-<div
-  id="TruthLanding-{{ section.id }}"
-  class="ct"
-  style="
-    --ct-accent: {{ section.settings.accent }};
-    --ct-screens: {{ screens }};
-  "
->
-  <header class="ct-header" data-ct-header>
-    <a class="ct-brand" href="{{ routes.root_url }}">
-      {{ brand }}
-    </a>
-
-    <div class="ct-header-right">
-      <nav class="ct-desktop-nav" aria-label="Primary navigation">
-        {% for link in navigation.links limit: 4 %}
-          <a
-            href="{{ link.url | escape }}"
-            {% if link.current %}aria-current="page"{% endif %}
-          >
-            {{ link.title | escape }}
-          </a>
-        {% endfor %}
-      </nav>
-
-      {% if section.settings.show_header_cta and section.settings.apply_label != blank %}
-        <a class="ct-header-cta" href="{{ conversation_url | escape }}">
-          {{ section.settings.apply_label | escape }}
-        </a>
-      {% endif %}
-
-      <button
-        class="ct-menu-button"
-        type="button"
-        data-ct-open
-        aria-label="Open navigation"
-        aria-controls="CT-Menu-{{ section.id }}"
-        aria-expanded="false"
-        hidden
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-  </header>
-
-  <dialog
-    id="CT-Menu-{{ section.id }}"
-    class="ct-dialog"
-    data-ct-dialog
-    aria-label="Navigation"
-  >
-    <div class="ct-dialog-top">
-      <a class="ct-brand" href="{{ routes.root_url }}">
-        {{ brand }}
-      </a>
-      <button class="ct-close" type="button" data-ct-close autofocus>
-        Close <span aria-hidden="true">×</span>
-      </button>
-    </div>
-
-    <nav class="ct-menu-content" aria-label="All navigation">
-      {% for link in navigation.links %}
-        <div class="ct-menu-group">
-          {% if link.links.size > 0 %}
-            <details>
-              <summary>
-                {{ link.title | escape }}
-                <span aria-hidden="true">+</span>
-              </summary>
-
-              <div class="ct-submenu">
-                <a href="{{ link.url | escape }}">
-                  {{ link.title | escape }} — Overview
-                </a>
-
-                {% for child in link.links %}
-                  <a
-                    href="{{ child.url | escape }}"
-                    {% if child.current %}aria-current="page"{% endif %}
-                  >
-                    {{ child.title | escape }}
-                  </a>
-
-                  {% if child.links.size > 0 %}
-                    <div class="ct-grandchildren">
-                      {% for grandchild in child.links %}
-                        <a
-                          href="{{ grandchild.url | escape }}"
-                          {% if grandchild.current %}aria-current="page"{% endif %}
-                        >
-                          {{ grandchild.title | escape }}
-                        </a>
-                      {% endfor %}
-                    </div>
-                  {% endif %}
-                {% endfor %}
-              </div>
-            </details>
-          {% else %}
-            <a
-              class="ct-menu-main-link"
-              href="{{ link.url | escape }}"
-              {% if link.current %}aria-current="page"{% endif %}
-            >
-              {{ link.title | escape }}
-              <span aria-hidden="true">↗</span>
-            </a>
-          {% endif %}
-        </div>
-      {% endfor %}
-
-      {% if section.settings.apply_label != blank %}
-        <a class="ct-button" href="{{ conversation_url | escape }}">
-          {{ section.settings.apply_label | escape }}
-          {{ arrow }}
-        </a>
-      {% endif %}
-
-      {% if section.settings.show_signin and shop.customer_accounts_enabled %}
-        <a class="ct-signin" href="{{ routes.account_login_url }}">
-          {{ section.settings.signin_label | escape }}
-        </a>
-      {% endif %}
-    </nav>
-  </dialog>
-
-  <noscript>
-    <nav class="ct-noscript-nav" aria-label="Navigation">
-      {% for link in navigation.links %}
-        <a href="{{ link.url | escape }}">{{ link.title | escape }}</a>
-        {% for child in link.links %}
-          <a href="{{ child.url | escape }}">{{ child.title | escape }}</a>
-          {% for grandchild in child.links %}
-            <a href="{{ grandchild.url | escape }}">{{ grandchild.title | escape }}</a>
-          {% endfor %}
-        {% endfor %}
-      {% endfor %}
-      <a href="{{ conversation_url | escape }}">
-        {{ section.settings.apply_label | escape }}
-      </a>
-    </nav>
-  </noscript>
-
-  {% if show_landing %}
-    <div class="ct-runway" data-ct-runway>
-      <div class="ct-stage" data-ct-stage>
-        <div class="ct-background" aria-hidden="true">
-          {% if section.settings.poster != blank %}
-            {{
-              section.settings.poster
-              | image_url: width: 2400
-              | image_tag:
-                class: 'ct-poster',
-                loading: 'eager',
-                fetchpriority: 'high',
-                widths: '750, 1100, 1600, 2400',
-                sizes: '100vw',
-                alt: ''
-            }}
-          {% endif %}
-
-          {% for i in (1..3) %}
-            {% assign video_key = 'video_' | append: i %}
-            {% if section.settings[video_key] != blank %}
-              <video
-                class="ct-video"
-                data-ct-video="{{ forloop.index0 }}"
-                data-src="{{ section.settings[video_key] | escape }}"
-                muted
-                playsinline
-                preload="none"
-                tabindex="-1"
-                {% if section.settings.poster != blank %}
-                  poster="{{ section.settings.poster | image_url: width: 2000 }}"
-                {% endif %}
-              ></video>
-            {% endif %}
-          {% endfor %}
-          <div class="ct-background-shade"></div>
-        </div>
-
-        <div class="ct-intro" data-ct-scene="intro">
-          <div class="ct-glass ct-intro-card">
-            <p class="ct-eyebrow">
-              {{ section.settings.intro_label | escape }}
-            </p>
-            <h1>
-              {{ section.settings.hero_title | escape | newline_to_br }}
-            </h1>
-            <p class="ct-intro-copy">
-              {{ section.settings.hero_description | escape }}
-            </p>
-
-            <a
-              class="ct-circle"
-              href="#CT-Pillars-{{ section.id }}"
-              data-ct-explore
-              aria-label="Explore our approach"
-            >
-              {{ arrow }}
-            </a>
-          </div>
-
-          <span class="ct-scroll-note" aria-hidden="true">
-            Scroll to explore <span>↓</span>
-          </span>
-        </div>
-
-        <section
-          id="CT-Pillars-{{ section.id }}"
-          class="ct-features"
-          data-ct-scene="features"
-          aria-label="Spirituality, technology, and science"
-        >
-          {% for i in (1..3) %}
-            {% liquid
-              assign title_key = 'pillar_title_' | append: i
-              assign body_key = 'pillar_body_' | append: i
-            %}
-            <article class="ct-glass ct-feature" data-ct-card>
-              <div class="ct-feature-top">
-                <span class="ct-feature-number">0{{ i }}</span>
-
-                <svg class="ct-feature-symbol" viewBox="0 0 48 48" aria-hidden="true">
-                  {% case i %}
-                    {% when 1 %}
-                      <circle cx="24" cy="24" r="15"/>
-                      <path d="M24 3v10m0 22v10M3 24h10m22 0h10"/>
-                      <circle cx="24" cy="24" r="4"/>
-                    {% when 2 %}
-                      <path d="M24 5 43 24 24 43 5 24Z"/>
-                      <path d="M24 13 35 24 24 35 13 24Z"/>
-                      <path d="M5 24h8m22 0h8M24 5v8m0 22v8"/>
-                    {% when 3 %}
-                      <ellipse cx="24" cy="24" rx="20" ry="8"/>
-                      <ellipse cx="24" cy="24" rx="20" ry="8" transform="rotate(60 24 24)"/>
-                      <ellipse cx="24" cy="24" rx="20" ry="8" transform="rotate(120 24 24)"/>
-                      <circle cx="24" cy="24" r="2"/>
-                  {% endcase %}
-                </svg>
-              </div>
-
-              <div>
-                <h2>{{ section.settings[title_key] | escape }}</h2>
-                <p>{{ section.settings[body_key] | escape }}</p>
-              </div>
-            </article>
-          {% endfor %}
-        </section>
-
-        <section class="ct-mission" aria-label="Our approach">
-          {% for i in (1..3) %}
-            {% assign mission_key = 'mission_' | append: i %}
-            <div class="ct-mission-text" data-ct-mission>
-              <p class="ct-eyebrow">
-                {{ section.settings.brand_name | escape }} / 0{{ i }}
-              </p>
-              <h2>{{ section.settings[mission_key] | escape }}</h2>
-            </div>
-          {% endfor %}
-        </section>
-
-        <div class="ct-finale" data-ct-scene="finale">
-          <div class="ct-glass ct-finale-card">
-            <p class="ct-eyebrow">The conversation continues</p>
-            <h2>{{ section.settings.closing_title | escape }}</h2>
-            <p>{{ section.settings.closing_description | escape }}</p>
-
-            {% if section.settings.apply_label != blank %}
-              <a class="ct-button" href="{{ conversation_url | escape }}">
-                {{ section.settings.apply_label | escape }}
-                {{ arrow }}
-              </a>
-            {% endif %}
-
-            {% if section.settings.show_signup %}
-              <a class="ct-text-link" href="#{{ signup_id }}">
-                Stay connected <span aria-hidden="true">↓</span>
-              </a>
-            {% endif %}
-          </div>
-        </div>
-
-        <button
-          type="button"
-          class="ct-mode"
-          data-ct-mode
-          aria-pressed="false"
-          hidden
-        >
-          View all content
-        </button>
-
-        <div class="ct-progress" aria-hidden="true">
-          <span data-ct-progress></span>
-        </div>
-      </div>
-    </div>
-
-    {% if section.settings.show_signup %}
-      <section class="ct-signup" aria-labelledby="CT-SignupTitle-{{ section.id }}">
-        <div class="ct-signup-card">
-          <p class="ct-eyebrow">
-            {{ section.settings.brand_name | escape }}
-          </p>
-          <h2 id="CT-SignupTitle-{{ section.id }}">
-            {{ section.settings.signup_title | escape }}
-          </h2>
-          <p>{{ section.settings.signup_description | escape }}</p>
-
-          {% form 'customer', id: signup_id, class: 'ct-form' %}
-            <input type="hidden" name="contact[tags]" value="newsletter">
-
-            {% if form.posted_successfully? %}
-              <p class="ct-form-success" role="status">
-                Thank you. Your signup has been received.
-              </p>
-            {% else %}
-              {% if form.errors %}
-                <div class="ct-form-errors" role="alert">
-                  {{ form.errors | default_errors }}
-                </div>
-              {% endif %}
-
-              <label for="CT-Email-{{ section.id }}">Email address</label>
-              <input
-                id="CT-Email-{{ section.id }}"
-                type="email"
-                name="contact[email]"
-                value="{{ form.email | escape }}"
-                placeholder="Your email address"
-                autocomplete="email"
-                autocapitalize="off"
-                spellcheck="false"
-                required
-              >
-              <p class="ct-consent">
-                Subscribe to receive our newsletter and updates by email.
-                You can unsubscribe at any time.
-              </p>
-              <button type="submit" class="ct-button">
-                {{ section.settings.signup_button | escape }}
-                {{ arrow }}
-              </button>
-            {% endif %}
-          {% endform %}
-        </div>
-      </section>
-    {% endif %}
-  {% endif %}
-</div>
-
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap');
 
-  #TruthLanding-{{ section.id }} {
-    --ct-pad: clamp(20px, 3.5vw, 56px);
-    --ct-serif: "Instrument Serif", Georgia, serif;
-    --ct-sans: "Manrope", Arial, sans-serif;
-    color: #fff;
-    background: #080a09;
-    font-family: var(--ct-sans);
+  #ecs-{{ section.id }} {
+    --bg: #0d0e10;
+    --ink: #f4f4f2;
+    --accent: {{ accent }};
+    --dial-ink: {{ accent }};
+    --pad: clamp(20px, 4vw, 72px);
+    --pin: {{ pin_offset }}px;
+    display: block;
+    position: relative;
+    isolation: isolate;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter Tight', Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 
-  #TruthLanding-{{ section.id }} *,
-  #TruthLanding-{{ section.id }} *::before,
-  #TruthLanding-{{ section.id }} *::after { box-sizing: border-box; }
-
-  #TruthLanding-{{ section.id }} :is(h1,h2,p) { margin: 0; color: inherit; }
-  #TruthLanding-{{ section.id }} a { color: inherit; text-decoration: none; }
-  #TruthLanding-{{ section.id }} button { font: inherit; cursor: pointer; }
-  #TruthLanding-{{ section.id }} [hidden] { display: none !important; }
-
-  #TruthLanding-{{ section.id }} :is(a,button,input,summary):focus-visible {
-    outline: 2px solid var(--ct-accent);
-    outline-offset: 5px;
+  #ecs-{{ section.id }} *,
+  #ecs-{{ section.id }} *::before,
+  #ecs-{{ section.id }} *::after {
+    box-sizing: border-box;
   }
 
-  #TruthLanding-{{ section.id }} svg {
-    width: 24px; height: 24px;
-    fill: none; stroke: currentColor; stroke-width: 1.5;
-    stroke-linecap: round; stroke-linejoin: round;
+  #ecs-{{ section.id }} :is(h2, h3, p) {
+    margin: 0;
+    font-family: inherit;
+    color: inherit;
+  }
+
+  #ecs-{{ section.id }} a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  #ecs-{{ section.id }} :is(a, button):focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 6px;
+  }
+
+  /* PINNED VIDEO INTRODUCTION */
+
+  #ecs-{{ section.id }} .ecs-runway {
+    position: relative;
+  }
+
+  #ecs-{{ section.id }}[data-enhanced]:not([data-static]) .ecs-runway {
+    height: 280svh;
+  }
+
+  #ecs-{{ section.id }} .ecs-stage {
+    position: relative;
+    min-height: calc(100svh - var(--pin));
+    overflow: hidden;
+    background: #0d0e10;
+  }
+
+  #ecs-{{ section.id }}[data-enhanced]:not([data-static]) .ecs-stage {
+    position: sticky;
+    top: var(--pin);
+  }
+
+  #ecs-{{ section.id }} .ecs-scene {
+    position: absolute;
+    inset: 0;
+    transform: scale(var(--scene-scale, 1));
+    opacity: var(--scene-opacity, 1);
+  }
+
+  #ecs-{{ section.id }} .ecs-poster,
+  #ecs-{{ section.id }} .ecs-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    filter: saturate(.3) brightness(.75);
+  }
+
+  #ecs-{{ section.id }} .ecs-video {
+    opacity: 0;
+  }
+
+  #ecs-{{ section.id }}[data-video-ready] .ecs-video {
+    opacity: 1;
+  }
+
+  #ecs-{{ section.id }} .ecs-shade {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgba(0,0,0,.25),
+      transparent 35%,
+      rgba(0,0,0,.75)
+    );
+  }
+
+  #ecs-{{ section.id }} .ecs-chrome {
+    position: relative;
+    z-index: 2;
+    min-height: calc(100svh - var(--pin));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 36px;
+    padding: clamp(28px, 4vw, 60px) var(--pad);
+  }
+
+  #ecs-{{ section.id }} .ecs-topline {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    opacity: var(--chrome-opacity, 1);
+  }
+
+  #ecs-{{ section.id }} .ecs-eyebrow {
+    font-size: 11px;
+    line-height: 1.5;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+
+  #ecs-{{ section.id }} .ecs-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-right: 12px;
+    background: var(--accent);
+  }
+
+  #ecs-{{ section.id }} .ecs-hero-count {
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+    opacity: .65;
+    white-space: nowrap;
+  }
+
+  #ecs-{{ section.id }} .ecs-title {
+    display: flex;
+    flex-direction: column;
+    color: var(--accent);
+    font-size: clamp(64px, 14vw, 220px);
+    font-weight: 400;
+    line-height: .9;
+    letter-spacing: -.065em;
+  }
+
+  #ecs-{{ section.id }} .ecs-title-line {
+    display: block;
+    overflow-wrap: anywhere;
+  }
+
+  #ecs-{{ section.id }} .ecs-title-first {
+    transform: translate3d(var(--title-left, 0%), 0, 0);
+  }
+
+  #ecs-{{ section.id }} .ecs-title-last {
+    text-align: right;
+    transform: translate3d(var(--title-right, 0%), 0, 0);
+  }
+
+  #ecs-{{ section.id }} .ecs-title-rule {
+    height: clamp(3px, .4vw, 7px);
+    margin-top: 24px;
+    background: var(--accent);
+    transform: scaleX(var(--rule-scale, 1));
+    transform-origin: left;
+  }
+
+  #ecs-{{ section.id }} .ecs-bottom {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 560px);
+    gap: 32px;
+    align-items: end;
+    opacity: var(--chrome-opacity, 1);
+  }
+
+  #ecs-{{ section.id }} .ecs-description {
+    font-size: clamp(19px, 2vw, 30px);
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -.02em;
+    text-wrap: pretty;
+  }
+
+  #ecs-{{ section.id }} .ecs-scroll {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    width: fit-content;
+    min-height: 48px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+  }
+
+  #ecs-{{ section.id }} .ecs-scroll-icon {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #ffffff66;
+    border-radius: 50%;
+    font-size: 20px;
+  }
+
+  #ecs-{{ section.id }} .ecs-film-progress {
+    position: absolute;
+    inset: auto 0 0;
+    height: 2px;
+    background: #ffffff22;
+    z-index: 3;
+  }
+
+  #ecs-{{ section.id }} .ecs-film-progress::after {
+    content: '';
+    display: block;
+    height: 100%;
+    background: var(--accent);
+    transform: scaleX(var(--film-progress, 0));
+    transform-origin: left;
+  }
+
+  #ecs-{{ section.id }} .ecs-video-help {
+    position: absolute;
+    z-index: 4;
+    right: var(--pad);
+    bottom: 8px;
+    padding: 8px 12px;
+    border: 1px solid #ffffff66;
+    border-radius: 24px;
+    background: #000c;
+    color: white;
+    font: inherit;
+    font-size: 11px;
+    cursor: pointer;
+  }
+
+  #ecs-{{ section.id }} .ecs-video-help[hidden] {
+    display: none;
+  }
+
+  /* PROJECT GALLERY + DIAL */
+
+  #ecs-{{ section.id }} .ecs-gallery {
+    display: grid;
+    position: relative;
+    scroll-margin-top: var(--pin);
+  }
+
+  #ecs-{{ section.id }} .ecs-dial,
+  #ecs-{{ section.id }} .ecs-projects {
+    grid-area: 1 / 1;
+    min-width: 0;
+  }
+
+  #ecs-{{ section.id }} .ecs-dial {
+    position: sticky;
+    top: var(--pin);
+    height: calc(100svh - var(--pin));
+    align-self: start;
+    overflow: hidden;
+    pointer-events: none;
+    visibility: hidden;
+    z-index: 0;
+  }
+
+  #ecs-{{ section.id }}[data-enhanced] .ecs-dial {
+    visibility: visible;
+  }
+
+  #ecs-{{ section.id }} .ecs-dial svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  #ecs-{{ section.id }} .ecs-rail,
+  #ecs-{{ section.id }} .ecs-inner,
+  #ecs-{{ section.id }} .ecs-arc {
+    fill: none;
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+
+  #ecs-{{ section.id }} .ecs-rail {
+    stroke: #f4f4f230;
+  }
+
+  #ecs-{{ section.id }} .ecs-inner {
+    stroke: #f4f4f212;
+  }
+
+  #ecs-{{ section.id }} .ecs-arc {
+    stroke: var(--dial-ink);
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    stroke-width: 1.5;
+  }
+
+  #ecs-{{ section.id }} .ecs-tick {
+    stroke: #f4f4f233;
+    vector-effect: non-scaling-stroke;
+  }
+
+  #ecs-{{ section.id }} .ecs-tick.is-active {
+    stroke: var(--dial-ink);
+  }
+
+  #ecs-{{ section.id }} .ecs-needle {
+    fill: var(--dial-ink);
+    opacity: .4;
+  }
+
+  #ecs-{{ section.id }} .ecs-dot {
+    fill: var(--dial-ink);
+  }
+
+  #ecs-{{ section.id }} .ecs-readout {
+    position: absolute;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  #ecs-{{ section.id }} .ecs-current {
+    font-size: 36px;
+    line-height: 1;
+    letter-spacing: -.05em;
+  }
+
+  #ecs-{{ section.id }} .ecs-total {
+    font-size: 11px;
+    opacity: .6;
+  }
+
+  #ecs-{{ section.id }} .ecs-projects {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(16, minmax(0, 1fr));
+    gap: clamp(90px, 13vw, 200px) 20px;
+    padding: 100px var(--pad) 140px;
+  }
+
+  #ecs-{{ section.id }} .ecs-project {
+    position: relative;
+    min-width: 0;
+    grid-row: var(--row);
+    grid-column: 2 / span 7;
+  }
+
+  #ecs-{{ section.id }} .ecs-project:nth-child(4n + 2) {
+    grid-column: 10 / span 6;
+  }
+
+  #ecs-{{ section.id }} .ecs-project:nth-child(4n + 3) {
+    grid-column: 3 / span 8;
+  }
+
+  #ecs-{{ section.id }} .ecs-project:nth-child(4n + 4) {
+    grid-column: 10 / span 5;
+  }
+
+  #ecs-{{ section.id }} .ecs-card {
+    display: block;
+  }
+
+  #ecs-{{ section.id }} .ecs-media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #17191c;
+    clip-path: inset(0);
+    transition: clip-path .65s cubic-bezier(.22,1,.36,1);
+  }
+
+  #ecs-{{ section.id }} .ecs-project:nth-child(even) .ecs-media {
+    aspect-ratio: 3 / 4;
+  }
+
+  #ecs-{{ section.id }} .ecs-image {
+    position: absolute;
+    inset: -8% 0;
+    width: 100%;
+    height: 116%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(1) brightness(.85);
+    transform: translate3d(0, var(--image-y, 0px), 0);
+    transition: filter .6s;
+  }
+
+  #ecs-{{ section.id }} .ecs-placeholder {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: #ffffff22;
+    font-size: clamp(80px, 13vw, 220px);
+  }
+
+  #ecs-{{ section.id }} .ecs-card-body {
+    padding-top: 22px;
+  }
+
+  #ecs-{{ section.id }} .ecs-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 14px;
+    font-size: 10px;
+    line-height: 1.5;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  #ecs-{{ section.id }} .ecs-number {
+    color: var(--dial-ink);
     flex-shrink: 0;
   }
 
-  #TruthLanding-{{ section.id }} .ct-header {
-    position: fixed; inset: 0 0 auto; z-index: 50;
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 24px; padding: 24px var(--ct-pad);
-    color: #fff;
-    transition: background .3s, padding .3s;
+  #ecs-{{ section.id }} .ecs-category {
+    opacity: .8;
   }
 
-  #TruthLanding-{{ section.id }} .ct-header[data-scrolled="true"] {
-    background: rgba(8,10,9,.9);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    padding-block: 15px;
-    border-bottom: 1px solid #ffffff18;
+  #ecs-{{ section.id }} .ecs-name-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
   }
 
-  #TruthLanding-{{ section.id }} .ct-brand {
-    display: flex; align-items: center; gap: 12px;
-    min-width: 0; color: #fff;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-logo {
-    width: 44px; height: 44px; object-fit: contain; flex-shrink: 0;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-brand-copy {
-    display: flex; flex-direction: column; gap: 5px; min-width: 0;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-brand-name {
-    font-family: var(--ct-serif);
-    font-size: clamp(24px, 2.1vw, 34px);
-    line-height: 1; letter-spacing: -.025em;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-brand-tag {
-    font-size: 8px; line-height: 1.5;
-    letter-spacing: .13em; opacity: .8;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-header-right {
-    display: flex; align-items: center; justify-content: flex-end;
-    gap: 10px;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-desktop-nav {
-    display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 3px;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-desktop-nav a,
-  #TruthLanding-{{ section.id }} .ct-header-cta {
-    display: inline-flex; align-items: center; justify-content: center;
-    min-height: 44px; padding: 10px 15px;
-    border-radius: 8px; background: #fff; color: #151715;
-    font-size: 11px; line-height: 1.4;
-    transition: background .2s, transform .2s;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-header-cta {
-    background: var(--ct-accent);
-  }
-
-  #TruthLanding-{{ section.id }} .ct-menu-button {
-    display: flex; flex-direction: column; justify-content: center;
-    align-items: center; gap: 5px;
-    width: 46px; height: 46px; flex-shrink: 0;
-    color: #fff; background: #ffffff16;
-    border: 1px solid #ffffff35; border-radius: 10px;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-  }
-
-  #TruthLanding-{{ section.id }} .ct-menu-button span {
-    display: block; width: 20px; height: 1px; background: currentColor;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-dialog {
-    position: fixed; inset: 0; margin: 0;
-    width: 100%; height: 100%; max-width: none; max-height: none;
-    padding: 0; border: 0; color: #fff;
-    background: rgba(8,10,9,.97);
-    font-family: var(--ct-sans);
-    overscroll-behavior: contain;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-dialog::backdrop {
-    background: #000a;
-    backdrop-filter: blur(20px);
-  }
-
-  #TruthLanding-{{ section.id }} .ct-dialog-top {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 24px; padding: 25px var(--ct-pad);
-    border-bottom: 1px solid #ffffff20;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-close {
-    display: flex; align-items: center; gap: 12px;
-    min-height: 44px; padding: 8px;
-    border: 0; background: none; color: #fff;
-    font-size: 12px;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-close span { font-size: 30px; }
-
-  #TruthLanding-{{ section.id }} .ct-menu-content {
-    width: min(100%, 1000px); margin: 0 auto;
-    padding: 45px var(--ct-pad) 80px;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-menu-group {
-    border-bottom: 1px solid #ffffff25;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-menu-group summary,
-  #TruthLanding-{{ section.id }} .ct-menu-main-link {
-    display: flex; justify-content: space-between; align-items: center;
-    gap: 20px; padding: 22px 0;
-    font-family: var(--ct-serif);
-    font-size: clamp(30px, 5vw, 58px); line-height: 1.1;
-    cursor: pointer; list-style: none;
-  }
-
-  #TruthLanding-{{ section.id }} summary::-webkit-details-marker { display: none; }
-  #TruthLanding-{{ section.id }} details[open] > summary > span { transform: rotate(45deg); }
-
-  #TruthLanding-{{ section.id }} .ct-submenu {
-    display: grid; gap: 8px; padding: 0 0 24px 12px;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-submenu a {
-    display: block; padding: 10px 0; font-size: 16px;
-    color: #ffffffbf;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-grandchildren {
-    display: grid; padding-left: 20px; border-left: 1px solid #ffffff25;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-menu-content > .ct-button { margin-top: 32px; }
-  #TruthLanding-{{ section.id }} .ct-signin { display: block; margin-top: 24px; }
-
-  #TruthLanding-{{ section.id }} .ct-noscript-nav {
-    position: relative; padding: 120px 24px 24px;
-    display: flex; flex-wrap: wrap; gap: 20px;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-runway { position: relative; }
-  #TruthLanding-{{ section.id }} .ct-stage { position: relative; isolation: isolate; }
-
-  #TruthLanding-{{ section.id }} .ct-background {
-    position: absolute; inset: 0; z-index: -1; overflow: hidden;
-    background: radial-gradient(ellipse at 70% 20%, #354536, #101810 65%, #080a09);
-  }
-
-  #TruthLanding-{{ section.id }} .ct-poster,
-  #TruthLanding-{{ section.id }} .ct-video {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-video { opacity: 0; }
-  #TruthLanding-{{ section.id }} .ct-background-shade {
-    position: absolute; inset: 0;
-    background: linear-gradient(180deg, #0005, #0001 30%, #0007 100%);
-  }
-
-  #TruthLanding-{{ section.id }} .ct-intro {
-    position: relative; padding: 190px var(--ct-pad) 90px;
-    min-height: 90svh; display: flex; align-items: flex-end;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-glass {
-    background: rgba(255,255,255,.14);
-    backdrop-filter: blur(38px);
-    -webkit-backdrop-filter: blur(38px);
-    border: 1px solid #ffffff35;
-    box-shadow: 0 25px 60px #0003;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-intro-card {
-    position: relative; width: min(480px, 100%);
-    padding: clamp(28px, 3vw, 48px);
-  }
-
-  #TruthLanding-{{ section.id }} .ct-eyebrow {
-    font-family: var(--ct-sans); font-size: 10px;
-    line-height: 1.6; letter-spacing: .13em;
-    text-transform: uppercase; color: #ffffffb3;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-intro h1 {
-    margin-top: 20px;
-    font-family: var(--ct-serif); font-size: clamp(43px, 5vw, 74px);
-    line-height: 1.02; font-weight: 400;
-    letter-spacing: -.03em; text-wrap: balance;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-intro-copy {
-    margin-top: 23px; max-width: 36ch;
-    font-size: 14px; line-height: 1.75; color: #ffffffc9;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-circle {
-    position: absolute; right: -40px; bottom: 32px;
-    display: grid; place-items: center;
-    width: 80px; height: 80px; border-radius: 50%;
-    background: var(--ct-accent); color: #171717;
-    transition: transform .25s;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-circle svg { width: 32px; height: 32px; }
-  #TruthLanding-{{ section.id }} .ct-circle:hover { transform: translateX(4px); }
-  #TruthLanding-{{ section.id }} .ct-scroll-note {
-    display: none; align-items: center; gap: 20px;
-    font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-features {
-    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px; width: min(100%, 1120px);
-    margin: 0 auto; padding: 80px var(--ct-pad);
-  }
-
-  #TruthLanding-{{ section.id }} .ct-feature {
-    display: flex; flex-direction: column; justify-content: space-between;
-    gap: 60px; min-height: 350px; padding: 28px;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-feature-top {
-    display: flex; align-items: flex-start; justify-content: space-between; gap: 20px;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-feature-number {
-    font-size: 11px; color: #ffffffa3;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-feature-symbol {
-    width: 48px; height: 48px; color: var(--ct-accent);
-    stroke-width: 1;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-feature h2 {
-    font-family: var(--ct-serif); font-size: 34px;
-    font-weight: 400; line-height: 1.1;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-feature p {
-    margin-top: 14px; font-size: 13px; line-height: 1.75;
-    color: #ffffffc9;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-mission-text {
-    max-width: 1100px; margin: 0 auto;
-    padding: 100px var(--ct-pad); text-align: center;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-mission-text h2 {
-    margin-top: 24px; font-family: var(--ct-serif);
-    font-size: clamp(34px, 5.2vw, 76px);
-    font-weight: 400; line-height: 1.15;
-    letter-spacing: -.025em; text-wrap: balance;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-finale {
-    padding: 90px var(--ct-pad); display: grid; place-items: center;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-finale-card {
-    width: min(100%, 540px); padding: 40px; text-align: center;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-finale h2,
-  #TruthLanding-{{ section.id }} .ct-signup h2 {
-    margin: 20px 0; font-family: var(--ct-serif);
-    font-size: clamp(38px, 4vw, 58px); font-weight: 400;
-    line-height: 1.05; letter-spacing: -.02em;
+  #ecs-{{ section.id }} .ecs-name {
+    flex: 1;
+    min-width: 0;
+    font-size: clamp(28px, 3.3vw, 58px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -.045em;
+    overflow-wrap: anywhere;
     text-wrap: balance;
   }
 
-  #TruthLanding-{{ section.id }} .ct-finale-card > p:not(.ct-eyebrow),
-  #TruthLanding-{{ section.id }} .ct-signup-card > p:not(.ct-eyebrow) {
-    font-size: 14px; line-height: 1.8; color: #ffffffbf;
+  #ecs-{{ section.id }} .ecs-arrow {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #ffffff55;
+    border-radius: 50%;
+    font-size: 23px;
   }
 
-  #TruthLanding-{{ section.id }} .ct-button {
-    display: inline-flex; align-items: center; justify-content: center;
-    gap: 20px; min-height: 52px; padding: 15px 24px;
-    border: 0; background: var(--ct-accent); color: #171717;
-    font-family: var(--ct-sans); font-size: 12px; font-weight: 600;
-    line-height: 1.5; text-align: center;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-finale .ct-button { margin-top: 28px; }
-  #TruthLanding-{{ section.id }} .ct-text-link {
-    display: block; width: fit-content; margin: 24px auto 0;
-    padding: 8px 0; border-bottom: 1px solid #ffffff50; font-size: 12px;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-mode {
-    position: absolute; right: var(--ct-pad); bottom: 20px; z-index: 10;
-    min-height: 44px; padding: 9px 14px;
-    border: 1px solid #ffffff30; border-radius: 999px;
-    background: #0006; color: #fff; font-size: 10px;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-progress { display: none; }
-
-  #TruthLanding-{{ section.id }} .ct-signup {
-    position: relative; padding: 100px var(--ct-pad);
-    background: #0c100d; border-top: 1px solid #ffffff15;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-signup-card {
-    width: min(100%, 540px); margin: 0 auto; text-align: center;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-form {
-    display: grid; gap: 14px; margin-top: 28px;
-    scroll-margin-top: 120px; text-align: left;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-form label { font-size: 12px; }
-  #TruthLanding-{{ section.id }} .ct-form input[type="email"] {
-    width: 100%; min-height: 54px; padding: 14px 18px;
-    border: 1px solid #ffffff40; border-radius: 0;
-    background: #ffffff08; color: #fff;
-    font: 16px var(--ct-sans);
-  }
-
-  #TruthLanding-{{ section.id }} .ct-consent {
-    color: #ffffffa3; font-size: 11px; line-height: 1.7;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-form-success,
-  #TruthLanding-{{ section.id }} .ct-form-errors {
-    padding: 18px; border: 1px solid var(--ct-accent);
-    font-size: 14px; line-height: 1.7;
-  }
-
-  /* Progressive enhancement: content is readable before JS starts. */
-  #TruthLanding-{{ section.id }}.ct-animated .ct-runway {
-    height: calc(100vh * var(--ct-screens));
-    height: calc(100svh * var(--ct-screens));
-  }
-
-  #TruthLanding-{{ section.id }}.ct-animated .ct-stage {
-    position: sticky; top: 0; height: 100vh; height: 100svh;
-    overflow: hidden;
-  }
-
-  #TruthLanding-{{ section.id }}.ct-animated .ct-intro {
-    position: absolute; inset: 0; min-height: 0;
-    padding: 130px var(--ct-pad) 65px;
-  }
-
-  #TruthLanding-{{ section.id }}.ct-animated .ct-scroll-note {
-    display: flex; position: absolute;
-    right: var(--ct-pad); bottom: 90px;
-  }
-
-  #TruthLanding-{{ section.id }}.ct-animated .ct-features {
-    position: absolute; inset: 0;
-    align-content: center;
-    padding-top: 120px; padding-bottom: 80px;
-  }
-
-  #TruthLanding-{{ section.id }}.ct-animated .ct-mission {
-    position: absolute; inset: 0; pointer-events: none;
-  }
-
-  #TruthLanding-{{ section.id }}.ct-animated .ct-mission-text {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column; justify-content: center;
-    padding-top: 120px; padding-bottom: 80px;
-  }
-
-  #TruthLanding-{{ section.id }}.ct-animated .ct-finale {
-    position: absolute; inset: 0; padding-top: 120px; padding-bottom: 80px;
-  }
-
-  #TruthLanding-{{ section.id }}.ct-animated .ct-progress {
-    display: block; position: absolute; inset: auto 0 0;
-    height: 2px; background: #ffffff20;
-  }
-
-  #TruthLanding-{{ section.id }} .ct-progress span {
-    display: block; height: 100%; background: var(--ct-accent);
-    transform: scaleX(0); transform-origin: left;
-  }
-
-  @media (max-width: 1100px) {
-    #TruthLanding-{{ section.id }} .ct-desktop-nav { display: none; }
-  }
-
-  @media (max-width: 760px) {
-    #TruthLanding-{{ section.id }} .ct-header { gap: 12px; padding-block: 20px; }
-    #TruthLanding-{{ section.id }} .ct-header-cta { display: none; }
-    #TruthLanding-{{ section.id }} .ct-brand-tag { font-size: 7px; letter-spacing: .08em; }
-    #TruthLanding-{{ section.id }} .ct-logo { width: 34px; height: 34px; }
-    #TruthLanding-{{ section.id }} .ct-brand-name { font-size: 25px; }
-    #TruthLanding-{{ section.id }} .ct-brand { gap: 9px; }
-    #TruthLanding-{{ section.id }} .ct-intro { padding-top: 160px; }
-    #TruthLanding-{{ section.id }} .ct-intro-card { padding: 30px 26px 42px; }
-    #TruthLanding-{{ section.id }} .ct-intro h1 { font-size: clamp(38px, 11vw, 54px); }
-    #TruthLanding-{{ section.id }} .ct-circle {
-      width: 60px; height: 60px; right: 14px; bottom: -30px;
+  @media (hover: hover) and (pointer: fine) {
+    #ecs-{{ section.id }} a.ecs-card:hover .ecs-media {
+      clip-path: inset(3%);
     }
-    #TruthLanding-{{ section.id }} .ct-features { grid-template-columns: 1fr; padding-block: 50px; }
-    #TruthLanding-{{ section.id }} .ct-feature { min-height: 300px; gap: 42px; }
-    #TruthLanding-{{ section.id }} .ct-finale-card { padding: 30px 24px; }
-    #TruthLanding-{{ section.id }} .ct-button { width: 100%; }
-    #TruthLanding-{{ section.id }}.ct-animated .ct-scroll-note { display: none; }
-    #TruthLanding-{{ section.id }}.ct-animated .ct-intro { padding-bottom: 105px; }
-    #TruthLanding-{{ section.id }}.ct-animated .ct-feature {
-      position: absolute; left: var(--ct-pad); right: var(--ct-pad);
-      top: 50%; min-height: 320px;
+
+    #ecs-{{ section.id }} a.ecs-card:hover .ecs-image {
+      filter: grayscale(0) brightness(1);
+    }
+
+    #ecs-{{ section.id }} a.ecs-card:hover .ecs-arrow {
+      background: var(--ink);
+      color: #0d0e10;
+    }
+  }
+
+  #ecs-{{ section.id }} a:focus-visible .ecs-image {
+    filter: grayscale(0);
+  }
+
+  @media (max-width: 767px) {
+    #ecs-{{ section.id }}[data-enhanced]:not([data-static]) .ecs-runway {
+      height: 230svh;
+    }
+
+    #ecs-{{ section.id }} .ecs-title {
+      font-size: clamp(58px, 17vw, 130px);
+      line-height: .95;
+    }
+
+    #ecs-{{ section.id }} .ecs-bottom {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 22px;
+    }
+
+    #ecs-{{ section.id }} .ecs-description {
+      grid-row: 1;
+      font-size: clamp(20px, 5.3vw, 26px);
+    }
+
+    #ecs-{{ section.id }} .ecs-projects {
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: 76px;
+      padding-top: 48px;
+      padding-bottom: 120px;
+    }
+
+    #ecs-{{ section.id }} .ecs-project:nth-child(n) {
+      grid-column: 1;
+    }
+
+    #ecs-{{ section.id }} .ecs-project:nth-child(n) .ecs-media {
+      aspect-ratio: 4 / 3;
+    }
+
+    #ecs-{{ section.id }} .ecs-name {
+      font-size: clamp(28px, 7vw, 42px);
+    }
+
+    #ecs-{{ section.id }} .ecs-dial {
+      opacity: .65;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    #TruthLanding-{{ section.id }} *,
-    #TruthLanding-{{ section.id }} *::before,
-    #TruthLanding-{{ section.id }} *::after {
-      animation: none !important; transition: none !important;
-      scroll-behavior: auto !important;
+    #ecs-{{ section.id }} *,
+    #ecs-{{ section.id }} *::before,
+    #ecs-{{ section.id }} *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+
+    #ecs-{{ section.id }} .ecs-dial {
+      display: none;
     }
   }
 </style>
 
+<ukiyo-scroll-cases-v4
+  id="ecs-{{ section.id }}"
+  data-accent="{{ accent }}"
+  data-end="{{ end_color }}"
+  data-color-scroll="{{ section.settings.scroll_color }}"
+  data-pin="{{ pin_offset }}"
+>
+  <div class="ecs-runway">
+    <header class="ecs-stage">
+      <div class="ecs-scene" aria-hidden="true">
+        <img
+          class="ecs-poster"
+          src="{{ poster_url | escape }}"
+          alt=""
+          width="1920"
+          height="1080"
+          loading="eager"
+        >
+
+        <video
+          class="ecs-video"
+          muted
+          playsinline
+          preload="auto"
+          poster="{{ poster_url | escape }}"
+          tabindex="-1"
+        >
+          <source
+            src="{{ video_url | escape }}"
+            type="video/mp4"
+          >
+        </video>
+
+        <div class="ecs-shade"></div>
+      </div>
+
+      <div class="ecs-chrome">
+        <div class="ecs-topline">
+          {% if section.settings.eyebrow != blank %}
+            <p class="ecs-eyebrow">
+              {{ section.settings.eyebrow | escape }}
+            </p>
+          {% endif %}
+
+          {% if projects.size > 0 %}
+            <span class="ecs-hero-count" aria-hidden="true">
+              01 / {% if projects.size < 10 %}0{% endif %}{{ projects.size }}
+            </span>
+          {% endif %}
+        </div>
+
+        {% if section.settings.title != blank %}
+          <div>
+            <h2 class="ecs-title">
+              <span class="ecs-title-line ecs-title-first">
+                {{ title_first | escape }}
+              </span>
+
+              {% if title_rest != blank %}
+                <span class="ecs-title-line ecs-title-last">
+                  {{ title_rest | escape }}
+                </span>
+              {% endif %}
+            </h2>
+
+            <div class="ecs-title-rule" aria-hidden="true"></div>
+          </div>
+        {% endif %}
+
+        <div class="ecs-bottom">
+          {% if projects.size > 0 %}
+            <a
+              class="ecs-scroll"
+              href="#ecs-gallery-{{ section.id }}"
+              data-explore
+            >
+              <span class="ecs-scroll-icon" aria-hidden="true">↓</span>
+              Explore projects
+            </a>
+          {% endif %}
+
+          {% if section.settings.description != blank %}
+            <p class="ecs-description">
+              {{ section.settings.description | escape | newline_to_br }}
+            </p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="ecs-film-progress" aria-hidden="true"></div>
+
+      <button
+        class="ecs-video-help"
+        type="button"
+        hidden
+      >
+        Enable video motion
+      </button>
+    </header>
+  </div>
+
+  {% if projects.size > 0 %}
+    <div
+      class="ecs-gallery"
+      id="ecs-gallery-{{ section.id }}"
+    >
+      {% if section.settings.show_dial %}
+        <div class="ecs-dial" aria-hidden="true">
+          <svg focusable="false">
+            <path class="ecs-rail"></path>
+            <path class="ecs-inner"></path>
+            <path class="ecs-arc" pathLength="1"></path>
+            <g class="ecs-ticks"></g>
+            <polygon class="ecs-needle"></polygon>
+            <circle class="ecs-dot ecs-hub" r="3"></circle>
+            <circle class="ecs-dot ecs-tip" r="4"></circle>
+          </svg>
+
+          <div class="ecs-readout">
+            <span class="ecs-current">01</span>
+            <span class="ecs-total">
+              / {% if projects.size < 10 %}0{% endif %}{{ projects.size }}
+            </span>
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="ecs-projects">
+        {% for block in projects %}
+          {% liquid
+            assign card_tag = 'div'
+            if block.settings.url != blank
+              assign card_tag = 'a'
+            endif
+
+            assign image_alt = block.settings.image.alt | default: block.settings.name
+          %}
+
+          <article
+            class="ecs-project"
+            style="--row: {{ forloop.index }};"
+            {{ block.shopify_attributes }}
+          >
+            <{{ card_tag }}
+              class="ecs-card"
+              {% if block.settings.url != blank %}
+                href="{{ block.settings.url | escape }}"
+              {% endif %}
+            >
+              <div class="ecs-media">
+                {% if block.settings.image != blank %}
+                  {{
+                    block.settings.image
+                    | image_url: width: 1600
+                    | image_tag:
+                      class: 'ecs-image',
+                      widths: '400, 600, 800, 1000, 1200, 1600',
+                      sizes: '(min-width: 768px) 50vw, 100vw',
+                      loading: 'lazy',
+                      alt: image_alt
+                  }}
+                {% else %}
+                  <div class="ecs-placeholder" aria-hidden="true">
+                    {% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="ecs-card-body">
+                <div class="ecs-meta">
+                  <span class="ecs-number" aria-hidden="true">
+                    {% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}
+                  </span>
+
+                  {% if block.settings.tag != blank %}
+                    <span class="ecs-category">
+                      {{ block.settings.tag | escape }}
+                    </span>
+                  {% endif %}
+                </div>
+
+                <div class="ecs-name-row">
+                  <h3 class="ecs-name">
+                    {{ block.settings.name | escape }}
+                  </h3>
+
+                  {% if block.settings.url != blank %}
+                    <span class="ecs-arrow" aria-hidden="true">↗</span>
+                  {% endif %}
+                </div>
+              </div>
+            </{{ card_tag }}>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+</ukiyo-scroll-cases-v4>
+
 <script>
-(function () {
-  const id = 'TruthLanding-{{ section.id }}';
-  const wrapperId = 'shopify-section-{{ section.id }}';
+(() => {
+  const tag = 'ukiyo-scroll-cases-v4';
+  if (customElements.get(tag)) return;
 
-  window.__truthLanding = window.__truthLanding || {};
-  window.__truthLanding[id]?.();
-
-  const lifecycle = new AbortController();
-  let dispose = () => {};
-
-  function initialize() {
-    dispose();
-
-    const root = document.getElementById(id);
-    if (!root) return;
-
-    const events = new AbortController();
-    const signal = events.signal;
-    const header = root.querySelector('[data-ct-header]');
-    const dialog = root.querySelector('[data-ct-dialog]');
-    const openButton = root.querySelector('[data-ct-open]');
-    const closeButton = root.querySelector('[data-ct-close]');
-    const runway = root.querySelector('[data-ct-runway]');
-    const stage = root.querySelector('[data-ct-stage]');
-    const modeButton = root.querySelector('[data-ct-mode]');
-    const progressBar = root.querySelector('[data-ct-progress]');
-    const intro = root.querySelector('[data-ct-scene="intro"]');
-    const features = root.querySelector('[data-ct-scene="features"]');
-    const finale = root.querySelector('[data-ct-scene="finale"]');
-    const cards = [...root.querySelectorAll('[data-ct-card]')];
-    const missions = [...root.querySelectorAll('[data-ct-mission]')];
-    const scenes = [intro, features, finale, ...cards, ...missions].filter(Boolean);
-    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-    const shortScreen = matchMedia('(max-height: 560px)');
-    const mobile = matchMedia('(max-width: 760px)');
-
-    let destroyed = false;
-    let animated = false;
-    let staticRequested = false;
-    let raf = null;
-    let lockedOverflow = null;
-    let menuAnimation = null;
-
-    const clamp = n => Math.max(0, Math.min(1, n));
-    const range = (p, a, b) => clamp((p - a) / (b - a));
-    const ease = t => t * t * (3 - 2 * t);
-
-    function listen(target, type, handler, options = {}) {
-      target?.addEventListener(type, handler, { ...options, signal });
-    }
-
-    function setScene(element, opacity, x = 0, y = 0, blur = 0, center = false) {
-      if (!element) return;
-      const visible = opacity > .015;
-      element.style.visibility = visible ? 'visible' : 'hidden';
-      element.style.opacity = opacity.toFixed(3);
-      element.style.transform =
-        `${center ? 'translateY(-50%) ' : ''}translate3d(${x}px,${y}px,0)`;
-      element.style.filter = blur > .1 ? `blur(${blur}px)` : 'none';
-      element.inert = !visible;
-      if (visible) element.removeAttribute('aria-hidden');
-      else element.setAttribute('aria-hidden', 'true');
-    }
-
-    function envelope(p, inStart, inEnd, outStart, outEnd) {
-      const arriving = ease(range(p, inStart, inEnd));
-      const leaving = ease(range(p, outStart, outEnd));
-      return { opacity: arriving * (1 - leaving), arriving, leaving };
-    }
-
-    function resetScenes() {
-      scenes.forEach(element => {
-        ['visibility','opacity','transform','filter'].forEach(
-          property => element.style.removeProperty(property)
-        );
-        element.inert = false;
-        element.removeAttribute('aria-hidden');
+  class Cases extends HTMLElement {
+    connectedCallback() {
+      this.boot = requestAnimationFrame(() => {
+        if (this.isConnected) this.init();
       });
     }
 
-    const clips = [...root.querySelectorAll('[data-ct-video]')].map(video => {
-      const clip = {
-        video,
-        index: Number(video.dataset.ctVideo),
-        target: 0,
-        loaded: false,
-        failed: false,
-        visible: false
+    init() {
+      if (this.abort) return;
+
+      this.abort = new AbortController();
+      const signal = this.abort.signal;
+
+      this.mediaQuery = matchMedia(
+        '(prefers-reduced-motion: reduce)'
+      );
+
+      this.runway = this.querySelector('.ecs-runway');
+      this.stage = this.querySelector('.ecs-stage');
+      this.video = this.querySelector('video');
+      this.help = this.querySelector('.ecs-video-help');
+      this.gallery = this.querySelector('.ecs-gallery');
+      this.dial = this.querySelector('.ecs-dial');
+      this.svg = this.querySelector('.ecs-dial svg');
+      this.counter = this.querySelector('.ecs-current');
+      this.chrome = this.querySelector('.ecs-chrome');
+
+      this.pin = Number(this.dataset.pin) || 0;
+      this.items = [...this.querySelectorAll('.ecs-project')];
+      this.animations = new Set();
+      this.pending = 0;
+      this.ticks = [];
+
+      this.clamp = n => Math.max(0, Math.min(1, n));
+
+      this.mix = (a, b, t) => a.map(
+        (v, i) => Math.round(v + (b[i] - v) * t)
+      );
+
+      this.rgb = value => {
+        let v = String(value).replace('#', '');
+
+        if (v.length === 3) {
+          v = [...v].map(c => c + c).join('');
+        }
+
+        return /^[0-9a-f]{6}$/i.test(v)
+          ? [0, 2, 4].map(i => parseInt(v.slice(i, i + 2), 16))
+          : [232, 71, 42];
       };
 
-      video.muted = true;
-      video.defaultMuted = true;
-      video.playsInline = true;
+      this.schedule = () => {
+        if (this.frame) return;
 
-      clip.seek = () => {
-        if (
-          destroyed || !animated || document.hidden ||
-          !clip.visible || clip.failed || video.seeking ||
-          video.readyState < 1 ||
-          !Number.isFinite(video.duration) || video.duration <= 0
-        ) return;
+        this.frame = requestAnimationFrame(() => {
+          this.frame = 0;
+          if (this.isConnected) this.update();
+        });
+      };
 
-        const time = Math.max(0, Math.min(
-          clip.target,
-          Math.max(0, video.duration - .05)
-        ));
+      this.resize = () => {
+        this.toggleAttribute(
+          'data-static',
+          this.mediaQuery.matches || innerHeight - this.pin < 600
+        );
 
-        if (Math.abs(video.currentTime - time) < .04) return;
+        this.measure();
+        this.schedule();
+      };
+
+      window.addEventListener('scroll', this.schedule, {
+        passive: true,
+        signal
+      });
+
+      window.addEventListener('resize', this.resize, {
+        passive: true,
+        signal
+      });
+
+      this.mediaQuery.addEventListener('change', () => {
+        this.animations.forEach(a => a.cancel());
+        this.video.pause();
+        this.resize();
+      }, { signal });
+
+      this.querySelector('[data-explore]')?.addEventListener(
+        'click',
+        e => {
+          if (
+            e.metaKey || e.ctrlKey ||
+            e.shiftKey || e.altKey
+          ) return;
+
+          e.preventDefault();
+
+          this.gallery?.scrollIntoView({
+            block: 'start',
+            behavior: this.mediaQuery.matches ? 'auto' : 'smooth'
+          });
+        },
+        { signal }
+      );
+
+      this.addEventListener('shopify:block:select', e => {
+        this.animations.forEach(a => a.cancel());
+
+        e.target.closest('.ecs-project')?.scrollIntoView({
+          block: 'center',
+          behavior: 'auto'
+        });
+      }, { signal });
+
+      this.setupVideo(signal);
+      this.setupReveals();
+      this.setAttribute('data-enhanced', '');
+      this.resize();
+
+      if ('ResizeObserver' in window) {
+        this.ro = new ResizeObserver(this.resize);
+        this.ro.observe(this);
+        this.ro.observe(this.stage);
+      }
+    }
+
+    setupVideo(signal) {
+      const v = this.video;
+
+      v.muted = true;
+      v.defaultMuted = true;
+      v.playsInline = true;
+      v.pause();
+
+      const ready = () => {
+        if (v.readyState >= 2) {
+          this.setAttribute('data-video-ready', '');
+          this.help.hidden = true;
+        }
+
+        this.schedule();
+      };
+
+      ['loadedmetadata', 'durationchange', 'progress'].forEach(name => {
+        v.addEventListener(name, this.schedule, { signal });
+      });
+
+      ['loadeddata', 'canplay', 'seeked'].forEach(name => {
+        v.addEventListener(name, ready, { signal });
+      });
+
+      v.addEventListener('error', () => {
+        this.removeAttribute('data-video-ready');
+        this.help.hidden = false;
+        this.help.textContent = 'Retry video';
+      }, { signal });
+
+      this.help.addEventListener('click', async () => {
+        if (this.unlocking) return;
+
+        this.unlocking = true;
+
+        if (v.error) v.load();
 
         try {
-          video.currentTime = time;
-        } catch (_) {}
+          await v.play();
+
+          if (this.isConnected) {
+            this.help.hidden = true;
+            this.schedule();
+          }
+        } catch (_) {
+          if (this.isConnected) {
+            this.help.textContent = 'Retry video';
+          }
+        } finally {
+          v.pause();
+          this.unlocking = false;
+          this.schedule();
+        }
+      }, { signal });
+
+      this.timer = setTimeout(() => {
+        if (
+          this.isConnected &&
+          !this.hasAttribute('data-video-ready') &&
+          !this.mediaQuery.matches
+        ) {
+          this.help.hidden = false;
+        }
+      }, 6000);
+
+      if (v.readyState >= 2) ready();
+    }
+
+    seek(progress) {
+      const v = this.video;
+
+      if (
+        this.mediaQuery.matches ||
+        this.unlocking ||
+        v.readyState < 1 ||
+        !Number.isFinite(v.duration) ||
+        v.duration <= 0
+      ) return;
+
+      this.pending = progress * Math.max(0, v.duration - .05);
+
+      /*
+        Wait for the current seek to finish.
+        The latest scroll position is applied on the seeked event.
+      */
+      if (
+        v.seeking ||
+        Math.abs(v.currentTime - this.pending) < .025
+      ) return;
+
+      try {
+        v.currentTime = this.pending;
+      } catch (_) {
+        /* Retain the current frame while media becomes available. */
+      }
+    }
+
+    setupReveals() {
+      if (!('IntersectionObserver' in window)) return;
+
+      this.io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+
+          this.io.unobserve(e.target);
+
+          if (this.mediaQuery.matches) return;
+
+          const media = e.target.querySelector('.ecs-media');
+          if (!media.animate) return;
+
+          const animation = media.animate([
+            { clipPath: 'inset(0 0 100% 0)' },
+            { clipPath: 'inset(0)' }
+          ], {
+            duration: 950,
+            easing: 'cubic-bezier(.22,1,.36,1)'
+          });
+
+          this.animations.add(animation);
+
+          animation.finished
+            .catch(() => {})
+            .finally(() => {
+              this.animations.delete(animation);
+            });
+        });
+      }, { threshold: .04 });
+
+      this.items.forEach(el => this.io.observe(el));
+    }
+
+    measure() {
+      if (!this.svg) return;
+
+      const width = this.dial.clientWidth;
+      const height = this.dial.clientHeight;
+
+      if (!width || !height) return;
+
+      this.cx = width / 2;
+      this.cy = height - 72;
+
+      this.r = Math.max(
+        1,
+        Math.min(width / 2 - 24, height - 116)
+      );
+
+      this.svg.setAttribute(
+        'viewBox',
+        `0 0 ${width} ${height}`
+      );
+
+      const path = radius =>
+        `M ${this.cx - radius} ${this.cy} A ${radius} ${radius} 0 0 1 ${this.cx + radius} ${this.cy}`;
+
+      this.svg.querySelector('.ecs-rail').setAttribute(
+        'd',
+        path(this.r)
+      );
+
+      this.svg.querySelector('.ecs-inner').setAttribute(
+        'd',
+        path(Math.max(1, this.r - 30))
+      );
+
+      this.arc = this.svg.querySelector('.ecs-arc');
+      this.arc.setAttribute('d', path(this.r));
+
+      this.needle = this.svg.querySelector('.ecs-needle');
+
+      this.needle.setAttribute('points', [
+        `${this.cx},${this.cy - 1.2}`,
+        `${this.cx + this.r - 40},${this.cy}`,
+        `${this.cx},${this.cy + 1.2}`
+      ].join(' '));
+
+      this.tip = this.svg.querySelector('.ecs-tip');
+
+      const hub = this.svg.querySelector('.ecs-hub');
+      hub.setAttribute('cx', this.cx);
+      hub.setAttribute('cy', this.cy);
+
+      const holder = this.svg.querySelector('.ecs-ticks');
+      holder.replaceChildren();
+      this.ticks = [];
+
+      for (let i = 0; i <= 60; i++) {
+        const angle = Math.PI + i / 60 * Math.PI;
+        const outer = this.r - 8;
+        const inner = outer - (i % 5 === 0 ? 16 : 6);
+
+        const tick = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'line'
+        );
+
+        tick.setAttribute('class', 'ecs-tick');
+
+        Object.entries({
+          x1: this.cx + Math.cos(angle) * inner,
+          y1: this.cy + Math.sin(angle) * inner,
+          x2: this.cx + Math.cos(angle) * outer,
+          y2: this.cy + Math.sin(angle) * outer
+        }).forEach(([key, value]) => {
+          tick.setAttribute(key, value);
+        });
+
+        holder.appendChild(tick);
+        this.ticks.push(tick);
+      }
+    }
+
+    update() {
+      const reduced = this.mediaQuery.matches;
+      const viewportHeight = innerHeight;
+      const rect = this.runway.getBoundingClientRect();
+
+      const travel = this.hasAttribute('data-static')
+        ? rect.height
+        : Math.max(1, rect.height - this.stage.offsetHeight);
+
+      const heroProgress = reduced
+        ? 0
+        : this.clamp((this.pin - rect.top) / travel);
+
+      const textProgress = this.clamp(heroProgress / .68);
+      const sceneOpacity = 1 - this.clamp(
+        (heroProgress - .78) / .22
+      );
+
+      const variables = {
+        '--title-left': `${-112 * textProgress}%`,
+        '--title-right': `${112 * textProgress}%`,
+        '--rule-scale': 1 - textProgress,
+        '--chrome-opacity': 1 - this.clamp(heroProgress / .42),
+        '--scene-scale': 1 + heroProgress * .1,
+        '--scene-opacity': sceneOpacity,
+        '--film-progress': heroProgress
       };
 
-      ['loadedmetadata','loadeddata','canplay'].forEach(name => {
-        listen(video, name, () => {
-          video.pause();
-          clip.seek();
-          schedule();
-        });
+      Object.entries(variables).forEach(([key, value]) => {
+        this.style.setProperty(key, String(value));
       });
 
-      listen(video, 'seeked', clip.seek);
+      /*
+        Prevent invisible opening links receiving keyboard focus
+        once the opening typography has moved out of view.
+      */
+      this.chrome.inert = heroProgress > .46;
+      this.chrome.style.visibility =
+        heroProgress > .72 ? 'hidden' : 'visible';
 
-      listen(video, 'error', () => {
-        clip.failed = true;
-        video.style.opacity = '0';
-      });
+      this.seek(heroProgress);
 
-      return clip;
-    });
+      const centers = [];
+      let nearest = 0;
+      let distance = Infinity;
 
-    function loadClip(clip) {
-      if (clip.loaded || clip.failed) return;
-      clip.loaded = true;
-      clip.video.src = clip.video.dataset.src;
-      clip.video.load();
-    }
+      this.items.forEach((element, index) => {
+        const r = element.getBoundingClientRect();
+        const center = r.top + r.height / 2;
 
-    function render() {
-      raf = null;
-      if (destroyed) return;
+        centers.push(center);
 
-      header.dataset.scrolled = String(window.scrollY > 12);
-
-      if (!animated || !runway || document.hidden) return;
-
-      const bounds = runway.getBoundingClientRect();
-      if (bounds.bottom <= 0 || bounds.top >= window.innerHeight) return;
-
-      const travel = Math.max(1, runway.offsetHeight - stage.offsetHeight);
-      const p = clamp(-bounds.top / travel);
-      progressBar.style.transform = `scaleX(${p})`;
-
-      const introOut = ease(range(p, .015, .145));
-      setScene(intro, 1 - introOut, -introOut * 30, introOut * 30, introOut * 10);
-
-      if (mobile.matches) {
-        setScene(features, p > .13 && p < .455 ? 1 : 0);
-
-        cards.forEach((card, index) => {
-          const start = .135 + index * .10;
-          const motion = envelope(p, start, start + .025, start + .075, start + .10);
-          setScene(
-            card,
-            motion.opacity,
-            0,
-            (1 - motion.arriving) * 35 - motion.leaving * 35,
-            (1 - motion.opacity) * 8,
-            true
-          );
-        });
-      } else {
-        setScene(features, p > .13 && p < .46 ? 1 : 0);
-
-        cards.forEach((card, index) => {
-          const motion = envelope(
-            p,
-            .14 + index * .025,
-            .23 + index * .025,
-            .345 + index * .012,
-            .425 + index * .012
-          );
-          const direction = index - 1;
-          setScene(
-            card,
-            motion.opacity,
-            direction * (1 - motion.opacity) * 35,
-            (1 - motion.opacity) * 30,
-            (1 - motion.opacity) * 10
-          );
-        });
-      }
-
-      missions.forEach((mission, index) => {
-        const start = .46 + index * .145;
-        const motion = envelope(p, start, start + .035, start + .105, start + .14);
-
-        setScene(
-          mission,
-          motion.opacity,
-          0,
-          (1 - motion.arriving) * 70 - motion.leaving * 70,
-          (1 - motion.opacity) * 9
+        const difference = Math.abs(
+          center - viewportHeight / 2
         );
-      });
 
-      const finish = ease(range(p, .905, .97));
-      setScene(finale, finish, 0, (1 - finish) * 55, (1 - finish) * 8);
-
-      clips.forEach(clip => {
-        const index = clip.index;
-        const local = clamp(p * 3 - index);
-
-        const opacity = index === 0
-          ? 1 - range(p, .325, .345)
-          : index === 1
-            ? range(p, .325, .345) * (1 - range(p, .655, .675))
-            : range(p, .655, .675);
-
-        clip.visible = opacity > .001;
-
-        if (
-          index === 0 ||
-          (index === 1 && p > .26) ||
-          (index === 2 && p > .59)
-        ) loadClip(clip);
-
-        clip.video.style.opacity = clip.failed ? '0' : String(opacity);
-
-        if (Number.isFinite(clip.video.duration)) {
-          clip.target = local * Math.max(0, clip.video.duration - .05);
-          clip.seek();
+        if (difference < distance) {
+          distance = difference;
+          nearest = index;
         }
-      });
-    }
 
-    function schedule() {
-      if (raf === null && !destroyed) raf = requestAnimationFrame(render);
-    }
+        if (reduced) {
+          element.style.setProperty('--image-y', '0px');
+        } else if (
+          r.bottom >= 0 &&
+          r.top <= viewportHeight
+        ) {
+          const progress = this.clamp(
+            (viewportHeight - r.top) /
+            (viewportHeight + r.height)
+          );
 
-    function setMode(restorePosition = false) {
-      if (!runway) return;
-      const top = runway.getBoundingClientRect().top + window.scrollY;
+          const offset =
+            (progress - .5) * Math.min(40, r.height * .07);
 
-      animated = !staticRequested && !reduced.matches && !shortScreen.matches;
-      root.classList.toggle('ct-animated', animated);
-
-      if (!animated) {
-        resetScenes();
-        clips.forEach(clip => {
-          clip.video.pause();
-          clip.video.style.opacity = '0';
-        });
-      }
-
-      modeButton.hidden = reduced.matches || shortScreen.matches;
-      modeButton.textContent = animated ? 'View all content' : 'Enable animation';
-      modeButton.setAttribute('aria-pressed', String(!animated));
-
-      if (restorePosition) {
-        window.scrollTo({ top: Math.max(0, top - 90), behavior: 'instant' });
-      }
-
-      render();
-    }
-
-    function unlockPage() {
-      if (lockedOverflow !== null) {
-        document.documentElement.style.overflow = lockedOverflow;
-        lockedOverflow = null;
-      }
-      openButton.setAttribute('aria-expanded', 'false');
-    }
-
-    if (typeof dialog.showModal === 'function') {
-      openButton.hidden = false;
-
-      listen(openButton, 'click', () => {
-        if (dialog.open) return;
-        dialog.showModal();
-        lockedOverflow = document.documentElement.style.overflow;
-        document.documentElement.style.overflow = 'hidden';
-        openButton.setAttribute('aria-expanded', 'true');
-
-        if (!reduced.matches && dialog.animate) {
-          menuAnimation?.cancel();
-          menuAnimation = dialog.animate(
-            [
-              { opacity: 0, transform: 'translateY(-18px)' },
-              { opacity: 1, transform: 'translateY(0)' }
-            ],
-            { duration: 350, easing: 'cubic-bezier(.16,1,.3,1)' }
+          element.style.setProperty(
+            '--image-y',
+            `${offset.toFixed(2)}px`
           );
         }
       });
 
-      listen(closeButton, 'click', () => dialog.close());
-      listen(dialog, 'close', unlockPage);
+      let galleryProgress = 0;
 
-      dialog.querySelectorAll('a').forEach(link => {
-        listen(link, 'click', () => dialog.close());
-      });
+      if (centers.length > 1) {
+        if (viewportHeight / 2 >= centers.at(-1)) {
+          galleryProgress = 1;
+        } else {
+          for (let i = 0; i < centers.length - 1; i++) {
+            if (
+              viewportHeight / 2 >= centers[i] &&
+              viewportHeight / 2 < centers[i + 1]
+            ) {
+              const local =
+                (viewportHeight / 2 - centers[i]) /
+                Math.max(1, centers[i + 1] - centers[i]);
+
+              galleryProgress =
+                (i + local) / (centers.length - 1);
+
+              break;
+            }
+          }
+        }
+      } else if (this.gallery) {
+        const r = this.gallery.getBoundingClientRect();
+
+        galleryProgress = this.clamp(
+          (viewportHeight / 2 - r.top) /
+          Math.max(1, r.height)
+        );
+      }
+
+      if (this.counter) {
+        this.counter.textContent = String(
+          nearest + 1
+        ).padStart(2, '0');
+      }
+
+      if (this.arc && !reduced) {
+        this.arc.style.strokeDashoffset = String(
+          1 - galleryProgress
+        );
+
+        this.needle.setAttribute(
+          'transform',
+          `rotate(${-180 + galleryProgress * 180} ${this.cx} ${this.cy})`
+        );
+
+        const angle = Math.PI + galleryProgress * Math.PI;
+
+        this.tip.setAttribute(
+          'cx',
+          this.cx + Math.cos(angle) * this.r
+        );
+
+        this.tip.setAttribute(
+          'cy',
+          this.cy + Math.sin(angle) * this.r
+        );
+
+        this.ticks.forEach((element, index) => {
+          element.classList.toggle(
+            'is-active',
+            index / 60 <= galleryProgress
+          );
+        });
+      }
+
+      let background = [13, 14, 16];
+      let dialColor = this.rgb(this.dataset.accent);
+
+      if (
+        this.dataset.colorScroll !== 'false' &&
+        !reduced
+      ) {
+        const stops = [
+          [13, 14, 16],
+          [23, 20, 27],
+          [53, 19, 29],
+          [88, 25, 31],
+          this.rgb(this.dataset.end)
+        ];
+
+        const scaled = galleryProgress * 4;
+        const index = Math.min(3, Math.floor(scaled));
+        const fraction = scaled - index;
+        const eased =
+          fraction * fraction * (3 - 2 * fraction);
+
+        background = this.mix(
+          stops[index],
+          stops[index + 1],
+          eased
+        );
+
+        dialColor = this.mix(
+          dialColor,
+          [244, 244, 242],
+          this.clamp((galleryProgress - .2) / .6)
+        );
+      }
+
+      this.style.setProperty(
+        '--bg',
+        `rgb(${background.join(',')})`
+      );
+
+      this.style.setProperty(
+        '--dial-ink',
+        `rgb(${dialColor.join(',')})`
+      );
     }
 
-    listen(modeButton, 'click', () => {
-      staticRequested = !staticRequested;
-      setMode(true);
-    });
+    disconnectedCallback() {
+      cancelAnimationFrame(this.boot);
+      cancelAnimationFrame(this.frame);
+      clearTimeout(this.timer);
 
-    listen(root.querySelector('[data-ct-explore]'), 'click', event => {
-      if (!animated) return;
-      event.preventDefault();
-
-      const top = runway.getBoundingClientRect().top + window.scrollY;
-      const travel = Math.max(1, runway.offsetHeight - stage.offsetHeight);
-
-      window.scrollTo({
-        top: top + travel * (mobile.matches ? .18 : .29),
-        behavior: reduced.matches ? 'auto' : 'smooth'
-      });
-    });
-
-    listen(window, 'scroll', schedule, { passive: true });
-    listen(window, 'resize', schedule, { passive: true });
-    listen(window, 'pageshow', schedule);
-    listen(document, 'visibilitychange', schedule);
-    listen(reduced, 'change', () => setMode(true));
-    listen(shortScreen, 'change', () => setMode(true));
-    listen(mobile, 'change', schedule);
-
-    const observer = typeof ResizeObserver !== 'undefined'
-      ? new ResizeObserver(schedule)
-      : null;
-
-    if (stage) observer?.observe(stage);
-
-    document.fonts?.ready.then(() => {
-      if (!destroyed) schedule();
-    });
-
-    if (runway) setMode();
-    else render();
-
-    dispose = () => {
-      destroyed = true;
-      events.abort();
-      observer?.disconnect();
-      menuAnimation?.cancel();
-      if (raf !== null) cancelAnimationFrame(raf);
-      if (dialog.open) dialog.close();
-      unlockPage();
-
-      clips.forEach(clip => {
-        clip.video.pause();
-        clip.video.removeAttribute('src');
-        clip.video.load();
-      });
-
-      resetScenes();
-      root.classList.remove('ct-animated');
-    };
+      this.frame = 0;
+      this.abort?.abort();
+      this.abort = null;
+      this.ro?.disconnect();
+      this.io?.disconnect();
+      this.animations?.forEach(a => a.cancel());
+      this.video?.pause();
+      this.removeAttribute('data-enhanced');
+    }
   }
 
-  document.addEventListener('shopify:section:load', event => {
-    if (event.target.id === wrapperId) initialize();
-  }, { signal: lifecycle.signal });
-
-  document.addEventListener('shopify:section:unload', event => {
-    if (event.target.id === wrapperId) dispose();
-  }, { signal: lifecycle.signal });
-
-  window.__truthLanding[id] = () => {
-    dispose();
-    lifecycle.abort();
-  };
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initialize, {
-      once: true,
-      signal: lifecycle.signal
-    });
-  } else {
-    initialize();
-  }
+  customElements.define(tag, Cases);
 })();
 </script>
 
 {% schema %}
 {
-  "name": "GL Header",
+  "name": "Explore Case Studies",
+  "tag": "section",
   "settings": [
     {
       "type": "header",
-      "content": "Existing brand and navigation"
-    },
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "Navigation menu",
-      "info": "Uses gl-main-nav when no menu is selected. Nested links appear in the full menu."
+      "content": "Header"
     },
     {
       "type": "text",
-      "id": "logo_url",
-      "label": "Logo image URL",
-      "default": "https://customer-assets.emergentagent.com/job_lighthouse-members/artifacts/nf1e13ch_the_convergence_transparent_background.png"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_logo",
-      "label": "Show logo image",
-      "default": true
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Our Latest Projects"
     },
     {
       "type": "text",
-      "id": "brand_name",
-      "label": "Brand name",
-      "default": "Church of Truth"
+      "id": "title",
+      "label": "Title",
+      "default": "CASE STUDIES"
     },
     {
-      "type": "text",
-      "id": "brand_tagline",
-      "label": "Tagline",
-      "default": "SPIRITUALITY • TECHNOLOGY • SCIENCE"
-    },
-    {
-      "type": "text",
-      "id": "apply_label",
-      "label": "Conversation CTA label",
-      "default": "Request a Conversation"
-    },
-    {
-      "type": "url",
-      "id": "apply_link",
-      "label": "Conversation CTA link",
-      "info": "Leave blank to use /pages/conversation."
-    },
-    {
-      "type": "checkbox",
-      "id": "show_header_cta",
-      "label": "Show desktop header CTA",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "signin_label",
-      "label": "Sign-in label",
-      "default": "Member Sign In"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_signin",
-      "label": "Show customer sign-in in menu",
-      "default": false
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Browse our work across branding, e-commerce, content creation, and digital marketing."
     },
     {
       "type": "header",
-      "content": "Landing page display"
+      "content": "Opening video"
     },
     {
-      "type": "checkbox",
-      "id": "show_on_all_pages",
-      "label": "Show landing on all pages",
-      "default": false,
-      "info": "Leave off to display the animated landing only on the homepage. The header still appears on other pages."
+      "type": "text",
+      "id": "video_url",
+      "label": "MP4 video URL",
+      "info": "Leave empty to use the reference car video."
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image",
+      "label": "Video poster",
+      "info": "Leave empty to use the reference car image."
+    },
+    {
+      "type": "range",
+      "id": "pin_offset",
+      "label": "Space for sticky site header",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Gallery design"
     },
     {
       "type": "color",
       "id": "accent",
-      "label": "Accent color",
-      "default": "#CB8DFF"
-    },
-    {
-      "type": "range",
-      "id": "scroll_length",
-      "label": "Scroll sequence length",
-      "min": 500,
-      "max": 1000,
-      "step": 100,
-      "unit": "vh",
-      "default": 700
-    },
-    {
-      "type": "header",
-      "content": "Opening glass card"
-    },
-    {
-      "type": "text",
-      "id": "intro_label",
-      "label": "Small label",
-      "default": "Spirituality • Technology • Science"
-    },
-    {
-      "type": "textarea",
-      "id": "hero_title",
-      "label": "Main heading",
-      "default": "Where curiosity\nmeets connection."
-    },
-    {
-      "type": "textarea",
-      "id": "hero_description",
-      "label": "Opening description",
-      "default": "Explore the meeting point of spirituality, technology, and science. A place for deeper questions, thoughtful dialogue, and new perspectives."
-    },
-    {
-      "type": "header",
-      "content": "Three themes"
-    },
-    {
-      "type": "text",
-      "id": "pillar_title_1",
-      "label": "First card title",
-      "default": "Spirituality"
-    },
-    {
-      "type": "textarea",
-      "id": "pillar_body_1",
-      "label": "First card description",
-      "default": "Make space for reflection, lived experience, and the questions that bring us closer to ourselves and one another."
-    },
-    {
-      "type": "text",
-      "id": "pillar_title_2",
-      "label": "Second card title",
-      "default": "Technology"
-    },
-    {
-      "type": "textarea",
-      "id": "pillar_body_2",
-      "label": "Second card description",
-      "default": "Consider how the tools we create can support connection, understanding, and a more intentional relationship with the world."
-    },
-    {
-      "type": "text",
-      "id": "pillar_title_3",
-      "label": "Third card title",
-      "default": "Science"
-    },
-    {
-      "type": "textarea",
-      "id": "pillar_body_3",
-      "label": "Third card description",
-      "default": "Follow curiosity with careful inquiry. Ask questions, examine evidence, and remain open to what we have yet to understand."
-    },
-    {
-      "type": "header",
-      "content": "Animated statements"
-    },
-    {
-      "type": "textarea",
-      "id": "mission_1",
-      "label": "First statement",
-      "default": "We make room for deeper questions—and for the many ways we seek truth."
-    },
-    {
-      "type": "textarea",
-      "id": "mission_2",
-      "label": "Second statement",
-      "default": "Spirituality, technology, and science bring different perspectives to a shared conversation."
-    },
-    {
-      "type": "textarea",
-      "id": "mission_3",
-      "label": "Third statement",
-      "default": "Understanding begins with curiosity. Connection begins when we listen."
-    },
-    {
-      "type": "header",
-      "content": "Closing invitation"
-    },
-    {
-      "type": "text",
-      "id": "closing_title",
-      "label": "Closing heading",
-      "default": "Begin with a conversation."
-    },
-    {
-      "type": "textarea",
-      "id": "closing_description",
-      "label": "Closing description",
-      "default": "Tell us what brings you here, what you are exploring, and what you would like to connect around."
-    },
-    {
-      "type": "header",
-      "content": "Scroll-controlled videos"
-    },
-    {
-      "type": "image_picker",
-      "id": "poster",
-      "label": "Poster and fallback image",
-      "info": "Used while video loads and in the static layout."
-    },
-    {
-      "type": "text",
-      "id": "video_1",
-      "label": "First MP4 URL",
-      "default": "https://pub-86dc5b5484314368ac5436a674b0d919.r2.dev/cloudinarry%20to%20cloudflare/202606101700_hglz7q.mp4"
-    },
-    {
-      "type": "text",
-      "id": "video_2",
-      "label": "Second MP4 URL",
-      "default": "https://pub-86dc5b5484314368ac5436a674b0d919.r2.dev/cloudinarry%20to%20cloudflare/202606101702_sd50y0.mp4"
-    },
-    {
-      "type": "text",
-      "id": "video_3",
-      "label": "Third MP4 URL",
-      "default": "https://pub-86dc5b5484314368ac5436a674b0d919.r2.dev/cloudinarry%20to%20cloudflare/202606101703_jmidj2.mp4"
-    },
-    {
-      "type": "header",
-      "content": "Newsletter signup"
+      "label": "Opening accent",
+      "default": "#e8472a"
     },
     {
       "type": "checkbox",
-      "id": "show_signup",
-      "label": "Show newsletter signup",
+      "id": "scroll_color",
+      "label": "Change background on scroll",
       "default": true
     },
     {
-      "type": "text",
-      "id": "signup_title",
-      "label": "Signup heading",
-      "default": "Stay connected."
+      "type": "color",
+      "id": "end_color",
+      "label": "Ending background",
+      "default": "#a82d22"
     },
     {
-      "type": "textarea",
-      "id": "signup_description",
-      "label": "Signup description",
-      "default": "Receive updates, reflections, and news from Church of Truth."
-    },
+      "type": "checkbox",
+      "id": "show_dial",
+      "label": "Show animated project dial",
+      "default": true
+    }
+  ],
+  "blocks": [
     {
-      "type": "text",
-      "id": "signup_button",
-      "label": "Signup button",
-      "default": "Subscribe"
+      "type": "case_study",
+      "name": "Case Study",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Project name",
+          "default": "RESIKLO"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Category tag",
+          "default": "Branding"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link URL"
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "GL Header"
+      "name": "Explore Case Studies",
+      "blocks": [
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "RESIKLO",
+            "tag": "Branding / Sustainability"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "FUR TRADERS",
+            "tag": "E-commerce / Fashion"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "THE PLACE ON SOUTH PINE",
+            "tag": "Hospitality / Content"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "DYNAMIC AUTOWORKS",
+            "tag": "E-commerce / Automotive"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "SUPRAMOOD",
+            "tag": "Branding / Wellness"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "MANO BEACH HOUSE",
+            "tag": "Hospitality / Travel"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "HOTEL TUGU | BALI",
+            "tag": "Hospitality / Luxury"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "LIFE FORCE ACADEMY",
+            "tag": "Branding / Wellness"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "POLAROID",
+            "tag": "Content / Photography"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "ACADEMY OF ORACLE ARTS",
+            "tag": "Branding / Education"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "COACHELLA",
+            "tag": "Events / Content"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "WANDRD",
+            "tag": "Content / Gear"
+          }
+        }
+      ]
     }
   ]
 }
