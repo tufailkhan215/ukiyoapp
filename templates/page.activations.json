@@ -12,7 +12,7 @@
     "main": {
       "type": "activations",
       "settings": {
-        "show_marquee": true,
+        "show_marquee": false,
         "marquee_items": "Strategy · Branding · Digital Experience · Creative Direction",
         "badge_label": "Showcase 2026",
         "heading": "A look at how strategy, creative, and execution come together across the brands we support",
