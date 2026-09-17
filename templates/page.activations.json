@@ -12,7 +12,7 @@
     "main": {
       "type": "activations",
       "settings": {
-        "show_marquee": false,
+        "show_marquee": true,
         "marquee_items": "Strategy · Branding · Digital Experience · Creative Direction",
         "badge_label": "Showcase 2026",
         "heading": "A look at how strategy, creative, and execution come together across the brands we support",
@@ -39,6 +39,7 @@
         "stat_value_3": "Global",
         "stat_desc_3": "Operating in 14 Countries",
         "video_url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260802_081931_d0adfc37-7ace-4c83-939e-4a6e0e9d9763.mp4",
+        "video_poster": "shopify://shop_images/1_93bf0af6-4112-426e-82ef-65140cec0614.webp",
         "heading_font_url": "https://dirtylinestudio.com/wp-content/uploads/2022/05/Dirtyline-36daysoftype-2022.woff2",
         "scroll_length": 500
       }
