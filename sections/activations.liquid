@@ -1,396 +1,1837 @@
 {% comment %}
   Section: Activations
   File: sections/activations.liquid
-  Template: templates/page.activations.json
+
+  Original content and setting IDs preserved.
+  Scroll animation, video, styles, and controls are section-scoped.
 {% endcomment %}
 
+{% liquid
+  assign marquee_items = section.settings.marquee_items | default: 'Strategy · Branding · Digital Experience · Creative Direction' | split: '·'
+
+  assign has_stats = false
+  for i in (1..3)
+    assign value_key = 'stat_value_' | append: i
+    if section.settings[value_key] != blank
+      assign has_stats = true
+    endif
+  endfor
+
+  assign background_image = section.settings.video_poster
+  if background_image == blank
+    assign background_image = section.settings.card1_image
+  endif
+
+  assign screens = section.settings.scroll_length | divided_by: 100.0
+%}
+
+{% capture arrow_icon %}
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M7 17 17 7M7 7h10v10"/>
+  </svg>
+{% endcapture %}
+
+<section
+  id="ws-{{ section.id }}"
+  class="ws-cinematic"
+  aria-labelledby="WS-Heading-{{ section.id }}"
+  style="--ws-screens: {{ screens }};"
+>
+  <div class="ws-runway" data-ws-runway>
+    <div class="ws-stage" data-ws-stage>
+
+      <div class="ws-background" aria-hidden="true">
+        <div class="ws-background-inner" data-ws-background>
+          {% if background_image != blank %}
+            {{
+              background_image
+              | image_url: width: 2400
+              | image_tag:
+                class: 'ws-poster',
+                widths: '750, 1100, 1600, 2000, 2400',
+                sizes: '100vw',
+                loading: 'eager',
+                fetchpriority: 'high',
+                alt: ''
+            }}
+          {% endif %}
+
+          {% if section.settings.video_url != blank %}
+            <video
+              class="ws-video"
+              data-ws-video
+              data-src="{{ section.settings.video_url | escape }}"
+              muted
+              playsinline
+              preload="none"
+              tabindex="-1"
+              {% if background_image != blank %}
+                poster="{{ background_image | image_url: width: 2400 }}"
+              {% endif %}
+            ></video>
+          {% endif %}
+
+          <div class="ws-video-shade"></div>
+        </div>
+      </div>
+
+      <nav class="ws-pill-nav" aria-label="Activations navigation">
+        <a
+          class="ws-start"
+          href="#WS-Heading-{{ section.id }}"
+          data-ws-start
+          aria-label="Back to section heading"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 19V5m-6 6 6-6 6 6"/>
+          </svg>
+        </a>
+
+        <div class="ws-desktop-pills">
+          {% if section.settings.card1_btn_label != blank %}
+            <a
+              class="ws-pill"
+              href="#WS-Card-1-{{ section.id }}"
+              data-ws-jump="1"
+            >
+              <span>{{ section.settings.card1_btn_label | escape }}</span>
+            </a>
+          {% endif %}
+
+          {% if section.settings.card2_btn_label != blank %}
+            <a
+              class="ws-pill"
+              href="#WS-Card-2-{{ section.id }}"
+              data-ws-jump="2"
+            >
+              <span>{{ section.settings.card2_btn_label | escape }}</span>
+            </a>
+          {% endif %}
+        </div>
+
+        <details class="ws-mobile-menu">
+          <summary aria-label="Section navigation">
+            <span class="ws-menu-lines" aria-hidden="true">
+              <span></span>
+              <span></span>
+            </span>
+          </summary>
+
+          <div class="ws-mobile-popover">
+            {% if section.settings.card1_btn_label != blank %}
+              <a
+                href="#WS-Card-1-{{ section.id }}"
+                data-ws-jump="1"
+              >
+                {{ section.settings.card1_btn_label | escape }}
+              </a>
+            {% endif %}
+
+            {% if section.settings.card2_btn_label != blank %}
+              <a
+                href="#WS-Card-2-{{ section.id }}"
+                data-ws-jump="2"
+              >
+                {{ section.settings.card2_btn_label | escape }}
+              </a>
+            {% endif %}
+          </div>
+        </details>
+      </nav>
+
+      <div class="ws-header" data-ws-heading-wrap>
+        {% if section.settings.badge_label != blank %}
+          <div class="ws-badge">
+            <span class="ws-badge-dot" aria-hidden="true"></span>
+            {{ section.settings.badge_label | escape }}
+          </div>
+        {% endif %}
+
+        <h2 id="WS-Heading-{{ section.id }}" class="ws-heading">
+          <span class="ws-sr-only">
+            {{ section.settings.heading | escape | newline_to_br }}
+          </span>
+          <span data-ws-title aria-hidden="true">
+            {{ section.settings.heading | escape | newline_to_br }}
+          </span>
+        </h2>
+      </div>
+
+      <div class="ws-panel-position" data-ws-panel-position>
+        <div class="ws-glass-panel" data-ws-panel>
+
+          {% if section.settings.subheading != blank %}
+            <div class="ws-panel-intro">
+              <div class="ws-subheading">
+                {{ section.settings.subheading }}
+              </div>
+            </div>
+          {% endif %}
+
+          <div class="ws-project-grid">
+            {% for i in (1..2) %}
+              {% liquid
+                assign image_key = 'card' | append: i | append: '_image'
+                assign eyebrow_key = 'card' | append: i | append: '_eyebrow'
+                assign title_key = 'card' | append: i | append: '_title'
+                assign desc_key = 'card' | append: i | append: '_desc'
+                assign button_key = 'card' | append: i | append: '_btn_label'
+                assign link_key = 'card' | append: i | append: '_btn_url'
+              %}
+
+              <article
+                id="WS-Card-{{ i }}-{{ section.id }}"
+                class="ws-card"
+                data-ws-card="{{ i }}"
+                tabindex="-1"
+              >
+                {% if section.settings[image_key] != blank %}
+                  <div class="ws-card-media">
+                    {{
+                      section.settings[image_key]
+                      | image_url: width: 1400
+                      | image_tag:
+                        class: 'ws-card-image',
+                        widths: '400, 600, 900, 1400',
+                        sizes: '(min-width: 769px) 45vw, 90vw',
+                        loading: 'lazy'
+                    }}
+                  </div>
+                {% endif %}
+
+                <div class="ws-card-body">
+                  {% if section.settings[eyebrow_key] != blank %}
+                    <p class="ws-card-eyebrow">
+                      {{ section.settings[eyebrow_key] | escape }}
+                    </p>
+                  {% endif %}
+
+                  <h3 class="ws-card-title">
+                    {{ section.settings[title_key] | escape | newline_to_br }}
+                  </h3>
+
+                  {% if section.settings[desc_key] != blank %}
+                    <div class="ws-card-desc">
+                      {{ section.settings[desc_key] }}
+                    </div>
+                  {% endif %}
+
+                  {% if section.settings[button_key] != blank %}
+                    <div class="ws-card-action">
+                      <a
+                        class="ws-button"
+                        href="{{ section.settings[link_key] | default: '#' | escape }}"
+                      >
+                        <span>{{ section.settings[button_key] | escape }}</span>
+                        {{ arrow_icon }}
+                      </a>
+                    </div>
+                  {% endif %}
+                </div>
+              </article>
+            {% endfor %}
+          </div>
+
+          {% if has_stats %}
+            <div class="ws-stats">
+              {% for i in (1..3) %}
+                {% liquid
+                  assign value_key = 'stat_value_' | append: i
+                  assign label_key = 'stat_label_' | append: i
+                  assign desc_key = 'stat_desc_' | append: i
+                %}
+
+                {% if section.settings[value_key] != blank %}
+                  <div class="ws-stat">
+                    {% if section.settings[label_key] != blank %}
+                      <p class="ws-stat-label">
+                        {{ section.settings[label_key] | escape }}
+                      </p>
+                    {% endif %}
+
+                    <div class="ws-stat-value">
+                      {{ section.settings[value_key] | escape }}
+                    </div>
+
+                    {% if section.settings[desc_key] != blank %}
+                      <p class="ws-stat-desc">
+                        {{ section.settings[desc_key] | escape }}
+                      </p>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          {% if section.settings.show_marquee %}
+            <div class="ws-marquee-wrap">
+              <p class="ws-sr-only">
+                {{ section.settings.marquee_items | escape }}
+              </p>
+
+              <div class="ws-marquee-track" aria-hidden="true">
+                {% for repeat in (1..2) %}
+                  <div class="ws-marquee-group">
+                    {% for copy in (1..2) %}
+                      {% for item in marquee_items %}
+                        <span class="ws-marquee-item">
+                          <span aria-hidden="true">✦</span>
+                          {{ item | strip | escape }}
+                        </span>
+                      {% endfor %}
+                    {% endfor %}
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="ws-controls">
+        <span class="ws-scroll-cue" aria-hidden="true">
+          <span></span>
+          ↓
+        </span>
+
+        <button
+          class="ws-mode"
+          type="button"
+          data-ws-mode
+          aria-pressed="false"
+          hidden
+        >
+          View all content
+        </button>
+      </div>
+
+      <div class="ws-progress" aria-hidden="true">
+        <span data-ws-progress></span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
+
+  {% if section.settings.heading_font_url != blank %}
+    @font-face {
+      font-family: "WSDisplay-{{ section.id }}";
+      src: url({{ section.settings.heading_font_url | json }}) format("woff2");
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+    }
+  {% endif %}
+
   #ws-{{ section.id }} {
-    --accent:   #3b82f6;
-    --accent-g: rgba(59,130,246,0.15);
-    --accent-b: rgba(59,130,246,0.3);
-    --bg:       #050505;
-    --card-bg:  rgba(255,255,255,0.02);
-    --border:   rgba(255,255,255,0.08);
-    --muted:    #6b7280;
-    --r:        32px;
-    background: var(--bg);
-    color: #fff;
-    font-family: 'Plus Jakarta Sans', inherit;
-    overflow-x: hidden;
+    --ws-white: #f5f4ef;
+    --ws-pad: clamp(20px, 3.5vw, 56px);
+    --ws-sans: "Manrope", Arial, sans-serif;
+    --ws-serif: "Instrument Serif", Georgia, serif;
+    --ws-display: "WSDisplay-{{ section.id }}", "Instrument Serif", Georgia, serif;
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    background: #050505;
+    color: var(--ws-white);
+    font-family: var(--ws-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #ws-{{ section.id }} *,
+  #ws-{{ section.id }} *::before,
+  #ws-{{ section.id }} *::after {
+    box-sizing: border-box;
+  }
+
+  #ws-{{ section.id }} :is(h2,h3,p) {
+    margin: 0;
+    color: inherit;
+  }
+
+  #ws-{{ section.id }} a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  #ws-{{ section.id }} button {
+    font: inherit;
+    cursor: pointer;
+  }
+
+  #ws-{{ section.id }} [hidden] {
+    display: none !important;
+  }
+
+  #ws-{{ section.id }} :is(a,button,summary):focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 5px;
+  }
+
+  #ws-{{ section.id }} .ws-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  #ws-{{ section.id }} svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+  }
+
+  #ws-{{ section.id }} .ws-runway {
     position: relative;
   }
-  #ws-{{ section.id }} * { box-sizing: border-box; }
-  #ws-{{ section.id }} a { text-decoration: none; }
 
-  /* Ambient glow */
-  #ws-{{ section.id }} .ws-glow {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle at 50% -20%, #1e293b 0%, transparent 55%);
-    pointer-events: none; z-index: 0;
+  #ws-{{ section.id }} .ws-stage {
+    position: relative;
+    isolation: isolate;
+    padding-bottom: 40px;
   }
 
-  #ws-{{ section.id }} .ws-inner {
-    max-width: 1400px; margin: 0 auto;
-    padding: 0 1.5rem 5rem;
-    position: relative; z-index: 1;
+  #ws-{{ section.id }} .ws-background {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse at 65% 20%, #303c35, #101712 55%, #050505);
   }
 
-  /* ── Marquee ── */
-  #ws-{{ section.id }} .ws-marquee-wrap {
-    overflow: hidden; white-space: nowrap;
-    padding: 1.75rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    margin-bottom: 5rem;
-  }
-  @keyframes ws-marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-  #ws-{{ section.id }} .ws-marquee-track {
-    display: inline-block;
-    animation: ws-marquee 22s linear infinite;
-  }
-  #ws-{{ section.id }} .ws-marquee-item {
-    display: inline-block; margin: 0 3rem;
-    font-size: 0.72rem; font-weight: 800;
-    text-transform: uppercase; letter-spacing: 0.3em;
-    color: rgba(255,255,255,0.18);
-  }
-  #ws-{{ section.id }} .ws-marquee-item span {
-    color: rgba(59,130,246,0.4); margin-right: 0.5rem;
+  #ws-{{ section.id }} .ws-background-inner {
+    position: absolute;
+    inset: -5%;
+    transform: translate3d(var(--ws-mx, 0px), var(--ws-my, 0px), 0);
+    transition: transform 1s cubic-bezier(.16,1,.3,1);
   }
 
-  /* ── Header ── */
-  #ws-{{ section.id }} .ws-header {
-    display: flex; flex-direction: column; align-items: flex-start;
-    margin-bottom: 4rem;
+  #ws-{{ section.id }} .ws-poster,
+  #ws-{{ section.id }} .ws-video {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
-  #ws-{{ section.id }} .ws-badge {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    padding: 0.25rem 0.85rem; border-radius: 999px;
-    border: 1px solid var(--accent-b); background: var(--accent-g);
-    font-size: 0.65rem; font-weight: 800; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem;
-  }
-  #ws-{{ section.id }} .ws-badge-dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--accent);
-    animation: ws-pulse 2s cubic-bezier(.4,0,.6,1) infinite;
-  }
-  @keyframes ws-pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
 
-  #ws-{{ section.id }} .ws-h2 {
-    font-size: clamp(3rem, 9vw, 7rem);
-    font-weight: 900; letter-spacing: -0.04em;
-    line-height: 0.95; margin: 0 0 1.5rem;
-    background: linear-gradient(to bottom, #fff 30%, rgba(255,255,255,0.35) 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  #ws-{{ section.id }} .ws-video {
+    opacity: 0;
+    transform: scale(1.2);
+    transition: opacity .4s;
   }
-  #ws-{{ section.id }} .ws-sub {
-    max-width: 38rem; font-size: 1.05rem; font-weight: 300;
-    color: var(--muted); line-height: 1.75; margin: 0;
-  }
-  #ws-{{ section.id }} .ws-sub em { color: #fff; font-style: italic; font-weight: 400; }
 
-  /* ── Bento Grid ── */
-  #ws-{{ section.id }} .ws-bento {
+  #ws-{{ section.id }} .ws-video[data-ready="true"] {
+    opacity: 1;
+  }
+
+  #ws-{{ section.id }} .ws-video-shade {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, #0004, #0001 30%, #0008 100%);
+  }
+
+  #ws-{{ section.id }} .ws-pill-nav {
+    position: relative;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    max-width: calc(100% - 32px);
+    margin: 0 auto;
+    padding-top: 24px;
+    gap: 6px;
+  }
+
+  #ws-{{ section.id }} .ws-start {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid #ffffff25;
+    border-radius: 50%;
+    background: #050505;
+    color: #fff;
+    flex-shrink: 0;
   }
-  @media (min-width: 1024px) {
-    #ws-{{ section.id }} .ws-bento {
-      grid-template-columns: repeat(12, 1fr);
-      height: 660px;
-    }
-    #ws-{{ section.id }} .ws-card-main { grid-column: span 8; }
-    #ws-{{ section.id }} .ws-card-side { grid-column: span 4; }
+
+  #ws-{{ section.id }} .ws-start svg {
+    transition: transform .35s;
+  }
+
+  #ws-{{ section.id }} .ws-start:hover svg {
+    transform: translateY(-3px);
+  }
+
+  #ws-{{ section.id }} .ws-desktop-pills {
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    border: 2px solid #050505;
+    border-radius: 50px;
+    background: #050505;
+  }
+
+  #ws-{{ section.id }} .ws-pill {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 10px 24px;
+    border-radius: 50px;
+    background: #f0f0ee;
+    color: #080808;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  #ws-{{ section.id }} .ws-pill::before {
+    content: "";
+    position: absolute;
+    inset: -50%;
+    z-index: -1;
+    border-radius: 50%;
+    background: #050505;
+    transform: translateY(100%) scale(.2);
+    transition: transform .4s cubic-bezier(.16,1,.3,1);
+  }
+
+  #ws-{{ section.id }} .ws-pill span {
+    position: relative;
+    transition: color .25s, transform .25s;
+  }
+
+  #ws-{{ section.id }} .ws-pill:hover::before {
+    transform: translateY(0) scale(1.1);
+  }
+
+  #ws-{{ section.id }} .ws-pill:hover span {
+    color: #fff;
+    transform: translateY(-1px);
+  }
+
+  #ws-{{ section.id }} .ws-mobile-menu {
+    display: none;
+    position: relative;
+  }
+
+  #ws-{{ section.id }} .ws-mobile-menu summary {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid #ffffff25;
+    border-radius: 50%;
+    background: #050505;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  #ws-{{ section.id }} .ws-mobile-menu summary::-webkit-details-marker {
+    display: none;
+  }
+
+  #ws-{{ section.id }} .ws-menu-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  #ws-{{ section.id }} .ws-menu-lines > span {
+    width: 20px;
+    height: 1px;
+    background: #fff;
+    transition: transform .25s;
+  }
+
+  #ws-{{ section.id }} .ws-mobile-menu[open] .ws-menu-lines > span:first-child {
+    transform: translateY(3px) rotate(45deg);
+  }
+
+  #ws-{{ section.id }} .ws-mobile-menu[open] .ws-menu-lines > span:last-child {
+    transform: translateY(-3px) rotate(-45deg);
+  }
+
+  #ws-{{ section.id }} .ws-mobile-popover {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: min(260px, calc(100vw - 40px));
+    padding: 12px;
+    border: 1px solid #ffffff25;
+    border-radius: 16px;
+    background: #080808;
+    box-shadow: 0 16px 40px #0005;
+  }
+
+  #ws-{{ section.id }} .ws-mobile-popover a {
+    display: block;
+    padding: 15px 12px;
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  #ws-{{ section.id }} .ws-header {
+    padding: clamp(100px, 14vw, 210px) var(--ws-pad) 70px;
+  }
+
+  #ws-{{ section.id }} .ws-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+  }
+
+  #ws-{{ section.id }} .ws-badge-dot {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  #ws-{{ section.id }} .ws-heading {
+    font-family: var(--ws-display);
+    font-size: clamp(48px, 10.4vw, 190px);
+    font-weight: 400;
+    line-height: .94;
+    letter-spacing: -.035em;
+    overflow-wrap: anywhere;
+  }
+
+  #ws-{{ section.id }} .ws-word {
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  #ws-{{ section.id }} .ws-char {
+    display: inline-block;
+    transform-origin: 50% 0;
+  }
+
+  #ws-{{ section.id }} .ws-panel-position {
+    position: relative;
+    width: min(1250px, calc(100% - 2 * var(--ws-pad)));
+    margin: 0 auto;
+    perspective: 1200px;
+  }
+
+  #ws-{{ section.id }} .ws-glass-panel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    border: 1px solid #ffffff24;
+    border-radius: 28px;
+    background: rgba(0,0,0,.24);
+    backdrop-filter: blur(70px);
+    -webkit-backdrop-filter: blur(70px);
+    box-shadow: 0 30px 100px #0003;
+    transform:
+      rotateX(var(--ws-rx, 0deg))
+      rotateY(var(--ws-ry, 0deg));
+    transition: transform .7s cubic-bezier(.16,1,.3,1);
+  }
+
+  #ws-{{ section.id }} .ws-panel-intro {
+    padding: clamp(32px, 5vw, 70px) clamp(24px, 5vw, 70px);
+    text-align: center;
+  }
+
+  #ws-{{ section.id }} .ws-subheading {
+    max-width: 1000px;
+    margin: 0 auto;
+    font-family: var(--ws-serif);
+    font-size: clamp(29px, 4.3vw, 66px);
+    line-height: 1.12;
+    letter-spacing: -.025em;
+    text-wrap: balance;
+  }
+
+  #ws-{{ section.id }} .ws-subheading em {
+    font-style: italic;
+  }
+
+  #ws-{{ section.id }} .ws-project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    border-top: 1px solid #ffffff20;
   }
 
   #ws-{{ section.id }} .ws-card {
-    position: relative; overflow: hidden;
-    border-radius: var(--r);
-    border: 1px solid var(--border);
-    background: var(--card-bg);
-    transition: transform 0.55s cubic-bezier(.23,1,.32,1),
-                border-color 0.4s, box-shadow 0.55s;
-    min-height: 360px;
-  }
-  @media (min-width: 1024px) { #ws-{{ section.id }} .ws-card { min-height: unset; } }
-
-  #ws-{{ section.id }} .ws-card:hover {
-    transform: scale(0.99) translateY(-5px);
-    border-color: rgba(255,255,255,0.18);
-    box-shadow: 0 0 80px rgba(59,130,246,0.12);
+    min-width: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    scroll-margin-top: 100px;
   }
 
-  /* Card image */
-  #ws-{{ section.id }} .ws-card-img {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%; object-fit: cover;
-    opacity: 0.38;
-    filter: saturate(0) contrast(1.2);
-    transition: opacity 0.7s ease, transform 0.7s ease, filter 0.7s ease;
-  }
-  #ws-{{ section.id }} .ws-card:hover .ws-card-img {
-    opacity: 0.65; transform: scale(1.06);
-    filter: saturate(1) contrast(1.05);
+  #ws-{{ section.id }} .ws-card + .ws-card {
+    border-left: 1px solid #ffffff20;
   }
 
-  /* Card gradient overlay */
-  #ws-{{ section.id }} .ws-card-grad {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.3) 55%, transparent 100%);
-    z-index: 1;
+  #ws-{{ section.id }} .ws-card-media {
+    overflow: hidden;
+    aspect-ratio: 2 / 1;
+    border-bottom: 1px solid #ffffff15;
+    background: #ffffff05;
   }
 
-  /* Card content */
+  #ws-{{ section.id }} .ws-card-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(.7);
+    transition: transform .7s, filter .7s;
+  }
+
   #ws-{{ section.id }} .ws-card-body {
-    position: relative; z-index: 2;
-    height: 100%; display: flex; flex-direction: column;
-    justify-content: flex-end; padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    padding: clamp(26px, 3.5vw, 48px);
   }
-  @media (min-width: 768px) { #ws-{{ section.id }} .ws-card-body { padding: 3rem; } }
 
   #ws-{{ section.id }} .ws-card-eyebrow {
-    font-size: 0.62rem; font-weight: 800; letter-spacing: 0.2em;
-    text-transform: uppercase; margin-bottom: auto;
-    padding-top: 0.25rem;
+    margin-bottom: 18px;
+    color: #ffffffa6;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: .16em;
+    text-transform: uppercase;
   }
-  #ws-{{ section.id }} .ws-card-eyebrow--accent { color: var(--accent); }
-  #ws-{{ section.id }} .ws-card-eyebrow--muted { color: rgba(255,255,255,0.3); }
 
   #ws-{{ section.id }} .ws-card-title {
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 900; line-height: 1; letter-spacing: -0.03em;
-    margin: 1rem 0 1rem; color: #fff;
-  }
-  #ws-{{ section.id }} .ws-card-side .ws-card-title {
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-family: var(--ws-serif);
+    font-size: clamp(34px, 4vw, 58px);
+    font-weight: 400;
+    line-height: 1.03;
+    letter-spacing: -.02em;
+    overflow-wrap: anywhere;
   }
 
   #ws-{{ section.id }} .ws-card-desc {
-    font-size: 0.92rem; color: rgba(255,255,255,0.5);
-    line-height: 1.65; margin: 0 0 1.75rem; max-width: 26rem;
+    margin-top: 20px;
+    max-width: 38ch;
+    color: #ffffffc2;
+    font-size: 14px;
+    line-height: 1.75;
   }
 
-  /* CTA Button */
-  #ws-{{ section.id }} .ws-btn {
-    display: inline-flex; align-items: center; gap: 0.65rem;
-    padding: 0.85rem 1.75rem; border-radius: 999px;
-    background: rgba(255,255,255,0.06);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.12);
-    color: #fff; font-weight: 700; font-size: 0.78rem;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    overflow: hidden; position: relative;
-    transition: background 0.35s, color 0.35s, transform 0.35s, border-color 0.35s;
-    cursor: pointer;
+  #ws-{{ section.id }} .ws-card-action {
+    margin-top: auto;
+    padding-top: 28px;
   }
-  #ws-{{ section.id }} .ws-btn:hover {
-    background: #fff; color: #000; border-color: #fff;
-    transform: scale(1.04);
-  }
-  #ws-{{ section.id }} .ws-btn::before {
-    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
-    transition: 0.5s;
-  }
-  #ws-{{ section.id }} .ws-btn:hover::before { left: 100%; }
-  #ws-{{ section.id }} .ws-btn svg { flex-shrink: 0; }
 
-  /* ── Stats ── */
+  #ws-{{ section.id }} .ws-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    min-height: 48px;
+    padding: 13px 22px;
+    border: 1px solid #ffffff45;
+    border-radius: 999px;
+    background: #ffffff09;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    transition: color .25s, background .25s, border-color .25s;
+  }
+
+  #ws-{{ section.id }} .ws-button:hover {
+    color: #050505;
+    background: #fff;
+    border-color: #fff;
+  }
+
   #ws-{{ section.id }} .ws-stats {
-    display: grid; grid-template-columns: 1fr;
-    gap: 1rem; margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid #ffffff20;
   }
-  @media (min-width: 640px) { #ws-{{ section.id }} .ws-stats { grid-template-columns: repeat(3,1fr); } }
 
   #ws-{{ section.id }} .ws-stat {
-    background: rgba(255,255,255,0.025);
-    backdrop-filter: blur(6px);
-    border: 1px solid rgba(255,255,255,0.05);
-    border-radius: 24px; padding: 2rem;
-    display: flex; flex-direction: column; justify-content: center;
-    transition: border-color 0.3s, background 0.3s;
+    padding: 30px 20px;
+    text-align: center;
   }
-  #ws-{{ section.id }} .ws-stat:hover {
-    border-color: rgba(255,255,255,0.1);
-    background: rgba(255,255,255,0.04);
+
+  #ws-{{ section.id }} .ws-stat + .ws-stat {
+    border-left: 1px solid #ffffff20;
   }
+
   #ws-{{ section.id }} .ws-stat-label {
-    font-size: 0.6rem; font-weight: 800; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem;
+    margin-bottom: 12px;
+    color: #ffffffa6;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
   }
+
   #ws-{{ section.id }} .ws-stat-value {
-    font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 900;
-    color: #fff; line-height: 1; letter-spacing: -0.03em;
+    font-family: var(--ws-serif);
+    font-size: clamp(38px, 5vw, 66px);
+    line-height: 1;
+    letter-spacing: -.025em;
+    overflow-wrap: anywhere;
   }
+
   #ws-{{ section.id }} .ws-stat-desc {
-    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--muted); margin-top: 0.4rem;
+    margin-top: 12px;
+    color: #ffffffb3;
+    font-size: 10px;
+    line-height: 1.6;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  #ws-{{ section.id }} .ws-marquee-wrap {
+    overflow: hidden;
+    padding: 25px 0;
+    border-top: 1px solid #ffffff20;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 8%,
+      #000 92%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 8%,
+      #000 92%,
+      transparent
+    );
+  }
+
+  #ws-{{ section.id }} .ws-marquee-track {
+    display: flex;
+    width: max-content;
+  }
+
+  #ws-{{ section.id }}.ws-enhanced:not(.ws-static) .ws-marquee-track {
+    animation: ws-marquee-{{ section.id }} 22s linear infinite;
+  }
+
+  #ws-{{ section.id }} .ws-marquee-group {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  #ws-{{ section.id }} .ws-marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 28px;
+    white-space: nowrap;
+    color: #ffffff99;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+
+  #ws-{{ section.id }} .ws-marquee-item > span {
+    color: #ffffffd9;
+  }
+
+  @keyframes ws-marquee-{{ section.id }} {
+    to { transform: translateX(-50%); }
+  }
+
+  #ws-{{ section.id }} .ws-controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    padding: 20px var(--ws-pad) 0;
+  }
+
+  #ws-{{ section.id }} .ws-mode {
+    min-height: 44px;
+    padding: 10px 16px;
+    border: 1px solid #ffffff35;
+    border-radius: 999px;
+    background: #0008;
+    color: #fff;
+    font-size: 10px;
+  }
+
+  #ws-{{ section.id }} .ws-scroll-cue {
+    display: none;
+    align-items: center;
+    gap: 12px;
+    font-size: 20px;
+  }
+
+  #ws-{{ section.id }} .ws-scroll-cue > span {
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: #ffffff70;
+  }
+
+  #ws-{{ section.id }} .ws-progress {
+    display: none;
+  }
+
+  /* Scroll mode stays inside this section's own runway. */
+
+  #ws-{{ section.id }}.ws-animated .ws-runway {
+    height: calc(100vh * var(--ws-screens));
+    height: calc(100svh * var(--ws-screens));
+  }
+
+  #ws-{{ section.id }}.ws-animated .ws-stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+    padding-bottom: 0;
+  }
+
+  #ws-{{ section.id }}.ws-animated .ws-pill-nav {
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0;
+    margin: 0;
+  }
+
+  #ws-{{ section.id }}.ws-animated .ws-header {
+    position: absolute;
+    inset: auto 0 11%;
+    padding: 0 var(--ws-pad);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  #ws-{{ section.id }}.ws-animated .ws-panel-position {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin: 0;
+    z-index: 3;
+    will-change: transform;
+  }
+
+  #ws-{{ section.id }}.ws-animated .ws-controls {
+    position: absolute;
+    inset: auto var(--ws-pad) 18px;
+    justify-content: space-between;
+    z-index: 10;
+    padding: 0;
+  }
+
+  #ws-{{ section.id }}.ws-animated .ws-scroll-cue {
+    display: flex;
+  }
+
+  #ws-{{ section.id }}.ws-animated .ws-progress {
+    display: block;
+    position: absolute;
+    inset: auto 0 0;
+    z-index: 15;
+    height: 2px;
+    background: #ffffff20;
+  }
+
+  #ws-{{ section.id }} .ws-progress > span {
+    display: block;
+    height: 100%;
+    background: #fff;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    #ws-{{ section.id }} .ws-card:hover .ws-card-image {
+      transform: scale(1.035);
+      filter: saturate(1);
+    }
+  }
+
+  @media (max-width: 768px) {
+    #ws-{{ section.id }} .ws-desktop-pills {
+      display: none;
+    }
+
+    #ws-{{ section.id }} .ws-mobile-menu {
+      display: block;
+    }
+
+    #ws-{{ section.id }} .ws-heading {
+      font-size: clamp(38px, 10.6vw, 82px);
+      line-height: 1.02;
+      letter-spacing: -.025em;
+    }
+
+    #ws-{{ section.id }} .ws-project-grid {
+      grid-template-columns: 1fr;
+    }
+
+    #ws-{{ section.id }} .ws-card + .ws-card {
+      border-left: 0;
+      border-top: 1px solid #ffffff20;
+    }
+
+    #ws-{{ section.id }} .ws-panel-position {
+      width: calc(100% - 32px);
+    }
+
+    #ws-{{ section.id }} .ws-glass-panel {
+      border-radius: 22px;
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+    }
+
+    #ws-{{ section.id }} .ws-panel-intro {
+      padding: 34px 24px;
+    }
+
+    #ws-{{ section.id }} .ws-subheading {
+      font-size: clamp(27px, 7vw, 40px);
+      line-height: 1.15;
+    }
+
+    #ws-{{ section.id }} .ws-card-body {
+      padding: 28px 24px;
+    }
+
+    #ws-{{ section.id }} .ws-card-title {
+      font-size: 38px;
+    }
+
+    #ws-{{ section.id }} .ws-card-desc {
+      font-size: 14px;
+    }
+
+    #ws-{{ section.id }} .ws-stats {
+      grid-template-columns: 1fr;
+    }
+
+    #ws-{{ section.id }} .ws-stat + .ws-stat {
+      border-left: 0;
+      border-top: 1px solid #ffffff20;
+    }
+
+    #ws-{{ section.id }} .ws-stat {
+      padding: 25px 20px;
+    }
+
+    #ws-{{ section.id }} .ws-stat-value {
+      font-size: 50px;
+    }
+
+    #ws-{{ section.id }} .ws-button {
+      min-height: 50px;
+    }
+
+    #ws-{{ section.id }}.ws-animated .ws-header {
+      bottom: 16%;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    #ws-{{ section.id }} .ws-marquee-track { animation: none; }
-    #ws-{{ section.id }} .ws-card { transition: none; }
-    #ws-{{ section.id }} .ws-card-img { transition: none; }
-    #ws-{{ section.id }} .ws-badge-dot { animation: none; }
+    #ws-{{ section.id }} *,
+    #ws-{{ section.id }} *::before,
+    #ws-{{ section.id }} *::after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
   }
 </style>
 
-<div id="ws-{{ section.id }}">
-  <div class="ws-glow"></div>
-  <div class="ws-inner">
+<script>
+(function () {
+  const rootId = 'ws-{{ section.id }}';
+  const wrapperId = 'shopify-section-{{ section.id }}';
 
-    <!-- Marquee -->
-    {%- if section.settings.show_marquee -%}
-      <div class="ws-marquee-wrap">
-        <div class="ws-marquee-track">
-          {%- assign items = section.settings.marquee_items | default: 'Strategy · Branding · Digital Experience · Creative Direction' | split: '·' -%}
-          {%- for item in items -%}<span class="ws-marquee-item"><span>✦</span>{{ item | strip }}</span>{%- endfor -%}
-          {%- for item in items -%}<span class="ws-marquee-item"><span>✦</span>{{ item | strip }}</span>{%- endfor -%}
-        </div>
-      </div>
-    {%- endif -%}
+  window.__wsActivationControllers = window.__wsActivationControllers || {};
+  window.__wsActivationControllers[rootId]?.();
 
-    <!-- Header -->
-    <div class="ws-header">
-      {%- if section.settings.badge_label != blank -%}
-        <div class="ws-badge">
-          <span class="ws-badge-dot"></span>
-          {{ section.settings.badge_label }}
-        </div>
-      {%- endif -%}
-      <h2 class="ws-h2">{{ section.settings.heading | newline_to_br }}</h2>
-      {%- if section.settings.subheading != blank -%}
-        <p class="ws-sub">{{ section.settings.subheading }}</p>
-      {%- endif -%}
-    </div>
+  const lifecycle = new AbortController();
+  let cleanup = () => {};
 
-    <!-- Bento Grid -->
-    <div class="ws-bento">
+  function initialize() {
+    cleanup();
 
-      <!-- Main Card -->
-      <div class="ws-card ws-card-main">
-        {%- if section.settings.card1_image -%}
-          <img class="ws-card-img" src="{{ section.settings.card1_image | img_url: '1400x' }}" alt="{{ section.settings.card1_title }}" loading="eager">
-        {%- endif -%}
-        <div class="ws-card-grad"></div>
-        <div class="ws-card-body">
-          {%- if section.settings.card1_eyebrow != blank -%}
-            <p class="ws-card-eyebrow ws-card-eyebrow--accent">{{ section.settings.card1_eyebrow }}</p>
-          {%- endif -%}
-          <h3 class="ws-card-title">{{ section.settings.card1_title | newline_to_br }}</h3>
-          {%- if section.settings.card1_desc != blank -%}
-            <p class="ws-card-desc">{{ section.settings.card1_desc }}</p>
-          {%- endif -%}
-          {%- if section.settings.card1_btn_label != blank -%}
-            <div>
-              <a href="{{ section.settings.card1_btn_url | default: '#' }}" class="ws-btn">
-                {{ section.settings.card1_btn_label }}
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-              </a>
-            </div>
-          {%- endif -%}
-        </div>
-      </div>
+    const root = document.getElementById(rootId);
+    if (!root) return;
 
-      <!-- Side Card -->
-      <div class="ws-card ws-card-side">
-        {%- if section.settings.card2_image -%}
-          <img class="ws-card-img" src="{{ section.settings.card2_image | img_url: '900x' }}" alt="{{ section.settings.card2_title }}" loading="lazy">
-        {%- endif -%}
-        <div class="ws-card-grad"></div>
-        <div class="ws-card-body">
-          {%- if section.settings.card2_eyebrow != blank -%}
-            <p class="ws-card-eyebrow ws-card-eyebrow--muted">{{ section.settings.card2_eyebrow }}</p>
-          {%- endif -%}
-          <h3 class="ws-card-title">{{ section.settings.card2_title | newline_to_br }}</h3>
-          {%- if section.settings.card2_desc != blank -%}
-            <p class="ws-card-desc">{{ section.settings.card2_desc }}</p>
-          {%- endif -%}
-          {%- if section.settings.card2_btn_label != blank -%}
-            <div>
-              <a href="{{ section.settings.card2_btn_url | default: '#' }}" class="ws-btn">
-                {{ section.settings.card2_btn_label }}
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-              </a>
-            </div>
-          {%- endif -%}
-        </div>
-      </div>
+    const events = new AbortController();
+    const signal = events.signal;
 
-    </div>
+    const runway = root.querySelector('[data-ws-runway]');
+    const stage = root.querySelector('[data-ws-stage]');
+    const title = root.querySelector('[data-ws-title]');
+    const headingWrap = root.querySelector('[data-ws-heading-wrap]');
+    const badge = root.querySelector('.ws-badge');
+    const panelPosition = root.querySelector('[data-ws-panel-position]');
+    const panel = root.querySelector('[data-ws-panel]');
+    const video = root.querySelector('[data-ws-video]');
+    const modeButton = root.querySelector('[data-ws-mode]');
+    const progressBar = root.querySelector('[data-ws-progress]');
+    const menu = root.querySelector('.ws-mobile-menu');
 
-    <!-- Stats -->
-    {%- assign has_stats = false -%}
-    {%- for i in (1..3) -%}
-      {%- assign vk = 'stat_value_' | append: i -%}
-      {%- if section.settings[vk] != blank -%}{%- assign has_stats = true -%}{%- endif -%}
-    {%- endfor -%}
-    {%- if has_stats -%}
-      <div class="ws-stats">
-        {%- for i in (1..3) -%}
-          {%- assign vk = 'stat_value_' | append: i -%}
-          {%- assign lk = 'stat_label_' | append: i -%}
-          {%- assign dk = 'stat_desc_'  | append: i -%}
-          {%- if section.settings[vk] != blank -%}
-            <div class="ws-stat">
-              {%- if section.settings[lk] != blank -%}<p class="ws-stat-label">{{ section.settings[lk] }}</p>{%- endif -%}
-              <div class="ws-stat-value">{{ section.settings[vk] }}</div>
-              {%- if section.settings[dk] != blank -%}<p class="ws-stat-desc">{{ section.settings[dk] }}</p>{%- endif -%}
-            </div>
-          {%- endif -%}
-        {%- endfor -%}
-      </div>
-    {%- endif -%}
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const shortViewport = matchMedia('(max-height: 480px)');
+    const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
 
-  </div>
-</div>
+    const originalTitle = title.innerHTML;
+
+    let destroyed = false;
+    let animated = false;
+    let staticRequested = false;
+    let frame = null;
+    let currentProgress = null;
+    let lastTime = 0;
+    let height = 1;
+    let panelHeight = 1;
+    let videoLoaded = false;
+    let videoFailed = false;
+    let targetTime = 0;
+    let sectionVisible = true;
+
+    const clamp = value => Math.max(0, Math.min(1, value));
+    const range = (value, start, end) => clamp((value - start) / (end - start));
+    const smooth = value => value * value * (3 - 2 * value);
+
+    function listen(target, type, handler, options = {}) {
+      target?.addEventListener(type, handler, { ...options, signal });
+    }
+
+    /*
+      Preserve the exact heading text and line breaks.
+      Character spans are visual only; the original heading remains
+      available to screen readers in the adjacent hidden span.
+    */
+    function splitTitle() {
+      title.innerHTML = originalTitle;
+
+      const walker = document.createTreeWalker(
+        title,
+        NodeFilter.SHOW_TEXT
+      );
+
+      const textNodes = [];
+      while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+      textNodes.forEach(node => {
+        const fragment = document.createDocumentFragment();
+        const parts = node.textContent.split(/(\s+)/);
+
+        parts.forEach(part => {
+          if (!part) return;
+
+          if (/^\s+$/.test(part)) {
+            fragment.append(document.createTextNode(part));
+            return;
+          }
+
+          const word = document.createElement('span');
+          word.className = 'ws-word';
+
+          Array.from(part).forEach(character => {
+            const span = document.createElement('span');
+            span.className = 'ws-char';
+            span.textContent = character;
+            word.append(span);
+          });
+
+          fragment.append(word);
+        });
+
+        node.replaceWith(fragment);
+      });
+    }
+
+    splitTitle();
+    const characters = [...title.querySelectorAll('.ws-char')];
+
+    function setPanelVisible(visible) {
+      panelPosition.style.visibility = visible ? 'visible' : 'hidden';
+      panelPosition.inert = !visible;
+
+      if (visible) {
+        panelPosition.removeAttribute('aria-hidden');
+      } else {
+        panelPosition.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    function loadVideo() {
+      if (!video || videoLoaded || videoFailed || !animated) return;
+
+      videoLoaded = true;
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.src = video.dataset.src;
+      video.load();
+    }
+
+    /*
+      Keep only the newest scroll target.
+      A second seek starts after the previous seek finishes.
+    */
+    function seekVideo() {
+      if (
+        !video ||
+        destroyed ||
+        !animated ||
+        !sectionVisible ||
+        document.hidden ||
+        videoFailed ||
+        video.seeking ||
+        video.readyState < 1 ||
+        !Number.isFinite(video.duration) ||
+        video.duration <= 0
+      ) return;
+
+      const nextTime = Math.min(
+        Math.max(0, video.duration - .05),
+        Math.max(.001, targetTime)
+      );
+
+      if (Math.abs(video.currentTime - nextTime) < .035) return;
+
+      try {
+        video.currentTime = nextTime;
+      } catch (_) {
+        /* Retry after the next media or scroll event. */
+      }
+    }
+
+    function panelGeometry() {
+      const start = height * .98;
+      const end = Math.min(height * .08, height - panelHeight - 76);
+      return { start, end };
+    }
+
+    function paint(progress) {
+      if (!animated) return;
+
+      progressBar.style.transform = `scaleX(${progress})`;
+
+      const titleProgress = range(progress, 0, .33);
+
+      characters.forEach((character, index) => {
+        const delay = characters.length > 1
+          ? index / (characters.length - 1) * .35
+          : 0;
+
+        const amount = smooth(clamp((titleProgress - delay) / .65));
+
+        character.style.opacity = String(1 - amount);
+        character.style.transform =
+          `translateY(${amount * 250}%) scale(${1 - amount * .1},${1 + amount * .2})`;
+      });
+
+      if (badge) {
+        const badgeOut = range(progress, .01, .13);
+        badge.style.opacity = String(1 - badgeOut);
+        badge.style.transform = `translateY(${badgeOut * 20}px)`;
+      }
+
+      headingWrap.style.visibility = progress >= .34 ? 'hidden' : 'visible';
+
+      const motion = range(progress, .30, .96);
+      const geometry = panelGeometry();
+      const panelY = geometry.start + (geometry.end - geometry.start) * motion;
+
+      panelPosition.style.transform =
+        `translate3d(-50%, ${panelY}px, 0)`;
+
+      panelPosition.style.opacity = String(range(progress, .29, .35));
+      setPanelVisible(progress > .295);
+
+      if (Number.isFinite(video?.duration)) {
+        targetTime = progress * Math.max(0, video.duration - .05);
+        seekVideo();
+      }
+    }
+
+    function tick(time) {
+      frame = null;
+      if (destroyed || !animated || document.hidden) return;
+
+      const rect = runway.getBoundingClientRect();
+
+      sectionVisible =
+        rect.bottom > 0 &&
+        rect.top < window.innerHeight;
+
+      if (!sectionVisible) return;
+
+      loadVideo();
+
+      const travel = Math.max(1, runway.offsetHeight - height);
+      const target = clamp(-rect.top / travel);
+      const delta = Math.min((time - lastTime) / 1000 || .016, .064);
+
+      lastTime = time;
+
+      if (currentProgress === null) currentProgress = target;
+
+      currentProgress +=
+        (target - currentProgress) * (1 - Math.exp(-delta * 10));
+
+      if (Math.abs(target - currentProgress) < .00015) {
+        currentProgress = target;
+      }
+
+      paint(currentProgress);
+
+      if (Math.abs(target - currentProgress) >= .00015) {
+        schedule();
+      }
+    }
+
+    function schedule() {
+      if (frame === null && animated && !destroyed) {
+        frame = requestAnimationFrame(tick);
+      }
+    }
+
+    function measure() {
+      if (destroyed) return;
+
+      height = stage.clientHeight || window.innerHeight;
+      panelHeight = panelPosition.offsetHeight;
+
+      schedule();
+    }
+
+    function resetPresentation() {
+      characters.forEach(character => {
+        character.style.removeProperty('opacity');
+        character.style.removeProperty('transform');
+      });
+
+      if (badge) {
+        badge.style.removeProperty('opacity');
+        badge.style.removeProperty('transform');
+      }
+
+      headingWrap.style.removeProperty('visibility');
+      panelPosition.style.removeProperty('transform');
+      panelPosition.style.removeProperty('opacity');
+      panelPosition.style.removeProperty('visibility');
+      panelPosition.inert = false;
+      panelPosition.removeAttribute('aria-hidden');
+
+      root.style.setProperty('--ws-mx', '0px');
+      root.style.setProperty('--ws-my', '0px');
+      root.style.setProperty('--ws-rx', '0deg');
+      root.style.setProperty('--ws-ry', '0deg');
+
+      if (video) {
+        video.pause();
+        video.removeAttribute('data-ready');
+      }
+    }
+
+    function setMode(restorePosition = false) {
+      const sectionTop = root.getBoundingClientRect().top + window.scrollY;
+
+      animated =
+        !staticRequested &&
+        !reduced.matches &&
+        !shortViewport.matches;
+
+      if (frame !== null) cancelAnimationFrame(frame);
+      frame = null;
+      currentProgress = null;
+
+      root.classList.add('ws-enhanced');
+      root.classList.toggle('ws-animated', animated);
+      root.classList.toggle('ws-static', !animated);
+
+      modeButton.hidden = reduced.matches || shortViewport.matches;
+      modeButton.textContent = animated ? 'View all content' : 'Enable animation';
+      modeButton.setAttribute('aria-pressed', String(!animated));
+
+      if (!animated) {
+        resetPresentation();
+      } else {
+        if (video && video.readyState >= 2 && !videoFailed) {
+          video.dataset.ready = 'true';
+        }
+
+        measure();
+
+        const travel = Math.max(1, runway.offsetHeight - height);
+        const progress = clamp(-runway.getBoundingClientRect().top / travel);
+
+        currentProgress = progress;
+        paint(progress);
+      }
+
+      if (restorePosition) {
+        window.scrollTo({
+          top: Math.max(0, sectionTop),
+          behavior: 'instant'
+        });
+        currentProgress = null;
+      }
+
+      schedule();
+    }
+
+    function scrollToProgress(progress) {
+      const top = runway.getBoundingClientRect().top + window.scrollY;
+      const travel = Math.max(1, runway.offsetHeight - height);
+
+      window.scrollTo({
+        top: top + travel * clamp(progress),
+        behavior: reduced.matches ? 'auto' : 'smooth'
+      });
+    }
+
+    root.querySelectorAll('[data-ws-jump]').forEach(link => {
+      listen(link, 'click', event => {
+        const card = root.querySelector(
+          `[data-ws-card="${link.dataset.wsJump}"]`
+        );
+
+        if (!card) return;
+        if (menu) menu.open = false;
+
+        if (!animated) return;
+
+        event.preventDefault();
+
+        const cardOffset =
+          card.getBoundingClientRect().top -
+          panelPosition.getBoundingClientRect().top;
+
+        const geometry = panelGeometry();
+        const desiredPanelY = height * .22 - cardOffset;
+        const motion = clamp(
+          (geometry.start - desiredPanelY) /
+          Math.max(1, geometry.start - geometry.end)
+        );
+
+        scrollToProgress(.30 + motion * .66);
+      });
+    });
+
+    listen(root.querySelector('[data-ws-start]'), 'click', event => {
+      if (!animated) return;
+      event.preventDefault();
+      scrollToProgress(0);
+      if (menu) menu.open = false;
+    });
+
+    listen(modeButton, 'click', () => {
+      staticRequested = !staticRequested;
+      setMode(true);
+    });
+
+    listen(root, 'keydown', event => {
+      if (event.key === 'Escape' && menu?.open) {
+        menu.open = false;
+        menu.querySelector('summary')?.focus();
+      }
+    });
+
+    listen(document, 'pointerdown', event => {
+      if (menu?.open && !menu.contains(event.target)) {
+        menu.open = false;
+      }
+    });
+
+    listen(stage, 'pointermove', event => {
+      if (!animated || reduced.matches || !finePointer.matches) return;
+
+      const bounds = stage.getBoundingClientRect();
+      const x = (event.clientX - bounds.left) / bounds.width * 2 - 1;
+      const y = (event.clientY - bounds.top) / bounds.height * 2 - 1;
+
+      root.style.setProperty('--ws-mx', `${x * -18}px`);
+      root.style.setProperty('--ws-my', `${y * -18}px`);
+    }, { passive: true });
+
+    listen(panel, 'pointermove', event => {
+      if (!animated || reduced.matches || !finePointer.matches) return;
+
+      const bounds = panel.getBoundingClientRect();
+      const x = (event.clientX - bounds.left) / bounds.width * 2 - 1;
+      const y = (event.clientY - bounds.top) / bounds.height * 2 - 1;
+
+      root.style.setProperty('--ws-rx', `${y * -1.5}deg`);
+      root.style.setProperty('--ws-ry', `${x * 1.5}deg`);
+    }, { passive: true });
+
+    listen(stage, 'pointerleave', () => {
+      root.style.setProperty('--ws-mx', '0px');
+      root.style.setProperty('--ws-my', '0px');
+    });
+
+    listen(panel, 'pointerleave', () => {
+      root.style.setProperty('--ws-rx', '0deg');
+      root.style.setProperty('--ws-ry', '0deg');
+    });
+
+    if (video) {
+      listen(video, 'loadedmetadata', () => {
+        video.pause();
+        seekVideo();
+        schedule();
+      });
+
+      listen(video, 'loadeddata', () => {
+        if (animated) video.dataset.ready = 'true';
+        seekVideo();
+        schedule();
+      });
+
+      listen(video, 'canplay', () => {
+        if (animated) video.dataset.ready = 'true';
+        seekVideo();
+      });
+
+      listen(video, 'seeked', seekVideo);
+
+      listen(video, 'error', () => {
+        videoFailed = true;
+        video.removeAttribute('data-ready');
+      });
+    }
+
+    listen(window, 'scroll', schedule, { passive: true });
+    listen(window, 'resize', measure, { passive: true });
+    listen(window, 'pageshow', measure);
+    listen(document, 'visibilitychange', schedule);
+
+    listen(reduced, 'change', () => setMode(true));
+    listen(shortViewport, 'change', () => setMode(true));
+
+    const observer = typeof ResizeObserver !== 'undefined'
+      ? new ResizeObserver(measure)
+      : null;
+
+    observer?.observe(stage);
+    observer?.observe(panelPosition);
+
+    root.querySelectorAll('img').forEach(image => {
+      listen(image, 'load', measure);
+    });
+
+    document.fonts?.ready.then(() => {
+      if (!destroyed) measure();
+    });
+
+    setMode();
+
+    cleanup = () => {
+      destroyed = true;
+      events.abort();
+      observer?.disconnect();
+
+      if (frame !== null) cancelAnimationFrame(frame);
+
+      resetPresentation();
+      title.innerHTML = originalTitle;
+
+      root.classList.remove(
+        'ws-enhanced',
+        'ws-animated',
+        'ws-static'
+      );
+
+      if (video) {
+        video.pause();
+        video.removeAttribute('src');
+        video.load();
+      }
+    };
+  }
+
+  document.addEventListener('shopify:section:load', event => {
+    if (event.target.id === wrapperId) initialize();
+  }, { signal: lifecycle.signal });
+
+  document.addEventListener('shopify:section:unload', event => {
+    if (event.target.id === wrapperId) cleanup();
+  }, { signal: lifecycle.signal });
+
+  window.__wsActivationControllers[rootId] = () => {
+    cleanup();
+    lifecycle.abort();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialize, {
+      once: true,
+      signal: lifecycle.signal
+    });
+  } else {
+    initialize();
+  }
+})();
+</script>
 
 {% schema %}
 {
   "name": "Activations",
   "tag": "section",
   "settings": [
-    { "type": "header",   "content": "Marquee" },
-    { "type": "checkbox", "id": "show_marquee",   "label": "Show marquee",  "default": true },
-    { "type": "text",     "id": "marquee_items",  "label": "Items (· separated)", "default": "Strategy · Branding · Digital Experience · Creative Direction" },
-
-    { "type": "header",   "content": "Section Header" },
-    { "type": "text",     "id": "badge_label",   "label": "Badge label",  "default": "Showcase 2024" },
-    { "type": "text",     "id": "heading",       "label": "Heading (use newline for line breaks)", "default": "BOLD IDEAS.\nSTUNNING RESULTS." },
-    { "type": "textarea", "id": "subheading",    "label": "Subheading",   "default": "We partner with visionary brands to create impactful moments in the digital landscape." },
-
-    { "type": "header",   "content": "Main Card (large left)" },
-    { "type": "image_picker", "id": "card1_image",     "label": "Background image" },
-    { "type": "text",         "id": "card1_eyebrow",   "label": "Eyebrow label",    "default": "Core Service" },
-    { "type": "text",         "id": "card1_title",     "label": "Title",            "default": "IDENTITY &\nBRANDING" },
-    { "type": "textarea",     "id": "card1_desc",      "label": "Description",      "default": "Crafting visual languages that resonate across every touchpoint." },
-    { "type": "text",         "id": "card1_btn_label", "label": "Button label",     "default": "VIEW PROJECTS" },
-    { "type": "url",          "id": "card1_btn_url",   "label": "Button URL" },
-
-    { "type": "header",   "content": "Side Card (small right)" },
-    { "type": "image_picker", "id": "card2_image",     "label": "Background image" },
-    { "type": "text",         "id": "card2_eyebrow",   "label": "Eyebrow label",    "default": "Success Stories" },
-    { "type": "text",         "id": "card2_title",     "label": "Title",            "default": "CASE\nSTUDIES" },
-    { "type": "textarea",     "id": "card2_desc",      "label": "Description",      "default": "Data-driven results that define industry standards." },
-    { "type": "text",         "id": "card2_btn_label", "label": "Button label",     "default": "EXPLORE" },
-    { "type": "url",          "id": "card2_btn_url",   "label": "Button URL" },
-
-    { "type": "header", "content": "Stats" },
-    { "type": "text", "id": "stat_label_1", "label": "Stat 1 label", "default": "Impact" },
-    { "type": "text", "id": "stat_value_1", "label": "Stat 1 value", "default": "2.4M+" },
-    { "type": "text", "id": "stat_desc_1",  "label": "Stat 1 desc",  "default": "User Reach Generated" },
-    { "type": "text", "id": "stat_label_2", "label": "Stat 2 label", "default": "Efficiency" },
-    { "type": "text", "id": "stat_value_2", "label": "Stat 2 value", "default": "40%" },
-    { "type": "text", "id": "stat_desc_2",  "label": "Stat 2 desc",  "default": "Average Conversion Lift" },
-    { "type": "text", "id": "stat_label_3", "label": "Stat 3 label", "default": "Partners" },
-    { "type": "text", "id": "stat_value_3", "label": "Stat 3 value", "default": "Global" },
-    { "type": "text", "id": "stat_desc_3",  "label": "Stat 3 desc",  "default": "Operating in 14 Countries" }
+    {
+      "type": "header",
+      "content": "Marquee"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_marquee",
+      "label": "Show marquee",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "marquee_items",
+      "label": "Items (· separated)",
+      "default": "Strategy · Branding · Digital Experience · Creative Direction"
+    },
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "badge_label",
+      "label": "Badge label",
+      "default": "Showcase 2024"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading (use newline for line breaks)",
+      "default": "BOLD IDEAS.\nSTUNNING RESULTS."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "We partner with visionary brands to create impactful moments in the digital landscape."
+    },
+    {
+      "type": "header",
+      "content": "Main Card (large left)"
+    },
+    {
+      "type": "image_picker",
+      "id": "card1_image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "card1_eyebrow",
+      "label": "Eyebrow label",
+      "default": "Core Service"
+    },
+    {
+      "type": "text",
+      "id": "card1_title",
+      "label": "Title",
+      "default": "IDENTITY &\nBRANDING"
+    },
+    {
+      "type": "textarea",
+      "id": "card1_desc",
+      "label": "Description",
+      "default": "Crafting visual languages that resonate across every touchpoint."
+    },
+    {
+      "type": "text",
+      "id": "card1_btn_label",
+      "label": "Button label",
+      "default": "VIEW PROJECTS"
+    },
+    {
+      "type": "url",
+      "id": "card1_btn_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Side Card (small right)"
+    },
+    {
+      "type": "image_picker",
+      "id": "card2_image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "card2_eyebrow",
+      "label": "Eyebrow label",
+      "default": "Success Stories"
+    },
+    {
+      "type": "text",
+      "id": "card2_title",
+      "label": "Title",
+      "default": "CASE\nSTUDIES"
+    },
+    {
+      "type": "textarea",
+      "id": "card2_desc",
+      "label": "Description",
+      "default": "Data-driven results that define industry standards."
+    },
+    {
+      "type": "text",
+      "id": "card2_btn_label",
+      "label": "Button label",
+      "default": "EXPLORE"
+    },
+    {
+      "type": "url",
+      "id": "card2_btn_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Stats"
+    },
+    {
+      "type": "text",
+      "id": "stat_label_1",
+      "label": "Stat 1 label",
+      "default": "Impact"
+    },
+    {
+      "type": "text",
+      "id": "stat_value_1",
+      "label": "Stat 1 value",
+      "default": "2.4M+"
+    },
+    {
+      "type": "text",
+      "id": "stat_desc_1",
+      "label": "Stat 1 desc",
+      "default": "User Reach Generated"
+    },
+    {
+      "type": "text",
+      "id": "stat_label_2",
+      "label": "Stat 2 label",
+      "default": "Efficiency"
+    },
+    {
+      "type": "text",
+      "id": "stat_value_2",
+      "label": "Stat 2 value",
+      "default": "40%"
+    },
+    {
+      "type": "text",
+      "id": "stat_desc_2",
+      "label": "Stat 2 desc",
+      "default": "Average Conversion Lift"
+    },
+    {
+      "type": "text",
+      "id": "stat_label_3",
+      "label": "Stat 3 label",
+      "default": "Partners"
+    },
+    {
+      "type": "text",
+      "id": "stat_value_3",
+      "label": "Stat 3 value",
+      "default": "Global"
+    },
+    {
+      "type": "text",
+      "id": "stat_desc_3",
+      "label": "Stat 3 desc",
+      "default": "Operating in 14 Countries"
+    },
+    {
+      "type": "header",
+      "content": "Cinematic design"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Background MP4 URL",
+      "default": "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260709_080129_da34b00e-a5db-47dd-81a1-cccad79ac1ac.mp4",
+      "info": "Use a direct MP4 URL. Scroll position controls playback."
+    },
+    {
+      "type": "image_picker",
+      "id": "video_poster",
+      "label": "Background poster image",
+      "info": "Uses the first card image when no poster is selected."
+    },
+    {
+      "type": "text",
+      "id": "heading_font_url",
+      "label": "Display font WOFF2 URL",
+      "default": "https://dirtylinestudio.com/wp-content/uploads/2022/05/Dirtyline-36daysoftype-2022.woff2",
+      "info": "The display font from your reference. You can replace this with your own hosted font URL."
+    },
+    {
+      "type": "range",
+      "id": "scroll_length",
+      "label": "Scroll sequence length",
+      "min": 500,
+      "max": 1000,
+      "step": 100,
+      "unit": "vh",
+      "default": 500,
+      "info": "Increase this to give visitors more scrolling distance to read the glass panel."
+    }
   ],
   "presets": [
-    { "name": "Activations" }
+    {
+      "name": "Activations"
+    }
   ]
 }
 {% endschema %}
