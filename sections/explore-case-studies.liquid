@@ -1,21 +1,22 @@
 {% comment %}
   Explore Case Studies
-  Preserves existing section settings and case_study blocks.
-  Self-contained CSS and JavaScript. No animation libraries required.
+  Video introduction, scroll-reactive background, project dial.
+  Styles and behavior are scoped to this section.
 {% endcomment %}
 
 {% liquid
   assign projects = section.blocks | where: 'type', 'case_study'
-  assign cover_image = section.settings.cover_image
 
-  if cover_image == blank
-    for project in projects
-      if project.settings.image != blank
-        assign cover_image = project.settings.image
-        break
-      endif
-    endfor
+  assign hero_video = section.settings.video_url | default: 'https://d2ol7oe51mr4n9.cloudfront.net/user_3GJaYKPxdnQG0Q9O26lu6DPmcHu/3abfc4bb-a49d-4a22-93e6-3ebb0f7fa9ac.mp4'
+
+  assign hero_poster = 'https://d2ol7oe51mr4n9.cloudfront.net/user_3GJaYKPxdnQG0Q9O26lu6DPmcHu/c34fa15e-fad4-4c37-a7a0-1a325b39e8bf.jpg'
+
+  if section.settings.cover_image != blank
+    assign hero_poster = section.settings.cover_image | image_url: width: 2400
   endif
+
+  assign accent = section.settings.accent | default: '#e8472a'
+  assign ending_color = section.settings.end_color | default: '#a82d22'
 %}
 
 <style>
@@ -23,13 +24,14 @@
 
   #ecs-{{ section.id }} {
     --ecs-bg: #0d0e10;
+    --ecs-accent: {{ accent }};
+    --ecs-dial-color: {{ accent }};
     --ecs-ink: #f4f4f2;
-    --ecs-accent: {{ section.settings.accent | default: '#e8472a' }};
-    --ecs-gutter: clamp(20px, 4vw, 72px);
+    --ecs-pad: clamp(20px, 4vw, 72px);
     display: block;
     position: relative;
     isolation: isolate;
-    background: var(--ecs-bg);
+    background-color: var(--ecs-bg);
     color: var(--ecs-ink);
     font-family: 'Inter Tight', Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -41,8 +43,10 @@
     box-sizing: border-box;
   }
 
-  #ecs-{{ section.id }} :is(h2, h3, p, figure) {
+  #ecs-{{ section.id }} :is(h2, h3, p) {
     margin: 0;
+    font-family: inherit;
+    color: inherit;
   }
 
   #ecs-{{ section.id }} a {
@@ -50,53 +54,69 @@
     text-decoration: none;
   }
 
-  #ecs-{{ section.id }} a:focus-visible {
-    outline: 2px solid var(--ecs-accent);
-    outline-offset: 8px;
+  #ecs-{{ section.id }} :is(a, button):focus-visible {
+    outline: 2px solid var(--ecs-ink);
+    outline-offset: 6px;
   }
 
-  /* Poster-style introduction */
+  /* VIDEO INTRODUCTION */
 
-  #ecs-{{ section.id }} .ecs-header {
+  #ecs-{{ section.id }} .ecs-hero {
     position: relative;
+    min-height: 92vh;
+    min-height: 92svh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: clamp(64px, 12vh, 160px);
-    min-height: 80vh;
-    min-height: 80svh;
-    padding: clamp(48px, 7vw, 100px) var(--ecs-gutter);
+    gap: 90px;
+    padding: clamp(48px, 7vw, 100px) var(--ecs-pad) 52px;
     overflow: hidden;
-    background: #141518;
+    background: #0d0e10;
   }
 
-  #ecs-{{ section.id }} .ecs-cover {
+  #ecs-{{ section.id }} .ecs-hero-media {
     position: absolute;
     inset: -5% 0;
+    transform: translate3d(0, var(--ecs-hero-y, 0px), 0);
     pointer-events: none;
   }
 
-  #ecs-{{ section.id }} .ecs-cover img {
+  #ecs-{{ section.id }} .ecs-video,
+  #ecs-{{ section.id }} .ecs-poster {
+    position: absolute;
+    inset: 0;
+    display: block;
     width: 100%;
     height: 100%;
-    display: block;
     object-fit: cover;
-    filter: grayscale(1) brightness(.48);
-    transform: translate3d(0, var(--ecs-cover-y, 0px), 0);
+    object-position: center;
   }
 
-  #ecs-{{ section.id }} .ecs-header::after {
-    content: '';
+  #ecs-{{ section.id }} .ecs-poster {
+    filter: grayscale(1) brightness(.7);
+  }
+
+  #ecs-{{ section.id }} .ecs-video {
+    opacity: 0;
+    filter: saturate(.3) brightness(.72);
+    transition: opacity .6s ease;
+  }
+
+  #ecs-{{ section.id }}[data-video-ready] .ecs-video {
+    opacity: 1;
+  }
+
+  #ecs-{{ section.id }} .ecs-hero-shade {
     position: absolute;
     inset: 0;
     pointer-events: none;
     background:
-      linear-gradient(180deg, rgba(13,14,16,.2), rgba(13,14,16,.12) 45%, #0d0e10),
-      linear-gradient(90deg, rgba(13,14,16,.3), transparent);
+      linear-gradient(180deg, rgba(0,0,0,.25), transparent 40%, var(--ecs-bg)),
+      linear-gradient(90deg, rgba(0,0,0,.18), transparent);
   }
 
-  #ecs-{{ section.id }} .ecs-header-top,
-  #ecs-{{ section.id }} .ecs-header-bottom {
+  #ecs-{{ section.id }} .ecs-hero-top,
+  #ecs-{{ section.id }} .ecs-hero-bottom {
     position: relative;
     z-index: 1;
   }
@@ -108,8 +128,8 @@
     margin-bottom: 28px;
     font-size: 11px;
     font-weight: 500;
-    line-height: 1.5;
     letter-spacing: .18em;
+    line-height: 1.5;
     text-transform: uppercase;
   }
 
@@ -117,45 +137,89 @@
     content: '';
     width: 7px;
     height: 7px;
-    flex: 0 0 7px;
     background: var(--ecs-accent);
+    flex-shrink: 0;
   }
 
   #ecs-{{ section.id }} .ecs-title {
     max-width: 12ch;
     color: var(--ecs-accent);
-    font-family: inherit;
     font-size: clamp(64px, 12vw, 210px);
     font-weight: 400;
-    line-height: .86;
+    line-height: .87;
     letter-spacing: -.065em;
     overflow-wrap: anywhere;
     text-wrap: balance;
   }
 
   #ecs-{{ section.id }} .ecs-rule {
-    width: 100%;
     height: clamp(3px, .4vw, 7px);
-    margin-top: clamp(24px, 4vw, 60px);
+    margin-top: clamp(24px, 4vw, 56px);
     background: var(--ecs-accent);
     transform-origin: left;
+    transform: scaleX(var(--ecs-rule-scale, 1));
   }
 
-  #ecs-{{ section.id }} .ecs-header-bottom {
-    display: flex;
-    justify-content: flex-end;
+  #ecs-{{ section.id }} .ecs-hero-bottom {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 640px);
+    align-items: end;
+    gap: 32px;
   }
 
   #ecs-{{ section.id }} .ecs-desc {
-    width: min(100%, 640px);
-    font-size: clamp(20px, 2.5vw, 38px);
+    font-size: clamp(21px, 2.5vw, 38px);
     font-weight: 400;
-    line-height: 1.22;
+    line-height: 1.24;
     letter-spacing: -.025em;
     text-wrap: pretty;
   }
 
-  /* Gallery and sticky scroll dial share a grid cell */
+  #ecs-{{ section.id }} .ecs-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  #ecs-{{ section.id }} .ecs-control {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 44px;
+    padding: 10px 16px;
+    border: 1px solid rgba(255,255,255,.4);
+    border-radius: 100px;
+    background: rgba(0,0,0,.25);
+    color: #fff;
+    font: inherit;
+    font-size: 11px;
+    line-height: 1.3;
+    cursor: pointer;
+  }
+
+  #ecs-{{ section.id }} .ecs-control[hidden] {
+    display: none;
+  }
+
+  #ecs-{{ section.id }} .ecs-control:hover {
+    background: rgba(255,255,255,.12);
+  }
+
+  #ecs-{{ section.id }} .ecs-scroll-mark {
+    display: inline-block;
+    font-size: 18px;
+    animation: ecs-scroll-{{ section.id }} 1.8s ease-in-out infinite;
+  }
+
+  @keyframes ecs-scroll-{{ section.id }} {
+    0%, 100% { transform: translateY(-3px); }
+    50% { transform: translateY(3px); }
+  }
+
+  /* SCROLL GALLERY */
 
   #ecs-{{ section.id }} .ecs-gallery {
     position: relative;
@@ -174,9 +238,9 @@
     align-self: start;
     height: 100vh;
     height: 100svh;
-    z-index: 0;
-    pointer-events: none;
     overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
     visibility: hidden;
   }
 
@@ -190,43 +254,72 @@
     height: 100%;
   }
 
-  #ecs-{{ section.id }} .ecs-dial-rail,
-  #ecs-{{ section.id }} .ecs-dial-progress {
+  #ecs-{{ section.id }} .ecs-rail,
+  #ecs-{{ section.id }} .ecs-inner-rail,
+  #ecs-{{ section.id }} .ecs-progress {
     fill: none;
     stroke-width: 1;
     vector-effect: non-scaling-stroke;
   }
 
-  #ecs-{{ section.id }} .ecs-dial-rail {
-    stroke: rgba(244,244,242,.16);
+  #ecs-{{ section.id }} .ecs-rail {
+    stroke: rgba(244,244,242,.19);
   }
 
-  #ecs-{{ section.id }} .ecs-dial-progress {
-    stroke: var(--ecs-accent);
+  #ecs-{{ section.id }} .ecs-inner-rail {
+    stroke: rgba(244,244,242,.07);
+  }
+
+  #ecs-{{ section.id }} .ecs-progress {
+    stroke: var(--ecs-dial-color);
+    stroke-width: 2;
     stroke-dasharray: 1;
     stroke-dashoffset: 1;
-    opacity: .65;
   }
 
-  #ecs-{{ section.id }} .ecs-dial-needle {
-    fill: var(--ecs-accent);
-    opacity: .3;
+  #ecs-{{ section.id }} .ecs-tick {
+    stroke: rgba(244,244,242,.2);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
   }
 
-  #ecs-{{ section.id }} .ecs-dial-label {
+  #ecs-{{ section.id }} .ecs-tick.is-lit {
+    stroke: var(--ecs-dial-color);
+  }
+
+  #ecs-{{ section.id }} .ecs-needle {
+    fill: var(--ecs-dial-color);
+    opacity: .5;
+  }
+
+  #ecs-{{ section.id }} .ecs-hub {
+    fill: var(--ecs-dial-color);
+  }
+
+  #ecs-{{ section.id }} .ecs-tip {
+    fill: var(--ecs-dial-color);
+  }
+
+  #ecs-{{ section.id }} .ecs-dial-readout {
     position: absolute;
-    bottom: 20px;
-    color: rgba(244,244,242,.45);
-    font-size: 12px;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
     font-variant-numeric: tabular-nums;
   }
 
-  #ecs-{{ section.id }} .ecs-dial-label:first-of-type {
-    left: var(--ecs-gutter);
+  #ecs-{{ section.id }} .ecs-current {
+    font-size: 36px;
+    letter-spacing: -.055em;
+    line-height: 1;
   }
 
-  #ecs-{{ section.id }} .ecs-dial-label:last-of-type {
-    right: var(--ecs-gutter);
+  #ecs-{{ section.id }} .ecs-total {
+    font-size: 12px;
+    opacity: .55;
   }
 
   #ecs-{{ section.id }} .ecs-grid {
@@ -236,17 +329,15 @@
     grid-template-columns: repeat(16, minmax(0, 1fr));
     column-gap: 20px;
     row-gap: clamp(100px, 15vw, 240px);
-    padding: clamp(80px, 12vw, 180px) var(--ecs-gutter);
+    padding: clamp(80px, 12vw, 180px) var(--ecs-pad) 140px;
   }
-
-  /* One project per row, alternating scale and placement */
 
   #ecs-{{ section.id }} .ecs-project {
     position: relative;
+    min-width: 0;
     grid-row: var(--ecs-row);
     grid-column: 2 / span 7;
-    min-width: 0;
-    transition: opacity .45s ease;
+    transition: opacity .4s ease;
   }
 
   #ecs-{{ section.id }} .ecs-project:nth-child(4n + 2) {
@@ -262,45 +353,42 @@
   }
 
   #ecs-{{ section.id }} .ecs-card {
-    display: block;
     position: relative;
+    display: block;
   }
 
   #ecs-{{ section.id }} .ecs-media {
     position: relative;
     aspect-ratio: 4 / 3;
     overflow: hidden;
-    background: #1b1d20;
+    background: #17191c;
     clip-path: inset(0);
     transition: clip-path .7s cubic-bezier(.22,1,.36,1);
   }
 
-  #ecs-{{ section.id }} .ecs-project:nth-child(4n + 2) .ecs-media,
-  #ecs-{{ section.id }} .ecs-project:nth-child(4n + 4) .ecs-media {
+  #ecs-{{ section.id }} .ecs-project:nth-child(even) .ecs-media {
     aspect-ratio: 3 / 4;
   }
 
   #ecs-{{ section.id }} .ecs-image {
     position: absolute;
     inset: -8% 0;
-    display: block;
     width: 100%;
     height: 116%;
+    display: block;
     object-fit: cover;
-    filter: grayscale(1) brightness(.75);
+    filter: grayscale(1) brightness(.82);
     transform: translate3d(0, var(--ecs-image-y, 0px), 0);
-    transition: filter .6s ease;
+    transition: filter .6s;
   }
-
-  /* Subtle print texture, without canvas image processing */
 
   #ecs-{{ section.id }} .ecs-media::after {
     content: '';
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: .18;
-    background-image: radial-gradient(#0d0e10 .7px, transparent .9px);
+    opacity: .12;
+    background-image: radial-gradient(#000 .7px, transparent .9px);
     background-size: 3px 3px;
   }
 
@@ -309,16 +397,12 @@
     inset: 0;
     display: grid;
     place-items: center;
-    color: rgba(244,244,242,.12);
-    font-size: clamp(80px, 13vw, 220px);
+    font-size: clamp(90px, 13vw, 220px);
+    color: rgba(255,255,255,.15);
     letter-spacing: -.07em;
-    background:
-      linear-gradient(135deg, transparent 49.8%, rgba(244,244,242,.08) 50%, transparent 50.2%),
-      #17191c;
   }
 
-  #ecs-{{ section.id }} .ecs-card-body {
-    position: relative;
+  #ecs-{{ section.id }} .ecs-body {
     margin-top: 24px;
   }
 
@@ -335,13 +419,12 @@
   }
 
   #ecs-{{ section.id }} .ecs-number {
+    color: var(--ecs-dial-color);
     flex-shrink: 0;
-    color: var(--ecs-accent);
-    font-variant-numeric: tabular-nums;
   }
 
-  #ecs-{{ section.id }} .ecs-card-tag {
-    color: rgba(244,244,242,.7);
+  #ecs-{{ section.id }} .ecs-category {
+    color: rgba(244,244,242,.8);
   }
 
   #ecs-{{ section.id }} .ecs-name-row {
@@ -350,12 +433,10 @@
     gap: 18px;
   }
 
-  #ecs-{{ section.id }} .ecs-card-name {
+  #ecs-{{ section.id }} .ecs-name {
     flex: 1;
     min-width: 0;
-    color: var(--ecs-ink);
-    font-family: inherit;
-    font-size: clamp(26px, 3.3vw, 58px);
+    font-size: clamp(27px, 3.3vw, 58px);
     font-weight: 400;
     line-height: 1;
     letter-spacing: -.045em;
@@ -363,27 +444,20 @@
     text-wrap: balance;
   }
 
-  #ecs-{{ section.id }} .ecs-card-arrow {
+  #ecs-{{ section.id }} .ecs-arrow {
     display: grid;
     place-items: center;
-    width: 40px;
-    height: 40px;
-    flex: 0 0 40px;
-    border: 1px solid rgba(244,244,242,.25);
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    border: 1px solid rgba(255,255,255,.4);
     border-radius: 50%;
-    transition: background .3s, color .3s, transform .3s;
+    transition: background .3s, color .3s;
   }
 
-  #ecs-{{ section.id }} .ecs-card-arrow svg {
-    display: block;
+  #ecs-{{ section.id }} .ecs-arrow svg {
     width: 18px;
     height: 18px;
-  }
-
-  #ecs-{{ section.id }} .ecs-end-rule {
-    height: 1px;
-    margin: 0 var(--ecs-gutter);
-    background: rgba(244,244,242,.18);
   }
 
   @media (hover: hover) and (pointer: fine) {
@@ -401,42 +475,46 @@
     }
 
     #ecs-{{ section.id }} a.ecs-card:hover .ecs-image {
-      filter: grayscale(0) brightness(.95);
+      filter: grayscale(0) brightness(1);
     }
 
-    #ecs-{{ section.id }} a.ecs-card:hover .ecs-card-arrow {
-      color: var(--ecs-bg);
-      background: var(--ecs-accent);
-      border-color: var(--ecs-accent);
-      transform: rotate(45deg);
+    #ecs-{{ section.id }} a.ecs-card:hover .ecs-arrow {
+      background: #f4f4f2;
+      color: #0d0e10;
     }
   }
 
-  #ecs-{{ section.id }} a.ecs-card:focus-visible .ecs-image {
-    filter: grayscale(0) brightness(.95);
+  #ecs-{{ section.id }} a:focus-visible .ecs-image {
+    filter: grayscale(0);
   }
 
   @media (max-width: 767px) {
-    #ecs-{{ section.id }} .ecs-header {
-      min-height: 65svh;
-      gap: 72px;
+    #ecs-{{ section.id }} .ecs-hero {
+      min-height: 86svh;
       padding-top: 48px;
-      padding-bottom: 48px;
+      padding-bottom: 40px;
+      gap: 80px;
     }
 
     #ecs-{{ section.id }} .ecs-title {
       font-size: clamp(58px, 17vw, 128px);
     }
 
+    #ecs-{{ section.id }} .ecs-hero-bottom {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 28px;
+    }
+
     #ecs-{{ section.id }} .ecs-desc {
+      grid-row: 1;
       font-size: clamp(21px, 5.5vw, 28px);
     }
 
     #ecs-{{ section.id }} .ecs-grid {
       grid-template-columns: minmax(0, 1fr);
-      row-gap: 68px;
+      row-gap: 72px;
       padding-top: 48px;
-      padding-bottom: 72px;
+      padding-bottom: 120px;
     }
 
     #ecs-{{ section.id }} .ecs-project:nth-child(n) {
@@ -447,16 +525,16 @@
       aspect-ratio: 4 / 3;
     }
 
-    #ecs-{{ section.id }} .ecs-card-name {
+    #ecs-{{ section.id }} .ecs-name {
       font-size: clamp(27px, 7vw, 42px);
     }
 
-    #ecs-{{ section.id }} .ecs-card-body {
+    #ecs-{{ section.id }} .ecs-body {
       margin-top: 18px;
     }
 
     #ecs-{{ section.id }} .ecs-dial {
-      opacity: .5;
+      opacity: .7;
     }
   }
 
@@ -464,12 +542,13 @@
     #ecs-{{ section.id }} *,
     #ecs-{{ section.id }} *::before,
     #ecs-{{ section.id }} *::after {
-      transition: none !important;
       animation: none !important;
+      transition: none !important;
     }
 
+    #ecs-{{ section.id }} .ecs-hero-media,
     #ecs-{{ section.id }} .ecs-image,
-    #ecs-{{ section.id }} .ecs-cover img {
+    #ecs-{{ section.id }} .ecs-rule {
       transform: none !important;
     }
 
@@ -483,26 +562,39 @@
   }
 </style>
 
-<ukiyo-case-gallery
+<ukiyo-case-motion-v2
   id="ecs-{{ section.id }}"
-  data-section-id="{{ section.id }}"
+  data-accent="{{ accent }}"
+  data-end="{{ ending_color }}"
+  data-color-scroll="{{ section.settings.scroll_color }}"
 >
-  <header class="ecs-header">
-    {% if cover_image != blank %}
-      <div class="ecs-cover" aria-hidden="true">
-        {{
-          cover_image
-          | image_url: width: 2400
-          | image_tag:
-            widths: '600, 900, 1200, 1600, 2000, 2400',
-            sizes: '100vw',
-            loading: 'eager',
-            alt: ''
-        }}
-      </div>
-    {% endif %}
+  <header class="ecs-hero">
+    <div class="ecs-hero-media" aria-hidden="true">
+      <img
+        class="ecs-poster"
+        src="{{ hero_poster | escape }}"
+        alt=""
+        width="2400"
+        height="1600"
+        loading="eager"
+      >
 
-    <div class="ecs-header-top">
+      <video
+        class="ecs-video"
+        muted
+        playsinline
+        loop
+        preload="metadata"
+        poster="{{ hero_poster | escape }}"
+        tabindex="-1"
+      >
+        <source src="{{ hero_video | escape }}" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="ecs-hero-shade" aria-hidden="true"></div>
+
+    <div class="ecs-hero-top">
       {% if section.settings.eyebrow != blank %}
         <p class="ecs-eyebrow">
           {{ section.settings.eyebrow | escape }}
@@ -518,38 +610,69 @@
       <div class="ecs-rule" aria-hidden="true"></div>
     </div>
 
-    {% if section.settings.description != blank %}
-      <div class="ecs-header-bottom">
+    <div class="ecs-hero-bottom">
+      <div class="ecs-controls">
+        {% if projects.size > 0 %}
+          <a
+            class="ecs-control"
+            href="#ecs-projects-{{ section.id }}"
+            data-scroll-link
+          >
+            Explore projects
+            <span class="ecs-scroll-mark" aria-hidden="true">↓</span>
+          </a>
+        {% endif %}
+
+        <button
+          class="ecs-control"
+          type="button"
+          data-video-toggle
+          hidden
+        >
+          Play video
+        </button>
+      </div>
+
+      {% if section.settings.description != blank %}
         <p class="ecs-desc">
           {{ section.settings.description | escape | newline_to_br }}
         </p>
-      </div>
-    {% endif %}
+      {% endif %}
+    </div>
   </header>
 
   {% if projects.size > 0 %}
-    <div class="ecs-gallery">
+    <div
+      class="ecs-gallery"
+      id="ecs-projects-{{ section.id }}"
+    >
       {% if section.settings.show_dial %}
         <div class="ecs-dial" aria-hidden="true">
           <svg focusable="false">
-            <path class="ecs-dial-rail" pathLength="1"></path>
-            <path class="ecs-dial-progress" pathLength="1"></path>
-            <polygon class="ecs-dial-needle"></polygon>
+            <path class="ecs-rail"></path>
+            <path class="ecs-inner-rail"></path>
+            <path class="ecs-progress" pathLength="1"></path>
+            <g class="ecs-ticks"></g>
+            <polygon class="ecs-needle"></polygon>
+            <circle class="ecs-hub" r="4"></circle>
+            <circle class="ecs-tip" r="4"></circle>
           </svg>
 
-          <span class="ecs-dial-label">01</span>
-          <span class="ecs-dial-label">
-            {% if projects.size < 10 %}0{% endif %}{{ projects.size }}
-          </span>
+          <div class="ecs-dial-readout">
+            <span class="ecs-current">01</span>
+            <span class="ecs-total">
+              / {% if projects.size < 10 %}0{% endif %}{{ projects.size }}
+            </span>
+          </div>
         </div>
       {% endif %}
 
       <div class="ecs-grid">
         {% for block in projects %}
           {% liquid
-            assign card_tag = 'div'
+            assign card_element = 'div'
             if block.settings.url != blank
-              assign card_tag = 'a'
+              assign card_element = 'a'
             endif
 
             assign image_loading = 'lazy'
@@ -565,7 +688,7 @@
             style="--ecs-row: {{ forloop.index }};"
             {{ block.shopify_attributes }}
           >
-            <{{ card_tag }}
+            <{{ card_element }}
               class="ecs-card"
               {% if block.settings.url != blank %}
                 href="{{ block.settings.url | escape }}"
@@ -590,26 +713,26 @@
                 {% endif %}
               </div>
 
-              <div class="ecs-card-body">
+              <div class="ecs-body">
                 <div class="ecs-meta">
                   <span class="ecs-number" aria-hidden="true">
                     {% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}
                   </span>
 
                   {% if block.settings.tag != blank %}
-                    <span class="ecs-card-tag">
+                    <span class="ecs-category">
                       {{ block.settings.tag | escape }}
                     </span>
                   {% endif %}
                 </div>
 
                 <div class="ecs-name-row">
-                  <h3 class="ecs-card-name">
+                  <h3 class="ecs-name">
                     {{ block.settings.name | escape }}
                   </h3>
 
                   {% if block.settings.url != blank %}
-                    <span class="ecs-card-arrow" aria-hidden="true">
+                    <span class="ecs-arrow" aria-hidden="true">
                       <svg
                         viewBox="0 0 24 24"
                         fill="none"
@@ -624,289 +747,476 @@
                   {% endif %}
                 </div>
               </div>
-            </{{ card_tag }}>
+            </{{ card_element }}>
           </article>
         {% endfor %}
       </div>
     </div>
   {% endif %}
-
-  <div class="ecs-end-rule" aria-hidden="true"></div>
-</ukiyo-case-gallery>
+</ukiyo-case-motion-v2>
 
 <script>
-  (() => {
-    if (customElements.get('ukiyo-case-gallery')) return;
+(() => {
+  const tag = 'ukiyo-case-motion-v2';
+  if (customElements.get(tag)) return;
 
-    class UkiyoCaseGallery extends HTMLElement {
-      connectedCallback() {
-        this.bootFrame = requestAnimationFrame(() => {
-          if (this.isConnected) this.init();
+  class UkiyoCaseMotion extends HTMLElement {
+    connectedCallback() {
+      this.boot = requestAnimationFrame(() => {
+        if (this.isConnected) this.init();
+      });
+    }
+
+    init() {
+      if (this.controller) return;
+
+      this.controller = new AbortController();
+      const signal = this.controller.signal;
+
+      this.reduced = matchMedia('(prefers-reduced-motion: reduce)');
+      this.hero = this.querySelector('.ecs-hero');
+      this.gallery = this.querySelector('.ecs-gallery');
+      this.video = this.querySelector('video');
+      this.toggle = this.querySelector('[data-video-toggle]');
+      this.dial = this.querySelector('.ecs-dial');
+      this.svg = this.querySelector('.ecs-dial svg');
+      this.readout = this.querySelector('.ecs-current');
+      this.animations = new Set();
+      this.ticks = [];
+      this.heroVisible = true;
+      this.userPaused = false;
+      this.manualPlay = false;
+      this.playPending = false;
+
+      this.items = Array.from(
+        this.querySelectorAll('.ecs-project')
+      ).map(element => ({
+        element,
+        image: element.querySelector('.ecs-image')
+      }));
+
+      this.parseColor = hex => {
+        let value = String(hex).replace('#', '');
+        if (value.length === 3) {
+          value = value.split('').map(c => c + c).join('');
+        }
+        if (!/^[0-9a-f]{6}$/i.test(value)) return [168,45,34];
+        return [0,2,4].map(i => parseInt(value.slice(i, i + 2), 16));
+      };
+
+      this.accentRGB = this.parseColor(this.dataset.accent);
+      this.endRGB = this.parseColor(this.dataset.end);
+      this.clamp = n => Math.max(0, Math.min(1, n));
+      this.mix = (a, b, t) => a.map(
+        (n, i) => Math.round(n + (b[i] - n) * t)
+      );
+
+      this.schedule = () => {
+        if (this.frame) return;
+        this.frame = requestAnimationFrame(() => {
+          this.frame = 0;
+          this.update();
         });
+      };
+
+      this.resize = () => {
+        this.measureDial();
+        this.schedule();
+      };
+
+      window.addEventListener('scroll', this.schedule, {
+        passive: true, signal
+      });
+
+      window.addEventListener('resize', this.resize, {
+        passive: true, signal
+      });
+
+      this.reduced.addEventListener('change', () => {
+        this.manualPlay = false;
+        this.animations.forEach(a => a.cancel());
+        this.syncVideo();
+        this.schedule();
+      }, { signal });
+
+      document.addEventListener('visibilitychange', () => {
+        this.syncVideo();
+      }, { signal });
+
+      this.querySelector('[data-scroll-link]')?.addEventListener(
+        'click',
+        event => {
+          if (
+            event.metaKey || event.ctrlKey ||
+            event.shiftKey || event.altKey
+          ) return;
+
+          event.preventDefault();
+          this.gallery?.scrollIntoView({
+            behavior: this.reduced.matches ? 'auto' : 'smooth',
+            block: 'start'
+          });
+        },
+        { signal }
+      );
+
+      this.addEventListener('shopify:block:select', event => {
+        const item = event.target.closest('.ecs-project');
+        if (!item) return;
+
+        this.animations.forEach(a => a.cancel());
+        item.scrollIntoView({ block: 'center', behavior: 'auto' });
+      }, { signal });
+
+      this.setupVideo(signal);
+      this.setupObservers();
+
+      if ('ResizeObserver' in window) {
+        this.ro = new ResizeObserver(this.resize);
+        this.ro.observe(this);
       }
 
-      init() {
-        if (this.controller) return;
+      this.measureDial();
+      this.setAttribute('data-ready', '');
+      this.update();
+    }
 
-        this.controller = new AbortController();
-        const signal = this.controller.signal;
+    setupVideo(signal) {
+      if (!this.video) return;
 
-        this.motionQuery = window.matchMedia(
-          '(prefers-reduced-motion: reduce)'
-        );
+      this.video.muted = true;
+      this.video.defaultMuted = true;
+      this.video.playsInline = true;
+      this.video.playbackRate = .7;
 
-        this.header = this.querySelector('.ecs-header');
-        this.cover = this.querySelector('.ecs-cover img');
-        this.gallery = this.querySelector('.ecs-gallery');
-        this.dial = this.querySelector('.ecs-dial');
-        this.svg = this.querySelector('.ecs-dial svg');
-        this.rail = this.querySelector('.ecs-dial-rail');
-        this.progress = this.querySelector('.ecs-dial-progress');
-        this.needle = this.querySelector('.ecs-dial-needle');
+      if (this.toggle) {
+        this.toggle.hidden = false;
 
-        this.items = Array.from(
-          this.querySelectorAll('.ecs-project')
-        ).map(element => ({
-          element,
-          image: element.querySelector('.ecs-image')
-        }));
-
-        this.animations = new Set();
-        this.schedule = () => {
-          if (this.frame) return;
-
-          this.frame = requestAnimationFrame(() => {
-            this.frame = 0;
-            this.update();
-          });
-        };
-
-        this.onResize = () => {
-          this.measure();
-          this.schedule();
-        };
-
-        window.addEventListener('scroll', this.schedule, {
-          passive: true,
-          signal
-        });
-
-        window.addEventListener('resize', this.onResize, {
-          passive: true,
-          signal
-        });
-
-        this.onMotionChange = () => {
-          if (this.motionQuery.matches) {
-            this.animations.forEach(animation => animation.cancel());
-            this.animations.clear();
+        this.toggle.addEventListener('click', () => {
+          if (this.video.paused) {
+            this.userPaused = false;
+            this.manualPlay = true;
+            this.playVideo();
+          } else {
+            this.userPaused = true;
+            this.manualPlay = false;
+            this.video.pause();
           }
-
-          this.measure();
-          this.schedule();
-        };
-
-        this.motionQuery.addEventListener(
-          'change',
-          this.onMotionChange,
-          { signal }
-        );
-
-        this.addEventListener('shopify:block:select', event => {
-          const item = event.target.closest('.ecs-project');
-          if (!item) return;
-
-          this.animations.forEach(animation => animation.cancel());
-          this.animations.clear();
-
-          item.scrollIntoView({
-            block: 'center',
-            behavior: 'auto'
-          });
         }, { signal });
-
-        if ('ResizeObserver' in window) {
-          this.resizeObserver = new ResizeObserver(this.onResize);
-          this.resizeObserver.observe(this);
-        }
-
-        this.setupReveals();
-        this.measure();
-        this.setAttribute('data-ready', '');
-        this.update();
       }
 
-      setupReveals() {
-        if (!('IntersectionObserver' in window)) return;
+      this.video.addEventListener('playing', () => {
+        this.setAttribute('data-video-ready', '');
+        if (this.toggle) this.toggle.textContent = 'Pause video';
+      }, { signal });
 
-        this.revealObserver = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
+      this.video.addEventListener('pause', () => {
+        if (this.toggle) this.toggle.textContent = 'Play video';
+      }, { signal });
 
-            this.revealObserver.unobserve(entry.target);
+      this.video.addEventListener('error', () => {
+        this.removeAttribute('data-video-ready');
+        if (this.toggle) this.toggle.hidden = true;
+      }, { signal });
 
-            if (
-              this.motionQuery.matches ||
-              !entry.target.animate
-            ) return;
+      this.video.addEventListener('loadedmetadata', () => {
+        this.video.playbackRate = .7;
+        this.syncVideo();
+      }, { signal });
 
-            const media = entry.target.querySelector('.ecs-media');
-            const body = entry.target.querySelector('.ecs-card-body');
+      this.syncVideo();
+    }
 
-            if (media) {
-              this.trackAnimation(media.animate([
-                { clipPath: 'inset(0 0 100% 0)' },
-                { clipPath: 'inset(0 0 0% 0)' }
-              ], {
-                duration: 1000,
-                easing: 'cubic-bezier(.22,1,.36,1)'
-              }));
-            }
+    playVideo() {
+      if (!this.video || this.playPending) return;
 
-            if (body) {
-              this.trackAnimation(body.animate([
-                { opacity: 0, transform: 'translateY(22px)' },
-                { opacity: 1, transform: 'translateY(0)' }
-              ], {
-                duration: 800,
-                easing: 'cubic-bezier(.22,1,.36,1)'
-              }));
-            }
-          });
-        }, {
-          threshold: 0.06
-        });
+      this.playPending = true;
+      const result = this.video.play();
 
-        this.items.forEach(item => {
-          this.revealObserver.observe(item.element);
-        });
-      }
-
-      trackAnimation(animation) {
-        this.animations.add(animation);
-
-        animation.finished
-          .catch(() => {})
-          .finally(() => {
-            this.animations.delete(animation);
-          });
-      }
-
-      measure() {
-        if (!this.dial || !this.svg) return;
-
-        const width = this.dial.clientWidth;
-        const height = this.dial.clientHeight;
-        if (!width || !height) return;
-
-        const centerX = width / 2;
-        const centerY = height - 44;
-        const radius = Math.max(
-          1,
-          Math.min(width / 2 - 20, height - 90)
-        );
-
-        this.centerX = centerX;
-        this.centerY = centerY;
-
-        this.svg.setAttribute(
-          'viewBox',
-          `0 0 ${width} ${height}`
-        );
-
-        const path = [
-          'M', centerX - radius, centerY,
-          'A', radius, radius, 0, 0, 1,
-          centerX + radius, centerY
-        ].join(' ');
-
-        this.rail.setAttribute('d', path);
-        this.progress.setAttribute('d', path);
-
-        this.needle.setAttribute('points', [
-          `${centerX},${centerY - 1.5}`,
-          `${centerX + radius - 14},${centerY}`,
-          `${centerX},${centerY + 1.5}`
-        ].join(' '));
-      }
-
-      update() {
-        const reduced = this.motionQuery.matches;
-        const viewport = window.innerHeight;
-        const clamp = value => Math.max(0, Math.min(1, value));
-
-        if (this.cover && this.header) {
-          const rect = this.header.getBoundingClientRect();
-          const offset = reduced
-            ? 0
-            : Math.max(
-                -rect.height * .04,
-                Math.min(rect.height * .04, -rect.top * .07)
-              );
-
-          this.cover.style.setProperty(
-            '--ecs-cover-y',
-            `${offset.toFixed(2)}px`
-          );
-        }
-
-        if (this.gallery && this.progress && this.needle) {
-          const rect = this.gallery.getBoundingClientRect();
-          const distance = rect.height - viewport;
-          const amount = distance > 0
-            ? clamp(-rect.top / distance)
-            : clamp((viewport - rect.top) / (viewport + rect.height));
-
-          this.progress.style.strokeDashoffset = String(1 - amount);
-
-          this.needle.setAttribute(
-            'transform',
-            `rotate(${-180 + amount * 180} ${this.centerX || 0} ${this.centerY || 0})`
-          );
-        }
-
-        this.items.forEach(item => {
-          if (!item.image) return;
-
-          if (reduced) {
-            item.image.style.setProperty('--ecs-image-y', '0px');
-            return;
+      if (result && typeof result.then === 'function') {
+        result.catch(() => {
+          if (this.toggle && this.isConnected) {
+            this.toggle.textContent = 'Play video';
           }
+        }).finally(() => {
+          this.playPending = false;
 
-          const rect = item.element.getBoundingClientRect();
-          if (rect.bottom < 0 || rect.top > viewport) return;
-
-          const position = clamp(
-            (viewport - rect.top) / (viewport + rect.height)
-          );
-
-          const amplitude = Math.min(24, rect.height * .035);
-          const offset = (position - .5) * amplitude * 2;
-
-          item.image.style.setProperty(
-            '--ecs-image-y',
-            `${offset.toFixed(2)}px`
-          );
+          if (
+            !this.isConnected ||
+            document.hidden ||
+            !this.heroVisible ||
+            this.userPaused ||
+            (this.reduced.matches && !this.manualPlay)
+          ) this.video.pause();
         });
-      }
-
-      disconnectedCallback() {
-        cancelAnimationFrame(this.bootFrame);
-        cancelAnimationFrame(this.frame);
-        this.frame = 0;
-
-        this.controller?.abort();
-        this.controller = null;
-        this.resizeObserver?.disconnect();
-        this.revealObserver?.disconnect();
-        this.animations?.forEach(animation => animation.cancel());
-        this.animations?.clear();
-        this.removeAttribute('data-ready');
+      } else {
+        this.playPending = false;
       }
     }
 
-    customElements.define('ukiyo-case-gallery', UkiyoCaseGallery);
-  })();
+    syncVideo() {
+      if (!this.video) return;
+
+      const shouldPlay =
+        this.isConnected &&
+        this.heroVisible &&
+        !document.hidden &&
+        !this.userPaused &&
+        (!this.reduced.matches || this.manualPlay);
+
+      if (shouldPlay) {
+        this.playVideo();
+      } else {
+        this.video.pause();
+      }
+    }
+
+    setupObservers() {
+      if (!('IntersectionObserver' in window)) return;
+
+      this.heroObserver = new IntersectionObserver(entries => {
+        this.heroVisible = entries[0].isIntersecting;
+        this.syncVideo();
+      }, { threshold: 0 });
+
+      this.heroObserver.observe(this.hero);
+
+      this.revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          this.revealObserver.unobserve(entry.target);
+          if (this.reduced.matches) return;
+
+          const media = entry.target.querySelector('.ecs-media');
+          const body = entry.target.querySelector('.ecs-body');
+
+          if (media?.animate) {
+            this.track(media.animate([
+              { clipPath: 'inset(0 0 100% 0)' },
+              { clipPath: 'inset(0 0 0% 0)' }
+            ], {
+              duration: 1000,
+              easing: 'cubic-bezier(.22,1,.36,1)'
+            }));
+          }
+
+          if (body?.animate) {
+            this.track(body.animate([
+              { opacity: 0, transform: 'translateY(20px)' },
+              { opacity: 1, transform: 'translateY(0)' }
+            ], {
+              duration: 850,
+              easing: 'cubic-bezier(.22,1,.36,1)'
+            }));
+          }
+        });
+      }, { threshold: .06 });
+
+      this.items.forEach(item => {
+        this.revealObserver.observe(item.element);
+      });
+    }
+
+    track(animation) {
+      this.animations.add(animation);
+      animation.finished.catch(() => {}).finally(() => {
+        this.animations.delete(animation);
+      });
+    }
+
+    measureDial() {
+      if (!this.dial || !this.svg) return;
+
+      const w = this.dial.clientWidth;
+      const h = this.dial.clientHeight;
+      if (!w || !h) return;
+
+      this.cx = w / 2;
+      this.cy = h - 74;
+      this.radius = Math.max(1, Math.min(w / 2 - 24, h - 118));
+
+      this.svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+
+      const arc = r =>
+        `M ${this.cx-r} ${this.cy} A ${r} ${r} 0 0 1 ${this.cx+r} ${this.cy}`;
+
+      this.svg.querySelector('.ecs-rail').setAttribute(
+        'd', arc(this.radius)
+      );
+
+      this.svg.querySelector('.ecs-inner-rail').setAttribute(
+        'd', arc(Math.max(1, this.radius - 32))
+      );
+
+      this.progress = this.svg.querySelector('.ecs-progress');
+      this.progress.setAttribute('d', arc(this.radius));
+
+      this.needle = this.svg.querySelector('.ecs-needle');
+      this.needle.setAttribute('points', [
+        `${this.cx},${this.cy-1.5}`,
+        `${this.cx+this.radius-40},${this.cy}`,
+        `${this.cx},${this.cy+1.5}`
+      ].join(' '));
+
+      const hub = this.svg.querySelector('.ecs-hub');
+      hub.setAttribute('cx', this.cx);
+      hub.setAttribute('cy', this.cy);
+      this.tip = this.svg.querySelector('.ecs-tip');
+
+      const holder = this.svg.querySelector('.ecs-ticks');
+      holder.replaceChildren();
+      this.ticks = [];
+
+      for (let i = 0; i <= 48; i++) {
+        const angle = Math.PI + (i / 48) * Math.PI;
+        const major = i % 4 === 0;
+        const outer = this.radius - 7;
+        const inner = outer - (major ? 16 : 7);
+
+        const line = document.createElementNS(
+          'http://www.w3.org/2000/svg', 'line'
+        );
+
+        line.setAttribute('class', 'ecs-tick');
+        line.setAttribute('x1', this.cx + Math.cos(angle) * inner);
+        line.setAttribute('y1', this.cy + Math.sin(angle) * inner);
+        line.setAttribute('x2', this.cx + Math.cos(angle) * outer);
+        line.setAttribute('y2', this.cy + Math.sin(angle) * outer);
+
+        holder.appendChild(line);
+        this.ticks.push(line);
+      }
+    }
+
+    update() {
+      const vh = window.innerHeight;
+      const reduced = this.reduced.matches;
+      const heroRect = this.hero.getBoundingClientRect();
+
+      const heroAmount = this.clamp(
+        -heroRect.top / Math.max(1, heroRect.height)
+      );
+
+      this.style.setProperty(
+        '--ecs-hero-y',
+        `${reduced ? 0 : heroAmount * 45}px`
+      );
+
+      this.style.setProperty(
+        '--ecs-rule-scale',
+        reduced ? '1' : String(1 - heroAmount * .15)
+      );
+
+      let progress = 0;
+
+      if (this.gallery) {
+        const rect = this.gallery.getBoundingClientRect();
+        progress = this.clamp(
+          -rect.top / Math.max(1, rect.height - vh)
+        );
+      }
+
+      /* Black -> burgundy -> selected ending color */
+      let bg = [13,14,16];
+      let dial = this.accentRGB;
+
+      if (this.dataset.colorScroll !== 'false' && !reduced) {
+        const middle = [49,17,24];
+
+        bg = progress < .48
+          ? this.mix(bg, middle, progress / .48)
+          : this.mix(middle, this.endRGB, (progress - .48) / .52);
+
+        dial = this.mix(
+          this.accentRGB,
+          [244,244,242],
+          this.clamp((progress - .25) / .55)
+        );
+      }
+
+      this.style.setProperty('--ecs-bg', `rgb(${bg.join(',')})`);
+      this.style.setProperty(
+        '--ecs-dial-color', `rgb(${dial.join(',')})`
+      );
+
+      if (this.progress && this.needle) {
+        this.progress.style.strokeDashoffset = String(1 - progress);
+
+        this.needle.setAttribute(
+          'transform',
+          `rotate(${-180 + progress * 180} ${this.cx} ${this.cy})`
+        );
+
+        const angle = Math.PI + progress * Math.PI;
+        this.tip.setAttribute(
+          'cx', this.cx + Math.cos(angle) * this.radius
+        );
+        this.tip.setAttribute(
+          'cy', this.cy + Math.sin(angle) * this.radius
+        );
+
+        this.ticks.forEach((tick, index) => {
+          tick.classList.toggle('is-lit', index / 48 <= progress);
+        });
+      }
+
+      let nearest = 0;
+      let nearestDistance = Infinity;
+
+      this.items.forEach((item, index) => {
+        const rect = item.element.getBoundingClientRect();
+        const distance = Math.abs(
+          rect.top + rect.height / 2 - vh / 2
+        );
+
+        if (distance < nearestDistance) {
+          nearest = index;
+          nearestDistance = distance;
+        }
+
+        if (!item.image) return;
+
+        if (reduced) {
+          item.image.style.setProperty('--ecs-image-y', '0px');
+          return;
+        }
+
+        if (rect.bottom < 0 || rect.top > vh) return;
+
+        const position = this.clamp(
+          (vh - rect.top) / (vh + rect.height)
+        );
+
+        const amplitude = Math.min(24, rect.height * .035);
+
+        item.image.style.setProperty(
+          '--ecs-image-y',
+          `${((position - .5) * amplitude * 2).toFixed(2)}px`
+        );
+      });
+
+      if (this.readout) {
+        this.readout.textContent = String(nearest + 1).padStart(2, '0');
+      }
+    }
+
+    disconnectedCallback() {
+      cancelAnimationFrame(this.boot);
+      cancelAnimationFrame(this.frame);
+      this.frame = 0;
+      this.controller?.abort();
+      this.controller = null;
+      this.heroObserver?.disconnect();
+      this.revealObserver?.disconnect();
+      this.ro?.disconnect();
+      this.animations?.forEach(a => a.cancel());
+      this.video?.pause();
+      this.removeAttribute('data-ready');
+    }
+  }
+
+  customElements.define(tag, UkiyoCaseMotion);
+})();
 </script>
 
 {% schema %}
@@ -938,24 +1248,46 @@
     },
     {
       "type": "header",
-      "content": "Design"
+      "content": "Opening video"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "MP4 video URL",
+      "info": "Leave empty to use the car video from the reference."
     },
     {
       "type": "image_picker",
       "id": "cover_image",
-      "label": "Header background image",
-      "info": "If empty, uses the first project that has an image."
+      "label": "Video poster image",
+      "info": "Leave empty to use the reference video poster."
+    },
+    {
+      "type": "header",
+      "content": "Colors and animation"
     },
     {
       "type": "color",
       "id": "accent",
-      "label": "Accent color",
+      "label": "Opening accent color",
       "default": "#e8472a"
     },
     {
       "type": "checkbox",
+      "id": "scroll_color",
+      "label": "Change background while scrolling",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "end_color",
+      "label": "Ending background color",
+      "default": "#a82d22"
+    },
+    {
+      "type": "checkbox",
       "id": "show_dial",
-      "label": "Show animated scroll dial",
+      "label": "Show animated project dial",
       "default": true
     }
   ],
