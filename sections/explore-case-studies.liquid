@@ -1,242 +1,912 @@
 {% comment %}
-  Section: Explore Case Studies
-  File: sections/explore-case-studies.liquid
-  Template: templates/page.explore-case-studies.json
+  Explore Case Studies
+  Preserves existing section settings and case_study blocks.
+  Self-contained CSS and JavaScript. No animation libraries required.
 {% endcomment %}
 
+{% liquid
+  assign projects = section.blocks | where: 'type', 'case_study'
+  assign cover_image = section.settings.cover_image
+
+  if cover_image == blank
+    for project in projects
+      if project.settings.image != blank
+        assign cover_image = project.settings.image
+        break
+      endif
+    endfor
+  endif
+%}
+
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap');
 
   #ecs-{{ section.id }} {
-    --bg:      #000;
-    --border:  rgba(255,255,255,0.07);
-    --muted:   rgba(255,255,255,0.42);
-    background: var(--bg);
-    color: #fff;
-    font-family: inherit;
-    padding: 5rem 1.5rem 6rem;
-    position: relative;
-  }
-
-  #ecs-{{ section.id }} * { box-sizing: border-box; }
-  #ecs-{{ section.id }} img { display: block; width: 100%; height: 100%; object-fit: cover; }
-
-  /* Header */
-  .ecs-header {
-    max-width: 1200px;
-    margin: 0 auto 3rem;
-    text-align: center;
-  }
-
-  .ecs-eyebrow {
-    font-family: 'DM Sans', sans-serif;
-    font-size: .62rem; font-weight: 500; letter-spacing: .28em;
-    text-transform: uppercase; color: rgba(255,255,255,.28);
-    display: flex; align-items: center; justify-content: center; gap: .65rem;
-    margin-bottom: 1.25rem;
-  }
-  .ecs-eyebrow::before, .ecs-eyebrow::after {
-    content: ''; display: block; width: 24px; height: 1px;
-    background: rgba(255,255,255,.18);
-  }
-
-  .ecs-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.8rem, 7vw, 5.5rem);
-    letter-spacing: .03em; line-height: .92;
-    margin: 0 0 1rem; color: #fff;
-  }
-
-  .ecs-desc {
-    font-family: 'DM Sans', sans-serif;
-    font-size: .92rem; font-weight: 300; line-height: 1.75;
-    color: var(--muted); max-width: 36rem; margin: 0 auto;
-  }
-
-  /* Grid */
-  .ecs-grid {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: .5rem;
-  }
-
-  @media (min-width: 640px) { .ecs-grid { grid-template-columns: repeat(2, 1fr); } }
-
-  /* Card */
-  .ecs-card {
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: 4/3;
-    background: #0a0a0a;
-    cursor: pointer;
+    --ecs-bg: #0d0e10;
+    --ecs-ink: #f4f4f2;
+    --ecs-accent: {{ section.settings.accent | default: '#e8472a' }};
+    --ecs-gutter: clamp(20px, 4vw, 72px);
     display: block;
+    position: relative;
+    isolation: isolate;
+    background: var(--ecs-bg);
+    color: var(--ecs-ink);
+    font-family: 'Inter Tight', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #ecs-{{ section.id }} *,
+  #ecs-{{ section.id }} *::before,
+  #ecs-{{ section.id }} *::after {
+    box-sizing: border-box;
+  }
+
+  #ecs-{{ section.id }} :is(h2, h3, p, figure) {
+    margin: 0;
+  }
+
+  #ecs-{{ section.id }} a {
+    color: inherit;
     text-decoration: none;
   }
 
-  .ecs-card-img {
-    position: absolute; inset: 0;
-    transition: transform .9s cubic-bezier(.165,.84,.44,1), filter .7s, opacity .7s;
-    filter: saturate(0.15) brightness(0.6);
-    opacity: 1;
+  #ecs-{{ section.id }} a:focus-visible {
+    outline: 2px solid var(--ecs-accent);
+    outline-offset: 8px;
   }
 
-  .ecs-card:hover .ecs-card-img {
-    transform: scale(1.06);
-    filter: saturate(0.65) brightness(0.55);
+  /* Poster-style introduction */
+
+  #ecs-{{ section.id }} .ecs-header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: clamp(64px, 12vh, 160px);
+    min-height: 80vh;
+    min-height: 80svh;
+    padding: clamp(48px, 7vw, 100px) var(--ecs-gutter);
+    overflow: hidden;
+    background: #141518;
   }
 
-  .ecs-card-grad {
-    position: absolute; inset: 0; z-index: 1;
-    background: linear-gradient(
-      to top,
-      rgba(0,0,0,0.82) 0%,
-      rgba(0,0,0,0.3) 45%,
-      rgba(0,0,0,0.05) 100%
-    );
-    transition: background .5s;
+  #ecs-{{ section.id }} .ecs-cover {
+    position: absolute;
+    inset: -5% 0;
+    pointer-events: none;
   }
 
-  .ecs-card:hover .ecs-card-grad {
-    background: linear-gradient(
-      to top,
-      rgba(0,0,0,0.88) 0%,
-      rgba(0,0,0,0.45) 55%,
-      rgba(0,0,0,0.1) 100%
-    );
-  }
-
-  .ecs-card-body {
-    position: relative; z-index: 2;
+  #ecs-{{ section.id }} .ecs-cover img {
+    width: 100%;
     height: 100%;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 1.5rem 1.75rem;
-  }
-
-  @media (min-width: 768px) { .ecs-card-body { padding: 2rem 2.25rem; } }
-
-  .ecs-card-tag {
-    font-family: 'DM Sans', sans-serif;
-    font-size: .58rem; font-weight: 500; letter-spacing: .22em;
-    text-transform: uppercase; color: rgba(255,255,255,.35);
-    margin-bottom: .5rem;
     display: block;
-    transform: translateY(4px);
-    opacity: 0;
-    transition: opacity .4s .1s, transform .4s .1s;
+    object-fit: cover;
+    filter: grayscale(1) brightness(.48);
+    transform: translate3d(0, var(--ecs-cover-y, 0px), 0);
   }
 
-  .ecs-card:hover .ecs-card-tag { opacity: 1; transform: none; }
-
-  .ecs-card-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-    letter-spacing: .04em; line-height: 1;
-    color: #fff; margin: 0;
-    transition: letter-spacing .4s;
+  #ecs-{{ section.id }} .ecs-header::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(13,14,16,.2), rgba(13,14,16,.12) 45%, #0d0e10),
+      linear-gradient(90deg, rgba(13,14,16,.3), transparent);
   }
 
-  .ecs-card:hover .ecs-card-name { letter-spacing: .07em; }
-
-  /* Arrow reveal on hover */
-  .ecs-card-arrow {
-    position: absolute; top: 1.5rem; right: 1.5rem; z-index: 3;
-    width: 36px; height: 36px; border-radius: 50%;
-    background: rgba(255,255,255,.08);
-    border: 1px solid rgba(255,255,255,.14);
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0;
-    transform: scale(0.7) rotate(-45deg);
-    transition: opacity .4s, transform .4s;
+  #ecs-{{ section.id }} .ecs-header-top,
+  #ecs-{{ section.id }} .ecs-header-bottom {
+    position: relative;
+    z-index: 1;
   }
 
-  .ecs-card:hover .ecs-card-arrow {
-    opacity: 1;
-    transform: scale(1) rotate(0deg);
+  #ecs-{{ section.id }} .ecs-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: .18em;
+    text-transform: uppercase;
   }
 
-  /* Scroll reveal */
-  #ecs-{{ section.id }} .rv {
-    opacity: 0; transform: translateY(20px);
-    transition: opacity .65s cubic-bezier(.4,0,.2,1), transform .65s cubic-bezier(.4,0,.2,1);
+  #ecs-{{ section.id }} .ecs-eyebrow::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    flex: 0 0 7px;
+    background: var(--ecs-accent);
   }
-  #ecs-{{ section.id }} .rv.in { opacity: 1; transform: none; }
+
+  #ecs-{{ section.id }} .ecs-title {
+    max-width: 12ch;
+    color: var(--ecs-accent);
+    font-family: inherit;
+    font-size: clamp(64px, 12vw, 210px);
+    font-weight: 400;
+    line-height: .86;
+    letter-spacing: -.065em;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+
+  #ecs-{{ section.id }} .ecs-rule {
+    width: 100%;
+    height: clamp(3px, .4vw, 7px);
+    margin-top: clamp(24px, 4vw, 60px);
+    background: var(--ecs-accent);
+    transform-origin: left;
+  }
+
+  #ecs-{{ section.id }} .ecs-header-bottom {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  #ecs-{{ section.id }} .ecs-desc {
+    width: min(100%, 640px);
+    font-size: clamp(20px, 2.5vw, 38px);
+    font-weight: 400;
+    line-height: 1.22;
+    letter-spacing: -.025em;
+    text-wrap: pretty;
+  }
+
+  /* Gallery and sticky scroll dial share a grid cell */
+
+  #ecs-{{ section.id }} .ecs-gallery {
+    position: relative;
+    display: grid;
+  }
+
+  #ecs-{{ section.id }} .ecs-dial,
+  #ecs-{{ section.id }} .ecs-grid {
+    grid-area: 1 / 1;
+    min-width: 0;
+  }
+
+  #ecs-{{ section.id }} .ecs-dial {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh;
+    height: 100svh;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    visibility: hidden;
+  }
+
+  #ecs-{{ section.id }}[data-ready] .ecs-dial {
+    visibility: visible;
+  }
+
+  #ecs-{{ section.id }} .ecs-dial svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  #ecs-{{ section.id }} .ecs-dial-rail,
+  #ecs-{{ section.id }} .ecs-dial-progress {
+    fill: none;
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+
+  #ecs-{{ section.id }} .ecs-dial-rail {
+    stroke: rgba(244,244,242,.16);
+  }
+
+  #ecs-{{ section.id }} .ecs-dial-progress {
+    stroke: var(--ecs-accent);
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    opacity: .65;
+  }
+
+  #ecs-{{ section.id }} .ecs-dial-needle {
+    fill: var(--ecs-accent);
+    opacity: .3;
+  }
+
+  #ecs-{{ section.id }} .ecs-dial-label {
+    position: absolute;
+    bottom: 20px;
+    color: rgba(244,244,242,.45);
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  #ecs-{{ section.id }} .ecs-dial-label:first-of-type {
+    left: var(--ecs-gutter);
+  }
+
+  #ecs-{{ section.id }} .ecs-dial-label:last-of-type {
+    right: var(--ecs-gutter);
+  }
+
+  #ecs-{{ section.id }} .ecs-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(16, minmax(0, 1fr));
+    column-gap: 20px;
+    row-gap: clamp(100px, 15vw, 240px);
+    padding: clamp(80px, 12vw, 180px) var(--ecs-gutter);
+  }
+
+  /* One project per row, alternating scale and placement */
+
+  #ecs-{{ section.id }} .ecs-project {
+    position: relative;
+    grid-row: var(--ecs-row);
+    grid-column: 2 / span 7;
+    min-width: 0;
+    transition: opacity .45s ease;
+  }
+
+  #ecs-{{ section.id }} .ecs-project:nth-child(4n + 2) {
+    grid-column: 10 / span 6;
+  }
+
+  #ecs-{{ section.id }} .ecs-project:nth-child(4n + 3) {
+    grid-column: 3 / span 8;
+  }
+
+  #ecs-{{ section.id }} .ecs-project:nth-child(4n + 4) {
+    grid-column: 10 / span 5;
+  }
+
+  #ecs-{{ section.id }} .ecs-card {
+    display: block;
+    position: relative;
+  }
+
+  #ecs-{{ section.id }} .ecs-media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #1b1d20;
+    clip-path: inset(0);
+    transition: clip-path .7s cubic-bezier(.22,1,.36,1);
+  }
+
+  #ecs-{{ section.id }} .ecs-project:nth-child(4n + 2) .ecs-media,
+  #ecs-{{ section.id }} .ecs-project:nth-child(4n + 4) .ecs-media {
+    aspect-ratio: 3 / 4;
+  }
+
+  #ecs-{{ section.id }} .ecs-image {
+    position: absolute;
+    inset: -8% 0;
+    display: block;
+    width: 100%;
+    height: 116%;
+    object-fit: cover;
+    filter: grayscale(1) brightness(.75);
+    transform: translate3d(0, var(--ecs-image-y, 0px), 0);
+    transition: filter .6s ease;
+  }
+
+  /* Subtle print texture, without canvas image processing */
+
+  #ecs-{{ section.id }} .ecs-media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: .18;
+    background-image: radial-gradient(#0d0e10 .7px, transparent .9px);
+    background-size: 3px 3px;
+  }
+
+  #ecs-{{ section.id }} .ecs-placeholder {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: rgba(244,244,242,.12);
+    font-size: clamp(80px, 13vw, 220px);
+    letter-spacing: -.07em;
+    background:
+      linear-gradient(135deg, transparent 49.8%, rgba(244,244,242,.08) 50%, transparent 50.2%),
+      #17191c;
+  }
+
+  #ecs-{{ section.id }} .ecs-card-body {
+    position: relative;
+    margin-top: 24px;
+  }
+
+  #ecs-{{ section.id }} .ecs-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 12px;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+
+  #ecs-{{ section.id }} .ecs-number {
+    flex-shrink: 0;
+    color: var(--ecs-accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  #ecs-{{ section.id }} .ecs-card-tag {
+    color: rgba(244,244,242,.7);
+  }
+
+  #ecs-{{ section.id }} .ecs-name-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  #ecs-{{ section.id }} .ecs-card-name {
+    flex: 1;
+    min-width: 0;
+    color: var(--ecs-ink);
+    font-family: inherit;
+    font-size: clamp(26px, 3.3vw, 58px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -.045em;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+
+  #ecs-{{ section.id }} .ecs-card-arrow {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    border: 1px solid rgba(244,244,242,.25);
+    border-radius: 50%;
+    transition: background .3s, color .3s, transform .3s;
+  }
+
+  #ecs-{{ section.id }} .ecs-card-arrow svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+  }
+
+  #ecs-{{ section.id }} .ecs-end-rule {
+    height: 1px;
+    margin: 0 var(--ecs-gutter);
+    background: rgba(244,244,242,.18);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    #ecs-{{ section.id }} .ecs-grid:has(a.ecs-card:hover) .ecs-project {
+      opacity: .45;
+    }
+
+    #ecs-{{ section.id }} .ecs-grid .ecs-project:hover,
+    #ecs-{{ section.id }} .ecs-grid .ecs-project:focus-within {
+      opacity: 1;
+    }
+
+    #ecs-{{ section.id }} a.ecs-card:hover .ecs-media {
+      clip-path: inset(3%);
+    }
+
+    #ecs-{{ section.id }} a.ecs-card:hover .ecs-image {
+      filter: grayscale(0) brightness(.95);
+    }
+
+    #ecs-{{ section.id }} a.ecs-card:hover .ecs-card-arrow {
+      color: var(--ecs-bg);
+      background: var(--ecs-accent);
+      border-color: var(--ecs-accent);
+      transform: rotate(45deg);
+    }
+  }
+
+  #ecs-{{ section.id }} a.ecs-card:focus-visible .ecs-image {
+    filter: grayscale(0) brightness(.95);
+  }
+
+  @media (max-width: 767px) {
+    #ecs-{{ section.id }} .ecs-header {
+      min-height: 65svh;
+      gap: 72px;
+      padding-top: 48px;
+      padding-bottom: 48px;
+    }
+
+    #ecs-{{ section.id }} .ecs-title {
+      font-size: clamp(58px, 17vw, 128px);
+    }
+
+    #ecs-{{ section.id }} .ecs-desc {
+      font-size: clamp(21px, 5.5vw, 28px);
+    }
+
+    #ecs-{{ section.id }} .ecs-grid {
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: 68px;
+      padding-top: 48px;
+      padding-bottom: 72px;
+    }
+
+    #ecs-{{ section.id }} .ecs-project:nth-child(n) {
+      grid-column: 1;
+    }
+
+    #ecs-{{ section.id }} .ecs-project:nth-child(n) .ecs-media {
+      aspect-ratio: 4 / 3;
+    }
+
+    #ecs-{{ section.id }} .ecs-card-name {
+      font-size: clamp(27px, 7vw, 42px);
+    }
+
+    #ecs-{{ section.id }} .ecs-card-body {
+      margin-top: 18px;
+    }
+
+    #ecs-{{ section.id }} .ecs-dial {
+      opacity: .5;
+    }
+  }
 
   @media (prefers-reduced-motion: reduce) {
-    #ecs-{{ section.id }} .rv { opacity: 1 !important; transform: none !important; }
+    #ecs-{{ section.id }} *,
+    #ecs-{{ section.id }} *::before,
+    #ecs-{{ section.id }} *::after {
+      transition: none !important;
+      animation: none !important;
+    }
+
+    #ecs-{{ section.id }} .ecs-image,
+    #ecs-{{ section.id }} .ecs-cover img {
+      transform: none !important;
+    }
+
+    #ecs-{{ section.id }} .ecs-media {
+      clip-path: none !important;
+    }
+
+    #ecs-{{ section.id }} .ecs-dial {
+      display: none;
+    }
   }
 </style>
 
-<div id="ecs-{{ section.id }}">
+<ukiyo-case-gallery
+  id="ecs-{{ section.id }}"
+  data-section-id="{{ section.id }}"
+>
+  <header class="ecs-header">
+    {% if cover_image != blank %}
+      <div class="ecs-cover" aria-hidden="true">
+        {{
+          cover_image
+          | image_url: width: 2400
+          | image_tag:
+            widths: '600, 900, 1200, 1600, 2000, 2400',
+            sizes: '100vw',
+            loading: 'eager',
+            alt: ''
+        }}
+      </div>
+    {% endif %}
 
-  <!-- Header -->
-  <div class="ecs-header rv">
-    {%- if section.settings.eyebrow != blank -%}
-      <p class="ecs-eyebrow">{{ section.settings.eyebrow }}</p>
-    {%- endif -%}
-    <h2 class="ecs-title">{{ section.settings.title }}</h2>
-    {%- if section.settings.description != blank -%}
-      <p class="ecs-desc">{{ section.settings.description }}</p>
-    {%- endif -%}
-  </div>
+    <div class="ecs-header-top">
+      {% if section.settings.eyebrow != blank %}
+        <p class="ecs-eyebrow">
+          {{ section.settings.eyebrow | escape }}
+        </p>
+      {% endif %}
 
-  <!-- Cards Grid -->
-  <div class="ecs-grid">
-    {%- for block in section.blocks -%}
-      {%- if block.type == 'case_study' -%}
-        <a class="ecs-card rv"
-          href="{{ block.settings.url | default: '#' }}"
-          {{ block.shopify_attributes }}>
+      {% if section.settings.title != blank %}
+        <h2 class="ecs-title">
+          {{ section.settings.title | escape }}
+        </h2>
+      {% endif %}
 
-          {%- if block.settings.image -%}
-            <img class="ecs-card-img"
-              src="{{ block.settings.image | img_url: '900x' }}"
-              alt="{{ block.settings.name }}"
-              loading="{% if forloop.index <= 2 %}eager{% else %}lazy{% endif %}">
-          {%- endif -%}
+      <div class="ecs-rule" aria-hidden="true"></div>
+    </div>
 
-          <div class="ecs-card-grad"></div>
+    {% if section.settings.description != blank %}
+      <div class="ecs-header-bottom">
+        <p class="ecs-desc">
+          {{ section.settings.description | escape | newline_to_br }}
+        </p>
+      </div>
+    {% endif %}
+  </header>
 
-          <div class="ecs-card-arrow">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-            </svg>
-          </div>
+  {% if projects.size > 0 %}
+    <div class="ecs-gallery">
+      {% if section.settings.show_dial %}
+        <div class="ecs-dial" aria-hidden="true">
+          <svg focusable="false">
+            <path class="ecs-dial-rail" pathLength="1"></path>
+            <path class="ecs-dial-progress" pathLength="1"></path>
+            <polygon class="ecs-dial-needle"></polygon>
+          </svg>
 
-          <div class="ecs-card-body">
-            {%- if block.settings.tag != blank -%}
-              <span class="ecs-card-tag">{{ block.settings.tag }}</span>
-            {%- endif -%}
-            <p class="ecs-card-name">{{ block.settings.name }}</p>
-          </div>
+          <span class="ecs-dial-label">01</span>
+          <span class="ecs-dial-label">
+            {% if projects.size < 10 %}0{% endif %}{{ projects.size }}
+          </span>
+        </div>
+      {% endif %}
 
-        </a>
-      {%- endif -%}
-    {%- endfor -%}
-  </div>
+      <div class="ecs-grid">
+        {% for block in projects %}
+          {% liquid
+            assign card_tag = 'div'
+            if block.settings.url != blank
+              assign card_tag = 'a'
+            endif
 
-</div>
+            assign image_loading = 'lazy'
+            if forloop.index <= 2
+              assign image_loading = 'eager'
+            endif
+
+            assign image_alt = block.settings.image.alt | default: block.settings.name
+          %}
+
+          <article
+            class="ecs-project"
+            style="--ecs-row: {{ forloop.index }};"
+            {{ block.shopify_attributes }}
+          >
+            <{{ card_tag }}
+              class="ecs-card"
+              {% if block.settings.url != blank %}
+                href="{{ block.settings.url | escape }}"
+              {% endif %}
+            >
+              <div class="ecs-media">
+                {% if block.settings.image != blank %}
+                  {{
+                    block.settings.image
+                    | image_url: width: 1600
+                    | image_tag:
+                      class: 'ecs-image',
+                      widths: '400, 600, 800, 1000, 1200, 1600',
+                      sizes: '(min-width: 768px) 50vw, 100vw',
+                      loading: image_loading,
+                      alt: image_alt
+                  }}
+                {% else %}
+                  <div class="ecs-placeholder" aria-hidden="true">
+                    {% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="ecs-card-body">
+                <div class="ecs-meta">
+                  <span class="ecs-number" aria-hidden="true">
+                    {% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}
+                  </span>
+
+                  {% if block.settings.tag != blank %}
+                    <span class="ecs-card-tag">
+                      {{ block.settings.tag | escape }}
+                    </span>
+                  {% endif %}
+                </div>
+
+                <div class="ecs-name-row">
+                  <h3 class="ecs-card-name">
+                    {{ block.settings.name | escape }}
+                  </h3>
+
+                  {% if block.settings.url != blank %}
+                    <span class="ecs-card-arrow" aria-hidden="true">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M7 17 17 7M7 7h10v10"></path>
+                      </svg>
+                    </span>
+                  {% endif %}
+                </div>
+              </div>
+            </{{ card_tag }}>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="ecs-end-rule" aria-hidden="true"></div>
+</ukiyo-case-gallery>
 
 <script>
-(function(){
-  var root = document.getElementById('ecs-{{ section.id }}');
-  if (!root) return;
-  var els = root.querySelectorAll('.rv');
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.06 });
-    els.forEach(function(el, i){
-      el.style.transitionDelay = Math.min(i * 0.06, 0.4) + 's';
-      io.observe(el);
-    });
-  } else {
-    els.forEach(function(el){ el.classList.add('in'); });
-  }
-})();
+  (() => {
+    if (customElements.get('ukiyo-case-gallery')) return;
+
+    class UkiyoCaseGallery extends HTMLElement {
+      connectedCallback() {
+        this.bootFrame = requestAnimationFrame(() => {
+          if (this.isConnected) this.init();
+        });
+      }
+
+      init() {
+        if (this.controller) return;
+
+        this.controller = new AbortController();
+        const signal = this.controller.signal;
+
+        this.motionQuery = window.matchMedia(
+          '(prefers-reduced-motion: reduce)'
+        );
+
+        this.header = this.querySelector('.ecs-header');
+        this.cover = this.querySelector('.ecs-cover img');
+        this.gallery = this.querySelector('.ecs-gallery');
+        this.dial = this.querySelector('.ecs-dial');
+        this.svg = this.querySelector('.ecs-dial svg');
+        this.rail = this.querySelector('.ecs-dial-rail');
+        this.progress = this.querySelector('.ecs-dial-progress');
+        this.needle = this.querySelector('.ecs-dial-needle');
+
+        this.items = Array.from(
+          this.querySelectorAll('.ecs-project')
+        ).map(element => ({
+          element,
+          image: element.querySelector('.ecs-image')
+        }));
+
+        this.animations = new Set();
+        this.schedule = () => {
+          if (this.frame) return;
+
+          this.frame = requestAnimationFrame(() => {
+            this.frame = 0;
+            this.update();
+          });
+        };
+
+        this.onResize = () => {
+          this.measure();
+          this.schedule();
+        };
+
+        window.addEventListener('scroll', this.schedule, {
+          passive: true,
+          signal
+        });
+
+        window.addEventListener('resize', this.onResize, {
+          passive: true,
+          signal
+        });
+
+        this.onMotionChange = () => {
+          if (this.motionQuery.matches) {
+            this.animations.forEach(animation => animation.cancel());
+            this.animations.clear();
+          }
+
+          this.measure();
+          this.schedule();
+        };
+
+        this.motionQuery.addEventListener(
+          'change',
+          this.onMotionChange,
+          { signal }
+        );
+
+        this.addEventListener('shopify:block:select', event => {
+          const item = event.target.closest('.ecs-project');
+          if (!item) return;
+
+          this.animations.forEach(animation => animation.cancel());
+          this.animations.clear();
+
+          item.scrollIntoView({
+            block: 'center',
+            behavior: 'auto'
+          });
+        }, { signal });
+
+        if ('ResizeObserver' in window) {
+          this.resizeObserver = new ResizeObserver(this.onResize);
+          this.resizeObserver.observe(this);
+        }
+
+        this.setupReveals();
+        this.measure();
+        this.setAttribute('data-ready', '');
+        this.update();
+      }
+
+      setupReveals() {
+        if (!('IntersectionObserver' in window)) return;
+
+        this.revealObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+
+            this.revealObserver.unobserve(entry.target);
+
+            if (
+              this.motionQuery.matches ||
+              !entry.target.animate
+            ) return;
+
+            const media = entry.target.querySelector('.ecs-media');
+            const body = entry.target.querySelector('.ecs-card-body');
+
+            if (media) {
+              this.trackAnimation(media.animate([
+                { clipPath: 'inset(0 0 100% 0)' },
+                { clipPath: 'inset(0 0 0% 0)' }
+              ], {
+                duration: 1000,
+                easing: 'cubic-bezier(.22,1,.36,1)'
+              }));
+            }
+
+            if (body) {
+              this.trackAnimation(body.animate([
+                { opacity: 0, transform: 'translateY(22px)' },
+                { opacity: 1, transform: 'translateY(0)' }
+              ], {
+                duration: 800,
+                easing: 'cubic-bezier(.22,1,.36,1)'
+              }));
+            }
+          });
+        }, {
+          threshold: 0.06
+        });
+
+        this.items.forEach(item => {
+          this.revealObserver.observe(item.element);
+        });
+      }
+
+      trackAnimation(animation) {
+        this.animations.add(animation);
+
+        animation.finished
+          .catch(() => {})
+          .finally(() => {
+            this.animations.delete(animation);
+          });
+      }
+
+      measure() {
+        if (!this.dial || !this.svg) return;
+
+        const width = this.dial.clientWidth;
+        const height = this.dial.clientHeight;
+        if (!width || !height) return;
+
+        const centerX = width / 2;
+        const centerY = height - 44;
+        const radius = Math.max(
+          1,
+          Math.min(width / 2 - 20, height - 90)
+        );
+
+        this.centerX = centerX;
+        this.centerY = centerY;
+
+        this.svg.setAttribute(
+          'viewBox',
+          `0 0 ${width} ${height}`
+        );
+
+        const path = [
+          'M', centerX - radius, centerY,
+          'A', radius, radius, 0, 0, 1,
+          centerX + radius, centerY
+        ].join(' ');
+
+        this.rail.setAttribute('d', path);
+        this.progress.setAttribute('d', path);
+
+        this.needle.setAttribute('points', [
+          `${centerX},${centerY - 1.5}`,
+          `${centerX + radius - 14},${centerY}`,
+          `${centerX},${centerY + 1.5}`
+        ].join(' '));
+      }
+
+      update() {
+        const reduced = this.motionQuery.matches;
+        const viewport = window.innerHeight;
+        const clamp = value => Math.max(0, Math.min(1, value));
+
+        if (this.cover && this.header) {
+          const rect = this.header.getBoundingClientRect();
+          const offset = reduced
+            ? 0
+            : Math.max(
+                -rect.height * .04,
+                Math.min(rect.height * .04, -rect.top * .07)
+              );
+
+          this.cover.style.setProperty(
+            '--ecs-cover-y',
+            `${offset.toFixed(2)}px`
+          );
+        }
+
+        if (this.gallery && this.progress && this.needle) {
+          const rect = this.gallery.getBoundingClientRect();
+          const distance = rect.height - viewport;
+          const amount = distance > 0
+            ? clamp(-rect.top / distance)
+            : clamp((viewport - rect.top) / (viewport + rect.height));
+
+          this.progress.style.strokeDashoffset = String(1 - amount);
+
+          this.needle.setAttribute(
+            'transform',
+            `rotate(${-180 + amount * 180} ${this.centerX || 0} ${this.centerY || 0})`
+          );
+        }
+
+        this.items.forEach(item => {
+          if (!item.image) return;
+
+          if (reduced) {
+            item.image.style.setProperty('--ecs-image-y', '0px');
+            return;
+          }
+
+          const rect = item.element.getBoundingClientRect();
+          if (rect.bottom < 0 || rect.top > viewport) return;
+
+          const position = clamp(
+            (viewport - rect.top) / (viewport + rect.height)
+          );
+
+          const amplitude = Math.min(24, rect.height * .035);
+          const offset = (position - .5) * amplitude * 2;
+
+          item.image.style.setProperty(
+            '--ecs-image-y',
+            `${offset.toFixed(2)}px`
+          );
+        });
+      }
+
+      disconnectedCallback() {
+        cancelAnimationFrame(this.bootFrame);
+        cancelAnimationFrame(this.frame);
+        this.frame = 0;
+
+        this.controller?.abort();
+        this.controller = null;
+        this.resizeObserver?.disconnect();
+        this.revealObserver?.disconnect();
+        this.animations?.forEach(animation => animation.cancel());
+        this.animations?.clear();
+        this.removeAttribute('data-ready');
+      }
+    }
+
+    customElements.define('ukiyo-case-gallery', UkiyoCaseGallery);
+  })();
 </script>
 
 {% schema %}
@@ -244,20 +914,78 @@
   "name": "Explore Case Studies",
   "tag": "section",
   "settings": [
-    { "type": "header",   "content": "Header" },
-    { "type": "text",     "id": "eyebrow",     "label": "Eyebrow",     "default": "Our Latest Projects" },
-    { "type": "text",     "id": "title",       "label": "Title",       "default": "CASE STUDIES" },
-    { "type": "textarea", "id": "description", "label": "Description", "default": "Browse our work across branding, e-commerce, content creation, and digital marketing." }
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Our Latest Projects"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "CASE STUDIES"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Browse our work across branding, e-commerce, content creation, and digital marketing."
+    },
+    {
+      "type": "header",
+      "content": "Design"
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image",
+      "label": "Header background image",
+      "info": "If empty, uses the first project that has an image."
+    },
+    {
+      "type": "color",
+      "id": "accent",
+      "label": "Accent color",
+      "default": "#e8472a"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dial",
+      "label": "Show animated scroll dial",
+      "default": true
+    }
   ],
   "blocks": [
     {
       "type": "case_study",
       "name": "Case Study",
       "settings": [
-        { "type": "image_picker", "id": "image", "label": "Image" },
-        { "type": "text",         "id": "name",  "label": "Project name", "default": "RESIKLO" },
-        { "type": "text",         "id": "tag",   "label": "Category tag", "default": "Branding" },
-        { "type": "url",          "id": "url",   "label": "Link URL" }
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Project name",
+          "default": "RESIKLO"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Category tag",
+          "default": "Branding"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link URL"
+        }
       ]
     }
   ],
@@ -265,18 +993,90 @@
     {
       "name": "Explore Case Studies",
       "blocks": [
-        { "type": "case_study", "settings": { "name": "RESIKLO",                 "tag": "Branding / Sustainability" } },
-        { "type": "case_study", "settings": { "name": "FUR TRADERS",             "tag": "E-commerce / Fashion" } },
-        { "type": "case_study", "settings": { "name": "THE PLACE ON SOUTH PINE", "tag": "Hospitality / Content" } },
-        { "type": "case_study", "settings": { "name": "DYNAMIC AUTOWORKS",       "tag": "E-commerce / Automotive" } },
-        { "type": "case_study", "settings": { "name": "SUPRAMOOD",               "tag": "Branding / Wellness" } },
-        { "type": "case_study", "settings": { "name": "MANO BEACH HOUSE",        "tag": "Hospitality / Travel" } },
-        { "type": "case_study", "settings": { "name": "HOTEL TUGU | BALI",       "tag": "Hospitality / Luxury" } },
-        { "type": "case_study", "settings": { "name": "LIFE FORCE ACADEMY",      "tag": "Branding / Wellness" } },
-        { "type": "case_study", "settings": { "name": "POLAROID",                "tag": "Content / Photography" } },
-        { "type": "case_study", "settings": { "name": "ACADEMY OF ORACLE ARTS",  "tag": "Branding / Education" } },
-        { "type": "case_study", "settings": { "name": "COACHELLA",               "tag": "Events / Content" } },
-        { "type": "case_study", "settings": { "name": "WANDRD",                  "tag": "Content / Gear" } }
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "RESIKLO",
+            "tag": "Branding / Sustainability"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "FUR TRADERS",
+            "tag": "E-commerce / Fashion"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "THE PLACE ON SOUTH PINE",
+            "tag": "Hospitality / Content"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "DYNAMIC AUTOWORKS",
+            "tag": "E-commerce / Automotive"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "SUPRAMOOD",
+            "tag": "Branding / Wellness"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "MANO BEACH HOUSE",
+            "tag": "Hospitality / Travel"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "HOTEL TUGU | BALI",
+            "tag": "Hospitality / Luxury"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "LIFE FORCE ACADEMY",
+            "tag": "Branding / Wellness"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "POLAROID",
+            "tag": "Content / Photography"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "ACADEMY OF ORACLE ARTS",
+            "tag": "Branding / Education"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "COACHELLA",
+            "tag": "Events / Content"
+          }
+        },
+        {
+          "type": "case_study",
+          "settings": {
+            "name": "WANDRD",
+            "tag": "Content / Gear"
+          }
+        }
       ]
     }
   ]
