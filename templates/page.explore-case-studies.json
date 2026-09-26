@@ -9,6 +9,23 @@
  */
 {
   "sections": {
+    "17904652197f88f709": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_42f6542_CLqNmT": {
+          "type": "ai_gen_block_42f6542",
+          "settings": {
+            "desktop_width_percent": 100,
+            "background_color": "#0C0C0C"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_42f6542_CLqNmT"
+      ],
+      "settings": {}
+    },
     "main": {
       "type": "explore-case-studies",
       "blocks": {
@@ -161,6 +178,7 @@
     }
   },
   "order": [
+    "17904652197f88f709",
     "main"
   ]
 }
