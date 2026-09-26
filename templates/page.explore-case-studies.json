@@ -16,8 +16,38 @@
           "type": "ai_gen_block_42f6542",
           "disabled": true,
           "settings": {
-            "desktop_width_percent": 100,
-            "background_color": "#0c0c0c"
+            "show_intro": true,
+            "eyebrow": "Selected work",
+            "heading": "Built to move.",
+            "description": "<p>A collection of digital experiences, systems, and experiments designed to make an impression.</p>",
+            "show_count": true,
+            "row_1_items": "https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif | Space Voyage |\nhttps://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif | Codenest |\nhttps://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif | Vex Ventures |\nhttps://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif | Stellar AI |\nhttps://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif | ASME |\nhttps://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif | Transform Data |\nhttps://motionsites.ai/assets/hero-vitara-preview-Cjz2QYyU.gif | Vitara |\nhttps://motionsites.ai/assets/hero-terra-preview-BFjrCr7T.gif | Terra |\nhttps://motionsites.ai/assets/hero-skyelite-preview-DHaZIgUv.gif | Skyelite |\nhttps://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif | Aethera |\nhttps://motionsites.ai/assets/hero-designpro-preview-D8c5_een.gif | Designpro |",
+            "row_2_items": "https://motionsites.ai/assets/hero-stellar-ai-preview-D3HL6bw1.gif | Stellar AI |\nhttps://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif | X Portfolio |\nhttps://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif | Orbit Web3 |\nhttps://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif | Nexora |\nhttps://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif | EVR Ventures |\nhttps://motionsites.ai/assets/hero-planet-orbit-preview-DWAP8Z1P.gif | Planet Orbit |\nhttps://motionsites.ai/assets/hero-new-era-preview-CocuDUm9.gif | New Era |\nhttps://motionsites.ai/assets/hero-wealth-preview-B70idl_u.gif | Wealth |\nhttps://motionsites.ai/assets/hero-luminex-preview-CxOP7ce6.gif | Luminex |\nhttps://motionsites.ai/assets/hero-celestia-preview-0yO3jXO8.gif | Celestia |",
+            "show_titles": true,
+            "card_width": 420,
+            "mobile_card_width": 290,
+            "card_gap": 12,
+            "card_radius": 16,
+            "enable_motion": true,
+            "desktop_speed_one": 30,
+            "desktop_speed_two": 24,
+            "mobile_speed_one": 15,
+            "mobile_speed_two": 12,
+            "initial_offset": 200,
+            "max_width": 1440,
+            "padding_top": 140,
+            "padding_bottom": 80,
+            "mobile_padding_top": 80,
+            "mobile_padding_bottom": 50,
+            "show_footer": true,
+            "archive_label": "View all work",
+            "archive_url": "",
+            "background_color": "#0c0c0c",
+            "card_background": "#151515",
+            "text_color": "#f4f4f1",
+            "muted_color": "#8e8e89",
+            "accent_color": "#f0f0eb",
+            "line_color": "#292929"
           },
           "blocks": {}
         }
@@ -176,10 +206,29 @@
         "end_color": "#a82d22",
         "show_dial": true
       }
+    },
+    "1790466884a5d64223": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_130bb96_Q8xCtH": {
+          "type": "ai_gen_block_130bb96",
+          "settings": {
+            "desktop_width_percent": 100,
+            "height": 50,
+            "background_color": "#000000"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_130bb96_Q8xCtH"
+      ],
+      "settings": {}
     }
   },
   "order": [
     "17904652197f88f709",
-    "main"
+    "main",
+    "1790466884a5d64223"
   ]
 }
