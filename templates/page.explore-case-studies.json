@@ -14,9 +14,10 @@
       "blocks": {
         "ai_gen_block_42f6542_CLqNmT": {
           "type": "ai_gen_block_42f6542",
+          "disabled": true,
           "settings": {
             "desktop_width_percent": 100,
-            "background_color": "#0C0C0C"
+            "background_color": "#0c0c0c"
           },
           "blocks": {}
         }
