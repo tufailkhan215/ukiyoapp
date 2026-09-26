@@ -1,1526 +1,2169 @@
-{% comment %}
-  Explore Case Studies — corrected scroll version.
-  Existing setting IDs and project blocks are preserved.
-{% endcomment %}
-
-{% liquid
-  assign projects = section.blocks | where: 'type', 'case_study'
-  assign accent = section.settings.accent | default: '#e8472a'
-  assign end_color = section.settings.end_color | default: '#a82d22'
-  assign pin_offset = section.settings.pin_offset | default: 0
-
-  assign video_url = section.settings.video_url | default: 'https://d2ol7oe51mr4n9.cloudfront.net/user_3GJaYKPxdnQG0Q9O26lu6DPmcHu/3abfc4bb-a49d-4a22-93e6-3ebb0f7fa9ac.mp4'
-
-  assign poster_url = 'https://d2ol7oe51mr4n9.cloudfront.net/user_3GJaYKPxdnQG0Q9O26lu6DPmcHu/c34fa15e-fad4-4c37-a7a0-1a325b39e8bf.jpg'
-
-  if section.settings.cover_image != blank
-    assign poster_url = section.settings.cover_image | image_url: width: 2400
-  endif
-
-  assign title_words = section.settings.title | split: ' '
-  assign title_first = title_words | first
-  assign title_rest = section.settings.title | remove_first: title_first | strip
-%}
-
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap');
-
-  #ecs-{{ section.id }} {
-    --bg: #0d0e10;
-    --ink: #f4f4f2;
-    --accent: {{ accent }};
-    --dial-ink: {{ accent }};
-    --pad: clamp(20px, 4vw, 72px);
-    --pin: {{ pin_offset }}px;
-    display: block;
-    position: relative;
-    isolation: isolate;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'Inter Tight', Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  #ecs-{{ section.id }} *,
-  #ecs-{{ section.id }} *::before,
-  #ecs-{{ section.id }} *::after {
-    box-sizing: border-box;
-  }
-
-  #ecs-{{ section.id }} :is(h2, h3, p) {
-    margin: 0;
-    font-family: inherit;
-    color: inherit;
-  }
-
-  #ecs-{{ section.id }} a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  #ecs-{{ section.id }} :is(a, button):focus-visible {
-    outline: 2px solid var(--ink);
-    outline-offset: 6px;
-  }
-
-  /* PINNED VIDEO INTRODUCTION */
-
-  #ecs-{{ section.id }} .ecs-runway {
-    position: relative;
-  }
-
-  #ecs-{{ section.id }}[data-enhanced]:not([data-static]) .ecs-runway {
-    height: 280svh;
-  }
-
-  #ecs-{{ section.id }} .ecs-stage {
-    position: relative;
-    min-height: calc(100svh - var(--pin));
-    overflow: hidden;
-    background: #0d0e10;
-  }
-
-  #ecs-{{ section.id }}[data-enhanced]:not([data-static]) .ecs-stage {
-    position: sticky;
-    top: var(--pin);
-  }
-
-  #ecs-{{ section.id }} .ecs-scene {
-    position: absolute;
-    inset: 0;
-    transform: scale(var(--scene-scale, 1));
-    opacity: var(--scene-opacity, 1);
-  }
-
-  #ecs-{{ section.id }} .ecs-poster,
-  #ecs-{{ section.id }} .ecs-video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-    filter: saturate(.3) brightness(.75);
-  }
-
-  #ecs-{{ section.id }} .ecs-video {
-    opacity: 0;
-  }
-
-  #ecs-{{ section.id }}[data-video-ready] .ecs-video {
-    opacity: 1;
-  }
-
-  #ecs-{{ section.id }} .ecs-shade {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: linear-gradient(
-      180deg,
-      rgba(0,0,0,.25),
-      transparent 35%,
-      rgba(0,0,0,.75)
-    );
-  }
-
-  #ecs-{{ section.id }} .ecs-chrome {
-    position: relative;
-    z-index: 2;
-    min-height: calc(100svh - var(--pin));
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 36px;
-    padding: clamp(28px, 4vw, 60px) var(--pad);
-  }
-
-  #ecs-{{ section.id }} .ecs-topline {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    opacity: var(--chrome-opacity, 1);
-  }
-
-  #ecs-{{ section.id }} .ecs-eyebrow {
-    font-size: 11px;
-    line-height: 1.5;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-  }
-
-  #ecs-{{ section.id }} .ecs-eyebrow::before {
-    content: '';
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    margin-right: 12px;
-    background: var(--accent);
-  }
-
-  #ecs-{{ section.id }} .ecs-hero-count {
-    font-size: 11px;
-    font-variant-numeric: tabular-nums;
-    opacity: .65;
-    white-space: nowrap;
-  }
-
-  #ecs-{{ section.id }} .ecs-title {
-    display: flex;
-    flex-direction: column;
-    color: var(--accent);
-    font-size: clamp(64px, 14vw, 220px);
-    font-weight: 400;
-    line-height: .9;
-    letter-spacing: -.065em;
-  }
-
-  #ecs-{{ section.id }} .ecs-title-line {
-    display: block;
-    overflow-wrap: anywhere;
-  }
-
-  #ecs-{{ section.id }} .ecs-title-first {
-    transform: translate3d(var(--title-left, 0%), 0, 0);
-  }
-
-  #ecs-{{ section.id }} .ecs-title-last {
-    text-align: right;
-    transform: translate3d(var(--title-right, 0%), 0, 0);
-  }
-
-  #ecs-{{ section.id }} .ecs-title-rule {
-    height: clamp(3px, .4vw, 7px);
-    margin-top: 24px;
-    background: var(--accent);
-    transform: scaleX(var(--rule-scale, 1));
-    transform-origin: left;
-  }
-
-  #ecs-{{ section.id }} .ecs-bottom {
-    display: grid;
-    grid-template-columns: 1fr minmax(0, 560px);
-    gap: 32px;
-    align-items: end;
-    opacity: var(--chrome-opacity, 1);
-  }
-
-  #ecs-{{ section.id }} .ecs-description {
-    font-size: clamp(19px, 2vw, 30px);
-    font-weight: 400;
-    line-height: 1.3;
-    letter-spacing: -.02em;
-    text-wrap: pretty;
-  }
-
-  #ecs-{{ section.id }} .ecs-scroll {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    width: fit-content;
-    min-height: 48px;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: .08em;
-  }
-
-  #ecs-{{ section.id }} .ecs-scroll-icon {
-    width: 44px;
-    height: 44px;
-    display: grid;
-    place-items: center;
-    border: 1px solid #ffffff66;
-    border-radius: 50%;
-    font-size: 20px;
-  }
-
-  #ecs-{{ section.id }} .ecs-film-progress {
-    position: absolute;
-    inset: auto 0 0;
-    height: 2px;
-    background: #ffffff22;
-    z-index: 3;
-  }
-
-  #ecs-{{ section.id }} .ecs-film-progress::after {
-    content: '';
-    display: block;
-    height: 100%;
-    background: var(--accent);
-    transform: scaleX(var(--film-progress, 0));
-    transform-origin: left;
-  }
-
-  #ecs-{{ section.id }} .ecs-video-help {
-    position: absolute;
-    z-index: 4;
-    right: var(--pad);
-    bottom: 8px;
-    padding: 8px 12px;
-    border: 1px solid #ffffff66;
-    border-radius: 24px;
-    background: #000c;
-    color: white;
-    font: inherit;
-    font-size: 11px;
-    cursor: pointer;
-  }
-
-  #ecs-{{ section.id }} .ecs-video-help[hidden] {
-    display: none;
-  }
-
-  /* PROJECT GALLERY + DIAL */
-
-  #ecs-{{ section.id }} .ecs-gallery {
-    display: grid;
-    position: relative;
-    scroll-margin-top: var(--pin);
-  }
-
-  #ecs-{{ section.id }} .ecs-dial,
-  #ecs-{{ section.id }} .ecs-projects {
-    grid-area: 1 / 1;
-    min-width: 0;
-  }
-
-  #ecs-{{ section.id }} .ecs-dial {
-    position: sticky;
-    top: var(--pin);
-    height: calc(100svh - var(--pin));
-    align-self: start;
-    overflow: hidden;
-    pointer-events: none;
-    visibility: hidden;
-    z-index: 0;
-  }
-
-  #ecs-{{ section.id }}[data-enhanced] .ecs-dial {
-    visibility: visible;
-  }
-
-  #ecs-{{ section.id }} .ecs-dial svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-
-  #ecs-{{ section.id }} .ecs-rail,
-  #ecs-{{ section.id }} .ecs-inner,
-  #ecs-{{ section.id }} .ecs-arc {
-    fill: none;
-    stroke-width: 1;
-    vector-effect: non-scaling-stroke;
-  }
-
-  #ecs-{{ section.id }} .ecs-rail {
-    stroke: #f4f4f230;
-  }
-
-  #ecs-{{ section.id }} .ecs-inner {
-    stroke: #f4f4f212;
-  }
-
-  #ecs-{{ section.id }} .ecs-arc {
-    stroke: var(--dial-ink);
-    stroke-dasharray: 1;
-    stroke-dashoffset: 1;
-    stroke-width: 1.5;
-  }
-
-  #ecs-{{ section.id }} .ecs-tick {
-    stroke: #f4f4f233;
-    vector-effect: non-scaling-stroke;
-  }
-
-  #ecs-{{ section.id }} .ecs-tick.is-active {
-    stroke: var(--dial-ink);
-  }
-
-  #ecs-{{ section.id }} .ecs-needle {
-    fill: var(--dial-ink);
-    opacity: .4;
-  }
-
-  #ecs-{{ section.id }} .ecs-dot {
-    fill: var(--dial-ink);
-  }
-
-  #ecs-{{ section.id }} .ecs-readout {
-    position: absolute;
-    left: 50%;
-    bottom: 16px;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    font-variant-numeric: tabular-nums;
-  }
-
-  #ecs-{{ section.id }} .ecs-current {
-    font-size: 36px;
-    line-height: 1;
-    letter-spacing: -.05em;
-  }
-
-  #ecs-{{ section.id }} .ecs-total {
-    font-size: 11px;
-    opacity: .6;
-  }
-
-  #ecs-{{ section.id }} .ecs-projects {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: repeat(16, minmax(0, 1fr));
-    gap: clamp(90px, 13vw, 200px) 20px;
-    padding: 100px var(--pad) 140px;
-  }
-
-  #ecs-{{ section.id }} .ecs-project {
-    position: relative;
-    min-width: 0;
-    grid-row: var(--row);
-    grid-column: 2 / span 7;
-  }
-
-  #ecs-{{ section.id }} .ecs-project:nth-child(4n + 2) {
-    grid-column: 10 / span 6;
-  }
-
-  #ecs-{{ section.id }} .ecs-project:nth-child(4n + 3) {
-    grid-column: 3 / span 8;
-  }
-
-  #ecs-{{ section.id }} .ecs-project:nth-child(4n + 4) {
-    grid-column: 10 / span 5;
-  }
-
-  #ecs-{{ section.id }} .ecs-card {
-    display: block;
-  }
-
-  #ecs-{{ section.id }} .ecs-media {
-    position: relative;
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    background: #17191c;
-    clip-path: inset(0);
-    transition: clip-path .65s cubic-bezier(.22,1,.36,1);
-  }
-
-  #ecs-{{ section.id }} .ecs-project:nth-child(even) .ecs-media {
-    aspect-ratio: 3 / 4;
-  }
-
-  #ecs-{{ section.id }} .ecs-image {
-    position: absolute;
-    inset: -8% 0;
-    width: 100%;
-    height: 116%;
-    object-fit: cover;
-    display: block;
-    filter: grayscale(1) brightness(.85);
-    transform: translate3d(0, var(--image-y, 0px), 0);
-    transition: filter .6s;
-  }
-
-  #ecs-{{ section.id }} .ecs-placeholder {
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
-    color: #ffffff22;
-    font-size: clamp(80px, 13vw, 220px);
-  }
-
-  #ecs-{{ section.id }} .ecs-card-body {
-    padding-top: 22px;
-  }
-
-  #ecs-{{ section.id }} .ecs-meta {
-    display: flex;
-    align-items: baseline;
-    gap: 16px;
-    margin-bottom: 14px;
-    font-size: 10px;
-    line-height: 1.5;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-  }
-
-  #ecs-{{ section.id }} .ecs-number {
-    color: var(--dial-ink);
-    flex-shrink: 0;
-  }
-
-  #ecs-{{ section.id }} .ecs-category {
-    opacity: .8;
-  }
-
-  #ecs-{{ section.id }} .ecs-name-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-  }
-
-  #ecs-{{ section.id }} .ecs-name {
-    flex: 1;
-    min-width: 0;
-    font-size: clamp(28px, 3.3vw, 58px);
-    font-weight: 400;
-    line-height: 1;
-    letter-spacing: -.045em;
-    overflow-wrap: anywhere;
-    text-wrap: balance;
-  }
-
-  #ecs-{{ section.id }} .ecs-arrow {
-    width: 44px;
-    height: 44px;
-    flex: 0 0 44px;
-    display: grid;
-    place-items: center;
-    border: 1px solid #ffffff55;
-    border-radius: 50%;
-    font-size: 23px;
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    #ecs-{{ section.id }} a.ecs-card:hover .ecs-media {
-      clip-path: inset(3%);
-    }
-
-    #ecs-{{ section.id }} a.ecs-card:hover .ecs-image {
-      filter: grayscale(0) brightness(1);
-    }
-
-    #ecs-{{ section.id }} a.ecs-card:hover .ecs-arrow {
-      background: var(--ink);
-      color: #0d0e10;
-    }
-  }
-
-  #ecs-{{ section.id }} a:focus-visible .ecs-image {
-    filter: grayscale(0);
-  }
-
-  @media (max-width: 767px) {
-    #ecs-{{ section.id }}[data-enhanced]:not([data-static]) .ecs-runway {
-      height: 230svh;
-    }
-
-    #ecs-{{ section.id }} .ecs-title {
-      font-size: clamp(58px, 17vw, 130px);
-      line-height: .95;
-    }
-
-    #ecs-{{ section.id }} .ecs-bottom {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 22px;
-    }
-
-    #ecs-{{ section.id }} .ecs-description {
-      grid-row: 1;
-      font-size: clamp(20px, 5.3vw, 26px);
-    }
-
-    #ecs-{{ section.id }} .ecs-projects {
-      grid-template-columns: minmax(0, 1fr);
-      row-gap: 76px;
-      padding-top: 48px;
-      padding-bottom: 120px;
-    }
-
-    #ecs-{{ section.id }} .ecs-project:nth-child(n) {
-      grid-column: 1;
-    }
-
-    #ecs-{{ section.id }} .ecs-project:nth-child(n) .ecs-media {
-      aspect-ratio: 4 / 3;
-    }
-
-    #ecs-{{ section.id }} .ecs-name {
-      font-size: clamp(28px, 7vw, 42px);
-    }
-
-    #ecs-{{ section.id }} .ecs-dial {
-      opacity: .65;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    #ecs-{{ section.id }} *,
-    #ecs-{{ section.id }} *::before,
-    #ecs-{{ section.id }} *::after {
-      animation: none !important;
-      transition: none !important;
-    }
-
-    #ecs-{{ section.id }} .ecs-dial {
-      display: none;
-    }
-  }
-</style>
-
-<ukiyo-scroll-cases-v4
-  id="ecs-{{ section.id }}"
-  data-accent="{{ accent }}"
-  data-end="{{ end_color }}"
-  data-color-scroll="{{ section.settings.scroll_color }}"
-  data-pin="{{ pin_offset }}"
+{% doc %}
+  @prompt
+    Premium scroll-driven case study marquee for Shopify.
+
+    Native Liquid, CSS and vanilla JavaScript only.
+    Display a large number of case studies across two horizontal rows.
+
+    Row one moves right as the page scrolls down.
+    Row two moves left.
+
+    Optimized for desktop, tablet and mobile.
+    No React, JSX, Framer Motion, GSAP or external animation libraries.
+{% enddoc %}
+
+{%- liquid
+  assign ai_gen_id = block.id | replace: '_', '' | replace: '-', '' | downcase
+  assign root_id = 'CaseStudyMarquee-' | append: ai_gen_id
+
+  assign row_1_items = block.settings.row_1_items | newline_to_br | split: '<br />'
+  assign row_2_items = block.settings.row_2_items | newline_to_br | split: '<br />'
+
+  assign project_count = 0
+
+  for item in row_1_items
+    assign item_clean = item | strip
+    if item_clean != blank
+      assign project_count = project_count | plus: 1
+    endif
+  endfor
+
+  for item in row_2_items
+    assign item_clean = item | strip
+    if item_clean != blank
+      assign project_count = project_count | plus: 1
+    endif
+  endfor
+-%}
+
+<case-study-marquee-{{ ai_gen_id }}
+  id="{{ root_id }}"
+  class="csm-{{ ai_gen_id }}"
+  data-desktop-speed-one="{{ block.settings.desktop_speed_one | divided_by: 100.0 }}"
+  data-desktop-speed-two="{{ block.settings.desktop_speed_two | divided_by: 100.0 }}"
+  data-mobile-speed-one="{{ block.settings.mobile_speed_one | divided_by: 100.0 }}"
+  data-mobile-speed-two="{{ block.settings.mobile_speed_two | divided_by: 100.0 }}"
+  data-initial-offset="{{ block.settings.initial_offset }}"
+  data-motion="{{ block.settings.enable_motion }}"
+  style="
+    --csm-bg:{{ block.settings.background_color }};
+    --csm-card-bg:{{ block.settings.card_background }};
+    --csm-text:{{ block.settings.text_color }};
+    --csm-muted:{{ block.settings.muted_color }};
+    --csm-accent:{{ block.settings.accent_color }};
+    --csm-line:{{ block.settings.line_color }};
+    --csm-max:{{ block.settings.max_width }}px;
+    --csm-card-width:{{ block.settings.card_width }}px;
+    --csm-mobile-card-width:{{ block.settings.mobile_card_width }}px;
+    --csm-gap:{{ block.settings.card_gap }}px;
+    --csm-radius:{{ block.settings.card_radius }}px;
+    --csm-top:{{ block.settings.padding_top }}px;
+    --csm-bottom:{{ block.settings.padding_bottom }}px;
+    --csm-mobile-top:{{ block.settings.mobile_padding_top }}px;
+    --csm-mobile-bottom:{{ block.settings.mobile_padding_bottom }}px;
+  "
+  {{ block.shopify_attributes }}
 >
-  <div class="ecs-runway">
-    <header class="ecs-stage">
-      <div class="ecs-scene" aria-hidden="true">
-        <img
-          class="ecs-poster"
-          src="{{ poster_url | escape }}"
-          alt=""
-          width="1920"
-          height="1080"
-          loading="eager"
-        >
 
-        <video
-          class="ecs-video"
-          muted
-          playsinline
-          preload="auto"
-          poster="{{ poster_url | escape }}"
-          tabindex="-1"
-        >
-          <source
-            src="{{ video_url | escape }}"
-            type="video/mp4"
-          >
-        </video>
+  {% if block.settings.show_intro %}
+    <header class="csm-{{ ai_gen_id }}__intro">
 
-        <div class="ecs-shade"></div>
-      </div>
+      <div class="csm-{{ ai_gen_id }}__intro-inner">
 
-      <div class="ecs-chrome">
-        <div class="ecs-topline">
-          {% if section.settings.eyebrow != blank %}
-            <p class="ecs-eyebrow">
-              {{ section.settings.eyebrow | escape }}
+        <div class="csm-{{ ai_gen_id }}__intro-primary">
+
+          {% if block.settings.eyebrow != blank %}
+            <p class="csm-{{ ai_gen_id }}__eyebrow">
+              <span aria-hidden="true"></span>
+              {{ block.settings.eyebrow | escape }}
             </p>
           {% endif %}
 
-          {% if projects.size > 0 %}
-            <span class="ecs-hero-count" aria-hidden="true">
-              01 / {% if projects.size < 10 %}0{% endif %}{{ projects.size }}
-            </span>
-          {% endif %}
-        </div>
-
-        {% if section.settings.title != blank %}
-          <div>
-            <h2 class="ecs-title">
-              <span class="ecs-title-line ecs-title-first">
-                {{ title_first | escape }}
-              </span>
-
-              {% if title_rest != blank %}
-                <span class="ecs-title-line ecs-title-last">
-                  {{ title_rest | escape }}
-                </span>
-              {% endif %}
+          {% if block.settings.heading != blank %}
+            <h2 class="csm-{{ ai_gen_id }}__heading">
+              {{ block.settings.heading | escape }}
             </h2>
-
-            <div class="ecs-title-rule" aria-hidden="true"></div>
-          </div>
-        {% endif %}
-
-        <div class="ecs-bottom">
-          {% if projects.size > 0 %}
-            <a
-              class="ecs-scroll"
-              href="#ecs-gallery-{{ section.id }}"
-              data-explore
-            >
-              <span class="ecs-scroll-icon" aria-hidden="true">↓</span>
-              Explore projects
-            </a>
           {% endif %}
 
-          {% if section.settings.description != blank %}
-            <p class="ecs-description">
-              {{ section.settings.description | escape | newline_to_br }}
-            </p>
-          {% endif %}
         </div>
+
+        <div class="csm-{{ ai_gen_id }}__intro-aside">
+
+          {% if block.settings.description != blank %}
+            <div class="csm-{{ ai_gen_id }}__description">
+              {{ block.settings.description }}
+            </div>
+          {% endif %}
+
+          {% if block.settings.show_count %}
+            <div class="csm-{{ ai_gen_id }}__count">
+              <strong>{{ project_count }}</strong>
+
+              <span>
+                Case
+                {% if project_count == 1 %}
+                  study
+                {% else %}
+                  studies
+                {% endif %}
+              </span>
+            </div>
+          {% endif %}
+
+        </div>
+
       </div>
 
-      <div class="ecs-film-progress" aria-hidden="true"></div>
+      <div class="csm-{{ ai_gen_id }}__intro-rule">
+        <span></span>
+      </div>
 
-      <button
-        class="ecs-video-help"
-        type="button"
-        hidden
-      >
-        Enable video motion
-      </button>
     </header>
-  </div>
+  {% endif %}
 
-  {% if projects.size > 0 %}
+
+  <div
+    class="csm-{{ ai_gen_id }}__canvas"
+    data-marquee-canvas
+  >
+
     <div
-      class="ecs-gallery"
-      id="ecs-gallery-{{ section.id }}"
-    >
-      {% if section.settings.show_dial %}
-        <div class="ecs-dial" aria-hidden="true">
-          <svg focusable="false">
-            <path class="ecs-rail"></path>
-            <path class="ecs-inner"></path>
-            <path class="ecs-arc" pathLength="1"></path>
-            <g class="ecs-ticks"></g>
-            <polygon class="ecs-needle"></polygon>
-            <circle class="ecs-dot ecs-hub" r="3"></circle>
-            <circle class="ecs-dot ecs-tip" r="4"></circle>
-          </svg>
+      class="csm-{{ ai_gen_id }}__edge csm-{{ ai_gen_id }}__edge--left"
+      aria-hidden="true"
+    ></div>
 
-          <div class="ecs-readout">
-            <span class="ecs-current">01</span>
-            <span class="ecs-total">
-              / {% if projects.size < 10 %}0{% endif %}{{ projects.size }}
-            </span>
-          </div>
-        </div>
-      {% endif %}
+    <div
+      class="csm-{{ ai_gen_id }}__edge csm-{{ ai_gen_id }}__edge--right"
+      aria-hidden="true"
+    ></div>
 
-      <div class="ecs-projects">
-        {% for block in projects %}
-          {% liquid
-            assign card_tag = 'div'
-            if block.settings.url != blank
-              assign card_tag = 'a'
-            endif
 
-            assign image_alt = block.settings.image.alt | default: block.settings.name
-          %}
+    {% comment %}
+      ============================================================
+      ROW ONE
+      ============================================================
+    {% endcomment %}
 
-          <article
-            class="ecs-project"
-            style="--row: {{ forloop.index }};"
-            {{ block.shopify_attributes }}
+    <div class="csm-{{ ai_gen_id }}__row-viewport">
+
+      <div
+        class="csm-{{ ai_gen_id }}__track"
+        data-track="one"
+      >
+
+        {% for copy_index in (1..2) %}
+
+          <div
+            class="csm-{{ ai_gen_id }}__group"
+            data-group="one"
+            {% if copy_index == 2 %}
+              aria-hidden="true"
+            {% endif %}
           >
-            <{{ card_tag }}
-              class="ecs-card"
-              {% if block.settings.url != blank %}
-                href="{{ block.settings.url | escape }}"
-              {% endif %}
-            >
-              <div class="ecs-media">
-                {% if block.settings.image != blank %}
-                  {{
-                    block.settings.image
-                    | image_url: width: 1600
-                    | image_tag:
-                      class: 'ecs-image',
-                      widths: '400, 600, 800, 1000, 1200, 1600',
-                      sizes: '(min-width: 768px) 50vw, 100vw',
-                      loading: 'lazy',
-                      alt: image_alt
-                  }}
-                {% else %}
-                  <div class="ecs-placeholder" aria-hidden="true">
-                    {% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}
-                  </div>
-                {% endif %}
-              </div>
 
-              <div class="ecs-card-body">
-                <div class="ecs-meta">
-                  <span class="ecs-number" aria-hidden="true">
-                    {% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}
+            {% for item in row_1_items %}
+
+              {%- liquid
+                assign item_clean = item | strip
+
+                if item_clean == blank
+                  continue
+                endif
+
+                assign fields = item_clean | split: '|'
+
+                assign image_url = fields[0] | strip
+                assign title = fields[1] | default: '' | strip
+                assign project_url = fields[2] | default: '' | strip
+
+                if title == blank
+                  assign title = 'Selected work'
+                endif
+              -%}
+
+              {% if project_url != blank %}
+
+                <a
+                  class="csm-{{ ai_gen_id }}__card"
+                  href="{{ project_url }}"
+                  aria-label="View case study: {{ title | escape }}"
+                  {% if copy_index == 2 %}
+                    tabindex="-1"
+                  {% endif %}
+                >
+
+                  <span class="csm-{{ ai_gen_id }}__media">
+
+                    <img
+                      src="{{ image_url | escape }}"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      draggable="false"
+                      width="840"
+                      height="540"
+                    >
+
+                    <span class="csm-{{ ai_gen_id }}__shade"></span>
+                    <span class="csm-{{ ai_gen_id }}__frame"></span>
+
+                    {% if block.settings.show_titles %}
+                      <span class="csm-{{ ai_gen_id }}__card-copy">
+
+                        <span class="csm-{{ ai_gen_id }}__project-label">
+                          Case study
+                        </span>
+
+                        <strong>
+                          {{ title | escape }}
+                        </strong>
+
+                        <span class="csm-{{ ai_gen_id }}__view-project">
+                          View project
+
+                          <svg
+                            viewBox="0 0 24 24"
+                            width="15"
+                            height="15"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.7"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                          >
+                            <path d="M5 12h14"/>
+                            <path d="m13 6 6 6-6 6"/>
+                          </svg>
+                        </span>
+
+                      </span>
+                    {% endif %}
+
                   </span>
 
-                  {% if block.settings.tag != blank %}
-                    <span class="ecs-category">
-                      {{ block.settings.tag | escape }}
-                    </span>
-                  {% endif %}
+                </a>
+
+              {% else %}
+
+                <div class="csm-{{ ai_gen_id }}__card">
+
+                  <span class="csm-{{ ai_gen_id }}__media">
+
+                    <img
+                      src="{{ image_url | escape }}"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      draggable="false"
+                      width="840"
+                      height="540"
+                    >
+
+                    <span class="csm-{{ ai_gen_id }}__shade"></span>
+                    <span class="csm-{{ ai_gen_id }}__frame"></span>
+
+                    {% if block.settings.show_titles %}
+                      <span class="csm-{{ ai_gen_id }}__card-copy">
+
+                        <span class="csm-{{ ai_gen_id }}__project-label">
+                          Case study
+                        </span>
+
+                        <strong>
+                          {{ title | escape }}
+                        </strong>
+
+                      </span>
+                    {% endif %}
+
+                  </span>
+
                 </div>
 
-                <div class="ecs-name-row">
-                  <h3 class="ecs-name">
-                    {{ block.settings.name | escape }}
-                  </h3>
+              {% endif %}
 
-                  {% if block.settings.url != blank %}
-                    <span class="ecs-arrow" aria-hidden="true">↗</span>
-                  {% endif %}
-                </div>
-              </div>
-            </{{ card_tag }}>
-          </article>
+            {% endfor %}
+
+          </div>
+
         {% endfor %}
+
       </div>
+
     </div>
+
+
+    {% comment %}
+      ============================================================
+      ROW TWO
+      ============================================================
+    {% endcomment %}
+
+    <div class="csm-{{ ai_gen_id }}__row-viewport">
+
+      <div
+        class="csm-{{ ai_gen_id }}__track"
+        data-track="two"
+      >
+
+        {% for copy_index in (1..2) %}
+
+          <div
+            class="csm-{{ ai_gen_id }}__group"
+            data-group="two"
+            {% if copy_index == 2 %}
+              aria-hidden="true"
+            {% endif %}
+          >
+
+            {% for item in row_2_items %}
+
+              {%- liquid
+                assign item_clean = item | strip
+
+                if item_clean == blank
+                  continue
+                endif
+
+                assign fields = item_clean | split: '|'
+
+                assign image_url = fields[0] | strip
+                assign title = fields[1] | default: '' | strip
+                assign project_url = fields[2] | default: '' | strip
+
+                if title == blank
+                  assign title = 'Selected work'
+                endif
+              -%}
+
+              {% if project_url != blank %}
+
+                <a
+                  class="csm-{{ ai_gen_id }}__card"
+                  href="{{ project_url }}"
+                  aria-label="View case study: {{ title | escape }}"
+                  {% if copy_index == 2 %}
+                    tabindex="-1"
+                  {% endif %}
+                >
+
+                  <span class="csm-{{ ai_gen_id }}__media">
+
+                    <img
+                      src="{{ image_url | escape }}"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      draggable="false"
+                      width="840"
+                      height="540"
+                    >
+
+                    <span class="csm-{{ ai_gen_id }}__shade"></span>
+                    <span class="csm-{{ ai_gen_id }}__frame"></span>
+
+                    {% if block.settings.show_titles %}
+                      <span class="csm-{{ ai_gen_id }}__card-copy">
+
+                        <span class="csm-{{ ai_gen_id }}__project-label">
+                          Case study
+                        </span>
+
+                        <strong>
+                          {{ title | escape }}
+                        </strong>
+
+                        <span class="csm-{{ ai_gen_id }}__view-project">
+                          View project
+
+                          <svg
+                            viewBox="0 0 24 24"
+                            width="15"
+                            height="15"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.7"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                          >
+                            <path d="M5 12h14"/>
+                            <path d="m13 6 6 6-6 6"/>
+                          </svg>
+                        </span>
+
+                      </span>
+                    {% endif %}
+
+                  </span>
+
+                </a>
+
+              {% else %}
+
+                <div class="csm-{{ ai_gen_id }}__card">
+
+                  <span class="csm-{{ ai_gen_id }}__media">
+
+                    <img
+                      src="{{ image_url | escape }}"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      draggable="false"
+                      width="840"
+                      height="540"
+                    >
+
+                    <span class="csm-{{ ai_gen_id }}__shade"></span>
+                    <span class="csm-{{ ai_gen_id }}__frame"></span>
+
+                    {% if block.settings.show_titles %}
+                      <span class="csm-{{ ai_gen_id }}__card-copy">
+
+                        <span class="csm-{{ ai_gen_id }}__project-label">
+                          Case study
+                        </span>
+
+                        <strong>
+                          {{ title | escape }}
+                        </strong>
+
+                      </span>
+                    {% endif %}
+
+                  </span>
+
+                </div>
+
+              {% endif %}
+
+            {% endfor %}
+
+          </div>
+
+        {% endfor %}
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  {% if block.settings.show_footer %}
+
+    <footer class="csm-{{ ai_gen_id }}__footer">
+
+      <div class="csm-{{ ai_gen_id }}__footer-meta">
+        <span>Scroll to explore</span>
+        <span>Two directions / one body of work</span>
+      </div>
+
+      {% if block.settings.archive_url != blank %}
+
+        <a href="{{ block.settings.archive_url }}">
+          {{ block.settings.archive_label | escape }}
+
+          <svg
+            viewBox="0 0 24 24"
+            width="16"
+            height="16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14"/>
+            <path d="m13 6 6 6-6 6"/>
+          </svg>
+        </a>
+
+      {% endif %}
+
+    </footer>
+
   {% endif %}
-</ukiyo-scroll-cases-v4>
-
-<script>
-(() => {
-  const tag = 'ukiyo-scroll-cases-v4';
-  if (customElements.get(tag)) return;
-
-  class Cases extends HTMLElement {
-    connectedCallback() {
-      this.boot = requestAnimationFrame(() => {
-        if (this.isConnected) this.init();
-      });
-    }
-
-    init() {
-      if (this.abort) return;
-
-      this.abort = new AbortController();
-      const signal = this.abort.signal;
-
-      this.mediaQuery = matchMedia(
-        '(prefers-reduced-motion: reduce)'
-      );
-
-      this.runway = this.querySelector('.ecs-runway');
-      this.stage = this.querySelector('.ecs-stage');
-      this.video = this.querySelector('video');
-      this.help = this.querySelector('.ecs-video-help');
-      this.gallery = this.querySelector('.ecs-gallery');
-      this.dial = this.querySelector('.ecs-dial');
-      this.svg = this.querySelector('.ecs-dial svg');
-      this.counter = this.querySelector('.ecs-current');
-      this.chrome = this.querySelector('.ecs-chrome');
-
-      this.pin = Number(this.dataset.pin) || 0;
-      this.items = [...this.querySelectorAll('.ecs-project')];
-      this.animations = new Set();
-      this.pending = 0;
-      this.ticks = [];
-
-      this.clamp = n => Math.max(0, Math.min(1, n));
-
-      this.mix = (a, b, t) => a.map(
-        (v, i) => Math.round(v + (b[i] - v) * t)
-      );
-
-      this.rgb = value => {
-        let v = String(value).replace('#', '');
-
-        if (v.length === 3) {
-          v = [...v].map(c => c + c).join('');
-        }
-
-        return /^[0-9a-f]{6}$/i.test(v)
-          ? [0, 2, 4].map(i => parseInt(v.slice(i, i + 2), 16))
-          : [232, 71, 42];
-      };
-
-      this.schedule = () => {
-        if (this.frame) return;
-
-        this.frame = requestAnimationFrame(() => {
-          this.frame = 0;
-          if (this.isConnected) this.update();
-        });
-      };
-
-      this.resize = () => {
-        this.toggleAttribute(
-          'data-static',
-          this.mediaQuery.matches || innerHeight - this.pin < 600
-        );
-
-        this.measure();
-        this.schedule();
-      };
-
-      window.addEventListener('scroll', this.schedule, {
-        passive: true,
-        signal
-      });
-
-      window.addEventListener('resize', this.resize, {
-        passive: true,
-        signal
-      });
-
-      this.mediaQuery.addEventListener('change', () => {
-        this.animations.forEach(a => a.cancel());
-        this.video.pause();
-        this.resize();
-      }, { signal });
-
-      this.querySelector('[data-explore]')?.addEventListener(
-        'click',
-        e => {
-          if (
-            e.metaKey || e.ctrlKey ||
-            e.shiftKey || e.altKey
-          ) return;
-
-          e.preventDefault();
-
-          this.gallery?.scrollIntoView({
-            block: 'start',
-            behavior: this.mediaQuery.matches ? 'auto' : 'smooth'
-          });
-        },
-        { signal }
-      );
-
-      this.addEventListener('shopify:block:select', e => {
-        this.animations.forEach(a => a.cancel());
-
-        e.target.closest('.ecs-project')?.scrollIntoView({
-          block: 'center',
-          behavior: 'auto'
-        });
-      }, { signal });
-
-      this.setupVideo(signal);
-      this.setupReveals();
-      this.setAttribute('data-enhanced', '');
-      this.resize();
-
-      if ('ResizeObserver' in window) {
-        this.ro = new ResizeObserver(this.resize);
-        this.ro.observe(this);
-        this.ro.observe(this.stage);
-      }
-    }
-
-    setupVideo(signal) {
-      const v = this.video;
-
-      v.muted = true;
-      v.defaultMuted = true;
-      v.playsInline = true;
-      v.pause();
-
-      const ready = () => {
-        if (v.readyState >= 2) {
-          this.setAttribute('data-video-ready', '');
-          this.help.hidden = true;
-        }
-
-        this.schedule();
-      };
-
-      ['loadedmetadata', 'durationchange', 'progress'].forEach(name => {
-        v.addEventListener(name, this.schedule, { signal });
-      });
-
-      ['loadeddata', 'canplay', 'seeked'].forEach(name => {
-        v.addEventListener(name, ready, { signal });
-      });
-
-      v.addEventListener('error', () => {
-        this.removeAttribute('data-video-ready');
-        this.help.hidden = false;
-        this.help.textContent = 'Retry video';
-      }, { signal });
-
-      this.help.addEventListener('click', async () => {
-        if (this.unlocking) return;
-
-        this.unlocking = true;
-
-        if (v.error) v.load();
-
-        try {
-          await v.play();
-
-          if (this.isConnected) {
-            this.help.hidden = true;
-            this.schedule();
-          }
-        } catch (_) {
-          if (this.isConnected) {
-            this.help.textContent = 'Retry video';
-          }
-        } finally {
-          v.pause();
-          this.unlocking = false;
-          this.schedule();
-        }
-      }, { signal });
-
-      this.timer = setTimeout(() => {
-        if (
-          this.isConnected &&
-          !this.hasAttribute('data-video-ready') &&
-          !this.mediaQuery.matches
-        ) {
-          this.help.hidden = false;
-        }
-      }, 6000);
-
-      if (v.readyState >= 2) ready();
-    }
-
-    seek(progress) {
-      const v = this.video;
-
-      if (
-        this.mediaQuery.matches ||
-        this.unlocking ||
-        v.readyState < 1 ||
-        !Number.isFinite(v.duration) ||
-        v.duration <= 0
-      ) return;
-
-      this.pending = progress * Math.max(0, v.duration - .05);
-
-      /*
-        Wait for the current seek to finish.
-        The latest scroll position is applied on the seeked event.
-      */
-      if (
-        v.seeking ||
-        Math.abs(v.currentTime - this.pending) < .025
-      ) return;
-
-      try {
-        v.currentTime = this.pending;
-      } catch (_) {
-        /* Retain the current frame while media becomes available. */
-      }
-    }
-
-    setupReveals() {
-      if (!('IntersectionObserver' in window)) return;
-
-      this.io = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (!e.isIntersecting) return;
-
-          this.io.unobserve(e.target);
-
-          if (this.mediaQuery.matches) return;
-
-          const media = e.target.querySelector('.ecs-media');
-          if (!media.animate) return;
-
-          const animation = media.animate([
-            { clipPath: 'inset(0 0 100% 0)' },
-            { clipPath: 'inset(0)' }
-          ], {
-            duration: 950,
-            easing: 'cubic-bezier(.22,1,.36,1)'
-          });
-
-          this.animations.add(animation);
-
-          animation.finished
-            .catch(() => {})
-            .finally(() => {
-              this.animations.delete(animation);
-            });
-        });
-      }, { threshold: .04 });
-
-      this.items.forEach(el => this.io.observe(el));
-    }
-
-    measure() {
-      if (!this.svg) return;
-
-      const width = this.dial.clientWidth;
-      const height = this.dial.clientHeight;
-
-      if (!width || !height) return;
-
-      this.cx = width / 2;
-      this.cy = height - 72;
-
-      this.r = Math.max(
-        1,
-        Math.min(width / 2 - 24, height - 116)
-      );
-
-      this.svg.setAttribute(
-        'viewBox',
-        `0 0 ${width} ${height}`
-      );
-
-      const path = radius =>
-        `M ${this.cx - radius} ${this.cy} A ${radius} ${radius} 0 0 1 ${this.cx + radius} ${this.cy}`;
-
-      this.svg.querySelector('.ecs-rail').setAttribute(
-        'd',
-        path(this.r)
-      );
-
-      this.svg.querySelector('.ecs-inner').setAttribute(
-        'd',
-        path(Math.max(1, this.r - 30))
-      );
-
-      this.arc = this.svg.querySelector('.ecs-arc');
-      this.arc.setAttribute('d', path(this.r));
-
-      this.needle = this.svg.querySelector('.ecs-needle');
-
-      this.needle.setAttribute('points', [
-        `${this.cx},${this.cy - 1.2}`,
-        `${this.cx + this.r - 40},${this.cy}`,
-        `${this.cx},${this.cy + 1.2}`
-      ].join(' '));
-
-      this.tip = this.svg.querySelector('.ecs-tip');
-
-      const hub = this.svg.querySelector('.ecs-hub');
-      hub.setAttribute('cx', this.cx);
-      hub.setAttribute('cy', this.cy);
-
-      const holder = this.svg.querySelector('.ecs-ticks');
-      holder.replaceChildren();
-      this.ticks = [];
-
-      for (let i = 0; i <= 60; i++) {
-        const angle = Math.PI + i / 60 * Math.PI;
-        const outer = this.r - 8;
-        const inner = outer - (i % 5 === 0 ? 16 : 6);
-
-        const tick = document.createElementNS(
-          'http://www.w3.org/2000/svg',
-          'line'
-        );
-
-        tick.setAttribute('class', 'ecs-tick');
-
-        Object.entries({
-          x1: this.cx + Math.cos(angle) * inner,
-          y1: this.cy + Math.sin(angle) * inner,
-          x2: this.cx + Math.cos(angle) * outer,
-          y2: this.cy + Math.sin(angle) * outer
-        }).forEach(([key, value]) => {
-          tick.setAttribute(key, value);
-        });
-
-        holder.appendChild(tick);
-        this.ticks.push(tick);
-      }
-    }
-
-    update() {
-      const reduced = this.mediaQuery.matches;
-      const viewportHeight = innerHeight;
-      const rect = this.runway.getBoundingClientRect();
-
-      const travel = this.hasAttribute('data-static')
-        ? rect.height
-        : Math.max(1, rect.height - this.stage.offsetHeight);
-
-      const heroProgress = reduced
-        ? 0
-        : this.clamp((this.pin - rect.top) / travel);
-
-      const textProgress = this.clamp(heroProgress / .68);
-      const sceneOpacity = 1 - this.clamp(
-        (heroProgress - .78) / .22
-      );
-
-      const variables = {
-        '--title-left': `${-112 * textProgress}%`,
-        '--title-right': `${112 * textProgress}%`,
-        '--rule-scale': 1 - textProgress,
-        '--chrome-opacity': 1 - this.clamp(heroProgress / .42),
-        '--scene-scale': 1 + heroProgress * .1,
-        '--scene-opacity': sceneOpacity,
-        '--film-progress': heroProgress
-      };
-
-      Object.entries(variables).forEach(([key, value]) => {
-        this.style.setProperty(key, String(value));
-      });
-
-      /*
-        Prevent invisible opening links receiving keyboard focus
-        once the opening typography has moved out of view.
-      */
-      this.chrome.inert = heroProgress > .46;
-      this.chrome.style.visibility =
-        heroProgress > .72 ? 'hidden' : 'visible';
-
-      this.seek(heroProgress);
-
-      const centers = [];
-      let nearest = 0;
-      let distance = Infinity;
-
-      this.items.forEach((element, index) => {
-        const r = element.getBoundingClientRect();
-        const center = r.top + r.height / 2;
-
-        centers.push(center);
-
-        const difference = Math.abs(
-          center - viewportHeight / 2
-        );
-
-        if (difference < distance) {
-          distance = difference;
-          nearest = index;
-        }
-
-        if (reduced) {
-          element.style.setProperty('--image-y', '0px');
-        } else if (
-          r.bottom >= 0 &&
-          r.top <= viewportHeight
-        ) {
-          const progress = this.clamp(
-            (viewportHeight - r.top) /
-            (viewportHeight + r.height)
-          );
-
-          const offset =
-            (progress - .5) * Math.min(40, r.height * .07);
-
-          element.style.setProperty(
-            '--image-y',
-            `${offset.toFixed(2)}px`
-          );
-        }
-      });
-
-      let galleryProgress = 0;
-
-      if (centers.length > 1) {
-        if (viewportHeight / 2 >= centers.at(-1)) {
-          galleryProgress = 1;
-        } else {
-          for (let i = 0; i < centers.length - 1; i++) {
-            if (
-              viewportHeight / 2 >= centers[i] &&
-              viewportHeight / 2 < centers[i + 1]
-            ) {
-              const local =
-                (viewportHeight / 2 - centers[i]) /
-                Math.max(1, centers[i + 1] - centers[i]);
-
-              galleryProgress =
-                (i + local) / (centers.length - 1);
-
-              break;
-            }
-          }
-        }
-      } else if (this.gallery) {
-        const r = this.gallery.getBoundingClientRect();
-
-        galleryProgress = this.clamp(
-          (viewportHeight / 2 - r.top) /
-          Math.max(1, r.height)
-        );
-      }
-
-      if (this.counter) {
-        this.counter.textContent = String(
-          nearest + 1
-        ).padStart(2, '0');
-      }
-
-      if (this.arc && !reduced) {
-        this.arc.style.strokeDashoffset = String(
-          1 - galleryProgress
-        );
-
-        this.needle.setAttribute(
-          'transform',
-          `rotate(${-180 + galleryProgress * 180} ${this.cx} ${this.cy})`
-        );
-
-        const angle = Math.PI + galleryProgress * Math.PI;
-
-        this.tip.setAttribute(
-          'cx',
-          this.cx + Math.cos(angle) * this.r
-        );
-
-        this.tip.setAttribute(
-          'cy',
-          this.cy + Math.sin(angle) * this.r
-        );
-
-        this.ticks.forEach((element, index) => {
-          element.classList.toggle(
-            'is-active',
-            index / 60 <= galleryProgress
-          );
-        });
-      }
-
-      let background = [13, 14, 16];
-      let dialColor = this.rgb(this.dataset.accent);
-
-      if (
-        this.dataset.colorScroll !== 'false' &&
-        !reduced
-      ) {
-        const stops = [
-          [13, 14, 16],
-          [23, 20, 27],
-          [53, 19, 29],
-          [88, 25, 31],
-          this.rgb(this.dataset.end)
-        ];
-
-        const scaled = galleryProgress * 4;
-        const index = Math.min(3, Math.floor(scaled));
-        const fraction = scaled - index;
-        const eased =
-          fraction * fraction * (3 - 2 * fraction);
-
-        background = this.mix(
-          stops[index],
-          stops[index + 1],
-          eased
-        );
-
-        dialColor = this.mix(
-          dialColor,
-          [244, 244, 242],
-          this.clamp((galleryProgress - .2) / .6)
-        );
-      }
-
-      this.style.setProperty(
-        '--bg',
-        `rgb(${background.join(',')})`
-      );
-
-      this.style.setProperty(
-        '--dial-ink',
-        `rgb(${dialColor.join(',')})`
-      );
-    }
-
-    disconnectedCallback() {
-      cancelAnimationFrame(this.boot);
-      cancelAnimationFrame(this.frame);
-      clearTimeout(this.timer);
-
-      this.frame = 0;
-      this.abort?.abort();
-      this.abort = null;
-      this.ro?.disconnect();
-      this.io?.disconnect();
-      this.animations?.forEach(a => a.cancel());
-      this.video?.pause();
-      this.removeAttribute('data-enhanced');
-    }
+
+</case-study-marquee-{{ ai_gen_id }}>
+
+
+{% style %}
+
+#{{ root_id }} {
+  display:block;
+  position:relative;
+
+  width:100%;
+  max-width:100%;
+
+  padding-top:var(--csm-top);
+  padding-bottom:var(--csm-bottom);
+
+  overflow:hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(255,255,255,.035),
+      transparent 32%
+    ),
+    var(--csm-bg);
+
+  color:var(--csm-text);
+
+  font-family:
+    'Kanit',
+    var(--font-body-family, Arial, sans-serif);
+
+  isolation:isolate;
+}
+
+#{{ root_id }} *,
+#{{ root_id }} *::before,
+#{{ root_id }} *::after {
+  box-sizing:border-box;
+  min-width:0;
+}
+
+#{{ root_id }} a {
+  color:inherit;
+  text-decoration:none;
+}
+
+#{{ root_id }} img {
+  display:block;
+  max-width:100%;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+
+#{{ root_id }} :where(h2,p) {
+  margin:0;
+}
+
+#{{ root_id }} a:focus-visible {
+  outline:2px solid var(--csm-accent);
+  outline-offset:4px;
+}
+
+
+/* INTRO */
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__intro {
+  position:relative;
+  z-index:4;
+
+  width:100%;
+  max-width:var(--csm-max);
+
+  margin:
+    0 auto
+    clamp(42px,5vw,70px);
+
+  padding-inline:
+    clamp(20px,4vw,52px);
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__intro-inner {
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    minmax(300px,.75fr);
+
+  align-items:end;
+
+  gap:clamp(32px,5vw,80px);
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__eyebrow {
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+
+  margin-bottom:17px;
+
+  color:var(--csm-muted);
+
+  font-size:10px;
+  font-weight:500;
+
+  line-height:1.4;
+
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__eyebrow span {
+  width:6px;
+  height:6px;
+
+  border-radius:50%;
+
+  background:var(--csm-accent);
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__heading {
+  max-width:12ch;
+
+  color:var(--csm-text);
+
+  font-family:
+    'Kanit',
+    var(--font-heading-family, Arial, sans-serif);
+
+  font-size:
+    clamp(
+      44px,
+      6vw,
+      88px
+    );
+
+  font-weight:400;
+
+  line-height:.92;
+
+  letter-spacing:-.045em;
+
+  text-wrap:balance;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__intro-aside {
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    auto;
+
+  align-items:end;
+
+  gap:30px;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__description {
+  max-width:510px;
+
+  color:var(--csm-muted);
+
+  font-size:14px;
+
+  font-weight:300;
+
+  line-height:1.75;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__description p + p {
+  margin-top:12px;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__count {
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:flex-end;
+
+  flex:none;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__count strong {
+  color:var(--csm-text);
+
+  font-size:34px;
+
+  font-weight:400;
+
+  line-height:1;
+
+  font-variant-numeric:
+    tabular-nums;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__count span {
+  margin-top:7px;
+
+  color:var(--csm-muted);
+
+  font-size:9px;
+
+  letter-spacing:.13em;
+
+  text-transform:uppercase;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__intro-rule {
+  height:1px;
+
+  margin-top:28px;
+
+  background:var(--csm-line);
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__intro-rule span {
+  display:block;
+
+  width:58px;
+  height:1px;
+
+  background:var(--csm-accent);
+}
+
+
+/* MARQUEE */
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__canvas {
+  position:relative;
+
+  width:100%;
+
+  overflow:hidden;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__row-viewport {
+  width:100%;
+  overflow:hidden;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__row-viewport + .csm-{{ ai_gen_id }}__row-viewport {
+  margin-top:var(--csm-gap);
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__track {
+  display:flex;
+
+  width:max-content;
+
+  gap:var(--csm-gap);
+
+  will-change:transform;
+
+  transform:translate3d(0,0,0);
+
+  backface-visibility:hidden;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__group {
+  display:flex;
+
+  flex:none;
+
+  gap:var(--csm-gap);
+
+  width:max-content;
+}
+
+
+/* CARDS */
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__card {
+  display:block;
+
+  flex:
+    0 0
+    var(--csm-card-width);
+
+  width:
+    var(--csm-card-width);
+
+  aspect-ratio:14 / 9;
+
+  overflow:hidden;
+
+  border-radius:var(--csm-radius);
+
+  background:var(--csm-card-bg);
+
+  box-shadow:
+    0 22px 70px
+    rgba(0,0,0,.25);
+
+  transform:translateZ(0);
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__media {
+  display:block;
+
+  position:relative;
+
+  width:100%;
+  height:100%;
+
+  overflow:hidden;
+
+  border-radius:inherit;
+
+  background:#111;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__media img {
+  position:absolute;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  transform:scale(1.01);
+
+  transition:
+    transform .8s
+    cubic-bezier(.2,.7,.2,1),
+    filter .6s ease;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__shade {
+  position:absolute;
+
+  inset:0;
+
+  z-index:2;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0,0,0,.68),
+      rgba(0,0,0,.04) 58%
+    );
+
+  opacity:.54;
+
+  pointer-events:none;
+
+  transition:opacity .45s ease;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__frame {
+  position:absolute;
+
+  inset:9px;
+
+  z-index:3;
+
+  border:
+    1px solid
+    rgba(255,255,255,.11);
+
+  border-radius:
+    max(
+      4px,
+      calc(
+        var(--csm-radius) - 7px
+      )
+    );
+
+  pointer-events:none;
+
+  transition:
+    inset .35s ease,
+    border-color .35s ease;
+}
+
+
+/* COPY */
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__card-copy {
+  position:absolute;
+
+  left:22px;
+  right:22px;
+  bottom:19px;
+
+  z-index:4;
+
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    auto;
+
+  align-items:end;
+
+  gap:18px;
+
+  color:#fff;
+
+  pointer-events:none;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__project-label {
+  grid-column:1 / -1;
+
+  margin-bottom:-7px;
+
+  color:
+    rgba(255,255,255,.58);
+
+  font-size:8px;
+
+  font-weight:500;
+
+  letter-spacing:.16em;
+
+  text-transform:uppercase;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__card-copy strong {
+  max-width:22ch;
+
+  color:#fff;
+
+  font-size:17px;
+
+  font-weight:500;
+
+  line-height:1.15;
+
+  letter-spacing:-.015em;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__view-project {
+  display:flex;
+
+  align-items:center;
+
+  gap:7px;
+
+  color:
+    rgba(255,255,255,.74);
+
+  font-size:9px;
+
+  font-weight:500;
+
+  letter-spacing:.09em;
+
+  text-transform:uppercase;
+
+  opacity:0;
+
+  transform:
+    translateY(6px);
+
+  transition:
+    opacity .3s ease,
+    transform .3s ease;
+}
+
+
+/* HOVER */
+
+@media (hover:hover) and (pointer:fine) {
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__card:hover img {
+    transform:
+      scale(1.04)
+      translateY(-2px);
   }
 
-  customElements.define(tag, Cases);
+  #{{ root_id }} .csm-{{ ai_gen_id }}__card:hover .csm-{{ ai_gen_id }}__shade {
+    opacity:.8;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__card:hover .csm-{{ ai_gen_id }}__frame {
+    inset:6px;
+
+    border-color:
+      rgba(255,255,255,.23);
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__card:hover .csm-{{ ai_gen_id }}__view-project {
+    opacity:1;
+
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+/* EDGE FADES */
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__edge {
+  position:absolute;
+
+  top:0;
+  bottom:0;
+
+  z-index:8;
+
+  width:
+    clamp(
+      28px,
+      5vw,
+      100px
+    );
+
+  pointer-events:none;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__edge--left {
+  left:0;
+
+  background:
+    linear-gradient(
+      to right,
+      var(--csm-bg),
+      rgba(12,12,12,.7) 44%,
+      transparent
+    );
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__edge--right {
+  right:0;
+
+  background:
+    linear-gradient(
+      to left,
+      var(--csm-bg),
+      rgba(12,12,12,.7) 44%,
+      transparent
+    );
+}
+
+
+/* FOOTER */
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__footer {
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+
+  gap:24px;
+
+  width:100%;
+  max-width:var(--csm-max);
+
+  margin:
+    clamp(34px,4vw,55px)
+    auto 0;
+
+  padding:
+    20px
+    clamp(20px,4vw,52px)
+    0;
+
+  border-top:
+    1px solid
+    var(--csm-line);
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__footer-meta {
+  display:flex;
+
+  gap:18px;
+
+  color:var(--csm-muted);
+
+  font-size:9px;
+
+  letter-spacing:.11em;
+
+  text-transform:uppercase;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__footer a {
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  min-height:44px;
+
+  color:var(--csm-text);
+
+  font-size:10px;
+
+  font-weight:500;
+
+  letter-spacing:.08em;
+
+  text-transform:uppercase;
+}
+
+
+/* TABLET */
+
+@media(max-width:989px) {
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__intro-inner {
+    grid-template-columns:1fr;
+
+    gap:28px;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__intro-aside {
+    max-width:700px;
+  }
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:749px) {
+
+  #{{ root_id }} {
+    padding-top:
+      var(--csm-mobile-top);
+
+    padding-bottom:
+      var(--csm-mobile-bottom);
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__intro {
+    margin-bottom:32px;
+
+    padding-inline:18px;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__eyebrow {
+    margin-bottom:13px;
+
+    font-size:9px;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__heading {
+    max-width:12ch;
+
+    font-size:
+      clamp(
+        39px,
+        13vw,
+        60px
+      );
+
+    line-height:.94;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__intro-aside {
+    display:block;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__description {
+    max-width:42ch;
+
+    font-size:13px;
+
+    line-height:1.7;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__count {
+    align-items:flex-start;
+
+    margin-top:20px;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__count strong {
+    font-size:27px;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__intro-rule {
+    margin-top:22px;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__card {
+    flex-basis:
+      min(
+        var(--csm-mobile-card-width),
+        82vw
+      );
+
+    width:
+      min(
+        var(--csm-mobile-card-width),
+        82vw
+      );
+
+    border-radius:
+      min(
+        var(--csm-radius),
+        14px
+      );
+
+    box-shadow:
+      0 14px 40px
+      rgba(0,0,0,.22);
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__frame {
+    inset:6px;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__card-copy {
+    left:15px;
+    right:15px;
+    bottom:13px;
+
+    gap:10px;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__card-copy strong {
+    font-size:14px;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__project-label {
+    font-size:7px;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__view-project {
+    display:none;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__edge {
+    width:22px;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__footer {
+    display:block;
+
+    margin-top:30px;
+
+    padding:
+      18px
+      18px
+      0;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__footer-meta {
+    display:block;
+
+    font-size:8px;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__footer-meta span {
+    display:block;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__footer-meta span + span {
+    margin-top:5px;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__footer a {
+    margin-top:14px;
+  }
+
+}
+
+
+/* VERY SMALL MOBILE */
+
+@media(max-width:390px) {
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__card {
+    flex-basis:78vw;
+
+    width:78vw;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__edge {
+    display:none;
+  }
+
+}
+
+
+/* REDUCED MOTION */
+
+@media(prefers-reduced-motion:reduce) {
+
+  #{{ root_id }} *,
+  #{{ root_id }} *::before,
+  #{{ root_id }} *::after {
+    animation:none!important;
+    transition:none!important;
+    scroll-behavior:auto!important;
+  }
+
+}
+
+{% endstyle %}
+
+
+<script>
+(function() {
+  'use strict';
+
+  const root =
+    document.getElementById(
+      '{{ root_id }}'
+    );
+
+  if (
+    !root ||
+    root.dataset.initialized === 'true'
+  ) {
+    return;
+  }
+
+  root.dataset.initialized = 'true';
+
+
+  const rowOne =
+    root.querySelector(
+      '[data-track="one"]'
+    );
+
+  const rowTwo =
+    root.querySelector(
+      '[data-track="two"]'
+    );
+
+  const groupOne =
+    root.querySelector(
+      '[data-group="one"]'
+    );
+
+  const groupTwo =
+    root.querySelector(
+      '[data-group="two"]'
+    );
+
+
+  if (
+    !rowOne ||
+    !rowTwo ||
+    !groupOne ||
+    !groupTwo
+  ) {
+    return;
+  }
+
+
+  const reducedMotion =
+    window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    );
+
+  const mobile =
+    window.matchMedia(
+      '(max-width: 749px)'
+    );
+
+
+  let sectionTop = 0;
+
+  let spanOne = 1;
+  let spanTwo = 1;
+
+  let visible = true;
+
+  let animationFrame = 0;
+
+  let resizeFrame = 0;
+
+  let destroyed = false;
+
+
+  function numberFromData(
+    key,
+    fallback
+  ) {
+
+    const value =
+      Number(
+        root.dataset[key]
+      );
+
+    return Number.isFinite(value)
+      ? value
+      : fallback;
+
+  }
+
+
+  function getGap(track) {
+
+    const styles =
+      window.getComputedStyle(
+        track
+      );
+
+    const value =
+      parseFloat(
+        styles.columnGap ||
+        styles.gap ||
+        '0'
+      );
+
+    return Number.isFinite(value)
+      ? value
+      : 0;
+
+  }
+
+
+  function positiveModulo(
+    value,
+    divisor
+  ) {
+
+    if (
+      !divisor ||
+      divisor <= 0
+    ) {
+      return 0;
+    }
+
+    return (
+      (
+        value %
+        divisor
+      ) +
+      divisor
+    ) % divisor;
+
+  }
+
+
+  function measure() {
+
+    if (destroyed) {
+      return;
+    }
+
+    const rect =
+      root.getBoundingClientRect();
+
+    sectionTop =
+      rect.top +
+      window.scrollY;
+
+
+    spanOne =
+      groupOne.getBoundingClientRect()
+        .width +
+      getGap(rowOne);
+
+
+    spanTwo =
+      groupTwo.getBoundingClientRect()
+        .width +
+      getGap(rowTwo);
+
+
+    spanOne =
+      Math.max(
+        spanOne,
+        1
+      );
+
+    spanTwo =
+      Math.max(
+        spanTwo,
+        1
+      );
+
+
+    update();
+
+  }
+
+
+  function update() {
+
+    animationFrame = 0;
+
+    if (
+      destroyed ||
+      !visible
+    ) {
+      return;
+    }
+
+
+    const initialOffset =
+      numberFromData(
+        'initialOffset',
+        200
+      );
+
+
+    if (
+      reducedMotion.matches ||
+      root.dataset.motion === 'false'
+    ) {
+
+      rowOne.style.transform =
+        'translate3d(' +
+        (-spanOne - 80) +
+        'px,0,0)';
+
+
+      rowTwo.style.transform =
+        'translate3d(' +
+        (-spanTwo + 80) +
+        'px,0,0)';
+
+
+      return;
+    }
+
+
+    const speedOne =
+      mobile.matches
+        ? numberFromData(
+            'mobileSpeedOne',
+            0.15
+          )
+        : numberFromData(
+            'desktopSpeedOne',
+            0.30
+          );
+
+
+    const speedTwo =
+      mobile.matches
+        ? numberFromData(
+            'mobileSpeedTwo',
+            0.12
+          )
+        : numberFromData(
+            'desktopSpeedTwo',
+            0.24
+          );
+
+
+    const scrolled =
+      window.scrollY -
+      sectionTop +
+      window.innerHeight;
+
+
+    const positiveScroll =
+      Math.max(
+        0,
+        scrolled
+      );
+
+
+    const distanceOne =
+      positiveScroll *
+      speedOne;
+
+
+    const distanceTwo =
+      positiveScroll *
+      speedTwo;
+
+
+    const travelOne =
+      positiveModulo(
+        distanceOne,
+        spanOne
+      );
+
+
+    const travelTwo =
+      positiveModulo(
+        distanceTwo,
+        spanTwo
+      );
+
+
+    /*
+      Track one moves toward the right.
+      Track two moves toward the left.
+      Both remain within duplicated
+      content spans for a continuous look.
+    */
+
+    const xOne =
+      -spanOne -
+      initialOffset +
+      travelOne;
+
+
+    const xTwo =
+      -initialOffset -
+      travelTwo;
+
+
+    rowOne.style.transform =
+      'translate3d(' +
+      xOne +
+      'px,0,0)';
+
+
+    rowTwo.style.transform =
+      'translate3d(' +
+      xTwo +
+      'px,0,0)';
+
+  }
+
+
+  function requestUpdate() {
+
+    if (
+      animationFrame ||
+      destroyed
+    ) {
+      return;
+    }
+
+    animationFrame =
+      window.requestAnimationFrame(
+        update
+      );
+
+  }
+
+
+  function requestMeasure() {
+
+    if (
+      resizeFrame ||
+      destroyed
+    ) {
+      return;
+    }
+
+    resizeFrame =
+      window.requestAnimationFrame(
+        function() {
+
+          resizeFrame = 0;
+
+          measure();
+
+        }
+      );
+
+  }
+
+
+  window.addEventListener(
+    'scroll',
+    requestUpdate,
+    {
+      passive:true
+    }
+  );
+
+
+  window.addEventListener(
+    'resize',
+    requestMeasure,
+    {
+      passive:true
+    }
+  );
+
+
+  let observer = null;
+
+
+  if (
+    'IntersectionObserver' in window
+  ) {
+
+    observer =
+      new IntersectionObserver(
+        function(entries) {
+
+          entries.forEach(
+            function(entry) {
+
+              visible =
+                entry.isIntersecting;
+
+              if (visible) {
+                requestUpdate();
+              }
+
+            }
+          );
+
+        },
+        {
+          root:null,
+          rootMargin:'400px 0px',
+          threshold:0
+        }
+      );
+
+
+    observer.observe(root);
+
+  }
+
+
+  let resizeObserver = null;
+
+
+  if (
+    'ResizeObserver' in window
+  ) {
+
+    resizeObserver =
+      new ResizeObserver(
+        function() {
+          requestMeasure();
+        }
+      );
+
+
+    resizeObserver.observe(
+      root
+    );
+
+  }
+
+
+  function handleMotionChange() {
+    requestMeasure();
+  }
+
+
+  if (
+    reducedMotion.addEventListener
+  ) {
+
+    reducedMotion.addEventListener(
+      'change',
+      handleMotionChange
+    );
+
+    mobile.addEventListener(
+      'change',
+      handleMotionChange
+    );
+
+  } else {
+
+    reducedMotion.addListener(
+      handleMotionChange
+    );
+
+    mobile.addListener(
+      handleMotionChange
+    );
+
+  }
+
+
+  function destroy() {
+
+    if (destroyed) {
+      return;
+    }
+
+    destroyed = true;
+
+
+    window.removeEventListener(
+      'scroll',
+      requestUpdate
+    );
+
+
+    window.removeEventListener(
+      'resize',
+      requestMeasure
+    );
+
+
+    if (
+      reducedMotion.removeEventListener
+    ) {
+
+      reducedMotion.removeEventListener(
+        'change',
+        handleMotionChange
+      );
+
+      mobile.removeEventListener(
+        'change',
+        handleMotionChange
+      );
+
+    } else {
+
+      reducedMotion.removeListener(
+        handleMotionChange
+      );
+
+      mobile.removeListener(
+        handleMotionChange
+      );
+
+    }
+
+
+    if (observer) {
+      observer.disconnect();
+    }
+
+
+    if (resizeObserver) {
+      resizeObserver.disconnect();
+    }
+
+
+    if (animationFrame) {
+
+      window.cancelAnimationFrame(
+        animationFrame
+      );
+
+    }
+
+
+    if (resizeFrame) {
+
+      window.cancelAnimationFrame(
+        resizeFrame
+      );
+
+    }
+
+  }
+
+
+  document.addEventListener(
+    'shopify:block:unload',
+    function handleBlockUnload(event) {
+
+      if (
+        event.target === root ||
+        root.contains(event.target) ||
+        event.target.contains(root)
+      ) {
+
+        destroy();
+
+        document.removeEventListener(
+          'shopify:block:unload',
+          handleBlockUnload
+        );
+
+      }
+
+    }
+  );
+
+
+  /*
+    Initial layout measurement.
+  */
+
+  measure();
+
+  window.requestAnimationFrame(
+    requestMeasure
+  );
+
 })();
 </script>
 
+
 {% schema %}
 {
-  "name": "Explore Case Studies",
-  "tag": "section",
+  "name": "Case Study Marquee",
+  "tag": "div",
+  "class": "case-study-marquee-block",
   "settings": [
     {
       "type": "header",
-      "content": "Header"
+      "content": "Introduction"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_intro",
+      "label": "Show introduction",
+      "default": true
     },
     {
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow",
-      "default": "Our Latest Projects"
+      "default": "Selected work"
     },
     {
       "type": "text",
-      "id": "title",
-      "label": "Title",
-      "default": "CASE STUDIES"
+      "id": "heading",
+      "label": "Heading",
+      "default": "Built to move."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>A collection of digital experiences, systems, and experiments designed to make an impression.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_count",
+      "label": "Show case study count",
+      "default": true
+    },
+
+    {
+      "type": "header",
+      "content": "Row one"
     },
     {
       "type": "textarea",
-      "id": "description",
-      "label": "Description",
-      "default": "Browse our work across branding, e-commerce, content creation, and digital marketing."
+      "id": "row_1_items",
+      "label": "Row one case studies",
+      "info": "One per line: image URL | title | optional link",
+      "default": "https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif | Space Voyage |\nhttps://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif | Codenest |\nhttps://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif | Vex Ventures |\nhttps://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif | Stellar AI |\nhttps://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif | ASME |\nhttps://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif | Transform Data |\nhttps://motionsites.ai/assets/hero-vitara-preview-Cjz2QYyU.gif | Vitara |\nhttps://motionsites.ai/assets/hero-terra-preview-BFjrCr7T.gif | Terra |\nhttps://motionsites.ai/assets/hero-skyelite-preview-DHaZIgUv.gif | Skyelite |\nhttps://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif | Aethera |\nhttps://motionsites.ai/assets/hero-designpro-preview-D8c5_een.gif | Designpro |"
     },
+
     {
       "type": "header",
-      "content": "Opening video"
+      "content": "Row two"
     },
     {
-      "type": "text",
-      "id": "video_url",
-      "label": "MP4 video URL",
-      "info": "Leave empty to use the reference car video."
+      "type": "textarea",
+      "id": "row_2_items",
+      "label": "Row two case studies",
+      "info": "One per line: image URL | title | optional link",
+      "default": "https://motionsites.ai/assets/hero-stellar-ai-preview-D3HL6bw1.gif | Stellar AI |\nhttps://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif | X Portfolio |\nhttps://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif | Orbit Web3 |\nhttps://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif | Nexora |\nhttps://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif | EVR Ventures |\nhttps://motionsites.ai/assets/hero-planet-orbit-preview-DWAP8Z1P.gif | Planet Orbit |\nhttps://motionsites.ai/assets/hero-new-era-preview-CocuDUm9.gif | New Era |\nhttps://motionsites.ai/assets/hero-wealth-preview-B70idl_u.gif | Wealth |\nhttps://motionsites.ai/assets/hero-luminex-preview-CxOP7ce6.gif | Luminex |\nhttps://motionsites.ai/assets/hero-celestia-preview-0yO3jXO8.gif | Celestia |"
+    },
+
+    {
+      "type": "header",
+      "content": "Cards"
     },
     {
-      "type": "image_picker",
-      "id": "cover_image",
-      "label": "Video poster",
-      "info": "Leave empty to use the reference car image."
+      "type": "checkbox",
+      "id": "show_titles",
+      "label": "Show project titles",
+      "default": true
     },
     {
       "type": "range",
-      "id": "pin_offset",
-      "label": "Space for sticky site header",
-      "min": 0,
-      "max": 160,
-      "step": 4,
+      "id": "card_width",
+      "label": "Desktop card width",
+      "min": 300,
+      "max": 520,
+      "step": 10,
       "unit": "px",
-      "default": 0
+      "default": 420
     },
+    {
+      "type": "range",
+      "id": "mobile_card_width",
+      "label": "Mobile card width",
+      "min": 220,
+      "max": 340,
+      "step": 10,
+      "unit": "px",
+      "default": 290
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "label": "Card gap",
+      "min": 6,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card corner radius",
+      "min": 0,
+      "max": 28,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+
     {
       "type": "header",
-      "content": "Gallery design"
-    },
-    {
-      "type": "color",
-      "id": "accent",
-      "label": "Opening accent",
-      "default": "#e8472a"
+      "content": "Motion"
     },
     {
       "type": "checkbox",
-      "id": "scroll_color",
-      "label": "Change background on scroll",
+      "id": "enable_motion",
+      "label": "Enable scroll movement",
       "default": true
     },
     {
-      "type": "color",
-      "id": "end_color",
-      "label": "Ending background",
-      "default": "#a82d22"
+      "type": "range",
+      "id": "desktop_speed_one",
+      "label": "Desktop row one speed",
+      "min": 5,
+      "max": 60,
+      "step": 1,
+      "default": 30,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "desktop_speed_two",
+      "label": "Desktop row two speed",
+      "min": 5,
+      "max": 60,
+      "step": 1,
+      "default": 24,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "mobile_speed_one",
+      "label": "Mobile row one speed",
+      "min": 5,
+      "max": 35,
+      "step": 1,
+      "default": 15,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "mobile_speed_two",
+      "label": "Mobile row two speed",
+      "min": 5,
+      "max": 35,
+      "step": 1,
+      "default": 12,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "initial_offset",
+      "label": "Row stagger",
+      "min": 0,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "default": 200
+    },
+
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Intro maximum width",
+      "min": 1000,
+      "max": 1800,
+      "step": 40,
+      "unit": "px",
+      "default": 1440
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Desktop top spacing",
+      "min": 60,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 140
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Desktop bottom spacing",
+      "min": 40,
+      "max": 160,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Mobile top spacing",
+      "min": 40,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Mobile bottom spacing",
+      "min": 30,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "default": 50
+    },
+
+    {
+      "type": "header",
+      "content": "Footer"
     },
     {
       "type": "checkbox",
-      "id": "show_dial",
-      "label": "Show animated project dial",
+      "id": "show_footer",
+      "label": "Show footer",
       "default": true
-    }
-  ],
-  "blocks": [
+    },
     {
-      "type": "case_study",
-      "name": "Case Study",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "text",
-          "id": "name",
-          "label": "Project name",
-          "default": "RESIKLO"
-        },
-        {
-          "type": "text",
-          "id": "tag",
-          "label": "Category tag",
-          "default": "Branding"
-        },
-        {
-          "type": "url",
-          "id": "url",
-          "label": "Link URL"
-        }
-      ]
+      "type": "text",
+      "id": "archive_label",
+      "label": "Archive link label",
+      "default": "View all work"
+    },
+    {
+      "type": "url",
+      "id": "archive_url",
+      "label": "Archive link"
+    },
+
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#0C0C0C"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#151515"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Primary text",
+      "default": "#F4F4F1"
+    },
+    {
+      "type": "color",
+      "id": "muted_color",
+      "label": "Secondary text",
+      "default": "#8E8E89"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent",
+      "default": "#F0F0EB"
+    },
+    {
+      "type": "color",
+      "id": "line_color",
+      "label": "Lines",
+      "default": "#292929"
     }
   ],
   "presets": [
     {
-      "name": "Explore Case Studies",
-      "blocks": [
-        {
-          "type": "case_study",
-          "settings": {
-            "name": "RESIKLO",
-            "tag": "Branding / Sustainability"
-          }
-        },
-        {
-          "type": "case_study",
-          "settings": {
-            "name": "FUR TRADERS",
-            "tag": "E-commerce / Fashion"
-          }
-        },
-        {
-          "type": "case_study",
-          "settings": {
-            "name": "THE PLACE ON SOUTH PINE",
-            "tag": "Hospitality / Content"
-          }
-        },
-        {
-          "type": "case_study",
-          "settings": {
-            "name": "DYNAMIC AUTOWORKS",
-            "tag": "E-commerce / Automotive"
-          }
-        },
-        {
-          "type": "case_study",
-          "settings": {
-            "name": "SUPRAMOOD",
-            "tag": "Branding / Wellness"
-          }
-        },
-        {
-          "type": "case_study",
-          "settings": {
-            "name": "MANO BEACH HOUSE",
-            "tag": "Hospitality / Travel"
-          }
-        },
-        {
-          "type": "case_study",
-          "settings": {
-            "name": "HOTEL TUGU | BALI",
-            "tag": "Hospitality / Luxury"
-          }
-        },
-        {
-          "type": "case_study",
-          "settings": {
-            "name": "LIFE FORCE ACADEMY",
-            "tag": "Branding / Wellness"
-          }
-        },
-        {
-          "type": "case_study",
-          "settings": {
-            "name": "POLAROID",
-            "tag": "Content / Photography"
-          }
-        },
-        {
-          "type": "case_study",
-          "settings": {
-            "name": "ACADEMY OF ORACLE ARTS",
-            "tag": "Branding / Education"
-          }
-        },
-        {
-          "type": "case_study",
-          "settings": {
-            "name": "COACHELLA",
-            "tag": "Events / Content"
-          }
-        },
-        {
-          "type": "case_study",
-          "settings": {
-            "name": "WANDRD",
-            "tag": "Content / Gear"
-          }
-        }
-      ]
+      "name": "Case Study Marquee"
     }
   ]
 }
