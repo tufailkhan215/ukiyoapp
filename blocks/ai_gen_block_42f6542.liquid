@@ -1,243 +1,2170 @@
 {% doc %}
   @prompt
-    ---
-    
-    **Prompt:**
-    
-    Create a scroll-driven image marquee section using React, Tailwind CSS, and vanilla JS scroll events (no libraries needed for the marquee itself). The site uses the **Google Font "Kanit"** (weights 300-900) and a dark background color `#0C0C0C`. This section sits directly below a full-screen hero section.
-    
-    **Section layout:**
-    - Full-width section with `overflow: hidden`, dark background `#0C0C0C`
-    - Padding: `pt-24 sm:pt-32 md:pt-40 pb-10`
-    - Contains two horizontal rows of images stacked vertically with a `gap-3` (12px) between them
-    
-    **Row 1 images (11 images), scrolls RIGHT as user scrolls down:**
-    ```
-    https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif
-    https://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif
-    https://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif
-    https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif
-    https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif
-    https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif
-    https://motionsites.ai/assets/hero-vitara-preview-Cjz2QYyU.gif
-    https://motionsites.ai/assets/hero-terra-preview-BFjrCr7T.gif
-    https://motionsites.ai/assets/hero-skyelite-preview-DHaZIgUv.gif
-    https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif
-    https://motionsites.ai/assets/hero-designpro-preview-D8c5_een.gif
-    ```
-    
-    **Row 2 images (10 images), scrolls LEFT as user scrolls down (opposite direction):**
-    ```
-    https://motionsites.ai/assets/hero-stellar-ai-preview-D3HL6bw1.gif
-    https://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif
-    https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif
-    https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif
-    https://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif
-    https://motionsites.ai/assets/hero-planet-orbit-preview-DWAP8Z1P.gif
-    https://motionsites.ai/assets/hero-new-era-preview-CocuDUm9.gif
-    https://motionsites.ai/assets/hero-wealth-preview-B70idl_u.gif
-    https://motionsites.ai/assets/hero-luminex-preview-CxOP7ce6.gif
-    https://motionsites.ai/assets/hero-celestia-preview-0yO3jXO8.gif
-    ```
-    
-    **Image cards:**
-    - Each image card is exactly `420px wide x 270px tall`
-    - `flex-shrink-0` so they never collapse
-    - `rounded-2xl` (16px border radius) with `overflow: hidden`
-    - Images use `object-cover` to fill the container, with `loading="lazy"`
-    - `gap-3` (12px) between cards horizontally
-    
-    **Scroll-driven parallax animation (vanilla JS, not CSS animation):**
-    - Each row's image array is tripled (`[...ROW, ...ROW, ...ROW]`) to create enough content for continuous scrolling appearance
-    - On every scroll event (passive listener), calculate offset:
-      1. Get the section's bounding rect top relative to the document
-      2. `scrolled = window.scrollY - sectionTop + window.innerHeight`
-      3. `offset = scrolled * 0.3` (parallax factor of 0.3)
-    - Row 1: `transform: translateX(${offset - 200}px)` -- moves right as user scrolls
-    - Row 2: `transform: translateX(${-(offset - 200)}px)` -- moves left as user scrolls
-    - Initial transform: Row 1 starts at `translateX(-200px)`, Row 2 starts at `translateX(200px)`
-    - Use `willChange: 'transform'` for GPU acceleration
-    - Apply transforms directly via refs (not state) for 60fps performance
-    - Use `{ passive: true }` on the scroll listener
-    - Run the handler once on mount to set initial position
-    - Clean up the listener on unmount
-    
-    **Technical details:**
-    - React functional component using `useRef` and `useEffect`
-    - No framer-motion or animation library needed for this section
-    - Rows are built with flexbox (`flex gap-3`)
-    - Each row is wrapped in an `overflow-hidden w-full` container
-    - The outer section also has `overflow-hidden` and `w-full`
-    - All images have empty `alt=""` since they are decorative
-    
-    **Font (loaded in HTML head):**
-    ```html
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    ```
-    
-    CSS base: `font-family: 'Kanit', sans-serif` on html/body.
-    
-    ---
-{% enddoc %}
-{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+    Premium scroll-driven case study marquee for Shopify.
 
-{% capture row_one_urls %}https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif|https://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif|https://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif|https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif|https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif|https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif|https://motionsites.ai/assets/hero-vitara-preview-Cjz2QYyU.gif|https://motionsites.ai/assets/hero-terra-preview-BFjrCr7T.gif|https://motionsites.ai/assets/hero-skyelite-preview-DHaZIgUv.gif|https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif|https://motionsites.ai/assets/hero-designpro-preview-D8c5_een.gif{% endcapture %}
-{% capture row_two_urls %}https://motionsites.ai/assets/hero-stellar-ai-preview-D3HL6bw1.gif|https://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif|https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif|https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif|https://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif|https://motionsites.ai/assets/hero-planet-orbit-preview-DWAP8Z1P.gif|https://motionsites.ai/assets/hero-new-era-preview-CocuDUm9.gif|https://motionsites.ai/assets/hero-wealth-preview-B70idl_u.gif|https://motionsites.ai/assets/hero-luminex-preview-CxOP7ce6.gif|https://motionsites.ai/assets/hero-celestia-preview-0yO3jXO8.gif{% endcapture %}
-{% assign row_one = row_one_urls | strip | split: '|' %}
-{% assign row_two = row_two_urls | strip | split: '|' %}
+    Native Liquid, CSS and vanilla JavaScript only.
+    Display a large number of case studies across two horizontal rows.
+
+    Row one moves right as the page scrolls down.
+    Row two moves left.
+
+    Optimized for desktop, tablet and mobile.
+    No React, JSX, Framer Motion, GSAP or external animation libraries.
+{% enddoc %}
+
+{%- liquid
+  assign ai_gen_id = block.id | replace: '_', '' | replace: '-', '' | downcase
+  assign root_id = 'CaseStudyMarquee-' | append: ai_gen_id
+
+  assign row_1_items = block.settings.row_1_items | newline_to_br | split: '<br />'
+  assign row_2_items = block.settings.row_2_items | newline_to_br | split: '<br />'
+
+  assign project_count = 0
+
+  for item in row_1_items
+    assign item_clean = item | strip
+    if item_clean != blank
+      assign project_count = project_count | plus: 1
+    endif
+  endfor
+
+  for item in row_2_items
+    assign item_clean = item | strip
+    if item_clean != blank
+      assign project_count = project_count | plus: 1
+    endif
+  endfor
+-%}
+
+<case-study-marquee-{{ ai_gen_id }}
+  id="{{ root_id }}"
+  class="csm-{{ ai_gen_id }}"
+  data-desktop-speed-one="{{ block.settings.desktop_speed_one | divided_by: 100.0 }}"
+  data-desktop-speed-two="{{ block.settings.desktop_speed_two | divided_by: 100.0 }}"
+  data-mobile-speed-one="{{ block.settings.mobile_speed_one | divided_by: 100.0 }}"
+  data-mobile-speed-two="{{ block.settings.mobile_speed_two | divided_by: 100.0 }}"
+  data-initial-offset="{{ block.settings.initial_offset }}"
+  data-motion="{{ block.settings.enable_motion }}"
+  style="
+    --csm-bg:{{ block.settings.background_color }};
+    --csm-card-bg:{{ block.settings.card_background }};
+    --csm-text:{{ block.settings.text_color }};
+    --csm-muted:{{ block.settings.muted_color }};
+    --csm-accent:{{ block.settings.accent_color }};
+    --csm-line:{{ block.settings.line_color }};
+    --csm-max:{{ block.settings.max_width }}px;
+    --csm-card-width:{{ block.settings.card_width }}px;
+    --csm-mobile-card-width:{{ block.settings.mobile_card_width }}px;
+    --csm-gap:{{ block.settings.card_gap }}px;
+    --csm-radius:{{ block.settings.card_radius }}px;
+    --csm-top:{{ block.settings.padding_top }}px;
+    --csm-bottom:{{ block.settings.padding_bottom }}px;
+    --csm-mobile-top:{{ block.settings.mobile_padding_top }}px;
+    --csm-mobile-bottom:{{ block.settings.mobile_padding_bottom }}px;
+  "
+  {{ block.shopify_attributes }}
+>
+
+  {% if block.settings.show_intro %}
+    <header class="csm-{{ ai_gen_id }}__intro">
+
+      <div class="csm-{{ ai_gen_id }}__intro-inner">
+
+        <div class="csm-{{ ai_gen_id }}__intro-primary">
+
+          {% if block.settings.eyebrow != blank %}
+            <p class="csm-{{ ai_gen_id }}__eyebrow">
+              <span aria-hidden="true"></span>
+              {{ block.settings.eyebrow | escape }}
+            </p>
+          {% endif %}
+
+          {% if block.settings.heading != blank %}
+            <h2 class="csm-{{ ai_gen_id }}__heading">
+              {{ block.settings.heading | escape }}
+            </h2>
+          {% endif %}
+
+        </div>
+
+        <div class="csm-{{ ai_gen_id }}__intro-aside">
+
+          {% if block.settings.description != blank %}
+            <div class="csm-{{ ai_gen_id }}__description">
+              {{ block.settings.description }}
+            </div>
+          {% endif %}
+
+          {% if block.settings.show_count %}
+            <div class="csm-{{ ai_gen_id }}__count">
+              <strong>{{ project_count }}</strong>
+
+              <span>
+                Case
+                {% if project_count == 1 %}
+                  study
+                {% else %}
+                  studies
+                {% endif %}
+              </span>
+            </div>
+          {% endif %}
+
+        </div>
+
+      </div>
+
+      <div class="csm-{{ ai_gen_id }}__intro-rule">
+        <span></span>
+      </div>
+
+    </header>
+  {% endif %}
+
+
+  <div
+    class="csm-{{ ai_gen_id }}__canvas"
+    data-marquee-canvas
+  >
+
+    <div
+      class="csm-{{ ai_gen_id }}__edge csm-{{ ai_gen_id }}__edge--left"
+      aria-hidden="true"
+    ></div>
+
+    <div
+      class="csm-{{ ai_gen_id }}__edge csm-{{ ai_gen_id }}__edge--right"
+      aria-hidden="true"
+    ></div>
+
+
+    {% comment %}
+      ============================================================
+      ROW ONE
+      ============================================================
+    {% endcomment %}
+
+    <div class="csm-{{ ai_gen_id }}__row-viewport">
+
+      <div
+        class="csm-{{ ai_gen_id }}__track"
+        data-track="one"
+      >
+
+        {% for copy_index in (1..2) %}
+
+          <div
+            class="csm-{{ ai_gen_id }}__group"
+            data-group="one"
+            {% if copy_index == 2 %}
+              aria-hidden="true"
+            {% endif %}
+          >
+
+            {% for item in row_1_items %}
+
+              {%- liquid
+                assign item_clean = item | strip
+
+                if item_clean == blank
+                  continue
+                endif
+
+                assign fields = item_clean | split: '|'
+
+                assign image_url = fields[0] | strip
+                assign title = fields[1] | default: '' | strip
+                assign project_url = fields[2] | default: '' | strip
+
+                if title == blank
+                  assign title = 'Selected work'
+                endif
+              -%}
+
+              {% if project_url != blank %}
+
+                <a
+                  class="csm-{{ ai_gen_id }}__card"
+                  href="{{ project_url }}"
+                  aria-label="View case study: {{ title | escape }}"
+                  {% if copy_index == 2 %}
+                    tabindex="-1"
+                  {% endif %}
+                >
+
+                  <span class="csm-{{ ai_gen_id }}__media">
+
+                    <img
+                      src="{{ image_url | escape }}"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      draggable="false"
+                      width="840"
+                      height="540"
+                    >
+
+                    <span class="csm-{{ ai_gen_id }}__shade"></span>
+                    <span class="csm-{{ ai_gen_id }}__frame"></span>
+
+                    {% if block.settings.show_titles %}
+                      <span class="csm-{{ ai_gen_id }}__card-copy">
+
+                        <span class="csm-{{ ai_gen_id }}__project-label">
+                          Case study
+                        </span>
+
+                        <strong>
+                          {{ title | escape }}
+                        </strong>
+
+                        <span class="csm-{{ ai_gen_id }}__view-project">
+                          View project
+
+                          <svg
+                            viewBox="0 0 24 24"
+                            width="15"
+                            height="15"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.7"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                          >
+                            <path d="M5 12h14"/>
+                            <path d="m13 6 6 6-6 6"/>
+                          </svg>
+                        </span>
+
+                      </span>
+                    {% endif %}
+
+                  </span>
+
+                </a>
+
+              {% else %}
+
+                <div class="csm-{{ ai_gen_id }}__card">
+
+                  <span class="csm-{{ ai_gen_id }}__media">
+
+                    <img
+                      src="{{ image_url | escape }}"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      draggable="false"
+                      width="840"
+                      height="540"
+                    >
+
+                    <span class="csm-{{ ai_gen_id }}__shade"></span>
+                    <span class="csm-{{ ai_gen_id }}__frame"></span>
+
+                    {% if block.settings.show_titles %}
+                      <span class="csm-{{ ai_gen_id }}__card-copy">
+
+                        <span class="csm-{{ ai_gen_id }}__project-label">
+                          Case study
+                        </span>
+
+                        <strong>
+                          {{ title | escape }}
+                        </strong>
+
+                      </span>
+                    {% endif %}
+
+                  </span>
+
+                </div>
+
+              {% endif %}
+
+            {% endfor %}
+
+          </div>
+
+        {% endfor %}
+
+      </div>
+
+    </div>
+
+
+    {% comment %}
+      ============================================================
+      ROW TWO
+      ============================================================
+    {% endcomment %}
+
+    <div class="csm-{{ ai_gen_id }}__row-viewport">
+
+      <div
+        class="csm-{{ ai_gen_id }}__track"
+        data-track="two"
+      >
+
+        {% for copy_index in (1..2) %}
+
+          <div
+            class="csm-{{ ai_gen_id }}__group"
+            data-group="two"
+            {% if copy_index == 2 %}
+              aria-hidden="true"
+            {% endif %}
+          >
+
+            {% for item in row_2_items %}
+
+              {%- liquid
+                assign item_clean = item | strip
+
+                if item_clean == blank
+                  continue
+                endif
+
+                assign fields = item_clean | split: '|'
+
+                assign image_url = fields[0] | strip
+                assign title = fields[1] | default: '' | strip
+                assign project_url = fields[2] | default: '' | strip
+
+                if title == blank
+                  assign title = 'Selected work'
+                endif
+              -%}
+
+              {% if project_url != blank %}
+
+                <a
+                  class="csm-{{ ai_gen_id }}__card"
+                  href="{{ project_url }}"
+                  aria-label="View case study: {{ title | escape }}"
+                  {% if copy_index == 2 %}
+                    tabindex="-1"
+                  {% endif %}
+                >
+
+                  <span class="csm-{{ ai_gen_id }}__media">
+
+                    <img
+                      src="{{ image_url | escape }}"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      draggable="false"
+                      width="840"
+                      height="540"
+                    >
+
+                    <span class="csm-{{ ai_gen_id }}__shade"></span>
+                    <span class="csm-{{ ai_gen_id }}__frame"></span>
+
+                    {% if block.settings.show_titles %}
+                      <span class="csm-{{ ai_gen_id }}__card-copy">
+
+                        <span class="csm-{{ ai_gen_id }}__project-label">
+                          Case study
+                        </span>
+
+                        <strong>
+                          {{ title | escape }}
+                        </strong>
+
+                        <span class="csm-{{ ai_gen_id }}__view-project">
+                          View project
+
+                          <svg
+                            viewBox="0 0 24 24"
+                            width="15"
+                            height="15"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.7"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                          >
+                            <path d="M5 12h14"/>
+                            <path d="m13 6 6 6-6 6"/>
+                          </svg>
+                        </span>
+
+                      </span>
+                    {% endif %}
+
+                  </span>
+
+                </a>
+
+              {% else %}
+
+                <div class="csm-{{ ai_gen_id }}__card">
+
+                  <span class="csm-{{ ai_gen_id }}__media">
+
+                    <img
+                      src="{{ image_url | escape }}"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      draggable="false"
+                      width="840"
+                      height="540"
+                    >
+
+                    <span class="csm-{{ ai_gen_id }}__shade"></span>
+                    <span class="csm-{{ ai_gen_id }}__frame"></span>
+
+                    {% if block.settings.show_titles %}
+                      <span class="csm-{{ ai_gen_id }}__card-copy">
+
+                        <span class="csm-{{ ai_gen_id }}__project-label">
+                          Case study
+                        </span>
+
+                        <strong>
+                          {{ title | escape }}
+                        </strong>
+
+                      </span>
+                    {% endif %}
+
+                  </span>
+
+                </div>
+
+              {% endif %}
+
+            {% endfor %}
+
+          </div>
+
+        {% endfor %}
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  {% if block.settings.show_footer %}
+
+    <footer class="csm-{{ ai_gen_id }}__footer">
+
+      <div class="csm-{{ ai_gen_id }}__footer-meta">
+        <span>Scroll to explore</span>
+        <span>Two directions / one body of work</span>
+      </div>
+
+      {% if block.settings.archive_url != blank %}
+
+        <a href="{{ block.settings.archive_url }}">
+          {{ block.settings.archive_label | escape }}
+
+          <svg
+            viewBox="0 0 24 24"
+            width="16"
+            height="16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14"/>
+            <path d="m13 6 6 6-6 6"/>
+          </svg>
+        </a>
+
+      {% endif %}
+
+    </footer>
+
+  {% endif %}
+
+</case-study-marquee-{{ ai_gen_id }}>
+
 
 {% style %}
-  .ai-image-marquee-{{ ai_gen_id }} {
-    display: block;
-    width: {{ block.settings.desktop_width_percent }}%;
-    max-width: 100%;
-    overflow: hidden;
-    background: {{ block.settings.background_color }};
-    padding: 6rem 0 2.5rem;
-    font-family: 'Kanit', sans-serif;
+
+#{{ root_id }} {
+  display:block;
+  position:relative;
+
+  width:100%;
+  max-width:100%;
+
+  padding-top:var(--csm-top);
+  padding-bottom:var(--csm-bottom);
+
+  overflow:hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(255,255,255,.035),
+      transparent 32%
+    ),
+    var(--csm-bg);
+
+  color:var(--csm-text);
+
+  font-family:
+    'Kanit',
+    var(--font-body-family, Arial, sans-serif);
+
+  isolation:isolate;
+}
+
+#{{ root_id }} *,
+#{{ root_id }} *::before,
+#{{ root_id }} *::after {
+  box-sizing:border-box;
+  min-width:0;
+}
+
+#{{ root_id }} a {
+  color:inherit;
+  text-decoration:none;
+}
+
+#{{ root_id }} img {
+  display:block;
+  max-width:100%;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+
+#{{ root_id }} :where(h2,p) {
+  margin:0;
+}
+
+#{{ root_id }} a:focus-visible {
+  outline:2px solid var(--csm-accent);
+  outline-offset:4px;
+}
+
+
+/* INTRO */
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__intro {
+  position:relative;
+  z-index:4;
+
+  width:100%;
+  max-width:var(--csm-max);
+
+  margin:
+    0 auto
+    clamp(42px,5vw,70px);
+
+  padding-inline:
+    clamp(20px,4vw,52px);
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__intro-inner {
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    minmax(300px,.75fr);
+
+  align-items:end;
+
+  gap:clamp(32px,5vw,80px);
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__eyebrow {
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+
+  margin-bottom:17px;
+
+  color:var(--csm-muted);
+
+  font-size:10px;
+  font-weight:500;
+
+  line-height:1.4;
+
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__eyebrow span {
+  width:6px;
+  height:6px;
+
+  border-radius:50%;
+
+  background:var(--csm-accent);
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__heading {
+  max-width:12ch;
+
+  color:var(--csm-text);
+
+  font-family:
+    'Kanit',
+    var(--font-heading-family, Arial, sans-serif);
+
+  font-size:
+    clamp(
+      44px,
+      6vw,
+      88px
+    );
+
+  font-weight:400;
+
+  line-height:.92;
+
+  letter-spacing:-.045em;
+
+  text-wrap:balance;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__intro-aside {
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    auto;
+
+  align-items:end;
+
+  gap:30px;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__description {
+  max-width:510px;
+
+  color:var(--csm-muted);
+
+  font-size:14px;
+
+  font-weight:300;
+
+  line-height:1.75;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__description p + p {
+  margin-top:12px;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__count {
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:flex-end;
+
+  flex:none;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__count strong {
+  color:var(--csm-text);
+
+  font-size:34px;
+
+  font-weight:400;
+
+  line-height:1;
+
+  font-variant-numeric:
+    tabular-nums;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__count span {
+  margin-top:7px;
+
+  color:var(--csm-muted);
+
+  font-size:9px;
+
+  letter-spacing:.13em;
+
+  text-transform:uppercase;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__intro-rule {
+  height:1px;
+
+  margin-top:28px;
+
+  background:var(--csm-line);
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__intro-rule span {
+  display:block;
+
+  width:58px;
+  height:1px;
+
+  background:var(--csm-accent);
+}
+
+
+/* MARQUEE */
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__canvas {
+  position:relative;
+
+  width:100%;
+
+  overflow:hidden;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__row-viewport {
+  width:100%;
+  overflow:hidden;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__row-viewport + .csm-{{ ai_gen_id }}__row-viewport {
+  margin-top:var(--csm-gap);
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__track {
+  display:flex;
+
+  width:max-content;
+
+  gap:var(--csm-gap);
+
+  will-change:transform;
+
+  transform:translate3d(0,0,0);
+
+  backface-visibility:hidden;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__group {
+  display:flex;
+
+  flex:none;
+
+  gap:var(--csm-gap);
+
+  width:max-content;
+}
+
+
+/* CARDS */
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__card {
+  display:block;
+
+  flex:
+    0 0
+    var(--csm-card-width);
+
+  width:
+    var(--csm-card-width);
+
+  aspect-ratio:14 / 9;
+
+  overflow:hidden;
+
+  border-radius:var(--csm-radius);
+
+  background:var(--csm-card-bg);
+
+  box-shadow:
+    0 22px 70px
+    rgba(0,0,0,.25);
+
+  transform:translateZ(0);
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__media {
+  display:block;
+
+  position:relative;
+
+  width:100%;
+  height:100%;
+
+  overflow:hidden;
+
+  border-radius:inherit;
+
+  background:#111;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__media img {
+  position:absolute;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  transform:scale(1.01);
+
+  transition:
+    transform .8s
+    cubic-bezier(.2,.7,.2,1),
+    filter .6s ease;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__shade {
+  position:absolute;
+
+  inset:0;
+
+  z-index:2;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0,0,0,.68),
+      rgba(0,0,0,.04) 58%
+    );
+
+  opacity:.54;
+
+  pointer-events:none;
+
+  transition:opacity .45s ease;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__frame {
+  position:absolute;
+
+  inset:9px;
+
+  z-index:3;
+
+  border:
+    1px solid
+    rgba(255,255,255,.11);
+
+  border-radius:
+    max(
+      4px,
+      calc(
+        var(--csm-radius) - 7px
+      )
+    );
+
+  pointer-events:none;
+
+  transition:
+    inset .35s ease,
+    border-color .35s ease;
+}
+
+
+/* COPY */
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__card-copy {
+  position:absolute;
+
+  left:22px;
+  right:22px;
+  bottom:19px;
+
+  z-index:4;
+
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    auto;
+
+  align-items:end;
+
+  gap:18px;
+
+  color:#fff;
+
+  pointer-events:none;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__project-label {
+  grid-column:1 / -1;
+
+  margin-bottom:-7px;
+
+  color:
+    rgba(255,255,255,.58);
+
+  font-size:8px;
+
+  font-weight:500;
+
+  letter-spacing:.16em;
+
+  text-transform:uppercase;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__card-copy strong {
+  max-width:22ch;
+
+  color:#fff;
+
+  font-size:17px;
+
+  font-weight:500;
+
+  line-height:1.15;
+
+  letter-spacing:-.015em;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__view-project {
+  display:flex;
+
+  align-items:center;
+
+  gap:7px;
+
+  color:
+    rgba(255,255,255,.74);
+
+  font-size:9px;
+
+  font-weight:500;
+
+  letter-spacing:.09em;
+
+  text-transform:uppercase;
+
+  opacity:0;
+
+  transform:
+    translateY(6px);
+
+  transition:
+    opacity .3s ease,
+    transform .3s ease;
+}
+
+
+/* HOVER */
+
+@media (hover:hover) and (pointer:fine) {
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__card:hover img {
+    transform:
+      scale(1.04)
+      translateY(-2px);
   }
 
-  .ai-image-marquee-{{ ai_gen_id }} .ai-image-marquee__row-window {
-    width: 100%;
-    overflow: hidden;
+  #{{ root_id }} .csm-{{ ai_gen_id }}__card:hover .csm-{{ ai_gen_id }}__shade {
+    opacity:.8;
   }
 
-  .ai-image-marquee-{{ ai_gen_id }} .ai-image-marquee__row {
-    display: flex;
-    width: max-content;
-    gap: 12px;
-    will-change: transform;
+  #{{ root_id }} .csm-{{ ai_gen_id }}__card:hover .csm-{{ ai_gen_id }}__frame {
+    inset:6px;
+
+    border-color:
+      rgba(255,255,255,.23);
   }
 
-  .ai-image-marquee-{{ ai_gen_id }} .ai-image-marquee__row-window + .ai-image-marquee__row-window {
-    margin-top: 12px;
+  #{{ root_id }} .csm-{{ ai_gen_id }}__card:hover .csm-{{ ai_gen_id }}__view-project {
+    opacity:1;
+
+    transform:
+      translateY(0);
   }
 
-  .ai-image-marquee-{{ ai_gen_id }} .ai-image-marquee__card {
-    display: block;
-    flex: 0 0 420px;
-    width: 420px;
-    height: 270px;
-    overflow: hidden;
-    border-radius: 16px;
-    background: #1c1c1c;
+}
+
+
+/* EDGE FADES */
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__edge {
+  position:absolute;
+
+  top:0;
+  bottom:0;
+
+  z-index:8;
+
+  width:
+    clamp(
+      28px,
+      5vw,
+      100px
+    );
+
+  pointer-events:none;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__edge--left {
+  left:0;
+
+  background:
+    linear-gradient(
+      to right,
+      var(--csm-bg),
+      rgba(12,12,12,.7) 44%,
+      transparent
+    );
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__edge--right {
+  right:0;
+
+  background:
+    linear-gradient(
+      to left,
+      var(--csm-bg),
+      rgba(12,12,12,.7) 44%,
+      transparent
+    );
+}
+
+
+/* FOOTER */
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__footer {
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+
+  gap:24px;
+
+  width:100%;
+  max-width:var(--csm-max);
+
+  margin:
+    clamp(34px,4vw,55px)
+    auto 0;
+
+  padding:
+    20px
+    clamp(20px,4vw,52px)
+    0;
+
+  border-top:
+    1px solid
+    var(--csm-line);
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__footer-meta {
+  display:flex;
+
+  gap:18px;
+
+  color:var(--csm-muted);
+
+  font-size:9px;
+
+  letter-spacing:.11em;
+
+  text-transform:uppercase;
+}
+
+#{{ root_id }} .csm-{{ ai_gen_id }}__footer a {
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  min-height:44px;
+
+  color:var(--csm-text);
+
+  font-size:10px;
+
+  font-weight:500;
+
+  letter-spacing:.08em;
+
+  text-transform:uppercase;
+}
+
+
+/* TABLET */
+
+@media(max-width:989px) {
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__intro-inner {
+    grid-template-columns:1fr;
+
+    gap:28px;
   }
 
-  .ai-image-marquee-{{ ai_gen_id }} .ai-image-marquee__card img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  #{{ root_id }} .csm-{{ ai_gen_id }}__intro-aside {
+    max-width:700px;
   }
 
-  @media screen and (max-width: 749px) {
-    .ai-image-marquee-{{ ai_gen_id }} {
-      padding-top: 6rem;
-    }
+}
+
+
+/* MOBILE */
+
+@media(max-width:749px) {
+
+  #{{ root_id }} {
+    padding-top:
+      var(--csm-mobile-top);
+
+    padding-bottom:
+      var(--csm-mobile-bottom);
   }
 
-  @media screen and (min-width: 750px) and (max-width: 989px) {
-    .ai-image-marquee-{{ ai_gen_id }} {
-      padding-top: 8rem;
-    }
+  #{{ root_id }} .csm-{{ ai_gen_id }}__intro {
+    margin-bottom:32px;
+
+    padding-inline:18px;
   }
 
-  @media screen and (min-width: 990px) {
-    .ai-image-marquee-{{ ai_gen_id }} {
-      padding-top: 10rem;
-    }
+  #{{ root_id }} .csm-{{ ai_gen_id }}__eyebrow {
+    margin-bottom:13px;
+
+    font-size:9px;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .ai-image-marquee-{{ ai_gen_id }} .ai-image-marquee__row {
-      will-change: auto;
-    }
+  #{{ root_id }} .csm-{{ ai_gen_id }}__heading {
+    max-width:12ch;
+
+    font-size:
+      clamp(
+        39px,
+        13vw,
+        60px
+      );
+
+    line-height:.94;
   }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__intro-aside {
+    display:block;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__description {
+    max-width:42ch;
+
+    font-size:13px;
+
+    line-height:1.7;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__count {
+    align-items:flex-start;
+
+    margin-top:20px;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__count strong {
+    font-size:27px;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__intro-rule {
+    margin-top:22px;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__card {
+    flex-basis:
+      min(
+        var(--csm-mobile-card-width),
+        82vw
+      );
+
+    width:
+      min(
+        var(--csm-mobile-card-width),
+        82vw
+      );
+
+    border-radius:
+      min(
+        var(--csm-radius),
+        14px
+      );
+
+    box-shadow:
+      0 14px 40px
+      rgba(0,0,0,.22);
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__frame {
+    inset:6px;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__card-copy {
+    left:15px;
+    right:15px;
+    bottom:13px;
+
+    gap:10px;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__card-copy strong {
+    font-size:14px;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__project-label {
+    font-size:7px;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__view-project {
+    display:none;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__edge {
+    width:22px;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__footer {
+    display:block;
+
+    margin-top:30px;
+
+    padding:
+      18px
+      18px
+      0;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__footer-meta {
+    display:block;
+
+    font-size:8px;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__footer-meta span {
+    display:block;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__footer-meta span + span {
+    margin-top:5px;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__footer a {
+    margin-top:14px;
+  }
+
+}
+
+
+/* VERY SMALL MOBILE */
+
+@media(max-width:390px) {
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__card {
+    flex-basis:78vw;
+
+    width:78vw;
+  }
+
+  #{{ root_id }} .csm-{{ ai_gen_id }}__edge {
+    display:none;
+  }
+
+}
+
+
+/* REDUCED MOTION */
+
+@media(prefers-reduced-motion:reduce) {
+
+  #{{ root_id }} *,
+  #{{ root_id }} *::before,
+  #{{ root_id }} *::after {
+    animation:none!important;
+    transition:none!important;
+    scroll-behavior:auto!important;
+  }
+
+}
+
 {% endstyle %}
 
-<scroll-image-marquee-{{ ai_gen_id }} class="ai-image-marquee-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
-  <div class="ai-image-marquee__row-window">
-    <div class="ai-image-marquee__row" data-marquee-row="right">
-      {% for copy in (1..3) %}
-        {% for image_url in row_one %}
-          <div class="ai-image-marquee__card"><img src="{{ image_url }}" alt="" loading="lazy" width="420" height="270"></div>
-        {% endfor %}
-      {% endfor %}
-    </div>
-  </div>
-  <div class="ai-image-marquee__row-window">
-    <div class="ai-image-marquee__row" data-marquee-row="left">
-      {% for copy in (1..3) %}
-        {% for image_url in row_two %}
-          <div class="ai-image-marquee__card"><img src="{{ image_url }}" alt="" loading="lazy" width="420" height="270"></div>
-        {% endfor %}
-      {% endfor %}
-    </div>
-  </div>
-</scroll-image-marquee-{{ ai_gen_id }}>
 
 <script>
-  (function() {
-    const tagName = 'scroll-image-marquee-{{ ai_gen_id }}';
-    if (customElements.get(tagName)) return;
+(function() {
+  'use strict';
 
-    class ScrollImageMarquee extends HTMLElement {
-      connectedCallback() {
-        this.rightRow = this.querySelector('[data-marquee-row="right"]');
-        this.leftRow = this.querySelector('[data-marquee-row="left"]');
-        this.handleScroll = this.handleScroll.bind(this);
-        window.addEventListener('scroll', this.handleScroll, { passive: true });
-        window.addEventListener('resize', this.handleScroll, { passive: true });
-        this.handleScroll();
-      }
+  const root =
+    document.getElementById(
+      '{{ root_id }}'
+    );
 
-      disconnectedCallback() {
-        window.removeEventListener('scroll', this.handleScroll);
-        window.removeEventListener('resize', this.handleScroll);
-      }
+  if (
+    !root ||
+    root.dataset.initialized === 'true'
+  ) {
+    return;
+  }
 
-      handleScroll() {
-        const sectionTop = this.getBoundingClientRect().top + window.scrollY;
-        const scrolled = window.scrollY - sectionTop + window.innerHeight;
-        const offset = scrolled * 0.3 - 200;
-        if (this.rightRow) this.rightRow.style.transform = `translateX(${offset}px)`;
-        if (this.leftRow) this.leftRow.style.transform = `translateX(${-offset}px)`;
-      }
+  root.dataset.initialized = 'true';
+
+
+  const rowOne =
+    root.querySelector(
+      '[data-track="one"]'
+    );
+
+  const rowTwo =
+    root.querySelector(
+      '[data-track="two"]'
+    );
+
+  const groupOne =
+    root.querySelector(
+      '[data-group="one"]'
+    );
+
+  const groupTwo =
+    root.querySelector(
+      '[data-group="two"]'
+    );
+
+
+  if (
+    !rowOne ||
+    !rowTwo ||
+    !groupOne ||
+    !groupTwo
+  ) {
+    return;
+  }
+
+
+  const reducedMotion =
+    window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    );
+
+  const mobile =
+    window.matchMedia(
+      '(max-width: 749px)'
+    );
+
+
+  let sectionTop = 0;
+
+  let spanOne = 1;
+  let spanTwo = 1;
+
+  let visible = true;
+
+  let animationFrame = 0;
+
+  let resizeFrame = 0;
+
+  let destroyed = false;
+
+
+  function numberFromData(
+    key,
+    fallback
+  ) {
+
+    const value =
+      Number(
+        root.dataset[key]
+      );
+
+    return Number.isFinite(value)
+      ? value
+      : fallback;
+
+  }
+
+
+  function getGap(track) {
+
+    const styles =
+      window.getComputedStyle(
+        track
+      );
+
+    const value =
+      parseFloat(
+        styles.columnGap ||
+        styles.gap ||
+        '0'
+      );
+
+    return Number.isFinite(value)
+      ? value
+      : 0;
+
+  }
+
+
+  function positiveModulo(
+    value,
+    divisor
+  ) {
+
+    if (
+      !divisor ||
+      divisor <= 0
+    ) {
+      return 0;
     }
 
-    customElements.define(tagName, ScrollImageMarquee);
-  })();
+    return (
+      (
+        value %
+        divisor
+      ) +
+      divisor
+    ) % divisor;
+
+  }
+
+
+  function measure() {
+
+    if (destroyed) {
+      return;
+    }
+
+    const rect =
+      root.getBoundingClientRect();
+
+    sectionTop =
+      rect.top +
+      window.scrollY;
+
+
+    spanOne =
+      groupOne.getBoundingClientRect()
+        .width +
+      getGap(rowOne);
+
+
+    spanTwo =
+      groupTwo.getBoundingClientRect()
+        .width +
+      getGap(rowTwo);
+
+
+    spanOne =
+      Math.max(
+        spanOne,
+        1
+      );
+
+    spanTwo =
+      Math.max(
+        spanTwo,
+        1
+      );
+
+
+    update();
+
+  }
+
+
+  function update() {
+
+    animationFrame = 0;
+
+    if (
+      destroyed ||
+      !visible
+    ) {
+      return;
+    }
+
+
+    const initialOffset =
+      numberFromData(
+        'initialOffset',
+        200
+      );
+
+
+    if (
+      reducedMotion.matches ||
+      root.dataset.motion === 'false'
+    ) {
+
+      rowOne.style.transform =
+        'translate3d(' +
+        (-spanOne - 80) +
+        'px,0,0)';
+
+
+      rowTwo.style.transform =
+        'translate3d(' +
+        (-spanTwo + 80) +
+        'px,0,0)';
+
+
+      return;
+    }
+
+
+    const speedOne =
+      mobile.matches
+        ? numberFromData(
+            'mobileSpeedOne',
+            0.15
+          )
+        : numberFromData(
+            'desktopSpeedOne',
+            0.30
+          );
+
+
+    const speedTwo =
+      mobile.matches
+        ? numberFromData(
+            'mobileSpeedTwo',
+            0.12
+          )
+        : numberFromData(
+            'desktopSpeedTwo',
+            0.24
+          );
+
+
+    const scrolled =
+      window.scrollY -
+      sectionTop +
+      window.innerHeight;
+
+
+    const positiveScroll =
+      Math.max(
+        0,
+        scrolled
+      );
+
+
+    const distanceOne =
+      positiveScroll *
+      speedOne;
+
+
+    const distanceTwo =
+      positiveScroll *
+      speedTwo;
+
+
+    const travelOne =
+      positiveModulo(
+        distanceOne,
+        spanOne
+      );
+
+
+    const travelTwo =
+      positiveModulo(
+        distanceTwo,
+        spanTwo
+      );
+
+
+    /*
+      Track one moves toward the right.
+      Track two moves toward the left.
+      Both remain within duplicated
+      content spans for a continuous look.
+    */
+
+    const xOne =
+      -spanOne -
+      initialOffset +
+      travelOne;
+
+
+    const xTwo =
+      -initialOffset -
+      travelTwo;
+
+
+    rowOne.style.transform =
+      'translate3d(' +
+      xOne +
+      'px,0,0)';
+
+
+    rowTwo.style.transform =
+      'translate3d(' +
+      xTwo +
+      'px,0,0)';
+
+  }
+
+
+  function requestUpdate() {
+
+    if (
+      animationFrame ||
+      destroyed
+    ) {
+      return;
+    }
+
+    animationFrame =
+      window.requestAnimationFrame(
+        update
+      );
+
+  }
+
+
+  function requestMeasure() {
+
+    if (
+      resizeFrame ||
+      destroyed
+    ) {
+      return;
+    }
+
+    resizeFrame =
+      window.requestAnimationFrame(
+        function() {
+
+          resizeFrame = 0;
+
+          measure();
+
+        }
+      );
+
+  }
+
+
+  window.addEventListener(
+    'scroll',
+    requestUpdate,
+    {
+      passive:true
+    }
+  );
+
+
+  window.addEventListener(
+    'resize',
+    requestMeasure,
+    {
+      passive:true
+    }
+  );
+
+
+  let observer = null;
+
+
+  if (
+    'IntersectionObserver' in window
+  ) {
+
+    observer =
+      new IntersectionObserver(
+        function(entries) {
+
+          entries.forEach(
+            function(entry) {
+
+              visible =
+                entry.isIntersecting;
+
+              if (visible) {
+                requestUpdate();
+              }
+
+            }
+          );
+
+        },
+        {
+          root:null,
+          rootMargin:'400px 0px',
+          threshold:0
+        }
+      );
+
+
+    observer.observe(root);
+
+  }
+
+
+  let resizeObserver = null;
+
+
+  if (
+    'ResizeObserver' in window
+  ) {
+
+    resizeObserver =
+      new ResizeObserver(
+        function() {
+          requestMeasure();
+        }
+      );
+
+
+    resizeObserver.observe(
+      root
+    );
+
+  }
+
+
+  function handleMotionChange() {
+    requestMeasure();
+  }
+
+
+  if (
+    reducedMotion.addEventListener
+  ) {
+
+    reducedMotion.addEventListener(
+      'change',
+      handleMotionChange
+    );
+
+    mobile.addEventListener(
+      'change',
+      handleMotionChange
+    );
+
+  } else {
+
+    reducedMotion.addListener(
+      handleMotionChange
+    );
+
+    mobile.addListener(
+      handleMotionChange
+    );
+
+  }
+
+
+  function destroy() {
+
+    if (destroyed) {
+      return;
+    }
+
+    destroyed = true;
+
+
+    window.removeEventListener(
+      'scroll',
+      requestUpdate
+    );
+
+
+    window.removeEventListener(
+      'resize',
+      requestMeasure
+    );
+
+
+    if (
+      reducedMotion.removeEventListener
+    ) {
+
+      reducedMotion.removeEventListener(
+        'change',
+        handleMotionChange
+      );
+
+      mobile.removeEventListener(
+        'change',
+        handleMotionChange
+      );
+
+    } else {
+
+      reducedMotion.removeListener(
+        handleMotionChange
+      );
+
+      mobile.removeListener(
+        handleMotionChange
+      );
+
+    }
+
+
+    if (observer) {
+      observer.disconnect();
+    }
+
+
+    if (resizeObserver) {
+      resizeObserver.disconnect();
+    }
+
+
+    if (animationFrame) {
+
+      window.cancelAnimationFrame(
+        animationFrame
+      );
+
+    }
+
+
+    if (resizeFrame) {
+
+      window.cancelAnimationFrame(
+        resizeFrame
+      );
+
+    }
+
+  }
+
+
+  document.addEventListener(
+    'shopify:block:unload',
+    function handleBlockUnload(event) {
+
+      if (
+        event.target === root ||
+        root.contains(event.target) ||
+        event.target.contains(root)
+      ) {
+
+        destroy();
+
+        document.removeEventListener(
+          'shopify:block:unload',
+          handleBlockUnload
+        );
+
+      }
+
+    }
+  );
+
+
+  /*
+    Initial layout measurement.
+  */
+
+  measure();
+
+  window.requestAnimationFrame(
+    requestMeasure
+  );
+
+})();
 </script>
+
 
 {% schema %}
 {
-  "name": "Scroll image marquee",
+  "name": "Case Study Marquee",
+  "tag": "div",
+  "class": "case-study-marquee-block",
   "settings": [
     {
+      "type": "header",
+      "content": "Introduction"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_intro",
+      "label": "Show introduction",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Selected work"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Built to move."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>A collection of digital experiences, systems, and experiments designed to make an impression.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_count",
+      "label": "Show case study count",
+      "default": true
+    },
+
+    {
+      "type": "header",
+      "content": "Row one"
+    },
+    {
+      "type": "textarea",
+      "id": "row_1_items",
+      "label": "Row one case studies",
+      "info": "One per line: image URL | title | optional link",
+      "default": "https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif | Space Voyage |\nhttps://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif | Codenest |\nhttps://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif | Vex Ventures |\nhttps://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif | Stellar AI |\nhttps://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif | ASME |\nhttps://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif | Transform Data |\nhttps://motionsites.ai/assets/hero-vitara-preview-Cjz2QYyU.gif | Vitara |\nhttps://motionsites.ai/assets/hero-terra-preview-BFjrCr7T.gif | Terra |\nhttps://motionsites.ai/assets/hero-skyelite-preview-DHaZIgUv.gif | Skyelite |\nhttps://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif | Aethera |\nhttps://motionsites.ai/assets/hero-designpro-preview-D8c5_een.gif | Designpro |"
+    },
+
+    {
+      "type": "header",
+      "content": "Row two"
+    },
+    {
+      "type": "textarea",
+      "id": "row_2_items",
+      "label": "Row two case studies",
+      "info": "One per line: image URL | title | optional link",
+      "default": "https://motionsites.ai/assets/hero-stellar-ai-preview-D3HL6bw1.gif | Stellar AI |\nhttps://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif | X Portfolio |\nhttps://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif | Orbit Web3 |\nhttps://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif | Nexora |\nhttps://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif | EVR Ventures |\nhttps://motionsites.ai/assets/hero-planet-orbit-preview-DWAP8Z1P.gif | Planet Orbit |\nhttps://motionsites.ai/assets/hero-new-era-preview-CocuDUm9.gif | New Era |\nhttps://motionsites.ai/assets/hero-wealth-preview-B70idl_u.gif | Wealth |\nhttps://motionsites.ai/assets/hero-luminex-preview-CxOP7ce6.gif | Luminex |\nhttps://motionsites.ai/assets/hero-celestia-preview-0yO3jXO8.gif | Celestia |"
+    },
+
+    {
+      "type": "header",
+      "content": "Cards"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_titles",
+      "label": "Show project titles",
+      "default": true
+    },
+    {
       "type": "range",
-      "id": "desktop_width_percent",
-      "label": "Desktop width",
-      "min": 50,
+      "id": "card_width",
+      "label": "Desktop card width",
+      "min": 300,
+      "max": 520,
+      "step": 10,
+      "unit": "px",
+      "default": 420
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_width",
+      "label": "Mobile card width",
+      "min": 220,
+      "max": 340,
+      "step": 10,
+      "unit": "px",
+      "default": 290
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "label": "Card gap",
+      "min": 6,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card corner radius",
+      "min": 0,
+      "max": 28,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+
+    {
+      "type": "header",
+      "content": "Motion"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_motion",
+      "label": "Enable scroll movement",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "desktop_speed_one",
+      "label": "Desktop row one speed",
+      "min": 5,
+      "max": 60,
+      "step": 1,
+      "default": 30,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "desktop_speed_two",
+      "label": "Desktop row two speed",
+      "min": 5,
+      "max": 60,
+      "step": 1,
+      "default": 24,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "mobile_speed_one",
+      "label": "Mobile row one speed",
+      "min": 5,
+      "max": 35,
+      "step": 1,
+      "default": 15,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "mobile_speed_two",
+      "label": "Mobile row two speed",
+      "min": 5,
+      "max": 35,
+      "step": 1,
+      "default": 12,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "initial_offset",
+      "label": "Row stagger",
+      "min": 0,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "default": 200
+    },
+
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Intro maximum width",
+      "min": 1000,
+      "max": 1800,
+      "step": 40,
+      "unit": "px",
+      "default": 1440
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Desktop top spacing",
+      "min": 60,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 140
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Desktop bottom spacing",
+      "min": 40,
+      "max": 160,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Mobile top spacing",
+      "min": 40,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Mobile bottom spacing",
+      "min": 30,
       "max": 100,
-      "step": 5,
-      "unit": "%",
-      "default": 100
+      "step": 10,
+      "unit": "px",
+      "default": 50
+    },
+
+    {
+      "type": "header",
+      "content": "Footer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_footer",
+      "label": "Show footer",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "archive_label",
+      "label": "Archive link label",
+      "default": "View all work"
+    },
+    {
+      "type": "url",
+      "id": "archive_url",
+      "label": "Archive link"
+    },
+
+    {
+      "type": "header",
+      "content": "Colors"
     },
     {
       "type": "color",
       "id": "background_color",
       "label": "Background",
       "default": "#0C0C0C"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#151515"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Primary text",
+      "default": "#F4F4F1"
+    },
+    {
+      "type": "color",
+      "id": "muted_color",
+      "label": "Secondary text",
+      "default": "#8E8E89"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent",
+      "default": "#F0F0EB"
+    },
+    {
+      "type": "color",
+      "id": "line_color",
+      "label": "Lines",
+      "default": "#292929"
     }
   ],
   "presets": [
     {
-      "name": "Scroll image marquee"
+      "name": "Case Study Marquee"
     }
-  ],
-  "tag": null,
-  "class": "scroll-image-marquee-block"
+  ]
 }
 {% endschema %}
