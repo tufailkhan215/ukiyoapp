@@ -1,0 +1,58 @@
+{% doc %}
+  @prompt
+    blank
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-blank-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    min-height: {{ block.settings.height }}px;
+    background-color: {{ block.settings.background_color }};
+  }
+{% endstyle %}
+
+<div class="ai-blank-{{ ai_gen_id }}" {{ block.shopify_attributes }} aria-hidden="true"></div>
+
+{% schema %}
+{
+  "name": "Blank space",
+  "settings": [
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "label": "Height",
+      "min": 10,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blank space"
+    }
+  ],
+  "tag": null,
+  "class": "blank-space-block"
+}
+{% endschema %}
