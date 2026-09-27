@@ -696,27 +696,38 @@
         "project_UUeUir": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/29_1.webp",
             "category": "Entertainment",
             "title": "JI RESTAURANT | BALI INDONESIA",
             "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/34_1.webp",
+            "gallery_image_3": "shopify://shop_images/17_1.webp",
+            "gallery_image_4": "shopify://shop_images/22.webp",
+            "gallery_image_5": "shopify://shop_images/18.webp",
+            "gallery_image_6": "shopify://shop_images/3_83e5b4ae-9915-4ebd-aab4-f0ba8023de28.webp",
             "case_study_link": ""
           }
         },
         "project_NeyYJr": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/DSCF9519_1_1.webp",
             "category": "Entertainment",
             "title": "SATORI | MAUI",
             "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/DSCF9452L.webp",
             "case_study_link": ""
           }
         },
         "project_FzHzRw": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/indian1_1_92060767-b4d2-4f88-9f64-b09875e0a474.jpg",
             "category": "Entertainment",
             "title": "CHAI'BA | BALI INDONESIA",
             "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/MJJ00167.webp",
+            "gallery_image_3": "shopify://shop_images/MJJ00246_1.webp",
             "case_study_link": ""
           }
         },
@@ -778,7 +789,16 @@
           "type": "project",
           "settings": {
             "category": "Entertainment",
-            "title": "Sweet Spirit Tattoo",
+            "title": "Life Force Academy",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_YGP3Na": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "Life Force Academy",
             "description": "Iconic entertainment venue content creation and brand activation.",
             "case_study_link": ""
           }
@@ -827,7 +847,8 @@
         "project_HEzfdn",
         "project_jpAPxX",
         "project_YVTrqA",
-        "project_p4QRyP"
+        "project_p4QRyP",
+        "project_YGP3Na"
       ],
       "name": "Featured Work",
       "settings": {
