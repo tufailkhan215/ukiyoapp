@@ -589,7 +589,34 @@
           "type": "project",
           "settings": {
             "category": "Entertainment",
-            "title": "Polaroid",
+            "title": "WANDRD",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_hYPYj6": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "Monster",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_zttNaF": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "Poppy.California",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_KngQzB": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "Poppy.California",
             "description": "Iconic entertainment venue content creation and brand activation.",
             "case_study_link": ""
           }
@@ -617,7 +644,10 @@
         "project_BBjmdw",
         "project_yMqt9i",
         "project_TNDUhB",
-        "project_PVJxxL"
+        "project_PVJxxL",
+        "project_hYPYj6",
+        "project_zttNaF",
+        "project_KngQzB"
       ],
       "name": "Featured Work",
       "settings": {
