@@ -2,11 +2,42 @@
   Featured Work: strap + gradient title, filter pills,
   project cards, and popup gallery.
 
-  Save button replaced with View Case Study.
-  Each Project has one new setting: Case study link.
+  Share button removed.
+  View Case Study button enlarged.
+  Each Project keeps its Case study link setting.
 {% endcomment %}
 
 {% assign section_id = 'featured-work-' | append: section.id %}
+
+<style>
+  /* Larger case-study button only. */
+  #{{ section_id }}-modal-case-study {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-sizing: border-box;
+    min-height: 52px;
+    min-width: min(220px, 100%);
+    max-width: 100%;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  #{{ section_id }}-modal-case-study svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  #{{ section_id }}-modal-case-study[hidden] {
+    display: none !important;
+  }
+</style>
 
 <section
   class="relative py-32 lg:py-40"
@@ -94,7 +125,8 @@
           {% assign category_val = block.settings.category | strip | escape %}
 
           {% comment %}
-            Build the gallery from the cover and optional gallery images.
+            Build the popup gallery from the cover image
+            and optional gallery images.
           {% endcomment %}
 
           {% assign gallery_count = 0 %}
@@ -254,8 +286,7 @@
 </section>
 
 {% comment %}
-  Existing popup layout.
-  Save is replaced by a View Case Study link.
+  Existing popup layout with a single, larger View Case Study button.
 {% endcomment %}
 
 <div
@@ -374,8 +405,6 @@
 
       <div class="flex gap-3">
 
-        <!-- View Case Study: destination comes from the Project setting. -->
-
         <a
           id="{{ section_id }}-modal-case-study"
           class="featured-work-modal-case-study flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-white/70 hover:bg-white/20 transition-colors"
@@ -400,35 +429,6 @@
 
           <span>View Case Study</span>
         </a>
-
-        <!-- Existing Share button. -->
-
-        <button
-          type="button"
-          class="featured-work-modal-share flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-white/70 hover:bg-white/20 transition-colors"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="w-4 h-4"
-            aria-hidden="true"
-          >
-            <circle cx="18" cy="5" r="3"></circle>
-            <circle cx="6" cy="12" r="3"></circle>
-            <circle cx="18" cy="19" r="3"></circle>
-            <line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line>
-            <line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line>
-          </svg>
-
-          <span>Share</span>
-        </button>
 
       </div>
     </div>
@@ -594,8 +594,8 @@
     modalDescription.textContent = proj.description;
 
     /*
-     * Show the case-study button only when this project
-     * has a Case study link entered in the Theme Editor.
+     * Each project's link comes from its
+     * Case study link setting.
      */
     if (modalCaseStudy) {
       if (proj.caseStudyLink) {
