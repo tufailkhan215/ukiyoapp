@@ -836,6 +836,24 @@
             "description": "Iconic entertainment venue content creation and brand activation.",
             "case_study_link": ""
           }
+        },
+        "project_hiVMU4": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "Vior Woodworks",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_WWAYHM": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "Vac & Stack",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
         }
       },
       "block_order": [
@@ -882,7 +900,9 @@
         "project_jpAPxX",
         "project_YVTrqA",
         "project_p4QRyP",
-        "project_YGP3Na"
+        "project_YGP3Na",
+        "project_hiVMU4",
+        "project_WWAYHM"
       ],
       "name": "Featured Work",
       "settings": {
