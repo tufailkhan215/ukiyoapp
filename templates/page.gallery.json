@@ -81,8 +81,8 @@
           "settings": {
             "gradient": "amber_orange",
             "icon": "camera",
-            "title": "Brand Photography",
-            "description": "Capturing the essence of your brand through stunning visual storytelling that resonates with your audience.",
+            "title": "Creative Asset Creation",
+            "description": "We create photography and video that showcase your value, tell your story, and bring consistency to your brand across your website, social channels, and campaigns. Make your brand stand out and give people a reason to choose it.",
             "stat1_number": "500+",
             "stat1_label": "Shoots",
             "stat2_number": "50+",
@@ -94,8 +94,8 @@
           "settings": {
             "gradient": "purple_pink",
             "icon": "video",
-            "title": "Video Production",
-            "description": "From concept to delivery, we create cinematic content that elevates your brand and drives engagement.",
+            "title": "Email Marketing & Automation",
+            "description": "Turn interest into action and keep customers coming back. We create targeted email campaigns and automated follow-ups that nurture leads, drive repeat business, and keep your brand top of mind without the manual work.",
             "stat1_number": "200+",
             "stat1_label": "Videos",
             "stat2_number": "10M+",
@@ -107,8 +107,8 @@
           "settings": {
             "gradient": "blue_cyan",
             "icon": "palette",
-            "title": "Creative Direction",
-            "description": "Strategic creative vision that aligns every visual element with your brand story and business goals.",
+            "title": "SEO & Search Visibility",
+            "description": "Get found by people already looking for what you offer.\nWe optimize your website and content around the searches that matter to your business working to improve keyword rankings, attract relevant traffic, and connect potential customers with your offer.",
             "stat1_number": "100+",
             "stat1_label": "Campaigns",
             "stat2_number": "30%",
@@ -120,8 +120,8 @@
           "settings": {
             "gradient": "emerald_teal",
             "icon": "target",
-            "title": "Event Coverage",
-            "description": "Immersive event documentation that captures the energy, emotion, and impact of your activations.",
+            "title": "AI Agent Implementation",
+            "description": "Less repetitive work. More time for what matters.\nWe implement AI agents around your business needs to support customer inquiries, lead qualification, and routine workflows helping your team respond faster and spend less time on repetitive tasks.",
             "stat1_number": "75+",
             "stat1_label": "Events",
             "stat2_number": "25+",
