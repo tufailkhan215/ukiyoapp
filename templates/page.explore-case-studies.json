@@ -481,7 +481,7 @@
           "type": "project",
           "settings": {
             "category": "Media & Culture",
-            "title": "WEARECOT",
+            "title": "WeAreCot",
             "description": "Editorial content partnership and cultural brand activation.",
             "case_study_link": ""
           }
@@ -539,6 +539,15 @@
             "description": "Iconic entertainment venue content creation and brand activation.",
             "case_study_link": ""
           }
+        },
+        "project_RDydeH": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "Comedor",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
         }
       },
       "block_order": [
@@ -557,7 +566,8 @@
         "project_6GtyVW",
         "project_ra8Dbj",
         "project_AkLCVt",
-        "project_FXthd6"
+        "project_FXthd6",
+        "project_RDydeH"
       ],
       "name": "Featured Work",
       "settings": {
