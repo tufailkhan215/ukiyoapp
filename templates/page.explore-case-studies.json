@@ -693,9 +693,14 @@
         "project_9QNynV": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/elmurorosa_drone_shot_of_tropical_island_--ar_916_--style_raw_a4bea9bc-922d-4f57-b454-57f5fe4564c6_2.webp",
             "category": "Entertainment",
             "title": "DJI",
             "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/DJI_0317.webp",
+            "gallery_image_3": "shopify://shop_images/8x12_1.webp",
+            "gallery_image_4": "shopify://shop_images/DJI_0147.webp",
+            "gallery_image_5": "shopify://shop_images/patrickcastillophoto4..webp",
             "case_study_link": ""
           }
         },
