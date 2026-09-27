@@ -669,9 +669,15 @@
         "project_anQMRq": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/DSCF9924.webp",
             "category": "Entertainment",
             "title": "TWO HANDS | AUSTIN TEXAS",
             "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/DSCF9718.webp",
+            "gallery_image_3": "shopify://shop_images/DSCF9760_1.webp",
+            "gallery_image_4": "shopify://shop_images/DSCF9912.webp",
+            "gallery_image_5": "shopify://shop_images/DSCF9751.webp",
+            "gallery_image_6": "shopify://shop_images/DSCF9944.webp",
             "case_study_link": ""
           }
         },
