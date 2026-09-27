@@ -566,6 +566,33 @@
             "description": "Iconic entertainment venue content creation and brand activation.",
             "case_study_link": ""
           }
+        },
+        "project_yMqt9i": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "Soma Rosa",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_TNDUhB": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "Polaroid",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_PVJxxL": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "Polaroid",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
         }
       },
       "block_order": [
@@ -587,7 +614,10 @@
         "project_FXthd6",
         "project_RDydeH",
         "project_paMYUg",
-        "project_BBjmdw"
+        "project_BBjmdw",
+        "project_yMqt9i",
+        "project_TNDUhB",
+        "project_PVJxxL"
       ],
       "name": "Featured Work",
       "settings": {
