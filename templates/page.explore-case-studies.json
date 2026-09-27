@@ -936,6 +936,7 @@
         "project_hiVMU4",
         "project_WWAYHM"
       ],
+      "disabled": true,
       "name": "Featured Work",
       "settings": {
         "strap": "(Our Work)",
