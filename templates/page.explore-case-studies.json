@@ -392,8 +392,8 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/gere195_1.png",
-            "category": "California89",
-            "title": "123213",
+            "category": "Fashion",
+            "title": "California89",
             "description": "Nostalgic brand activation campaign bridging classic aesthetics with contemporary audiences.",
             "gallery_image_2": "shopify://shop_images/cali-cinematic_4.png",
             "gallery_image_3": "shopify://shop_images/gere164.png",
@@ -405,7 +405,7 @@
         "project_nAWREr": {
           "type": "project",
           "settings": {
-            "category": "Adventure Travel",
+            "category": "Aniwa S",
             "title": "WANDRD",
             "description": "Multi-platform content strategy capturing the spirit of adventure travel.",
             "case_study_link": ""
