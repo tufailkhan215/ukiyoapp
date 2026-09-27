@@ -616,9 +616,13 @@
         "project_PVJxxL": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/25930044-A454-4EE9-BF1C-43FA0D5EA00E_1.jpg",
             "category": "Entertainment",
             "title": "WANDRD",
             "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/66CA9907-C3B0-4F4E-BE13-A560D334D306.webp",
+            "gallery_image_3": "shopify://shop_images/IMG_4056.webp",
+            "gallery_image_4": "shopify://shop_images/1E52A00A-EC09-4E56-AD55-09BA728C7D2D_50765e59-07ad-4eb8-895c-c969ba57b172.jpg",
             "case_study_link": ""
           }
         },
