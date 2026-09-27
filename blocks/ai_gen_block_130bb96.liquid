@@ -1,12 +1,8 @@
 {%- comment -%}
-  CASE STUDY GRID
-  Single-file theme block. No local child blocks.
-  Desktop: 5 columns, automatic rows, no duplicated projects.
-  Mobile: readable cards, search and optional progressive reveal.
-
-  The original r1_* and r2_* setting IDs are retained.
-  Their old row assignment is no longer used.
-  Entries flow into one grid in setting order.
+  FEATURED CASE STUDIES
+  Single-file theme block. No local child-block definitions.
+  Existing 40 image/title/link setting IDs are retained.
+  Five desktop columns, mobile reveal, category filters and preview dialog.
 {%- endcomment -%}
 
 {%- liquid
@@ -17,120 +13,161 @@
 
   assign cfg = owner.settings
   assign uid = section.id | append: '-' | append: owner.id | handleize
-  assign root_id = 'CaseStudyGrid-' | append: uid
+  assign root_id = 'FeaturedCases-' | append: uid
 
   assign project_keys = 'r1_1,r1_2,r1_3,r1_4,r1_5,r1_6,r1_7,r1_8,r2_1,r2_2,r2_3,r2_4,r2_5,r2_6,r2_7,r2_8,cs_17,cs_18,cs_19,cs_20,cs_21,cs_22,cs_23,cs_24,cs_25,cs_26,cs_27,cs_28,cs_29,cs_30,cs_31,cs_32,cs_33,cs_34,cs_35,cs_36,cs_37,cs_38,cs_39,cs_40' | split: ','
 
   assign project_count = 0
+
   for key in project_keys
     assign show_key = key | append: '_show'
     assign image_key = key | append: '_image'
+
     if cfg[show_key] != false and cfg[image_key] != blank
       assign project_count = project_count | plus: 1
     endif
   endfor
 
-  assign gallery_heading = cfg.heading | default: 'Selected work.'
   assign mobile_columns = cfg.mobile_columns | default: '2'
 -%}
 
 {%- capture image_sizes -%}
-  (min-width: {{ cfg.max_width }}px) {{ cfg.max_width | divided_by: 5 }}px,
-  (min-width: 1024px) 20vw,
-  (min-width: 768px) 33vw,
-  {% if mobile_columns == '1' %}100vw{% else %}(max-width: 359px) 100vw, 50vw{% endif %}
+(min-width: {{ cfg.max_width }}px) {{ cfg.max_width | divided_by: 5 }}px,
+(min-width: 1024px) 20vw,
+(min-width: 768px) 33vw,
+{% if mobile_columns == '1' %}100vw{% else %}(max-width: 359px) 100vw, 50vw{% endif %}
 {%- endcapture -%}
 
 {%- capture arrow -%}
-<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<svg
+  viewBox="0 0 24 24"
+  width="18"
+  height="18"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.8"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+>
   <path d="M7 17 17 7M7 7h10v10"/>
 </svg>
 {%- endcapture -%}
 
-<case-study-grid-v1
+<featured-cases-v1
   id="{{ root_id }}"
-  class="pg"
-  data-page-size="{{ cfg.mobile_batch | default: 6 }}"
+  class="fg"
+  data-batch="{{ cfg.mobile_batch | default: 6 }}"
   data-mobile-paging="{{ cfg.mobile_load_more }}"
-  data-hover-motion="{{ cfg.enable_motion }}"
+  data-motion="{{ cfg.enable_motion }}"
+  data-filters="{{ cfg.show_filters }}"
+  data-filter-order="{{ cfg.filters_text | escape }}"
   style="
-    --pg-bg:{{ cfg.background_color | default: '#0C0C0C' }};
-    --pg-card:{{ cfg.card_background | default: '#141414' }};
-    --pg-text:{{ cfg.text_color | default: '#F5F5F2' }};
-    --pg-muted:{{ cfg.muted_color | default: '#AAA9A3' }};
-    --pg-accent:{{ cfg.accent_color | default: '#E8DDCA' }};
-    --pg-line:{{ cfg.line_color | default: '#30302E' }};
-    --pg-max:{{ cfg.max_width | default: 1440 }}px;
-    --pg-gutter:{{ cfg.desktop_gutter | default: 32 }}px;
-    --pg-mobile-gutter:{{ cfg.mobile_gutter | default: 16 }}px;
-    --pg-gap:{{ cfg.card_gap | default: 18 }}px;
-    --pg-radius:{{ cfg.card_radius | default: 12 }}px;
-    --pg-top:{{ cfg.padding_top | default: 60 }}px;
-    --pg-bottom:{{ cfg.padding_bottom | default: 60 }}px;
-    --pg-mobile-top:{{ cfg.mobile_padding_top | default: 40 }}px;
-    --pg-mobile-bottom:{{ cfg.mobile_padding_bottom | default: 40 }}px;
-    --pg-mobile-cols:{{ mobile_columns }};
-    --pg-fit:{{ cfg.image_fit | default: 'cover' }};
-    --pg-ratio:{{ cfg.image_ratio | default: '4 / 3' }};
+    --fg-bg:{{ cfg.background_color | default: '#0C0C0C' }};
+    --fg-card:{{ cfg.card_background | default: '#161616' }};
+    --fg-text:{{ cfg.text_color | default: '#F6F5F1' }};
+    --fg-muted:{{ cfg.muted_color | default: '#ADADA6' }};
+    --fg-accent:{{ cfg.gallery_accent | default: '#F5B63C' }};
+    --fg-line:{{ cfg.line_color | default: '#30302E' }};
+    --fg-max:{{ cfg.max_width | default: 1440 }}px;
+    --fg-gap:{{ cfg.card_gap | default: 18 }}px;
+    --fg-radius:{{ cfg.card_radius | default: 16 }}px;
+    --fg-gutter:{{ cfg.desktop_gutter | default: 32 }}px;
+    --fg-mobile-gutter:{{ cfg.mobile_gutter | default: 16 }}px;
+    --fg-top:{{ cfg.padding_top | default: 60 }}px;
+    --fg-bottom:{{ cfg.padding_bottom | default: 60 }}px;
+    --fg-mobile-top:{{ cfg.mobile_padding_top | default: 40 }}px;
+    --fg-mobile-bottom:{{ cfg.mobile_padding_bottom | default: 40 }}px;
+    --fg-mobile-cols:{{ mobile_columns }};
+    --fg-fit:{{ cfg.image_fit | default: 'cover' }};
   "
   {{ block.shopify_attributes }}
 >
-  <div class="pg-shell">
+  <div class="fg-shell">
 
-    {% if cfg.show_intro != false %}
-      <header class="pg-header">
-        <div class="pg-heading-group">
+    <header class="fg-header">
+      {% if cfg.show_intro != false %}
+        <div class="fg-intro">
           {% if cfg.eyebrow != blank %}
-            <p class="pg-eyebrow">
-              <span aria-hidden="true"></span>
-              {{ cfg.eyebrow | escape }}
-            </p>
+            <p class="fg-eyebrow">{{ cfg.eyebrow | escape }}</p>
           {% endif %}
-          <h2>{{ gallery_heading | escape }}</h2>
-        </div>
 
-        <div class="pg-header-aside">
+          <h2>{{ cfg.heading | default: 'Featured Projects' | escape }}</h2>
+
           {% if cfg.description != blank %}
-            <div class="pg-description">{{ cfg.description }}</div>
-          {% endif %}
-
-          {% if cfg.show_project_count != false %}
-            <div class="pg-total">
-              <strong>{{ project_count }}</strong>
-              <span>{% if project_count == 1 %}Case study{% else %}Case studies{% endif %}</span>
+            <div class="fg-intro-description">
+              {{ cfg.description }}
             </div>
           {% endif %}
         </div>
-      </header>
-    {% endif %}
+      {% endif %}
+
+      <div
+        class="fg-filters"
+        data-filter-ui
+        role="group"
+        aria-label="Filter case studies by category"
+        hidden
+      ></div>
+    </header>
 
     {% if project_count > 0 %}
-      <div class="pg-toolbar">
-        <p class="pg-results" data-results role="status" aria-live="polite" aria-atomic="true">
-          {{ project_count }} {% if project_count == 1 %}project{% else %}projects{% endif %}
+
+      <div class="fg-toolbar">
+        <p
+          class="fg-results{% if cfg.show_project_count == false %} fg-sr{% endif %}"
+          data-results
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          {% if cfg.show_project_count != false %}
+            {{ project_count }} projects
+          {% endif %}
         </p>
 
         {% if cfg.show_search != false %}
-          <div class="pg-search" data-search-ui hidden>
-            <label class="pg-sr" for="{{ root_id }}-search">Search case studies</label>
-            <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-              <circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>
+          <div class="fg-search" data-search-ui hidden>
+            <label class="fg-sr" for="{{ root_id }}-search">
+              Search case studies
+            </label>
+
+            <svg
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              aria-hidden="true"
+            >
+              <circle cx="10.5" cy="10.5" r="6.5"/>
+              <path d="m16 16 5 5"/>
             </svg>
+
             <input
               id="{{ root_id }}-search"
               type="search"
               placeholder="Search projects"
               autocomplete="off"
-              aria-controls="{{ root_id }}-grid"
               data-search
+              aria-controls="{{ root_id }}-grid"
             >
-            <button type="button" class="pg-clear" data-clear aria-label="Clear search" hidden>Clear</button>
+
+            <button type="button" data-clear hidden>
+              Clear
+            </button>
           </div>
         {% endif %}
       </div>
 
-      <ul id="{{ root_id }}-grid" class="pg-grid" role="list" aria-label="Case studies">
-        {% assign display_number = 0 %}
+      <ul
+        id="{{ root_id }}-grid"
+        class="fg-grid"
+        role="list"
+        aria-label="Case studies"
+      >
+        {% assign project_number = 0 %}
 
         {% for key in project_keys %}
           {%- liquid
@@ -138,119 +175,381 @@
             assign image_key = key | append: '_image'
             assign title_key = key | append: '_title'
             assign url_key = key | append: '_url'
+            assign category_key = key | append: '_category'
+            assign description_key = key | append: '_description'
 
             assign project_image = cfg[image_key]
+
             if cfg[show_key] == false or project_image == blank
               continue
             endif
 
-            assign display_number = display_number | plus: 1
+            assign project_number = project_number | plus: 1
             assign project_title = cfg[title_key]
+
             if project_title == blank
-              assign project_title = 'Case study ' | append: display_number
+              assign project_title = 'Case study ' | append: project_number
             endif
 
+            assign project_category = cfg[category_key] | strip
+            assign project_description = cfg[description_key]
             assign project_url = cfg[url_key]
-            assign project_alt = project_image.alt | default: project_title
+            assign fallback_url = project_image | image_url: width: 2000
+            assign card_url = project_url | default: fallback_url
+            assign image_count = 0
           -%}
 
-          {%- capture card_content -%}
-            <div class="pg-media">
-              {{
-                project_image
-                | image_url: width: 1200
-                | image_tag:
-                  widths: '240,360,480,640,800,1000,1200',
-                  sizes: image_sizes,
-                  loading: 'lazy',
-                  decoding: 'async',
-                  alt: project_alt,
-                  class: 'pg-image'
-              }}
+          {%- capture gallery_json -%}
+            [
+              {%- for image_number in (1..6) -%}
+                {%- liquid
+                  assign gallery_image = project_image
 
-              <span class="pg-media-frame" aria-hidden="true"></span>
+                  if image_number > 1
+                    assign gallery_key = key | append: '_gallery_' | append: image_number
+                    assign gallery_image = cfg[gallery_key]
+                  endif
+                -%}
 
-              {% if cfg.show_numbers %}
-                <span class="pg-number" aria-hidden="true">
-                  {% if display_number < 10 %}0{% endif %}{{ display_number }}
-                </span>
-              {% endif %}
+                {%- if gallery_image != blank -%}
+                  {%- if image_count > 0 -%},{%- endif -%}
 
-              {% if project_url != blank %}
-                <span class="pg-image-arrow" aria-hidden="true">{{ arrow }}</span>
-              {% endif %}
-            </div>
+                  {
+                    "src":{{ gallery_image | image_url: width: 1800 | json }},
+                    "thumb":{{ gallery_image | image_url: width: 180 | json }},
+                    "alt":{{ gallery_image.alt | default: project_title | json }},
+                    "width":{{ gallery_image.width | json }},
+                    "height":{{ gallery_image.height | json }}
+                  }
 
-            {% if cfg.show_card_copy != false %}
-              <div class="pg-card-body">
-                {% if cfg.card_label != blank %}
-                  <p class="pg-card-label">{{ cfg.card_label | escape }}</p>
-                {% endif %}
-                <h3>{{ project_title | escape }}</h3>
-                {% if project_url != blank %}
-                  <span class="pg-card-cta" aria-hidden="true">
-                    {{ cfg.card_cta | default: 'View case study' | escape }}
-                    {{ arrow }}
-                  </span>
-                {% endif %}
-              </div>
-            {% endif %}
+                  {%- assign image_count = image_count | plus: 1 -%}
+                {%- endif -%}
+              {%- endfor -%}
+            ]
           {%- endcapture -%}
 
-          <li class="pg-item" data-case data-search-text="{{ project_title | escape }}" tabindex="-1">
-            {% if project_url != blank %}
-              <a class="pg-card" href="{{ project_url | escape }}" aria-label="View case study: {{ project_title | escape }}">
-                {{ card_content }}
-              </a>
-            {% else %}
-              <article class="pg-card">
-                {{ card_content }}
-              </article>
-            {% endif %}
+          <li
+            class="fg-item"
+            data-project
+            data-key="{{ key }}"
+            data-title="{{ project_title | escape }}"
+            data-category="{{ project_category | escape }}"
+            data-description="{{ project_description | escape }}"
+            data-url="{{ project_url | escape }}"
+            data-images="{{ gallery_json | escape }}"
+          >
+            <a
+              class="fg-card"
+              href="{{ card_url | escape }}"
+              data-open
+              aria-label="View {{ project_title | escape }}"
+            >
+              <div class="fg-media">
+
+                {{
+                  project_image
+                  | image_url: width: 1200
+                  | image_tag:
+                    widths: '240,360,480,640,800,1000,1200',
+                    sizes: image_sizes,
+                    loading: 'lazy',
+                    decoding: 'async',
+                    alt: '',
+                    class: 'fg-cover'
+                }}
+
+                <span class="fg-shade" aria-hidden="true"></span>
+
+                {% if project_category != blank %}
+                  <span class="fg-category">
+                    {{ project_category | escape }}
+                  </span>
+                {% endif %}
+
+                {% if image_count > 1 %}
+                  <span
+                    class="fg-photo-count"
+                    aria-label="{{ image_count }} preview images"
+                  >
+                    {{ image_count }} photos
+                  </span>
+                {% endif %}
+
+                <span class="fg-eye" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="23"
+                    height="23"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </span>
+              </div>
+
+              <div class="fg-card-copy">
+                <h3>{{ project_title | escape }}</h3>
+
+                {% if project_description != blank %}
+                  <p>{{ project_description | escape }}</p>
+                {% endif %}
+
+                <span class="fg-preview-label" aria-hidden="true">
+                  Preview project
+                  {{ arrow }}
+                </span>
+              </div>
+            </a>
           </li>
+
         {% endfor %}
       </ul>
 
-      <div class="pg-no-results" data-no-results hidden>
+      <div class="fg-empty" data-empty hidden>
         <h3>No matching projects.</h3>
-        <p>Try a different name, or clear the search.</p>
+        <p>Try another category or search term.</p>
       </div>
 
-      <div class="pg-load" data-load-ui hidden>
-        <p data-load-status></p>
-        <div class="pg-load-actions">
-          <button type="button" class="pg-button" data-load-more aria-controls="{{ root_id }}-grid">
-            Show more case studies
+      <div class="fg-load" data-load-ui hidden>
+        <p data-remaining></p>
+
+        <div>
+          <button
+            type="button"
+            class="fg-primary"
+            data-more
+            aria-controls="{{ root_id }}-grid"
+          >
+            Show more
           </button>
-          <button type="button" class="pg-text-button" data-show-all aria-controls="{{ root_id }}-grid">
+
+          <button
+            type="button"
+            class="fg-text-button"
+            data-all
+            aria-controls="{{ root_id }}-grid"
+          >
             Show all
           </button>
         </div>
       </div>
-    {% elsif request.design_mode %}
-      <div class="pg-empty">
-        <span class="pg-eyebrow">Your work goes here</span>
-        <h3>Add your first case study.</h3>
-        <p>Upload its image, enter a title, add its page link and leave “Show this case study” enabled. Empty entries do not appear on the storefront.</p>
-      </div>
+
     {% endif %}
 
     {% if cfg.show_footer != false %}
-      <footer class="pg-footer">
-        <p>{{ cfg.footer_text | default: 'Explore the work. See the details.' | escape }}</p>
+      <footer class="fg-footer">
+        <p>
+          {{ cfg.footer_text | default: 'Explore the work. See the details.' | escape }}
+        </p>
+
         {% if cfg.archive_url != blank %}
-          <a class="pg-archive" href="{{ cfg.archive_url | escape }}">
+          <a href="{{ cfg.archive_url | escape }}">
             {{ cfg.archive_label | default: 'View all case studies' | escape }}
             {{ arrow }}
           </a>
         {% endif %}
       </footer>
     {% endif %}
+
   </div>
-</case-study-grid-v1>
+
+  {% comment %}
+    One reusable dialog. Additional gallery images load on demand.
+  {% endcomment %}
+
+  <dialog
+    class="fg-dialog"
+    data-dialog
+    aria-labelledby="{{ root_id }}-dialog-title"
+  >
+    <div class="fg-dialog-shell">
+
+      <header class="fg-dialog-header">
+        <span>Project preview</span>
+
+        <button
+          type="button"
+          class="fg-icon-button"
+          data-close
+          aria-label="Close project preview"
+          autofocus
+        >
+          <svg
+            viewBox="0 0 24 24"
+            width="21"
+            height="21"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <path d="m6 6 12 12M6 18 18 6"/>
+          </svg>
+        </button>
+      </header>
+
+      <div class="fg-dialog-body" data-dialog-body>
+
+        <div class="fg-stage" data-stage>
+          <img
+            data-dialog-image
+            alt=""
+            width="1600"
+            height="1000"
+            hidden
+          >
+
+          <p
+            class="fg-image-message"
+            data-image-message
+            role="status"
+          >
+            Loading preview…
+          </p>
+
+          <button
+            type="button"
+            class="fg-icon-button fg-image-prev"
+            data-prev
+            aria-label="Previous project image"
+            hidden
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="21"
+              height="21"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              aria-hidden="true"
+            >
+              <path d="m15 6-6 6 6 6"/>
+            </svg>
+          </button>
+
+          <button
+            type="button"
+            class="fg-icon-button fg-image-next"
+            data-next
+            aria-label="Next project image"
+            hidden
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="21"
+              height="21"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              aria-hidden="true"
+            >
+              <path d="m9 6 6 6-6 6"/>
+            </svg>
+          </button>
+
+          <span
+            class="fg-image-position"
+            data-image-position
+            aria-live="polite"
+          ></span>
+        </div>
+
+        <div
+          class="fg-thumbnails"
+          data-thumbnails
+          role="group"
+          aria-label="Project images"
+          hidden
+        ></div>
+
+        <div class="fg-dialog-copy">
+          <p class="fg-eyebrow" data-dialog-category></p>
+
+          <h3
+            id="{{ root_id }}-dialog-title"
+            data-dialog-title
+          ></h3>
+
+          <p
+            class="fg-dialog-description"
+            data-dialog-description
+          ></p>
+        </div>
+
+      </div>
+
+      <footer class="fg-dialog-footer">
+
+        <a
+          class="fg-primary fg-read-more"
+          data-read-more
+          {% if cfg.open_new_tab %}
+            target="_blank"
+            rel="noopener noreferrer"
+          {% endif %}
+          hidden
+        >
+          {{ cfg.read_more_label | default: 'Read the full case study' | escape }}
+          {{ arrow }}
+
+          {% if cfg.open_new_tab %}
+            <span class="fg-sr">(opens in a new tab)</span>
+          {% endif %}
+        </a>
+
+        <div class="fg-secondary-actions">
+          {% if cfg.enable_save %}
+            <button
+              type="button"
+              data-save
+              aria-pressed="false"
+            >
+              Save
+            </button>
+          {% endif %}
+
+          {% if cfg.enable_share %}
+            <button type="button" data-share>
+              Share
+            </button>
+          {% endif %}
+        </div>
+
+        <p
+          class="fg-dialog-status"
+          data-dialog-status
+          role="status"
+          aria-live="polite"
+        ></p>
+
+        <div class="fg-copy-fallback" data-copy-fallback hidden>
+          <label for="{{ root_id }}-share-url">
+            Copy this link
+          </label>
+
+          <input
+            id="{{ root_id }}-share-url"
+            type="url"
+            readonly
+            data-copy-url
+          >
+        </div>
+
+      </footer>
+    </div>
+  </dialog>
+</featured-cases-v1>
+
 
 {% style %}
-/* Scoped to this gallery. No marquee tracks or page scroll handlers. */
+
+/* FOUNDATION */
+
 #{{ root_id }} {
   display:block;
   position:relative;
@@ -258,28 +557,67 @@
   width:100%;
   max-width:100%;
   min-width:0;
-  padding-block:var(--pg-top) var(--pg-bottom);
-  background:var(--pg-bg);
-  color:var(--pg-text);
-  font-family:'Kanit',var(--font-body-family,Arial,sans-serif);
+  padding-block:var(--fg-top) var(--fg-bottom);
+  background:var(--fg-bg);
+  color:var(--fg-text);
+  font:400 15px/1.65 'Kanit',var(--font-body-family,Arial,sans-serif);
   -webkit-font-smoothing:antialiased;
 }
+
 #{{ root_id }} *,
 #{{ root_id }} *::before,
-#{{ root_id }} *::after { box-sizing:border-box; min-width:0; }
-#{{ root_id }} [hidden] { display:none!important; }
-#{{ root_id }} :where(h2,h3,p,figure) { margin:0; }
-#{{ root_id }} :where(h2,h3,p,a,label) { overflow-wrap:anywhere; }
-#{{ root_id }} :where(h2,h3) { color:var(--pg-text); text-transform:none; }
-#{{ root_id }} a { color:inherit; text-decoration:none; }
-#{{ root_id }} :where(button,input) { font:inherit; }
-#{{ root_id }} button { cursor:pointer; }
-#{{ root_id }} svg { display:block; flex:none; }
+#{{ root_id }} *::after {
+  box-sizing:border-box;
+  min-width:0;
+}
+
+#{{ root_id }} [hidden] {
+  display:none!important;
+}
+
+#{{ root_id }} :where(h2,h3,p,ul) {
+  margin:0;
+}
+
+#{{ root_id }} :where(h2,h3,p,a,label) {
+  overflow-wrap:anywhere;
+}
+
+#{{ root_id }} :where(h2,h3) {
+  color:var(--fg-text);
+  text-transform:none;
+}
+
+#{{ root_id }} a {
+  color:inherit;
+  text-decoration:none;
+}
+
+#{{ root_id }} button,
+#{{ root_id }} input {
+  font:inherit;
+}
+
+#{{ root_id }} button {
+  cursor:pointer;
+}
+
+#{{ root_id }} button:disabled {
+  opacity:.45;
+  cursor:default;
+}
+
+#{{ root_id }} svg {
+  display:block;
+  flex:none;
+}
+
 #{{ root_id }} :where(a,button,input,[tabindex]):focus-visible {
-  outline:2px solid var(--pg-accent);
+  outline:2px solid var(--fg-accent);
   outline-offset:4px;
 }
-#{{ root_id }} .pg-sr {
+
+#{{ root_id }} .fg-sr {
   position:absolute;
   width:1px;
   height:1px;
@@ -288,358 +626,928 @@
   clip-path:inset(50%);
   white-space:nowrap;
 }
-#{{ root_id }} .pg-shell {
+
+#{{ root_id }} .fg-shell {
   width:100%;
-  max-width:var(--pg-max);
+  max-width:var(--fg-max);
   margin-inline:auto;
-  padding-inline:var(--pg-gutter);
+  padding-inline:var(--fg-gutter);
 }
 
-/* Editorial heading */
-#{{ root_id }} .pg-header {
-  display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,.8fr);
-  align-items:end;
-  gap:40px;
-  padding-bottom:32px;
-  border-bottom:1px solid var(--pg-line);
-}
-#{{ root_id }} .pg-eyebrow {
+
+/* INTRODUCTION AND FILTERS */
+
+#{{ root_id }} .fg-header {
   display:flex;
   align-items:center;
-  gap:10px;
-  color:var(--pg-muted);
-  font-size:11px;
-  font-weight:500;
-  letter-spacing:.14em;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:26px 40px;
+}
+
+#{{ root_id }} .fg-intro {
+  flex:1 1 320px;
+}
+
+#{{ root_id }} .fg-eyebrow {
+  color:var(--fg-accent);
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.2em;
   text-transform:uppercase;
-  line-height:1.5;
-}
-#{{ root_id }} .pg-eyebrow > span {
-  width:6px;
-  height:6px;
-  flex:none;
-  border-radius:50%;
-  background:var(--pg-accent);
-}
-#{{ root_id }} .pg-heading-group h2 {
-  max-width:15ch;
-  margin-top:14px;
-  font-family:inherit;
-  font-size:clamp(36px,4.9vw,76px);
-  font-weight:400;
-  line-height:1.02;
-  letter-spacing:-.045em;
-  text-wrap:balance;
-}
-#{{ root_id }} .pg-header-aside {
-  display:flex;
-  align-items:end;
-  justify-content:space-between;
-  gap:28px;
-}
-#{{ root_id }} .pg-description {
-  max-width:46ch;
-  font-size:15px;
-  line-height:1.7;
-  color:var(--pg-muted);
-}
-#{{ root_id }} .pg-description p+p { margin-top:12px; }
-#{{ root_id }} .pg-description a { text-decoration:underline; text-underline-offset:4px; }
-#{{ root_id }} .pg-total { flex:none; text-align:right; }
-#{{ root_id }} .pg-total strong {
-  display:block;
-  font-size:42px;
-  font-weight:400;
-  line-height:1;
-  font-variant-numeric:tabular-nums;
-}
-#{{ root_id }} .pg-total span {
-  display:block;
-  margin-top:8px;
-  font-size:11px;
-  color:var(--pg-muted);
 }
 
-/* Search and result count */
-#{{ root_id }} .pg-toolbar {
+#{{ root_id }} .fg-intro h2 {
+  margin-top:8px;
+  font-family:inherit;
+  font-size:clamp(30px,3.4vw,50px);
+  font-weight:600;
+  letter-spacing:-.035em;
+  line-height:1.1;
+}
+
+#{{ root_id }} .fg-intro-description {
+  max-width:58ch;
+  color:var(--fg-muted);
+  margin-top:14px;
+  font-size:14px;
+}
+
+#{{ root_id }} .fg-intro-description p+p {
+  margin-top:10px;
+}
+
+#{{ root_id }} .fg-intro-description a {
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+
+#{{ root_id }} .fg-filters {
+  display:flex;
+  flex:1 1 420px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  gap:8px;
+}
+
+#{{ root_id }} .fg-filter {
+  min-height:44px;
+  max-width:100%;
+  padding:10px 17px;
+  border:1px solid var(--fg-line);
+  border-radius:999px;
+  color:var(--fg-muted);
+  background:var(--fg-card);
+  font-size:12px;
+  line-height:1.4;
+  transition:background .2s,color .2s,border-color .2s;
+}
+
+#{{ root_id }} .fg-filter[aria-pressed="true"] {
+  background:var(--fg-accent);
+  border-color:var(--fg-accent);
+  color:#16120A;
+  font-weight:600;
+}
+
+#{{ root_id }} .fg-toolbar {
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:20px;
-  padding-block:24px;
+  gap:18px;
+  margin-block:26px 24px;
+  padding-top:22px;
+  border-top:1px solid var(--fg-line);
 }
-#{{ root_id }} .pg-results { color:var(--pg-muted); font-size:13px; }
-#{{ root_id }} .pg-search {
+
+#{{ root_id }} .fg-results {
+  color:var(--fg-muted);
+  font-size:12px;
+}
+
+#{{ root_id }} .fg-search {
   display:flex;
   align-items:center;
   gap:10px;
-  width:min(100%,340px);
-  min-height:48px;
-  padding:0 8px 0 14px;
-  border:1px solid var(--pg-line);
-  border-radius:8px;
-  background:var(--pg-card);
-  color:var(--pg-muted);
-}
-#{{ root_id }} .pg-search input {
-  display:block;
-  width:100%;
+  width:min(100%,310px);
   min-height:46px;
-  padding:10px 0;
+  padding:0 8px 0 14px;
+  border:1px solid var(--fg-line);
+  border-radius:999px;
+  background:var(--fg-card);
+  color:var(--fg-muted);
+}
+
+#{{ root_id }} .fg-search input {
+  width:100%;
+  min-height:44px;
+  padding:8px 0;
   border:0;
-  border-radius:0;
   background:transparent;
-  color:var(--pg-text);
+  color:var(--fg-text);
   font-size:16px;
 }
-#{{ root_id }} .pg-search input::placeholder { color:var(--pg-muted); opacity:1; }
-#{{ root_id }} .pg-clear {
+
+#{{ root_id }} .fg-search input::placeholder {
+  color:var(--fg-muted);
+  opacity:1;
+}
+
+#{{ root_id }} .fg-search button {
   flex:none;
   min-height:44px;
   padding:8px;
   border:0;
   background:transparent;
-  color:var(--pg-text);
+  color:var(--fg-text);
   font-size:12px;
 }
 
-/* Exactly five columns on desktop. Rows are automatic. */
-#{{ root_id }} .pg-grid {
+
+/* FIVE-COLUMN DESKTOP GRID */
+
+#{{ root_id }} .fg-grid {
   display:grid;
   grid-template-columns:repeat(5,minmax(0,1fr));
-  gap:calc(var(--pg-gap) + 8px) var(--pg-gap);
+  gap:var(--fg-gap);
   align-items:stretch;
-  list-style:none;
   padding:0;
+  list-style:none;
+}
+
+#{{ root_id }} .fg-item {
   margin:0;
+  padding:0;
 }
-#{{ root_id }} .pg-item { padding:0; margin:0; }
-#{{ root_id }} .pg-card {
-  display:flex;
-  flex-direction:column;
+
+#{{ root_id }} .fg-card {
+  display:block;
+  position:relative;
   height:100%;
-  border:1px solid var(--pg-line);
-  border-radius:var(--pg-radius);
-  background:var(--pg-card);
+  border:1px solid var(--fg-line);
+  border-radius:var(--fg-radius);
+  background:var(--fg-card);
   overflow:hidden;
-  transition:border-color .2s ease,box-shadow .2s ease;
+  transition:border-color .2s,box-shadow .2s;
 }
-#{{ root_id }} .pg-media {
+
+#{{ root_id }} .fg-media {
   position:relative;
   width:100%;
-  aspect-ratio:var(--pg-ratio);
+  aspect-ratio:1;
   overflow:hidden;
-  background:var(--pg-card);
-  isolation:isolate;
 }
-#{{ root_id }} .pg-image {
+
+#{{ root_id }} .fg-cover {
+  display:block;
   position:absolute;
   inset:0;
-  display:block;
   width:100%;
   height:100%;
   max-width:100%;
-  object-fit:var(--pg-fit);
-  transition:transform .65s cubic-bezier(.2,.7,.2,1);
+  object-fit:var(--fg-fit);
+  transition:transform .7s cubic-bezier(.2,.7,.2,1);
 }
-#{{ root_id }} .pg-media-frame {
+
+#{{ root_id }} .fg-shade {
   position:absolute;
   inset:0;
-  border-bottom:1px solid var(--pg-line);
+  background:linear-gradient(
+    180deg,
+    rgba(0,0,0,.2),
+    transparent 35%,
+    rgba(0,0,0,.65) 72%,
+    rgba(0,0,0,.94)
+  );
   pointer-events:none;
 }
-#{{ root_id }} .pg-number {
+
+#{{ root_id }} .fg-category {
   position:absolute;
-  top:10px;
-  left:10px;
-  padding:5px 8px;
-  border:1px solid rgba(255,255,255,.18);
-  border-radius:5px;
-  background:rgba(0,0,0,.78);
-  color:#fff;
+  top:12px;
+  left:12px;
+  max-width:calc(100% - 24px);
+  padding:5px 10px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:999px;
+  background:rgba(0,0,0,.64);
+  color:#F3F3ED;
   font-size:10px;
-  font-variant-numeric:tabular-nums;
-  line-height:1.3;
-  pointer-events:none;
+  line-height:1.4;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
-#{{ root_id }} .pg-image-arrow {
+
+#{{ root_id }} .fg-photo-count {
   position:absolute;
-  right:10px;
-  bottom:10px;
+  right:12px;
+  top:48px;
+  padding:3px 7px;
+  border-radius:4px;
+  background:rgba(0,0,0,.65);
+  color:#DFDFD9;
+  font-size:9px;
+}
+
+#{{ root_id }} .fg-eye {
   display:grid;
   place-items:center;
-  width:34px;
-  height:34px;
-  border:1px solid rgba(255,255,255,.2);
+  position:absolute;
+  left:50%;
+  top:43%;
+  width:52px;
+  height:52px;
+  border:1px solid rgba(255,255,255,.32);
   border-radius:50%;
-  background:rgba(0,0,0,.78);
+  background:rgba(25,25,25,.65);
   color:#fff;
+  transform:translate(-50%,-50%) scale(.88);
   opacity:0;
-  transition:opacity .2s;
+  transition:opacity .25s,transform .25s;
   pointer-events:none;
 }
-#{{ root_id }} .pg-card-body {
-  display:flex;
-  flex-direction:column;
-  flex:1;
-  padding:17px 15px 14px;
+
+#{{ root_id }} .fg-card-copy {
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  padding:18px;
+  color:#fff;
 }
-#{{ root_id }} .pg-card-label {
-  color:var(--pg-muted);
-  font-size:10px;
-  letter-spacing:.09em;
-  line-height:1.5;
-  text-transform:uppercase;
-  margin-bottom:8px;
-}
-#{{ root_id }} .pg-card h3 {
+
+#{{ root_id }} .fg-card-copy h3 {
+  color:#fff;
   font-family:inherit;
-  font-size:clamp(15px,1.3vw,19px);
-  font-weight:500;
+  font-size:clamp(15px,1.3vw,20px);
+  font-weight:600;
   letter-spacing:-.015em;
-  line-height:1.35;
-  margin:0 0 18px;
+  line-height:1.25;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  overflow:hidden;
 }
-#{{ root_id }} .pg-card-cta {
+
+#{{ root_id }} .fg-card-copy p {
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  overflow:hidden;
+  margin-top:7px;
+  color:#C8C8C2;
+  font-size:11px;
+  line-height:1.5;
+}
+
+#{{ root_id }} .fg-preview-label {
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:8px;
-  margin-top:auto;
-  padding-top:12px;
-  border-top:1px solid var(--pg-line);
-  color:var(--pg-accent);
-  font-size:11px;
-  line-height:1.4;
+  gap:7px;
+  margin-top:10px;
+  color:var(--fg-accent);
+  font-size:10px;
+  font-weight:500;
 }
-#{{ root_id }} .pg-card-cta svg { width:15px; height:15px; }
 
-/* Mobile progressive reveal */
-#{{ root_id }} .pg-load {
-  margin-top:30px;
-  padding-top:24px;
-  border-top:1px solid var(--pg-line);
+#{{ root_id }} .fg-preview-label svg {
+  width:13px;
+  height:13px;
+}
+
+#{{ root_id }} .fg-card:focus-visible .fg-eye {
+  opacity:1;
+  transform:translate(-50%,-50%) scale(1);
+}
+
+
+/* RESULTS, LOAD MORE AND FOOTER */
+
+#{{ root_id }} .fg-empty {
+  padding:44px 20px;
+  border:1px solid var(--fg-line);
+  border-radius:var(--fg-radius);
   text-align:center;
 }
-#{{ root_id }} .pg-load > p { color:var(--pg-muted); font-size:13px; margin-bottom:15px; }
-#{{ root_id }} .pg-load-actions {
+
+#{{ root_id }} .fg-empty h3 {
+  font-size:24px;
+  font-weight:500;
+}
+
+#{{ root_id }} .fg-empty p {
+  margin-top:10px;
+  color:var(--fg-muted);
+}
+
+#{{ root_id }} .fg-load {
+  margin-top:26px;
+  padding-top:24px;
+  border-top:1px solid var(--fg-line);
+  text-align:center;
+}
+
+#{{ root_id }} .fg-load p {
+  margin-bottom:14px;
+  font-size:13px;
+  color:var(--fg-muted);
+}
+
+#{{ root_id }} .fg-load>div {
   display:flex;
-  align-items:center;
   justify-content:center;
   flex-wrap:wrap;
-  gap:12px;
+  gap:10px;
 }
-#{{ root_id }} .pg-button {
+
+#{{ root_id }} .fg-primary {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
   min-height:50px;
-  padding:13px 24px;
-  border:1px solid var(--pg-accent);
-  border-radius:7px;
-  background:var(--pg-accent);
-  color:#131313;
+  padding:13px 22px;
+  border:1px solid var(--fg-accent);
+  border-radius:999px;
+  background:var(--fg-accent);
+  color:#16120A;
   font-size:14px;
   font-weight:600;
+  line-height:1.4;
+  text-align:center;
 }
-#{{ root_id }} .pg-text-button {
+
+#{{ root_id }} .fg-text-button {
   min-height:48px;
-  padding:12px 16px;
+  padding:12px 18px;
   border:0;
   background:transparent;
-  color:var(--pg-text);
+  color:var(--fg-text);
   font-size:13px;
   text-decoration:underline;
   text-underline-offset:4px;
 }
-#{{ root_id }} :is(.pg-no-results,.pg-empty) {
-  padding:50px 24px;
-  border:1px solid var(--pg-line);
-  border-radius:var(--pg-radius);
-  text-align:center;
-}
-#{{ root_id }} :is(.pg-no-results,.pg-empty) h3 {
-  font-size:25px;
-  font-weight:500;
-  line-height:1.2;
-  margin-bottom:12px;
-}
-#{{ root_id }} :is(.pg-no-results,.pg-empty) p {
-  max-width:58ch;
-  margin-inline:auto;
-  color:var(--pg-muted);
-  font-size:14px;
-  line-height:1.7;
-}
-#{{ root_id }} .pg-empty .pg-eyebrow { justify-content:center; margin-bottom:18px; }
-#{{ root_id }} .pg-footer {
+
+#{{ root_id }} .fg-footer {
   display:flex;
   align-items:center;
   justify-content:space-between;
   flex-wrap:wrap;
   gap:16px;
-  margin-top:34px;
+  margin-top:32px;
   padding-top:20px;
-  border-top:1px solid var(--pg-line);
+  border-top:1px solid var(--fg-line);
 }
-#{{ root_id }} .pg-footer p { font-size:12px; color:var(--pg-muted); }
-#{{ root_id }} .pg-archive { display:inline-flex; align-items:center; gap:14px; min-height:48px; font-size:13px; }
+
+#{{ root_id }} .fg-footer p {
+  color:var(--fg-muted);
+  font-size:12px;
+}
+
+#{{ root_id }} .fg-footer a {
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  min-height:44px;
+  font-size:13px;
+}
+
+
+/* PREVIEW DIALOG */
+
+#{{ root_id }} .fg-dialog {
+  position:fixed;
+  inset:0;
+  margin:auto;
+  width:min(960px,calc(100% - 40px));
+  max-width:calc(100% - 40px);
+  max-height:calc(100vh - 40px);
+  max-height:calc(100dvh - 40px);
+  padding:0;
+  border:1px solid var(--fg-line);
+  border-radius:18px;
+  background:var(--fg-bg);
+  color:var(--fg-text);
+  overflow:hidden;
+  box-shadow:0 30px 100px rgba(0,0,0,.45);
+}
+
+#{{ root_id }} .fg-dialog:not([open]) {
+  display:none;
+}
+
+#{{ root_id }} .fg-dialog::backdrop {
+  background:rgba(0,0,0,.88);
+  backdrop-filter:blur(5px);
+}
+
+#{{ root_id }} .fg-dialog-shell {
+  display:flex;
+  flex-direction:column;
+  max-height:inherit;
+}
+
+#{{ root_id }} .fg-dialog-header {
+  display:flex;
+  flex:none;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:10px 18px;
+  border-bottom:1px solid var(--fg-line);
+  background:var(--fg-bg);
+}
+
+#{{ root_id }} .fg-dialog-header>span {
+  color:var(--fg-muted);
+  font-size:11px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+#{{ root_id }} .fg-icon-button {
+  display:grid;
+  place-items:center;
+  flex:none;
+  width:44px;
+  height:44px;
+  padding:0;
+  border:1px solid var(--fg-line);
+  border-radius:50%;
+  background:#171717;
+  color:#fff;
+}
+
+#{{ root_id }} .fg-dialog-body {
+  min-height:0;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  scrollbar-width:thin;
+  scrollbar-color:var(--fg-line) transparent;
+}
+
+#{{ root_id }} .fg-stage {
+  display:grid;
+  place-items:center;
+  position:relative;
+  aspect-ratio:16 / 10;
+  max-height:48vh;
+  max-height:48dvh;
+  background:#080808;
+  touch-action:pan-y pinch-zoom;
+}
+
+#{{ root_id }} .fg-stage>img {
+  display:block;
+  width:100%;
+  height:100%;
+  min-height:0;
+  object-fit:contain;
+}
+
+#{{ root_id }} .fg-image-prev,
+#{{ root_id }} .fg-image-next {
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:2;
+  background:rgba(10,10,10,.86);
+  border-color:rgba(255,255,255,.25);
+}
+
+#{{ root_id }} .fg-image-prev {
+  left:14px;
+}
+
+#{{ root_id }} .fg-image-next {
+  right:14px;
+}
+
+#{{ root_id }} .fg-image-position {
+  position:absolute;
+  bottom:12px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:4px 10px;
+  border-radius:999px;
+  background:rgba(0,0,0,.8);
+  color:#fff;
+  font-size:11px;
+  font-variant-numeric:tabular-nums;
+}
+
+#{{ root_id }} .fg-image-message {
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  max-width:75%;
+  padding:8px 12px;
+  border-radius:6px;
+  background:rgba(0,0,0,.8);
+  color:#EEE;
+  text-align:center;
+  font-size:13px;
+}
+
+#{{ root_id }} .fg-thumbnails {
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  padding:12px 16px 0;
+  overflow-x:auto;
+  scrollbar-width:thin;
+}
+
+#{{ root_id }} .fg-thumb {
+  display:block;
+  flex:0 0 66px;
+  height:48px;
+  padding:0;
+  border:2px solid transparent;
+  border-radius:6px;
+  background:var(--fg-card);
+  overflow:hidden;
+  opacity:.65;
+}
+
+#{{ root_id }} .fg-thumb[aria-pressed="true"] {
+  border-color:var(--fg-accent);
+  opacity:1;
+}
+
+#{{ root_id }} .fg-thumb img {
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+#{{ root_id }} .fg-dialog-copy {
+  max-width:760px;
+  margin-inline:auto;
+  padding:24px 28px 28px;
+  text-align:center;
+}
+
+#{{ root_id }} .fg-dialog-copy h3 {
+  margin-top:8px;
+  font-family:inherit;
+  font-size:clamp(24px,3vw,36px);
+  font-weight:600;
+  letter-spacing:-.025em;
+  line-height:1.2;
+}
+
+#{{ root_id }} .fg-dialog-description {
+  margin-top:14px;
+  color:var(--fg-muted);
+  font-size:15px;
+  line-height:1.75;
+  white-space:pre-line;
+}
+
+#{{ root_id }} .fg-dialog-footer {
+  display:flex;
+  flex:none;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px 18px;
+  padding:16px 22px;
+  border-top:1px solid var(--fg-line);
+  background:var(--fg-bg);
+}
+
+#{{ root_id }} .fg-secondary-actions {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+
+#{{ root_id }} .fg-secondary-actions:empty {
+  display:none;
+}
+
+#{{ root_id }} .fg-secondary-actions button {
+  min-height:44px;
+  padding:10px 16px;
+  border:1px solid var(--fg-line);
+  border-radius:999px;
+  background:var(--fg-card);
+  color:var(--fg-text);
+  font-size:12px;
+}
+
+#{{ root_id }} .fg-secondary-actions button[aria-pressed="true"] {
+  color:var(--fg-accent);
+  border-color:var(--fg-accent);
+}
+
+#{{ root_id }} .fg-dialog-status {
+  flex-basis:100%;
+  text-align:center;
+  color:var(--fg-muted);
+  font-size:12px;
+  line-height:1.4;
+}
+
+#{{ root_id }} .fg-dialog-status:empty {
+  display:none;
+}
+
+#{{ root_id }} .fg-copy-fallback {
+  width:100%;
+  max-width:640px;
+}
+
+#{{ root_id }} .fg-copy-fallback label {
+  display:block;
+  font-size:12px;
+  color:var(--fg-muted);
+}
+
+#{{ root_id }} .fg-copy-fallback input {
+  display:block;
+  width:100%;
+  min-height:44px;
+  padding:9px 12px;
+  border:1px solid var(--fg-line);
+  background:var(--fg-card);
+  color:var(--fg-text);
+  font-size:16px;
+}
+
+
+/* HOVER */
 
 @media (hover:hover) and (pointer:fine) {
-  #{{ root_id }} a.pg-card:hover { border-color:var(--pg-accent); box-shadow:0 14px 34px rgba(0,0,0,.17); }
-  #{{ root_id }}[data-hover-motion="true"] a.pg-card:hover .pg-image { transform:scale(1.035); }
-  #{{ root_id }} a.pg-card:hover .pg-image-arrow { opacity:1; }
+  #{{ root_id }} .fg-card:hover {
+    border-color:var(--fg-accent);
+    box-shadow:0 16px 36px rgba(0,0,0,.24);
+  }
+
+  #{{ root_id }}[data-motion="true"] .fg-card:hover .fg-cover {
+    transform:scale(1.045);
+  }
+
+  #{{ root_id }} .fg-card:hover .fg-eye {
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1);
+  }
 }
-#{{ root_id }} a.pg-card:focus-visible .pg-image-arrow { opacity:1; }
+
+
+/* TABLET AND NARROW DESKTOP */
+
+@media (min-width:768px) and (max-width:1199px) {
+  #{{ root_id }} .fg-card-copy {
+    padding:14px;
+  }
+
+  #{{ root_id }} .fg-card-copy p {
+    display:none;
+  }
+
+  #{{ root_id }} .fg-eye {
+    width:40px;
+    height:40px;
+    top:35%;
+  }
+}
 
 @media (min-width:768px) and (max-width:1023px) {
-  #{{ root_id }} .pg-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
-  #{{ root_id }} .pg-header { gap:24px; }
-  #{{ root_id }} .pg-header-aside { gap:18px; }
-  #{{ root_id }} .pg-total strong { font-size:34px; }
+  #{{ root_id }} .fg-grid {
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
 }
 
+
+/* MOBILE */
+
 @media (max-width:767px) {
-  #{{ root_id }} { padding-block:var(--pg-mobile-top) var(--pg-mobile-bottom); }
-  #{{ root_id }} .pg-shell { padding-inline:var(--pg-mobile-gutter); }
-  #{{ root_id }} .pg-header { grid-template-columns:1fr; gap:20px; padding-bottom:23px; }
-  #{{ root_id }} .pg-heading-group h2 { font-size:clamp(35px,10vw,52px); max-width:16ch; }
-  #{{ root_id }} .pg-header-aside { align-items:start; gap:20px; }
-  #{{ root_id }} .pg-description { font-size:14px; line-height:1.65; }
-  #{{ root_id }} .pg-total strong { font-size:30px; }
-  #{{ root_id }} .pg-total span { font-size:10px; }
-  #{{ root_id }} .pg-toolbar { flex-direction:column-reverse; align-items:stretch; gap:13px; padding-block:20px; }
-  #{{ root_id }} .pg-search { width:100%; }
-  #{{ root_id }} .pg-grid { grid-template-columns:repeat(var(--pg-mobile-cols),minmax(0,1fr)); gap:18px 12px; }
-  #{{ root_id }} .pg-card-body { padding:14px 12px 12px; }
-  #{{ root_id }} .pg-card h3 { font-size:16px; line-height:1.35; margin-bottom:15px; }
-  #{{ root_id }} .pg-card-label { font-size:10px; letter-spacing:.04em; margin-bottom:7px; }
-  #{{ root_id }} .pg-card-cta { font-size:11px; gap:6px; }
-  #{{ root_id }} .pg-number { top:8px; left:8px; font-size:10px; }
-  #{{ root_id }} .pg-image-arrow { display:none; }
-  #{{ root_id }} .pg-load-actions { flex-direction:column; gap:4px; }
-  #{{ root_id }} .pg-button { width:100%; }
-  #{{ root_id }} .pg-footer { align-items:start; flex-direction:column; gap:8px; margin-top:26px; }
+  #{{ root_id }} {
+    padding-block:var(--fg-mobile-top) var(--fg-mobile-bottom);
+  }
+
+  #{{ root_id }} .fg-shell {
+    padding-inline:var(--fg-mobile-gutter);
+  }
+
+  #{{ root_id }} .fg-header {
+    display:block;
+  }
+
+  #{{ root_id }} .fg-intro h2 {
+    font-size:clamp(30px,9vw,42px);
+  }
+
+  #{{ root_id }} .fg-intro-description {
+    font-size:14px;
+  }
+
+  #{{ root_id }} .fg-filters {
+    flex-wrap:nowrap;
+    justify-content:flex-start;
+    margin-top:20px;
+    padding:2px 2px 8px;
+    overflow-x:auto;
+    scrollbar-width:thin;
+    scrollbar-color:var(--fg-line) transparent;
+  }
+
+  #{{ root_id }} .fg-filter {
+    flex:none;
+    white-space:nowrap;
+    padding-inline:15px;
+  }
+
+  #{{ root_id }} .fg-toolbar {
+    flex-direction:column-reverse;
+    align-items:stretch;
+    gap:12px;
+    margin-block:16px 20px;
+    padding-top:16px;
+  }
+
+  #{{ root_id }} .fg-search {
+    width:100%;
+  }
+
+  #{{ root_id }} .fg-grid {
+    grid-template-columns:repeat(var(--fg-mobile-cols),minmax(0,1fr));
+    gap:16px 12px;
+  }
+
+  #{{ root_id }} .fg-card {
+    display:flex;
+    flex-direction:column;
+  }
+
+  #{{ root_id }} .fg-media {
+    flex:none;
+  }
+
+  #{{ root_id }} .fg-shade {
+    background:linear-gradient(
+      180deg,
+      rgba(0,0,0,.2),
+      transparent 60%
+    );
+  }
+
+  #{{ root_id }} .fg-card-copy {
+    position:static;
+    display:flex;
+    flex-direction:column;
+    flex:1;
+    padding:14px 12px 12px;
+  }
+
+  #{{ root_id }} .fg-card-copy h3 {
+    display:block;
+    overflow:visible;
+    color:var(--fg-text);
+    font-size:16px;
+    line-height:1.3;
+  }
+
+  #{{ root_id }} .fg-card-copy p {
+    display:none;
+  }
+
+  #{{ root_id }} .fg-preview-label {
+    justify-content:space-between;
+    margin-top:auto;
+    padding-top:13px;
+    font-size:11px;
+  }
+
+  #{{ root_id }} .fg-category {
+    left:8px;
+    top:8px;
+    max-width:calc(100% - 16px);
+    font-size:9px;
+    padding:5px 8px;
+  }
+
+  #{{ root_id }} .fg-photo-count {
+    top:auto;
+    bottom:8px;
+    right:8px;
+  }
+
+  #{{ root_id }} .fg-eye {
+    display:none;
+  }
+
+  #{{ root_id }} .fg-load>div {
+    flex-direction:column;
+    gap:4px;
+  }
+
+  #{{ root_id }} .fg-footer {
+    align-items:flex-start;
+    flex-direction:column;
+    gap:8px;
+  }
+
+  #{{ root_id }} .fg-dialog {
+    width:calc(100% - 16px);
+    max-width:calc(100% - 16px);
+    max-height:calc(100vh - 16px);
+    max-height:calc(100dvh - 16px);
+    border-radius:14px;
+  }
+
+  #{{ root_id }} .fg-dialog-header {
+    padding:8px 12px;
+  }
+
+  #{{ root_id }} .fg-stage {
+    aspect-ratio:4 / 3;
+    max-height:36vh;
+    max-height:36dvh;
+  }
+
+  #{{ root_id }} .fg-image-prev {
+    left:8px;
+  }
+
+  #{{ root_id }} .fg-image-next {
+    right:8px;
+  }
+
+  #{{ root_id }} .fg-thumbnails {
+    justify-content:flex-start;
+    padding-inline:12px;
+  }
+
+  #{{ root_id }} .fg-thumb {
+    flex-basis:54px;
+    height:44px;
+  }
+
+  #{{ root_id }} .fg-dialog-copy {
+    padding:22px 18px;
+  }
+
+  #{{ root_id }} .fg-dialog-description {
+    font-size:14px;
+  }
+
+  #{{ root_id }} .fg-dialog-footer {
+    gap:8px;
+    padding:12px 14px max(12px,env(safe-area-inset-bottom));
+  }
+
+  #{{ root_id }} .fg-read-more {
+    width:100%;
+  }
 }
 
 @media (max-width:359px) {
-  #{{ root_id }} .pg-grid { grid-template-columns:1fr; }
-  #{{ root_id }} .pg-card h3 { font-size:18px; }
+  #{{ root_id }} .fg-grid {
+    grid-template-columns:1fr;
+  }
 }
+
+
+/* REDUCED MOTION */
 
 @media (prefers-reduced-motion:reduce) {
   #{{ root_id }} *,
   #{{ root_id }} *::before,
-  #{{ root_id }} *::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; }
-  #{{ root_id }} .pg-image { transform:none!important; }
+  #{{ root_id }} *::after {
+    animation:none!important;
+    transition:none!important;
+    scroll-behavior:auto!important;
+  }
+
+  #{{ root_id }} .fg-cover {
+    transform:none!important;
+  }
 }
+
 {% endstyle %}
+
 
 {% javascript %}
 (() => {
   'use strict';
-  const tag = 'case-study-grid-v1';
-  if (!window.customElements || customElements.get(tag)) return;
 
-  class CaseStudyGrid extends HTMLElement {
+  const tag = 'featured-cases-v1';
+
+  if (
+    !window.customElements ||
+    customElements.get(tag)
+  ) {
+    return;
+  }
+
+  class FeaturedCases extends HTMLElement {
     connectedCallback() {
       cancelAnimationFrame(this._boot);
       this._boot = requestAnimationFrame(() => this.initialize());
@@ -647,412 +1555,1500 @@
 
     disconnectedCallback() {
       cancelAnimationFrame(this._boot);
-      if (this._cleanup) this._cleanup();
+
+      if (this._cleanup) {
+        this._cleanup();
+      }
     }
 
     initialize() {
       if (!this.isConnected) return;
-      if (this._cleanup) this._cleanup();
+
+      if (this._cleanup) {
+        this._cleanup();
+      }
 
       const root = this;
       const controller = new AbortController();
-      const q = selector => root.querySelector(selector);
-      const cards = Array.from(root.querySelectorAll('[data-case]'));
-      const mobile = window.matchMedia('(max-width: 767px)');
+
+      const q = (selector, base = root) => {
+        return base.querySelector(selector);
+      };
+
+      const qa = (selector, base = root) => {
+        return Array.from(base.querySelectorAll(selector));
+      };
+
+      const on = (element, type, fn, options = {}) => {
+        if (element) {
+          element.addEventListener(type, fn, {
+            ...options,
+            signal: controller.signal
+          });
+        }
+      };
+
+      const normalize = value => {
+        return String(value || '')
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .toLowerCase()
+          .trim();
+      };
+
+      const safeURL = raw => {
+        if (!raw || !String(raw).trim()) return '';
+
+        try {
+          const url = new URL(raw, location.href);
+
+          return ['http:', 'https:'].includes(url.protocol)
+            ? url.href
+            : '';
+        } catch (_) {
+          return '';
+        }
+      };
+
+      const projects = qa('[data-project]').map(node => {
+        let images = [];
+
+        try {
+          images = JSON.parse(node.dataset.images || '[]')
+            .filter(item => item && safeURL(item.src))
+            .slice(0, 6);
+        } catch (_) {}
+
+        return {
+          node,
+          link: q('[data-open]', node),
+          key: node.dataset.key,
+          title: node.dataset.title || 'Case study',
+          category: node.dataset.category || '',
+          description: node.dataset.description || '',
+          url: safeURL(node.dataset.url),
+          images,
+          search: normalize([
+            node.dataset.title,
+            node.dataset.category,
+            node.dataset.description
+          ].join(' '))
+        };
+      });
+
       const search = q('[data-search]');
       const searchUI = q('[data-search-ui]');
       const clear = q('[data-clear]');
+      const filterUI = q('[data-filter-ui]');
       const results = q('[data-results]');
       const loadUI = q('[data-load-ui]');
-      const loadMore = q('[data-load-more]');
-      const showAll = q('[data-show-all]');
-      const noResults = q('[data-no-results]');
-      const batch = Math.max(1, Math.min(40, Number(root.dataset.pageSize) || 6));
-      const pagingEnabled = root.dataset.mobilePaging !== 'false';
+      const more = q('[data-more]');
+      const all = q('[data-all]');
+      const empty = q('[data-empty]');
+
+      const mobile = matchMedia('(max-width: 767px)');
+
+      const batch = Math.max(
+        1,
+        Math.min(40, Number(root.dataset.batch) || 6)
+      );
+
+      const dialog = q('[data-dialog]');
+      const stage = q('[data-stage]');
+      const modalImage = q('[data-dialog-image]');
+      const imageMessage = q('[data-image-message]');
+      const readMore = q('[data-read-more]');
+      const saveButton = q('[data-save]');
+      const shareButton = q('[data-share]');
+      const status = q('[data-dialog-status]');
+
+      const nativeDialog =
+        dialog &&
+        typeof dialog.showModal === 'function';
+
+      const storageKey = 'featured-case-studies:saved:v1';
+      const loaders = new Set();
+
+      let category = '';
       let limit = batch;
-      let matches = cards;
-      let oldMediaListener = false;
+      let matches = projects;
+      let active = null;
+      let index = 0;
+      let loadVersion = 0;
+      let opener = null;
+      let scrollStyles = null;
+      let legacyMedia = false;
+      let disposed = false;
+      let gesture = null;
 
-      const normalize = value => String(value || '')
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .toLowerCase()
-        .trim();
+      const readSaved = () => {
+        try {
+          const data = JSON.parse(
+            localStorage.getItem(storageKey) || '[]'
+          );
 
-      const records = cards.map(card => ({
-        card,
-        text: normalize(card.dataset.searchText)
-      }));
-
-      const on = (element, event, listener) => {
-        if (element) element.addEventListener(event, listener, { signal: controller.signal });
+          return new Set(
+            Array.isArray(data)
+              ? data.filter(value => typeof value === 'string')
+              : []
+          );
+        } catch (_) {
+          return new Set();
+        }
       };
 
-      const restore = () => {
-        cards.forEach(card => { card.hidden = false; });
-        if (searchUI) searchUI.hidden = true;
-        if (loadUI) loadUI.hidden = true;
-        if (noResults) noResults.hidden = true;
-        if (results) results.textContent = `${cards.length} projects`;
+      const savedID = project => {
+        return project.url ||
+          `${location.pathname}#${root.id}-${project.key}`;
       };
 
-      const apply = () => {
-        const query = normalize(search ? search.value : '');
-        const terms = query.split(/\s+/).filter(Boolean);
-        matches = records.filter(record => terms.every(term => record.text.includes(term))).map(record => record.card);
-        const mobilePaging = mobile.matches && pagingEnabled;
+      const updateSave = () => {
+        if (!saveButton || !active) return;
 
-        // Do not hide a keyboard-focused card when resizing.
-        const focusedIndex = matches.findIndex(card => card.contains(document.activeElement));
-        if (mobilePaging && focusedIndex >= limit) {
-          limit = Math.ceil((focusedIndex + 1) / batch) * batch;
+        const saved = readSaved().has(savedID(active));
+
+        saveButton.setAttribute('aria-pressed', String(saved));
+        saveButton.textContent = saved ? 'Saved' : 'Save';
+        saveButton.title = 'Saved in this browser only';
+      };
+
+      const lockScroll = () => {
+        if (scrollStyles) return;
+
+        scrollStyles = [
+          document.documentElement,
+          document.body
+        ].map(element => ({
+          element,
+          value: element.style.getPropertyValue('overflow'),
+          priority: element.style.getPropertyPriority('overflow')
+        }));
+
+        scrollStyles.forEach(item => {
+          item.element.style.setProperty('overflow', 'hidden');
+        });
+      };
+
+      const unlockScroll = () => {
+        if (!scrollStyles) return;
+
+        scrollStyles.forEach(item => {
+          if (item.value) {
+            item.element.style.setProperty(
+              'overflow',
+              item.value,
+              item.priority
+            );
+          } else {
+            item.element.style.removeProperty('overflow');
+          }
+        });
+
+        scrollStyles = null;
+      };
+
+      function apply() {
+        const terms = normalize(search ? search.value : '')
+          .split(/\s+/)
+          .filter(Boolean);
+
+        matches = projects.filter(project => {
+          const categoryMatches =
+            !category ||
+            normalize(project.category) === category;
+
+          const searchMatches = terms.every(term => {
+            return project.search.includes(term);
+          });
+
+          return categoryMatches && searchMatches;
+        });
+
+        const paging =
+          mobile.matches &&
+          root.dataset.mobilePaging !== 'false';
+
+        const focused = matches.findIndex(project => {
+          return project.node.contains(document.activeElement);
+        });
+
+        if (paging && focused >= limit) {
+          limit = Math.ceil((focused + 1) / batch) * batch;
         }
 
-        const visible = mobilePaging ? matches.slice(0, limit) : matches;
+        const visible = paging
+          ? matches.slice(0, limit)
+          : matches;
+
         const visibleSet = new Set(visible);
-        cards.forEach(card => { card.hidden = !visibleSet.has(card); });
+
+        projects.forEach(project => {
+          project.node.hidden = !visibleSet.has(project);
+        });
 
         if (results) {
-          results.textContent = query
-            ? `${visible.length} of ${matches.length} matching projects`
-            : `Showing ${visible.length} of ${cards.length} projects`;
+          results.textContent =
+            `Showing ${visible.length} of ${matches.length} ` +
+            `${category || terms.length ? 'matching ' : ''}projects`;
         }
-        if (clear) clear.hidden = !query;
-        if (noResults) noResults.hidden = matches.length !== 0;
+
+        if (clear) {
+          clear.hidden = !terms.length;
+        }
+
+        if (empty) {
+          empty.hidden = matches.length !== 0;
+        }
 
         const remaining = matches.length - visible.length;
-        if (loadUI) loadUI.hidden = !mobilePaging || remaining <= 0;
-        if (loadMore) loadMore.textContent = `Show ${Math.min(batch, remaining)} more case studies`;
-        if (showAll) showAll.textContent = `Show all ${matches.length}`;
-        const loadStatus = q('[data-load-status]');
-        if (loadStatus) loadStatus.textContent = `${remaining} more ${remaining === 1 ? 'project' : 'projects'} to explore`;
-      };
 
-      const reveal = all => {
-        const nextCard = matches.find(card => card.hidden);
-        limit = all ? cards.length : limit + batch;
-        apply();
-        if (nextCard && !nextCard.hidden) {
-          const focusTarget = nextCard.querySelector('a[href]') || nextCard;
-          focusTarget.focus({ preventScroll: true });
+        if (loadUI) {
+          loadUI.hidden = !paging || remaining <= 0;
         }
-      };
+
+        if (more) {
+          more.textContent =
+            `Show ${Math.min(batch, remaining)} more case studies`;
+        }
+
+        if (all) {
+          all.textContent = `Show all ${matches.length}`;
+        }
+
+        const remainingLabel = q('[data-remaining]');
+
+        if (remainingLabel) {
+          remainingLabel.textContent =
+            `${remaining} more ` +
+            `${remaining === 1 ? 'project' : 'projects'} to explore`;
+        }
+      }
+
+      function reveal(showAll) {
+        const next = matches.find(project => {
+          return project.node.hidden;
+        });
+
+        limit = showAll
+          ? projects.length
+          : limit + batch;
+
+        apply();
+
+        if (next && !next.node.hidden) {
+          next.link.focus({ preventScroll: true });
+        }
+      }
+
+      function buildFilters() {
+        if (
+          !filterUI ||
+          root.dataset.filters === 'false'
+        ) {
+          return;
+        }
+
+        const categories = new Map();
+
+        projects.forEach(project => {
+          const normalized = normalize(project.category);
+
+          if (
+            normalized &&
+            !categories.has(normalized)
+          ) {
+            categories.set(
+              normalized,
+              project.category.trim()
+            );
+          }
+        });
+
+        if (!categories.size) return;
+
+        const order = [];
+
+        String(root.dataset.filterOrder || '')
+          .split(/\r?\n/)
+          .forEach(line => {
+            const key = normalize(line);
+
+            if (
+              categories.has(key) &&
+              !order.includes(key)
+            ) {
+              order.push(key);
+            }
+          });
+
+        categories.forEach((_, key) => {
+          if (!order.includes(key)) {
+            order.push(key);
+          }
+        });
+
+        filterUI.replaceChildren();
+
+        ['', ...order].forEach(key => {
+          const button = document.createElement('button');
+
+          button.type = 'button';
+          button.className = 'fg-filter';
+          button.textContent = key
+            ? categories.get(key)
+            : 'All';
+
+          button.dataset.categoryFilter = key;
+
+          button.setAttribute(
+            'aria-controls',
+            `${root.id}-grid`
+          );
+
+          button.setAttribute(
+            'aria-pressed',
+            String(key === '')
+          );
+
+          on(button, 'click', () => {
+            category = key;
+            limit = batch;
+
+            qa('button', filterUI).forEach(item => {
+              item.setAttribute(
+                'aria-pressed',
+                String(item === button)
+              );
+            });
+
+            apply();
+          });
+
+          filterUI.appendChild(button);
+        });
+
+        filterUI.hidden = false;
+      }
+
+      function renderImage(nextIndex) {
+        if (!active || !active.images.length) return;
+
+        index =
+          (nextIndex + active.images.length) %
+          active.images.length;
+
+        const item = active.images[index];
+        const version = ++loadVersion;
+
+        const previous = q('[data-prev]');
+        const next = q('[data-next]');
+
+        previous.hidden =
+          next.hidden =
+          active.images.length < 2;
+
+        q('[data-image-position]').textContent =
+          `${index + 1} / ${active.images.length}`;
+
+        qa('[data-image-choice]').forEach(button => {
+          button.setAttribute(
+            'aria-pressed',
+            String(Number(button.dataset.imageChoice) === index)
+          );
+        });
+
+        stage.setAttribute('aria-busy', 'true');
+
+        imageMessage.textContent = 'Loading preview…';
+        imageMessage.hidden = false;
+
+        const loader = new Image();
+        loaders.add(loader);
+
+        const finish = success => {
+          loader.onload = loader.onerror = null;
+          loaders.delete(loader);
+
+          if (
+            disposed ||
+            version !== loadVersion ||
+            !dialog.open
+          ) {
+            return;
+          }
+
+          stage.setAttribute('aria-busy', 'false');
+
+          if (!success) {
+            modalImage.hidden = true;
+            imageMessage.textContent =
+              'This image could not load. Try another preview.';
+            return;
+          }
+
+          modalImage.src = loader.src;
+          modalImage.alt = item.alt || active.title;
+
+          modalImage.width =
+            Number(item.width) ||
+            loader.naturalWidth ||
+            1600;
+
+          modalImage.height =
+            Number(item.height) ||
+            loader.naturalHeight ||
+            1000;
+
+          modalImage.hidden = false;
+          imageMessage.hidden = true;
+        };
+
+        loader.onload = () => finish(true);
+        loader.onerror = () => finish(false);
+        loader.decoding = 'async';
+        loader.src = safeURL(item.src);
+      }
+
+      function openProject(project, trigger) {
+        if (
+          !nativeDialog ||
+          !project.images.length
+        ) {
+          return false;
+        }
+
+        active = project;
+        opener = trigger;
+        index = 0;
+
+        q('[data-dialog-title]').textContent =
+          project.title;
+
+        q('[data-dialog-description]').textContent =
+          project.description;
+
+        q('[data-dialog-description]').hidden =
+          !project.description;
+
+        q('[data-dialog-category]').textContent =
+          project.category;
+
+        q('[data-dialog-category]').hidden =
+          !project.category;
+
+        readMore.hidden = !project.url;
+
+        if (project.url) {
+          readMore.href = project.url;
+        } else {
+          readMore.removeAttribute('href');
+        }
+
+        status.textContent = '';
+
+        q('[data-copy-fallback]').hidden = true;
+
+        modalImage.hidden = true;
+        modalImage.removeAttribute('src');
+
+        updateSave();
+
+        const thumbs = q('[data-thumbnails]');
+        thumbs.replaceChildren();
+        thumbs.hidden = project.images.length < 2;
+
+        if (project.images.length > 1) {
+          project.images.forEach((image, imageIndex) => {
+            const button = document.createElement('button');
+
+            button.type = 'button';
+            button.className = 'fg-thumb';
+            button.dataset.imageChoice = String(imageIndex);
+
+            button.setAttribute(
+              'aria-label',
+              `View project image ${imageIndex + 1}`
+            );
+
+            button.setAttribute(
+              'aria-pressed',
+              String(imageIndex === 0)
+            );
+
+            const img = document.createElement('img');
+
+            img.src = safeURL(image.thumb || image.src);
+            img.alt = '';
+            img.width = 90;
+            img.height = 60;
+            img.loading = 'lazy';
+            img.decoding = 'async';
+
+            button.appendChild(img);
+            thumbs.appendChild(button);
+          });
+        }
+
+        try {
+          dialog.showModal();
+        } catch (_) {
+          active = null;
+          return false;
+        }
+
+        lockScroll();
+
+        q('[data-dialog-body]').scrollTop = 0;
+
+        q('[data-close]').focus({
+          preventScroll: true
+        });
+
+        renderImage(0);
+
+        return true;
+      }
+
+      function afterClose() {
+        ++loadVersion;
+        unlockScroll();
+
+        modalImage.hidden = true;
+        modalImage.removeAttribute('src');
+
+        q('[data-thumbnails]').replaceChildren();
+
+        active = null;
+
+        if (
+          opener &&
+          opener.isConnected &&
+          opener.getClientRects().length
+        ) {
+          opener.focus({ preventScroll: true });
+        }
+
+        opener = null;
+      }
+
+      function manualCopy(url) {
+        const field = q('[data-copy-url]');
+
+        q('[data-copy-fallback]').hidden = false;
+
+        field.value = url;
+        field.focus({ preventScroll: true });
+        field.select();
+
+        status.textContent = 'Copy the link shown below.';
+      }
 
       this._cleanup = () => {
+        disposed = true;
+        ++loadVersion;
+
+        if (dialog && dialog.open) {
+          dialog.close();
+        }
+
+        unlockScroll();
         controller.abort();
-        if (oldMediaListener) mobile.removeListener(apply);
-        restore();
+
+        if (legacyMedia) {
+          mobile.removeListener(apply);
+        }
+
+        loaders.forEach(loader => {
+          loader.onload = loader.onerror = null;
+        });
+
+        loaders.clear();
+
+        projects.forEach(project => {
+          project.node.hidden = false;
+          project.link.removeAttribute('aria-haspopup');
+        });
+
+        if (searchUI) {
+          searchUI.hidden = true;
+        }
+
+        if (filterUI) {
+          filterUI.hidden = true;
+          filterUI.replaceChildren();
+        }
+
+        if (loadUI) {
+          loadUI.hidden = true;
+        }
+
+        if (empty) {
+          empty.hidden = true;
+        }
+
+        if (modalImage) {
+          modalImage.removeAttribute('src');
+        }
+
         this._cleanup = null;
       };
 
       try {
-        if (searchUI) searchUI.hidden = false;
-        on(search, 'input', () => { limit = batch; apply(); });
-        on(search, 'search', () => { limit = batch; apply(); });
+        if (searchUI) {
+          searchUI.hidden = false;
+        }
+
+        buildFilters();
+
+        on(search, 'input', () => {
+          limit = batch;
+          apply();
+        });
+
+        on(search, 'search', () => {
+          limit = batch;
+          apply();
+        });
+
         on(clear, 'click', () => {
           search.value = '';
           limit = batch;
-          search.focus({ preventScroll: true });
+          search.focus();
           apply();
         });
-        on(loadMore, 'click', () => reveal(false));
-        on(showAll, 'click', () => reveal(true));
+
+        on(more, 'click', () => reveal(false));
+        on(all, 'click', () => reveal(true));
 
         if (mobile.addEventListener) {
-          mobile.addEventListener('change', apply, { signal: controller.signal });
+          on(mobile, 'change', apply);
         } else {
           mobile.addListener(apply);
-          oldMediaListener = true;
+          legacyMedia = true;
         }
+
+        if (nativeDialog) {
+          projects.forEach(project => {
+            project.link.setAttribute(
+              'aria-haspopup',
+              'dialog'
+            );
+
+            on(project.link, 'click', event => {
+              if (
+                event.button !== 0 ||
+                event.metaKey ||
+                event.ctrlKey ||
+                event.shiftKey ||
+                event.altKey
+              ) {
+                return;
+              }
+
+              if (openProject(project, project.link)) {
+                event.preventDefault();
+              }
+            });
+          });
+
+          on(q('[data-close]'), 'click', () => {
+            dialog.close();
+          });
+
+          on(dialog, 'close', afterClose);
+
+          on(dialog, 'click', event => {
+            if (event.target !== dialog) return;
+
+            const rect = dialog.getBoundingClientRect();
+
+            if (
+              event.clientX < rect.left ||
+              event.clientX > rect.right ||
+              event.clientY < rect.top ||
+              event.clientY > rect.bottom
+            ) {
+              dialog.close();
+            }
+          });
+
+          on(q('[data-prev]'), 'click', () => {
+            renderImage(index - 1);
+          });
+
+          on(q('[data-next]'), 'click', () => {
+            renderImage(index + 1);
+          });
+
+          on(q('[data-thumbnails]'), 'click', event => {
+            const button = event.target.closest(
+              '[data-image-choice]'
+            );
+
+            if (button) {
+              renderImage(
+                Number(button.dataset.imageChoice)
+              );
+            }
+          });
+
+          on(dialog, 'keydown', event => {
+            if (!dialog.open || !active) return;
+
+            if (event.key === 'Tab') {
+              const focusable = qa(
+                'a[href],button:not(:disabled),input:not(:disabled)',
+                dialog
+              ).filter(element => {
+                return element.getClientRects().length;
+              });
+
+              const first = focusable[0];
+              const last = focusable[focusable.length - 1];
+
+              if (
+                event.shiftKey &&
+                document.activeElement === first
+              ) {
+                event.preventDefault();
+                last.focus();
+              } else if (
+                !event.shiftKey &&
+                document.activeElement === last
+              ) {
+                event.preventDefault();
+                first.focus();
+              }
+            }
+
+            if (
+              event.target.closest(
+                'input,textarea,select,[contenteditable="true"]'
+              )
+            ) {
+              return;
+            }
+
+            if (
+              active.images.length > 1 &&
+              ['ArrowLeft', 'ArrowRight'].includes(event.key)
+            ) {
+              event.preventDefault();
+
+              renderImage(
+                index +
+                (event.key === 'ArrowRight' ? 1 : -1)
+              );
+            }
+          });
+
+          on(stage, 'pointerdown', event => {
+            gesture =
+              event.isPrimary &&
+              event.pointerType !== 'mouse' &&
+              !event.target.closest('button')
+                ? {
+                    x: event.clientX,
+                    y: event.clientY,
+                    id: event.pointerId
+                  }
+                : null;
+          }, { passive: true });
+
+          on(stage, 'pointercancel', () => {
+            gesture = null;
+          });
+
+          on(stage, 'pointerup', event => {
+            if (
+              !gesture ||
+              gesture.id !== event.pointerId
+            ) {
+              return;
+            }
+
+            const dx = event.clientX - gesture.x;
+            const dy = event.clientY - gesture.y;
+
+            gesture = null;
+
+            if (
+              Math.abs(dx) > 45 &&
+              Math.abs(dy) < 35 &&
+              active &&
+              active.images.length > 1
+            ) {
+              renderImage(index + (dx < 0 ? 1 : -1));
+            }
+          }, { passive: true });
+
+          on(saveButton, 'click', () => {
+            if (!active) return;
+
+            const saved = readSaved();
+            const key = savedID(active);
+            const wasSaved = saved.has(key);
+
+            if (wasSaved) {
+              saved.delete(key);
+            } else {
+              saved.add(key);
+            }
+
+            try {
+              localStorage.setItem(
+                storageKey,
+                JSON.stringify(Array.from(saved))
+              );
+
+              updateSave();
+
+              status.textContent = wasSaved
+                ? 'Removed from this browser’s saved projects.'
+                : 'Saved in this browser on this device.';
+            } catch (_) {
+              status.textContent =
+                'Saving is unavailable in this browser.';
+            }
+          });
+
+          on(shareButton, 'click', async () => {
+            if (!active) return;
+
+            const project = active;
+            const url = project.url || location.href;
+
+            status.textContent = '';
+            q('[data-copy-fallback]').hidden = true;
+
+            try {
+              if (navigator.share) {
+                await navigator.share({
+                  title: project.title,
+                  url
+                });
+                return;
+              }
+
+              if (
+                navigator.clipboard &&
+                window.isSecureContext
+              ) {
+                await navigator.clipboard.writeText(url);
+
+                if (
+                  active === project &&
+                  dialog.open
+                ) {
+                  status.textContent = 'Link copied.';
+                }
+
+                return;
+              }
+
+              if (
+                active === project &&
+                dialog.open
+              ) {
+                manualCopy(url);
+              }
+            } catch (error) {
+              if (
+                error.name !== 'AbortError' &&
+                active === project &&
+                dialog.open
+              ) {
+                manualCopy(url);
+              }
+            }
+          });
+
+          on(window, 'storage', event => {
+            if (event.key === storageKey) {
+              updateSave();
+            }
+          });
+        }
+
         apply();
+
       } catch (error) {
         this._cleanup();
-        console.warn('Case Study Grid: optional search or reveal controls could not initialize.', error);
+
+        console.warn(
+          'Featured Case Studies: preview enhancements could not initialize.',
+          error
+        );
       }
     }
   }
 
-  customElements.define(tag, CaseStudyGrid);
+  customElements.define(tag, FeaturedCases);
 })();
 {% endjavascript %}
 
 
 {% schema %}
 {
-  "name": "Case Study Grid",
+  "name": "Featured Case Studies",
   "tag": "div",
-  "class": "case-study-grid-block",
+  "class": "featured-case-studies-block",
   "settings": [
 
     {"type": "header", "content": "Introduction"},
     {"type": "checkbox", "id": "show_intro", "label": "Show introduction", "default": true},
-    {"type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Selected work"},
-    {"type": "text", "id": "heading", "label": "Heading", "default": "Work worth exploring."},
+    {"type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "(Our Work)"},
+    {"type": "text", "id": "heading", "label": "Heading", "default": "Featured Projects"},
     {"type": "richtext", "id": "description", "label": "Description", "default": "<p>A selection of digital experiences, brand systems and websites built to make an impression.</p>"},
     {"type": "checkbox", "id": "show_project_count", "label": "Show total project count", "default": true},
 
-    {"type": "header", "content": "Grid and mobile"},
-    {"type": "paragraph", "content": "Desktop has five columns from 1024px. Rows fill automatically with enabled entries that have an image. Twenty projects make four desktop rows. No images or projects are duplicated."},
+    {"type": "header", "content": "Filters and mobile"},
+    {"type": "checkbox", "id": "show_filters", "label": "Show category filter pills", "default": true},
+    {"type": "textarea", "id": "filters_text", "label": "Preferred category order", "default": "Brand partnership\nAdventure travel\nEnergy & lifestyle\nFashion & lifestyle", "info": "Optional ordering, one category per line. All project categories are added automatically. All is always the first filter."},
     {"type": "checkbox", "id": "show_search", "label": "Show project search", "default": true},
     {"type": "select", "id": "mobile_columns", "label": "Mobile columns", "options": [{"value": "1", "label": "1 — larger cards"}, {"value": "2", "label": "2 — compact grid"}], "default": "2", "info": "Very small screens below 360px use one column for readability."},
     {"type": "checkbox", "id": "mobile_load_more", "label": "Use Show more on mobile", "default": true, "info": "Desktop shows all projects. On mobile, reveal projects in batches. Search checks every project, including those not yet displayed."},
     {"type": "range", "id": "mobile_batch", "label": "Projects per mobile batch", "min": 4, "max": 12, "step": 2, "default": 6},
+
+    {"type": "header", "content": "Preview pop-up"},
+    {"type": "text", "id": "read_more_label", "label": "Read-more button label", "default": "Read the full case study"},
+    {"type": "checkbox", "id": "open_new_tab", "label": "Open case-study links in a new tab", "default": false},
+    {"type": "checkbox", "id": "enable_save", "label": "Show Save button", "default": true, "info": "Saves project references in this browser on this device, not a customer account."},
+    {"type": "checkbox", "id": "enable_share", "label": "Show Share button", "default": true},
+    {"type": "paragraph", "content": "Each preview uses its own Case study page link. The read-more button appears only when that link is set. Gallery images 2–6 and the short description are optional."},
+
+    {"type": "header", "content": "Gallery layout"},
+    {"type": "paragraph", "content": "Five columns on desktop, three on tablet. Mobile uses your chosen columns. Empty image slots and switched-off projects are omitted."},
     {"type": "range", "id": "max_width", "label": "Maximum gallery width", "min": 1000, "max": 1800, "step": 40, "unit": "px", "default": 1440},
     {"type": "range", "id": "desktop_gutter", "label": "Desktop side padding", "min": 16, "max": 64, "step": 4, "unit": "px", "default": 32},
     {"type": "range", "id": "mobile_gutter", "label": "Mobile side padding", "min": 12, "max": 24, "step": 2, "unit": "px", "default": 16},
     {"type": "range", "id": "card_gap", "label": "Desktop card gap", "min": 6, "max": 40, "step": 2, "unit": "px", "default": 18},
-    {"type": "range", "id": "card_radius", "label": "Card corner radius", "min": 0, "max": 28, "step": 2, "unit": "px", "default": 12},
-    {"type": "select", "id": "image_ratio", "label": "Preview shape", "options": [{"value": "4 / 3", "label": "4:3 — balanced"}, {"value": "14 / 9", "label": "14:9 — wider"}, {"value": "3 / 4", "label": "3:4 — portrait"}], "default": "4 / 3"},
+    {"type": "range", "id": "card_radius", "label": "Card corner radius", "min": 0, "max": 28, "step": 2, "unit": "px", "default": 16},
     {"type": "select", "id": "image_fit", "label": "Image framing", "options": [{"value": "cover", "label": "Fill the frame"}, {"value": "contain", "label": "Show the entire image"}], "default": "cover"},
-    {"type": "checkbox", "id": "show_card_copy", "label": "Show titles below images", "default": true},
-    {"type": "text", "id": "card_label", "label": "Small card label", "default": "Case study"},
-    {"type": "text", "id": "card_cta", "label": "Card link text", "default": "View case study"},
-    {"type": "checkbox", "id": "show_numbers", "label": "Show project numbers", "default": true},
     {"type": "checkbox", "id": "enable_motion", "label": "Enable subtle hover zoom", "default": true, "info": "No scroll-driven movement. This controls only the image zoom on pointer hover."},
 
-    {"type": "header", "content": "Your case studies"},
-    {"type": "paragraph", "content": "40 editable entries. Add an image, title and page link to each one. Empty or switched-off entries are omitted. Display order follows the numbered entries, not the old marquee rows."},
-    {"type": "paragraph", "content": "Entries 01–08 preserve the old Row 1 settings. Entries 09–16 preserve the old Row 2 settings. Entries 17–40 are new. Keep this same block instance to retain saved selections."},
+    {"type": "header", "content": "Case studies"},
+    {"type": "paragraph", "content": "40 individually editable projects. Slots 01–16 retain the prior r1/r2 image, title and link IDs; slots 17–40 retain cs_17–cs_40. Their display order is the order below."},
 
     {"type": "header", "content": "Case study 01"},
     {"type": "checkbox", "id": "r1_1_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "r1_1_image", "label": "Project image"},
     {"type": "text", "id": "r1_1_title", "label": "Project title", "default": "Project One"},
     {"type": "url", "id": "r1_1_url", "label": "Case study page link"},
+    {"type": "text", "id": "r1_1_category", "label": "Category"},
+    {"type": "textarea", "id": "r1_1_description", "label": "Short description"},
+    {"type": "image_picker", "id": "r1_1_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "r1_1_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "r1_1_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "r1_1_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "r1_1_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 02"},
     {"type": "checkbox", "id": "r1_2_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "r1_2_image", "label": "Project image"},
     {"type": "text", "id": "r1_2_title", "label": "Project title", "default": "Project Two"},
     {"type": "url", "id": "r1_2_url", "label": "Case study page link"},
+    {"type": "text", "id": "r1_2_category", "label": "Category"},
+    {"type": "textarea", "id": "r1_2_description", "label": "Short description"},
+    {"type": "image_picker", "id": "r1_2_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "r1_2_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "r1_2_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "r1_2_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "r1_2_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 03"},
     {"type": "checkbox", "id": "r1_3_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "r1_3_image", "label": "Project image"},
     {"type": "text", "id": "r1_3_title", "label": "Project title", "default": "Project Three"},
     {"type": "url", "id": "r1_3_url", "label": "Case study page link"},
+    {"type": "text", "id": "r1_3_category", "label": "Category"},
+    {"type": "textarea", "id": "r1_3_description", "label": "Short description"},
+    {"type": "image_picker", "id": "r1_3_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "r1_3_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "r1_3_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "r1_3_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "r1_3_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 04"},
     {"type": "checkbox", "id": "r1_4_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "r1_4_image", "label": "Project image"},
     {"type": "text", "id": "r1_4_title", "label": "Project title", "default": "Project Four"},
     {"type": "url", "id": "r1_4_url", "label": "Case study page link"},
+    {"type": "text", "id": "r1_4_category", "label": "Category"},
+    {"type": "textarea", "id": "r1_4_description", "label": "Short description"},
+    {"type": "image_picker", "id": "r1_4_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "r1_4_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "r1_4_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "r1_4_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "r1_4_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 05"},
     {"type": "checkbox", "id": "r1_5_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "r1_5_image", "label": "Project image"},
     {"type": "text", "id": "r1_5_title", "label": "Project title", "default": "Project Five"},
     {"type": "url", "id": "r1_5_url", "label": "Case study page link"},
+    {"type": "text", "id": "r1_5_category", "label": "Category"},
+    {"type": "textarea", "id": "r1_5_description", "label": "Short description"},
+    {"type": "image_picker", "id": "r1_5_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "r1_5_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "r1_5_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "r1_5_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "r1_5_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 06"},
     {"type": "checkbox", "id": "r1_6_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "r1_6_image", "label": "Project image"},
     {"type": "text", "id": "r1_6_title", "label": "Project title", "default": "Project Six"},
     {"type": "url", "id": "r1_6_url", "label": "Case study page link"},
+    {"type": "text", "id": "r1_6_category", "label": "Category"},
+    {"type": "textarea", "id": "r1_6_description", "label": "Short description"},
+    {"type": "image_picker", "id": "r1_6_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "r1_6_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "r1_6_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "r1_6_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "r1_6_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 07"},
     {"type": "checkbox", "id": "r1_7_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "r1_7_image", "label": "Project image"},
     {"type": "text", "id": "r1_7_title", "label": "Project title", "default": "Project Seven"},
     {"type": "url", "id": "r1_7_url", "label": "Case study page link"},
+    {"type": "text", "id": "r1_7_category", "label": "Category"},
+    {"type": "textarea", "id": "r1_7_description", "label": "Short description"},
+    {"type": "image_picker", "id": "r1_7_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "r1_7_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "r1_7_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "r1_7_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "r1_7_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 08"},
     {"type": "checkbox", "id": "r1_8_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "r1_8_image", "label": "Project image"},
     {"type": "text", "id": "r1_8_title", "label": "Project title", "default": "Project Eight"},
     {"type": "url", "id": "r1_8_url", "label": "Case study page link"},
+    {"type": "text", "id": "r1_8_category", "label": "Category"},
+    {"type": "textarea", "id": "r1_8_description", "label": "Short description"},
+    {"type": "image_picker", "id": "r1_8_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "r1_8_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "r1_8_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "r1_8_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "r1_8_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 09"},
     {"type": "checkbox", "id": "r2_1_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "r2_1_image", "label": "Project image"},
     {"type": "text", "id": "r2_1_title", "label": "Project title", "default": "Project Nine"},
     {"type": "url", "id": "r2_1_url", "label": "Case study page link"},
+    {"type": "text", "id": "r2_1_category", "label": "Category"},
+    {"type": "textarea", "id": "r2_1_description", "label": "Short description"},
+    {"type": "image_picker", "id": "r2_1_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "r2_1_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "r2_1_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "r2_1_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "r2_1_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 10"},
     {"type": "checkbox", "id": "r2_2_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "r2_2_image", "label": "Project image"},
     {"type": "text", "id": "r2_2_title", "label": "Project title", "default": "Project Ten"},
     {"type": "url", "id": "r2_2_url", "label": "Case study page link"},
+    {"type": "text", "id": "r2_2_category", "label": "Category"},
+    {"type": "textarea", "id": "r2_2_description", "label": "Short description"},
+    {"type": "image_picker", "id": "r2_2_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "r2_2_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "r2_2_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "r2_2_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "r2_2_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 11"},
     {"type": "checkbox", "id": "r2_3_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "r2_3_image", "label": "Project image"},
     {"type": "text", "id": "r2_3_title", "label": "Project title", "default": "Project Eleven"},
     {"type": "url", "id": "r2_3_url", "label": "Case study page link"},
+    {"type": "text", "id": "r2_3_category", "label": "Category"},
+    {"type": "textarea", "id": "r2_3_description", "label": "Short description"},
+    {"type": "image_picker", "id": "r2_3_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "r2_3_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "r2_3_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "r2_3_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "r2_3_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 12"},
     {"type": "checkbox", "id": "r2_4_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "r2_4_image", "label": "Project image"},
     {"type": "text", "id": "r2_4_title", "label": "Project title", "default": "Project Twelve"},
     {"type": "url", "id": "r2_4_url", "label": "Case study page link"},
+    {"type": "text", "id": "r2_4_category", "label": "Category"},
+    {"type": "textarea", "id": "r2_4_description", "label": "Short description"},
+    {"type": "image_picker", "id": "r2_4_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "r2_4_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "r2_4_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "r2_4_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "r2_4_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 13"},
     {"type": "checkbox", "id": "r2_5_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "r2_5_image", "label": "Project image"},
     {"type": "text", "id": "r2_5_title", "label": "Project title", "default": "Project Thirteen"},
     {"type": "url", "id": "r2_5_url", "label": "Case study page link"},
+    {"type": "text", "id": "r2_5_category", "label": "Category"},
+    {"type": "textarea", "id": "r2_5_description", "label": "Short description"},
+    {"type": "image_picker", "id": "r2_5_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "r2_5_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "r2_5_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "r2_5_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "r2_5_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 14"},
     {"type": "checkbox", "id": "r2_6_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "r2_6_image", "label": "Project image"},
     {"type": "text", "id": "r2_6_title", "label": "Project title", "default": "Project Fourteen"},
     {"type": "url", "id": "r2_6_url", "label": "Case study page link"},
+    {"type": "text", "id": "r2_6_category", "label": "Category"},
+    {"type": "textarea", "id": "r2_6_description", "label": "Short description"},
+    {"type": "image_picker", "id": "r2_6_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "r2_6_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "r2_6_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "r2_6_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "r2_6_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 15"},
     {"type": "checkbox", "id": "r2_7_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "r2_7_image", "label": "Project image"},
     {"type": "text", "id": "r2_7_title", "label": "Project title", "default": "Project Fifteen"},
     {"type": "url", "id": "r2_7_url", "label": "Case study page link"},
+    {"type": "text", "id": "r2_7_category", "label": "Category"},
+    {"type": "textarea", "id": "r2_7_description", "label": "Short description"},
+    {"type": "image_picker", "id": "r2_7_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "r2_7_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "r2_7_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "r2_7_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "r2_7_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 16"},
     {"type": "checkbox", "id": "r2_8_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "r2_8_image", "label": "Project image"},
     {"type": "text", "id": "r2_8_title", "label": "Project title", "default": "Project Sixteen"},
     {"type": "url", "id": "r2_8_url", "label": "Case study page link"},
+    {"type": "text", "id": "r2_8_category", "label": "Category"},
+    {"type": "textarea", "id": "r2_8_description", "label": "Short description"},
+    {"type": "image_picker", "id": "r2_8_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "r2_8_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "r2_8_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "r2_8_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "r2_8_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 17"},
     {"type": "checkbox", "id": "cs_17_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "cs_17_image", "label": "Project image"},
     {"type": "text", "id": "cs_17_title", "label": "Project title"},
     {"type": "url", "id": "cs_17_url", "label": "Case study page link"},
+    {"type": "text", "id": "cs_17_category", "label": "Category"},
+    {"type": "textarea", "id": "cs_17_description", "label": "Short description"},
+    {"type": "image_picker", "id": "cs_17_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "cs_17_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "cs_17_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "cs_17_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "cs_17_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 18"},
     {"type": "checkbox", "id": "cs_18_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "cs_18_image", "label": "Project image"},
     {"type": "text", "id": "cs_18_title", "label": "Project title"},
     {"type": "url", "id": "cs_18_url", "label": "Case study page link"},
+    {"type": "text", "id": "cs_18_category", "label": "Category"},
+    {"type": "textarea", "id": "cs_18_description", "label": "Short description"},
+    {"type": "image_picker", "id": "cs_18_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "cs_18_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "cs_18_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "cs_18_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "cs_18_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 19"},
     {"type": "checkbox", "id": "cs_19_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "cs_19_image", "label": "Project image"},
     {"type": "text", "id": "cs_19_title", "label": "Project title"},
     {"type": "url", "id": "cs_19_url", "label": "Case study page link"},
+    {"type": "text", "id": "cs_19_category", "label": "Category"},
+    {"type": "textarea", "id": "cs_19_description", "label": "Short description"},
+    {"type": "image_picker", "id": "cs_19_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "cs_19_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "cs_19_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "cs_19_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "cs_19_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 20"},
     {"type": "checkbox", "id": "cs_20_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "cs_20_image", "label": "Project image"},
     {"type": "text", "id": "cs_20_title", "label": "Project title"},
     {"type": "url", "id": "cs_20_url", "label": "Case study page link"},
+    {"type": "text", "id": "cs_20_category", "label": "Category"},
+    {"type": "textarea", "id": "cs_20_description", "label": "Short description"},
+    {"type": "image_picker", "id": "cs_20_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "cs_20_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "cs_20_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "cs_20_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "cs_20_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 21"},
     {"type": "checkbox", "id": "cs_21_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "cs_21_image", "label": "Project image"},
     {"type": "text", "id": "cs_21_title", "label": "Project title"},
     {"type": "url", "id": "cs_21_url", "label": "Case study page link"},
+    {"type": "text", "id": "cs_21_category", "label": "Category"},
+    {"type": "textarea", "id": "cs_21_description", "label": "Short description"},
+    {"type": "image_picker", "id": "cs_21_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "cs_21_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "cs_21_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "cs_21_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "cs_21_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 22"},
     {"type": "checkbox", "id": "cs_22_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "cs_22_image", "label": "Project image"},
     {"type": "text", "id": "cs_22_title", "label": "Project title"},
     {"type": "url", "id": "cs_22_url", "label": "Case study page link"},
+    {"type": "text", "id": "cs_22_category", "label": "Category"},
+    {"type": "textarea", "id": "cs_22_description", "label": "Short description"},
+    {"type": "image_picker", "id": "cs_22_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "cs_22_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "cs_22_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "cs_22_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "cs_22_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 23"},
     {"type": "checkbox", "id": "cs_23_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "cs_23_image", "label": "Project image"},
     {"type": "text", "id": "cs_23_title", "label": "Project title"},
     {"type": "url", "id": "cs_23_url", "label": "Case study page link"},
+    {"type": "text", "id": "cs_23_category", "label": "Category"},
+    {"type": "textarea", "id": "cs_23_description", "label": "Short description"},
+    {"type": "image_picker", "id": "cs_23_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "cs_23_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "cs_23_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "cs_23_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "cs_23_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 24"},
     {"type": "checkbox", "id": "cs_24_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "cs_24_image", "label": "Project image"},
     {"type": "text", "id": "cs_24_title", "label": "Project title"},
     {"type": "url", "id": "cs_24_url", "label": "Case study page link"},
+    {"type": "text", "id": "cs_24_category", "label": "Category"},
+    {"type": "textarea", "id": "cs_24_description", "label": "Short description"},
+    {"type": "image_picker", "id": "cs_24_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "cs_24_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "cs_24_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "cs_24_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "cs_24_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 25"},
     {"type": "checkbox", "id": "cs_25_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "cs_25_image", "label": "Project image"},
     {"type": "text", "id": "cs_25_title", "label": "Project title"},
     {"type": "url", "id": "cs_25_url", "label": "Case study page link"},
+    {"type": "text", "id": "cs_25_category", "label": "Category"},
+    {"type": "textarea", "id": "cs_25_description", "label": "Short description"},
+    {"type": "image_picker", "id": "cs_25_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "cs_25_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "cs_25_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "cs_25_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "cs_25_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 26"},
     {"type": "checkbox", "id": "cs_26_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "cs_26_image", "label": "Project image"},
     {"type": "text", "id": "cs_26_title", "label": "Project title"},
     {"type": "url", "id": "cs_26_url", "label": "Case study page link"},
+    {"type": "text", "id": "cs_26_category", "label": "Category"},
+    {"type": "textarea", "id": "cs_26_description", "label": "Short description"},
+    {"type": "image_picker", "id": "cs_26_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "cs_26_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "cs_26_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "cs_26_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "cs_26_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 27"},
     {"type": "checkbox", "id": "cs_27_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "cs_27_image", "label": "Project image"},
     {"type": "text", "id": "cs_27_title", "label": "Project title"},
     {"type": "url", "id": "cs_27_url", "label": "Case study page link"},
+    {"type": "text", "id": "cs_27_category", "label": "Category"},
+    {"type": "textarea", "id": "cs_27_description", "label": "Short description"},
+    {"type": "image_picker", "id": "cs_27_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "cs_27_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "cs_27_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "cs_27_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "cs_27_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 28"},
     {"type": "checkbox", "id": "cs_28_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "cs_28_image", "label": "Project image"},
     {"type": "text", "id": "cs_28_title", "label": "Project title"},
     {"type": "url", "id": "cs_28_url", "label": "Case study page link"},
+    {"type": "text", "id": "cs_28_category", "label": "Category"},
+    {"type": "textarea", "id": "cs_28_description", "label": "Short description"},
+    {"type": "image_picker", "id": "cs_28_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "cs_28_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "cs_28_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "cs_28_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "cs_28_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 29"},
     {"type": "checkbox", "id": "cs_29_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "cs_29_image", "label": "Project image"},
     {"type": "text", "id": "cs_29_title", "label": "Project title"},
     {"type": "url", "id": "cs_29_url", "label": "Case study page link"},
+    {"type": "text", "id": "cs_29_category", "label": "Category"},
+    {"type": "textarea", "id": "cs_29_description", "label": "Short description"},
+    {"type": "image_picker", "id": "cs_29_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "cs_29_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "cs_29_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "cs_29_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "cs_29_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 30"},
     {"type": "checkbox", "id": "cs_30_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "cs_30_image", "label": "Project image"},
     {"type": "text", "id": "cs_30_title", "label": "Project title"},
     {"type": "url", "id": "cs_30_url", "label": "Case study page link"},
+    {"type": "text", "id": "cs_30_category", "label": "Category"},
+    {"type": "textarea", "id": "cs_30_description", "label": "Short description"},
+    {"type": "image_picker", "id": "cs_30_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "cs_30_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "cs_30_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "cs_30_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "cs_30_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 31"},
     {"type": "checkbox", "id": "cs_31_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "cs_31_image", "label": "Project image"},
     {"type": "text", "id": "cs_31_title", "label": "Project title"},
     {"type": "url", "id": "cs_31_url", "label": "Case study page link"},
+    {"type": "text", "id": "cs_31_category", "label": "Category"},
+    {"type": "textarea", "id": "cs_31_description", "label": "Short description"},
+    {"type": "image_picker", "id": "cs_31_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "cs_31_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "cs_31_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "cs_31_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "cs_31_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 32"},
     {"type": "checkbox", "id": "cs_32_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "cs_32_image", "label": "Project image"},
     {"type": "text", "id": "cs_32_title", "label": "Project title"},
     {"type": "url", "id": "cs_32_url", "label": "Case study page link"},
+    {"type": "text", "id": "cs_32_category", "label": "Category"},
+    {"type": "textarea", "id": "cs_32_description", "label": "Short description"},
+    {"type": "image_picker", "id": "cs_32_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "cs_32_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "cs_32_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "cs_32_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "cs_32_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 33"},
     {"type": "checkbox", "id": "cs_33_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "cs_33_image", "label": "Project image"},
     {"type": "text", "id": "cs_33_title", "label": "Project title"},
     {"type": "url", "id": "cs_33_url", "label": "Case study page link"},
+    {"type": "text", "id": "cs_33_category", "label": "Category"},
+    {"type": "textarea", "id": "cs_33_description", "label": "Short description"},
+    {"type": "image_picker", "id": "cs_33_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "cs_33_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "cs_33_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "cs_33_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "cs_33_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 34"},
     {"type": "checkbox", "id": "cs_34_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "cs_34_image", "label": "Project image"},
     {"type": "text", "id": "cs_34_title", "label": "Project title"},
     {"type": "url", "id": "cs_34_url", "label": "Case study page link"},
+    {"type": "text", "id": "cs_34_category", "label": "Category"},
+    {"type": "textarea", "id": "cs_34_description", "label": "Short description"},
+    {"type": "image_picker", "id": "cs_34_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "cs_34_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "cs_34_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "cs_34_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "cs_34_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 35"},
     {"type": "checkbox", "id": "cs_35_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "cs_35_image", "label": "Project image"},
     {"type": "text", "id": "cs_35_title", "label": "Project title"},
     {"type": "url", "id": "cs_35_url", "label": "Case study page link"},
+    {"type": "text", "id": "cs_35_category", "label": "Category"},
+    {"type": "textarea", "id": "cs_35_description", "label": "Short description"},
+    {"type": "image_picker", "id": "cs_35_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "cs_35_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "cs_35_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "cs_35_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "cs_35_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 36"},
     {"type": "checkbox", "id": "cs_36_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "cs_36_image", "label": "Project image"},
     {"type": "text", "id": "cs_36_title", "label": "Project title"},
     {"type": "url", "id": "cs_36_url", "label": "Case study page link"},
+    {"type": "text", "id": "cs_36_category", "label": "Category"},
+    {"type": "textarea", "id": "cs_36_description", "label": "Short description"},
+    {"type": "image_picker", "id": "cs_36_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "cs_36_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "cs_36_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "cs_36_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "cs_36_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 37"},
     {"type": "checkbox", "id": "cs_37_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "cs_37_image", "label": "Project image"},
     {"type": "text", "id": "cs_37_title", "label": "Project title"},
     {"type": "url", "id": "cs_37_url", "label": "Case study page link"},
+    {"type": "text", "id": "cs_37_category", "label": "Category"},
+    {"type": "textarea", "id": "cs_37_description", "label": "Short description"},
+    {"type": "image_picker", "id": "cs_37_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "cs_37_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "cs_37_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "cs_37_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "cs_37_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 38"},
     {"type": "checkbox", "id": "cs_38_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "cs_38_image", "label": "Project image"},
     {"type": "text", "id": "cs_38_title", "label": "Project title"},
     {"type": "url", "id": "cs_38_url", "label": "Case study page link"},
+    {"type": "text", "id": "cs_38_category", "label": "Category"},
+    {"type": "textarea", "id": "cs_38_description", "label": "Short description"},
+    {"type": "image_picker", "id": "cs_38_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "cs_38_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "cs_38_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "cs_38_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "cs_38_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 39"},
     {"type": "checkbox", "id": "cs_39_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "cs_39_image", "label": "Project image"},
     {"type": "text", "id": "cs_39_title", "label": "Project title"},
     {"type": "url", "id": "cs_39_url", "label": "Case study page link"},
+    {"type": "text", "id": "cs_39_category", "label": "Category"},
+    {"type": "textarea", "id": "cs_39_description", "label": "Short description"},
+    {"type": "image_picker", "id": "cs_39_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "cs_39_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "cs_39_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "cs_39_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "cs_39_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Case study 40"},
     {"type": "checkbox", "id": "cs_40_show", "label": "Show this case study", "default": true},
     {"type": "image_picker", "id": "cs_40_image", "label": "Project image"},
     {"type": "text", "id": "cs_40_title", "label": "Project title"},
     {"type": "url", "id": "cs_40_url", "label": "Case study page link"},
+    {"type": "text", "id": "cs_40_category", "label": "Category"},
+    {"type": "textarea", "id": "cs_40_description", "label": "Short description"},
+    {"type": "image_picker", "id": "cs_40_gallery_2", "label": "Gallery image 2"},
+    {"type": "image_picker", "id": "cs_40_gallery_3", "label": "Gallery image 3"},
+    {"type": "image_picker", "id": "cs_40_gallery_4", "label": "Gallery image 4"},
+    {"type": "image_picker", "id": "cs_40_gallery_5", "label": "Gallery image 5"},
+    {"type": "image_picker", "id": "cs_40_gallery_6", "label": "Gallery image 6"},
 
     {"type": "header", "content": "Spacing"},
     {"type": "range", "id": "padding_top", "label": "Desktop top padding", "min": 0, "max": 180, "step": 10, "unit": "px", "default": 60},
@@ -1071,9 +3067,13 @@
     {"type": "color", "id": "card_background", "label": "Card background", "default": "#141414"},
     {"type": "color", "id": "text_color", "label": "Primary text", "default": "#F5F5F2"},
     {"type": "color", "id": "muted_color", "label": "Secondary text", "default": "#AAA9A3"},
-    {"type": "color", "id": "accent_color", "label": "Accent", "default": "#E8DDCA"},
+    {"type": "color", "id": "gallery_accent", "label": "Amber accent", "default": "#F5B63C"},
     {"type": "color", "id": "line_color", "label": "Borders", "default": "#30302E"}
   ],
-  "presets": [{ "name": "Case Study Grid" }]
+  "presets": [
+    {
+      "name": "Featured Case Studies"
+    }
+  ]
 }
 {% endschema %}
