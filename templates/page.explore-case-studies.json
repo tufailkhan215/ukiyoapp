@@ -382,12 +382,172 @@
       "block_order": [
         "ai_gen_block_130bb96_Q8xCtH"
       ],
+      "disabled": true,
       "settings": {}
+    },
+    "featured_work_BjQHD8": {
+      "type": "featured-work",
+      "blocks": {
+        "project_pt6aNC": {
+          "type": "project",
+          "settings": {
+            "category": "Brand Partnership",
+            "title": "POLAROID",
+            "description": "Nostalgic brand activation campaign bridging classic aesthetics with contemporary audiences."
+          }
+        },
+        "project_nAWREr": {
+          "type": "project",
+          "settings": {
+            "category": "Adventure Travel",
+            "title": "WANDRD",
+            "description": "Multi-platform content strategy capturing the spirit of adventure travel."
+          }
+        },
+        "project_9yjgY4": {
+          "type": "project",
+          "settings": {
+            "category": "Energy & Lifestyle",
+            "title": "MONSTER",
+            "description": "High-energy brand content and experiential marketing campaigns."
+          }
+        },
+        "project_mfdyM4": {
+          "type": "project",
+          "settings": {
+            "category": "Fashion & Lifestyle",
+            "title": "POPPY.CALIFORNIA",
+            "description": "California-inspired brand storytelling and visual identity development."
+          }
+        },
+        "project_HyMk3T": {
+          "type": "project",
+          "settings": {
+            "category": "E-commerce",
+            "title": "FURTRADERS",
+            "description": "Complete brand refresh with content strategy and e-commerce optimization."
+          }
+        },
+        "project_DLg6WE": {
+          "type": "project",
+          "settings": {
+            "category": "Lifestyle & Wellness",
+            "title": "SUPRAMOOD",
+            "description": "Comprehensive brand strategy with podcast series and affiliate program."
+          }
+        },
+        "project_qWFmkC": {
+          "type": "project",
+          "settings": {
+            "category": "Technology",
+            "title": "DJI",
+            "description": "Aerial photography and drone content creation partnership."
+          }
+        },
+        "project_QeUUR8": {
+          "type": "project",
+          "settings": {
+            "category": "Streetwear",
+            "title": "CLSC",
+            "description": "Urban streetwear brand activation and cultural marketing."
+          }
+        },
+        "project_yJYDtj": {
+          "type": "project",
+          "settings": {
+            "category": "Travel & Experience",
+            "title": "MAVERICK HELICOPTERS",
+            "description": "Luxury travel experience content and brand storytelling."
+          }
+        },
+        "project_YcEgNT": {
+          "type": "project",
+          "settings": {
+            "category": "Media & Culture",
+            "title": "HIGHSNOBIETY",
+            "description": "Editorial content partnership and cultural brand activation."
+          }
+        },
+        "project_eHNDLV": {
+          "type": "project",
+          "settings": {
+            "category": "Culinary",
+            "title": "JI RESTAURANT | BALI INDONESIA",
+            "description": "Balinese fine dining experience captured through visual storytelling."
+          }
+        },
+        "project_GBnggf": {
+          "type": "project",
+          "settings": {
+            "category": "Hospitality",
+            "title": "SATORI | MAUI",
+            "description": "Hawaiian wellness retreat brand development and content creation."
+          }
+        },
+        "project_6GtyVW": {
+          "type": "project",
+          "settings": {
+            "category": "Culinary",
+            "title": "CHAI'BA | BALI INDONESIA",
+            "description": "Indian-inspired cuisine brand story and visual identity."
+          }
+        },
+        "project_ra8Dbj": {
+          "type": "project",
+          "settings": {
+            "category": "Hospitality",
+            "title": "TWO HANDS | AUSTIN TEXAS",
+            "description": "Austin café brand activation and social media content strategy."
+          }
+        },
+        "project_AkLCVt": {
+          "type": "project",
+          "settings": {
+            "category": "Culinary",
+            "title": "DAKAN | CALIFORNIA",
+            "description": "California fusion restaurant brand development and photography."
+          }
+        },
+        "project_FXthd6": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "HARDROCK | CALIFORNIA",
+            "description": "Iconic entertainment venue content creation and brand activation."
+          }
+        }
+      },
+      "block_order": [
+        "project_pt6aNC",
+        "project_nAWREr",
+        "project_9yjgY4",
+        "project_mfdyM4",
+        "project_HyMk3T",
+        "project_DLg6WE",
+        "project_qWFmkC",
+        "project_QeUUR8",
+        "project_yJYDtj",
+        "project_YcEgNT",
+        "project_eHNDLV",
+        "project_GBnggf",
+        "project_6GtyVW",
+        "project_ra8Dbj",
+        "project_AkLCVt",
+        "project_FXthd6"
+      ],
+      "name": "Featured Work",
+      "settings": {
+        "strap": "(Our Work)",
+        "title_before": "Featured",
+        "title_gradient": "Projects",
+        "filters_text": "All\nBrand Partnership\nAdventure Travel\nEnergy & Lifestyle\nFashion & Lifestyle\nCulinary\nHospitality"
+      }
     }
   },
   "order": [
     "17904652197f88f709",
     "main",
-    "1790466884a5d64223"
+    "1790466884a5d64223",
+    "featured_work_BjQHD8"
   ]
 }
