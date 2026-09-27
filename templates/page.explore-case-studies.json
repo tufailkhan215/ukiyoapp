@@ -652,9 +652,14 @@
         "project_RqfdN9": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-09-26_at_8.45.19_PM.png",
             "category": "Entertainment",
             "title": "Elixart",
             "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/Screenshot_2026-09-26_at_8.46.25_PM.png",
+            "gallery_image_3": "shopify://shop_images/Screenshot_2026-09-26_at_10.10.44_PM.png",
+            "gallery_image_4": "shopify://shop_images/Screenshot_2026-09-26_at_10.11.26_PM.png",
+            "gallery_image_5": "shopify://shop_images/Screenshot_2026-09-26_at_10.12.02_PM.png",
             "case_study_link": ""
           }
         },
