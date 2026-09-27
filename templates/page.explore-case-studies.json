@@ -755,6 +755,33 @@
             "description": "Iconic entertainment venue content creation and brand activation.",
             "case_study_link": ""
           }
+        },
+        "project_jpAPxX": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "Sweet Spirit Tattoo",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_YVTrqA": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "Hotel Tugu Bali",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_p4QRyP": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "Sweet Spirit Tattoo",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
         }
       },
       "block_order": [
@@ -797,7 +824,10 @@
         "project_JLQcrF",
         "project_4tGBd7",
         "project_C6PPLV",
-        "project_HEzfdn"
+        "project_HEzfdn",
+        "project_jpAPxX",
+        "project_YVTrqA",
+        "project_p4QRyP"
       ],
       "name": "Featured Work",
       "settings": {
