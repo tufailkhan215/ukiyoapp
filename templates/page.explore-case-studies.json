@@ -417,9 +417,14 @@
         "project_9yjgY4": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-09-26_at_8.32.00_PM.png",
             "category": "Culinary",
             "title": "Sherwood",
             "description": "High-energy brand content and experiential marketing campaigns.",
+            "gallery_image_2": "shopify://shop_images/Screenshot_2026-09-26_at_8.32.20_PM.png",
+            "gallery_image_3": "shopify://shop_images/Screenshot_2026-09-26_at_8.32.25_PM.png",
+            "gallery_image_4": "shopify://shop_images/Screenshot_2026-09-26_at_8.32.59_PM.png",
+            "gallery_image_5": "shopify://shop_images/Screenshot_2026-09-26_at_8.33.06_PM.png",
             "case_study_link": ""
           }
         },
