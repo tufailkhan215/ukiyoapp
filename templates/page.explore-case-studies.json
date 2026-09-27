@@ -540,9 +540,14 @@
         "project_FXthd6": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/d45bbecb5e9a8d33d14f0dee170e73a2-xxlarge_1.webp",
             "category": "Entertainment",
             "title": "HARDROCK | CALIFORNIA",
             "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/b239e0e71cd061bb620dcc00b509f1a5-xxlarge.webp",
+            "gallery_image_3": "shopify://shop_images/bad03e5606c15803950038289220da76-xxlarge.webp",
+            "gallery_image_4": "shopify://shop_images/1dbd7f815f1d8f5783990f5ce214272f-xxlarge.webp",
+            "gallery_image_5": "shopify://shop_images/52bb1c1cac780d48192a94f7942af365-xxlarge.webp",
             "case_study_link": ""
           }
         },
