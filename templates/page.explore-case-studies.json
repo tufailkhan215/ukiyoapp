@@ -391,10 +391,14 @@
         "project_pt6aNC": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/DSCF726w2.jpg",
-            "category": "Brand Partnership",
+            "image": "shopify://shop_images/gere195_1.png",
+            "category": "California89",
             "title": "123213",
             "description": "Nostalgic brand activation campaign bridging classic aesthetics with contemporary audiences.",
+            "gallery_image_2": "shopify://shop_images/cali-cinematic_4.png",
+            "gallery_image_3": "shopify://shop_images/gere164.png",
+            "gallery_image_4": "shopify://shop_images/gere1118.png",
+            "gallery_image_5": "shopify://shop_images/cali-cinematic_5.png",
             "case_study_link": "shopify://pages/copy-of-case-study"
           }
         },
