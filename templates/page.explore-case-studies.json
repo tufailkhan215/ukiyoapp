@@ -525,9 +525,15 @@
         "project_AkLCVt": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-03-19_at_7.05.32_AM_1.webp",
             "category": "Culinary",
             "title": "DAKAN | CALIFORNIA",
             "description": "California fusion restaurant brand development and photography.",
+            "gallery_image_2": "shopify://shop_images/Screenshot_2025-03-19_at_7.05.52_AM.webp",
+            "gallery_image_3": "shopify://shop_images/Screenshot_2025-03-19_at_7.06.02_AM.webp",
+            "gallery_image_4": "shopify://shop_images/DSCF9718.webp",
+            "gallery_image_5": "shopify://shop_images/Screenshot_2025-03-19_at_7.06.11_AM.webp",
+            "gallery_image_6": "shopify://shop_images/Screenshot_2025-03-19_at_7.06.07_AM.webp",
             "case_study_link": ""
           }
         },
