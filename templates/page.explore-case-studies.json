@@ -737,6 +737,24 @@
             "description": "Iconic entertainment venue content creation and brand activation.",
             "case_study_link": ""
           }
+        },
+        "project_C6PPLV": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "Limitless Fitness Gym",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_HEzfdn": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "Sweet Spirit Tattoo",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
         }
       },
       "block_order": [
@@ -777,7 +795,9 @@
         "project_NeyYJr",
         "project_FzHzRw",
         "project_JLQcrF",
-        "project_4tGBd7"
+        "project_4tGBd7",
+        "project_C6PPLV",
+        "project_HEzfdn"
       ],
       "name": "Featured Work",
       "settings": {
