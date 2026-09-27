@@ -625,9 +625,13 @@
         "project_hYPYj6": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/IMG_3161_2.webp",
             "category": "Entertainment",
             "title": "Monster",
             "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/DSCF8438_b1705946-b7fe-4958-8daf-367071375427.webp",
+            "gallery_image_3": "shopify://shop_images/DSCF7929_1c3a5520-bb6b-45e4-b4e4-e16c014659eb.webp",
+            "gallery_image_4": "shopify://shop_images/253B9119_3920d7d6-c053-426e-96bc-3284ac078af7.webp",
             "case_study_link": ""
           }
         },
