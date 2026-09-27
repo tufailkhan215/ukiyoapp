@@ -710,6 +710,33 @@
             "description": "Iconic entertainment venue content creation and brand activation.",
             "case_study_link": ""
           }
+        },
+        "project_FzHzRw": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "CHAI'BA | BALI INDONESIA",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_JLQcrF": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "FINISH LINE",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_4tGBd7": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "ADIDAS",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
         }
       },
       "block_order": [
@@ -747,7 +774,10 @@
         "project_TYzHAF",
         "project_DWw6UC",
         "project_UUeUir",
-        "project_NeyYJr"
+        "project_NeyYJr",
+        "project_FzHzRw",
+        "project_JLQcrF",
+        "project_4tGBd7"
       ],
       "name": "Featured Work",
       "settings": {
