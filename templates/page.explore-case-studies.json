@@ -462,9 +462,15 @@
         "project_QeUUR8": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-09-26_at_8.30.16_PM.png",
             "category": "Streetwear",
             "title": "Bear River Glassworks",
             "description": "Urban streetwear brand activation and cultural marketing.",
+            "gallery_image_2": "shopify://shop_images/Screenshot_2026-09-26_at_8.30.48_PM.png",
+            "gallery_image_3": "shopify://shop_images/Screenshot_2026-09-26_at_8.31.02_PM.png",
+            "gallery_image_4": "shopify://shop_images/Screenshot_2026-09-26_at_8.31.14_PM.png",
+            "gallery_image_5": "shopify://shop_images/Screenshot_2026-09-26_at_8.31.21_PM.png",
+            "gallery_image_6": "shopify://shop_images/Screenshot_2026-09-26_at_8.31.35_PM.png",
             "case_study_link": ""
           }
         },
