@@ -716,9 +716,13 @@
         "project_jGHjX4": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/DSC_29323129_1.webp",
             "category": "Entertainment",
             "title": "CLSC",
             "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/DSC_2547_45f68a5a-4045-4580-8c94-b1271e393fb8.jpg",
+            "gallery_image_3": "shopify://shop_images/DSC_2396_0fb87362-a661-4a73-b171-4640a3e823d9.webp",
+            "gallery_image_4": "shopify://shop_images/patrick.castillophoto8_4c6d424a-e4bd-474b-b977-d140845fe68a.webp",
             "case_study_link": ""
           }
         },
