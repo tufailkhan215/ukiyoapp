@@ -406,7 +406,7 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/Screenshot_2026-09-26_at_7.31.52_PM.png",
-            "category": "Aniwa S",
+            "category": "Lifestyle & Wellness",
             "title": "Aniwa",
             "description": "Multi-platform content strategy capturing the spirit of adventure travel.",
             "gallery_image_2": "shopify://shop_images/Screenshot_2026-09-26_at_7.32.42_PM.png",
@@ -417,8 +417,8 @@
         "project_9yjgY4": {
           "type": "project",
           "settings": {
-            "category": "Energy & Lifestyle",
-            "title": "MONSTER",
+            "category": "Culinary",
+            "title": "Sherwood",
             "description": "High-energy brand content and experiential marketing campaigns.",
             "case_study_link": ""
           }
@@ -426,8 +426,8 @@
         "project_mfdyM4": {
           "type": "project",
           "settings": {
-            "category": "Fashion & Lifestyle",
-            "title": "POPPY.CALIFORNIA",
+            "category": "Travel & Experience",
+            "title": "Water House",
             "description": "California-inspired brand storytelling and visual identity development.",
             "case_study_link": ""
           }
@@ -436,7 +436,7 @@
           "type": "project",
           "settings": {
             "category": "E-commerce",
-            "title": "FURTRADERS",
+            "title": "Back to Earth",
             "description": "Complete brand refresh with content strategy and e-commerce optimization.",
             "case_study_link": ""
           }
@@ -445,7 +445,7 @@
           "type": "project",
           "settings": {
             "category": "Lifestyle & Wellness",
-            "title": "SUPRAMOOD",
+            "title": "People Of The Forest",
             "description": "Comprehensive brand strategy with podcast series and affiliate program.",
             "case_study_link": ""
           }
@@ -454,7 +454,7 @@
           "type": "project",
           "settings": {
             "category": "Technology",
-            "title": "DJI",
+            "title": "Crystal Empire Gems",
             "description": "Aerial photography and drone content creation partnership.",
             "case_study_link": ""
           }
@@ -463,7 +463,7 @@
           "type": "project",
           "settings": {
             "category": "Streetwear",
-            "title": "CLSC",
+            "title": "Bear River Glassworks",
             "description": "Urban streetwear brand activation and cultural marketing.",
             "case_study_link": ""
           }
@@ -472,7 +472,7 @@
           "type": "project",
           "settings": {
             "category": "Travel & Experience",
-            "title": "MAVERICK HELICOPTERS",
+            "title": "Academy of Oracle Arts",
             "description": "Luxury travel experience content and brand storytelling.",
             "case_study_link": ""
           }
@@ -481,7 +481,7 @@
           "type": "project",
           "settings": {
             "category": "Media & Culture",
-            "title": "HIGHSNOBIETY",
+            "title": "WEARECOT",
             "description": "Editorial content partnership and cultural brand activation.",
             "case_study_link": ""
           }
@@ -490,7 +490,7 @@
           "type": "project",
           "settings": {
             "category": "Culinary",
-            "title": "JI RESTAURANT | BALI INDONESIA",
+            "title": "Pinnacle Health Nursing",
             "description": "Balinese fine dining experience captured through visual storytelling.",
             "case_study_link": ""
           }
@@ -499,7 +499,7 @@
           "type": "project",
           "settings": {
             "category": "Hospitality",
-            "title": "SATORI | MAUI",
+            "title": "Friar Tucks",
             "description": "Hawaiian wellness retreat brand development and content creation.",
             "case_study_link": ""
           }
@@ -508,7 +508,7 @@
           "type": "project",
           "settings": {
             "category": "Culinary",
-            "title": "CHAI'BA | BALI INDONESIA",
+            "title": "Pachamana",
             "description": "Indian-inspired cuisine brand story and visual identity.",
             "case_study_link": ""
           }
@@ -517,7 +517,7 @@
           "type": "project",
           "settings": {
             "category": "Hospitality",
-            "title": "TWO HANDS | AUSTIN TEXAS",
+            "title": "The Wild Land Experience",
             "description": "Austin café brand activation and social media content strategy.",
             "case_study_link": ""
           }
