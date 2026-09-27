@@ -616,7 +616,97 @@
           "type": "project",
           "settings": {
             "category": "Entertainment",
-            "title": "Poppy.California",
+            "title": "Furtraders",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_RqfdN9": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "Elixart",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_tpU8xx": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "Supramood",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_9QNynV": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "DJI",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_TzqCRN": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "The Hundreds",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_jGHjX4": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "CLSC",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_anQMRq": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "TWO HANDS | AUSTIN TEXAS",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_TYzHAF": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "MAVERICK HELICOPTERS",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_DWw6UC": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "HIGHSNOBIETY",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_UUeUir": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "JI RESTAURANT | BALI INDONESIA",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_NeyYJr": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "SATORI | MAUI",
             "description": "Iconic entertainment venue content creation and brand activation.",
             "case_study_link": ""
           }
@@ -647,7 +737,17 @@
         "project_PVJxxL",
         "project_hYPYj6",
         "project_zttNaF",
-        "project_KngQzB"
+        "project_KngQzB",
+        "project_RqfdN9",
+        "project_tpU8xx",
+        "project_9QNynV",
+        "project_TzqCRN",
+        "project_jGHjX4",
+        "project_anQMRq",
+        "project_TYzHAF",
+        "project_DWw6UC",
+        "project_UUeUir",
+        "project_NeyYJr"
       ],
       "name": "Featured Work",
       "settings": {
