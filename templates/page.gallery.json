@@ -84,9 +84,9 @@
             "title": "Creative Asset Creation",
             "description": "We create photography and video that showcase your value, tell your story, and bring consistency to your brand across your website, social channels, and campaigns. Make your brand stand out and give people a reason to choose it.",
             "stat1_number": "500+",
-            "stat1_label": "Shoots",
+            "stat1_label": "Shoots Completed",
             "stat2_number": "50+",
-            "stat2_label": "Brands"
+            "stat2_label": "Brands Served"
           }
         },
         "card_C6xjfG": {
@@ -96,10 +96,10 @@
             "icon": "video",
             "title": "Email Marketing & Automation",
             "description": "Turn interest into action and keep customers coming back. We create targeted email campaigns and automated follow-ups that nurture leads, drive repeat business, and keep your brand top of mind without the manual work.",
-            "stat1_number": "200+",
-            "stat1_label": "Videos",
-            "stat2_number": "10M+",
-            "stat2_label": "Views"
+            "stat1_number": "15+",
+            "stat1_label": "Core Email Flow Types",
+            "stat2_number": "2 weeks",
+            "stat2_label": "Typical Setup Window"
           }
         },
         "card_AFzNET": {
@@ -109,10 +109,10 @@
             "icon": "palette",
             "title": "SEO & Search Visibility",
             "description": "Get found by people already looking for what you offer.\nWe optimize your website and content around the searches that matter to your business working to improve keyword rankings, attract relevant traffic, and connect potential customers with your offer.",
-            "stat1_number": "100+",
-            "stat1_label": "Campaigns",
-            "stat2_number": "30%",
-            "stat2_label": "Avg ROI Lift"
+            "stat1_number": "20+",
+            "stat1_label": "SEO Articles per Month",
+            "stat2_number": "OPTIMAL",
+            "stat2_label": "Content Strategy"
           }
         },
         "card_399gqp": {
@@ -122,10 +122,10 @@
             "icon": "target",
             "title": "AI Agent Implementation",
             "description": "Less repetitive work. More time for what matters.\nWe implement AI agents around your business needs to support customer inquiries, lead qualification, and routine workflows helping your team respond faster and spend less time on repetitive tasks.",
-            "stat1_number": "75+",
-            "stat1_label": "Events",
-            "stat2_number": "25+",
-            "stat2_label": "Countries"
+            "stat1_number": "24/7",
+            "stat1_label": "Automated Availability",
+            "stat2_number": "Brand-Trained",
+            "stat2_label": "Custom AI Agents"
           }
         }
       },
