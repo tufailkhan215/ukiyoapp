@@ -391,9 +391,11 @@
         "project_pt6aNC": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/DSCF726w2.jpg",
             "category": "Brand Partnership",
             "title": "123213",
-            "description": "Nostalgic brand activation campaign bridging classic aesthetics with contemporary audiences."
+            "description": "Nostalgic brand activation campaign bridging classic aesthetics with contemporary audiences.",
+            "case_study_link": "shopify://pages/copy-of-case-study"
           }
         },
         "project_nAWREr": {
@@ -401,7 +403,8 @@
           "settings": {
             "category": "Adventure Travel",
             "title": "WANDRD",
-            "description": "Multi-platform content strategy capturing the spirit of adventure travel."
+            "description": "Multi-platform content strategy capturing the spirit of adventure travel.",
+            "case_study_link": ""
           }
         },
         "project_9yjgY4": {
@@ -409,7 +412,8 @@
           "settings": {
             "category": "Energy & Lifestyle",
             "title": "MONSTER",
-            "description": "High-energy brand content and experiential marketing campaigns."
+            "description": "High-energy brand content and experiential marketing campaigns.",
+            "case_study_link": ""
           }
         },
         "project_mfdyM4": {
@@ -417,7 +421,8 @@
           "settings": {
             "category": "Fashion & Lifestyle",
             "title": "POPPY.CALIFORNIA",
-            "description": "California-inspired brand storytelling and visual identity development."
+            "description": "California-inspired brand storytelling and visual identity development.",
+            "case_study_link": ""
           }
         },
         "project_HyMk3T": {
@@ -425,7 +430,8 @@
           "settings": {
             "category": "E-commerce",
             "title": "FURTRADERS",
-            "description": "Complete brand refresh with content strategy and e-commerce optimization."
+            "description": "Complete brand refresh with content strategy and e-commerce optimization.",
+            "case_study_link": ""
           }
         },
         "project_DLg6WE": {
@@ -433,7 +439,8 @@
           "settings": {
             "category": "Lifestyle & Wellness",
             "title": "SUPRAMOOD",
-            "description": "Comprehensive brand strategy with podcast series and affiliate program."
+            "description": "Comprehensive brand strategy with podcast series and affiliate program.",
+            "case_study_link": ""
           }
         },
         "project_qWFmkC": {
@@ -441,7 +448,8 @@
           "settings": {
             "category": "Technology",
             "title": "DJI",
-            "description": "Aerial photography and drone content creation partnership."
+            "description": "Aerial photography and drone content creation partnership.",
+            "case_study_link": ""
           }
         },
         "project_QeUUR8": {
@@ -449,7 +457,8 @@
           "settings": {
             "category": "Streetwear",
             "title": "CLSC",
-            "description": "Urban streetwear brand activation and cultural marketing."
+            "description": "Urban streetwear brand activation and cultural marketing.",
+            "case_study_link": ""
           }
         },
         "project_yJYDtj": {
@@ -457,7 +466,8 @@
           "settings": {
             "category": "Travel & Experience",
             "title": "MAVERICK HELICOPTERS",
-            "description": "Luxury travel experience content and brand storytelling."
+            "description": "Luxury travel experience content and brand storytelling.",
+            "case_study_link": ""
           }
         },
         "project_YcEgNT": {
@@ -465,7 +475,8 @@
           "settings": {
             "category": "Media & Culture",
             "title": "HIGHSNOBIETY",
-            "description": "Editorial content partnership and cultural brand activation."
+            "description": "Editorial content partnership and cultural brand activation.",
+            "case_study_link": ""
           }
         },
         "project_eHNDLV": {
@@ -473,7 +484,8 @@
           "settings": {
             "category": "Culinary",
             "title": "JI RESTAURANT | BALI INDONESIA",
-            "description": "Balinese fine dining experience captured through visual storytelling."
+            "description": "Balinese fine dining experience captured through visual storytelling.",
+            "case_study_link": ""
           }
         },
         "project_GBnggf": {
@@ -481,7 +493,8 @@
           "settings": {
             "category": "Hospitality",
             "title": "SATORI | MAUI",
-            "description": "Hawaiian wellness retreat brand development and content creation."
+            "description": "Hawaiian wellness retreat brand development and content creation.",
+            "case_study_link": ""
           }
         },
         "project_6GtyVW": {
@@ -489,7 +502,8 @@
           "settings": {
             "category": "Culinary",
             "title": "CHAI'BA | BALI INDONESIA",
-            "description": "Indian-inspired cuisine brand story and visual identity."
+            "description": "Indian-inspired cuisine brand story and visual identity.",
+            "case_study_link": ""
           }
         },
         "project_ra8Dbj": {
@@ -497,7 +511,8 @@
           "settings": {
             "category": "Hospitality",
             "title": "TWO HANDS | AUSTIN TEXAS",
-            "description": "Austin café brand activation and social media content strategy."
+            "description": "Austin café brand activation and social media content strategy.",
+            "case_study_link": ""
           }
         },
         "project_AkLCVt": {
@@ -505,7 +520,8 @@
           "settings": {
             "category": "Culinary",
             "title": "DAKAN | CALIFORNIA",
-            "description": "California fusion restaurant brand development and photography."
+            "description": "California fusion restaurant brand development and photography.",
+            "case_study_link": ""
           }
         },
         "project_FXthd6": {
@@ -513,7 +529,8 @@
           "settings": {
             "category": "Entertainment",
             "title": "HARDROCK | CALIFORNIA",
-            "description": "Iconic entertainment venue content creation and brand activation."
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
           }
         }
       },
