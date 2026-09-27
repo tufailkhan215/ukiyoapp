@@ -623,6 +623,7 @@
             "gallery_image_2": "shopify://shop_images/66CA9907-C3B0-4F4E-BE13-A560D334D306.webp",
             "gallery_image_3": "shopify://shop_images/IMG_4056.webp",
             "gallery_image_4": "shopify://shop_images/1E52A00A-EC09-4E56-AD55-09BA728C7D2D_50765e59-07ad-4eb8-895c-c969ba57b172.jpg",
+            "gallery_image_5": "shopify://shop_images/IMG_6409_19ea6b19-71f9-44d3-b7c4-8aa62066599a.webp",
             "case_study_link": ""
           }
         },
@@ -679,9 +680,13 @@
         "project_tpU8xx": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/70fe9708bae8fa59ceb016233de78348-xxlarge_93d1d8c7-9de0-4fae-a582-5cf3fecc50e8.webp",
             "category": "Entertainment",
             "title": "Supramood",
             "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/c7ceb8060a16e9c40b0989d7e31b3921-xxlarge_5d0a2be4-686c-41d4-8d99-d4369a32bbeb.webp",
+            "gallery_image_3": "shopify://shop_images/5fec0ac657f0b96ee14ef5886cb9b06e-xxlarge_2.webp",
+            "gallery_image_4": "shopify://shop_images/299c23ec647f9f4557d2c04c30cc16a6-xxlarge.webp",
             "case_study_link": ""
           }
         },
