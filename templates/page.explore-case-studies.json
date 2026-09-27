@@ -574,9 +574,15 @@
         "project_paMYUg": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-09-26_at_8.38.43_PM.png",
             "category": "Entertainment",
             "title": "Reggae On The River",
             "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/Screenshot_2026-09-26_at_8.39.18_PM.png",
+            "gallery_image_3": "shopify://shop_images/Screenshot_2026-09-26_at_8.40.25_PM.png",
+            "gallery_image_4": "shopify://shop_images/Screenshot_2026-09-26_at_8.40.01_PM.png",
+            "gallery_image_5": "shopify://shop_images/Screenshot_2026-09-26_at_8.38.50_PM.png",
+            "gallery_image_6": "shopify://shop_images/Screenshot_2026-09-26_at_8.39.25_PM.png",
             "case_study_link": ""
           }
         },
