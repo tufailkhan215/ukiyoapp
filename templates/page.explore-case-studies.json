@@ -417,14 +417,9 @@
         "project_9yjgY4": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2026-09-26_at_8.32.00_PM.png",
             "category": "Culinary",
             "title": "Sherwood",
             "description": "High-energy brand content and experiential marketing campaigns.",
-            "gallery_image_2": "shopify://shop_images/Screenshot_2026-09-26_at_8.32.20_PM.png",
-            "gallery_image_3": "shopify://shop_images/Screenshot_2026-09-26_at_8.32.25_PM.png",
-            "gallery_image_4": "shopify://shop_images/Screenshot_2026-09-26_at_8.32.59_PM.png",
-            "gallery_image_5": "shopify://shop_images/Screenshot_2026-09-26_at_8.33.06_PM.png",
             "case_study_link": ""
           }
         },
@@ -440,6 +435,7 @@
         "project_HyMk3T": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/0E90A9BB-8444-430C-99E8-968647F03C2B_1_105_c.webp",
             "category": "E-commerce",
             "title": "Back to Earth",
             "description": "Complete brand refresh with content strategy and e-commerce optimization.",
@@ -467,15 +463,9 @@
         "project_QeUUR8": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2026-09-26_at_8.30.16_PM.png",
             "category": "Streetwear",
             "title": "Bear River Glassworks",
             "description": "Urban streetwear brand activation and cultural marketing.",
-            "gallery_image_2": "shopify://shop_images/Screenshot_2026-09-26_at_8.30.48_PM.png",
-            "gallery_image_3": "shopify://shop_images/Screenshot_2026-09-26_at_8.31.02_PM.png",
-            "gallery_image_4": "shopify://shop_images/Screenshot_2026-09-26_at_8.31.14_PM.png",
-            "gallery_image_5": "shopify://shop_images/Screenshot_2026-09-26_at_8.31.21_PM.png",
-            "gallery_image_6": "shopify://shop_images/Screenshot_2026-09-26_at_8.31.35_PM.png",
             "case_study_link": ""
           }
         },
@@ -536,29 +526,18 @@
         "project_AkLCVt": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2025-03-19_at_7.05.32_AM_1.webp",
             "category": "Culinary",
             "title": "DAKAN | CALIFORNIA",
             "description": "California fusion restaurant brand development and photography.",
-            "gallery_image_2": "shopify://shop_images/Screenshot_2025-03-19_at_7.05.52_AM.webp",
-            "gallery_image_3": "shopify://shop_images/Screenshot_2025-03-19_at_7.06.02_AM.webp",
-            "gallery_image_4": "shopify://shop_images/DSCF9718.webp",
-            "gallery_image_5": "shopify://shop_images/Screenshot_2025-03-19_at_7.06.11_AM.webp",
-            "gallery_image_6": "shopify://shop_images/Screenshot_2025-03-19_at_7.06.07_AM.webp",
             "case_study_link": ""
           }
         },
         "project_FXthd6": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/d45bbecb5e9a8d33d14f0dee170e73a2-xxlarge_1.webp",
             "category": "Entertainment",
             "title": "HARDROCK | CALIFORNIA",
             "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_image_2": "shopify://shop_images/b239e0e71cd061bb620dcc00b509f1a5-xxlarge.webp",
-            "gallery_image_3": "shopify://shop_images/bad03e5606c15803950038289220da76-xxlarge.webp",
-            "gallery_image_4": "shopify://shop_images/1dbd7f815f1d8f5783990f5ce214272f-xxlarge.webp",
-            "gallery_image_5": "shopify://shop_images/52bb1c1cac780d48192a94f7942af365-xxlarge.webp",
             "case_study_link": ""
           }
         },
@@ -574,15 +553,9 @@
         "project_paMYUg": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2026-09-26_at_8.38.43_PM.png",
             "category": "Entertainment",
             "title": "Reggae On The River",
             "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_image_2": "shopify://shop_images/Screenshot_2026-09-26_at_8.39.18_PM.png",
-            "gallery_image_3": "shopify://shop_images/Screenshot_2026-09-26_at_8.40.25_PM.png",
-            "gallery_image_4": "shopify://shop_images/Screenshot_2026-09-26_at_8.40.01_PM.png",
-            "gallery_image_5": "shopify://shop_images/Screenshot_2026-09-26_at_8.38.50_PM.png",
-            "gallery_image_6": "shopify://shop_images/Screenshot_2026-09-26_at_8.39.25_PM.png",
             "case_study_link": ""
           }
         },
@@ -595,294 +568,11 @@
             "case_study_link": ""
           }
         },
-        "project_yMqt9i": {
+        "project_WR8Bmh": {
           "type": "project",
           "settings": {
             "category": "Entertainment",
-            "title": "Soma Rosa",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "case_study_link": ""
-          }
-        },
-        "project_TNDUhB": {
-          "type": "project",
-          "settings": {
-            "category": "Entertainment",
-            "title": "Polaroid",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "case_study_link": ""
-          }
-        },
-        "project_PVJxxL": {
-          "type": "project",
-          "settings": {
-            "image": "shopify://shop_images/25930044-A454-4EE9-BF1C-43FA0D5EA00E_1.jpg",
-            "category": "Entertainment",
-            "title": "WANDRD",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_image_2": "shopify://shop_images/66CA9907-C3B0-4F4E-BE13-A560D334D306.webp",
-            "gallery_image_3": "shopify://shop_images/IMG_4056.webp",
-            "gallery_image_4": "shopify://shop_images/1E52A00A-EC09-4E56-AD55-09BA728C7D2D_50765e59-07ad-4eb8-895c-c969ba57b172.jpg",
-            "gallery_image_5": "shopify://shop_images/IMG_6409_19ea6b19-71f9-44d3-b7c4-8aa62066599a.webp",
-            "case_study_link": ""
-          }
-        },
-        "project_hYPYj6": {
-          "type": "project",
-          "settings": {
-            "image": "shopify://shop_images/IMG_3161_2.webp",
-            "category": "Entertainment",
-            "title": "Monster",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_image_2": "shopify://shop_images/DSCF8438_b1705946-b7fe-4958-8daf-367071375427.webp",
-            "gallery_image_3": "shopify://shop_images/DSCF7929_1c3a5520-bb6b-45e4-b4e4-e16c014659eb.webp",
-            "gallery_image_4": "shopify://shop_images/253B9119_3920d7d6-c053-426e-96bc-3284ac078af7.webp",
-            "case_study_link": ""
-          }
-        },
-        "project_zttNaF": {
-          "type": "project",
-          "settings": {
-            "category": "Entertainment",
-            "title": "Poppy.California",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "case_study_link": ""
-          }
-        },
-        "project_KngQzB": {
-          "type": "project",
-          "settings": {
-            "image": "shopify://shop_images/7ee553585c4b70132ae17d870bb3c04d-xxlarge_1.webp",
-            "category": "Entertainment",
-            "title": "Furtraders",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_image_2": "shopify://shop_images/a28100cbd51ca2961de946b9dc5e4bfa-xxlarge_40942f1a-b177-4434-a26f-01644c37c925.webp",
-            "gallery_image_3": "shopify://shop_images/a639e0c942b8da0775e0499fe14f6271-xxlarge.webp",
-            "gallery_image_4": "shopify://shop_images/5a743cb0deed56f9ec3ffa0e570d409c-xxlarge.webp",
-            "gallery_image_5": "shopify://shop_images/ae961774d0f6dcc5baaeac16c431078d-xxlarge.webp",
-            "case_study_link": ""
-          }
-        },
-        "project_RqfdN9": {
-          "type": "project",
-          "settings": {
-            "image": "shopify://shop_images/Screenshot_2026-09-26_at_8.45.19_PM.png",
-            "category": "Entertainment",
-            "title": "Elixart",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_image_2": "shopify://shop_images/Screenshot_2026-09-26_at_8.46.25_PM.png",
-            "gallery_image_3": "shopify://shop_images/Screenshot_2026-09-26_at_10.10.44_PM.png",
-            "gallery_image_4": "shopify://shop_images/Screenshot_2026-09-26_at_10.11.26_PM.png",
-            "gallery_image_5": "shopify://shop_images/Screenshot_2026-09-26_at_10.12.02_PM.png",
-            "case_study_link": ""
-          }
-        },
-        "project_tpU8xx": {
-          "type": "project",
-          "settings": {
-            "image": "shopify://shop_images/70fe9708bae8fa59ceb016233de78348-xxlarge_93d1d8c7-9de0-4fae-a582-5cf3fecc50e8.webp",
-            "category": "Entertainment",
-            "title": "Supramood",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_image_2": "shopify://shop_images/c7ceb8060a16e9c40b0989d7e31b3921-xxlarge_5d0a2be4-686c-41d4-8d99-d4369a32bbeb.webp",
-            "gallery_image_3": "shopify://shop_images/5fec0ac657f0b96ee14ef5886cb9b06e-xxlarge_2.webp",
-            "gallery_image_4": "shopify://shop_images/299c23ec647f9f4557d2c04c30cc16a6-xxlarge.webp",
-            "case_study_link": ""
-          }
-        },
-        "project_9QNynV": {
-          "type": "project",
-          "settings": {
-            "image": "shopify://shop_images/elmurorosa_drone_shot_of_tropical_island_--ar_916_--style_raw_a4bea9bc-922d-4f57-b454-57f5fe4564c6_2.webp",
-            "category": "Entertainment",
-            "title": "DJI",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_image_2": "shopify://shop_images/DJI_0317.webp",
-            "gallery_image_3": "shopify://shop_images/8x12_1.webp",
-            "gallery_image_4": "shopify://shop_images/DJI_0147.webp",
-            "gallery_image_5": "shopify://shop_images/patrickcastillophoto4..webp",
-            "case_study_link": ""
-          }
-        },
-        "project_TzqCRN": {
-          "type": "project",
-          "settings": {
-            "category": "Entertainment",
-            "title": "The Hundreds",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "case_study_link": ""
-          }
-        },
-        "project_jGHjX4": {
-          "type": "project",
-          "settings": {
-            "image": "shopify://shop_images/DSC_29323129_1.webp",
-            "category": "Entertainment",
-            "title": "CLSC",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_image_2": "shopify://shop_images/DSC_2547_45f68a5a-4045-4580-8c94-b1271e393fb8.jpg",
-            "gallery_image_3": "shopify://shop_images/DSC_2396_0fb87362-a661-4a73-b171-4640a3e823d9.webp",
-            "gallery_image_4": "shopify://shop_images/patrick.castillophoto8_4c6d424a-e4bd-474b-b977-d140845fe68a.webp",
-            "case_study_link": ""
-          }
-        },
-        "project_anQMRq": {
-          "type": "project",
-          "settings": {
-            "image": "shopify://shop_images/DSCF9924.webp",
-            "category": "Entertainment",
-            "title": "TWO HANDS | AUSTIN TEXAS",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_image_2": "shopify://shop_images/DSCF9718.webp",
-            "gallery_image_3": "shopify://shop_images/DSCF9760_1.webp",
-            "gallery_image_4": "shopify://shop_images/DSCF9912.webp",
-            "gallery_image_5": "shopify://shop_images/DSCF9751.webp",
-            "gallery_image_6": "shopify://shop_images/DSCF9944.webp",
-            "case_study_link": ""
-          }
-        },
-        "project_TYzHAF": {
-          "type": "project",
-          "settings": {
-            "category": "Entertainment",
-            "title": "MAVERICK HELICOPTERS",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "case_study_link": ""
-          }
-        },
-        "project_DWw6UC": {
-          "type": "project",
-          "settings": {
-            "category": "Entertainment",
-            "title": "HIGHSNOBIETY",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "case_study_link": ""
-          }
-        },
-        "project_UUeUir": {
-          "type": "project",
-          "settings": {
-            "image": "shopify://shop_images/29_1.webp",
-            "category": "Entertainment",
-            "title": "JI RESTAURANT | BALI INDONESIA",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_image_2": "shopify://shop_images/34_1.webp",
-            "gallery_image_3": "shopify://shop_images/17_1.webp",
-            "gallery_image_4": "shopify://shop_images/22.webp",
-            "gallery_image_5": "shopify://shop_images/18.webp",
-            "gallery_image_6": "shopify://shop_images/3_83e5b4ae-9915-4ebd-aab4-f0ba8023de28.webp",
-            "case_study_link": ""
-          }
-        },
-        "project_NeyYJr": {
-          "type": "project",
-          "settings": {
-            "image": "shopify://shop_images/DSCF9519_1_1.webp",
-            "category": "Entertainment",
-            "title": "SATORI | MAUI",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_image_2": "shopify://shop_images/DSCF9452L.webp",
-            "case_study_link": ""
-          }
-        },
-        "project_FzHzRw": {
-          "type": "project",
-          "settings": {
-            "image": "shopify://shop_images/indian1_1_92060767-b4d2-4f88-9f64-b09875e0a474.jpg",
-            "category": "Entertainment",
-            "title": "CHAI'BA | BALI INDONESIA",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_image_2": "shopify://shop_images/MJJ00167.webp",
-            "gallery_image_3": "shopify://shop_images/MJJ00246_1.webp",
-            "case_study_link": ""
-          }
-        },
-        "project_JLQcrF": {
-          "type": "project",
-          "settings": {
-            "category": "Entertainment",
-            "title": "FINISH LINE",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "case_study_link": ""
-          }
-        },
-        "project_4tGBd7": {
-          "type": "project",
-          "settings": {
-            "category": "Entertainment",
-            "title": "ADIDAS",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "case_study_link": ""
-          }
-        },
-        "project_C6PPLV": {
-          "type": "project",
-          "settings": {
-            "category": "Entertainment",
-            "title": "Limitless Fitness Gym",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "case_study_link": ""
-          }
-        },
-        "project_HEzfdn": {
-          "type": "project",
-          "settings": {
-            "category": "Entertainment",
-            "title": "Sweet Spirit Tattoo",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "case_study_link": ""
-          }
-        },
-        "project_jpAPxX": {
-          "type": "project",
-          "settings": {
-            "category": "Entertainment",
-            "title": "Sweet Spirit Tattoo",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "case_study_link": ""
-          }
-        },
-        "project_YVTrqA": {
-          "type": "project",
-          "settings": {
-            "category": "Entertainment",
-            "title": "Hotel Tugu Bali",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "case_study_link": ""
-          }
-        },
-        "project_p4QRyP": {
-          "type": "project",
-          "settings": {
-            "category": "Entertainment",
-            "title": "Life Force Academy",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "case_study_link": ""
-          }
-        },
-        "project_YGP3Na": {
-          "type": "project",
-          "settings": {
-            "category": "Entertainment",
-            "title": "Life Force Academy",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "case_study_link": ""
-          }
-        },
-        "project_hiVMU4": {
-          "type": "project",
-          "settings": {
-            "category": "Entertainment",
-            "title": "Vior Woodworks",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "case_study_link": ""
-          }
-        },
-        "project_WWAYHM": {
-          "type": "project",
-          "settings": {
-            "category": "Entertainment",
-            "title": "Vac & Stack",
+            "title": "Coachella",
             "description": "Iconic entertainment venue content creation and brand activation.",
             "case_study_link": ""
           }
@@ -908,35 +598,8 @@
         "project_RDydeH",
         "project_paMYUg",
         "project_BBjmdw",
-        "project_yMqt9i",
-        "project_TNDUhB",
-        "project_PVJxxL",
-        "project_hYPYj6",
-        "project_zttNaF",
-        "project_KngQzB",
-        "project_RqfdN9",
-        "project_tpU8xx",
-        "project_9QNynV",
-        "project_TzqCRN",
-        "project_jGHjX4",
-        "project_anQMRq",
-        "project_TYzHAF",
-        "project_DWw6UC",
-        "project_UUeUir",
-        "project_NeyYJr",
-        "project_FzHzRw",
-        "project_JLQcrF",
-        "project_4tGBd7",
-        "project_C6PPLV",
-        "project_HEzfdn",
-        "project_jpAPxX",
-        "project_YVTrqA",
-        "project_p4QRyP",
-        "project_YGP3Na",
-        "project_hiVMU4",
-        "project_WWAYHM"
+        "project_WR8Bmh"
       ],
-      "disabled": true,
       "name": "Featured Work",
       "settings": {
         "strap": "(Our Work)",
