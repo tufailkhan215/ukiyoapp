@@ -62,7 +62,6 @@
       "blocks": {
         "case_study_DtTeee": {
           "type": "case_study",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/1_3f7fbe2a-dabc-4cdb-95d6-b9a028e362a9.webp",
             "name": "RESIKLO",
@@ -72,7 +71,6 @@
         },
         "case_study_NWQFja": {
           "type": "case_study",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/2_1b9fb776-6778-41f8-8895-8180aeb8ab12.webp",
             "name": "Fur Traders",
@@ -82,7 +80,6 @@
         },
         "case_study_idhENK": {
           "type": "case_study",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/3_ee95539c-7b78-4e3f-90c4-31755702cccc.webp",
             "name": "The place of south pine",
@@ -102,7 +99,6 @@
         },
         "case_study_438jgR": {
           "type": "case_study",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/5_c0b35b9b-8246-4218-9f3d-175821171a47.webp",
             "name": "Supramood",
@@ -112,7 +108,6 @@
         },
         "case_study_fnjwTn": {
           "type": "case_study",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/6_b11cbb9c-32b4-4b8f-b6c8-12ec9222f3b8.webp",
             "name": "Mano Beach House",
@@ -122,7 +117,6 @@
         },
         "case_study_HyTWqf": {
           "type": "case_study",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/9.webp",
             "name": "Hotel Tugu | BAli",
@@ -130,9 +124,17 @@
             "url": "shopify://pages/coming-soon"
           }
         },
-        "case_study_iFnNf9": {
+        "case_study_tBaeif": {
           "type": "case_study",
           "disabled": true,
+          "settings": {
+            "name": "RESIKLO",
+            "tag": "Branding",
+            "url": ""
+          }
+        },
+        "case_study_iFnNf9": {
+          "type": "case_study",
           "settings": {
             "image": "shopify://shop_images/8.avif",
             "name": "Life Force Academy",
@@ -152,7 +154,6 @@
         },
         "case_study_qrAGpY": {
           "type": "case_study",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/10.webp",
             "name": "Academy of Oracle Arts",
@@ -162,7 +163,6 @@
         },
         "case_study_8jeqcH": {
           "type": "case_study",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/11.webp",
             "name": "Coachella",
@@ -172,7 +172,6 @@
         },
         "case_study_Erj6iL": {
           "type": "case_study",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/12_f9f25ff6-09b6-4b99-a532-4c2a79aecb34.jpg",
             "name": "Wandrd",
@@ -189,6 +188,7 @@
         "case_study_438jgR",
         "case_study_fnjwTn",
         "case_study_HyTWqf",
+        "case_study_tBaeif",
         "case_study_iFnNf9",
         "case_study_pfCcXG",
         "case_study_qrAGpY",
@@ -445,6 +445,7 @@
         "project_DLg6WE": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/Still_2025-10-11_183207_1.92.1.webp",
             "category": "Lifestyle & Wellness",
             "title": "People Of The Forest",
             "description": "Comprehensive brand strategy with podcast series and affiliate program.",
@@ -454,6 +455,7 @@
         "project_qWFmkC": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/UN-0437_1.webp",
             "category": "Technology",
             "title": "Crystal Empire Gems",
             "description": "Aerial photography and drone content creation partnership.",
