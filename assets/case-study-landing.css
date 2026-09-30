@@ -92,7 +92,7 @@
 .csl a:focus-visible { outline: 2px solid var(--csl-a); outline-offset: 4px; }
 .csl-btn:focus-visible, .csl-back:focus-visible { border-radius: 999px; }
 .csl-toc a:focus-visible { border-radius: 6px; outline-offset: 2px; }
-.csl-next__card:focus-visible { border-radius: 32px; outline-offset: 6px; }
+.csl a.csl-next__card:focus-visible { border-radius: 32px; outline-offset: 6px; }
 
 /* Grain — keeps the flat black from looking empty */
 .csl-grain {
@@ -167,7 +167,7 @@
 .csl-back:hover { color: #fff !important; }
 .csl-back:hover svg { transform: translateX(-3px); }
 
-.csl-hero__title { margin: clamp(48px, 8vw, 112px) 0 0; font-weight: 400; }
+.csl-hero__title { margin: clamp(48px, 8vw, 112px) 0 0; font-weight: 400; container-type: inline-size; }
 .csl-hero__name {
   display: block;
   font-family: var(--csl-display);
@@ -679,6 +679,25 @@
   .csl-next .csl-strap { letter-spacing: .22em; }
 }
 .csl-next__row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: 28px; }
+
+/* Size the client name from its own column (100vw would count the scrollbar). */
+@supports (width: 1cqi) {
+  .csl-hero__name { font-size: clamp(1.85rem, calc(100cqi / (var(--len, 7) * 1.4)), 8.5rem); }
+}
+
+/* Phones: keep the client name the largest type on the page. */
+@media (max-width: 480px) {
+  .csl-h2 { font-size: clamp(1.625rem, 7.2vw, 2rem); }
+  .csl-chapter__title { font-size: clamp(1.375rem, 5.6vw, 1.625rem); }
+  .csl-result__statement { font-size: clamp(1.5rem, 6.4vw, 1.85rem); }
+  .csl-count__num { font-size: clamp(3rem, 13vw, 3.5rem); }
+  .csl-next__name { font-size: min(1.9rem, 7vw); }
+}
+
+/* Narrowest widths that still show the full orbit: slimmer pills. */
+@media (min-width: 1200px) and (max-width: 1299px), (min-width: 481px) and (max-width: 560px) {
+  .csl-orbit__pill { padding: 6px 10px; font-size: 11px; }
+}
 
 /* ---------- Reduced motion ------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
