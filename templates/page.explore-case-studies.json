@@ -676,6 +676,20 @@
             "description": "Iconic entertainment venue content creation and brand activation.",
             "case_study_link": ""
           }
+        },
+        "project_JEwFpM": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/elmurorosa_drone_shot_of_tropical_island_--ar_916_--style_raw_59a88427-c110-4607-83b8-0a1020b36f59.webp",
+            "category": "Entertainment",
+            "title": "DJI",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/3_8ff95775-a593-4995-8b56-43f2bbf4997a.webp",
+            "gallery_image_3": "shopify://shop_images/2_dcf18fd2-2bbf-41ce-b766-47fa23f637b7.webp",
+            "gallery_image_4": "shopify://shop_images/1_0b1ee30b-0a4d-47d6-b585-ffcf18a43aaa.webp",
+            "gallery_image_5": "shopify://shop_images/4_82c4421b-137e-4db5-bf2d-0368f44c06b4.webp",
+            "case_study_link": ""
+          }
         }
       },
       "block_order": [
@@ -705,7 +719,8 @@
         "project_kEp4Rj",
         "project_98FKXA",
         "project_cmYXEe",
-        "project_a4BMWz"
+        "project_a4BMWz",
+        "project_JEwFpM"
       ],
       "name": "Featured Work",
       "settings": {
