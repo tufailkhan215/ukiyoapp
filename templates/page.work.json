@@ -54,6 +54,8 @@
       ],
       "name": "Work Hero",
       "settings": {
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/9f50325485764730bc243e725f376109.mp4",
+        "poster": "shopify://shop_images/ukiyo-work-hero-poster.jpg",
         "strap": "",
         "title_line_1": "A look at how strategy, creative, and",
         "title_line_2": "execution come together across the brands we support",
@@ -66,56 +68,56 @@
         "image_W3p3kr": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/25930044-A454-4EE9-BF1C-43FA0D5EA00E.jpg",
+            "image": "shopify:\/\/shop_images\/25930044-A454-4EE9-BF1C-43FA0D5EA00E.jpg",
             "title": "Brand Identity"
           }
         },
         "image_tafkyV": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/u6852356784_mountain_silhouette_for_logo_on_white_background._e750f411-68dc-44b3-8ccf-af81edc0cc1c_2.png",
+            "image": "shopify:\/\/shop_images\/u6852356784_mountain_silhouette_for_logo_on_white_background._e750f411-68dc-44b3-8ccf-af81edc0cc1c_2.png",
             "title": "Logo Design"
           }
         },
         "image_HHAFGQ": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/hands-hold-open-a-black-plastic-envelope-on-couch.jpg",
+            "image": "shopify:\/\/shop_images\/hands-hold-open-a-black-plastic-envelope-on-couch.jpg",
             "title": "Packaging"
           }
         },
         "image_W4C4tJ": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge.webp",
+            "image": "shopify:\/\/shop_images\/881aa52d7f9f162bb4287643d39aa4e9-xxlarge.webp",
             "title": "Print Materials"
           }
         },
         "image_RX8KX4": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/DSC_29323129.webp",
+            "image": "shopify:\/\/shop_images\/DSC_29323129.webp",
             "title": "Social Media"
           }
         },
         "image_hHhATi": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/annavili_A_woman_sitting_relaxed_on_a_light_soft_armchair_weari_e7a38a29-10c8-4214-98da-cb5047dc753c.png",
+            "image": "shopify:\/\/shop_images\/annavili_A_woman_sitting_relaxed_on_a_light_soft_armchair_weari_e7a38a29-10c8-4214-98da-cb5047dc753c.png",
             "title": "Brand Strategy"
           }
         },
         "image_4kLiJa": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/57443_ardriftclub_a_close-up_of_the_top_of_a_cheetahs_head_from_the_79f6e5a7-4e29-48b3-9f71-f5796b3e571f_0.png",
+            "image": "shopify:\/\/shop_images\/57443_ardriftclub_a_close-up_of_the_top_of_a_cheetahs_head_from_the_79f6e5a7-4e29-48b3-9f71-f5796b3e571f_0.png",
             "title": "Creative Direction"
           }
         },
         "image_YMKhVT": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Untitled_design_1.png",
+            "image": "shopify:\/\/shop_images\/Untitled_design_1.png",
             "title": "Digital Assets"
           }
         }
@@ -138,7 +140,7 @@
         "title_gradient": "Activations",
         "description": "Branding is key to a standout identity and success. We activate your brand with powerful social media content, strategic partnerships, and engaging articles. With experience in the U.S. and Asia, we boost brand awareness, attract customers, and create new marketing opportunities.",
         "cta_text": "Start Your Project",
-        "cta_url": "/contact",
+        "cta_url": "\/contact",
         "cta_new_tab": false
       }
     },
@@ -148,119 +150,119 @@
         "project_NQxrCc": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/p3.webp",
+            "image": "shopify:\/\/shop_images\/p3.webp",
             "category": "Brand Partnership",
             "title": "POLAROID",
             "description": "A heritage brand collaboration designed to reconnect iconic nostalgia with a modern audience.",
-            "gallery_image_2": "shopify://shop_images/p1.webp",
-            "gallery_image_3": "shopify://shop_images/p2.webp",
-            "gallery_image_4": "shopify://shop_images/p3.webp"
+            "gallery_image_2": "shopify:\/\/shop_images\/p1.webp",
+            "gallery_image_3": "shopify:\/\/shop_images\/p2.webp",
+            "gallery_image_4": "shopify:\/\/shop_images\/p3.webp"
           }
         },
         "project_99yqWB": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/25930044-A454-4EE9-BF1C-43FA0D5EA00E_320f78e7-5c14-49d3-88e9-9ddef7f7ac25.jpg",
+            "image": "shopify:\/\/shop_images\/25930044-A454-4EE9-BF1C-43FA0D5EA00E_320f78e7-5c14-49d3-88e9-9ddef7f7ac25.jpg",
             "category": "Adventure Travel",
             "title": "WANDRD",
             "description": "Adventure-led content strategy built to capture movement, travel, and product utility.",
-            "gallery_image_2": "shopify://shop_images/w1.webp",
-            "gallery_image_3": "shopify://shop_images/2_dbcdf5ce-2f57-4698-bff3-5ee3a792c7fe.jpg",
-            "gallery_image_4": "shopify://shop_images/3_7f3860a7-9371-4f80-b3ee-50cfee64bf27.webp",
-            "gallery_image_5": "shopify://shop_images/4_de1d4fd1-d03e-4cce-b512-b8904893b4bf.webp"
+            "gallery_image_2": "shopify:\/\/shop_images\/w1.webp",
+            "gallery_image_3": "shopify:\/\/shop_images\/2_dbcdf5ce-2f57-4698-bff3-5ee3a792c7fe.jpg",
+            "gallery_image_4": "shopify:\/\/shop_images\/3_7f3860a7-9371-4f80-b3ee-50cfee64bf27.webp",
+            "gallery_image_5": "shopify:\/\/shop_images\/4_de1d4fd1-d03e-4cce-b512-b8904893b4bf.webp"
           }
         },
         "project_7V6yPh": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/IMG_3161.webp",
+            "image": "shopify:\/\/shop_images\/IMG_3161.webp",
             "category": "Energy & Lifestyle",
             "title": "MONSTER",
             "description": "High-energy campaign creative built for attention, activation, and cultural relevance.",
-            "gallery_image_2": "shopify://shop_images/2_3775300e-a545-4e8b-af22-3b9eaeb70b32.webp",
-            "gallery_image_3": "shopify://shop_images/3_4f6e4406-79fc-4682-8983-57714bdf4796.webp",
-            "gallery_image_4": "shopify://shop_images/4_7705be0a-6263-4146-b3f8-8aae66341d6a.webp"
+            "gallery_image_2": "shopify:\/\/shop_images\/2_3775300e-a545-4e8b-af22-3b9eaeb70b32.webp",
+            "gallery_image_3": "shopify:\/\/shop_images\/3_4f6e4406-79fc-4682-8983-57714bdf4796.webp",
+            "gallery_image_4": "shopify:\/\/shop_images\/4_7705be0a-6263-4146-b3f8-8aae66341d6a.webp"
           }
         },
         "project_cBBYnk": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge.webp",
+            "image": "shopify:\/\/shop_images\/881aa52d7f9f162bb4287643d39aa4e9-xxlarge.webp",
             "category": "Fashion & Lifestyle",
             "title": "POPPY.CALIFORNIA",
             "description": "Lifestyle storytelling and visual direction shaped around a distinct California point of view.",
-            "gallery_image_2": "shopify://shop_images/1_c939e864-5d98-4af3-988f-e9642c67034f.webp",
-            "gallery_image_3": "shopify://shop_images/3_91a7db44-2e66-4511-87ab-68d952844faa.webp",
-            "gallery_image_4": "shopify://shop_images/2_abec7097-1735-4b38-a5c4-24dc7a38ee23.webp",
-            "gallery_image_5": "shopify://shop_images/4_e4825e44-6edd-40f6-9456-a525b6778035.webp"
+            "gallery_image_2": "shopify:\/\/shop_images\/1_c939e864-5d98-4af3-988f-e9642c67034f.webp",
+            "gallery_image_3": "shopify:\/\/shop_images\/3_91a7db44-2e66-4511-87ab-68d952844faa.webp",
+            "gallery_image_4": "shopify:\/\/shop_images\/2_abec7097-1735-4b38-a5c4-24dc7a38ee23.webp",
+            "gallery_image_5": "shopify:\/\/shop_images\/4_e4825e44-6edd-40f6-9456-a525b6778035.webp"
           }
         },
         "project_ErkRht": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/7ee553585c4b70132ae17d870bb3c04d-xxlarge.webp",
+            "image": "shopify:\/\/shop_images\/7ee553585c4b70132ae17d870bb3c04d-xxlarge.webp",
             "category": "E-commerce",
             "title": "FURTRADERS",
             "description": "A full brand refresh paired with content strategy and ecommerce optimization.",
-            "gallery_image_2": "shopify://shop_images/1_00ccb719-aa19-4a55-b108-9f3e83f3f427.webp",
-            "gallery_image_3": "shopify://shop_images/2_d58d9010-8354-41e0-a273-e9ff6a561274.webp",
-            "gallery_image_4": "shopify://shop_images/4_7eea9821-98f2-4435-a5d6-b980bb94fa8c.webp",
-            "gallery_image_5": "shopify://shop_images/3_08985cea-a165-497d-ae97-dfbe0265e652.webp"
+            "gallery_image_2": "shopify:\/\/shop_images\/1_00ccb719-aa19-4a55-b108-9f3e83f3f427.webp",
+            "gallery_image_3": "shopify:\/\/shop_images\/2_d58d9010-8354-41e0-a273-e9ff6a561274.webp",
+            "gallery_image_4": "shopify:\/\/shop_images\/4_7eea9821-98f2-4435-a5d6-b980bb94fa8c.webp",
+            "gallery_image_5": "shopify:\/\/shop_images\/3_08985cea-a165-497d-ae97-dfbe0265e652.webp"
           }
         },
         "project_bRFthk": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/4_4192c34b-000c-4fd5-be7c-350b15f33157.webp",
+            "image": "shopify:\/\/shop_images\/4_4192c34b-000c-4fd5-be7c-350b15f33157.webp",
             "category": "Lifestyle & Wellness",
             "title": "SUPRAMOOD",
             "description": "A multi-layered wellness brand build spanning strategy, content, and affiliate support.",
-            "gallery_image_2": "shopify://shop_images/1_9e4980dd-8adf-4e14-b342-ed62d92822c2.webp",
-            "gallery_image_3": "shopify://shop_images/2_528d9138-b021-4a76-9cd9-0bc2121d9dfd.webp",
-            "gallery_image_4": "shopify://shop_images/3_b593cdfd-b9b0-40e0-a58d-48b6557c3850.webp"
+            "gallery_image_2": "shopify:\/\/shop_images\/1_9e4980dd-8adf-4e14-b342-ed62d92822c2.webp",
+            "gallery_image_3": "shopify:\/\/shop_images\/2_528d9138-b021-4a76-9cd9-0bc2121d9dfd.webp",
+            "gallery_image_4": "shopify:\/\/shop_images\/3_b593cdfd-b9b0-40e0-a58d-48b6557c3850.webp"
           }
         },
         "project_7jNmCg": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/elmurorosa_drone_shot_of_tropical_island_--ar_916_--style_raw_a4bea9bc-922d-4f57-b454-57f5fe4564c6.webp",
+            "image": "shopify:\/\/shop_images\/elmurorosa_drone_shot_of_tropical_island_--ar_916_--style_raw_a4bea9bc-922d-4f57-b454-57f5fe4564c6.webp",
             "category": "Technology",
             "title": "DJI",
             "description": "Visual content partnership built around technology, motion, and elevated product storytelling.",
-            "gallery_image_2": "shopify://shop_images/1_9efeab80-899b-4c69-9470-d7ffd6cc660a.webp",
-            "gallery_image_3": "shopify://shop_images/3_97f70eb0-3393-4cd5-a5a9-a73c902dce31.webp",
-            "gallery_image_4": "shopify://shop_images/2_6e6f066e-bda4-4146-ae5a-be5d5a068a4a.webp",
-            "gallery_image_5": "shopify://shop_images/4_7fd3129b-2e77-4b46-8d7a-874dff07571a.webp"
+            "gallery_image_2": "shopify:\/\/shop_images\/1_9efeab80-899b-4c69-9470-d7ffd6cc660a.webp",
+            "gallery_image_3": "shopify:\/\/shop_images\/3_97f70eb0-3393-4cd5-a5a9-a73c902dce31.webp",
+            "gallery_image_4": "shopify:\/\/shop_images\/2_6e6f066e-bda4-4146-ae5a-be5d5a068a4a.webp",
+            "gallery_image_5": "shopify:\/\/shop_images\/4_7fd3129b-2e77-4b46-8d7a-874dff07571a.webp"
           }
         },
         "project_YWjctq": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/DSC_29323129.webp",
+            "image": "shopify:\/\/shop_images\/DSC_29323129.webp",
             "category": "Streetwear",
             "title": "CLSC",
             "description": "Streetwear activation work shaped for culture, relevance, and community connection.",
-            "gallery_image_2": "shopify://shop_images/3_a7ce9a9b-cbc4-4172-b05b-11b529ad60f3.webp",
-            "gallery_image_3": "shopify://shop_images/1_a1031331-4b9a-46ee-8317-8537a77f2a03.webp",
-            "gallery_image_4": "shopify://shop_images/2_adbf5d1d-88e1-4cbb-a9ca-c0f2568455e8.webp"
+            "gallery_image_2": "shopify:\/\/shop_images\/3_a7ce9a9b-cbc4-4172-b05b-11b529ad60f3.webp",
+            "gallery_image_3": "shopify:\/\/shop_images\/1_a1031331-4b9a-46ee-8317-8537a77f2a03.webp",
+            "gallery_image_4": "shopify:\/\/shop_images\/2_adbf5d1d-88e1-4cbb-a9ca-c0f2568455e8.webp"
           }
         },
         "project_bzgPTT": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/IMG_6776.webp",
+            "image": "shopify:\/\/shop_images\/IMG_6776.webp",
             "category": "Travel & Experience",
             "title": "MAVERICK HELICOPTERS",
             "description": "Experience-driven storytelling built to make the brand feel as premium as the service.",
-            "gallery_image_2": "shopify://shop_images/2_b8ed67b8-4838-4f14-884e-ebd669703416.webp",
-            "gallery_image_3": "shopify://shop_images/1_93bf0af6-4112-426e-82ef-65140cec0614.webp",
-            "gallery_image_4": "shopify://shop_images/2_b8ed67b8-4838-4f14-884e-ebd669703416.webp"
+            "gallery_image_2": "shopify:\/\/shop_images\/2_b8ed67b8-4838-4f14-884e-ebd669703416.webp",
+            "gallery_image_3": "shopify:\/\/shop_images\/1_93bf0af6-4112-426e-82ef-65140cec0614.webp",
+            "gallery_image_4": "shopify:\/\/shop_images\/2_b8ed67b8-4838-4f14-884e-ebd669703416.webp"
           }
         },
         "project_jqN7Vf": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/IMG_9657_1.webp",
+            "image": "shopify:\/\/shop_images\/IMG_9657_1.webp",
             "category": "Media & Culture",
             "title": "HIGHSNOBIETY",
             "description": "Editorial partnership work designed to connect brand, culture, and audience attention."
@@ -269,80 +271,80 @@
         "project_fAHDzT": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/29.webp",
+            "image": "shopify:\/\/shop_images\/29.webp",
             "category": "Culinary",
             "title": "JI RESTAURANT | BALI INDONESIA",
             "description": "Hospitality and culinary storytelling that brings place, mood, and experience into focus.",
-            "gallery_image_2": "shopify://shop_images/6_2dbffab1-32cb-4cd9-b207-bf73c27caa35.webp",
-            "gallery_image_3": "shopify://shop_images/5_4fd104c7-932c-4c6a-b301-f964daee0a79.webp",
-            "gallery_image_4": "shopify://shop_images/4_0389aa3b-9062-4053-93fb-7a2288fdba1e.webp",
-            "gallery_image_5": "shopify://shop_images/2_bd10305b-93b2-47d2-a586-3076c246b91b.webp"
+            "gallery_image_2": "shopify:\/\/shop_images\/6_2dbffab1-32cb-4cd9-b207-bf73c27caa35.webp",
+            "gallery_image_3": "shopify:\/\/shop_images\/5_4fd104c7-932c-4c6a-b301-f964daee0a79.webp",
+            "gallery_image_4": "shopify:\/\/shop_images\/4_0389aa3b-9062-4053-93fb-7a2288fdba1e.webp",
+            "gallery_image_5": "shopify:\/\/shop_images\/2_bd10305b-93b2-47d2-a586-3076c246b91b.webp"
           }
         },
         "project_agJeiy": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/DSCF9519_1.webp",
+            "image": "shopify:\/\/shop_images\/DSCF9519_1.webp",
             "category": "Hospitality",
             "title": "SATORI | MAUI",
             "description": "Wellness-led brand content built around retreat, atmosphere, and destination appeal.",
-            "gallery_image_2": "shopify://shop_images/4_170d51ba-56cd-499b-846e-7c6e3dde0761.webp",
-            "gallery_image_3": "shopify://shop_images/3_635d13c7-e847-462d-821a-877f874e2f21.webp",
-            "gallery_image_4": "shopify://shop_images/2_ddcd511e-b849-4bb1-b275-ee227ab8b97a.webp"
+            "gallery_image_2": "shopify:\/\/shop_images\/4_170d51ba-56cd-499b-846e-7c6e3dde0761.webp",
+            "gallery_image_3": "shopify:\/\/shop_images\/3_635d13c7-e847-462d-821a-877f874e2f21.webp",
+            "gallery_image_4": "shopify:\/\/shop_images\/2_ddcd511e-b849-4bb1-b275-ee227ab8b97a.webp"
           }
         },
         "project_ReWfVG": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/indian1_1.webp",
+            "image": "shopify:\/\/shop_images\/indian1_1.webp",
             "category": "Culinary",
             "title": "CHAI'BA | BALI INDONESIA",
             "description": "A visual brand story designed to highlight flavor, atmosphere, and cultural identity.",
-            "gallery_image_2": "shopify://shop_images/3_6bae4140-85b4-4953-832e-c2cb06fa36c9.webp",
-            "gallery_image_3": "shopify://shop_images/4_259355c2-0531-4aa0-b94f-875086088689.webp",
-            "gallery_image_4": "shopify://shop_images/2_48b27476-fdf2-406b-af18-e09217cb2e3c.webp"
+            "gallery_image_2": "shopify:\/\/shop_images\/3_6bae4140-85b4-4953-832e-c2cb06fa36c9.webp",
+            "gallery_image_3": "shopify:\/\/shop_images\/4_259355c2-0531-4aa0-b94f-875086088689.webp",
+            "gallery_image_4": "shopify:\/\/shop_images\/2_48b27476-fdf2-406b-af18-e09217cb2e3c.webp"
           }
         },
         "project_Mitqyd": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/DSCF9760.webp",
+            "image": "shopify:\/\/shop_images\/DSCF9760.webp",
             "category": "Hospitality",
             "title": "TWO HANDS | AUSTIN TEXAS",
             "description": "Content support built to increase visibility and strengthen local brand presence.",
-            "gallery_image_2": "shopify://shop_images/6_e654727c-6e15-4a72-a71b-3fc21c9e9ecc.webp",
-            "gallery_image_3": "shopify://shop_images/2_ee361f86-da67-45bc-8618-3c934abfd1de.webp",
-            "gallery_image_4": "shopify://shop_images/3_8f064dd7-8f74-4577-bb3a-02383916e0f5.webp",
-            "gallery_image_5": "shopify://shop_images/4_f95d5282-00a5-4569-8ee4-00bbe1ff84b9.webp",
-            "gallery_image_6": "shopify://shop_images/5_21a16441-be68-4f1c-a9d2-13bdbdbfd221.webp"
+            "gallery_image_2": "shopify:\/\/shop_images\/6_e654727c-6e15-4a72-a71b-3fc21c9e9ecc.webp",
+            "gallery_image_3": "shopify:\/\/shop_images\/2_ee361f86-da67-45bc-8618-3c934abfd1de.webp",
+            "gallery_image_4": "shopify:\/\/shop_images\/3_8f064dd7-8f74-4577-bb3a-02383916e0f5.webp",
+            "gallery_image_5": "shopify:\/\/shop_images\/4_f95d5282-00a5-4569-8ee4-00bbe1ff84b9.webp",
+            "gallery_image_6": "shopify:\/\/shop_images\/5_21a16441-be68-4f1c-a9d2-13bdbdbfd221.webp"
           }
         },
         "project_PGNpBH": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2025-03-19_at_7.05.32_AM.webp",
+            "image": "shopify:\/\/shop_images\/Screenshot_2025-03-19_at_7.05.32_AM.webp",
             "category": "Culinary",
             "title": "DAKAN | CALIFORNIA",
             "description": "Restaurant storytelling designed to make the concept feel more memorable and more marketable.",
-            "gallery_image_2": "shopify://shop_images/4_869168d6-ea53-4374-8f74-ea6c3c229404.webp",
-            "gallery_image_3": "shopify://shop_images/1_04391c2d-d765-461d-8997-bcfd38b9f129.webp",
-            "gallery_image_4": "shopify://shop_images/2_ee361f86-da67-45bc-8618-3c934abfd1de.webp",
-            "gallery_image_5": "shopify://shop_images/3_33c10278-3b7f-4c9f-acc4-6a823d8cdf79.webp",
-            "gallery_image_6": "shopify://shop_images/4_869168d6-ea53-4374-8f74-ea6c3c229404.webp"
+            "gallery_image_2": "shopify:\/\/shop_images\/4_869168d6-ea53-4374-8f74-ea6c3c229404.webp",
+            "gallery_image_3": "shopify:\/\/shop_images\/1_04391c2d-d765-461d-8997-bcfd38b9f129.webp",
+            "gallery_image_4": "shopify:\/\/shop_images\/2_ee361f86-da67-45bc-8618-3c934abfd1de.webp",
+            "gallery_image_5": "shopify:\/\/shop_images\/3_33c10278-3b7f-4c9f-acc4-6a823d8cdf79.webp",
+            "gallery_image_6": "shopify:\/\/shop_images\/4_869168d6-ea53-4374-8f74-ea6c3c229404.webp"
           }
         },
         "project_hBEN6j": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/d45bbecb5e9a8d33d14f0dee170e73a2-xxlarge.webp",
+            "image": "shopify:\/\/shop_images\/d45bbecb5e9a8d33d14f0dee170e73a2-xxlarge.webp",
             "category": "Entertainment",
             "title": "HARDROCK | CALIFORNIA",
             "description": "Entertainment content created to extend brand energy beyond the venue itself.",
-            "gallery_image_2": "shopify://shop_images/3_33e3da64-e46c-4f72-8c0d-0576a9fd3a75.webp",
-            "gallery_image_3": "shopify://shop_images/1_3216522a-9d8c-4927-8d5a-ca0224fd0c57.webp",
-            "gallery_image_4": "shopify://shop_images/2_05492d9a-8f1f-4689-a300-5b0aef75b61e.webp",
-            "gallery_image_5": "shopify://shop_images/3_33e3da64-e46c-4f72-8c0d-0576a9fd3a75.webp",
-            "gallery_image_6": "shopify://shop_images/4_63ac179c-f0dd-4078-a060-0abab6c3d7a0.webp"
+            "gallery_image_2": "shopify:\/\/shop_images\/3_33e3da64-e46c-4f72-8c0d-0576a9fd3a75.webp",
+            "gallery_image_3": "shopify:\/\/shop_images\/1_3216522a-9d8c-4927-8d5a-ca0224fd0c57.webp",
+            "gallery_image_4": "shopify:\/\/shop_images\/2_05492d9a-8f1f-4689-a300-5b0aef75b61e.webp",
+            "gallery_image_5": "shopify:\/\/shop_images\/3_33e3da64-e46c-4f72-8c0d-0576a9fd3a75.webp",
+            "gallery_image_6": "shopify:\/\/shop_images\/4_63ac179c-f0dd-4078-a060-0abab6c3d7a0.webp"
           }
         }
       },
@@ -379,61 +381,61 @@
           "type": "card",
           "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/e-commerce-logo-aesthetic.png",
+            "image": "shopify:\/\/shop_images\/e-commerce-logo-aesthetic.png",
             "client": "Resiklo",
             "category": "E-commerce",
-            "title": "E-commerce Website Redesign & UI/UX Improvements",
+            "title": "E-commerce Website Redesign & UI\/UX Improvements",
             "description": "Complete platform migration with automation integration that increased conversion by 340%.",
             "results": "340% Conversion | 85% Time Saved | 4x Email",
-            "link": "shopify://pages/resiklo"
+            "link": "shopify:\/\/pages\/resiklo"
           }
         },
         "card_zQycLT": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/laptop-from-above.jpg",
+            "image": "shopify:\/\/shop_images\/laptop-from-above.jpg",
             "client": "The Place on South Pine",
             "category": "Hospitality",
             "title": "Website Design & Content Strategy",
             "description": "Digital footprint refresh with visual storytelling and automated marketing.",
             "results": "3x Reservations | 200% Social Growth",
-            "link": "shopify://pages/website-design-content-strategy"
+            "link": "shopify:\/\/pages\/website-design-content-strategy"
           }
         },
         "card_FTxgHE": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/portrait-of-illuminated-laptop.jpg",
+            "image": "shopify:\/\/shop_images\/portrait-of-illuminated-laptop.jpg",
             "client": "Supramood",
             "category": "Branding",
             "title": "SEO Optimization & Digital Content Creation",
             "description": "Comprehensive brand strategy with podcast series and affiliate program.",
             "results": "10K+ Downloads | $200K+ Affiliate",
-            "link": "shopify://pages/supramood_new"
+            "link": "shopify:\/\/pages\/supramood_new"
           }
         },
         "card_k8Az3p": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/working-at-night.jpg",
+            "image": "shopify:\/\/shop_images\/working-at-night.jpg",
             "client": "Dynamic Autoworks",
             "category": "E-commerce",
             "title": "Premier Automotive Parts E-commerce Platform",
             "description": "Large-scale catalog with nationwide shipping supporting 1.5M+ products.",
             "results": "1.5M+ Products | <2s Search",
-            "link": "shopify://pages/dynamic-autoworks-1"
+            "link": "shopify:\/\/pages\/dynamic-autoworks-1"
           }
         },
         "card_3kRgL4": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/woman-relaxed-work.jpg",
+            "image": "shopify:\/\/shop_images\/woman-relaxed-work.jpg",
             "client": "Fur Traders",
             "category": "E-commerce",
             "title": "E-commerce Website Design & SEO Optimization",
             "description": "Complete brand refresh with content strategy and e-commerce optimization.",
             "results": "500% Traffic | 280% Revenue",
-            "link": "shopify://pages/fur-traders"
+            "link": "shopify:\/\/pages\/fur-traders"
           }
         }
       },
@@ -478,79 +480,79 @@
             "title": "Building a Premium Brand Identity",
             "description": "End-to-end branding and content strategy that positioned a startup as a market leader.",
             "results_text": "500K+ followers\nFeatured in Vogue\n12x ROI",
-            "url": "/work/luxe-lifestyle-brand"
+            "url": "\/work\/luxe-lifestyle-brand"
           }
         },
         "project_XWc7pY": {
           "type": "project",
           "settings": {
             "layout": "tall",
-            "image": "shopify://shop_images/25930044-A454-4EE9-BF1C-43FA0D5EA00E.jpg",
+            "image": "shopify:\/\/shop_images\/25930044-A454-4EE9-BF1C-43FA0D5EA00E.jpg",
             "category": "Case Studies",
             "client": "GreenTech Solutions",
             "title": "Sustainable Growth Through Digital",
             "description": "Comprehensive digital transformation combining automation, content, and lead generation.",
             "results_text": "200% leads\nCarbon neutral\nAward-winning",
-            "url": "/work/greentech-digital-innovation"
+            "url": "\/work\/greentech-digital-innovation"
           }
         },
         "project_jFDU3d": {
           "type": "project",
           "settings": {
             "layout": "default",
-            "image": "shopify://shop_images/elmurorosa_drone_shot_of_tropical_island_--ar_916_--style_raw_a4bea9bc-922d-4f57-b454-57f5fe4564c6.webp",
+            "image": "shopify:\/\/shop_images\/elmurorosa_drone_shot_of_tropical_island_--ar_916_--style_raw_a4bea9bc-922d-4f57-b454-57f5fe4564c6.webp",
             "category": "Branding",
             "client": "Urban Eats",
             "title": "From Local to National Recognition",
             "description": "Strategic branding and social media management that expanded a local restaurant chain nationwide.",
             "results_text": "50 locations\n1M+ followers\nPress coverage",
-            "url": "/work/urban-eats-expansion"
+            "url": "\/work\/urban-eats-expansion"
           }
         },
         "project_gcYABz": {
           "type": "project",
           "settings": {
             "layout": "wide",
-            "image": "shopify://shop_images/DSCF7109_3532ce56-01d4-42c1-ba19-6401dd0bff36.webp",
+            "image": "shopify:\/\/shop_images\/DSCF7109_3532ce56-01d4-42c1-ba19-6401dd0bff36.webp",
             "category": "Web Development",
             "client": "Fintech Pro",
             "title": "High-Converting Financial Platform",
             "description": "Custom web application with AI-driven analytics that tripled lead conversion rates.",
             "results_text": "3x conversion\n<1.5s load\n99.9% uptime",
-            "url": "/work/fintech-pro-website"
+            "url": "\/work\/fintech-pro-website"
           }
         },
         "project_3BdRRx": {
           "type": "project",
           "settings": {
             "layout": "default",
-            "image": "shopify://shop_images/IMG_9657_1.webp",
+            "image": "shopify:\/\/shop_images\/IMG_9657_1.webp",
             "category": "Content Production",
             "client": "Wandrd",
             "title": "Adventure Content at Scale",
             "description": "Multi-platform content strategy that captured the spirit of adventure travel.",
             "results_text": "2M+ views\n45% engagement\nGlobal reach",
-            "url": "/work/wandrd-content-campaign"
+            "url": "\/work\/wandrd-content-campaign"
           }
         },
         "project_QxDA3B": {
           "type": "project",
           "settings": {
             "layout": "default",
-            "image": "shopify://shop_images/25930044-A454-4EE9-BF1C-43FA0D5EA00E.jpg",
+            "image": "shopify:\/\/shop_images\/25930044-A454-4EE9-BF1C-43FA0D5EA00E.jpg",
             "category": "Branding",
             "client": "Polaroid",
             "title": "Nostalgia Meets Modern",
             "description": "Brand activation campaign that bridged classic Polaroid aesthetics with contemporary audiences.",
             "results_text": "Viral campaign\nGen-Z reach\nBrand refresh",
-            "url": "/work/polaroid-brand-activation"
+            "url": "\/work\/polaroid-brand-activation"
           }
         },
         "project_AHaAqE": {
           "type": "project",
           "settings": {
             "layout": "default",
-            "image": "shopify://shop_images/IMG_3161.webp",
+            "image": "shopify:\/\/shop_images\/IMG_3161.webp",
             "category": "Case Studies",
             "client": "Adidas",
             "title": "Streetwear Meets Performance",
@@ -588,15 +590,15 @@
         "border_radius": 12,
         "video_type": "youtube",
         "video_url": "",
-        "video_file": "shopify://files/videos/video.mp4",
-        "poster_image": "shopify://shop_images/videoframe_8.png",
+        "video_file": "shopify:\/\/files\/videos\/video.mp4",
+        "poster_image": "shopify:\/\/shop_images\/videoframe_8.png",
         "autoplay": false,
         "loop": false,
         "muted": false,
         "show_badge": true,
         "badge_text": "NEW",
         "kicker": "Featured Content",
-        "heading": "<p>Watch the story <em>unfold</em></p>",
+        "heading": "<p>Watch the story <em>unfold<\/em><\/p>",
         "subheading": "A cinematic look at what becomes possible when strategy, creative direction, and execution move together.",
         "tag_label": "",
         "bg_color": "#0a0a0a",
@@ -613,8 +615,8 @@
         "border_radius": 12,
         "video_type": "youtube",
         "video_url": "",
-        "video_file": "shopify://files/videos/Gen-3 Alpha 4281765804, FPV drone racing.mp4",
-        "poster_image": "shopify://shop_images/videoframe_1541.png",
+        "video_file": "shopify:\/\/files\/videos\/Gen-3 Alpha 4281765804, FPV drone racing.mp4",
+        "poster_image": "shopify:\/\/shop_images\/videoframe_1541.png",
         "autoplay": false,
         "loop": false,
         "muted": false,
@@ -676,7 +678,7 @@
           "type": "partnership_badge",
           "settings": {
             "icon": "award",
-            "label": "Featured at SXSW / ARTBASEL 2024"
+            "label": "Featured at SXSW \/ ARTBASEL 2024"
           }
         },
         "partnership_badge_EWmQNe": {
@@ -719,7 +721,7 @@
         "subtitle": "Real work. Real outcomes. Real momentum built through aligned strategy and execution.",
         "cta_heading": "Ready to add your brand to this list?",
         "cta_text": "Let's talk",
-        "cta_url": "https://tidycal.com/salesautomateiq/consultation",
+        "cta_url": "https:\/\/tidycal.com\/salesautomateiq\/consultation",
         "cta_new_tab": true
       }
     },
@@ -731,7 +733,7 @@
         "heading": "Ready to Build Your AI-Powered Brand Agent?",
         "description": "Book a free consultation to discuss how we can automate your customer interactions while maintaining your unique brand voice.",
         "cta_text": "Book Free Consultation",
-        "cta_url": "https://tidycal.com/salesautomateiq/consultation",
+        "cta_url": "https:\/\/tidycal.com\/salesautomateiq\/consultation",
         "cta_new_tab": true
       }
     }
