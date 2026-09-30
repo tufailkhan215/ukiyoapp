@@ -705,6 +705,19 @@
             "gallery_image_5": "shopify://shop_images/4_82c4421b-137e-4db5-bf2d-0368f44c06b4.webp",
             "case_study_link": ""
           }
+        },
+        "project_FCCygp": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/indian1_1_1.webp",
+            "category": "Entertainment",
+            "title": "DJI",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/2_ced96809-1d2d-4aae-b179-a67d9544b37a.webp",
+            "gallery_image_3": "shopify://shop_images/4_4944b38e-00cf-4063-bf98-2d34ab04b398.webp",
+            "gallery_image_4": "shopify://shop_images/3_4af205b2-1699-4a84-9398-01bd86341147.webp",
+            "case_study_link": ""
+          }
         }
       },
       "block_order": [
@@ -736,7 +749,8 @@
         "project_cmYXEe",
         "project_a4BMWz",
         "project_mpqBwf",
-        "project_JEwFpM"
+        "project_JEwFpM",
+        "project_FCCygp"
       ],
       "name": "Featured Work",
       "settings": {
