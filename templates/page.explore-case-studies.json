@@ -787,6 +787,18 @@
             "gallery_image_4": "shopify://shop_images/1_b9cf72b2-2605-409a-b899-6449210b8f24.webp",
             "case_study_link": ""
           }
+        },
+        "project_qYmWfm": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge_1.webp",
+            "category": "Entertainment",
+            "title": "Poppy.California",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/4_47d72b68-e8e3-4a24-85b4-aa82ab0778ad.webp",
+            "gallery_image_3": "shopify://shop_images/2_1213ca2c-9cff-4d89-a009-2d2c74e4a5eb.webp",
+            "case_study_link": ""
+          }
         }
       },
       "block_order": [
@@ -824,7 +836,8 @@
         "project_7DFAmn",
         "project_yYfnrk",
         "project_pz6Yaq",
-        "project_9c9jBK"
+        "project_9c9jBK",
+        "project_qYmWfm"
       ],
       "name": "Featured Work",
       "settings": {
