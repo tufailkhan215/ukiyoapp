@@ -948,7 +948,8 @@
     const autoMode = root.dataset.playback !== 'scroll';
     const autoMotion = Math.max(4, Number(root.dataset.autoSeconds) || 16) * 1000;
     const autoHold = Math.max(0, Number(root.dataset.holdSeconds) || 0) * 1000;
-    const autoStops = [0, .245, .47, .935, 1];
+    const autoStops = [0, .245, .47, 1];
+    const autoFinish = .94; /* story lands before the clip ends, footage still moving */
     const autoTotal = autoMotion + autoHold * (autoStops.length - 2);
     const autoFallback = 13000; /* used only if the video fails to load */
 
@@ -1332,21 +1333,26 @@
         ? cv.duration
         : 0;
 
+      /* Playback stops when the clip ends, not when the story lands. */
+      let finished = elapsed >= autoTotal;
+
       if (clock && !clock.failed && dur) {
         /* The video is the clock: text position follows footage time. */
         elapsed = cv.ended || cv.currentTime >= dur - .05
           ? autoTotal
-          : Math.min(autoTotal, (cv.currentTime / dur) * autoTotal);
+          : Math.min(autoTotal, (cv.currentTime / (dur * autoFinish)) * autoTotal);
+        finished = cv.ended || cv.currentTime >= dur - .05;
         lastTs = 0;
       } else if (!clock || clock.failed) {
         /* No usable video: run the same story on a timer instead. */
         const dt = lastTs ? Math.min(100, ts - lastTs) : 0;
         lastTs = ts;
         elapsed = Math.min(autoTotal, elapsed + dt * autoTotal / autoFallback);
+        finished = elapsed >= autoTotal;
       }
       /* Otherwise the video is still loading: wait on the opening frame. */
 
-      if (elapsed >= autoTotal) {
+      if (finished) {
         playing = false;
         lastTs = 0;
         updatePlayButton();
