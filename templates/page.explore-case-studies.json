@@ -677,6 +677,21 @@
             "case_study_link": ""
           }
         },
+        "project_mpqBwf": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/DSCF9760_2.webp",
+            "category": "Entertainment",
+            "title": "Two Hands",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/5_27a76933-e362-4d02-a16f-e4bd147b42fb.webp",
+            "gallery_image_3": "shopify://shop_images/2_8b663797-0bce-4102-b52d-f8162cd7acd6.webp",
+            "gallery_image_4": "shopify://shop_images/4_d05b7758-7eff-4830-b88d-3a6da5a9e533.webp",
+            "gallery_image_5": "shopify://shop_images/6_c2a27bf2-43a3-46c9-9300-847e3107306c.webp",
+            "gallery_image_6": "shopify://shop_images/3_87f51aff-c0c8-419e-bdfb-e4482bcb9153.webp",
+            "case_study_link": ""
+          }
+        },
         "project_JEwFpM": {
           "type": "project",
           "settings": {
@@ -720,6 +735,7 @@
         "project_98FKXA",
         "project_cmYXEe",
         "project_a4BMWz",
+        "project_mpqBwf",
         "project_JEwFpM"
       ],
       "name": "Featured Work",
