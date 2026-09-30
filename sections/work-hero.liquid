@@ -950,15 +950,17 @@
     const playButton = root.querySelector('[data-playpause]');
 
     /*
-      Automatic playback. Motion runs between stops; at each inner stop
-      the text holds still long enough to read. The footage keeps drifting
-      through the whole run so a hold never looks frozen.
+      Automatic playback, locked to the video: one play of the clip is the
+      whole story. The base video is the clock; its current time maps onto
+      the scene timeline. Motion runs between stops and the text holds still
+      at each inner stop; the two settings set how that time is split.
     */
     const autoMode = root.dataset.playback !== 'scroll';
     const autoMotion = Math.max(4, Number(root.dataset.autoSeconds) || 16) * 1000;
     const autoHold = Math.max(0, Number(root.dataset.holdSeconds) || 0) * 1000;
     const autoStops = [0, .245, .47, .935, 1];
     const autoTotal = autoMotion + autoHold * (autoStops.length - 2);
+    const autoFallback = 13000; /* used only if the video fails to load */
 
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
     const shortScreen = matchMedia('(max-height: 480px)');
@@ -1266,21 +1268,26 @@
         const duration = clip.video.duration;
 
         if (autoMode) {
-          /* Automatic playback: footage runs at normal speed and loops. */
+          /*
+            Automatic playback: footage at normal speed, played once.
+            The base layer is the clock and runs for the whole story;
+            wipe layers only run while visible, held in step with it.
+          */
           const v = clip.video;
+          const base = clips[0].video;
+          const run = playing && (i === 0 || clip.needed);
+
+          v.loop = false;
 
           if (clip.loaded && !clip.failed && v.readyState >= 2) {
-            if (inView && !userPaused && clip.needed) {
-              if (v.paused) {
-                v.loop = true;
-
-                if (!clip.started && Number.isFinite(duration) && duration > 0) {
-                  clip.started = true;
-                  v.currentTime = Math.min(1, duration / 12) * i;
-                }
-
-                v.play().catch(() => {});
+            if (run) {
+              if (i > 0 && Number.isFinite(duration) && duration > 0) {
+                const lead = Math.min(1, duration / 12);
+                const target = Math.min(duration - .05, base.currentTime + i * lead);
+                if (Math.abs(v.currentTime - target) > .2) v.currentTime = target;
               }
+
+              if (v.paused && !v.ended) v.play().catch(() => {});
             } else if (!v.paused) {
               v.pause();
             }
@@ -1324,10 +1331,25 @@
       tickRaf = 0;
       if (destroyed || !enabled || !autoMode || !playing) return;
 
-      /* Cap the step so a background tab doesn't jump the story. */
-      const dt = lastTs ? Math.min(100, ts - lastTs) : 0;
-      lastTs = ts;
-      elapsed = Math.min(autoTotal, elapsed + dt);
+      const clock = clips[0];
+      const cv = clock && clock.video;
+      const dur = cv && Number.isFinite(cv.duration) && cv.duration > 0
+        ? cv.duration
+        : 0;
+
+      if (clock && !clock.failed && dur) {
+        /* The video is the clock: text position follows footage time. */
+        elapsed = cv.ended || cv.currentTime >= dur - .05
+          ? autoTotal
+          : Math.min(autoTotal, (cv.currentTime / dur) * autoTotal);
+        lastTs = 0;
+      } else if (!clock || clock.failed) {
+        /* No usable video: run the same story on a timer instead. */
+        const dt = lastTs ? Math.min(100, ts - lastTs) : 0;
+        lastTs = ts;
+        elapsed = Math.min(autoTotal, elapsed + dt * autoTotal / autoFallback);
+      }
+      /* Otherwise the video is still loading: wait on the opening frame. */
 
       if (elapsed >= autoTotal) {
         playing = false;
@@ -1341,7 +1363,12 @@
 
     function play() {
       if (!autoMode || !enabled || playing || destroyed) return;
-      if (elapsed >= autoTotal) elapsed = 0;
+      if (elapsed >= autoTotal) {
+        elapsed = 0;
+        clips.forEach(clip => {
+          try { clip.video.currentTime = 0; } catch (_) {}
+        });
+      }
       playing = true;
       lastTs = 0;
       updatePlayButton();
@@ -1604,29 +1631,27 @@
         { "value": "scroll", "label": "Controlled by scrolling" }
       ],
       "default": "auto",
-      "info": "Automatic plays the sequence once when the section comes into view, with pause and replay. Scrolling ties every frame to the visitor's scroll."
+      "info": "Automatic plays the sequence once, in sync with the video, when the section comes into view. Visitors can pause or replay. Scrolling ties every frame to the visitor's scroll."
     },
     {
       "type": "range",
       "id": "auto_seconds",
-      "label": "Animation length",
+      "label": "Motion share",
       "min": 8,
       "max": 40,
       "step": 1,
-      "unit": "s",
       "default": 16,
-      "info": "Automatic playback only. Time spent moving between stages."
+      "info": "Automatic playback runs once, locked to the video. This and Reading pause set how that time is split between movement and still text."
     },
     {
       "type": "range",
       "id": "hold_seconds",
-      "label": "Reading pause",
+      "label": "Reading pause share",
       "min": 0,
       "max": 10,
       "step": 1,
-      "unit": "s",
       "default": 5,
-      "info": "Automatic playback only. How long each text stage stays still before moving on."
+      "info": "Automatic playback only. Higher gives each text stage longer to read within the video's length."
     },
     {
       "type": "range",
