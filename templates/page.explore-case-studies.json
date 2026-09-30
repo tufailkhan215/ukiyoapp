@@ -571,9 +571,13 @@
         "project_RDydeH": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-09-29_at_9.59.29_PM.png",
             "category": "Entertainment",
             "title": "Comedor",
             "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/Screenshot_2026-09-29_at_9.59.33_PM.png",
+            "gallery_image_3": "shopify://shop_images/Screenshot_2026-09-29_at_9.59.34_PM.png",
+            "gallery_image_4": "shopify://shop_images/Screenshot_2026-09-29_at_9.59.30_PM.png",
             "case_study_link": ""
           }
         },
@@ -598,9 +602,15 @@
         "project_WR8Bmh": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/25930044-A454-4EE9-BF1C-43FA0D5EA00E_52cab236-dfa4-4d67-ac5f-754a213b5320.jpg",
             "category": "Entertainment",
             "title": "Wandrd",
             "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/4_e64cd0cf-7789-4c2d-b9e3-95ef4472e9db.webp",
+            "gallery_image_3": "shopify://shop_images/2_fb68f9ba-4703-4ce4-af1e-f91f07463d46.jpg",
+            "gallery_image_4": "shopify://shop_images/w1_be0514ee-e1fe-4c0c-a088-adc2faa3d55b.webp",
+            "gallery_image_5": "shopify://shop_images/25930044-A454-4EE9-BF1C-43FA0D5EA00E_52cab236-dfa4-4d67-ac5f-754a213b5320.jpg",
+            "gallery_image_6": "shopify://shop_images/3_6dc2d757-025f-40f9-ba4c-618b5318067d.webp",
             "case_study_link": ""
           }
         },
