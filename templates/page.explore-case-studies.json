@@ -417,6 +417,7 @@
         "project_9yjgY4": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-05-31_at_8.54.18_PM.png",
             "category": "Culinary",
             "title": "Sherwood",
             "description": "High-energy brand content and experiential marketing campaigns.",
@@ -426,6 +427,7 @@
         "project_mfdyM4": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/czadzs1.png",
             "category": "Travel & Experience",
             "title": "Water House",
             "description": "California-inspired brand storytelling and visual identity development.",
@@ -465,15 +467,22 @@
         "project_QeUUR8": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_29_2026_09_42_27_PM.png",
             "category": "Streetwear",
             "title": "Bear River Glassworks",
             "description": "Urban streetwear brand activation and cultural marketing.",
+            "gallery_image_2": "shopify://shop_images/Screenshot2026-09-08at4.03.00AM.webp",
+            "gallery_image_3": "shopify://shop_images/Screenshot2026-09-10at10.17.16AM.webp",
+            "gallery_image_4": "shopify://shop_images/Screenshot2026-09-08at3.55.53AM.webp",
+            "gallery_image_5": "shopify://shop_images/Screenshot_2026-09-07_at_8.20.47_PM.webp",
+            "gallery_image_6": "shopify://shop_images/Screenshot_2026-09-07_at_8.29.45_PM.webp",
             "case_study_link": ""
           }
         },
         "project_yJYDtj": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-09-29_at_9.46.17_PM.png",
             "category": "Travel & Experience",
             "title": "Academy of Oracle Arts",
             "description": "Luxury travel experience content and brand storytelling.",
@@ -483,6 +492,7 @@
         "project_YcEgNT": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-09-29_at_9.47.11_PM.png",
             "category": "Media & Culture",
             "title": "WeAreCot",
             "description": "Editorial content partnership and cultural brand activation.",
@@ -492,6 +502,7 @@
         "project_eHNDLV": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-06-12_at_8.57.48_AM.webp",
             "category": "Culinary",
             "title": "Pinnacle Health Nursing",
             "description": "Balinese fine dining experience captured through visual storytelling.",
@@ -501,6 +512,7 @@
         "project_GBnggf": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/DSC09799-15.webp",
             "category": "Hospitality",
             "title": "Friar Tucks",
             "description": "Hawaiian wellness retreat brand development and content creation.",
@@ -510,6 +522,7 @@
         "project_6GtyVW": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-09-29_at_9.50.17_PM.png",
             "category": "Culinary",
             "title": "Pachamana",
             "description": "Indian-inspired cuisine brand story and visual identity.",
@@ -519,6 +532,7 @@
         "project_ra8Dbj": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/images_1_9e1331be-5f1b-4d41-8ea1-a8f95ca930fa.jpg",
             "category": "Hospitality",
             "title": "The Wild Land Experience",
             "description": "Austin café brand activation and social media content strategy.",
@@ -528,18 +542,29 @@
         "project_AkLCVt": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/DSCF5623_1.webp",
             "category": "Culinary",
             "title": "DAKAN | CALIFORNIA",
             "description": "California fusion restaurant brand development and photography.",
+            "gallery_image_2": "shopify://shop_images/DSCF5650.webp",
+            "gallery_image_3": "shopify://shop_images/DSCF5510.webp",
+            "gallery_image_4": "shopify://shop_images/DSCF5662_1.webp",
+            "gallery_image_5": "shopify://shop_images/DSCF5505.webp",
+            "gallery_image_6": "shopify://shop_images/DSCF5631_1.webp",
             "case_study_link": ""
           }
         },
         "project_FXthd6": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/d45bbecb5e9a8d33d14f0dee170e73a2-xxlarge_e674914a-2275-4f7b-9dcb-abfa3b93e45b.webp",
             "category": "Entertainment",
             "title": "HARDROCK | CALIFORNIA",
             "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/2_3b9b052c-c462-4543-8b3a-977b7026791e.webp",
+            "gallery_image_3": "shopify://shop_images/1_3d62ed39-19e9-4884-9d65-8f1722943029.webp",
+            "gallery_image_4": "shopify://shop_images/4_34328670-2c50-4527-b077-cd91ef197db1.webp",
+            "gallery_image_5": "shopify://shop_images/3_e2ffa7a1-2d01-413d-a361-3ee91643feff.webp",
             "case_study_link": ""
           }
         },
