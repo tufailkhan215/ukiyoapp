@@ -743,6 +743,32 @@
             "gallery_image_5": "shopify://shop_images/2_ae425ecf-0cdc-4c37-bc86-ce6f1b13408d.webp",
             "case_study_link": ""
           }
+        },
+        "project_yYfnrk": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/IMG_9657_1_1.webp",
+            "category": "Entertainment",
+            "title": "HIGHSNOBIETY",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/4_cfa38a31-359f-467b-9bd4-074f2b889031.webp",
+            "gallery_image_3": "shopify://shop_images/5_a6f4afe7-03ec-4868-ad2d-fa4c9dc1c8b7.webp",
+            "gallery_image_4": "shopify://shop_images/6_7405af2c-52cc-4a1e-8a0d-ccab206cd77b.webp",
+            "gallery_image_5": "shopify://shop_images/2_ae425ecf-0cdc-4c37-bc86-ce6f1b13408d.webp",
+            "case_study_link": ""
+          }
+        },
+        "project_pz6Yaq": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/1_0492f2b1-de00-43ed-b734-f5e575e8fcff.webp",
+            "category": "Entertainment",
+            "title": "MAVERICK HELICOPTERS | NYC",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/2_b8ed67b8-4838-4f14-884e-ebd669703416.jpg",
+            "gallery_image_3": "shopify://shop_images/IMG_6776_1.webp",
+            "case_study_link": ""
+          }
         }
       },
       "block_order": [
@@ -777,7 +803,9 @@
         "project_JEwFpM",
         "project_FCCygp",
         "project_E4ejhm",
-        "project_7DFAmn"
+        "project_7DFAmn",
+        "project_yYfnrk",
+        "project_pz6Yaq"
       ],
       "name": "Featured Work",
       "settings": {
