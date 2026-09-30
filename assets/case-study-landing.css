@@ -172,7 +172,7 @@
   display: block;
   font-family: var(--csl-display);
   font-weight: 400;
-  font-size: clamp(1.85rem, calc((100vw - 56px) / (var(--len, 7) * 1.3)), 8.5rem);
+  font-size: clamp(1.85rem, calc((100vw - 56px) / (var(--len, 7) * 1.4)), 8.5rem);
   line-height: .94;
   letter-spacing: -.005em;
   text-transform: uppercase;
@@ -241,7 +241,6 @@
   background: radial-gradient(120% 80% at 50% 0%, var(--csl-soft), transparent 62%), var(--csl-surface);
 }
 @media (min-width: 1200px) { .csl-orbit-card { position: sticky; top: 120px; } }
-@media (max-width: 1199px) { .csl-orbit-card { max-width: 640px; } }
 .csl-orbit-card__head { flex-wrap: wrap; }
 .csl-orbit-card .csl-strap { color: rgba(255, 255, 255, .68); }
 .csl-orbit-card__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
