@@ -718,6 +718,17 @@
             "gallery_image_4": "shopify://shop_images/3_4af205b2-1699-4a84-9398-01bd86341147.webp",
             "case_study_link": ""
           }
+        },
+        "project_E4ejhm": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/DSCF9519_1_2.webp",
+            "category": "Entertainment",
+            "title": "Satori | Maui",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/2_05947780-4305-4d1e-9175-a3d7fce97b04.webp",
+            "case_study_link": ""
+          }
         }
       },
       "block_order": [
@@ -750,7 +761,8 @@
         "project_a4BMWz",
         "project_mpqBwf",
         "project_JEwFpM",
-        "project_FCCygp"
+        "project_FCCygp",
+        "project_E4ejhm"
       ],
       "name": "Featured Work",
       "settings": {
