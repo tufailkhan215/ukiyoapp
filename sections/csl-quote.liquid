@@ -8,7 +8,7 @@
   <div class="csl-wrap">
     <figure class="csl-quote__inner csl-rv">
       {%- if section.settings.strap != blank -%}
-        <span class="csl-strap">({{ section.settings.strap | escape }})</span>
+        <h2 class="csl-strap">({{ section.settings.strap | escape }})</h2>
       {%- endif -%}
       <span class="csl-quote__mark" aria-hidden="true">&ldquo;</span>
       <blockquote><p>{{ section.settings.quote | escape }}</p></blockquote>

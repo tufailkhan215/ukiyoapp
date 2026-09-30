@@ -293,17 +293,17 @@
             "text": "<p>Aniwa’s website supports a broad and evolving digital ecosystem that includes courses, memberships, retreats, private sessions with elders, a marketplace, live gatherings and nonprofit initiatives. Maintaining this type of platform requires more than occasional website edits—it requires a technical partner who understands how the different parts of the experience work together.</p><p>As Aniwa’s webmaster, we provide hands-on support for both day-to-day needs and larger technical challenges. We diagnose existing issues, investigate how the website and its integrations were originally built and implement solutions that preserve the integrity of the broader platform.</p><p>Our work includes coordinating with multiple team members, reviewing technical systems, resolving bugs, updating content and functionality and helping the website continue to evolve alongside Aniwa’s growing community and offerings.</p>"
           }
         },
-        "quote_1": {
-          "type": "quote",
-          "settings": {
-            "text": "Maintaining this type of platform requires more than occasional website edits—it requires a technical partner who understands how the different parts of the experience work together."
-          }
-        },
         "chapter_2": {
           "type": "chapter",
           "settings": {
             "title": "Technical website support",
             "text": "<p>We manage ongoing website updates and troubleshoot issues that may affect functionality, navigation, usability or the customer experience.</p><p>Before implementing changes, we review the existing architecture and identify how the affected systems connect. This allows us to make thoughtful updates without disrupting other parts of the platform.</p><p>We also test changes across desktop and mobile devices, address responsive-design issues and provide ongoing quality assurance to help ensure that the website remains stable, accessible and easy to use.</p>"
+          }
+        },
+        "quote_1": {
+          "type": "quote",
+          "settings": {
+            "text": "Maintaining this type of platform requires more than occasional website edits—it requires a technical partner who understands how the different parts of the experience work together."
           }
         },
         "chapter_3": {
@@ -323,8 +323,8 @@
       },
       "block_order": [
         "chapter_1",
-        "quote_1",
         "chapter_2",
+        "quote_1",
         "chapter_3",
         "chapter_4"
       ],

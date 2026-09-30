@@ -59,7 +59,7 @@
       statements.forEach(function (el) {
         var words = el.__cslWords || (el.__cslWords = el.querySelectorAll('.w'));
         var r = el.getBoundingClientRect();
-        var p = (vh * 0.88 - r.top) / (r.height + vh * 0.3);
+        var p = (vh * 0.85 - r.top) / (r.height + vh * 0.1);
         p = Math.max(0, Math.min(1, p));
         var lit = Math.round(p * words.length);
         for (var i = 0; i < words.length; i++) words[i].classList.toggle('on', i < lit);

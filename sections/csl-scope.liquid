@@ -52,7 +52,7 @@
             endfor
           -%}
           <div class="csl-group csl-rv" {{ block.shopify_attributes }}>
-            <h3 class="csl-group__title">{{ block.settings.title | escape }}<small>{% if group_size < 10 %}0{% endif %}{{ group_size }}</small></h3>
+            <h3 class="csl-group__title">{{ block.settings.title | escape }}<small aria-hidden="true">{% if group_size < 10 %}0{% endif %}{{ group_size }}</small></h3>
             <ol class="csl-list" role="list">
           {%- assign open = true -%}
         {%- else -%}

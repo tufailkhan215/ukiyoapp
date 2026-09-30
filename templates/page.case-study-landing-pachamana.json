@@ -244,17 +244,17 @@
             "text": "<p>Because ceremonial cacao can be unfamiliar to first-time customers, the website needed to do more than display products. It needed to educate visitors, establish trust and clearly communicate what makes Pacha Mana’s cacao distinct.</p><p>We developed the shopping experience around the questions customers are most likely to have: what ceremonial cacao is, how to choose the right product, how much to use and how cacao can become part of a daily ritual.</p>"
           }
         },
-        "quote_1": {
-          "type": "quote",
-          "settings": {
-            "text": "It needed to educate visitors, establish trust and clearly communicate what makes Pacha Mana’s cacao distinct."
-          }
-        },
         "chapter_2": {
           "type": "chapter",
           "settings": {
             "title": "SEO strategy",
             "text": "<p>Our SEO work focused on helping Pacha Mana reach people actively searching for ceremonial cacao, Chuncho cacao, cacao benefits, preparation guidance and related wellness products.</p><p>We conducted keyword and content research, improved the website’s page structure and optimized key product, collection and informational pages for greater search visibility. This included refining headings, page titles, meta descriptions, internal links and on-page copy while ensuring that the content continued to feel natural, educational and aligned with the brand.</p><p>We also developed search-focused educational content designed to answer real customer questions, establish Pacha Mana as a trusted resource and create additional pathways for new audiences to discover the brand organically.</p>"
+          }
+        },
+        "quote_1": {
+          "type": "quote",
+          "settings": {
+            "text": "It needed to educate visitors, establish trust and clearly communicate what makes Pacha Mana’s cacao distinct."
           }
         },
         "chapter_3": {
@@ -267,8 +267,8 @@
       },
       "block_order": [
         "chapter_1",
-        "quote_1",
         "chapter_2",
+        "quote_1",
         "chapter_3"
       ],
       "settings": {

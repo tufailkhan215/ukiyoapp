@@ -276,7 +276,7 @@
         "heading": "Our work",
         "heading_accent": "included",
         "show_count": true,
-        "count_label": "services delivered"
+        "count_label": "services in scope"
       }
     },
     "chapters": {
@@ -303,17 +303,17 @@
             "text": "<p>We manage the Academy’s social media strategy and develop content designed to educate, inspire and introduce audiences to its teachers and programs.</p><p>This includes campaign concepts, educational carousels, promotional posts, Instagram Stories, course announcements and ongoing brand content. We translate complex teachings and detailed course information into accessible, visually engaging content without losing the depth or integrity of the original material.</p>"
           }
         },
-        "quote_1": {
-          "type": "quote",
-          "settings": {
-            "text": "We translate complex teachings and detailed course information into accessible, visually engaging content without losing the depth or integrity of the original material."
-          }
-        },
         "chapter_4": {
           "type": "chapter",
           "settings": {
             "title": "Pinterest management",
             "text": "<p>We use Pinterest as a long-term discovery platform for the Academy’s teachings, courses and educational content.</p><p>Our work includes developing the Pinterest strategy, organizing content around relevant themes, creating and publishing optimized pins and connecting those pins to the Academy’s website, blog articles and course pages. This gives the Academy another pathway for reaching audiences who are actively searching for related teachings, practices and areas of study.</p>"
+          }
+        },
+        "quote_1": {
+          "type": "quote",
+          "settings": {
+            "text": "We translate complex teachings and detailed course information into accessible, visually engaging content without losing the depth or integrity of the original material."
           }
         },
         "chapter_5": {
@@ -335,8 +335,8 @@
         "chapter_1",
         "chapter_2",
         "chapter_3",
-        "quote_1",
         "chapter_4",
+        "quote_1",
         "chapter_5",
         "chapter_6"
       ],

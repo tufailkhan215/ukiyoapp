@@ -7,6 +7,13 @@
 {%- liquid
   assign accent = section.settings.accent | default: '#a78bfa'
   assign accent_2 = section.settings.accent_2 | default: '#60a5fa'
+  assign longest = 1
+  assign name_words = section.settings.client | split: ' '
+  for w in name_words
+    if w.size > longest
+      assign longest = w.size
+    endif
+  endfor
   assign node_count = 0
   for block in section.blocks
     if block.type == 'node'
@@ -43,7 +50,7 @@
     </div>
 
     <h1 class="csl-hero__title">
-      <span class="csl-hero__name csl-in" style="--d:.08s">{{ section.settings.client | escape }}</span>
+      <span class="csl-hero__name csl-in" style="--d:.08s; --len: {{ longest }}">{{ section.settings.client | escape }}</span>
       {%- if section.settings.services != blank -%}
         <span class="csl-sr">: </span>
         <span class="csl-hero__services csl-in" style="--d:.2s"><span class="csl-dot" aria-hidden="true"></span>{{ section.settings.services | escape }}</span>

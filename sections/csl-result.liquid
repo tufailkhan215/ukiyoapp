@@ -8,7 +8,7 @@
   <div class="csl-grain" aria-hidden="true"></div>
   <div class="csl-wrap">
     {%- if section.settings.strap != blank -%}
-      <span class="csl-strap csl-rv">({{ section.settings.strap | escape }})</span>
+      <h2 class="csl-strap csl-rv">({{ section.settings.strap | escape }})</h2>
     {%- endif -%}
     {%- if section.settings.statement != blank -%}
       {%- assign words = section.settings.statement | escape | split: ' ' -%}
