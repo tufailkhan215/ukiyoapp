@@ -15,9 +15,6 @@
   class="uc"
   data-testid="work-hero"
   style="--uc-screens: {{ screen_count }};"
-  data-playback="{{ section.settings.playback | default: 'auto' }}"
-  data-auto-seconds="{{ section.settings.auto_seconds | default: 16 }}"
-  data-hold-seconds="{{ section.settings.hold_seconds | default: 5 }}"
 >
   <div class="uc__frame">
 
@@ -34,8 +31,6 @@
         }}
       {% endif %}
     </div>
-
-    <div class="uc__afterglow" aria-hidden="true"><i></i><i></i><i></i></div>
 
     {% for layer in (0..2) %}
       <div
@@ -677,75 +672,6 @@
     height: calc(100svh * var(--uc-screens));
   }
 
-  /*
-    End of film: the footage fades out and slow teal light drifts behind
-    the closing text, so the last video frame never sits frozen.
-  */
-  #UkiyoCinema-{{ section.id }} .uc__afterglow {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    overflow: hidden;
-    pointer-events: none;
-    background: #030605;
-    opacity: 0;
-    transition: opacity .6s ease;
-  }
-
-  #UkiyoCinema-{{ section.id }} .uc__afterglow i {
-    position: absolute;
-    width: 70vmax;
-    height: 70vmax;
-    border-radius: 50%;
-    filter: blur(60px);
-    opacity: .55;
-    animation: uc-drift-{{ section.id }} 18s ease-in-out infinite alternate;
-  }
-
-  #UkiyoCinema-{{ section.id }} .uc__afterglow i:nth-child(1) {
-    left: -15vmax;
-    top: -20vmax;
-    background: radial-gradient(circle, rgba(46, 120, 110, .9), transparent 65%);
-  }
-
-  #UkiyoCinema-{{ section.id }} .uc__afterglow i:nth-child(2) {
-    right: -20vmax;
-    bottom: -25vmax;
-    background: radial-gradient(circle, rgba(20, 70, 80, .9), transparent 65%);
-    animation-duration: 22s;
-    animation-delay: -6s;
-  }
-
-  #UkiyoCinema-{{ section.id }} .uc__afterglow i:nth-child(3) {
-    left: 30%;
-    top: 35%;
-    width: 45vmax;
-    height: 45vmax;
-    background: radial-gradient(circle, rgba(120, 150, 130, .5), transparent 60%);
-    animation-duration: 26s;
-    animation-delay: -12s;
-  }
-
-  @keyframes uc-drift-{{ section.id }} {
-    from { transform: translate3d(0, 0, 0) scale(1); }
-    to { transform: translate3d(8vmax, 6vmax, 0) scale(1.15); }
-  }
-
-  #UkiyoCinema-{{ section.id }}.uc--animated.uc--ended .uc__afterglow {
-    opacity: 1;
-  }
-
-  #UkiyoCinema-{{ section.id }}.uc--animated.uc--ended .uc__media-layer {
-    opacity: 0 !important;
-    transition: opacity .6s ease;
-  }
-
-  /* Automatic playback: the scene plays on a timer, so no scroll travel. */
-  #UkiyoCinema-{{ section.id }}.uc--animated.uc--auto {
-    height: 100vh;
-    height: 100svh;
-  }
-
   #UkiyoCinema-{{ section.id }}.uc--animated .uc__frame {
     position: sticky;
     top: 0;
@@ -1002,21 +928,6 @@
     const modeButton = root.querySelector('[data-mode]');
     const exploreButton = root.querySelector('[data-explore]');
     const nextButton = root.querySelector('[data-next]');
-    const playButton = root.querySelector('[data-playpause]');
-
-    /*
-      Automatic playback, locked to the video: one play of the clip is the
-      whole story. The base video is the clock; its current time maps onto
-      the scene timeline. Motion runs between stops and the text holds still
-      at each inner stop; the two settings set how that time is split.
-    */
-    const autoMode = root.dataset.playback !== 'scroll';
-    const autoMotion = Math.max(4, Number(root.dataset.autoSeconds) || 16) * 1000;
-    const autoHold = Math.max(0, Number(root.dataset.holdSeconds) || 0) * 1000;
-    const autoStops = [0, .245, .47, 1];
-    const autoFinish = .94; /* story lands before the clip ends, footage still moving */
-    const autoTotal = autoMotion + autoHold * (autoStops.length - 2);
-    const autoFallback = 13000; /* used only if the video fails to load */
 
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
     const shortScreen = matchMedia('(max-height: 480px)');
@@ -1029,16 +940,6 @@
     let height = 1;
     let stripHeight = 1;
     let active = true;
-    let elapsed = 0;
-    let playing = false;
-    let userPaused = false;
-    let inView = false;
-    let lastTs = 0;
-    let tickRaf = 0;
-    let hasPlayed = false;
-    let pendingReplay = false;
-    let idleTimer = 0;
-    const idleDelay = 2500; /* stillness needed before a replay starts */
 
     const clamp = value => Math.min(1, Math.max(0, value));
     const range = (value, start, end) =>
@@ -1111,7 +1012,7 @@
 
       function seek() {
         if (
-          autoMode || destroyed || !enabled || !active || !state.needed ||
+          destroyed || !enabled || !active || !state.needed ||
           state.failed || video.seeking ||
           video.readyState < 1 ||
           !Number.isFinite(video.duration) ||
@@ -1199,7 +1100,7 @@
       if (!active) return;
 
       const travel = Math.max(1, root.offsetHeight - height);
-      const p = autoMode ? autoProgress(elapsed) : clamp(-rect.top / travel);
+      const p = clamp(-rect.top / travel);
 
       progressBar.style.transform = `scaleX(${p})`;
 
@@ -1327,151 +1228,13 @@
 
         const duration = clip.video.duration;
 
-        if (autoMode) {
-          /*
-            Automatic playback: footage at normal speed, played once.
-            The base layer is the clock and runs for the whole story;
-            wipe layers only run while visible, held in step with it.
-          */
-          const v = clip.video;
-          const base = clips[0].video;
-          const run = playing && (i === 0 || clip.needed);
-
-          v.loop = false;
-
-          if (clip.loaded && !clip.failed && v.readyState >= 2) {
-            if (run) {
-              /* Wipe layers run in exact step with the base, so all footage ends together. */
-              if (i > 0 && Number.isFinite(duration) && duration > 0) {
-                const target = Math.min(duration - .05, base.currentTime);
-                if (Math.abs(v.currentTime - target) > .2) v.currentTime = target;
-              }
-
-              if (v.paused && !v.ended) v.play().catch(() => {});
-            } else if (!v.paused) {
-              v.pause();
-            }
-          }
-        } else if (Number.isFinite(duration) && duration > 0) {
+        if (Number.isFinite(duration) && duration > 0) {
           const lead = Math.min(1, duration / 12);
           const usable = Math.max(0, duration - lead * 2 - .05);
           clip.target = p * usable + i * lead;
           clip.seek();
         }
       });
-    }
-
-    function autoProgress(ms) {
-      let t = ms;
-
-      for (let i = 0; i < autoStops.length - 1; i++) {
-        const from = autoStops[i];
-        const to = autoStops[i + 1];
-        const move = autoMotion * (to - from);
-
-        if (t <= move) return from + (to - from) * (t / move);
-        t -= move;
-
-        if (i + 1 < autoStops.length - 1) {
-          if (t <= autoHold) return to;
-          t -= autoHold;
-        }
-      }
-
-      return 1;
-    }
-
-    function updatePlayButton() {
-      if (!playButton) return;
-      const done = elapsed >= autoTotal;
-      playButton.textContent = playing ? 'Pause' : done ? 'Replay' : 'Play';
-      playButton.setAttribute('aria-pressed', String(!playing && !done));
-    }
-
-    function tick(ts) {
-      tickRaf = 0;
-      if (destroyed || !enabled || !autoMode || !playing) return;
-
-      const clock = clips[0];
-      const cv = clock && clock.video;
-      const dur = cv && Number.isFinite(cv.duration) && cv.duration > 0
-        ? cv.duration
-        : 0;
-
-      /* Playback stops when the clip ends, not when the story lands. */
-      let finished = elapsed >= autoTotal;
-
-      if (clock && !clock.failed && dur) {
-        /* The video is the clock: text position follows footage time. */
-        elapsed = cv.ended || cv.currentTime >= dur - .05
-          ? autoTotal
-          : Math.min(autoTotal, (cv.currentTime / (dur * autoFinish)) * autoTotal);
-        finished = cv.ended || cv.currentTime >= dur - .05 ||
-          clips.some(clip => clip.needed && clip.video.ended);
-        lastTs = 0;
-      } else if (!clock || clock.failed) {
-        /* No usable video: run the same story on a timer instead. */
-        const dt = lastTs ? Math.min(100, ts - lastTs) : 0;
-        lastTs = ts;
-        elapsed = Math.min(autoTotal, elapsed + dt * autoTotal / autoFallback);
-        finished = elapsed >= autoTotal;
-      }
-      /* Otherwise the video is still loading: wait on the opening frame. */
-
-      if (finished) {
-        playing = false;
-        lastTs = 0;
-        root.classList.add('uc--ended');
-        updatePlayButton();
-      }
-
-      schedule();
-      if (playing) tickRaf = requestAnimationFrame(tick);
-    }
-
-    function play() {
-      if (!autoMode || !enabled || playing || destroyed) return;
-      if (elapsed >= autoTotal) {
-        elapsed = 0;
-        clips.forEach(clip => {
-          try { clip.video.currentTime = 0; } catch (_) {}
-        });
-      }
-      root.classList.remove('uc--ended');
-      playing = true;
-      hasPlayed = true;
-      pendingReplay = false;
-      clearTimeout(idleTimer);
-      lastTs = 0;
-      updatePlayButton();
-      if (!tickRaf) tickRaf = requestAnimationFrame(tick);
-    }
-
-    function pause() {
-      playing = false;
-      lastTs = 0;
-      if (tickRaf) cancelAnimationFrame(tickRaf);
-      tickRaf = 0;
-      if (autoMode) videos.forEach(video => video.pause());
-      if (playButton) updatePlayButton();
-    }
-
-    /* Back to the opening frame, footage rewound, ready to replay. */
-    function rewind() {
-      root.classList.remove('uc--ended');
-      elapsed = 0;
-      clips.forEach(clip => {
-        try { clip.video.currentTime = 0; } catch (_) {}
-      });
-      schedule();
-    }
-
-    /* Replay once the visitor has been still for a moment. */
-    function armIdle() {
-      clearTimeout(idleTimer);
-      idleTimer = setTimeout(() => {
-        if (inView && enabled && autoMode && !playing && !destroyed) play();
-      }, idleDelay);
     }
 
     function schedule() {
@@ -1513,12 +1276,7 @@
 
       if (!enabled) resetContent();
 
-      root.classList.toggle('uc--auto', enabled && autoMode);
-      exploreButton.hidden = !enabled || autoMode;
-      if (playButton) playButton.hidden = !enabled || !autoMode;
-
-      if (!enabled) pause();
-      else if (autoMode && inView && !userPaused && elapsed < autoTotal) play();
+      exploreButton.hidden = !enabled;
       modeButton.hidden = reduced.matches || shortScreen.matches;
       modeButton.textContent = enabled ? 'View all content' : 'Enable animation';
       modeButton.setAttribute('aria-pressed', String(!enabled));
@@ -1587,39 +1345,6 @@
     observer?.observe(frame);
     observer?.observe(strip);
 
-    const viewObserver = autoMode && typeof IntersectionObserver !== 'undefined'
-      ? new IntersectionObserver(([entry]) => {
-          const wasInView = inView;
-          inView = entry.isIntersecting && entry.intersectionRatio >= .5;
-
-          if (!inView) {
-            clearTimeout(idleTimer);
-            pause();
-            return;
-          }
-
-          if (wasInView || !enabled) return;
-
-          if (!hasPlayed) {
-            play();
-          } else if (!playing) {
-            pendingReplay = true;
-            rewind();
-            armIdle();
-          }
-        }, { threshold: [0, .5] })
-      : null;
-
-    viewObserver?.observe(root);
-
-    /* Any interaction while waiting to replay restarts the wait. */
-    if (autoMode) {
-      ['scroll', 'wheel', 'touchstart', 'touchmove', 'keydown', 'pointerdown']
-        .forEach(name => listen(window, name, () => {
-          if (pendingReplay && inView && !playing && enabled) armIdle();
-        }, { passive: true }));
-    }
-
     document.fonts?.ready.then(() => {
       if (!destroyed) measure();
     });
@@ -1630,13 +1355,10 @@
       destroyed = true;
       events.abort();
       observer?.disconnect();
-      viewObserver?.disconnect();
-      clearTimeout(idleTimer);
-      pause();
 
       if (raf) cancelAnimationFrame(raf);
 
-      root.classList.remove('uc--animated', 'uc--ended');
+      root.classList.remove('uc--animated');
       resetContent();
 
       videos.forEach(video => {
@@ -1723,37 +1445,6 @@
       "type": "image_picker",
       "id": "poster",
       "label": "Video poster and fallback image"
-    },
-    {
-      "type": "select",
-      "id": "playback",
-      "label": "Playback",
-      "options": [
-        { "value": "auto", "label": "Plays automatically" },
-        { "value": "scroll", "label": "Controlled by scrolling" }
-      ],
-      "default": "auto",
-      "info": "Automatic plays the sequence once, in sync with the video, when the section comes into view, and replays when visitors return to it and stop scrolling. Scrolling ties every frame to the visitor's scroll."
-    },
-    {
-      "type": "range",
-      "id": "auto_seconds",
-      "label": "Motion share",
-      "min": 8,
-      "max": 40,
-      "step": 1,
-      "default": 16,
-      "info": "Automatic playback runs once, locked to the video. This and Reading pause set how that time is split between movement and still text."
-    },
-    {
-      "type": "range",
-      "id": "hold_seconds",
-      "label": "Reading pause share",
-      "min": 0,
-      "max": 10,
-      "step": 1,
-      "default": 5,
-      "info": "Automatic playback only. Higher gives each text stage longer to read within the video's length."
     },
     {
       "type": "range",
