@@ -1341,9 +1341,9 @@
 
           if (clip.loaded && !clip.failed && v.readyState >= 2) {
             if (run) {
+              /* Wipe layers run in exact step with the base, so all footage ends together. */
               if (i > 0 && Number.isFinite(duration) && duration > 0) {
-                const lead = Math.min(1, duration / 12);
-                const target = Math.min(duration - .05, base.currentTime + i * lead);
+                const target = Math.min(duration - .05, base.currentTime);
                 if (Math.abs(v.currentTime - target) > .2) v.currentTime = target;
               }
 
@@ -1406,7 +1406,8 @@
         elapsed = cv.ended || cv.currentTime >= dur - .05
           ? autoTotal
           : Math.min(autoTotal, (cv.currentTime / (dur * autoFinish)) * autoTotal);
-        finished = cv.ended || cv.currentTime >= dur - .05;
+        finished = cv.ended || cv.currentTime >= dur - .05 ||
+          clips.some(clip => clip.needed && clip.video.ended);
         lastTs = 0;
       } else if (!clock || clock.failed) {
         /* No usable video: run the same story on a timer instead. */
