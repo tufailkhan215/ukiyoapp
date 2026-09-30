@@ -1,0 +1,9 @@
+{%- comment -%}
+  Shared assets for the csl-* case study sections. Every section renders this;
+  repeat includes are harmless (the browser reuses the files and the script
+  guards itself).
+{%- endcomment -%}
+<script>document.documentElement.classList.add('csl-js');</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap">
+{{ 'case-study-landing.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'case-study-landing.js' | asset_url }}" defer></script>

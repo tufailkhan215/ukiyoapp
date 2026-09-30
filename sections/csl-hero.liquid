@@ -1,0 +1,165 @@
+{%- comment -%}
+  Section: Case Study — Hero
+  Used by templates/page.case-study-landing*.json
+  Sets the page accent colour that the other csl-* sections pick up.
+{%- endcomment -%}
+{%- render 'case-study-landing-assets' -%}
+{%- liquid
+  assign accent = section.settings.accent | default: '#a78bfa'
+  assign accent_2 = section.settings.accent_2 | default: '#60a5fa'
+  assign node_count = 0
+  for block in section.blocks
+    if block.type == 'node'
+      assign node_count = node_count | plus: 1
+    endif
+  endfor
+-%}
+<style>
+  :root {
+    --csl-accent: {{ accent }};
+    --csl-accent-2: {{ accent_2 }};
+    --csl-accent-soft: {{ accent | color_modify: 'alpha', 0.3 }};
+  }
+</style>
+
+<section class="csl csl-hero" id="csl-hero-{{ section.id }}">
+  <div class="csl-hero__glow" aria-hidden="true"></div>
+  <div class="csl-hero__glow csl-hero__glow--b" aria-hidden="true"></div>
+  <div class="csl-grain" aria-hidden="true"></div>
+
+  <div class="csl-wrap">
+    <div class="csl-hero__top csl-in">
+      {%- if section.settings.back_label != blank -%}
+        <a class="csl-back" href="{{ section.settings.back_url | default: '/pages/work' }}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+          {{ section.settings.back_label | escape }}
+        </a>
+      {%- else -%}
+        <span></span>
+      {%- endif -%}
+      {%- if section.settings.strap != blank -%}
+        <span class="csl-strap">({{ section.settings.strap | escape }})</span>
+      {%- endif -%}
+    </div>
+
+    <h1 class="csl-hero__title">
+      <span class="csl-hero__name csl-in" style="--d:.08s">{{ section.settings.client | escape }}</span>
+      {%- if section.settings.services != blank -%}
+        <span class="csl-hero__services csl-in" style="--d:.2s"><span class="csl-dot" aria-hidden="true"></span>{{ section.settings.services | escape }}</span>
+      {%- endif -%}
+    </h1>
+
+    <div class="csl-hero__grid">
+      <div class="csl-in" style="--d:.32s">
+        {%- if section.settings.lede != blank -%}
+          <p class="csl-lede">{{ section.settings.lede | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.body != blank -%}
+          <div class="csl-hero__body">{{ section.settings.body }}</div>
+        {%- endif -%}
+
+        <dl class="csl-facts">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'fact' and block.settings.value != blank -%}
+              <div {{ block.shopify_attributes }}>
+                <dt>{{ block.settings.label | escape }}</dt>
+                <dd>
+                  {%- if block.settings.link != blank -%}
+                    <a href="{{ block.settings.link }}" target="_blank" rel="noopener">{{ block.settings.value | escape }}</a>
+                  {%- else -%}
+                    {{ block.settings.value | escape }}
+                  {%- endif -%}
+                </dd>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </dl>
+      </div>
+
+      {%- if node_count > 0 -%}
+        <div class="csl-orbit-card csl-in" style="--d:.44s">
+          <div class="csl-orbit-card__head">
+            <span class="csl-strap">({{ section.settings.orbit_title | default: 'Connected ecosystem' | escape }})</span>
+            {%- if section.settings.orbit_status != blank -%}
+              <span class="csl-live">{{ section.settings.orbit_status | escape }}</span>
+            {%- endif -%}
+          </div>
+          <div class="csl-orbit" style="--n: {{ node_count }}">
+            <div class="csl-orbit__ring csl-orbit__ring--1" aria-hidden="true"></div>
+            <div class="csl-orbit__ring csl-orbit__ring--2" aria-hidden="true"></div>
+            <div class="csl-orbit__ring csl-orbit__ring--3" aria-hidden="true"></div>
+            <div class="csl-orbit__comet" aria-hidden="true"></div>
+            <div class="csl-orbit__core"><span>{{ section.settings.core_label | default: section.settings.client | escape }}</span></div>
+            <ul class="csl-orbit__spin" aria-label="{{ section.settings.orbit_title | default: 'Connected ecosystem' | escape }}">
+              {%- assign i = 0 -%}
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'node' -%}
+                  <li class="csl-orbit__node" style="--i: {{ i }}" {{ block.shopify_attributes }}>
+                    <span class="csl-orbit__counter"><span class="csl-orbit__pill">{{ block.settings.label | escape }}</span></span>
+                  </li>
+                  {%- assign i = i | plus: 1 -%}
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Case study: hero",
+  "settings": [
+    { "type": "header", "content": "Colours" },
+    { "type": "color", "id": "accent", "label": "Accent colour", "default": "#a78bfa", "info": "Used across every case study section on this page." },
+    { "type": "color", "id": "accent_2", "label": "Second accent colour", "default": "#60a5fa" },
+    { "type": "header", "content": "Top bar" },
+    { "type": "text", "id": "back_label", "label": "Back link label", "default": "All work" },
+    { "type": "url", "id": "back_url", "label": "Back link" },
+    { "type": "text", "id": "strap", "label": "Label", "default": "Case Study" },
+    { "type": "header", "content": "Title" },
+    { "type": "text", "id": "client", "label": "Client name", "default": "Client Name" },
+    { "type": "text", "id": "services", "label": "Services line", "default": "Website, SEO & Email Marketing" },
+    { "type": "header", "content": "Introduction" },
+    { "type": "textarea", "id": "lede", "label": "Lead paragraph", "default": "One or two sentences on who the client is and what they needed." },
+    { "type": "richtext", "id": "body", "label": "Supporting text", "default": "<p>What we did for them, in a sentence or two.</p>" },
+    { "type": "header", "content": "Ecosystem diagram" },
+    { "type": "text", "id": "orbit_title", "label": "Diagram label", "default": "Connected ecosystem" },
+    { "type": "text", "id": "orbit_status", "label": "Status", "default": "Live" },
+    { "type": "text", "id": "core_label", "label": "Centre label", "info": "Defaults to the client name." }
+  ],
+  "blocks": [
+    {
+      "type": "fact",
+      "name": "Fact",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Industry" },
+        { "type": "text", "id": "value", "label": "Value", "default": "Ecommerce" },
+        { "type": "url", "id": "link", "label": "Link (optional)" }
+      ]
+    },
+    {
+      "type": "node",
+      "name": "Diagram channel",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Website" }
+      ]
+    }
+  ],
+  "max_blocks": 16,
+  "presets": [
+    {
+      "name": "Case study: hero",
+      "blocks": [
+        { "type": "fact" },
+        { "type": "node" },
+        { "type": "node", "settings": { "label": "SEO" } },
+        { "type": "node", "settings": { "label": "Email" } }
+      ]
+    }
+  ],
+  "enabled_on": { "templates": ["page"] }
+}
+{% endschema %}

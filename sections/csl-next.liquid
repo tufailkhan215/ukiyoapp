@@ -1,0 +1,44 @@
+{%- comment -%}
+  Section: Case Study — Next case study
+{%- endcomment -%}
+{%- render 'case-study-landing-assets' -%}
+{%- assign next_accent = section.settings.accent | default: '#a78bfa' -%}
+<section class="csl csl-section csl-next" id="csl-next-{{ section.id }}">
+  <div class="csl-wrap">
+    {%- if section.settings.name != blank and section.settings.url != blank -%}
+      <a class="csl-next__card csl-rv" href="{{ section.settings.url }}" style="--next-soft: {{ next_accent | color_modify: 'alpha', 0.35 }}">
+        <span class="csl-strap">({{ section.settings.strap | default: 'Next Case Study' | escape }})</span>
+        <span class="csl-next__name">{{ section.settings.name | escape }}</span>
+        {%- if section.settings.services != blank -%}
+          <span class="csl-next__services">{{ section.settings.services | escape }}</span>
+        {%- endif -%}
+        <span class="csl-next__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </span>
+      </a>
+    {%- endif -%}
+    <div class="csl-next__row csl-rv">
+      <a class="csl-back" href="{{ section.settings.all_url | default: '/pages/work' }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+        {{ section.settings.all_label | default: 'Back to all work' | escape }}
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Case study: next project",
+  "settings": [
+    { "type": "text", "id": "strap", "label": "Label", "default": "Next Case Study" },
+    { "type": "text", "id": "name", "label": "Next client name" },
+    { "type": "text", "id": "services", "label": "Next client services line" },
+    { "type": "url", "id": "url", "label": "Next case study link" },
+    { "type": "color", "id": "accent", "label": "Next client accent colour", "default": "#a78bfa" },
+    { "type": "text", "id": "all_label", "label": "Back link label", "default": "Back to all work" },
+    { "type": "url", "id": "all_url", "label": "Back link" }
+  ],
+  "presets": [{ "name": "Case study: next project" }],
+  "enabled_on": { "templates": ["page"] }
+}
+{% endschema %}

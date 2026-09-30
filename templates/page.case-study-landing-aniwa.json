@@ -1,0 +1,371 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "csl-hero",
+      "blocks": {
+        "fact_1": {
+          "type": "fact",
+          "settings": {
+            "label": "Client",
+            "value": "Aniwa"
+          }
+        },
+        "fact_2": {
+          "type": "fact",
+          "settings": {
+            "label": "Industry",
+            "value": "Learning platform & community"
+          }
+        },
+        "fact_3": {
+          "type": "fact",
+          "settings": {
+            "label": "Our role",
+            "value": "Webmaster & SEO partner"
+          }
+        },
+        "fact_4": {
+          "type": "fact",
+          "settings": {
+            "label": "Website",
+            "value": "aniwa.co",
+            "link": "https://www.aniwa.co/"
+          }
+        },
+        "node_1": {
+          "type": "node",
+          "settings": {
+            "label": "Courses"
+          }
+        },
+        "node_2": {
+          "type": "node",
+          "settings": {
+            "label": "Memberships"
+          }
+        },
+        "node_3": {
+          "type": "node",
+          "settings": {
+            "label": "Retreats"
+          }
+        },
+        "node_4": {
+          "type": "node",
+          "settings": {
+            "label": "Elder sessions"
+          }
+        },
+        "node_5": {
+          "type": "node",
+          "settings": {
+            "label": "Marketplace"
+          }
+        },
+        "node_6": {
+          "type": "node",
+          "settings": {
+            "label": "Gatherings"
+          }
+        },
+        "node_7": {
+          "type": "node",
+          "settings": {
+            "label": "Nonprofit"
+          }
+        }
+      },
+      "block_order": [
+        "fact_1",
+        "fact_2",
+        "fact_3",
+        "fact_4",
+        "node_1",
+        "node_2",
+        "node_3",
+        "node_4",
+        "node_5",
+        "node_6",
+        "node_7"
+      ],
+      "settings": {
+        "accent": "#9ea2ec",
+        "accent_2": "#e0523f",
+        "back_label": "All work",
+        "back_url": "/pages/work",
+        "strap": "Case Study",
+        "client": "Aniwa",
+        "services": "Ongoing Webmaster Support, Website Optimization & SEO",
+        "lede": "Aniwa is a global learning platform and community connecting people with Indigenous elders, ancestral wisdom and living traditions through courses, memberships, retreats, private healing sessions, gatherings and community offerings.",
+        "body": "<p>We currently serve as Aniwa’s webmaster, providing ongoing technical support, website maintenance, troubleshooting, strategic updates and SEO assistance across its expanding digital ecosystem.</p>",
+        "orbit_title": "Connected ecosystem",
+        "orbit_status": "Ongoing",
+        "core_label": "Aniwa"
+      }
+    },
+    "showcase": {
+      "type": "csl-showcase",
+      "settings": {
+        "image": "shopify://shop_images/csl-aniwa-site.jpg",
+        "url_label": "aniwa.co",
+        "link": "https://www.aniwa.co/",
+        "link_label": "Visit site",
+        "caption": "The live Aniwa platform we support as webmaster."
+      }
+    },
+    "scope": {
+      "type": "csl-scope",
+      "blocks": {
+        "group_1": {
+          "type": "group",
+          "settings": {
+            "title": "Webmaster & technical"
+          }
+        },
+        "item_01": {
+          "type": "item",
+          "settings": {
+            "text": "Ongoing webmaster services and technical support"
+          }
+        },
+        "item_02": {
+          "type": "item",
+          "settings": {
+            "text": "Website troubleshooting and bug resolution"
+          }
+        },
+        "item_03": {
+          "type": "item",
+          "settings": {
+            "text": "Technical audits and platform reviews"
+          }
+        },
+        "item_04": {
+          "type": "item",
+          "settings": {
+            "text": "Website modifications and functionality updates"
+          }
+        },
+        "item_05": {
+          "type": "item",
+          "settings": {
+            "text": "New page and section development"
+          }
+        },
+        "item_06": {
+          "type": "item",
+          "settings": {
+            "text": "Content, image and layout updates"
+          }
+        },
+        "item_07": {
+          "type": "item",
+          "settings": {
+            "text": "Mobile and responsive-design improvements"
+          }
+        },
+        "item_08": {
+          "type": "item",
+          "settings": {
+            "text": "Website quality assurance and testing"
+          }
+        },
+        "item_09": {
+          "type": "item",
+          "settings": {
+            "text": "User-experience and navigation improvements"
+          }
+        },
+        "item_10": {
+          "type": "item",
+          "settings": {
+            "text": "Coordination with internal team members and external developers"
+          }
+        },
+        "item_11": {
+          "type": "item",
+          "settings": {
+            "text": "Review of existing website architecture and systems"
+          }
+        },
+        "item_12": {
+          "type": "item",
+          "settings": {
+            "text": "Integration troubleshooting and technical problem-solving"
+          }
+        },
+        "group_2": {
+          "type": "group",
+          "settings": {
+            "title": "Search & growth"
+          }
+        },
+        "item_13": {
+          "type": "item",
+          "settings": {
+            "text": "Search engine optimization"
+          }
+        },
+        "item_14": {
+          "type": "item",
+          "settings": {
+            "text": "Backlink strategy and implementation"
+          }
+        },
+        "item_15": {
+          "type": "item",
+          "settings": {
+            "text": "Internal linking improvements"
+          }
+        },
+        "item_16": {
+          "type": "item",
+          "settings": {
+            "text": "On-page SEO updates"
+          }
+        },
+        "item_17": {
+          "type": "item",
+          "settings": {
+            "text": "Page titles, meta descriptions and heading optimization"
+          }
+        },
+        "item_18": {
+          "type": "item",
+          "settings": {
+            "text": "Website performance and search-visibility support"
+          }
+        },
+        "item_19": {
+          "type": "item",
+          "settings": {
+            "text": "Ongoing recommendations for website growth and improvement"
+          }
+        }
+      },
+      "block_order": [
+        "group_1",
+        "item_01",
+        "item_02",
+        "item_03",
+        "item_04",
+        "item_05",
+        "item_06",
+        "item_07",
+        "item_08",
+        "item_09",
+        "item_10",
+        "item_11",
+        "item_12",
+        "group_2",
+        "item_13",
+        "item_14",
+        "item_15",
+        "item_16",
+        "item_17",
+        "item_18",
+        "item_19"
+      ],
+      "settings": {
+        "strap": "Scope",
+        "heading": "Our work",
+        "heading_accent": "includes",
+        "show_count": true,
+        "count_label": "ongoing services"
+      }
+    },
+    "chapters": {
+      "type": "csl-chapters",
+      "blocks": {
+        "chapter_1": {
+          "type": "chapter",
+          "settings": {
+            "title": "Our approach",
+            "text": "<p>Aniwa’s website supports a broad and evolving digital ecosystem that includes courses, memberships, retreats, private sessions with elders, a marketplace, live gatherings and nonprofit initiatives. Maintaining this type of platform requires more than occasional website edits—it requires a technical partner who understands how the different parts of the experience work together.</p><p>As Aniwa’s webmaster, we provide hands-on support for both day-to-day needs and larger technical challenges. We diagnose existing issues, investigate how the website and its integrations were originally built and implement solutions that preserve the integrity of the broader platform.</p><p>Our work includes coordinating with multiple team members, reviewing technical systems, resolving bugs, updating content and functionality and helping the website continue to evolve alongside Aniwa’s growing community and offerings.</p>"
+          }
+        },
+        "quote_1": {
+          "type": "quote",
+          "settings": {
+            "text": "Maintaining this type of platform requires more than occasional website edits—it requires a technical partner who understands how the different parts of the experience work together."
+          }
+        },
+        "chapter_2": {
+          "type": "chapter",
+          "settings": {
+            "title": "Technical website support",
+            "text": "<p>We manage ongoing website updates and troubleshoot issues that may affect functionality, navigation, usability or the customer experience.</p><p>Before implementing changes, we review the existing architecture and identify how the affected systems connect. This allows us to make thoughtful updates without disrupting other parts of the platform.</p><p>We also test changes across desktop and mobile devices, address responsive-design issues and provide ongoing quality assurance to help ensure that the website remains stable, accessible and easy to use.</p>"
+          }
+        },
+        "chapter_3": {
+          "type": "chapter",
+          "settings": {
+            "title": "SEO & backlink strategy",
+            "text": "<p>In addition to technical webmaster support, we help strengthen Aniwa’s organic search presence through ongoing SEO work.</p><p>Our backlinking efforts focus on building stronger connections between Aniwa’s primary website, related initiatives, external resources and relevant partner platforms. These links help search engines better understand the organization’s broader digital ecosystem while creating additional pathways for audiences to discover its work.</p><p>We also support on-page and technical SEO through improvements to page titles, meta descriptions, headings, internal links, content structure and overall website accessibility. Our approach balances search visibility with Aniwa’s distinct voice, cultural responsibility and educational mission.</p>"
+          }
+        },
+        "chapter_4": {
+          "type": "chapter",
+          "settings": {
+            "title": "Ongoing partnership",
+            "text": "<p>Our role is responsive, collaborative and adaptable. We work closely with Aniwa’s team to understand technical requests, identify the root cause of issues and determine the most effective path forward.</p><p>Whether the need involves resolving an unexpected website problem, updating an important offering, improving a page experience or strengthening the site’s search foundation, we provide consistent technical support that helps the team move forward with greater clarity and confidence.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "chapter_1",
+        "quote_1",
+        "chapter_2",
+        "chapter_3",
+        "chapter_4"
+      ],
+      "settings": {
+        "strap": "The Story",
+        "heading": "How we",
+        "heading_accent": "approached it",
+        "toc_label": "In this case study"
+      }
+    },
+    "result": {
+      "type": "csl-result",
+      "settings": {
+        "strap": "The Result",
+        "statement": "Aniwa has an ongoing technical partner responsible for supporting the health, functionality and continued evolution of its website.",
+        "text": "Our work helps the organization maintain a complex digital platform, address technical challenges as they arise, improve its organic search foundation and continue expanding access to Indigenous elders, ancestral wisdom and living traditions.",
+        "primary_label": "Start your project",
+        "primary_url": "https://tidycal.com/salesautomateiq/consultation",
+        "secondary_label": "Visit aniwa.co",
+        "secondary_url": "https://www.aniwa.co/"
+      }
+    },
+    "next": {
+      "type": "csl-next",
+      "settings": {
+        "strap": "Next Case Study",
+        "name": "Pacha Mana",
+        "services": "Shopify Website, Ecommerce, SEO & Klaviyo Email Marketing",
+        "url": "/pages/pachamana-case-study",
+        "accent": "#eaa935",
+        "all_label": "Back to all work",
+        "all_url": "/pages/work"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "showcase",
+    "scope",
+    "chapters",
+    "result",
+    "next"
+  ]
+}

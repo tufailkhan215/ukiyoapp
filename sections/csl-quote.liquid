@@ -1,0 +1,43 @@
+{%- comment -%}
+  Section: Case Study — Client testimonial
+{%- endcomment -%}
+{%- render 'case-study-landing-assets' -%}
+{%- if section.settings.quote != blank -%}
+<section class="csl csl-section csl-quote" id="csl-quote-{{ section.id }}">
+  <div class="csl-quote__glow" aria-hidden="true"></div>
+  <div class="csl-wrap">
+    <figure class="csl-quote__inner csl-rv">
+      {%- if section.settings.strap != blank -%}
+        <span class="csl-strap">({{ section.settings.strap | escape }})</span>
+      {%- endif -%}
+      <span class="csl-quote__mark" aria-hidden="true">&ldquo;</span>
+      <blockquote><p>{{ section.settings.quote | escape }}</p></blockquote>
+      {%- if section.settings.author != blank -%}
+        <figcaption class="csl-quote__by">
+          <span class="csl-avatar" aria-hidden="true">{{ section.settings.author | slice: 0 }}</span>
+          <span>
+            <cite class="csl-quote__name">{{ section.settings.author | escape }}</cite>
+            {%- if section.settings.role != blank -%}
+              <span class="csl-quote__role">{{ section.settings.role | escape }}</span>
+            {%- endif -%}
+          </span>
+        </figcaption>
+      {%- endif -%}
+    </figure>
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Case study: testimonial",
+  "settings": [
+    { "type": "text", "id": "strap", "label": "Label", "default": "Client Words" },
+    { "type": "textarea", "id": "quote", "label": "Quote" },
+    { "type": "text", "id": "author", "label": "Name" },
+    { "type": "text", "id": "role", "label": "Company or role" }
+  ],
+  "presets": [{ "name": "Case study: testimonial" }],
+  "enabled_on": { "templates": ["page"] }
+}
+{% endschema %}

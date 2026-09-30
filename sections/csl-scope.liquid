@@ -1,0 +1,104 @@
+{%- comment -%}
+  Section: Case Study — Scope of work
+  "Group" blocks start a new titled list; "Item" blocks fill it.
+{%- endcomment -%}
+{%- render 'case-study-landing-assets' -%}
+{%- liquid
+  assign item_total = 0
+  for block in section.blocks
+    if block.type == 'item'
+      assign item_total = item_total | plus: 1
+    endif
+  endfor
+-%}
+<section class="csl csl-section csl-scope" id="csl-scope-{{ section.id }}">
+  <div class="csl-wrap csl-scope__grid">
+    <div class="csl-scope__head csl-rv">
+      {%- if section.settings.strap != blank -%}
+        <span class="csl-strap">({{ section.settings.strap | escape }})</span>
+      {%- endif -%}
+      <h2 class="csl-h2">{{ section.settings.heading | escape }}{% if section.settings.heading_accent != blank %} <span class="csl-grad">{{ section.settings.heading_accent | escape }}</span>{% endif %}</h2>
+      {%- if section.settings.show_count and item_total > 0 -%}
+        <div class="csl-count">
+          <span class="csl-count__num">{{ item_total }}</span>
+          <span class="csl-count__label">{{ section.settings.count_label | escape }}</span>
+        </div>
+      {%- endif -%}
+      {%- if section.settings.intro != blank -%}
+        <p class="csl-scope__intro">{{ section.settings.intro | escape }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="csl-scope__body">
+      {%- assign n = 0 -%}
+      {%- assign open = false -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'group' -%}
+          {%- if open -%}</ol></div>{%- endif -%}
+          {%- liquid
+            assign group_size = 0
+            assign counting = false
+            for b in section.blocks
+              if b.id == block.id
+                assign counting = true
+                continue
+              endif
+              if counting
+                if b.type == 'group'
+                  break
+                endif
+                assign group_size = group_size | plus: 1
+              endif
+            endfor
+          -%}
+          <div class="csl-group csl-rv" {{ block.shopify_attributes }}>
+            <h3 class="csl-group__title">{{ block.settings.title | escape }}<small>{% if group_size < 10 %}0{% endif %}{{ group_size }}</small></h3>
+            <ol class="csl-list" role="list">
+          {%- assign open = true -%}
+        {%- else -%}
+          {%- unless open -%}<div class="csl-group csl-rv"><ol class="csl-list" role="list">{%- assign open = true -%}{%- endunless -%}
+          {%- assign n = n | plus: 1 -%}
+          <li class="csl-item" {{ block.shopify_attributes }}>
+            <span class="csl-item__idx" aria-hidden="true">{% if n < 10 %}0{% endif %}{{ n }}</span>
+            <span>{{ block.settings.text | escape }}</span>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if open -%}</ol></div>{%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Case study: scope",
+  "settings": [
+    { "type": "text", "id": "strap", "label": "Label", "default": "Scope" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Our work" },
+    { "type": "text", "id": "heading_accent", "label": "Heading (grey part)", "default": "included" },
+    { "type": "checkbox", "id": "show_count", "label": "Show item count", "default": true },
+    { "type": "text", "id": "count_label", "label": "Count label", "default": "services delivered" },
+    { "type": "textarea", "id": "intro", "label": "Short intro (optional)" }
+  ],
+  "blocks": [
+    {
+      "type": "group",
+      "name": "Group title",
+      "settings": [{ "type": "text", "id": "title", "label": "Title", "default": "Website" }]
+    },
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [{ "type": "text", "id": "text", "label": "Text", "default": "Custom website design and development" }]
+    }
+  ],
+  "max_blocks": 50,
+  "presets": [
+    {
+      "name": "Case study: scope",
+      "blocks": [{ "type": "group" }, { "type": "item" }, { "type": "item" }]
+    }
+  ],
+  "enabled_on": { "templates": ["page"] }
+}
+{% endschema %}

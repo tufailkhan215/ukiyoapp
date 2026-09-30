@@ -1,0 +1,380 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "csl-hero",
+      "blocks": {
+        "fact_1": {
+          "type": "fact",
+          "settings": {
+            "label": "Client",
+            "value": "Academy of Oracle Arts"
+          }
+        },
+        "fact_2": {
+          "type": "fact",
+          "settings": {
+            "label": "Industry",
+            "value": "Online education"
+          }
+        },
+        "fact_3": {
+          "type": "fact",
+          "settings": {
+            "label": "Platform",
+            "value": "WordPress → Shopify"
+          }
+        },
+        "fact_4": {
+          "type": "fact",
+          "settings": {
+            "label": "Status",
+            "value": "Migration in progress"
+          }
+        },
+        "node_1": {
+          "type": "node",
+          "settings": {
+            "label": "Website"
+          }
+        },
+        "node_2": {
+          "type": "node",
+          "settings": {
+            "label": "Courses"
+          }
+        },
+        "node_3": {
+          "type": "node",
+          "settings": {
+            "label": "Content"
+          }
+        },
+        "node_4": {
+          "type": "node",
+          "settings": {
+            "label": "Social"
+          }
+        },
+        "node_5": {
+          "type": "node",
+          "settings": {
+            "label": "Pinterest"
+          }
+        },
+        "node_6": {
+          "type": "node",
+          "settings": {
+            "label": "Paid ads"
+          }
+        },
+        "node_7": {
+          "type": "node",
+          "settings": {
+            "label": "SEO"
+          }
+        }
+      },
+      "block_order": [
+        "fact_1",
+        "fact_2",
+        "fact_3",
+        "fact_4",
+        "node_1",
+        "node_2",
+        "node_3",
+        "node_4",
+        "node_5",
+        "node_6",
+        "node_7"
+      ],
+      "settings": {
+        "accent": "#b99cff",
+        "accent_2": "#e2bd6d",
+        "back_label": "All work",
+        "back_url": "/pages/work",
+        "strap": "Case Study",
+        "client": "Academy of Oracle Arts",
+        "services": "Shopify Website, Digital Marketing, Social Media, Paid Ads & SEO",
+        "lede": "The Academy of Oracle Arts is an educational platform offering courses, teachings and immersive experiences rooted in ancient wisdom, divination and the oracle arts.",
+        "body": "<p>The Academy needed a more cohesive digital presence that could communicate the depth of its work, support its expanding course offerings and create a clearer journey from discovering the brand to enrolling in a program.</p><p>We designed a new website for the Academy and are transitioning the organization from WordPress to Shopify, creating a more flexible and scalable platform for managing its courses, content, events and digital marketing.</p>",
+        "orbit_title": "Connected ecosystem",
+        "orbit_status": "In progress",
+        "core_label": "Academy of Oracle Arts"
+      }
+    },
+    "scope": {
+      "type": "csl-scope",
+      "blocks": {
+        "group_1": {
+          "type": "group",
+          "settings": {
+            "title": "Website & platform"
+          }
+        },
+        "item_01": {
+          "type": "item",
+          "settings": {
+            "text": "Custom website strategy, design and development"
+          }
+        },
+        "item_02": {
+          "type": "item",
+          "settings": {
+            "text": "WordPress-to-Shopify migration"
+          }
+        },
+        "item_03": {
+          "type": "item",
+          "settings": {
+            "text": "Website architecture and user-experience planning"
+          }
+        },
+        "item_04": {
+          "type": "item",
+          "settings": {
+            "text": "Course, program and collection organization"
+          }
+        },
+        "item_05": {
+          "type": "item",
+          "settings": {
+            "text": "Mobile-responsive design and optimization"
+          }
+        },
+        "item_06": {
+          "type": "item",
+          "settings": {
+            "text": "Landing pages for courses and special offerings"
+          }
+        },
+        "item_07": {
+          "type": "item",
+          "settings": {
+            "text": "Customer journey and enrollment strategy"
+          }
+        },
+        "group_2": {
+          "type": "group",
+          "settings": {
+            "title": "Marketing & social"
+          }
+        },
+        "item_08": {
+          "type": "item",
+          "settings": {
+            "text": "Hands-on digital marketing management"
+          }
+        },
+        "item_09": {
+          "type": "item",
+          "settings": {
+            "text": "Social media strategy and content creation"
+          }
+        },
+        "item_10": {
+          "type": "item",
+          "settings": {
+            "text": "Instagram feed and story content"
+          }
+        },
+        "item_11": {
+          "type": "item",
+          "settings": {
+            "text": "Campaign planning and promotional calendars"
+          }
+        },
+        "item_12": {
+          "type": "item",
+          "settings": {
+            "text": "Pinterest strategy and ongoing management"
+          }
+        },
+        "item_13": {
+          "type": "item",
+          "settings": {
+            "text": "Paid social advertising and campaign management"
+          }
+        },
+        "item_14": {
+          "type": "item",
+          "settings": {
+            "text": "Audience development and retargeting strategy"
+          }
+        },
+        "group_3": {
+          "type": "group",
+          "settings": {
+            "title": "Search, content & creative"
+          }
+        },
+        "item_15": {
+          "type": "item",
+          "settings": {
+            "text": "SEO strategy and keyword research"
+          }
+        },
+        "item_16": {
+          "type": "item",
+          "settings": {
+            "text": "SEO-optimized blog content"
+          }
+        },
+        "item_17": {
+          "type": "item",
+          "settings": {
+            "text": "On-page SEO and website copy optimization"
+          }
+        },
+        "item_18": {
+          "type": "item",
+          "settings": {
+            "text": "Content strategy for long-term organic discovery"
+          }
+        },
+        "item_19": {
+          "type": "item",
+          "settings": {
+            "text": "Ongoing creative direction and marketing support"
+          }
+        }
+      },
+      "block_order": [
+        "group_1",
+        "item_01",
+        "item_02",
+        "item_03",
+        "item_04",
+        "item_05",
+        "item_06",
+        "item_07",
+        "group_2",
+        "item_08",
+        "item_09",
+        "item_10",
+        "item_11",
+        "item_12",
+        "item_13",
+        "item_14",
+        "group_3",
+        "item_15",
+        "item_16",
+        "item_17",
+        "item_18",
+        "item_19"
+      ],
+      "settings": {
+        "strap": "Scope",
+        "heading": "Our work",
+        "heading_accent": "included",
+        "show_count": true,
+        "count_label": "services delivered"
+      }
+    },
+    "chapters": {
+      "type": "csl-chapters",
+      "blocks": {
+        "chapter_1": {
+          "type": "chapter",
+          "settings": {
+            "title": "Our approach",
+            "text": "<p>The Academy offers a wide range of courses, teachers and areas of study. Our goal was to create a digital ecosystem that could hold the depth of its teachings while still feeling clear, welcoming and easy to navigate.</p><p>We developed a website structure that helps visitors understand the Academy, explore its different courses and teachers and find the programs that most closely align with their interests. Each course is supported by thoughtful messaging, intentional visual direction and a clear path toward enrollment.</p>"
+          }
+        },
+        "chapter_2": {
+          "type": "chapter",
+          "settings": {
+            "title": "Digital marketing strategy",
+            "text": "<p>Our role extends beyond the website. We provide hands-on marketing support across the Academy’s digital channels, helping the team plan, create and manage campaigns for its courses, events and ongoing brand presence.</p><p>We develop promotional strategies and content calendars that bring greater consistency to the Academy’s marketing while allowing each course and teacher to retain a distinct voice. Our work connects social content, landing pages, paid advertising, Pinterest and search visibility into a more unified customer journey.</p>"
+          }
+        },
+        "chapter_3": {
+          "type": "chapter",
+          "settings": {
+            "title": "Social media marketing",
+            "text": "<p>We manage the Academy’s social media strategy and develop content designed to educate, inspire and introduce audiences to its teachers and programs.</p><p>This includes campaign concepts, educational carousels, promotional posts, Instagram Stories, course announcements and ongoing brand content. We translate complex teachings and detailed course information into accessible, visually engaging content without losing the depth or integrity of the original material.</p>"
+          }
+        },
+        "quote_1": {
+          "type": "quote",
+          "settings": {
+            "text": "We translate complex teachings and detailed course information into accessible, visually engaging content without losing the depth or integrity of the original material."
+          }
+        },
+        "chapter_4": {
+          "type": "chapter",
+          "settings": {
+            "title": "Pinterest management",
+            "text": "<p>We use Pinterest as a long-term discovery platform for the Academy’s teachings, courses and educational content.</p><p>Our work includes developing the Pinterest strategy, organizing content around relevant themes, creating and publishing optimized pins and connecting those pins to the Academy’s website, blog articles and course pages. This gives the Academy another pathway for reaching audiences who are actively searching for related teachings, practices and areas of study.</p>"
+          }
+        },
+        "chapter_5": {
+          "type": "chapter",
+          "settings": {
+            "title": "Paid advertising",
+            "text": "<p>We plan and manage paid social campaigns that support course launches, enrollment periods and important Academy offerings.</p><p>Our advertising work includes campaign strategy, audience development, creative direction, ad copy, campaign setup, testing, optimization and retargeting. We align each campaign with its supporting landing page and organic content so the advertising feels like part of a complete marketing journey.</p>"
+          }
+        },
+        "chapter_6": {
+          "type": "chapter",
+          "settings": {
+            "title": "SEO & content strategy",
+            "text": "<p>Our SEO work focuses on helping the Academy reach people searching for the subjects, traditions and practices explored through its programs.</p><p>We conduct keyword and topic research, optimize website content and create search-focused blog articles that answer meaningful questions and introduce new audiences to the Academy’s work. Each article is structured for organic discovery while remaining thoughtful, educational and aligned with the Academy’s voice.</p><p>We also optimize page titles, headings, meta descriptions, internal links and website copy to strengthen the overall search foundation of the new Shopify website.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "chapter_1",
+        "chapter_2",
+        "chapter_3",
+        "quote_1",
+        "chapter_4",
+        "chapter_5",
+        "chapter_6"
+      ],
+      "settings": {
+        "strap": "The Story",
+        "heading": "How we",
+        "heading_accent": "approached it",
+        "toc_label": "In this case study"
+      }
+    },
+    "result": {
+      "type": "csl-result",
+      "settings": {
+        "strap": "The Result",
+        "statement": "The Academy of Oracle Arts is building a more connected and scalable digital presence that brings together its website, courses, educational content, organic social media, Pinterest, paid advertising and SEO strategy.",
+        "text": "This work has created a clearer path from initial discovery to deeper education and course enrollment while giving the Academy a stronger foundation for consistently sharing its teachings, supporting its faculty and growing its community across multiple digital channels.",
+        "primary_label": "Start your project",
+        "primary_url": "https://tidycal.com/salesautomateiq/consultation"
+      }
+    },
+    "next": {
+      "type": "csl-next",
+      "settings": {
+        "strap": "Next Case Study",
+        "name": "Aniwa",
+        "services": "Ongoing Webmaster Support, Website Optimization & SEO",
+        "url": "/pages/aniwa-case-study",
+        "accent": "#9ea2ec",
+        "all_label": "Back to all work",
+        "all_url": "/pages/work"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "scope",
+    "chapters",
+    "result",
+    "next"
+  ]
+}

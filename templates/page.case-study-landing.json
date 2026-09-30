@@ -1,0 +1,240 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "csl-hero",
+      "blocks": {
+        "fact_1": {
+          "type": "fact",
+          "settings": {
+            "label": "Client",
+            "value": "Client Name"
+          }
+        },
+        "fact_2": {
+          "type": "fact",
+          "settings": {
+            "label": "Industry",
+            "value": "Industry"
+          }
+        },
+        "fact_3": {
+          "type": "fact",
+          "settings": {
+            "label": "Platform",
+            "value": "Shopify"
+          }
+        },
+        "fact_4": {
+          "type": "fact",
+          "settings": {
+            "label": "Website",
+            "value": "clientsite.com"
+          }
+        },
+        "node_1": {
+          "type": "node",
+          "settings": {
+            "label": "Website"
+          }
+        },
+        "node_2": {
+          "type": "node",
+          "settings": {
+            "label": "Store"
+          }
+        },
+        "node_3": {
+          "type": "node",
+          "settings": {
+            "label": "SEO"
+          }
+        },
+        "node_4": {
+          "type": "node",
+          "settings": {
+            "label": "Email"
+          }
+        },
+        "node_5": {
+          "type": "node",
+          "settings": {
+            "label": "Social"
+          }
+        }
+      },
+      "block_order": [
+        "fact_1",
+        "fact_2",
+        "fact_3",
+        "fact_4",
+        "node_1",
+        "node_2",
+        "node_3",
+        "node_4",
+        "node_5"
+      ],
+      "settings": {
+        "accent": "#a78bfa",
+        "accent_2": "#60a5fa",
+        "back_label": "All work",
+        "back_url": "/pages/work",
+        "strap": "Case Study",
+        "client": "Client Name",
+        "services": "Website, SEO & Email Marketing",
+        "lede": "One or two sentences on who the client is and what they needed.",
+        "body": "<p>What we did for them, in a sentence or two.</p>",
+        "orbit_title": "Connected ecosystem",
+        "orbit_status": "Live",
+        "core_label": "Client Name"
+      }
+    },
+    "showcase": {
+      "type": "csl-showcase",
+      "settings": {
+        "url_label": "clientsite.com",
+        "link_label": "Visit site",
+        "caption": "The live client site."
+      }
+    },
+    "scope": {
+      "type": "csl-scope",
+      "blocks": {
+        "group_1": {
+          "type": "group",
+          "settings": {
+            "title": "Website"
+          }
+        },
+        "item_01": {
+          "type": "item",
+          "settings": {
+            "text": "Custom website design and development"
+          }
+        },
+        "item_02": {
+          "type": "item",
+          "settings": {
+            "text": "Mobile-responsive design and optimization"
+          }
+        },
+        "group_2": {
+          "type": "group",
+          "settings": {
+            "title": "Search"
+          }
+        },
+        "item_03": {
+          "type": "item",
+          "settings": {
+            "text": "SEO strategy and keyword research"
+          }
+        },
+        "item_04": {
+          "type": "item",
+          "settings": {
+            "text": "Technical and on-page SEO"
+          }
+        }
+      },
+      "block_order": [
+        "group_1",
+        "item_01",
+        "item_02",
+        "group_2",
+        "item_03",
+        "item_04"
+      ],
+      "settings": {
+        "strap": "Scope",
+        "heading": "Our work",
+        "heading_accent": "included",
+        "show_count": true,
+        "count_label": "services delivered"
+      }
+    },
+    "chapters": {
+      "type": "csl-chapters",
+      "blocks": {
+        "chapter_1": {
+          "type": "chapter",
+          "settings": {
+            "title": "Our approach",
+            "text": "<p>Tell this part of the story.</p>"
+          }
+        },
+        "quote_1": {
+          "type": "quote",
+          "settings": {
+            "text": "A line from the story worth pulling out."
+          }
+        },
+        "chapter_2": {
+          "type": "chapter",
+          "settings": {
+            "title": "The strategy",
+            "text": "<p>Tell this part of the story.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "chapter_1",
+        "quote_1",
+        "chapter_2"
+      ],
+      "settings": {
+        "strap": "The Story",
+        "heading": "How we",
+        "heading_accent": "approached it",
+        "toc_label": "In this case study"
+      }
+    },
+    "testimonial": {
+      "type": "csl-quote",
+      "settings": {
+        "strap": "Client Words",
+        "quote": "What the client said about working with us.",
+        "author": "Name",
+        "role": "Company"
+      }
+    },
+    "result": {
+      "type": "csl-result",
+      "settings": {
+        "strap": "The Result",
+        "statement": "The headline outcome of the project, in one or two sentences.",
+        "text": "Supporting detail on what changed for the client.",
+        "primary_label": "Start your project",
+        "primary_url": "https://tidycal.com/salesautomateiq/consultation"
+      }
+    },
+    "next": {
+      "type": "csl-next",
+      "settings": {
+        "strap": "Next Case Study",
+        "name": "Next Client",
+        "services": "Services line",
+        "accent": "#a78bfa",
+        "all_label": "Back to all work",
+        "all_url": "/pages/work"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "showcase",
+    "scope",
+    "chapters",
+    "testimonial",
+    "result",
+    "next"
+  ]
+}

@@ -1,0 +1,58 @@
+{%- comment -%}
+  Section: Case Study — Site showcase
+  A browser-frame preview of the client site. Upload a full-page screenshot:
+  on desktop it scrolls through the page on hover.
+{%- endcomment -%}
+{%- render 'case-study-landing-assets' -%}
+{%- if section.settings.image != blank -%}
+<section class="csl csl-showcase" id="csl-showcase-{{ section.id }}">
+  <div class="csl-wrap">
+    <figure class="csl-frame csl-rv">
+      <div class="csl-frame__bar">
+        <span class="csl-frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        {%- if section.settings.url_label != blank -%}
+          <span class="csl-frame__url">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            {{ section.settings.url_label | escape }}
+          </span>
+        {%- endif -%}
+        {%- if section.settings.link != blank -%}
+          <a class="csl-frame__visit" href="{{ section.settings.link }}" target="_blank" rel="noopener">{{ section.settings.link_label | default: 'Visit site' | escape }} ↗</a>
+        {%- endif -%}
+      </div>
+      <div class="csl-frame__screen">
+        {{
+          section.settings.image
+          | image_url: width: 2400
+          | image_tag:
+            loading: 'lazy',
+            widths: '750, 1100, 1500, 1920, 2400',
+            sizes: '(min-width: 1400px) 1304px, 94vw',
+            alt: section.settings.image.alt
+        }}
+      </div>
+    </figure>
+    {%- if section.settings.caption != blank -%}
+      <div class="csl-showcase__foot csl-rv">
+        <p class="csl-showcase__caption">{{ section.settings.caption | escape }}</p>
+        <span class="csl-showcase__hint">Hover to scroll the site</span>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Case study: site showcase",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Full-page screenshot", "info": "Around 1440px wide. A tall screenshot scrolls on hover." },
+    { "type": "text", "id": "url_label", "label": "Address bar text", "default": "clientsite.com" },
+    { "type": "url", "id": "link", "label": "Site link" },
+    { "type": "text", "id": "link_label", "label": "Link label", "default": "Visit site" },
+    { "type": "text", "id": "caption", "label": "Caption" }
+  ],
+  "presets": [{ "name": "Case study: site showcase" }],
+  "enabled_on": { "templates": ["page"] }
+}
+{% endschema %}
