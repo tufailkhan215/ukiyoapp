@@ -578,6 +578,15 @@
             "description": "Iconic entertainment venue content creation and brand activation.",
             "case_study_link": ""
           }
+        },
+        "project_3WEiLG": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "Resiklonyc",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
         }
       },
       "block_order": [
@@ -600,7 +609,8 @@
         "project_RDydeH",
         "project_paMYUg",
         "project_BBjmdw",
-        "project_WR8Bmh"
+        "project_WR8Bmh",
+        "project_3WEiLG"
       ],
       "name": "Featured Work",
       "settings": {
