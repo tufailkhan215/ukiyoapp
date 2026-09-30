@@ -1049,7 +1049,7 @@
 
       function seek() {
         if (
-          destroyed || !enabled || !active || !state.needed ||
+          autoMode || destroyed || !enabled || !active || !state.needed ||
           state.failed || video.seeking ||
           video.readyState < 1 ||
           !Number.isFinite(video.duration) ||
@@ -1138,7 +1138,6 @@
 
       const travel = Math.max(1, root.offsetHeight - height);
       const p = autoMode ? autoProgress(elapsed) : clamp(-rect.top / travel);
-      const vp = autoMode ? clamp(elapsed / autoTotal) : p;
 
       progressBar.style.transform = `scaleX(${p})`;
 
@@ -1266,10 +1265,30 @@
 
         const duration = clip.video.duration;
 
-        if (Number.isFinite(duration) && duration > 0) {
+        if (autoMode) {
+          /* Automatic playback: footage runs at normal speed and loops. */
+          const v = clip.video;
+
+          if (clip.loaded && !clip.failed && v.readyState >= 2) {
+            if (inView && !userPaused && clip.needed) {
+              if (v.paused) {
+                v.loop = true;
+
+                if (!clip.started && Number.isFinite(duration) && duration > 0) {
+                  clip.started = true;
+                  v.currentTime = Math.min(1, duration / 12) * i;
+                }
+
+                v.play().catch(() => {});
+              }
+            } else if (!v.paused) {
+              v.pause();
+            }
+          }
+        } else if (Number.isFinite(duration) && duration > 0) {
           const lead = Math.min(1, duration / 12);
           const usable = Math.max(0, duration - lead * 2 - .05);
-          clip.target = vp * usable + i * lead;
+          clip.target = p * usable + i * lead;
           clip.seek();
         }
       });
@@ -1334,6 +1353,7 @@
       lastTs = 0;
       if (tickRaf) cancelAnimationFrame(tickRaf);
       tickRaf = 0;
+      if (autoMode) videos.forEach(video => video.pause());
       if (playButton) updatePlayButton();
     }
 
@@ -1466,6 +1486,7 @@
 
           if (inView && !userPaused && elapsed < autoTotal) play();
           else if (!inView) pause();
+          else schedule();
         }, { threshold: [0, .5] })
       : null;
 
