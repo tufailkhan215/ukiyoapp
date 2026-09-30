@@ -769,6 +769,18 @@
             "gallery_image_3": "shopify://shop_images/IMG_6776_1.webp",
             "case_study_link": ""
           }
+        },
+        "project_9c9jBK": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/DSC_29323129_2.webp",
+            "category": "Entertainment",
+            "title": "CLSC | LA",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/1_20a52317-6d67-4f59-97c8-bf356ec7793b.webp",
+            "gallery_image_3": "shopify://shop_images/2_51dac73f-94f2-4732-9723-5c98479346bb.webp",
+            "case_study_link": ""
+          }
         }
       },
       "block_order": [
@@ -805,7 +817,8 @@
         "project_E4ejhm",
         "project_7DFAmn",
         "project_yYfnrk",
-        "project_pz6Yaq"
+        "project_pz6Yaq",
+        "project_9c9jBK"
       ],
       "name": "Featured Work",
       "settings": {
