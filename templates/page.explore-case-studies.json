@@ -574,7 +574,7 @@
           "type": "project",
           "settings": {
             "category": "Entertainment",
-            "title": "Coachella",
+            "title": "Wandrd",
             "description": "Iconic entertainment venue content creation and brand activation.",
             "case_study_link": ""
           }
@@ -584,6 +584,60 @@
           "settings": {
             "category": "Entertainment",
             "title": "Resiklonyc",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_UDGzxn": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "Furtraders",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_eWJLYy": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "The place of south pine",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_kEp4Rj": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "Supramood",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_98FKXA": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "Manabeachouse",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_cmYXEe": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "Hotel Tugu | BAli",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "case_study_link": ""
+          }
+        },
+        "project_a4BMWz": {
+          "type": "project",
+          "settings": {
+            "category": "Entertainment",
+            "title": "Life Force Academy",
             "description": "Iconic entertainment venue content creation and brand activation.",
             "case_study_link": ""
           }
@@ -610,7 +664,13 @@
         "project_paMYUg",
         "project_BBjmdw",
         "project_WR8Bmh",
-        "project_3WEiLG"
+        "project_3WEiLG",
+        "project_UDGzxn",
+        "project_eWJLYy",
+        "project_kEp4Rj",
+        "project_98FKXA",
+        "project_cmYXEe",
+        "project_a4BMWz"
       ],
       "name": "Featured Work",
       "settings": {
