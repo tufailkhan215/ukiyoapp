@@ -35,6 +35,8 @@
       {% endif %}
     </div>
 
+    <div class="uc__afterglow" aria-hidden="true"><i></i><i></i><i></i></div>
+
     {% for layer in (0..2) %}
       <div
         class="uc__media-layer {% if layer == 0 %}uc__base{% else %}uc__wipe uc__wipe--{{ layer }}{% endif %}"
@@ -673,6 +675,69 @@
   #UkiyoCinema-{{ section.id }}.uc--animated {
     height: calc(100vh * var(--uc-screens));
     height: calc(100svh * var(--uc-screens));
+  }
+
+  /*
+    End of film: the footage fades out and slow teal light drifts behind
+    the closing text, so the last video frame never sits frozen.
+  */
+  #UkiyoCinema-{{ section.id }} .uc__afterglow {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+    background: #030605;
+    opacity: 0;
+    transition: opacity .6s ease;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__afterglow i {
+    position: absolute;
+    width: 70vmax;
+    height: 70vmax;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: .55;
+    animation: uc-drift-{{ section.id }} 18s ease-in-out infinite alternate;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__afterglow i:nth-child(1) {
+    left: -15vmax;
+    top: -20vmax;
+    background: radial-gradient(circle, rgba(46, 120, 110, .9), transparent 65%);
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__afterglow i:nth-child(2) {
+    right: -20vmax;
+    bottom: -25vmax;
+    background: radial-gradient(circle, rgba(20, 70, 80, .9), transparent 65%);
+    animation-duration: 22s;
+    animation-delay: -6s;
+  }
+
+  #UkiyoCinema-{{ section.id }} .uc__afterglow i:nth-child(3) {
+    left: 30%;
+    top: 35%;
+    width: 45vmax;
+    height: 45vmax;
+    background: radial-gradient(circle, rgba(120, 150, 130, .5), transparent 60%);
+    animation-duration: 26s;
+    animation-delay: -12s;
+  }
+
+  @keyframes uc-drift-{{ section.id }} {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to { transform: translate3d(8vmax, 6vmax, 0) scale(1.15); }
+  }
+
+  #UkiyoCinema-{{ section.id }}.uc--animated.uc--ended .uc__afterglow {
+    opacity: 1;
+  }
+
+  #UkiyoCinema-{{ section.id }}.uc--animated.uc--ended .uc__media-layer {
+    opacity: 0 !important;
+    transition: opacity .6s ease;
   }
 
   /* Automatic playback: the scene plays on a timer, so no scroll travel. */
@@ -1355,6 +1420,7 @@
       if (finished) {
         playing = false;
         lastTs = 0;
+        root.classList.add('uc--ended');
         updatePlayButton();
       }
 
@@ -1370,6 +1436,7 @@
           try { clip.video.currentTime = 0; } catch (_) {}
         });
       }
+      root.classList.remove('uc--ended');
       playing = true;
       hasPlayed = true;
       pendingReplay = false;
@@ -1390,6 +1457,7 @@
 
     /* Back to the opening frame, footage rewound, ready to replay. */
     function rewind() {
+      root.classList.remove('uc--ended');
       elapsed = 0;
       clips.forEach(clip => {
         try { clip.video.currentTime = 0; } catch (_) {}
@@ -1567,7 +1635,7 @@
 
       if (raf) cancelAnimationFrame(raf);
 
-      root.classList.remove('uc--animated');
+      root.classList.remove('uc--animated', 'uc--ended');
       resetContent();
 
       videos.forEach(video => {
