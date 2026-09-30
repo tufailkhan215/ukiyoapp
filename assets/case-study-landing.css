@@ -166,7 +166,7 @@
   display: block;
   font-family: var(--csl-display);
   font-weight: 400;
-  font-size: clamp(2.6rem, 8.2vw, 8.5rem);
+  font-size: clamp(1.85rem, 8.2vw, 8.5rem);
   line-height: .94;
   letter-spacing: -.005em;
   text-transform: uppercase;
@@ -174,7 +174,9 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  overflow-wrap: break-word;
+  overflow-wrap: normal;
+  word-break: keep-all;
+  hyphens: none;
 }
 .csl-hero__services {
   display: flex;
