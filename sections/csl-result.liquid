@@ -13,7 +13,7 @@
     {%- if section.settings.statement != blank -%}
       {%- assign words = section.settings.statement | escape | split: ' ' -%}
       <p class="csl-result__statement" data-csl-words>
-        {%- for w in words -%}<span class="w">{{ w }}</span>{% unless forloop.last %} {% endunless %}{%- endfor -%}
+        {%- for w in words -%}<span class="w">{{ w }}</span>{% unless forloop.last %}{{ ' ' }}{% endunless %}{%- endfor -%}
       </p>
     {%- endif -%}
 

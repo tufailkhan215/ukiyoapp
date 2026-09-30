@@ -45,6 +45,7 @@
     <h1 class="csl-hero__title">
       <span class="csl-hero__name csl-in" style="--d:.08s">{{ section.settings.client | escape }}</span>
       {%- if section.settings.services != blank -%}
+        <span class="csl-sr">: </span>
         <span class="csl-hero__services csl-in" style="--d:.2s"><span class="csl-dot" aria-hidden="true"></span>{{ section.settings.services | escape }}</span>
       {%- endif -%}
     </h1>
