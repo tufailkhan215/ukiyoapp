@@ -40,17 +40,52 @@
             "value": "california89.com",
             "link": "https://california89.com"
           }
+        },
+        "node_1": {
+          "type": "node",
+          "settings": {
+            "label": "SEO"
+          }
+        },
+        "node_2": {
+          "type": "node",
+          "settings": {
+            "label": "Page copy"
+          }
+        },
+        "node_3": {
+          "type": "node",
+          "settings": {
+            "label": "Collections"
+          }
+        },
+        "node_4": {
+          "type": "node",
+          "settings": {
+            "label": "Email sign-up"
+          }
+        },
+        "node_5": {
+          "type": "node",
+          "settings": {
+            "label": "Imagery"
+          }
         }
       },
       "block_order": [
         "fact_1",
         "fact_2",
         "fact_3",
-        "fact_4"
+        "fact_4",
+        "node_1",
+        "node_2",
+        "node_3",
+        "node_4",
+        "node_5"
       ],
       "settings": {
-        "accent": "#e8a35c",
-        "accent_2": "#9c5a1f",
+        "accent": "#eaa935",
+        "accent_2": "#b4632f",
         "back_label": "All case studies",
         "back_url": "/pages/explore-case-studies",
         "strap": "(Case Study)",
@@ -58,57 +93,21 @@
         "services": "Shopify SEO, Content & Email Sign-Up",
         "lede": "California 89 is a family-owned home and apparel brand from Truckee, California, named after the Sierra highway it was built around.",
         "body": "<p>We work on the brand’s Shopify store to help more people find it in search, with clearer pages, sharper copy and a better way to sign up for emails.</p>",
-        "image": "shopify://shop_images/gere195_1.png",
         "image_ratio": "portrait",
         "orbit_title": "(Connected ecosystem)",
         "orbit_status": "",
         "core_label": "California 89"
       }
     },
-    "gallery": {
-      "type": "csl-gallery",
-      "blocks": {
-        "image_1": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/cali-cinematic_4.png",
-            "caption": ""
-          }
-        },
-        "image_2": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/gere164.png",
-            "caption": ""
-          }
-        },
-        "image_3": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/gere1118.png",
-            "caption": ""
-          }
-        },
-        "image_4": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/cali-cinematic_5.png",
-            "caption": ""
-          }
-        }
-      },
-      "block_order": [
-        "image_1",
-        "image_2",
-        "image_3",
-        "image_4"
-      ],
+    "showcase": {
+      "type": "csl-showcase",
       "settings": {
-        "strap": "(Selected Work)",
-        "heading": "",
-        "heading_accent": "",
-        "columns": "3",
-        "bordered": false
+        "image": "shopify://shop_images/csl-california-89-site.jpg",
+        "url_label": "california89.com",
+        "link": "https://california89.com",
+        "link_label": "Visit site",
+        "caption": "The live California 89 website.",
+        "hint": "Hover to scroll"
       }
     },
     "scope": {
@@ -224,7 +223,7 @@
         "name": "Aniwa",
         "services": "Ongoing Webmaster Support, Website Optimization & SEO",
         "url": "/pages/aniwa-case-study",
-        "accent": "#9ea2ec",
+        "accent": "#eaa935",
         "all_label": "Back to all case studies",
         "all_url": "/pages/explore-case-studies"
       }
@@ -232,7 +231,7 @@
   },
   "order": [
     "hero",
-    "gallery",
+    "showcase",
     "scope",
     "chapters",
     "result",

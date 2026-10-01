@@ -32,16 +32,44 @@
             "label": "Focus",
             "value": "Activation & culture"
           }
+        },
+        "node_1": {
+          "type": "node",
+          "settings": {
+            "label": "Activation"
+          }
+        },
+        "node_2": {
+          "type": "node",
+          "settings": {
+            "label": "Culture"
+          }
+        },
+        "node_3": {
+          "type": "node",
+          "settings": {
+            "label": "Photography"
+          }
+        },
+        "node_4": {
+          "type": "node",
+          "settings": {
+            "label": "Community"
+          }
         }
       },
       "block_order": [
         "fact_1",
         "fact_2",
-        "fact_3"
+        "fact_3",
+        "node_1",
+        "node_2",
+        "node_3",
+        "node_4"
       ],
       "settings": {
-        "accent": "#d8b48a",
-        "accent_2": "#8c6a43",
+        "accent": "#eaa935",
+        "accent_2": "#b4632f",
         "back_label": "All work",
         "back_url": "/pages/work",
         "strap": "(Case Study)",
@@ -49,35 +77,31 @@
         "services": "Brand Activation & Cultural Marketing",
         "lede": "Streetwear activation work for CLSC, shaped for culture, relevance and community connection.",
         "body": "<p>We developed urban brand activation and cultural marketing that puts the brand where its community already is.</p>",
-        "image": "shopify://shop_images/DSC_29323129.webp",
         "image_ratio": "square",
         "orbit_title": "(Connected ecosystem)",
         "orbit_status": "",
         "core_label": "CLSC"
       }
     },
-    "gallery": {
-      "type": "csl-gallery",
+    "showcase": {
+      "type": "csl-showcase",
       "blocks": {
         "image_1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/3_a7ce9a9b-cbc4-4172-b05b-11b529ad60f3.webp",
-            "caption": ""
+            "image": "shopify://shop_images/3_a7ce9a9b-cbc4-4172-b05b-11b529ad60f3.webp"
           }
         },
         "image_2": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/1_a1031331-4b9a-46ee-8317-8537a77f2a03.webp",
-            "caption": ""
+            "image": "shopify://shop_images/1_a1031331-4b9a-46ee-8317-8537a77f2a03.webp"
           }
         },
         "image_3": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/2_adbf5d1d-88e1-4cbb-a9ca-c0f2568455e8.webp",
-            "caption": ""
+            "image": "shopify://shop_images/2_adbf5d1d-88e1-4cbb-a9ca-c0f2568455e8.webp"
           }
         }
       },
@@ -87,11 +111,11 @@
         "image_3"
       ],
       "settings": {
-        "strap": "(Selected Work)",
-        "heading": "",
-        "heading_accent": "",
-        "columns": "3",
-        "bordered": false
+        "image": "shopify://shop_images/DSC_29323129.webp",
+        "url_label": "CLSC",
+        "link_label": "",
+        "caption": "",
+        "hint": "Hover to scroll"
       }
     },
     "scope": {
@@ -193,7 +217,7 @@
         "name": "Maverick Helicopters",
         "services": "Experience Storytelling & Luxury Travel Content",
         "url": "/pages/maverick-helicopters-case-study",
-        "accent": "#e0b45e",
+        "accent": "#eaa935",
         "all_label": "Back to all work",
         "all_url": "/pages/work"
       }
@@ -201,7 +225,7 @@
   },
   "order": [
     "hero",
-    "gallery",
+    "showcase",
     "scope",
     "chapters",
     "result",

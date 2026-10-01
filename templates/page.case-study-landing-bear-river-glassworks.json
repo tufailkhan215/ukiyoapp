@@ -40,17 +40,45 @@
             "value": "bearriverglassworks.com",
             "link": "https://www.bearriverglassworks.com"
           }
+        },
+        "node_1": {
+          "type": "node",
+          "settings": {
+            "label": "Logo"
+          }
+        },
+        "node_2": {
+          "type": "node",
+          "settings": {
+            "label": "Identity"
+          }
+        },
+        "node_3": {
+          "type": "node",
+          "settings": {
+            "label": "Photography"
+          }
+        },
+        "node_4": {
+          "type": "node",
+          "settings": {
+            "label": "Content"
+          }
         }
       },
       "block_order": [
         "fact_1",
         "fact_2",
         "fact_3",
-        "fact_4"
+        "fact_4",
+        "node_1",
+        "node_2",
+        "node_3",
+        "node_4"
       ],
       "settings": {
-        "accent": "#f07a3a",
-        "accent_2": "#a2421a",
+        "accent": "#eaa935",
+        "accent_2": "#b4632f",
         "back_label": "All case studies",
         "back_url": "/pages/explore-case-studies",
         "strap": "(Case Study)",
@@ -58,49 +86,43 @@
         "services": "Brand Identity, Photography & Content",
         "lede": "Bear River Glassworks is a glass flameworking studio and teaching center in Grass Valley, California.",
         "body": "<p>We created brand and visual content that shows the craft up close: the artists, the classes and the glass itself.</p>",
-        "image": "shopify://shop_images/ChatGPT_Image_Sep_29_2026_09_42_27_PM.png",
         "image_ratio": "square",
         "orbit_title": "(Connected ecosystem)",
         "orbit_status": "",
         "core_label": "Bear River Glassworks"
       }
     },
-    "gallery": {
-      "type": "csl-gallery",
+    "showcase": {
+      "type": "csl-showcase",
       "blocks": {
         "image_1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Screenshot2026-09-08at4.03.00AM.webp",
-            "caption": ""
+            "image": "shopify://shop_images/Screenshot2026-09-08at4.03.00AM.webp"
           }
         },
         "image_2": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Screenshot2026-09-10at10.17.16AM.webp",
-            "caption": ""
+            "image": "shopify://shop_images/Screenshot2026-09-10at10.17.16AM.webp"
           }
         },
         "image_3": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Screenshot2026-09-08at3.55.53AM.webp",
-            "caption": ""
+            "image": "shopify://shop_images/Screenshot2026-09-08at3.55.53AM.webp"
           }
         },
         "image_4": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2026-09-07_at_8.20.47_PM.webp",
-            "caption": ""
+            "image": "shopify://shop_images/Screenshot_2026-09-07_at_8.20.47_PM.webp"
           }
         },
         "image_5": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2026-09-07_at_8.29.45_PM.webp",
-            "caption": ""
+            "image": "shopify://shop_images/Screenshot_2026-09-07_at_8.29.45_PM.webp"
           }
         }
       },
@@ -112,11 +134,11 @@
         "image_5"
       ],
       "settings": {
-        "strap": "(Selected Work)",
-        "heading": "",
-        "heading_accent": "",
-        "columns": "3",
-        "bordered": false
+        "image": "shopify://shop_images/ChatGPT_Image_Sep_29_2026_09_42_27_PM.png",
+        "url_label": "Bear River Glassworks",
+        "link_label": "",
+        "caption": "",
+        "hint": "Hover to scroll"
       }
     },
     "scope": {
@@ -218,7 +240,7 @@
         "name": "Academy of Oracle Arts",
         "services": "Shopify Website, Digital Marketing, Social Media, Paid Ads & SEO",
         "url": "/pages/academy-of-oracle-arts-case-study",
-        "accent": "#b99cff",
+        "accent": "#eaa935",
         "all_label": "Back to all case studies",
         "all_url": "/pages/explore-case-studies"
       }
@@ -226,7 +248,7 @@
   },
   "order": [
     "hero",
-    "gallery",
+    "showcase",
     "scope",
     "chapters",
     "result",

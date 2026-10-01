@@ -16,59 +16,52 @@
           "type": "fact",
           "settings": {
             "label": "Client",
-            "value": "Back to Earth"
+            "value": "Chai’ba"
           }
         },
         "fact_2": {
           "type": "fact",
           "settings": {
-            "label": "Industry",
-            "value": "Youth programs & nature"
+            "label": "Location",
+            "value": "Bali, Indonesia"
           }
         },
         "fact_3": {
           "type": "fact",
           "settings": {
-            "label": "Platform",
-            "value": "Shopify"
+            "label": "Category",
+            "value": "Culinary"
           }
         },
         "fact_4": {
           "type": "fact",
           "settings": {
-            "label": "Website",
-            "value": "backtoearth.org",
-            "link": "https://www.backtoearth.org"
+            "label": "Focus",
+            "value": "Visual brand story"
           }
         },
         "node_1": {
           "type": "node",
           "settings": {
-            "label": "Website"
+            "label": "Brand story"
           }
         },
         "node_2": {
           "type": "node",
           "settings": {
-            "label": "Shopify"
+            "label": "Food photography"
           }
         },
         "node_3": {
           "type": "node",
           "settings": {
-            "label": "Programs"
+            "label": "Interiors"
           }
         },
         "node_4": {
           "type": "node",
           "settings": {
-            "label": "Blogs"
-          }
-        },
-        "node_5": {
-          "type": "node",
-          "settings": {
-            "label": "SEO"
+            "label": "Social"
           }
         }
       },
@@ -80,33 +73,56 @@
         "node_1",
         "node_2",
         "node_3",
-        "node_4",
-        "node_5"
+        "node_4"
       ],
       "settings": {
         "accent": "#eaa935",
         "accent_2": "#b4632f",
-        "back_label": "All case studies",
-        "back_url": "/pages/explore-case-studies",
+        "back_label": "All work",
+        "back_url": "/pages/work",
         "strap": "(Case Study)",
-        "client": "Back to Earth",
-        "services": "Shopify Website, Content & SEO",
-        "lede": "Back to Earth connects young people to nature and to themselves through outdoor programs.",
-        "body": "<p>We designed and built its new Shopify website, giving the programs, the stories and the field notes a home that reflects the mission.</p>",
+        "client": "Chai’ba",
+        "services": "Visual Brand Story & Culinary Content",
+        "lede": "A visual brand story for Chai’ba, designed to highlight flavor, atmosphere and cultural identity.",
+        "body": "<p>We created culinary content that shows the food, the space and the culture behind it.</p>",
         "image_ratio": "landscape",
         "orbit_title": "(Connected ecosystem)",
         "orbit_status": "",
-        "core_label": "Back to Earth"
+        "core_label": "Chai’ba"
       }
     },
     "showcase": {
       "type": "csl-showcase",
+      "blocks": {
+        "image_1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/3_6bae4140-85b4-4953-832e-c2cb06fa36c9.webp"
+          }
+        },
+        "image_2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/4_259355c2-0531-4aa0-b94f-875086088689.webp"
+          }
+        },
+        "image_3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/2_48b27476-fdf2-406b-af18-e09217cb2e3c.webp"
+          }
+        }
+      },
+      "block_order": [
+        "image_1",
+        "image_2",
+        "image_3"
+      ],
       "settings": {
-        "image": "shopify://shop_images/csl-back-to-earth-site.jpg",
-        "url_label": "backtoearth.org",
-        "link": "https://www.backtoearth.org",
-        "link_label": "Visit site",
-        "caption": "The live Back to Earth website.",
+        "image": "shopify://shop_images/indian1_1.webp",
+        "url_label": "Chai’ba",
+        "link_label": "",
+        "caption": "",
         "hint": "Hover to scroll"
       }
     },
@@ -122,31 +138,25 @@
         "item_01": {
           "type": "item",
           "settings": {
-            "text": "Website design and development"
+            "text": "Visual brand storytelling"
           }
         },
         "item_02": {
           "type": "item",
           "settings": {
-            "text": "Shopify build"
+            "text": "Food photography"
           }
         },
         "item_03": {
           "type": "item",
           "settings": {
-            "text": "Program and story pages"
+            "text": "Atmosphere and interiors content"
           }
         },
         "item_04": {
           "type": "item",
           "settings": {
-            "text": "News and Field Notes blogs"
-          }
-        },
-        "item_05": {
-          "type": "item",
-          "settings": {
-            "text": "SEO foundations and page structure"
+            "text": "Content for social and web"
           }
         }
       },
@@ -155,8 +165,7 @@
         "item_01",
         "item_02",
         "item_03",
-        "item_04",
-        "item_05"
+        "item_04"
       ],
       "settings": {
         "strap": "(Scope)",
@@ -174,14 +183,14 @@
           "type": "chapter",
           "settings": {
             "title": "The brief",
-            "text": "<p>Back to Earth asks young people to put the screen down and step outside. Its website had to make that invitation clear and show what the programs feel like.</p>"
+            "text": "<p>Chai’ba’s identity lives in its flavors and its culture. The visuals had to carry both.</p>"
           }
         },
         "chapter_2": {
           "type": "chapter",
           "settings": {
             "title": "Our approach",
-            "text": "<p>We built the site around the programs and the voices of the young people who take part, with clear paths to learn more and a structure designed for search from day one.</p>"
+            "text": "<p>We built the visual story around the dishes and the setting, letting color, texture and atmosphere express the restaurant’s cultural identity.</p>"
           }
         }
       },
@@ -201,8 +210,8 @@
       "type": "csl-result",
       "settings": {
         "strap": "(The Result)",
-        "statement": "A website that makes the case for getting outside.",
-        "text": "Back to Earth now has a dedicated home for its programs, stories and field notes.",
+        "statement": "Flavor, atmosphere and identity in every frame.",
+        "text": "Chai’ba gained a visual brand story that highlights its flavor, atmosphere and cultural identity.",
         "primary_label": "Start your project",
         "primary_url": "https://tidycal.com/salesautomateiq/consultation",
         "secondary_label": "",
@@ -213,12 +222,12 @@
       "type": "csl-next",
       "settings": {
         "strap": "(Next Case Study)",
-        "name": "People of the Forest",
-        "services": "Website Design, Storytelling & Content",
-        "url": "/pages/people-of-the-forest-case-study",
+        "name": "Two Hands",
+        "services": "Content Support & Local Brand Presence",
+        "url": "/pages/two-hands-case-study",
         "accent": "#eaa935",
-        "all_label": "Back to all case studies",
-        "all_url": "/pages/explore-case-studies"
+        "all_label": "Back to all work",
+        "all_url": "/pages/work"
       }
     }
   },

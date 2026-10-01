@@ -297,9 +297,15 @@
 .csl-frame__url svg { width: 12px; height: 12px; opacity: .7; }
 .csl-frame__visit { justify-self: end; font-size: 12px; font-weight: 500; color: var(--csl-muted) !important; text-decoration: none; }
 .csl-frame__visit:hover { color: #fff !important; }
-.csl-frame__screen { position: relative; height: var(--frame-h); overflow: hidden; background: #fff; }
-.csl-frame__screen img { position: absolute; top: 0; left: 0; width: 100%; height: auto; transform: translateY(0); transition: top 7s cubic-bezier(.45, 0, .55, 1), transform 7s cubic-bezier(.45, 0, .55, 1); }
-@media (hover: hover) { .csl-frame:hover .csl-frame__screen img { top: 100%; transform: translateY(-100%); } }
+.csl-frame__screen { position: relative; height: var(--frame-h); overflow: hidden; background: #0c0c0e; }
+/* Images stack top to bottom. Shorter than the frame: they stretch to fill it.
+   Taller: hovering scrolls through to the bottom. */
+.csl-frame__stack { position: absolute; top: 0; left: 0; width: 100%; min-height: 100%; display: flex; flex-direction: column; gap: 6px; background: #0c0c0e; transform: translateY(0); transition: top 7s cubic-bezier(.45, 0, .55, 1), transform 7s cubic-bezier(.45, 0, .55, 1); }
+.csl-frame__stack > img, .csl-frame__item { display: block; flex: 1 0 auto; width: 100%; }
+.csl-frame__item { position: relative; display: flex; flex-direction: column; }
+.csl-frame__stack img { width: 100%; height: auto; object-fit: cover; }
+.csl-frame__item img { flex: 1 0 auto; }
+@media (hover: hover) { .csl-frame:hover .csl-frame__stack { top: 100%; transform: translateY(-100%); } }
 .csl-showcase__foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; margin-top: 22px; }
 .csl-showcase__caption { font-size: 15px; color: var(--csl-muted); }
 .csl-showcase__hint { display: none; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--csl-faint); }
@@ -476,5 +482,5 @@
   .csl *, .csl *::before, .csl *::after { animation: none !important; transition: none !important; }
   .csl-js .csl-rv { opacity: 1; transform: none; }
   .csl-in { opacity: 1; transform: none; }
-  .csl-frame:hover .csl-frame__screen img { top: 0; transform: none; }
+  .csl-frame:hover .csl-frame__stack { top: 0; transform: none; }
 }

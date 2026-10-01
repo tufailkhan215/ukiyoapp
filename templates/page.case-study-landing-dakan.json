@@ -39,17 +39,45 @@
             "label": "Focus",
             "value": "Brand & photography"
           }
+        },
+        "node_1": {
+          "type": "node",
+          "settings": {
+            "label": "Brand"
+          }
+        },
+        "node_2": {
+          "type": "node",
+          "settings": {
+            "label": "Food photography"
+          }
+        },
+        "node_3": {
+          "type": "node",
+          "settings": {
+            "label": "Storytelling"
+          }
+        },
+        "node_4": {
+          "type": "node",
+          "settings": {
+            "label": "Social"
+          }
         }
       },
       "block_order": [
         "fact_1",
         "fact_2",
         "fact_3",
-        "fact_4"
+        "fact_4",
+        "node_1",
+        "node_2",
+        "node_3",
+        "node_4"
       ],
       "settings": {
-        "accent": "#e2584e",
-        "accent_2": "#9a2c25",
+        "accent": "#eaa935",
+        "accent_2": "#b4632f",
         "back_label": "All work",
         "back_url": "/pages/work",
         "strap": "(Case Study)",
@@ -57,42 +85,37 @@
         "services": "Restaurant Brand Development & Photography",
         "lede": "Restaurant storytelling for Dakan, designed to make the concept feel more memorable and more marketable.",
         "body": "<p>We supported brand development and photography for this California fusion restaurant.</p>",
-        "image": "shopify://shop_images/Screenshot_2025-03-19_at_7.05.32_AM.webp",
         "image_ratio": "portrait",
         "orbit_title": "(Connected ecosystem)",
         "orbit_status": "",
         "core_label": "Dakan"
       }
     },
-    "gallery": {
-      "type": "csl-gallery",
+    "showcase": {
+      "type": "csl-showcase",
       "blocks": {
         "image_1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/4_869168d6-ea53-4374-8f74-ea6c3c229404.webp",
-            "caption": ""
+            "image": "shopify://shop_images/4_869168d6-ea53-4374-8f74-ea6c3c229404.webp"
           }
         },
         "image_2": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/1_04391c2d-d765-461d-8997-bcfd38b9f129.webp",
-            "caption": ""
+            "image": "shopify://shop_images/1_04391c2d-d765-461d-8997-bcfd38b9f129.webp"
           }
         },
         "image_3": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/2_ee361f86-da67-45bc-8618-3c934abfd1de.webp",
-            "caption": ""
+            "image": "shopify://shop_images/2_ee361f86-da67-45bc-8618-3c934abfd1de.webp"
           }
         },
         "image_4": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/3_33c10278-3b7f-4c9f-acc4-6a823d8cdf79.webp",
-            "caption": ""
+            "image": "shopify://shop_images/3_33c10278-3b7f-4c9f-acc4-6a823d8cdf79.webp"
           }
         }
       },
@@ -103,11 +126,11 @@
         "image_4"
       ],
       "settings": {
-        "strap": "(Selected Work)",
-        "heading": "",
-        "heading_accent": "",
-        "columns": "3",
-        "bordered": false
+        "image": "shopify://shop_images/Screenshot_2025-03-19_at_7.05.32_AM.webp",
+        "url_label": "Dakan",
+        "link_label": "",
+        "caption": "",
+        "hint": "Hover to scroll"
       }
     },
     "scope": {
@@ -209,7 +232,7 @@
         "name": "Hardrock",
         "services": "Entertainment Content & Brand Activation",
         "url": "/pages/hardrock-case-study",
-        "accent": "#e05252",
+        "accent": "#eaa935",
         "all_label": "Back to all work",
         "all_url": "/pages/work"
       }
@@ -217,7 +240,7 @@
   },
   "order": [
     "hero",
-    "gallery",
+    "showcase",
     "scope",
     "chapters",
     "result",
