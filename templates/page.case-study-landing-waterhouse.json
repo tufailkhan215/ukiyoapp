@@ -16,58 +16,50 @@
           "type": "fact",
           "settings": {
             "label": "Client",
-            "value": "Polaroid"
+            "value": "Waterhouse"
           }
         },
         "fact_2": {
           "type": "fact",
           "settings": {
-            "label": "Category",
-            "value": "Brand partnership"
-          }
-        },
-        "fact_3": {
-          "type": "fact",
-          "settings": {
-            "label": "Focus",
-            "value": "Activation & content"
+            "label": "Industry",
+            "value": "Events & fine dining"
           }
         },
         "node_1": {
           "type": "node",
           "settings": {
-            "label": "Partnership"
+            "label": "Logo"
           }
         },
         "node_2": {
           "type": "node",
           "settings": {
-            "label": "Activation"
+            "label": "Identity"
           }
         },
         "node_3": {
           "type": "node",
           "settings": {
-            "label": "Creative direction"
+            "label": "Visual direction"
           }
         },
         "node_4": {
           "type": "node",
           "settings": {
-            "label": "Photography"
+            "label": "Print"
           }
         },
         "node_5": {
           "type": "node",
           "settings": {
-            "label": "Social"
+            "label": "Digital"
           }
         }
       },
       "block_order": [
         "fact_1",
         "fact_2",
-        "fact_3",
         "node_1",
         "node_2",
         "node_3",
@@ -77,42 +69,24 @@
       "settings": {
         "accent": "#eaa935",
         "accent_2": "#b4632f",
-        "back_label": "All work",
-        "back_url": "/pages/work",
+        "back_label": "All case studies",
+        "back_url": "/pages/explore-case-studies",
         "strap": "(Case Study)",
-        "client": "Polaroid",
-        "services": "Brand Partnership, Activation & Content",
-        "lede": "A heritage brand collaboration designed to reconnect Polaroid’s iconic nostalgia with a modern audience.",
-        "body": "<p>We built a nostalgic brand activation that bridges Polaroid’s classic aesthetic with the way contemporary audiences discover and share brands today.</p>",
-        "image_ratio": "landscape",
+        "client": "Waterhouse",
+        "services": "Brand Identity & Visual Direction",
+        "lede": "Waterhouse is an events and fine dining venue, and its brand needed to feel as considered as the experience it offers.",
+        "body": "<p>We created a refined crest and visual direction that suits weddings, private events and an elegant dinner menu.</p>",
+        "image_ratio": "square",
         "orbit_title": "(Connected ecosystem)",
         "orbit_status": "",
-        "core_label": "Polaroid"
+        "core_label": "Waterhouse"
       }
     },
     "showcase": {
       "type": "csl-showcase",
-      "blocks": {
-        "image_1": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/p1.webp"
-          }
-        },
-        "image_2": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/p2.webp"
-          }
-        }
-      },
-      "block_order": [
-        "image_1",
-        "image_2"
-      ],
       "settings": {
-        "image": "shopify://shop_images/p3.webp",
-        "url_label": "Polaroid",
+        "image": "shopify://shop_images/czadzs1.png",
+        "url_label": "Waterhouse",
         "link_label": "",
         "caption": "",
         "hint": "Hover to scroll"
@@ -130,25 +104,25 @@
         "item_01": {
           "type": "item",
           "settings": {
-            "text": "Partnership concept and creative direction"
+            "text": "Logo and crest design"
           }
         },
         "item_02": {
           "type": "item",
           "settings": {
-            "text": "Brand activation campaign"
+            "text": "Brand identity"
           }
         },
         "item_03": {
           "type": "item",
           "settings": {
-            "text": "Photography and visual content"
+            "text": "Visual direction"
           }
         },
         "item_04": {
           "type": "item",
           "settings": {
-            "text": "Content for social and digital channels"
+            "text": "Brand assets for print and digital"
           }
         }
       },
@@ -175,14 +149,14 @@
           "type": "chapter",
           "settings": {
             "title": "The brief",
-            "text": "<p>Reconnect a heritage brand with a modern audience, without losing the nostalgia that makes it iconic.</p>"
+            "text": "<p>An events venue sells a feeling before guests arrive. Waterhouse needed a mark that says occasion, care and quality at first glance.</p>"
           }
         },
         "chapter_2": {
           "type": "chapter",
           "settings": {
             "title": "Our approach",
-            "text": "<p>We leaned into the analog warmth that defines Polaroid: instant prints, real moments and imperfect light. The activation and its content were built around that feeling, so the campaign reads as nostalgic and current at the same time.</p>"
+            "text": "<p>We drew on a classic crest and a calm, natural palette, framing the venue’s setting inside the mark so the identity works on invitations, menus and screens alike.</p>"
           }
         }
       },
@@ -202,8 +176,8 @@
       "type": "csl-result",
       "settings": {
         "strap": "(The Result)",
-        "statement": "A campaign that carries Polaroid’s heritage into a modern conversation.",
-        "text": "The collaboration produced nostalgic, shareable content made for contemporary audiences while staying true to the brand’s classic aesthetic.",
+        "statement": "An identity with a sense of occasion.",
+        "text": "Waterhouse has a timeless crest and visual direction ready for every event it hosts.",
         "primary_label": "Start your project",
         "primary_url": "https://tidycal.com/salesautomateiq/consultation",
         "secondary_label": "",
@@ -214,12 +188,12 @@
       "type": "csl-next",
       "settings": {
         "strap": "(Next Case Study)",
-        "name": "WANDRD",
-        "services": "Content Strategy, Photography & Video",
-        "url": "/pages/wandrd-case-study",
+        "name": "Back to Earth",
+        "services": "Shopify Website, Content & SEO",
+        "url": "/pages/back-to-earth-case-study",
         "accent": "#eaa935",
-        "all_label": "Back to all work",
-        "all_url": "/pages/work"
+        "all_label": "Back to all case studies",
+        "all_url": "/pages/explore-case-studies"
       }
     }
   },

@@ -40,17 +40,45 @@
             "value": "friartucks.com",
             "link": "https://friartucks.com"
           }
+        },
+        "node_1": {
+          "type": "node",
+          "settings": {
+            "label": "Rebrand website"
+          }
+        },
+        "node_2": {
+          "type": "node",
+          "settings": {
+            "label": "Shopify"
+          }
+        },
+        "node_3": {
+          "type": "node",
+          "settings": {
+            "label": "Venue pages"
+          }
+        },
+        "node_4": {
+          "type": "node",
+          "settings": {
+            "label": "SEO"
+          }
         }
       },
       "block_order": [
         "fact_1",
         "fact_2",
         "fact_3",
-        "fact_4"
+        "fact_4",
+        "node_1",
+        "node_2",
+        "node_3",
+        "node_4"
       ],
       "settings": {
-        "accent": "#6cc28a",
-        "accent_2": "#2e7a4c",
+        "accent": "#eaa935",
+        "accent_2": "#b4632f",
         "back_label": "All case studies",
         "back_url": "/pages/explore-case-studies",
         "strap": "(Case Study)",
@@ -58,11 +86,21 @@
         "services": "Rebrand Website, Shopify & SEO",
         "lede": "Sherwood is Nevada City’s venue for live music and sports, the next chapter for the much-loved Friar Tuck’s.",
         "body": "<p>We brought the new name to life online with a website built around what the venue is now: live music, big screens, craft cocktails and a deep wine cellar.</p>",
-        "image": "shopify://shop_images/Screenshot_2026-05-31_at_8.54.18_PM.png",
         "image_ratio": "portrait",
         "orbit_title": "(Connected ecosystem)",
         "orbit_status": "",
         "core_label": "Sherwood"
+      }
+    },
+    "showcase": {
+      "type": "csl-showcase",
+      "settings": {
+        "image": "shopify://shop_images/csl-sherwood-site.jpg",
+        "url_label": "friartucks.com",
+        "link": "https://friartucks.com",
+        "link_label": "Visit site",
+        "caption": "The live Sherwood website.",
+        "hint": "Hover to scroll"
       }
     },
     "scope": {
@@ -171,7 +209,7 @@
         "name": "Waterhouse",
         "services": "Brand Identity & Visual Direction",
         "url": "/pages/waterhouse-case-study",
-        "accent": "#c9a96e",
+        "accent": "#eaa935",
         "all_label": "Back to all case studies",
         "all_url": "/pages/explore-case-studies"
       }
@@ -179,6 +217,7 @@
   },
   "order": [
     "hero",
+    "showcase",
     "scope",
     "chapters",
     "result",

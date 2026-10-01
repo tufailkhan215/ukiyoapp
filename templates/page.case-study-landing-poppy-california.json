@@ -32,16 +32,51 @@
             "label": "Focus",
             "value": "Storytelling & identity"
           }
+        },
+        "node_1": {
+          "type": "node",
+          "settings": {
+            "label": "Storytelling"
+          }
+        },
+        "node_2": {
+          "type": "node",
+          "settings": {
+            "label": "Visual direction"
+          }
+        },
+        "node_3": {
+          "type": "node",
+          "settings": {
+            "label": "Identity"
+          }
+        },
+        "node_4": {
+          "type": "node",
+          "settings": {
+            "label": "Photography"
+          }
+        },
+        "node_5": {
+          "type": "node",
+          "settings": {
+            "label": "Social"
+          }
         }
       },
       "block_order": [
         "fact_1",
         "fact_2",
-        "fact_3"
+        "fact_3",
+        "node_1",
+        "node_2",
+        "node_3",
+        "node_4",
+        "node_5"
       ],
       "settings": {
-        "accent": "#f0a04b",
-        "accent_2": "#c0661a",
+        "accent": "#eaa935",
+        "accent_2": "#b4632f",
         "back_label": "All work",
         "back_url": "/pages/work",
         "strap": "(Case Study)",
@@ -49,42 +84,37 @@
         "services": "Brand Storytelling, Visual Direction & Identity",
         "lede": "Lifestyle storytelling and visual direction for Poppy.California, shaped around a distinct California point of view.",
         "body": "<p>We developed California-inspired brand storytelling and visual identity work that gives the brand a look and a voice of its own.</p>",
-        "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge.webp",
         "image_ratio": "portrait",
         "orbit_title": "(Connected ecosystem)",
         "orbit_status": "",
         "core_label": "Poppy.California"
       }
     },
-    "gallery": {
-      "type": "csl-gallery",
+    "showcase": {
+      "type": "csl-showcase",
       "blocks": {
         "image_1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/1_c939e864-5d98-4af3-988f-e9642c67034f.webp",
-            "caption": ""
+            "image": "shopify://shop_images/1_c939e864-5d98-4af3-988f-e9642c67034f.webp"
           }
         },
         "image_2": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/3_91a7db44-2e66-4511-87ab-68d952844faa.webp",
-            "caption": ""
+            "image": "shopify://shop_images/3_91a7db44-2e66-4511-87ab-68d952844faa.webp"
           }
         },
         "image_3": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/2_abec7097-1735-4b38-a5c4-24dc7a38ee23.webp",
-            "caption": ""
+            "image": "shopify://shop_images/2_abec7097-1735-4b38-a5c4-24dc7a38ee23.webp"
           }
         },
         "image_4": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/4_e4825e44-6edd-40f6-9456-a525b6778035.webp",
-            "caption": ""
+            "image": "shopify://shop_images/4_e4825e44-6edd-40f6-9456-a525b6778035.webp"
           }
         }
       },
@@ -95,11 +125,11 @@
         "image_4"
       ],
       "settings": {
-        "strap": "(Selected Work)",
-        "heading": "",
-        "heading_accent": "",
-        "columns": "3",
-        "bordered": false
+        "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge.webp",
+        "url_label": "Poppy.California",
+        "link_label": "",
+        "caption": "",
+        "hint": "Hover to scroll"
       }
     },
     "scope": {
@@ -208,7 +238,7 @@
         "name": "Fur Traders",
         "services": "E-commerce Website Design & SEO Optimization",
         "url": "/pages/fur-traders-case-study",
-        "accent": "#d9a06e",
+        "accent": "#eaa935",
         "all_label": "Back to all work",
         "all_url": "/pages/work"
       }
@@ -216,7 +246,7 @@
   },
   "order": [
     "hero",
-    "gallery",
+    "showcase",
     "scope",
     "chapters",
     "result",

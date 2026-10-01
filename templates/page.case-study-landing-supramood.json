@@ -32,16 +32,58 @@
             "label": "Focus",
             "value": "Strategy, content & affiliate support"
           }
+        },
+        "node_1": {
+          "type": "node",
+          "settings": {
+            "label": "Brand strategy"
+          }
+        },
+        "node_2": {
+          "type": "node",
+          "settings": {
+            "label": "Website"
+          }
+        },
+        "node_3": {
+          "type": "node",
+          "settings": {
+            "label": "SEO"
+          }
+        },
+        "node_4": {
+          "type": "node",
+          "settings": {
+            "label": "Podcast"
+          }
+        },
+        "node_5": {
+          "type": "node",
+          "settings": {
+            "label": "Email"
+          }
+        },
+        "node_6": {
+          "type": "node",
+          "settings": {
+            "label": "Affiliates"
+          }
         }
       },
       "block_order": [
         "fact_1",
         "fact_2",
-        "fact_3"
+        "fact_3",
+        "node_1",
+        "node_2",
+        "node_3",
+        "node_4",
+        "node_5",
+        "node_6"
       ],
       "settings": {
-        "accent": "#e95278",
-        "accent_2": "#9d1f43",
+        "accent": "#eaa935",
+        "accent_2": "#b4632f",
         "back_label": "All work",
         "back_url": "/pages/work",
         "strap": "(Case Study)",
@@ -49,35 +91,31 @@
         "services": "Brand Strategy, Website Redesign & Digital Marketing",
         "lede": "A Connected Brand Experience Across E-commerce, Content & Community.",
         "body": "",
-        "image": "shopify://shop_images/4_4192c34b-000c-4fd5-be7c-350b15f33157.webp",
         "image_ratio": "portrait",
         "orbit_title": "(Connected ecosystem)",
         "orbit_status": "",
         "core_label": "Supramood"
       }
     },
-    "gallery": {
-      "type": "csl-gallery",
+    "showcase": {
+      "type": "csl-showcase",
       "blocks": {
         "image_1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/1_9e4980dd-8adf-4e14-b342-ed62d92822c2.webp",
-            "caption": ""
+            "image": "shopify://shop_images/1_9e4980dd-8adf-4e14-b342-ed62d92822c2.webp"
           }
         },
         "image_2": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/2_528d9138-b021-4a76-9cd9-0bc2121d9dfd.webp",
-            "caption": ""
+            "image": "shopify://shop_images/2_528d9138-b021-4a76-9cd9-0bc2121d9dfd.webp"
           }
         },
         "image_3": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/3_b593cdfd-b9b0-40e0-a58d-48b6557c3850.webp",
-            "caption": ""
+            "image": "shopify://shop_images/3_b593cdfd-b9b0-40e0-a58d-48b6557c3850.webp"
           }
         }
       },
@@ -87,11 +125,11 @@
         "image_3"
       ],
       "settings": {
-        "strap": "(Selected Work)",
-        "heading": "",
-        "heading_accent": "",
-        "columns": "3",
-        "bordered": false
+        "image": "shopify://shop_images/4_4192c34b-000c-4fd5-be7c-350b15f33157.webp",
+        "url_label": "Supramood",
+        "link_label": "",
+        "caption": "",
+        "hint": "Hover to scroll"
       }
     },
     "scope": {
@@ -248,7 +286,7 @@
         "name": "DJI",
         "services": "Aerial Photography, Drone Video & Product Storytelling",
         "url": "/pages/dji-case-study",
-        "accent": "#4cc9f0",
+        "accent": "#eaa935",
         "all_label": "Back to all work",
         "all_url": "/pages/work"
       }
@@ -256,7 +294,7 @@
   },
   "order": [
     "hero",
-    "gallery",
+    "showcase",
     "scope",
     "chapters",
     "stats",

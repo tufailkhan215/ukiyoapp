@@ -39,17 +39,52 @@
             "label": "Focus",
             "value": "Wellness brand content"
           }
+        },
+        "node_1": {
+          "type": "node",
+          "settings": {
+            "label": "Brand"
+          }
+        },
+        "node_2": {
+          "type": "node",
+          "settings": {
+            "label": "Wellness content"
+          }
+        },
+        "node_3": {
+          "type": "node",
+          "settings": {
+            "label": "Photography"
+          }
+        },
+        "node_4": {
+          "type": "node",
+          "settings": {
+            "label": "Social"
+          }
+        },
+        "node_5": {
+          "type": "node",
+          "settings": {
+            "label": "Web"
+          }
         }
       },
       "block_order": [
         "fact_1",
         "fact_2",
         "fact_3",
-        "fact_4"
+        "fact_4",
+        "node_1",
+        "node_2",
+        "node_3",
+        "node_4",
+        "node_5"
       ],
       "settings": {
-        "accent": "#7fc2a8",
-        "accent_2": "#2f7a62",
+        "accent": "#eaa935",
+        "accent_2": "#b4632f",
         "back_label": "All work",
         "back_url": "/pages/work",
         "strap": "(Case Study)",
@@ -57,35 +92,31 @@
         "services": "Wellness Brand Development & Content Creation",
         "lede": "Wellness-led brand content for Satori, built around retreat, atmosphere and destination appeal.",
         "body": "<p>We supported Hawaiian wellness retreat brand development and created content that captures the calm of the place.</p>",
-        "image": "shopify://shop_images/DSCF9519_1.webp",
         "image_ratio": "landscape",
         "orbit_title": "(Connected ecosystem)",
         "orbit_status": "",
         "core_label": "Satori"
       }
     },
-    "gallery": {
-      "type": "csl-gallery",
+    "showcase": {
+      "type": "csl-showcase",
       "blocks": {
         "image_1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/4_170d51ba-56cd-499b-846e-7c6e3dde0761.webp",
-            "caption": ""
+            "image": "shopify://shop_images/4_170d51ba-56cd-499b-846e-7c6e3dde0761.webp"
           }
         },
         "image_2": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/3_635d13c7-e847-462d-821a-877f874e2f21.webp",
-            "caption": ""
+            "image": "shopify://shop_images/3_635d13c7-e847-462d-821a-877f874e2f21.webp"
           }
         },
         "image_3": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/2_ddcd511e-b849-4bb1-b275-ee227ab8b97a.webp",
-            "caption": ""
+            "image": "shopify://shop_images/2_ddcd511e-b849-4bb1-b275-ee227ab8b97a.webp"
           }
         }
       },
@@ -95,11 +126,11 @@
         "image_3"
       ],
       "settings": {
-        "strap": "(Selected Work)",
-        "heading": "",
-        "heading_accent": "",
-        "columns": "3",
-        "bordered": false
+        "image": "shopify://shop_images/DSCF9519_1.webp",
+        "url_label": "Satori",
+        "link_label": "",
+        "caption": "",
+        "hint": "Hover to scroll"
       }
     },
     "scope": {
@@ -201,7 +232,7 @@
         "name": "Chai’ba",
         "services": "Visual Brand Story & Culinary Content",
         "url": "/pages/chaiba-case-study",
-        "accent": "#e8a33d",
+        "accent": "#eaa935",
         "all_label": "Back to all work",
         "all_url": "/pages/work"
       }
@@ -209,7 +240,7 @@
   },
   "order": [
     "hero",
-    "gallery",
+    "showcase",
     "scope",
     "chapters",
     "result",

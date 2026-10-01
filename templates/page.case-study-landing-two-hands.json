@@ -39,17 +39,45 @@
             "label": "Focus",
             "value": "Content support"
           }
+        },
+        "node_1": {
+          "type": "node",
+          "settings": {
+            "label": "Food photography"
+          }
+        },
+        "node_2": {
+          "type": "node",
+          "settings": {
+            "label": "Content support"
+          }
+        },
+        "node_3": {
+          "type": "node",
+          "settings": {
+            "label": "Social"
+          }
+        },
+        "node_4": {
+          "type": "node",
+          "settings": {
+            "label": "Local presence"
+          }
         }
       },
       "block_order": [
         "fact_1",
         "fact_2",
         "fact_3",
-        "fact_4"
+        "fact_4",
+        "node_1",
+        "node_2",
+        "node_3",
+        "node_4"
       ],
       "settings": {
-        "accent": "#f2cd5c",
-        "accent_2": "#a78626",
+        "accent": "#eaa935",
+        "accent_2": "#b4632f",
         "back_label": "All work",
         "back_url": "/pages/work",
         "strap": "(Case Study)",
@@ -57,49 +85,43 @@
         "services": "Content Support & Local Brand Presence",
         "lede": "Content support for Two Hands, built to increase visibility and strengthen local brand presence.",
         "body": "<p>We created food and hospitality content designed to keep the brand visible and recognizable in its local market.</p>",
-        "image": "shopify://shop_images/DSCF9760.webp",
         "image_ratio": "square",
         "orbit_title": "(Connected ecosystem)",
         "orbit_status": "",
         "core_label": "Two Hands"
       }
     },
-    "gallery": {
-      "type": "csl-gallery",
+    "showcase": {
+      "type": "csl-showcase",
       "blocks": {
         "image_1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/6_e654727c-6e15-4a72-a71b-3fc21c9e9ecc.webp",
-            "caption": ""
+            "image": "shopify://shop_images/6_e654727c-6e15-4a72-a71b-3fc21c9e9ecc.webp"
           }
         },
         "image_2": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/2_ee361f86-da67-45bc-8618-3c934abfd1de.webp",
-            "caption": ""
+            "image": "shopify://shop_images/2_ee361f86-da67-45bc-8618-3c934abfd1de.webp"
           }
         },
         "image_3": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/3_8f064dd7-8f74-4577-bb3a-02383916e0f5.webp",
-            "caption": ""
+            "image": "shopify://shop_images/3_8f064dd7-8f74-4577-bb3a-02383916e0f5.webp"
           }
         },
         "image_4": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/4_f95d5282-00a5-4569-8ee4-00bbe1ff84b9.webp",
-            "caption": ""
+            "image": "shopify://shop_images/4_f95d5282-00a5-4569-8ee4-00bbe1ff84b9.webp"
           }
         },
         "image_5": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/5_21a16441-be68-4f1c-a9d2-13bdbdbfd221.webp",
-            "caption": ""
+            "image": "shopify://shop_images/5_21a16441-be68-4f1c-a9d2-13bdbdbfd221.webp"
           }
         }
       },
@@ -111,11 +133,11 @@
         "image_5"
       ],
       "settings": {
-        "strap": "(Selected Work)",
-        "heading": "",
-        "heading_accent": "",
-        "columns": "3",
-        "bordered": false
+        "image": "shopify://shop_images/DSCF9760.webp",
+        "url_label": "Two Hands",
+        "link_label": "",
+        "caption": "",
+        "hint": "Hover to scroll"
       }
     },
     "scope": {
@@ -217,7 +239,7 @@
         "name": "Dakan",
         "services": "Restaurant Brand Development & Photography",
         "url": "/pages/dakan-case-study",
-        "accent": "#e2584e",
+        "accent": "#eaa935",
         "all_label": "Back to all work",
         "all_url": "/pages/work"
       }
@@ -225,7 +247,7 @@
   },
   "order": [
     "hero",
-    "gallery",
+    "showcase",
     "scope",
     "chapters",
     "result",

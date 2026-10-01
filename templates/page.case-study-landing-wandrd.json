@@ -32,16 +32,51 @@
             "label": "Focus",
             "value": "Multi-platform content"
           }
+        },
+        "node_1": {
+          "type": "node",
+          "settings": {
+            "label": "Content strategy"
+          }
+        },
+        "node_2": {
+          "type": "node",
+          "settings": {
+            "label": "Photography"
+          }
+        },
+        "node_3": {
+          "type": "node",
+          "settings": {
+            "label": "Video"
+          }
+        },
+        "node_4": {
+          "type": "node",
+          "settings": {
+            "label": "Social"
+          }
+        },
+        "node_5": {
+          "type": "node",
+          "settings": {
+            "label": "Web"
+          }
         }
       },
       "block_order": [
         "fact_1",
         "fact_2",
-        "fact_3"
+        "fact_3",
+        "node_1",
+        "node_2",
+        "node_3",
+        "node_4",
+        "node_5"
       ],
       "settings": {
-        "accent": "#e0664a",
-        "accent_2": "#8a3424",
+        "accent": "#eaa935",
+        "accent_2": "#b4632f",
         "back_label": "All work",
         "back_url": "/pages/work",
         "strap": "(Case Study)",
@@ -49,42 +84,37 @@
         "services": "Content Strategy, Photography & Video",
         "lede": "An adventure-led content strategy built to capture movement, travel and product utility for WANDRD.",
         "body": "<p>We created multi-platform content that captures the spirit of adventure travel and shows the gear where it belongs: on the move.</p>",
-        "image": "shopify://shop_images/25930044-A454-4EE9-BF1C-43FA0D5EA00E_320f78e7-5c14-49d3-88e9-9ddef7f7ac25.jpg",
         "image_ratio": "landscape",
         "orbit_title": "(Connected ecosystem)",
         "orbit_status": "",
         "core_label": "WANDRD"
       }
     },
-    "gallery": {
-      "type": "csl-gallery",
+    "showcase": {
+      "type": "csl-showcase",
       "blocks": {
         "image_1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/w1.webp",
-            "caption": ""
+            "image": "shopify://shop_images/w1.webp"
           }
         },
         "image_2": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/2_dbcdf5ce-2f57-4698-bff3-5ee3a792c7fe.jpg",
-            "caption": ""
+            "image": "shopify://shop_images/2_dbcdf5ce-2f57-4698-bff3-5ee3a792c7fe.jpg"
           }
         },
         "image_3": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/3_7f3860a7-9371-4f80-b3ee-50cfee64bf27.webp",
-            "caption": ""
+            "image": "shopify://shop_images/3_7f3860a7-9371-4f80-b3ee-50cfee64bf27.webp"
           }
         },
         "image_4": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/4_de1d4fd1-d03e-4cce-b512-b8904893b4bf.webp",
-            "caption": ""
+            "image": "shopify://shop_images/4_de1d4fd1-d03e-4cce-b512-b8904893b4bf.webp"
           }
         }
       },
@@ -95,11 +125,11 @@
         "image_4"
       ],
       "settings": {
-        "strap": "(Selected Work)",
-        "heading": "",
-        "heading_accent": "",
-        "columns": "3",
-        "bordered": false
+        "image": "shopify://shop_images/25930044-A454-4EE9-BF1C-43FA0D5EA00E_320f78e7-5c14-49d3-88e9-9ddef7f7ac25.jpg",
+        "url_label": "WANDRD",
+        "link_label": "",
+        "caption": "",
+        "hint": "Hover to scroll"
       }
     },
     "scope": {
@@ -201,7 +231,7 @@
         "name": "Monster",
         "services": "Campaign Creative, Brand Content & Experiential",
         "url": "/pages/monster-case-study",
-        "accent": "#b6e23a",
+        "accent": "#eaa935",
         "all_label": "Back to all work",
         "all_url": "/pages/work"
       }
@@ -209,7 +239,7 @@
   },
   "order": [
     "hero",
-    "gallery",
+    "showcase",
     "scope",
     "chapters",
     "result",
