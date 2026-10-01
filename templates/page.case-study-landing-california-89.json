@@ -1,0 +1,241 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "csl-hero",
+      "blocks": {
+        "fact_1": {
+          "type": "fact",
+          "settings": {
+            "label": "Client",
+            "value": "California 89"
+          }
+        },
+        "fact_2": {
+          "type": "fact",
+          "settings": {
+            "label": "Industry",
+            "value": "Home & apparel"
+          }
+        },
+        "fact_3": {
+          "type": "fact",
+          "settings": {
+            "label": "Location",
+            "value": "Truckee, California"
+          }
+        },
+        "fact_4": {
+          "type": "fact",
+          "settings": {
+            "label": "Website",
+            "value": "california89.com",
+            "link": "https://california89.com"
+          }
+        }
+      },
+      "block_order": [
+        "fact_1",
+        "fact_2",
+        "fact_3",
+        "fact_4"
+      ],
+      "settings": {
+        "accent": "#e8a35c",
+        "accent_2": "#9c5a1f",
+        "back_label": "All case studies",
+        "back_url": "/pages/explore-case-studies",
+        "strap": "(Case Study)",
+        "client": "California 89",
+        "services": "Shopify SEO, Content & Email Sign-Up",
+        "lede": "California 89 is a family-owned home and apparel brand from Truckee, California, named after the Sierra highway it was built around.",
+        "body": "<p>We work on the brand’s Shopify store to help more people find it in search, with clearer pages, sharper copy and a better way to sign up for emails.</p>",
+        "image": "shopify://shop_images/gere195_1.png",
+        "image_ratio": "portrait",
+        "orbit_title": "(Connected ecosystem)",
+        "orbit_status": "",
+        "core_label": "California 89"
+      }
+    },
+    "gallery": {
+      "type": "csl-gallery",
+      "blocks": {
+        "image_1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/cali-cinematic_4.png",
+            "caption": ""
+          }
+        },
+        "image_2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/gere164.png",
+            "caption": ""
+          }
+        },
+        "image_3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/gere1118.png",
+            "caption": ""
+          }
+        },
+        "image_4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/cali-cinematic_5.png",
+            "caption": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4"
+      ],
+      "settings": {
+        "strap": "(Selected Work)",
+        "heading": "",
+        "heading_accent": "",
+        "columns": "3",
+        "bordered": false
+      }
+    },
+    "scope": {
+      "type": "csl-scope",
+      "blocks": {
+        "group_1": {
+          "type": "group",
+          "settings": {
+            "title": "Deliverables"
+          }
+        },
+        "item_01": {
+          "type": "item",
+          "settings": {
+            "text": "SEO strategy and keyword research"
+          }
+        },
+        "item_02": {
+          "type": "item",
+          "settings": {
+            "text": "Page titles and meta descriptions"
+          }
+        },
+        "item_03": {
+          "type": "item",
+          "settings": {
+            "text": "Collection and home page copy"
+          }
+        },
+        "item_04": {
+          "type": "item",
+          "settings": {
+            "text": "Website structure and internal links"
+          }
+        },
+        "item_05": {
+          "type": "item",
+          "settings": {
+            "text": "Email sign-up pop-up"
+          }
+        },
+        "item_06": {
+          "type": "item",
+          "settings": {
+            "text": "Lifestyle imagery"
+          }
+        }
+      },
+      "block_order": [
+        "group_1",
+        "item_01",
+        "item_02",
+        "item_03",
+        "item_04",
+        "item_05",
+        "item_06"
+      ],
+      "settings": {
+        "strap": "(Scope)",
+        "heading": "Our work",
+        "heading_accent": "included",
+        "show_count": true,
+        "count_label": "services",
+        "intro": ""
+      }
+    },
+    "chapters": {
+      "type": "csl-chapters",
+      "blocks": {
+        "chapter_1": {
+          "type": "chapter",
+          "settings": {
+            "title": "The brief",
+            "text": "<p>California 89 sells a way of life, not just products. The store needed to show up for the searches its customers already make, and say clearly what the brand stands for.</p>"
+          }
+        },
+        "chapter_2": {
+          "type": "chapter",
+          "settings": {
+            "title": "Our approach",
+            "text": "<p>We refined the store’s titles, descriptions and key page copy around how people search for mountain lifestyle apparel and home goods, kept every change in the brand’s own voice, and added an email sign-up to keep new visitors in touch.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "chapter_1",
+        "chapter_2"
+      ],
+      "settings": {
+        "strap": "(The Story)",
+        "heading": "How we",
+        "heading_accent": "approached it",
+        "show_toc": false,
+        "toc_label": "In this case study"
+      }
+    },
+    "result": {
+      "type": "csl-result",
+      "settings": {
+        "strap": "(The Result)",
+        "statement": "A store that tells the California 89 story in the places customers look.",
+        "text": "The work gives the brand a clearer search presence and a steady way to grow its email list.",
+        "primary_label": "Start your project",
+        "primary_url": "https://tidycal.com/salesautomateiq/consultation",
+        "secondary_label": "",
+        "secondary_new_tab": true
+      }
+    },
+    "next": {
+      "type": "csl-next",
+      "settings": {
+        "strap": "(Next Case Study)",
+        "name": "Aniwa",
+        "services": "Ongoing Webmaster Support, Website Optimization & SEO",
+        "url": "/pages/aniwa-case-study",
+        "accent": "#9ea2ec",
+        "all_label": "Back to all case studies",
+        "all_url": "/pages/explore-case-studies"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "gallery",
+    "scope",
+    "chapters",
+    "result",
+    "next"
+  ]
+}

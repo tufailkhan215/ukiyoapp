@@ -1,0 +1,235 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "csl-hero",
+      "blocks": {
+        "fact_1": {
+          "type": "fact",
+          "settings": {
+            "label": "Client",
+            "value": "Bear River Glassworks"
+          }
+        },
+        "fact_2": {
+          "type": "fact",
+          "settings": {
+            "label": "Industry",
+            "value": "Glass art & classes"
+          }
+        },
+        "fact_3": {
+          "type": "fact",
+          "settings": {
+            "label": "Location",
+            "value": "Grass Valley, California"
+          }
+        },
+        "fact_4": {
+          "type": "fact",
+          "settings": {
+            "label": "Website",
+            "value": "bearriverglassworks.com",
+            "link": "https://www.bearriverglassworks.com"
+          }
+        }
+      },
+      "block_order": [
+        "fact_1",
+        "fact_2",
+        "fact_3",
+        "fact_4"
+      ],
+      "settings": {
+        "accent": "#f07a3a",
+        "accent_2": "#a2421a",
+        "back_label": "All case studies",
+        "back_url": "/pages/explore-case-studies",
+        "strap": "(Case Study)",
+        "client": "Bear River Glassworks",
+        "services": "Brand Identity, Photography & Content",
+        "lede": "Bear River Glassworks is a glass flameworking studio and teaching center in Grass Valley, California.",
+        "body": "<p>We created brand and visual content that shows the craft up close: the artists, the classes and the glass itself.</p>",
+        "image": "shopify://shop_images/ChatGPT_Image_Sep_29_2026_09_42_27_PM.png",
+        "image_ratio": "square",
+        "orbit_title": "(Connected ecosystem)",
+        "orbit_status": "",
+        "core_label": "Bear River Glassworks"
+      }
+    },
+    "gallery": {
+      "type": "csl-gallery",
+      "blocks": {
+        "image_1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot2026-09-08at4.03.00AM.webp",
+            "caption": ""
+          }
+        },
+        "image_2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot2026-09-10at10.17.16AM.webp",
+            "caption": ""
+          }
+        },
+        "image_3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot2026-09-08at3.55.53AM.webp",
+            "caption": ""
+          }
+        },
+        "image_4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-09-07_at_8.20.47_PM.webp",
+            "caption": ""
+          }
+        },
+        "image_5": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-09-07_at_8.29.45_PM.webp",
+            "caption": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4",
+        "image_5"
+      ],
+      "settings": {
+        "strap": "(Selected Work)",
+        "heading": "",
+        "heading_accent": "",
+        "columns": "3",
+        "bordered": false
+      }
+    },
+    "scope": {
+      "type": "csl-scope",
+      "blocks": {
+        "group_1": {
+          "type": "group",
+          "settings": {
+            "title": "Deliverables"
+          }
+        },
+        "item_01": {
+          "type": "item",
+          "settings": {
+            "text": "Logo and brand identity"
+          }
+        },
+        "item_02": {
+          "type": "item",
+          "settings": {
+            "text": "Product photography"
+          }
+        },
+        "item_03": {
+          "type": "item",
+          "settings": {
+            "text": "Studio and artist photography"
+          }
+        },
+        "item_04": {
+          "type": "item",
+          "settings": {
+            "text": "Content for web and social"
+          }
+        }
+      },
+      "block_order": [
+        "group_1",
+        "item_01",
+        "item_02",
+        "item_03",
+        "item_04"
+      ],
+      "settings": {
+        "strap": "(Scope)",
+        "heading": "Our work",
+        "heading_accent": "included",
+        "show_count": true,
+        "count_label": "services",
+        "intro": ""
+      }
+    },
+    "chapters": {
+      "type": "csl-chapters",
+      "blocks": {
+        "chapter_1": {
+          "type": "chapter",
+          "settings": {
+            "title": "The brief",
+            "text": "<p>Glass is hard to sell in words. The studio needed visuals that show the colour, detail and skill in every piece, and a brand that feels at home in the Sierra foothills.</p>"
+          }
+        },
+        "chapter_2": {
+          "type": "chapter",
+          "settings": {
+            "title": "Our approach",
+            "text": "<p>We built a bold badge-style identity rooted in Grass Valley and photographed the work close up, from marbles and pendants to the artists at the torch.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "chapter_1",
+        "chapter_2"
+      ],
+      "settings": {
+        "strap": "(The Story)",
+        "heading": "How we",
+        "heading_accent": "approached it",
+        "show_toc": false,
+        "toc_label": "In this case study"
+      }
+    },
+    "result": {
+      "type": "csl-result",
+      "settings": {
+        "strap": "(The Result)",
+        "statement": "A brand as bright as the glass.",
+        "text": "Bear River Glassworks has an identity and a library of imagery that bring its craft and classes to life.",
+        "primary_label": "Start your project",
+        "primary_url": "https://tidycal.com/salesautomateiq/consultation",
+        "secondary_label": "",
+        "secondary_new_tab": true
+      }
+    },
+    "next": {
+      "type": "csl-next",
+      "settings": {
+        "strap": "(Next Case Study)",
+        "name": "Academy of Oracle Arts",
+        "services": "Shopify Website, Digital Marketing, Social Media, Paid Ads & SEO",
+        "url": "/pages/academy-of-oracle-arts-case-study",
+        "accent": "#b99cff",
+        "all_label": "Back to all case studies",
+        "all_url": "/pages/explore-case-studies"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "gallery",
+    "scope",
+    "chapters",
+    "result",
+    "next"
+  ]
+}

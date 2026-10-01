@@ -86,8 +86,8 @@
       "settings": {
         "accent": "#eaa935",
         "accent_2": "#b4632f",
-        "back_label": "All work",
-        "back_url": "/pages/work",
+        "back_label": "All case studies",
+        "back_url": "/pages/explore-case-studies",
         "strap": "(Case Study)",
         "client": "Pacha Mana",
         "services": "Shopify Website, Ecommerce, SEO & Klaviyo Email Marketing",
@@ -308,12 +308,12 @@
       "type": "csl-next",
       "settings": {
         "strap": "(Next Case Study)",
-        "name": "Academy of Oracle Arts",
-        "services": "Shopify Website, Digital Marketing, Social Media, Paid Ads & SEO",
-        "url": "/pages/academy-of-oracle-arts-case-study",
-        "accent": "#b99cff",
-        "all_label": "Back to all work",
-        "all_url": "/pages/work"
+        "name": "California 89",
+        "services": "Shopify SEO, Content & Email Sign-Up",
+        "url": "/pages/california-89-case-study",
+        "accent": "#e8a35c",
+        "all_label": "Back to all case studies",
+        "all_url": "/pages/explore-case-studies"
       }
     }
   },

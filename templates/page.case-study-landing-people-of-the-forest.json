@@ -1,0 +1,180 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "csl-hero",
+      "blocks": {
+        "fact_1": {
+          "type": "fact",
+          "settings": {
+            "label": "Client",
+            "value": "People of the Forest"
+          }
+        },
+        "fact_2": {
+          "type": "fact",
+          "settings": {
+            "label": "Industry",
+            "value": "Regeneration & community"
+          }
+        },
+        "fact_3": {
+          "type": "fact",
+          "settings": {
+            "label": "Platform",
+            "value": "Shopify"
+          }
+        },
+        "fact_4": {
+          "type": "fact",
+          "settings": {
+            "label": "Website",
+            "value": "peopleoftheforest.org",
+            "link": "https://peopleoftheforest.org"
+          }
+        }
+      },
+      "block_order": [
+        "fact_1",
+        "fact_2",
+        "fact_3",
+        "fact_4"
+      ],
+      "settings": {
+        "accent": "#7fbf6a",
+        "accent_2": "#3d7a32",
+        "back_label": "All case studies",
+        "back_url": "/pages/explore-case-studies",
+        "strap": "(Case Study)",
+        "client": "People of the Forest",
+        "services": "Website Design, Storytelling & Content",
+        "lede": "People of the Forest is built on one idea: the forest and its people are one living system.",
+        "body": "<p>We created a website that carries that message through regeneration, storytelling and community.</p>",
+        "image": "shopify://shop_images/Still_2025-10-11_183207_1.92.1.webp",
+        "image_ratio": "landscape",
+        "orbit_title": "(Connected ecosystem)",
+        "orbit_status": "",
+        "core_label": "People of the Forest"
+      }
+    },
+    "scope": {
+      "type": "csl-scope",
+      "blocks": {
+        "group_1": {
+          "type": "group",
+          "settings": {
+            "title": "Deliverables"
+          }
+        },
+        "item_01": {
+          "type": "item",
+          "settings": {
+            "text": "Website design and development"
+          }
+        },
+        "item_02": {
+          "type": "item",
+          "settings": {
+            "text": "Storytelling and page content"
+          }
+        },
+        "item_03": {
+          "type": "item",
+          "settings": {
+            "text": "Community and story sections"
+          }
+        },
+        "item_04": {
+          "type": "item",
+          "settings": {
+            "text": "Mobile-responsive build"
+          }
+        }
+      },
+      "block_order": [
+        "group_1",
+        "item_01",
+        "item_02",
+        "item_03",
+        "item_04"
+      ],
+      "settings": {
+        "strap": "(Scope)",
+        "heading": "Our work",
+        "heading_accent": "included",
+        "show_count": true,
+        "count_label": "services",
+        "intro": ""
+      }
+    },
+    "chapters": {
+      "type": "csl-chapters",
+      "blocks": {
+        "chapter_1": {
+          "type": "chapter",
+          "settings": {
+            "title": "The brief",
+            "text": "<p>The organisation needed a home online that feels as rooted as its work, and lets visitors understand the mission quickly.</p>"
+          }
+        },
+        "chapter_2": {
+          "type": "chapter",
+          "settings": {
+            "title": "Our approach",
+            "text": "<p>We led with the story, using strong imagery and short, clear sections on regeneration, storytelling and community so the message lands on any screen.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "chapter_1",
+        "chapter_2"
+      ],
+      "settings": {
+        "strap": "(The Story)",
+        "heading": "How we",
+        "heading_accent": "approached it",
+        "show_toc": false,
+        "toc_label": "In this case study"
+      }
+    },
+    "result": {
+      "type": "csl-result",
+      "settings": {
+        "strap": "(The Result)",
+        "statement": "A mission you can feel from the first scroll.",
+        "text": "People of the Forest has a website that shares its story and invites people into its community.",
+        "primary_label": "Start your project",
+        "primary_url": "https://tidycal.com/salesautomateiq/consultation",
+        "secondary_label": "",
+        "secondary_new_tab": true
+      }
+    },
+    "next": {
+      "type": "csl-next",
+      "settings": {
+        "strap": "(Next Case Study)",
+        "name": "Crystal Empire Gems",
+        "services": "Shopify Store, Product Content & SEO",
+        "url": "/pages/crystal-empire-gems-case-study",
+        "accent": "#b48cff",
+        "all_label": "Back to all case studies",
+        "all_url": "/pages/explore-case-studies"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "scope",
+    "chapters",
+    "result",
+    "next"
+  ]
+}

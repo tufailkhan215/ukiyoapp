@@ -1,0 +1,187 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "csl-hero",
+      "blocks": {
+        "fact_1": {
+          "type": "fact",
+          "settings": {
+            "label": "Client",
+            "value": "Sherwood"
+          }
+        },
+        "fact_2": {
+          "type": "fact",
+          "settings": {
+            "label": "Industry",
+            "value": "Hospitality & live music"
+          }
+        },
+        "fact_3": {
+          "type": "fact",
+          "settings": {
+            "label": "Location",
+            "value": "Nevada City, California"
+          }
+        },
+        "fact_4": {
+          "type": "fact",
+          "settings": {
+            "label": "Website",
+            "value": "friartucks.com",
+            "link": "https://friartucks.com"
+          }
+        }
+      },
+      "block_order": [
+        "fact_1",
+        "fact_2",
+        "fact_3",
+        "fact_4"
+      ],
+      "settings": {
+        "accent": "#6cc28a",
+        "accent_2": "#2e7a4c",
+        "back_label": "All case studies",
+        "back_url": "/pages/explore-case-studies",
+        "strap": "(Case Study)",
+        "client": "Sherwood",
+        "services": "Rebrand Website, Shopify & SEO",
+        "lede": "Sherwood is Nevada City’s venue for live music and sports, the next chapter for the much-loved Friar Tuck’s.",
+        "body": "<p>We brought the new name to life online with a website built around what the venue is now: live music, big screens, craft cocktails and a deep wine cellar.</p>",
+        "image": "shopify://shop_images/Screenshot_2026-05-31_at_8.54.18_PM.png",
+        "image_ratio": "portrait",
+        "orbit_title": "(Connected ecosystem)",
+        "orbit_status": "",
+        "core_label": "Sherwood"
+      }
+    },
+    "scope": {
+      "type": "csl-scope",
+      "blocks": {
+        "group_1": {
+          "type": "group",
+          "settings": {
+            "title": "Deliverables"
+          }
+        },
+        "item_01": {
+          "type": "item",
+          "settings": {
+            "text": "Rebrand website design and build"
+          }
+        },
+        "item_02": {
+          "type": "item",
+          "settings": {
+            "text": "Shopify theme for the new brand"
+          }
+        },
+        "item_03": {
+          "type": "item",
+          "settings": {
+            "text": "Venue, music and drinks pages"
+          }
+        },
+        "item_04": {
+          "type": "item",
+          "settings": {
+            "text": "Carrying search visibility over to the new brand"
+          }
+        },
+        "item_05": {
+          "type": "item",
+          "settings": {
+            "text": "Ongoing SEO"
+          }
+        }
+      },
+      "block_order": [
+        "group_1",
+        "item_01",
+        "item_02",
+        "item_03",
+        "item_04",
+        "item_05"
+      ],
+      "settings": {
+        "strap": "(Scope)",
+        "heading": "Our work",
+        "heading_accent": "included",
+        "show_count": true,
+        "count_label": "services",
+        "intro": ""
+      }
+    },
+    "chapters": {
+      "type": "csl-chapters",
+      "blocks": {
+        "chapter_1": {
+          "type": "chapter",
+          "settings": {
+            "title": "The brief",
+            "text": "<p>A rebrand only works if people can find it. Sherwood needed a website that introduces the new name with confidence and keeps regulars and new guests on the same page.</p>"
+          }
+        },
+        "chapter_2": {
+          "type": "chapter",
+          "settings": {
+            "title": "Our approach",
+            "text": "<p>We designed and built the Sherwood site on the same address the community already knew, organised around the reasons people visit: the music, the games, the cocktails and the cellar.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "chapter_1",
+        "chapter_2"
+      ],
+      "settings": {
+        "strap": "(The Story)",
+        "heading": "How we",
+        "heading_accent": "approached it",
+        "show_toc": false,
+        "toc_label": "In this case study"
+      }
+    },
+    "result": {
+      "type": "csl-result",
+      "settings": {
+        "strap": "(The Result)",
+        "statement": "A new name with a website that feels as lively as the room.",
+        "text": "Sherwood launched online on familiar ground, with a site built around the experience it offers today.",
+        "primary_label": "Start your project",
+        "primary_url": "https://tidycal.com/salesautomateiq/consultation",
+        "secondary_label": "",
+        "secondary_new_tab": true
+      }
+    },
+    "next": {
+      "type": "csl-next",
+      "settings": {
+        "strap": "(Next Case Study)",
+        "name": "Waterhouse",
+        "services": "Brand Identity & Visual Direction",
+        "url": "/pages/waterhouse-case-study",
+        "accent": "#c9a96e",
+        "all_label": "Back to all case studies",
+        "all_url": "/pages/explore-case-studies"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "scope",
+    "chapters",
+    "result",
+    "next"
+  ]
+}

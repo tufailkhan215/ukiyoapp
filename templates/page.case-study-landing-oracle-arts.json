@@ -99,8 +99,8 @@
       "settings": {
         "accent": "#b99cff",
         "accent_2": "#e2bd6d",
-        "back_label": "All work",
-        "back_url": "/pages/work",
+        "back_label": "All case studies",
+        "back_url": "/pages/explore-case-studies",
         "strap": "(Case Study)",
         "client": "Academy of Oracle Arts",
         "services": "Shopify Website, Digital Marketing, Social Media, Paid Ads & SEO",
@@ -366,12 +366,12 @@
       "type": "csl-next",
       "settings": {
         "strap": "(Next Case Study)",
-        "name": "Aniwa",
-        "services": "Ongoing Webmaster Support, Website Optimization & SEO",
-        "url": "/pages/aniwa-case-study",
-        "accent": "#9ea2ec",
-        "all_label": "Back to all work",
-        "all_url": "/pages/work"
+        "name": "Church of Truth",
+        "services": "Website Design & Development",
+        "url": "/pages/wearecot-case-study",
+        "accent": "#d9b46a",
+        "all_label": "Back to all case studies",
+        "all_url": "/pages/explore-case-studies"
       }
     }
   },

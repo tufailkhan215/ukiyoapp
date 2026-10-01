@@ -1,0 +1,187 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "csl-hero",
+      "blocks": {
+        "fact_1": {
+          "type": "fact",
+          "settings": {
+            "label": "Client",
+            "value": "Back to Earth"
+          }
+        },
+        "fact_2": {
+          "type": "fact",
+          "settings": {
+            "label": "Industry",
+            "value": "Youth programs & nature"
+          }
+        },
+        "fact_3": {
+          "type": "fact",
+          "settings": {
+            "label": "Platform",
+            "value": "Shopify"
+          }
+        },
+        "fact_4": {
+          "type": "fact",
+          "settings": {
+            "label": "Website",
+            "value": "backtoearth.org",
+            "link": "https://www.backtoearth.org"
+          }
+        }
+      },
+      "block_order": [
+        "fact_1",
+        "fact_2",
+        "fact_3",
+        "fact_4"
+      ],
+      "settings": {
+        "accent": "#f0a35a",
+        "accent_2": "#9a5a1e",
+        "back_label": "All case studies",
+        "back_url": "/pages/explore-case-studies",
+        "strap": "(Case Study)",
+        "client": "Back to Earth",
+        "services": "Shopify Website, Content & SEO",
+        "lede": "Back to Earth connects young people to nature and to themselves through outdoor programs.",
+        "body": "<p>We designed and built its new Shopify website, giving the programs, the stories and the field notes a home that reflects the mission.</p>",
+        "image": "shopify://shop_images/0E90A9BB-8444-430C-99E8-968647F03C2B_1_105_c.webp",
+        "image_ratio": "landscape",
+        "orbit_title": "(Connected ecosystem)",
+        "orbit_status": "",
+        "core_label": "Back to Earth"
+      }
+    },
+    "scope": {
+      "type": "csl-scope",
+      "blocks": {
+        "group_1": {
+          "type": "group",
+          "settings": {
+            "title": "Deliverables"
+          }
+        },
+        "item_01": {
+          "type": "item",
+          "settings": {
+            "text": "Website design and development"
+          }
+        },
+        "item_02": {
+          "type": "item",
+          "settings": {
+            "text": "Shopify build"
+          }
+        },
+        "item_03": {
+          "type": "item",
+          "settings": {
+            "text": "Program and story pages"
+          }
+        },
+        "item_04": {
+          "type": "item",
+          "settings": {
+            "text": "News and Field Notes blogs"
+          }
+        },
+        "item_05": {
+          "type": "item",
+          "settings": {
+            "text": "SEO foundations and page structure"
+          }
+        }
+      },
+      "block_order": [
+        "group_1",
+        "item_01",
+        "item_02",
+        "item_03",
+        "item_04",
+        "item_05"
+      ],
+      "settings": {
+        "strap": "(Scope)",
+        "heading": "Our work",
+        "heading_accent": "included",
+        "show_count": true,
+        "count_label": "services",
+        "intro": ""
+      }
+    },
+    "chapters": {
+      "type": "csl-chapters",
+      "blocks": {
+        "chapter_1": {
+          "type": "chapter",
+          "settings": {
+            "title": "The brief",
+            "text": "<p>Back to Earth asks young people to put the screen down and step outside. Its website had to make that invitation clear and show what the programs feel like.</p>"
+          }
+        },
+        "chapter_2": {
+          "type": "chapter",
+          "settings": {
+            "title": "Our approach",
+            "text": "<p>We built the site around the programs and the voices of the young people who take part, with clear paths to learn more and a structure designed for search from day one.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "chapter_1",
+        "chapter_2"
+      ],
+      "settings": {
+        "strap": "(The Story)",
+        "heading": "How we",
+        "heading_accent": "approached it",
+        "show_toc": false,
+        "toc_label": "In this case study"
+      }
+    },
+    "result": {
+      "type": "csl-result",
+      "settings": {
+        "strap": "(The Result)",
+        "statement": "A website that makes the case for getting outside.",
+        "text": "Back to Earth now has a dedicated home for its programs, stories and field notes.",
+        "primary_label": "Start your project",
+        "primary_url": "https://tidycal.com/salesautomateiq/consultation",
+        "secondary_label": "",
+        "secondary_new_tab": true
+      }
+    },
+    "next": {
+      "type": "csl-next",
+      "settings": {
+        "strap": "(Next Case Study)",
+        "name": "People of the Forest",
+        "services": "Website Design, Storytelling & Content",
+        "url": "/pages/people-of-the-forest-case-study",
+        "accent": "#7fbf6a",
+        "all_label": "Back to all case studies",
+        "all_url": "/pages/explore-case-studies"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "scope",
+    "chapters",
+    "result",
+    "next"
+  ]
+}

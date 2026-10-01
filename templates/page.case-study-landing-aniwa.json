@@ -100,14 +100,15 @@
       "settings": {
         "accent": "#9ea2ec",
         "accent_2": "#e0523f",
-        "back_label": "All work",
-        "back_url": "/pages/work",
-        "strap": "Case Study",
+        "back_label": "All case studies",
+        "back_url": "/pages/explore-case-studies",
+        "strap": "(Case Study)",
         "client": "Aniwa",
         "services": "Ongoing Webmaster Support, Website Optimization & SEO",
         "lede": "Aniwa is a global learning platform and community connecting people with Indigenous elders, ancestral wisdom and living traditions through courses, memberships, retreats, private healing sessions, gatherings and community offerings.",
         "body": "<p>We currently serve as Aniwa’s webmaster, providing ongoing technical support, website maintenance, troubleshooting, strategic updates and SEO assistance across its expanding digital ecosystem.</p>",
-        "orbit_title": "Connected ecosystem",
+        "image_ratio": "portrait",
+        "orbit_title": "(Connected ecosystem)",
         "orbit_status": "Ongoing",
         "core_label": "Aniwa"
       }
@@ -119,7 +120,8 @@
         "url_label": "aniwa.co",
         "link": "https://www.aniwa.co/",
         "link_label": "Visit site",
-        "caption": "The live Aniwa platform we support as webmaster."
+        "caption": "The live Aniwa platform we support as webmaster.",
+        "hint": "Hover to scroll the site"
       }
     },
     "scope": {
@@ -276,11 +278,12 @@
         "item_19"
       ],
       "settings": {
-        "strap": "Scope",
+        "strap": "(Scope)",
         "heading": "Our work",
         "heading_accent": "includes",
         "show_count": true,
-        "count_label": "ongoing services"
+        "count_label": "ongoing services",
+        "intro": ""
       }
     },
     "chapters": {
@@ -329,34 +332,36 @@
         "chapter_4"
       ],
       "settings": {
-        "strap": "The Story",
+        "strap": "(The Story)",
         "heading": "How we",
         "heading_accent": "approached it",
+        "show_toc": false,
         "toc_label": "In this case study"
       }
     },
     "result": {
       "type": "csl-result",
       "settings": {
-        "strap": "The Result",
+        "strap": "(The Result)",
         "statement": "Aniwa has an ongoing technical partner responsible for supporting the health, functionality and continued evolution of its website.",
         "text": "Our work helps the organization maintain a complex digital platform, address technical challenges as they arise, improve its organic search foundation and continue expanding access to Indigenous elders, ancestral wisdom and living traditions.",
         "primary_label": "Start your project",
         "primary_url": "https://tidycal.com/salesautomateiq/consultation",
         "secondary_label": "Visit aniwa.co",
-        "secondary_url": "https://www.aniwa.co/"
+        "secondary_url": "https://www.aniwa.co/",
+        "secondary_new_tab": true
       }
     },
     "next": {
       "type": "csl-next",
       "settings": {
-        "strap": "Next Case Study",
-        "name": "Pacha Mana",
-        "services": "Shopify Website, Ecommerce, SEO & Klaviyo Email Marketing",
-        "url": "/pages/pachamana-case-study",
-        "accent": "#eaa935",
-        "all_label": "Back to all work",
-        "all_url": "/pages/work"
+        "strap": "(Next Case Study)",
+        "name": "Sherwood",
+        "services": "Rebrand Website, Shopify & SEO",
+        "url": "/pages/sherwood-case-study",
+        "accent": "#6cc28a",
+        "all_label": "Back to all case studies",
+        "all_url": "/pages/explore-case-studies"
       }
     }
   },

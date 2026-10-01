@@ -1,0 +1,179 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "csl-hero",
+      "blocks": {
+        "fact_1": {
+          "type": "fact",
+          "settings": {
+            "label": "Client",
+            "value": "Friar Tuck’s Restaurant & Bar"
+          }
+        },
+        "fact_2": {
+          "type": "fact",
+          "settings": {
+            "label": "Industry",
+            "value": "Restaurant & bar"
+          }
+        },
+        "fact_3": {
+          "type": "fact",
+          "settings": {
+            "label": "Location",
+            "value": "Nevada City, California"
+          }
+        },
+        "fact_4": {
+          "type": "fact",
+          "settings": {
+            "label": "Since",
+            "value": "1973"
+          }
+        }
+      },
+      "block_order": [
+        "fact_1",
+        "fact_2",
+        "fact_3",
+        "fact_4"
+      ],
+      "settings": {
+        "accent": "#d9825a",
+        "accent_2": "#8f4426",
+        "back_label": "All case studies",
+        "back_url": "/pages/explore-case-studies",
+        "strap": "(Case Study)",
+        "client": "Friar Tuck’s",
+        "services": "Restaurant Website & SEO",
+        "lede": "Friar Tuck’s Restaurant & Bar has been a Nevada City landmark since 1973, known for country elegant dinners, a celebrated wine list and live music.",
+        "body": "<p>We worked on its website and search presence, so locals and visitors could find the menus, the music and the private event spaces.</p>",
+        "image": "shopify://shop_images/DSC09799-15.webp",
+        "image_ratio": "landscape",
+        "orbit_title": "(Connected ecosystem)",
+        "orbit_status": "",
+        "core_label": "Friar Tuck’s"
+      }
+    },
+    "scope": {
+      "type": "csl-scope",
+      "blocks": {
+        "group_1": {
+          "type": "group",
+          "settings": {
+            "title": "Deliverables"
+          }
+        },
+        "item_01": {
+          "type": "item",
+          "settings": {
+            "text": "Website SEO"
+          }
+        },
+        "item_02": {
+          "type": "item",
+          "settings": {
+            "text": "Page titles and meta descriptions"
+          }
+        },
+        "item_03": {
+          "type": "item",
+          "settings": {
+            "text": "Menu and private events pages"
+          }
+        },
+        "item_04": {
+          "type": "item",
+          "settings": {
+            "text": "Local search visibility"
+          }
+        }
+      },
+      "block_order": [
+        "group_1",
+        "item_01",
+        "item_02",
+        "item_03",
+        "item_04"
+      ],
+      "settings": {
+        "strap": "(Scope)",
+        "heading": "Our work",
+        "heading_accent": "included",
+        "show_count": true,
+        "count_label": "services",
+        "intro": ""
+      }
+    },
+    "chapters": {
+      "type": "csl-chapters",
+      "blocks": {
+        "chapter_1": {
+          "type": "chapter",
+          "settings": {
+            "title": "The brief",
+            "text": "<p>A restaurant with this much history deserves to be easy to find. Friar Tuck’s needed its website to work as hard as its kitchen.</p>"
+          }
+        },
+        "chapter_2": {
+          "type": "chapter",
+          "settings": {
+            "title": "Our approach",
+            "text": "<p>We focused the site’s pages and search details on what guests look for most, dinner, wine, live music and private events, while keeping the restaurant’s long story front and centre.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "chapter_1",
+        "chapter_2"
+      ],
+      "settings": {
+        "strap": "(The Story)",
+        "heading": "How we",
+        "heading_accent": "approached it",
+        "show_toc": false,
+        "toc_label": "In this case study"
+      }
+    },
+    "result": {
+      "type": "csl-result",
+      "settings": {
+        "strap": "(The Result)",
+        "statement": "A local landmark, easier to find online.",
+        "text": "The work laid the groundwork that later carried into the Sherwood rebrand.",
+        "primary_label": "Start your project",
+        "primary_url": "https://tidycal.com/salesautomateiq/consultation",
+        "secondary_label": "",
+        "secondary_new_tab": true
+      }
+    },
+    "next": {
+      "type": "csl-next",
+      "settings": {
+        "strap": "(Next Case Study)",
+        "name": "Pacha Mana",
+        "services": "Shopify Website, Ecommerce, SEO & Klaviyo Email Marketing",
+        "url": "/pages/pachamana-case-study",
+        "accent": "#eaa935",
+        "all_label": "Back to all case studies",
+        "all_url": "/pages/explore-case-studies"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "scope",
+    "chapters",
+    "result",
+    "next"
+  ]
+}

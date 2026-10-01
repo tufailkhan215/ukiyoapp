@@ -1,0 +1,187 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "csl-hero",
+      "blocks": {
+        "fact_1": {
+          "type": "fact",
+          "settings": {
+            "label": "Client",
+            "value": "Crystal Empire Gems"
+          }
+        },
+        "fact_2": {
+          "type": "fact",
+          "settings": {
+            "label": "Industry",
+            "value": "Crystals & jewelry"
+          }
+        },
+        "fact_3": {
+          "type": "fact",
+          "settings": {
+            "label": "Location",
+            "value": "Grass Valley, California"
+          }
+        },
+        "fact_4": {
+          "type": "fact",
+          "settings": {
+            "label": "Website",
+            "value": "crystalempiregems.com",
+            "link": "https://crystalempiregems.com"
+          }
+        }
+      },
+      "block_order": [
+        "fact_1",
+        "fact_2",
+        "fact_3",
+        "fact_4"
+      ],
+      "settings": {
+        "accent": "#b48cff",
+        "accent_2": "#6a3fc2",
+        "back_label": "All case studies",
+        "back_url": "/pages/explore-case-studies",
+        "strap": "(Case Study)",
+        "client": "Crystal Empire Gems",
+        "services": "Shopify Store, Product Content & SEO",
+        "lede": "Crystal Empire Gems is a family-owned crystal, mineral and handcrafted jewelry shop in Grass Valley, California.",
+        "body": "<p>We work on its Shopify store so customers can browse the collection online and find it in search, from tumbled stones to custom jewelry.</p>",
+        "image": "shopify://shop_images/UN-0437_1.webp",
+        "image_ratio": "square",
+        "orbit_title": "(Connected ecosystem)",
+        "orbit_status": "",
+        "core_label": "Crystal Empire Gems"
+      }
+    },
+    "scope": {
+      "type": "csl-scope",
+      "blocks": {
+        "group_1": {
+          "type": "group",
+          "settings": {
+            "title": "Deliverables"
+          }
+        },
+        "item_01": {
+          "type": "item",
+          "settings": {
+            "text": "Shopify store build"
+          }
+        },
+        "item_02": {
+          "type": "item",
+          "settings": {
+            "text": "Collection and catalog structure"
+          }
+        },
+        "item_03": {
+          "type": "item",
+          "settings": {
+            "text": "Product and collection copy"
+          }
+        },
+        "item_04": {
+          "type": "item",
+          "settings": {
+            "text": "Page titles and meta descriptions"
+          }
+        },
+        "item_05": {
+          "type": "item",
+          "settings": {
+            "text": "Ongoing SEO"
+          }
+        }
+      },
+      "block_order": [
+        "group_1",
+        "item_01",
+        "item_02",
+        "item_03",
+        "item_04",
+        "item_05"
+      ],
+      "settings": {
+        "strap": "(Scope)",
+        "heading": "Our work",
+        "heading_accent": "included",
+        "show_count": true,
+        "count_label": "services",
+        "intro": ""
+      }
+    },
+    "chapters": {
+      "type": "csl-chapters",
+      "blocks": {
+        "chapter_1": {
+          "type": "chapter",
+          "settings": {
+            "title": "The brief",
+            "text": "<p>A shop like this has hundreds of one-of-a-kind pieces. The store needed to make that range easy to browse and easy to find in search.</p>"
+          }
+        },
+        "chapter_2": {
+          "type": "chapter",
+          "settings": {
+            "title": "Our approach",
+            "text": "<p>We organised the catalog around how shoppers look for crystals and jewelry, and wrote clear, search-friendly titles and copy that keep the shop’s warm, local character.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "chapter_1",
+        "chapter_2"
+      ],
+      "settings": {
+        "strap": "(The Story)",
+        "heading": "How we",
+        "heading_accent": "approached it",
+        "show_toc": false,
+        "toc_label": "In this case study"
+      }
+    },
+    "result": {
+      "type": "csl-result",
+      "settings": {
+        "strap": "(The Result)",
+        "statement": "A local crystal shop that is easy to find and browse online.",
+        "text": "Crystal Empire Gems has an online store that reflects the depth of its collection.",
+        "primary_label": "Start your project",
+        "primary_url": "https://tidycal.com/salesautomateiq/consultation",
+        "secondary_label": "",
+        "secondary_new_tab": true
+      }
+    },
+    "next": {
+      "type": "csl-next",
+      "settings": {
+        "strap": "(Next Case Study)",
+        "name": "Bear River Glassworks",
+        "services": "Brand Identity, Photography & Content",
+        "url": "/pages/bear-river-glassworks-case-study",
+        "accent": "#f07a3a",
+        "all_label": "Back to all case studies",
+        "all_url": "/pages/explore-case-studies"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "scope",
+    "chapters",
+    "result",
+    "next"
+  ]
+}
