@@ -112,6 +112,16 @@
         "core_label": "Academy of Oracle Arts"
       }
     },
+    "showcase": {
+      "type": "csl-showcase",
+      "settings": {
+        "image": "shopify://shop_images/Screenshot_2026-09-29_at_9.46.17_PM.png",
+        "url_label": "Academy of Oracle Arts",
+        "link_label": "",
+        "caption": "",
+        "hint": "Hover to scroll"
+      }
+    },
     "scope": {
       "type": "csl-scope",
       "blocks": {
@@ -377,6 +387,7 @@
   },
   "order": [
     "hero",
+    "showcase",
     "scope",
     "chapters",
     "result",
