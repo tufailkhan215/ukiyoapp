@@ -1,0 +1,277 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "csl-hero",
+      "blocks": {
+        "fact_1": {
+          "type": "fact",
+          "settings": {
+            "label": "Client",
+            "value": "Fur Traders"
+          }
+        },
+        "fact_2": {
+          "type": "fact",
+          "settings": {
+            "label": "Category",
+            "value": "E-commerce / Fashion & Apparel"
+          }
+        },
+        "fact_3": {
+          "type": "fact",
+          "settings": {
+            "label": "Focus",
+            "value": "Complete Brand Refresh with Content Strategy"
+          }
+        }
+      },
+      "block_order": [
+        "fact_1",
+        "fact_2",
+        "fact_3"
+      ],
+      "settings": {
+        "accent": "#d9a06e",
+        "accent_2": "#8f5631",
+        "back_label": "All work",
+        "back_url": "/pages/work",
+        "strap": "(Case Study)",
+        "client": "Fur Traders",
+        "services": "E-commerce Website Design & SEO Optimization",
+        "lede": "A full brand refresh paired with content strategy and ecommerce optimization.",
+        "body": "",
+        "image": "shopify://shop_images/7ee553585c4b70132ae17d870bb3c04d-xxlarge.webp",
+        "image_ratio": "portrait",
+        "orbit_title": "(Connected ecosystem)",
+        "orbit_status": "",
+        "core_label": "Fur Traders"
+      }
+    },
+    "gallery": {
+      "type": "csl-gallery",
+      "blocks": {
+        "image_1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1_00ccb719-aa19-4a55-b108-9f3e83f3f427.webp",
+            "caption": ""
+          }
+        },
+        "image_2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/2_d58d9010-8354-41e0-a273-e9ff6a561274.webp",
+            "caption": ""
+          }
+        },
+        "image_3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/4_7eea9821-98f2-4435-a5d6-b980bb94fa8c.webp",
+            "caption": ""
+          }
+        },
+        "image_4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/3_08985cea-a165-497d-ae97-dfbe0265e652.webp",
+            "caption": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4"
+      ],
+      "settings": {
+        "strap": "(Selected Work)",
+        "heading": "",
+        "heading_accent": "",
+        "columns": "3",
+        "bordered": false
+      }
+    },
+    "scope": {
+      "type": "csl-scope",
+      "blocks": {
+        "group_1": {
+          "type": "group",
+          "settings": {
+            "title": "Client expectations"
+          }
+        },
+        "item_01": {
+          "type": "item",
+          "settings": {
+            "text": "A user-friendly design that simplifies the buying journey"
+          }
+        },
+        "item_02": {
+          "type": "item",
+          "settings": {
+            "text": "Comprehensive automations for active and reactive email marketing"
+          }
+        },
+        "item_03": {
+          "type": "item",
+          "settings": {
+            "text": "Expanded payment options to improve accessibility"
+          }
+        },
+        "item_04": {
+          "type": "item",
+          "settings": {
+            "text": "High-quality content assets and social account management"
+          }
+        }
+      },
+      "block_order": [
+        "group_1",
+        "item_01",
+        "item_02",
+        "item_03",
+        "item_04"
+      ],
+      "settings": {
+        "strap": "(Scope)",
+        "heading": "Our work",
+        "heading_accent": "included",
+        "show_count": true,
+        "count_label": "goals",
+        "intro": ""
+      }
+    },
+    "chapters": {
+      "type": "csl-chapters",
+      "blocks": {
+        "chapter_1": {
+          "type": "chapter",
+          "settings": {
+            "title": "Client expectations",
+            "text": "<p>The client aimed to refresh their e-commerce platform with a new design and UI to enhance the purchase flow. Alongside user experience improvements, they sought to integrate active and reactive email marketing automations and consistent content creation for their social channels.</p>"
+          }
+        },
+        "chapter_2": {
+          "type": "chapter",
+          "settings": {
+            "title": "How we did it",
+            "text": "<p>We refreshed the UI to improve navigation and purchasing ease. Simultaneously, we integrated email automations that address both active and lapsed customers. New payment methods were introduced for flexibility, while reactive flows helped recapture potential buyers.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "chapter_1",
+        "chapter_2"
+      ],
+      "settings": {
+        "strap": "(The Story)",
+        "heading": "How we",
+        "heading_accent": "approached it",
+        "show_toc": false,
+        "toc_label": "In this case study"
+      }
+    },
+    "stats": {
+      "type": "csl-stats",
+      "blocks": {
+        "stat_1": {
+          "type": "stat",
+          "settings": {
+            "value": "500%",
+            "label": "Traffic Growth",
+            "description": "Organic search increase"
+          }
+        },
+        "stat_2": {
+          "type": "stat",
+          "settings": {
+            "value": "280%",
+            "label": "Revenue Growth",
+            "description": "Year over year"
+          }
+        },
+        "stat_3": {
+          "type": "stat",
+          "settings": {
+            "value": "45%",
+            "label": "Engagement Rate",
+            "description": "Social media"
+          }
+        },
+        "stat_4": {
+          "type": "stat",
+          "settings": {
+            "value": "12x",
+            "label": "ROI",
+            "description": "On marketing spend"
+          }
+        }
+      },
+      "block_order": [
+        "stat_1",
+        "stat_2",
+        "stat_3",
+        "stat_4"
+      ],
+      "settings": {
+        "strap": "(Results)",
+        "heading": "The numbers",
+        "heading_accent": ""
+      }
+    },
+    "testimonial": {
+      "type": "csl-quote",
+      "settings": {
+        "strap": "(Client Words)",
+        "quote": "Our website went from outdated to outstanding. The email automations they set up now run on autopilot and consistently bring customers back to purchase again.",
+        "author": "Sarah Chen",
+        "role": "Founder, Fur Traders"
+      }
+    },
+    "result": {
+      "type": "csl-result",
+      "settings": {
+        "strap": "(The Result)",
+        "statement": "Modernized e-commerce UI boosting conversion rate.",
+        "text": "Active and reactive email flows driving repeat purchases, new payment methods increasing checkout completion and consistent social content growing brand awareness.",
+        "primary_label": "Start your project",
+        "primary_url": "https://tidycal.com/salesautomateiq/consultation",
+        "secondary_label": "",
+        "secondary_new_tab": true
+      }
+    },
+    "next": {
+      "type": "csl-next",
+      "settings": {
+        "strap": "(Next Case Study)",
+        "name": "Supramood",
+        "services": "Brand Strategy, Website Redesign & Digital Marketing",
+        "url": "/pages/supramood-case-study",
+        "accent": "#e95278",
+        "all_label": "Back to all work",
+        "all_url": "/pages/work"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "gallery",
+    "scope",
+    "chapters",
+    "stats",
+    "testimonial",
+    "result",
+    "next"
+  ]
+}

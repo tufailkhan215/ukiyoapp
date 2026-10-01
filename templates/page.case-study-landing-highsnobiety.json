@@ -1,0 +1,171 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "csl-hero",
+      "blocks": {
+        "fact_1": {
+          "type": "fact",
+          "settings": {
+            "label": "Client",
+            "value": "Highsnobiety"
+          }
+        },
+        "fact_2": {
+          "type": "fact",
+          "settings": {
+            "label": "Category",
+            "value": "Media & culture"
+          }
+        },
+        "fact_3": {
+          "type": "fact",
+          "settings": {
+            "label": "Focus",
+            "value": "Editorial partnership"
+          }
+        }
+      },
+      "block_order": [
+        "fact_1",
+        "fact_2",
+        "fact_3"
+      ],
+      "settings": {
+        "accent": "#d9d9d9",
+        "accent_2": "#7a7a7a",
+        "back_label": "All work",
+        "back_url": "/pages/work",
+        "strap": "(Case Study)",
+        "client": "Highsnobiety",
+        "services": "Editorial Partnership & Cultural Activation",
+        "lede": "Editorial partnership work with Highsnobiety, designed to connect brand, culture and audience attention.",
+        "body": "<p>We created editorial content and cultural brand activation that lives where fashion, culture and media meet.</p>",
+        "image": "shopify://shop_images/IMG_9657_1.webp",
+        "image_ratio": "portrait",
+        "orbit_title": "(Connected ecosystem)",
+        "orbit_status": "",
+        "core_label": "Highsnobiety"
+      }
+    },
+    "scope": {
+      "type": "csl-scope",
+      "blocks": {
+        "group_1": {
+          "type": "group",
+          "settings": {
+            "title": "Deliverables"
+          }
+        },
+        "item_01": {
+          "type": "item",
+          "settings": {
+            "text": "Editorial content partnership"
+          }
+        },
+        "item_02": {
+          "type": "item",
+          "settings": {
+            "text": "Cultural brand activation"
+          }
+        },
+        "item_03": {
+          "type": "item",
+          "settings": {
+            "text": "Photography and visual content"
+          }
+        },
+        "item_04": {
+          "type": "item",
+          "settings": {
+            "text": "Content for digital channels"
+          }
+        }
+      },
+      "block_order": [
+        "group_1",
+        "item_01",
+        "item_02",
+        "item_03",
+        "item_04"
+      ],
+      "settings": {
+        "strap": "(Scope)",
+        "heading": "Our work",
+        "heading_accent": "included",
+        "show_count": true,
+        "count_label": "services",
+        "intro": ""
+      }
+    },
+    "chapters": {
+      "type": "csl-chapters",
+      "blocks": {
+        "chapter_1": {
+          "type": "chapter",
+          "settings": {
+            "title": "The brief",
+            "text": "<p>Highsnobiety’s audience follows culture closely. Partnership work had to earn its place in that editorial world.</p>"
+          }
+        },
+        "chapter_2": {
+          "type": "chapter",
+          "settings": {
+            "title": "Our approach",
+            "text": "<p>We approached it editorial first, creating content and activation moments that connect the brand to the culture its audience cares about.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "chapter_1",
+        "chapter_2"
+      ],
+      "settings": {
+        "strap": "(The Story)",
+        "heading": "How we",
+        "heading_accent": "approached it",
+        "show_toc": false,
+        "toc_label": "In this case study"
+      }
+    },
+    "result": {
+      "type": "csl-result",
+      "settings": {
+        "strap": "(The Result)",
+        "statement": "Editorial work that holds audience attention.",
+        "text": "The partnership produced editorial content and cultural activation built to connect brand, culture and audience.",
+        "primary_label": "Start your project",
+        "primary_url": "https://tidycal.com/salesautomateiq/consultation",
+        "secondary_label": "",
+        "secondary_new_tab": true
+      }
+    },
+    "next": {
+      "type": "csl-next",
+      "settings": {
+        "strap": "(Next Case Study)",
+        "name": "JI Restaurant",
+        "services": "Culinary & Hospitality Storytelling",
+        "url": "/pages/ji-restaurant-case-study",
+        "accent": "#e06a4f",
+        "all_label": "Back to all work",
+        "all_url": "/pages/work"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "scope",
+    "chapters",
+    "result",
+    "next"
+  ]
+}

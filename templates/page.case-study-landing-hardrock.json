@@ -1,0 +1,226 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "csl-hero",
+      "blocks": {
+        "fact_1": {
+          "type": "fact",
+          "settings": {
+            "label": "Client",
+            "value": "Hardrock"
+          }
+        },
+        "fact_2": {
+          "type": "fact",
+          "settings": {
+            "label": "Location",
+            "value": "California"
+          }
+        },
+        "fact_3": {
+          "type": "fact",
+          "settings": {
+            "label": "Category",
+            "value": "Entertainment"
+          }
+        },
+        "fact_4": {
+          "type": "fact",
+          "settings": {
+            "label": "Focus",
+            "value": "Venue content"
+          }
+        }
+      },
+      "block_order": [
+        "fact_1",
+        "fact_2",
+        "fact_3",
+        "fact_4"
+      ],
+      "settings": {
+        "accent": "#e05252",
+        "accent_2": "#8f2222",
+        "back_label": "All work",
+        "back_url": "/pages/work",
+        "strap": "(Case Study)",
+        "client": "Hardrock",
+        "services": "Entertainment Content & Brand Activation",
+        "lede": "Entertainment content for Hardrock, created to extend brand energy beyond the venue itself.",
+        "body": "<p>We created venue content and brand activation that carries the energy of the room to people who are not there yet.</p>",
+        "image": "shopify://shop_images/d45bbecb5e9a8d33d14f0dee170e73a2-xxlarge.webp",
+        "image_ratio": "portrait",
+        "orbit_title": "(Connected ecosystem)",
+        "orbit_status": "",
+        "core_label": "Hardrock"
+      }
+    },
+    "gallery": {
+      "type": "csl-gallery",
+      "blocks": {
+        "image_1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/3_33e3da64-e46c-4f72-8c0d-0576a9fd3a75.webp",
+            "caption": ""
+          }
+        },
+        "image_2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1_3216522a-9d8c-4927-8d5a-ca0224fd0c57.webp",
+            "caption": ""
+          }
+        },
+        "image_3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/2_05492d9a-8f1f-4689-a300-5b0aef75b61e.webp",
+            "caption": ""
+          }
+        },
+        "image_4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/4_63ac179c-f0dd-4078-a060-0abab6c3d7a0.webp",
+            "caption": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4"
+      ],
+      "settings": {
+        "strap": "(Selected Work)",
+        "heading": "",
+        "heading_accent": "",
+        "columns": "3",
+        "bordered": false
+      }
+    },
+    "scope": {
+      "type": "csl-scope",
+      "blocks": {
+        "group_1": {
+          "type": "group",
+          "settings": {
+            "title": "Deliverables"
+          }
+        },
+        "item_01": {
+          "type": "item",
+          "settings": {
+            "text": "Entertainment and venue content"
+          }
+        },
+        "item_02": {
+          "type": "item",
+          "settings": {
+            "text": "Brand activation"
+          }
+        },
+        "item_03": {
+          "type": "item",
+          "settings": {
+            "text": "Event and food photography"
+          }
+        },
+        "item_04": {
+          "type": "item",
+          "settings": {
+            "text": "Content for social channels"
+          }
+        }
+      },
+      "block_order": [
+        "group_1",
+        "item_01",
+        "item_02",
+        "item_03",
+        "item_04"
+      ],
+      "settings": {
+        "strap": "(Scope)",
+        "heading": "Our work",
+        "heading_accent": "included",
+        "show_count": true,
+        "count_label": "services",
+        "intro": ""
+      }
+    },
+    "chapters": {
+      "type": "csl-chapters",
+      "blocks": {
+        "chapter_1": {
+          "type": "chapter",
+          "settings": {
+            "title": "The brief",
+            "text": "<p>The energy of a great venue is hard to hold on to once the night is over. The brand needed content that carries it further.</p>"
+          }
+        },
+        "chapter_2": {
+          "type": "chapter",
+          "settings": {
+            "title": "Our approach",
+            "text": "<p>We captured the venue, the food and the atmosphere, then shaped it into content built to extend that energy across the brand’s channels.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "chapter_1",
+        "chapter_2"
+      ],
+      "settings": {
+        "strap": "(The Story)",
+        "heading": "How we",
+        "heading_accent": "approached it",
+        "show_toc": false,
+        "toc_label": "In this case study"
+      }
+    },
+    "result": {
+      "type": "csl-result",
+      "settings": {
+        "strap": "(The Result)",
+        "statement": "The energy of the venue, beyond the venue.",
+        "text": "Hardrock gained entertainment content created to extend its brand energy beyond its own walls.",
+        "primary_label": "Start your project",
+        "primary_url": "https://tidycal.com/salesautomateiq/consultation",
+        "secondary_label": "",
+        "secondary_new_tab": true
+      }
+    },
+    "next": {
+      "type": "csl-next",
+      "settings": {
+        "strap": "(Next Case Study)",
+        "name": "Polaroid",
+        "services": "Brand Partnership, Activation & Content",
+        "url": "/pages/polaroid-case-study",
+        "accent": "#f5b83d",
+        "all_label": "Back to all work",
+        "all_url": "/pages/work"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "gallery",
+    "scope",
+    "chapters",
+    "result",
+    "next"
+  ]
+}

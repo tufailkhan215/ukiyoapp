@@ -1,0 +1,210 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "csl-hero",
+      "blocks": {
+        "fact_1": {
+          "type": "fact",
+          "settings": {
+            "label": "Client",
+            "value": "CLSC"
+          }
+        },
+        "fact_2": {
+          "type": "fact",
+          "settings": {
+            "label": "Category",
+            "value": "Streetwear"
+          }
+        },
+        "fact_3": {
+          "type": "fact",
+          "settings": {
+            "label": "Focus",
+            "value": "Activation & culture"
+          }
+        }
+      },
+      "block_order": [
+        "fact_1",
+        "fact_2",
+        "fact_3"
+      ],
+      "settings": {
+        "accent": "#d8b48a",
+        "accent_2": "#8c6a43",
+        "back_label": "All work",
+        "back_url": "/pages/work",
+        "strap": "(Case Study)",
+        "client": "CLSC",
+        "services": "Brand Activation & Cultural Marketing",
+        "lede": "Streetwear activation work for CLSC, shaped for culture, relevance and community connection.",
+        "body": "<p>We developed urban brand activation and cultural marketing that puts the brand where its community already is.</p>",
+        "image": "shopify://shop_images/DSC_29323129.webp",
+        "image_ratio": "square",
+        "orbit_title": "(Connected ecosystem)",
+        "orbit_status": "",
+        "core_label": "CLSC"
+      }
+    },
+    "gallery": {
+      "type": "csl-gallery",
+      "blocks": {
+        "image_1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/3_a7ce9a9b-cbc4-4172-b05b-11b529ad60f3.webp",
+            "caption": ""
+          }
+        },
+        "image_2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1_a1031331-4b9a-46ee-8317-8537a77f2a03.webp",
+            "caption": ""
+          }
+        },
+        "image_3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/2_adbf5d1d-88e1-4cbb-a9ca-c0f2568455e8.webp",
+            "caption": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_1",
+        "image_2",
+        "image_3"
+      ],
+      "settings": {
+        "strap": "(Selected Work)",
+        "heading": "",
+        "heading_accent": "",
+        "columns": "3",
+        "bordered": false
+      }
+    },
+    "scope": {
+      "type": "csl-scope",
+      "blocks": {
+        "group_1": {
+          "type": "group",
+          "settings": {
+            "title": "Deliverables"
+          }
+        },
+        "item_01": {
+          "type": "item",
+          "settings": {
+            "text": "Brand activation"
+          }
+        },
+        "item_02": {
+          "type": "item",
+          "settings": {
+            "text": "Cultural marketing"
+          }
+        },
+        "item_03": {
+          "type": "item",
+          "settings": {
+            "text": "Lifestyle and product photography"
+          }
+        },
+        "item_04": {
+          "type": "item",
+          "settings": {
+            "text": "Content for social and community channels"
+          }
+        }
+      },
+      "block_order": [
+        "group_1",
+        "item_01",
+        "item_02",
+        "item_03",
+        "item_04"
+      ],
+      "settings": {
+        "strap": "(Scope)",
+        "heading": "Our work",
+        "heading_accent": "included",
+        "show_count": true,
+        "count_label": "services",
+        "intro": ""
+      }
+    },
+    "chapters": {
+      "type": "csl-chapters",
+      "blocks": {
+        "chapter_1": {
+          "type": "chapter",
+          "settings": {
+            "title": "The brief",
+            "text": "<p>In streetwear, relevance is earned in the culture. CLSC needed activation work that feels authentic to its community.</p>"
+          }
+        },
+        "chapter_2": {
+          "type": "chapter",
+          "settings": {
+            "title": "Our approach",
+            "text": "<p>We built the activations and content around the culture the brand belongs to, keeping the creative close to the street and the community at the centre.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "chapter_1",
+        "chapter_2"
+      ],
+      "settings": {
+        "strap": "(The Story)",
+        "heading": "How we",
+        "heading_accent": "approached it",
+        "show_toc": false,
+        "toc_label": "In this case study"
+      }
+    },
+    "result": {
+      "type": "csl-result",
+      "settings": {
+        "strap": "(The Result)",
+        "statement": "Activation that feels like part of the culture.",
+        "text": "CLSC gained activation work and content built for cultural relevance and real community connection.",
+        "primary_label": "Start your project",
+        "primary_url": "https://tidycal.com/salesautomateiq/consultation",
+        "secondary_label": "",
+        "secondary_new_tab": true
+      }
+    },
+    "next": {
+      "type": "csl-next",
+      "settings": {
+        "strap": "(Next Case Study)",
+        "name": "Maverick Helicopters",
+        "services": "Experience Storytelling & Luxury Travel Content",
+        "url": "/pages/maverick-helicopters-case-study",
+        "accent": "#e0b45e",
+        "all_label": "Back to all work",
+        "all_url": "/pages/work"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "gallery",
+    "scope",
+    "chapters",
+    "result",
+    "next"
+  ]
+}

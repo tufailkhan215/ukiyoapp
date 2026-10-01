@@ -1,0 +1,226 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "csl-hero",
+      "blocks": {
+        "fact_1": {
+          "type": "fact",
+          "settings": {
+            "label": "Client",
+            "value": "JI Restaurant"
+          }
+        },
+        "fact_2": {
+          "type": "fact",
+          "settings": {
+            "label": "Location",
+            "value": "Bali, Indonesia"
+          }
+        },
+        "fact_3": {
+          "type": "fact",
+          "settings": {
+            "label": "Category",
+            "value": "Culinary"
+          }
+        },
+        "fact_4": {
+          "type": "fact",
+          "settings": {
+            "label": "Focus",
+            "value": "Visual storytelling"
+          }
+        }
+      },
+      "block_order": [
+        "fact_1",
+        "fact_2",
+        "fact_3",
+        "fact_4"
+      ],
+      "settings": {
+        "accent": "#e06a4f",
+        "accent_2": "#9c3a26",
+        "back_label": "All work",
+        "back_url": "/pages/work",
+        "strap": "(Case Study)",
+        "client": "JI Restaurant",
+        "services": "Culinary & Hospitality Storytelling",
+        "lede": "Hospitality and culinary storytelling for JI Restaurant that brings place, mood and experience into focus.",
+        "body": "<p>We captured the Balinese fine dining experience through visual storytelling that shows the food, the setting and the atmosphere together.</p>",
+        "image": "shopify://shop_images/29.webp",
+        "image_ratio": "portrait",
+        "orbit_title": "(Connected ecosystem)",
+        "orbit_status": "",
+        "core_label": "JI Restaurant"
+      }
+    },
+    "gallery": {
+      "type": "csl-gallery",
+      "blocks": {
+        "image_1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/6_2dbffab1-32cb-4cd9-b207-bf73c27caa35.webp",
+            "caption": ""
+          }
+        },
+        "image_2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/5_4fd104c7-932c-4c6a-b301-f964daee0a79.webp",
+            "caption": ""
+          }
+        },
+        "image_3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/4_0389aa3b-9062-4053-93fb-7a2288fdba1e.webp",
+            "caption": ""
+          }
+        },
+        "image_4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/2_bd10305b-93b2-47d2-a586-3076c246b91b.webp",
+            "caption": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4"
+      ],
+      "settings": {
+        "strap": "(Selected Work)",
+        "heading": "",
+        "heading_accent": "",
+        "columns": "3",
+        "bordered": false
+      }
+    },
+    "scope": {
+      "type": "csl-scope",
+      "blocks": {
+        "group_1": {
+          "type": "group",
+          "settings": {
+            "title": "Deliverables"
+          }
+        },
+        "item_01": {
+          "type": "item",
+          "settings": {
+            "text": "Food and hospitality photography"
+          }
+        },
+        "item_02": {
+          "type": "item",
+          "settings": {
+            "text": "Visual storytelling"
+          }
+        },
+        "item_03": {
+          "type": "item",
+          "settings": {
+            "text": "Atmosphere and interiors content"
+          }
+        },
+        "item_04": {
+          "type": "item",
+          "settings": {
+            "text": "Content for social and web"
+          }
+        }
+      },
+      "block_order": [
+        "group_1",
+        "item_01",
+        "item_02",
+        "item_03",
+        "item_04"
+      ],
+      "settings": {
+        "strap": "(Scope)",
+        "heading": "Our work",
+        "heading_accent": "included",
+        "show_count": true,
+        "count_label": "services",
+        "intro": ""
+      }
+    },
+    "chapters": {
+      "type": "csl-chapters",
+      "blocks": {
+        "chapter_1": {
+          "type": "chapter",
+          "settings": {
+            "title": "The brief",
+            "text": "<p>Fine dining is about more than the plate. JI needed visuals that convey the place and the mood as clearly as the food.</p>"
+          }
+        },
+        "chapter_2": {
+          "type": "chapter",
+          "settings": {
+            "title": "Our approach",
+            "text": "<p>We photographed the dishes, the space and the moments in between, building a visual story of the full dining experience.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "chapter_1",
+        "chapter_2"
+      ],
+      "settings": {
+        "strap": "(The Story)",
+        "heading": "How we",
+        "heading_accent": "approached it",
+        "show_toc": false,
+        "toc_label": "In this case study"
+      }
+    },
+    "result": {
+      "type": "csl-result",
+      "settings": {
+        "strap": "(The Result)",
+        "statement": "A dining experience you can feel before you arrive.",
+        "text": "JI Restaurant gained culinary and hospitality content that brings its place, mood and experience into focus.",
+        "primary_label": "Start your project",
+        "primary_url": "https://tidycal.com/salesautomateiq/consultation",
+        "secondary_label": "",
+        "secondary_new_tab": true
+      }
+    },
+    "next": {
+      "type": "csl-next",
+      "settings": {
+        "strap": "(Next Case Study)",
+        "name": "Satori",
+        "services": "Wellness Brand Development & Content Creation",
+        "url": "/pages/satori-case-study",
+        "accent": "#7fc2a8",
+        "all_label": "Back to all work",
+        "all_url": "/pages/work"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "gallery",
+    "scope",
+    "chapters",
+    "result",
+    "next"
+  ]
+}

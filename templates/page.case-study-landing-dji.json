@@ -1,0 +1,218 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "csl-hero",
+      "blocks": {
+        "fact_1": {
+          "type": "fact",
+          "settings": {
+            "label": "Client",
+            "value": "DJI"
+          }
+        },
+        "fact_2": {
+          "type": "fact",
+          "settings": {
+            "label": "Category",
+            "value": "Technology"
+          }
+        },
+        "fact_3": {
+          "type": "fact",
+          "settings": {
+            "label": "Focus",
+            "value": "Aerial & drone content"
+          }
+        }
+      },
+      "block_order": [
+        "fact_1",
+        "fact_2",
+        "fact_3"
+      ],
+      "settings": {
+        "accent": "#4cc9f0",
+        "accent_2": "#1590b0",
+        "back_label": "All work",
+        "back_url": "/pages/work",
+        "strap": "(Case Study)",
+        "client": "DJI",
+        "services": "Aerial Photography, Drone Video & Product Storytelling",
+        "lede": "A visual content partnership with DJI built around technology, motion and elevated product storytelling.",
+        "body": "<p>We created aerial photography and drone content that shows what the technology makes possible, from the ground up and from above.</p>",
+        "image": "shopify://shop_images/elmurorosa_drone_shot_of_tropical_island_--ar_916_--style_raw_a4bea9bc-922d-4f57-b454-57f5fe4564c6.webp",
+        "image_ratio": "portrait",
+        "orbit_title": "(Connected ecosystem)",
+        "orbit_status": "",
+        "core_label": "DJI"
+      }
+    },
+    "gallery": {
+      "type": "csl-gallery",
+      "blocks": {
+        "image_1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1_9efeab80-899b-4c69-9470-d7ffd6cc660a.webp",
+            "caption": ""
+          }
+        },
+        "image_2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/3_97f70eb0-3393-4cd5-a5a9-a73c902dce31.webp",
+            "caption": ""
+          }
+        },
+        "image_3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/2_6e6f066e-bda4-4146-ae5a-be5d5a068a4a.webp",
+            "caption": ""
+          }
+        },
+        "image_4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/4_7fd3129b-2e77-4b46-8d7a-874dff07571a.webp",
+            "caption": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4"
+      ],
+      "settings": {
+        "strap": "(Selected Work)",
+        "heading": "",
+        "heading_accent": "",
+        "columns": "3",
+        "bordered": false
+      }
+    },
+    "scope": {
+      "type": "csl-scope",
+      "blocks": {
+        "group_1": {
+          "type": "group",
+          "settings": {
+            "title": "Deliverables"
+          }
+        },
+        "item_01": {
+          "type": "item",
+          "settings": {
+            "text": "Aerial photography"
+          }
+        },
+        "item_02": {
+          "type": "item",
+          "settings": {
+            "text": "Drone video content"
+          }
+        },
+        "item_03": {
+          "type": "item",
+          "settings": {
+            "text": "Product storytelling"
+          }
+        },
+        "item_04": {
+          "type": "item",
+          "settings": {
+            "text": "Content for social and digital channels"
+          }
+        }
+      },
+      "block_order": [
+        "group_1",
+        "item_01",
+        "item_02",
+        "item_03",
+        "item_04"
+      ],
+      "settings": {
+        "strap": "(Scope)",
+        "heading": "Our work",
+        "heading_accent": "included",
+        "show_count": true,
+        "count_label": "services",
+        "intro": ""
+      }
+    },
+    "chapters": {
+      "type": "csl-chapters",
+      "blocks": {
+        "chapter_1": {
+          "type": "chapter",
+          "settings": {
+            "title": "The brief",
+            "text": "<p>DJI’s products are made to capture the world from new angles. The content had to show that, not just tell it.</p>"
+          }
+        },
+        "chapter_2": {
+          "type": "chapter",
+          "settings": {
+            "title": "Our approach",
+            "text": "<p>We built the partnership around motion and perspective: aerial photography and drone footage that put the product’s capability on screen, framed with elevated, story-led visuals.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "chapter_1",
+        "chapter_2"
+      ],
+      "settings": {
+        "strap": "(The Story)",
+        "heading": "How we",
+        "heading_accent": "approached it",
+        "show_toc": false,
+        "toc_label": "In this case study"
+      }
+    },
+    "result": {
+      "type": "csl-result",
+      "settings": {
+        "strap": "(The Result)",
+        "statement": "Product storytelling told from above.",
+        "text": "The partnership produced aerial content that shows DJI’s technology in action and gives the brand visuals built for motion.",
+        "primary_label": "Start your project",
+        "primary_url": "https://tidycal.com/salesautomateiq/consultation",
+        "secondary_label": "",
+        "secondary_new_tab": true
+      }
+    },
+    "next": {
+      "type": "csl-next",
+      "settings": {
+        "strap": "(Next Case Study)",
+        "name": "CLSC",
+        "services": "Brand Activation & Cultural Marketing",
+        "url": "/pages/clsc-case-study",
+        "accent": "#d8b48a",
+        "all_label": "Back to all work",
+        "all_url": "/pages/work"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "gallery",
+    "scope",
+    "chapters",
+    "result",
+    "next"
+  ]
+}
