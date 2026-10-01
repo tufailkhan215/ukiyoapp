@@ -39,17 +39,45 @@
             "label": "Focus",
             "value": "Venue content"
           }
+        },
+        "node_1": {
+          "type": "node",
+          "settings": {
+            "label": "Venue content"
+          }
+        },
+        "node_2": {
+          "type": "node",
+          "settings": {
+            "label": "Activation"
+          }
+        },
+        "node_3": {
+          "type": "node",
+          "settings": {
+            "label": "Photography"
+          }
+        },
+        "node_4": {
+          "type": "node",
+          "settings": {
+            "label": "Social"
+          }
         }
       },
       "block_order": [
         "fact_1",
         "fact_2",
         "fact_3",
-        "fact_4"
+        "fact_4",
+        "node_1",
+        "node_2",
+        "node_3",
+        "node_4"
       ],
       "settings": {
-        "accent": "#e05252",
-        "accent_2": "#8f2222",
+        "accent": "#eaa935",
+        "accent_2": "#b4632f",
         "back_label": "All work",
         "back_url": "/pages/work",
         "strap": "(Case Study)",
@@ -57,42 +85,37 @@
         "services": "Entertainment Content & Brand Activation",
         "lede": "Entertainment content for Hardrock, created to extend brand energy beyond the venue itself.",
         "body": "<p>We created venue content and brand activation that carries the energy of the room to people who are not there yet.</p>",
-        "image": "shopify://shop_images/d45bbecb5e9a8d33d14f0dee170e73a2-xxlarge.webp",
         "image_ratio": "portrait",
         "orbit_title": "(Connected ecosystem)",
         "orbit_status": "",
         "core_label": "Hardrock"
       }
     },
-    "gallery": {
-      "type": "csl-gallery",
+    "showcase": {
+      "type": "csl-showcase",
       "blocks": {
         "image_1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/3_33e3da64-e46c-4f72-8c0d-0576a9fd3a75.webp",
-            "caption": ""
+            "image": "shopify://shop_images/3_33e3da64-e46c-4f72-8c0d-0576a9fd3a75.webp"
           }
         },
         "image_2": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/1_3216522a-9d8c-4927-8d5a-ca0224fd0c57.webp",
-            "caption": ""
+            "image": "shopify://shop_images/1_3216522a-9d8c-4927-8d5a-ca0224fd0c57.webp"
           }
         },
         "image_3": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/2_05492d9a-8f1f-4689-a300-5b0aef75b61e.webp",
-            "caption": ""
+            "image": "shopify://shop_images/2_05492d9a-8f1f-4689-a300-5b0aef75b61e.webp"
           }
         },
         "image_4": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/4_63ac179c-f0dd-4078-a060-0abab6c3d7a0.webp",
-            "caption": ""
+            "image": "shopify://shop_images/4_63ac179c-f0dd-4078-a060-0abab6c3d7a0.webp"
           }
         }
       },
@@ -103,11 +126,11 @@
         "image_4"
       ],
       "settings": {
-        "strap": "(Selected Work)",
-        "heading": "",
-        "heading_accent": "",
-        "columns": "3",
-        "bordered": false
+        "image": "shopify://shop_images/d45bbecb5e9a8d33d14f0dee170e73a2-xxlarge.webp",
+        "url_label": "Hardrock",
+        "link_label": "",
+        "caption": "",
+        "hint": "Hover to scroll"
       }
     },
     "scope": {
@@ -209,7 +232,7 @@
         "name": "Polaroid",
         "services": "Brand Partnership, Activation & Content",
         "url": "/pages/polaroid-case-study",
-        "accent": "#f5b83d",
+        "accent": "#eaa935",
         "all_label": "Back to all work",
         "all_url": "/pages/work"
       }
@@ -217,7 +240,7 @@
   },
   "order": [
     "hero",
-    "gallery",
+    "showcase",
     "scope",
     "chapters",
     "result",

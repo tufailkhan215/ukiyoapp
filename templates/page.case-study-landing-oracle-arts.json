@@ -97,8 +97,8 @@
         "node_7"
       ],
       "settings": {
-        "accent": "#b99cff",
-        "accent_2": "#e2bd6d",
+        "accent": "#eaa935",
+        "accent_2": "#b4632f",
         "back_label": "All case studies",
         "back_url": "/pages/explore-case-studies",
         "strap": "(Case Study)",
@@ -369,7 +369,7 @@
         "name": "Church of Truth",
         "services": "Website Design & Development",
         "url": "/pages/wearecot-case-study",
-        "accent": "#d9b46a",
+        "accent": "#eaa935",
         "all_label": "Back to all case studies",
         "all_url": "/pages/explore-case-studies"
       }

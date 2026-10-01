@@ -16,46 +16,39 @@
           "type": "fact",
           "settings": {
             "label": "Client",
-            "value": "JI Restaurant"
+            "value": "Maverick Helicopters"
           }
         },
         "fact_2": {
           "type": "fact",
           "settings": {
-            "label": "Location",
-            "value": "Bali, Indonesia"
+            "label": "Category",
+            "value": "Travel & experience"
           }
         },
         "fact_3": {
           "type": "fact",
           "settings": {
-            "label": "Category",
-            "value": "Culinary"
-          }
-        },
-        "fact_4": {
-          "type": "fact",
-          "settings": {
             "label": "Focus",
-            "value": "Visual storytelling"
+            "value": "Experience storytelling"
           }
         },
         "node_1": {
           "type": "node",
           "settings": {
-            "label": "Food photography"
+            "label": "Storytelling"
           }
         },
         "node_2": {
           "type": "node",
           "settings": {
-            "label": "Storytelling"
+            "label": "Photography"
           }
         },
         "node_3": {
           "type": "node",
           "settings": {
-            "label": "Interiors"
+            "label": "Video"
           }
         },
         "node_4": {
@@ -75,7 +68,6 @@
         "fact_1",
         "fact_2",
         "fact_3",
-        "fact_4",
         "node_1",
         "node_2",
         "node_3",
@@ -88,14 +80,14 @@
         "back_label": "All work",
         "back_url": "/pages/work",
         "strap": "(Case Study)",
-        "client": "JI Restaurant",
-        "services": "Culinary & Hospitality Storytelling",
-        "lede": "Hospitality and culinary storytelling for JI Restaurant that brings place, mood and experience into focus.",
-        "body": "<p>We captured the Balinese fine dining experience through visual storytelling that shows the food, the setting and the atmosphere together.</p>",
-        "image_ratio": "portrait",
+        "client": "Maverick Helicopters",
+        "services": "Experience Storytelling & Luxury Travel Content",
+        "lede": "Experience-driven storytelling for Maverick Helicopters, built to make the brand feel as premium as the service.",
+        "body": "<p>We created luxury travel experience content and brand storytelling that captures the view, the flight and the feeling.</p>",
+        "image_ratio": "landscape",
         "orbit_title": "(Connected ecosystem)",
         "orbit_status": "",
-        "core_label": "JI Restaurant"
+        "core_label": "Maverick Helicopters"
       }
     },
     "showcase": {
@@ -104,37 +96,23 @@
         "image_1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/6_2dbffab1-32cb-4cd9-b207-bf73c27caa35.webp"
+            "image": "shopify://shop_images/2_b8ed67b8-4838-4f14-884e-ebd669703416.webp"
           }
         },
         "image_2": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/5_4fd104c7-932c-4c6a-b301-f964daee0a79.webp"
-          }
-        },
-        "image_3": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/4_0389aa3b-9062-4053-93fb-7a2288fdba1e.webp"
-          }
-        },
-        "image_4": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/2_bd10305b-93b2-47d2-a586-3076c246b91b.webp"
+            "image": "shopify://shop_images/1_93bf0af6-4112-426e-82ef-65140cec0614.webp"
           }
         }
       },
       "block_order": [
         "image_1",
-        "image_2",
-        "image_3",
-        "image_4"
+        "image_2"
       ],
       "settings": {
-        "image": "shopify://shop_images/29.webp",
-        "url_label": "JI Restaurant",
+        "image": "shopify://shop_images/IMG_6776.webp",
+        "url_label": "Maverick Helicopters",
         "link_label": "",
         "caption": "",
         "hint": "Hover to scroll"
@@ -152,19 +130,19 @@
         "item_01": {
           "type": "item",
           "settings": {
-            "text": "Food and hospitality photography"
+            "text": "Brand storytelling"
           }
         },
         "item_02": {
           "type": "item",
           "settings": {
-            "text": "Visual storytelling"
+            "text": "Experience-led photography"
           }
         },
         "item_03": {
           "type": "item",
           "settings": {
-            "text": "Atmosphere and interiors content"
+            "text": "Travel video content"
           }
         },
         "item_04": {
@@ -197,14 +175,14 @@
           "type": "chapter",
           "settings": {
             "title": "The brief",
-            "text": "<p>Fine dining is about more than the plate. JI needed visuals that convey the place and the mood as clearly as the food.</p>"
+            "text": "<p>A helicopter tour is an experience people remember for years. The brand’s content needed to feel just as premium.</p>"
           }
         },
         "chapter_2": {
           "type": "chapter",
           "settings": {
             "title": "Our approach",
-            "text": "<p>We photographed the dishes, the space and the moments in between, building a visual story of the full dining experience.</p>"
+            "text": "<p>We told the story from the passenger’s point of view, capturing the moments in the air that make the experience worth booking.</p>"
           }
         }
       },
@@ -224,8 +202,8 @@
       "type": "csl-result",
       "settings": {
         "strap": "(The Result)",
-        "statement": "A dining experience you can feel before you arrive.",
-        "text": "JI Restaurant gained culinary and hospitality content that brings its place, mood and experience into focus.",
+        "statement": "Content as premium as the experience.",
+        "text": "Maverick Helicopters gained travel content and storytelling that reflect the premium experience it offers.",
         "primary_label": "Start your project",
         "primary_url": "https://tidycal.com/salesautomateiq/consultation",
         "secondary_label": "",
@@ -236,9 +214,9 @@
       "type": "csl-next",
       "settings": {
         "strap": "(Next Case Study)",
-        "name": "Satori",
-        "services": "Wellness Brand Development & Content Creation",
-        "url": "/pages/satori-case-study",
+        "name": "Highsnobiety",
+        "services": "Editorial Partnership & Cultural Activation",
+        "url": "/pages/highsnobiety-case-study",
         "accent": "#eaa935",
         "all_label": "Back to all work",
         "all_url": "/pages/work"

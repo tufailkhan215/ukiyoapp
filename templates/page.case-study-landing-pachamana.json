@@ -107,7 +107,7 @@
         "link": "https://pachamana.com",
         "link_label": "Visit site",
         "caption": "The live Pacha Mana storefront, designed and developed on Shopify.",
-        "hint": "Hover to scroll the site"
+        "hint": "Hover to scroll"
       }
     },
     "scope": {
@@ -311,7 +311,7 @@
         "name": "California 89",
         "services": "Shopify SEO, Content & Email Sign-Up",
         "url": "/pages/california-89-case-study",
-        "accent": "#e8a35c",
+        "accent": "#eaa935",
         "all_label": "Back to all case studies",
         "all_url": "/pages/explore-case-studies"
       }

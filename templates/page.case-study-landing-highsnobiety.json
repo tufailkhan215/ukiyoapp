@@ -32,16 +32,44 @@
             "label": "Focus",
             "value": "Editorial partnership"
           }
+        },
+        "node_1": {
+          "type": "node",
+          "settings": {
+            "label": "Editorial"
+          }
+        },
+        "node_2": {
+          "type": "node",
+          "settings": {
+            "label": "Activation"
+          }
+        },
+        "node_3": {
+          "type": "node",
+          "settings": {
+            "label": "Photography"
+          }
+        },
+        "node_4": {
+          "type": "node",
+          "settings": {
+            "label": "Digital"
+          }
         }
       },
       "block_order": [
         "fact_1",
         "fact_2",
-        "fact_3"
+        "fact_3",
+        "node_1",
+        "node_2",
+        "node_3",
+        "node_4"
       ],
       "settings": {
-        "accent": "#d9d9d9",
-        "accent_2": "#7a7a7a",
+        "accent": "#eaa935",
+        "accent_2": "#b4632f",
         "back_label": "All work",
         "back_url": "/pages/work",
         "strap": "(Case Study)",
@@ -49,11 +77,20 @@
         "services": "Editorial Partnership & Cultural Activation",
         "lede": "Editorial partnership work with Highsnobiety, designed to connect brand, culture and audience attention.",
         "body": "<p>We created editorial content and cultural brand activation that lives where fashion, culture and media meet.</p>",
-        "image": "shopify://shop_images/IMG_9657_1.webp",
         "image_ratio": "portrait",
         "orbit_title": "(Connected ecosystem)",
         "orbit_status": "",
         "core_label": "Highsnobiety"
+      }
+    },
+    "showcase": {
+      "type": "csl-showcase",
+      "settings": {
+        "image": "shopify://shop_images/IMG_9657_1.webp",
+        "url_label": "Highsnobiety",
+        "link_label": "",
+        "caption": "",
+        "hint": "Hover to scroll"
       }
     },
     "scope": {
@@ -155,7 +192,7 @@
         "name": "JI Restaurant",
         "services": "Culinary & Hospitality Storytelling",
         "url": "/pages/ji-restaurant-case-study",
-        "accent": "#e06a4f",
+        "accent": "#eaa935",
         "all_label": "Back to all work",
         "all_url": "/pages/work"
       }
@@ -163,6 +200,7 @@
   },
   "order": [
     "hero",
+    "showcase",
     "scope",
     "chapters",
     "result",
