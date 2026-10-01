@@ -167,7 +167,7 @@
 .csl-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--csl-a); }
 
 .csl-hero__grid { display: grid; gap: 48px; margin-top: clamp(44px, 5.5vw, 80px); }
-@media (min-width: 1100px) {
+@media (min-width: 1200px) {
   .csl-hero__grid--split { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 72px; align-items: start; }
 }
 .csl-lede {
@@ -205,7 +205,7 @@
   border-radius: 24px;
   background: radial-gradient(120% 80% at 50% 0%, var(--csl-soft), transparent 62%), var(--csl-surface);
 }
-@media (min-width: 1100px) { .csl-orbit-card { position: sticky; top: 120px; } }
+@media (min-width: 1200px) { .csl-orbit-card { position: sticky; top: 120px; } }
 .csl-orbit-card__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
 .csl-orbit-card .csl-strap { color: rgba(255, 255, 255, .68); }
 .csl-live { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; color: var(--csl-muted); }
@@ -256,7 +256,7 @@
   border: 1px solid var(--csl-line-2);
 }
 .csl-orbit__pill::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--csl-a); }
-@media (min-width: 1100px) and (max-width: 1299px), (min-width: 481px) and (max-width: 560px) {
+@media (min-width: 1200px) and (max-width: 1299px), (min-width: 481px) and (max-width: 560px) {
   .csl-orbit__pill { padding: 6px 10px; font-size: 11px; }
 }
 @media (max-width: 480px) {
