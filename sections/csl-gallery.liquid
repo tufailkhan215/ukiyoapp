@@ -1,0 +1,98 @@
+{%- comment -%}
+  Section: Case Study — Gallery
+  A masonry-style grid of "Image" blocks. Images keep their own shape, so any
+  mix of portrait and landscape works. Add, remove or drag blocks to reorder.
+{%- endcomment -%}
+{%- render 'case-study-landing-assets' -%}
+{%- liquid
+  assign count = 0
+  for block in section.blocks
+    if block.settings.image != blank
+      assign count = count | plus: 1
+    endif
+  endfor
+  assign grid_class = ''
+  if count == 1
+    assign grid_class = ' csl-gallery__grid--one'
+  elsif count == 2
+    assign grid_class = ' csl-gallery__grid--few'
+  endif
+-%}
+{%- if count > 0 -%}
+<section class="csl csl-gallery{% if section.settings.bordered %} csl-gallery--bordered{% endif %}" id="csl-gallery-{{ section.id }}">
+  <div class="csl-wrap">
+    {%- if section.settings.strap != blank or section.settings.heading != blank -%}
+      <div class="csl-gallery__head csl-rv">
+        <div>
+          {%- if section.settings.strap != blank -%}
+            <span class="csl-strap">{{ section.settings.strap | escape }}</span>
+          {%- endif -%}
+          {%- if section.settings.heading != blank -%}
+            <h2 class="csl-h2">{{ section.settings.heading | escape }}{% if section.settings.heading_accent != blank %} <span class="csl-grad">{{ section.settings.heading_accent | escape }}</span>{% endif %}</h2>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+    <div class="csl-gallery__grid{{ grid_class }}" style="--cols: {{ section.settings.columns }}">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.image != blank -%}
+          <figure class="csl-gallery__item csl-rv" {{ block.shopify_attributes }}>
+            {{
+              block.settings.image
+              | image_url: width: 1400
+              | image_tag:
+                loading: 'lazy',
+                widths: '400, 700, 1000, 1400',
+                sizes: '(min-width: 900px) 33vw, 50vw',
+                alt: block.settings.image.alt
+            }}
+            {%- if block.settings.caption != blank -%}
+              <figcaption>{{ block.settings.caption | escape }}</figcaption>
+            {%- endif -%}
+          </figure>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- elsif request.design_mode -%}
+  <div class="csl csl-wrap"><p class="csl-empty">Case study: gallery. Add Image blocks and pick a photo in each.</p></div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Case study: gallery",
+  "settings": [
+    { "type": "text", "id": "strap", "label": "Label", "default": "(Selected Work)" },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "text", "id": "heading_accent", "label": "Heading (grey part)" },
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "Columns on desktop",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ],
+      "default": "3"
+    },
+    { "type": "checkbox", "id": "bordered", "label": "Divider line above", "default": false, "info": "Turn on when the gallery is not directly under the hero." }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "caption", "label": "Caption (optional)" }
+      ]
+    }
+  ],
+  "max_blocks": 24,
+  "presets": [
+    { "name": "Case study: gallery", "blocks": [{ "type": "image" }, { "type": "image" }, { "type": "image" }] }
+  ],
+  "enabled_on": { "templates": ["page"] }
+}
+{% endschema %}

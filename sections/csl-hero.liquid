@@ -2,13 +2,15 @@
   Section: Case Study — Hero
   Used by templates/page.case-study-landing*.json
   Sets the page accent colour that the other csl-* sections pick up.
+  Right column: the hero image if one is set, otherwise the channel diagram
+  (if any "Diagram channel" blocks exist), otherwise the text runs full width.
 {%- endcomment -%}
 {%- render 'case-study-landing-assets' -%}
 {%- liquid
   assign accent = section.settings.accent | default: '#a78bfa'
   assign accent_2 = section.settings.accent_2 | default: '#60a5fa'
   assign longest = 1
-  assign name_words = section.settings.client | split: ' '
+  assign name_words = section.settings.client | replace: '.', ' ' | replace: '-', ' ' | split: ' '
   for w in name_words
     if w.size > longest
       assign longest = w.size
@@ -20,19 +22,29 @@
       assign node_count = node_count | plus: 1
     endif
   endfor
+  assign has_media = false
+  if section.settings.image != blank or node_count > 0
+    assign has_media = true
+  endif
+  case section.settings.image_ratio
+    when 'square'
+      assign ratio = '1 / 1'
+    when 'landscape'
+      assign ratio = '4 / 3'
+    else
+      assign ratio = '4 / 5'
+  endcase
 -%}
 <style>
   :root {
     --csl-accent: {{ accent }};
     --csl-accent-2: {{ accent_2 }};
-    --csl-accent-soft: {{ accent | color_modify: 'alpha', 0.3 }};
+    --csl-accent-soft: {{ accent | color_modify: 'alpha', 0.28 }};
   }
 </style>
 
 <section class="csl csl-hero" id="csl-hero-{{ section.id }}">
   <div class="csl-hero__glow" aria-hidden="true"></div>
-  <div class="csl-hero__glow csl-hero__glow--b" aria-hidden="true"></div>
-  <div class="csl-grain" aria-hidden="true"></div>
 
   <div class="csl-wrap">
     <div class="csl-hero__top csl-in">
@@ -45,22 +57,22 @@
         <span></span>
       {%- endif -%}
       {%- if section.settings.strap != blank -%}
-        <span class="csl-strap">({{ section.settings.strap | escape }})</span>
+        <span class="csl-strap">{{ section.settings.strap | escape }}</span>
       {%- endif -%}
     </div>
 
     <h1 class="csl-hero__title">
-      <span class="csl-hero__name csl-in" style="--d:.08s; --len: {{ longest }}">{{ section.settings.client | escape }}</span>
+      <span class="csl-hero__name csl-in" style="--d:.06s; --len: {{ longest }}">{{ section.settings.client | escape | replace: '.', '.<wbr>' }}</span>
       {%- if section.settings.services != blank -%}
         <span class="csl-sr">: </span>
-        <span class="csl-hero__services csl-in" style="--d:.2s"><span class="csl-dot" aria-hidden="true"></span>{{ section.settings.services | escape }}</span>
+        <span class="csl-hero__services csl-in" style="--d:.16s"><span class="csl-dot" aria-hidden="true"></span>{{ section.settings.services | escape }}</span>
       {%- endif -%}
     </h1>
 
-    <div class="csl-hero__grid">
-      <div class="csl-in" style="--d:.32s">
+    <div class="csl-hero__grid{% if has_media %} csl-hero__grid--split{% endif %}">
+      <div class="csl-in" style="--d:.26s">
         {%- if section.settings.lede != blank -%}
-          <p class="csl-lede">{{ section.settings.lede | escape }}</p>
+          <p class="csl-lede">{{ section.settings.lede | escape | newline_to_br }}</p>
         {%- endif -%}
         {%- if section.settings.body != blank -%}
           <div class="csl-hero__body">{{ section.settings.body }}</div>
@@ -84,10 +96,25 @@
         </dl>
       </div>
 
-      {%- if node_count > 0 -%}
-        <div class="csl-orbit-card csl-in" style="--d:.44s">
+      {%- if section.settings.image != blank -%}
+        <figure class="csl-hero__media csl-in" style="--d:.36s; --ratio: {{ ratio }}">
+          {{
+            section.settings.image
+            | image_url: width: 1600
+            | image_tag:
+              loading: 'eager',
+              fetchpriority: 'high',
+              widths: '600, 900, 1200, 1600',
+              sizes: '(min-width: 1100px) 40vw, 92vw',
+              alt: section.settings.image.alt
+          }}
+        </figure>
+      {%- elsif node_count > 0 -%}
+        <div class="csl-orbit-card csl-in" style="--d:.36s">
           <div class="csl-orbit-card__head">
-            <span class="csl-strap">({{ section.settings.orbit_title | default: 'Connected ecosystem' | escape }})</span>
+            {%- if section.settings.orbit_title != blank -%}
+              <span class="csl-strap">{{ section.settings.orbit_title | escape }}</span>
+            {%- endif -%}
             {%- if section.settings.orbit_status != blank -%}
               <span class="csl-live">{{ section.settings.orbit_status | escape }}</span>
             {%- endif -%}
@@ -96,14 +123,13 @@
             <div class="csl-orbit__ring csl-orbit__ring--1" aria-hidden="true"></div>
             <div class="csl-orbit__ring csl-orbit__ring--2" aria-hidden="true"></div>
             <div class="csl-orbit__ring csl-orbit__ring--3" aria-hidden="true"></div>
-            <div class="csl-orbit__comet" aria-hidden="true"></div>
             <div class="csl-orbit__core"><span>{{ section.settings.core_label | default: section.settings.client | escape }}</span></div>
-            <ul class="csl-orbit__spin" aria-label="{{ section.settings.orbit_title | default: 'Connected ecosystem' | escape }}">
+            <ul class="csl-orbit__spin" role="list" aria-label="{{ section.settings.orbit_title | default: section.settings.client | escape }}">
               {%- assign i = 0 -%}
               {%- for block in section.blocks -%}
                 {%- if block.type == 'node' -%}
                   <li class="csl-orbit__node" style="--i: {{ i }}" {{ block.shopify_attributes }}>
-                    <span class="csl-orbit__counter"><span class="csl-orbit__pill">{{ block.settings.label | escape }}</span></span>
+                    <span class="csl-orbit__pill">{{ block.settings.label | escape }}</span>
                   </li>
                   {%- assign i = i | plus: 1 -%}
                 {%- endif -%}
@@ -121,20 +147,33 @@
   "name": "Case study: hero",
   "settings": [
     { "type": "header", "content": "Colours" },
-    { "type": "color", "id": "accent", "label": "Accent colour", "default": "#a78bfa", "info": "Used across every case study section on this page." },
+    { "type": "color", "id": "accent", "label": "Accent colour", "default": "#a78bfa", "info": "Used by every case study section on this page." },
     { "type": "color", "id": "accent_2", "label": "Second accent colour", "default": "#60a5fa" },
     { "type": "header", "content": "Top bar" },
-    { "type": "text", "id": "back_label", "label": "Back link label", "default": "All work" },
+    { "type": "text", "id": "back_label", "label": "Back link label", "default": "All work", "info": "Leave empty to hide the back link." },
     { "type": "url", "id": "back_url", "label": "Back link" },
-    { "type": "text", "id": "strap", "label": "Label", "default": "Case Study" },
+    { "type": "text", "id": "strap", "label": "Label", "default": "(Case Study)" },
     { "type": "header", "content": "Title" },
     { "type": "text", "id": "client", "label": "Client name", "default": "Client Name" },
     { "type": "text", "id": "services", "label": "Services line", "default": "Website, SEO & Email Marketing" },
     { "type": "header", "content": "Introduction" },
     { "type": "textarea", "id": "lede", "label": "Lead paragraph", "default": "One or two sentences on who the client is and what they needed." },
     { "type": "richtext", "id": "body", "label": "Supporting text", "default": "<p>What we did for them, in a sentence or two.</p>" },
-    { "type": "header", "content": "Ecosystem diagram" },
-    { "type": "text", "id": "orbit_title", "label": "Diagram label", "default": "Connected ecosystem" },
+    { "type": "header", "content": "Image" },
+    { "type": "image_picker", "id": "image", "label": "Hero image", "info": "Shown beside the introduction. If empty, the channel diagram is shown instead (add Diagram channel blocks)." },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image shape",
+      "options": [
+        { "value": "portrait", "label": "Portrait" },
+        { "value": "square", "label": "Square" },
+        { "value": "landscape", "label": "Landscape" }
+      ],
+      "default": "portrait"
+    },
+    { "type": "header", "content": "Channel diagram" },
+    { "type": "text", "id": "orbit_title", "label": "Diagram label", "default": "(Connected ecosystem)" },
     { "type": "text", "id": "orbit_status", "label": "Status", "default": "Live" },
     { "type": "text", "id": "core_label", "label": "Centre label", "info": "Defaults to the client name." }
   ],
@@ -162,9 +201,7 @@
       "name": "Case study: hero",
       "blocks": [
         { "type": "fact" },
-        { "type": "node" },
-        { "type": "node", "settings": { "label": "SEO" } },
-        { "type": "node", "settings": { "label": "Email" } }
+        { "type": "fact", "settings": { "label": "Services", "value": "Content" } }
       ]
     }
   ],

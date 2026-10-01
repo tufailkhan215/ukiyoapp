@@ -15,7 +15,7 @@
   <div class="csl-wrap csl-scope__grid">
     <div class="csl-scope__head csl-rv">
       {%- if section.settings.strap != blank -%}
-        <span class="csl-strap">({{ section.settings.strap | escape }})</span>
+        <span class="csl-strap">{{ section.settings.strap | escape }}</span>
       {%- endif -%}
       <h2 class="csl-h2">{{ section.settings.heading | escape }}{% if section.settings.heading_accent != blank %} <span class="csl-grad">{{ section.settings.heading_accent | escape }}</span>{% endif %}</h2>
       {%- if section.settings.show_count and item_total > 0 -%}
@@ -73,7 +73,7 @@
 {
   "name": "Case study: scope",
   "settings": [
-    { "type": "text", "id": "strap", "label": "Label", "default": "Scope" },
+    { "type": "text", "id": "strap", "label": "Label", "default": "(Scope)" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Our work" },
     { "type": "text", "id": "heading_accent", "label": "Heading (grey part)", "default": "included" },
     { "type": "checkbox", "id": "show_count", "label": "Show item count", "default": true },

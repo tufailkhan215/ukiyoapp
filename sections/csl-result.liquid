@@ -1,43 +1,39 @@
 {%- comment -%}
   Section: Case Study — The result
-  The statement lights up word by word as it scrolls into view.
 {%- endcomment -%}
 {%- render 'case-study-landing-assets' -%}
 <section class="csl csl-section csl-result" id="csl-result-{{ section.id }}">
-  <div class="csl-result__glow" aria-hidden="true"></div>
-  <div class="csl-grain" aria-hidden="true"></div>
   <div class="csl-wrap">
     {%- if section.settings.strap != blank -%}
-      <h2 class="csl-strap csl-rv">({{ section.settings.strap | escape }})</h2>
+      <h2 class="csl-strap csl-rv">{{ section.settings.strap | escape }}</h2>
     {%- endif -%}
     {%- if section.settings.statement != blank -%}
-      {%- assign words = section.settings.statement | escape | split: ' ' -%}
-      <p class="csl-result__statement" data-csl-words>
-        {%- for w in words -%}<span class="w">{{ w }}</span>{% unless forloop.last %}{{ ' ' }}{% endunless %}{%- endfor -%}
-      </p>
+      <p class="csl-result__statement csl-rv">{{ section.settings.statement | escape | newline_to_br }}</p>
     {%- endif -%}
 
-    <div class="csl-result__grid csl-rv">
-      {%- if section.settings.text != blank -%}
-        <p class="csl-result__text">{{ section.settings.text | escape }}</p>
-      {%- else -%}
-        <span></span>
-      {%- endif -%}
-      <div class="csl-result__actions">
-        {%- if section.settings.primary_label != blank and section.settings.primary_url != blank -%}
-          <a class="csl-btn csl-btn--solid" href="{{ section.settings.primary_url }}">
-            {{ section.settings.primary_label | escape }}
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-          </a>
+    {%- if section.settings.text != blank or section.settings.primary_label != blank or section.settings.secondary_label != blank -%}
+      <div class="csl-result__grid csl-rv">
+        {%- if section.settings.text != blank -%}
+          <p class="csl-result__text">{{ section.settings.text | escape | newline_to_br }}</p>
+        {%- else -%}
+          <span></span>
         {%- endif -%}
-        {%- if section.settings.secondary_label != blank and section.settings.secondary_url != blank -%}
-          <a class="csl-btn csl-btn--ghost" href="{{ section.settings.secondary_url }}" target="_blank" rel="noopener">
-            {{ section.settings.secondary_label | escape }}
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-          </a>
-        {%- endif -%}
+        <div class="csl-result__actions">
+          {%- if section.settings.primary_label != blank and section.settings.primary_url != blank -%}
+            <a class="csl-btn csl-btn--solid" href="{{ section.settings.primary_url }}">
+              {{ section.settings.primary_label | escape }}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </a>
+          {%- endif -%}
+          {%- if section.settings.secondary_label != blank and section.settings.secondary_url != blank -%}
+            <a class="csl-btn csl-btn--ghost" href="{{ section.settings.secondary_url }}"{% if section.settings.secondary_new_tab %} target="_blank" rel="noopener"{% endif %}>
+              {{ section.settings.secondary_label | escape }}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </a>
+          {%- endif -%}
+        </div>
       </div>
-    </div>
+    {%- endif -%}
   </div>
 </section>
 
@@ -45,14 +41,15 @@
 {
   "name": "Case study: result",
   "settings": [
-    { "type": "text", "id": "strap", "label": "Label", "default": "The Result" },
+    { "type": "text", "id": "strap", "label": "Label", "default": "(The Result)" },
     { "type": "textarea", "id": "statement", "label": "Headline statement", "default": "The headline outcome of the project, in one or two sentences." },
     { "type": "textarea", "id": "text", "label": "Supporting text" },
     { "type": "header", "content": "Buttons" },
     { "type": "text", "id": "primary_label", "label": "Main button label", "default": "Start your project" },
     { "type": "url", "id": "primary_url", "label": "Main button link" },
-    { "type": "text", "id": "secondary_label", "label": "Second button label", "info": "Opens in a new tab. Good for the live client site." },
-    { "type": "url", "id": "secondary_url", "label": "Second button link" }
+    { "type": "text", "id": "secondary_label", "label": "Second button label" },
+    { "type": "url", "id": "secondary_url", "label": "Second button link" },
+    { "type": "checkbox", "id": "secondary_new_tab", "label": "Open second button in a new tab", "default": true }
   ],
   "presets": [{ "name": "Case study: result" }],
   "enabled_on": { "templates": ["page"] }

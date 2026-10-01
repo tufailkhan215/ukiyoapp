@@ -4,16 +4,17 @@
   "Pull quote" blocks sit between chapters and are not numbered.
 {%- endcomment -%}
 {%- render 'case-study-landing-assets' -%}
-<section class="csl csl-section csl-chapters" id="csl-chapters-{{ section.id }}" data-csl-chapters>
+<section class="csl csl-section csl-chapters{% if section.settings.show_toc %} csl-chapters--toc{% endif %}" id="csl-chapters-{{ section.id }}" data-csl-chapters>
   <div class="csl-wrap">
     <header class="csl-chapters__header csl-rv">
       {%- if section.settings.strap != blank -%}
-        <span class="csl-strap">({{ section.settings.strap | escape }})</span>
+        <span class="csl-strap">{{ section.settings.strap | escape }}</span>
       {%- endif -%}
       <h2 class="csl-h2">{{ section.settings.heading | escape }}{% if section.settings.heading_accent != blank %} <span class="csl-grad">{{ section.settings.heading_accent | escape }}</span>{% endif %}</h2>
     </header>
 
     <div class="csl-chapters__grid">
+      {%- if section.settings.show_toc -%}
       <nav class="csl-toc" aria-label="{{ section.settings.toc_label | default: 'In this case study' | escape }}">
         <span class="csl-strap">{{ section.settings.toc_label | default: 'In this case study' | escape }}</span>
         <ol role="list">
@@ -26,6 +27,7 @@
           {%- endfor -%}
         </ol>
       </nav>
+      {%- endif -%}
 
       <div class="csl-chapters__body">
         {%- assign c = 0 -%}
@@ -42,8 +44,7 @@
               </article>
             {%- when 'quote' -%}
               <figure class="csl-pull csl-rv" {{ block.shopify_attributes }}>
-                <span class="csl-pull__mark" aria-hidden="true">&ldquo;</span>
-                <p>{{ block.settings.text | escape }}</p>
+                <p>{{ block.settings.text | escape | newline_to_br }}</p>
               </figure>
           {%- endcase -%}
         {%- endfor -%}
@@ -56,9 +57,10 @@
 {
   "name": "Case study: chapters",
   "settings": [
-    { "type": "text", "id": "strap", "label": "Label", "default": "The Story" },
+    { "type": "text", "id": "strap", "label": "Label", "default": "(The Story)" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "How we" },
     { "type": "text", "id": "heading_accent", "label": "Heading (grey part)", "default": "approached it" },
+    { "type": "checkbox", "id": "show_toc", "label": "Show side index", "default": false, "info": "A sticky list of chapter titles on desktop. Useful for long case studies." },
     { "type": "text", "id": "toc_label", "label": "Side index label", "default": "In this case study" }
   ],
   "blocks": [
