@@ -88,12 +88,13 @@
         "accent_2": "#b4632f",
         "back_label": "All work",
         "back_url": "/pages/work",
-        "strap": "Case Study",
+        "strap": "(Case Study)",
         "client": "Pacha Mana",
         "services": "Shopify Website, Ecommerce, SEO & Klaviyo Email Marketing",
         "lede": "Pacha Mana is a ceremonial cacao company offering pure Peruvian cacao for daily ritual, wellness and ceremony. The brand needed a stronger digital foundation that could communicate the quality and integrity of its offerings, improve its visibility in search and create a more seamless journey from discovery to purchase and long-term customer retention.",
         "body": "<p>We designed and developed Pacha Mana’s website, transitioned the company to Shopify and built a connected ecommerce ecosystem supported by ongoing SEO, automated Klaviyo email marketing and subscription strategy.</p>",
-        "orbit_title": "Connected ecosystem",
+        "image_ratio": "portrait",
+        "orbit_title": "(Connected ecosystem)",
         "orbit_status": "Live",
         "core_label": "Pacha Mana"
       }
@@ -105,7 +106,8 @@
         "url_label": "pachamana.com",
         "link": "https://pachamana.com",
         "link_label": "Visit site",
-        "caption": "The live Pacha Mana storefront, designed and developed on Shopify."
+        "caption": "The live Pacha Mana storefront, designed and developed on Shopify.",
+        "hint": "Hover to scroll the site"
       }
     },
     "scope": {
@@ -227,11 +229,12 @@
         "item_13"
       ],
       "settings": {
-        "strap": "Scope",
+        "strap": "(Scope)",
         "heading": "Our work",
         "heading_accent": "included",
         "show_count": true,
-        "count_label": "services delivered"
+        "count_label": "services delivered",
+        "intro": ""
       }
     },
     "chapters": {
@@ -272,16 +275,17 @@
         "chapter_3"
       ],
       "settings": {
-        "strap": "The Story",
+        "strap": "(The Story)",
         "heading": "How we",
         "heading_accent": "approached it",
+        "show_toc": false,
         "toc_label": "In this case study"
       }
     },
     "testimonial": {
       "type": "csl-quote",
       "settings": {
-        "strap": "Client Words",
+        "strap": "(Client Words)",
         "quote": "Working with Ukiyo Prod. has been a huge help. We originally connected to migrate from WordPress to Shopify and the transition required building out the backend SEO correctly. The job was well done and continues to be optimized afterward. Their support is consistently reliable, and I really value the partnership we’ve built. Would be happy to recommend them to anyone looking to grow their business.",
         "author": "Justin",
         "role": "Pachamana Cacao"
@@ -290,19 +294,20 @@
     "result": {
       "type": "csl-result",
       "settings": {
-        "strap": "The Result",
+        "strap": "(The Result)",
         "statement": "Pacha Mana now has a more scalable digital foundation that brings its website, Shopify store, organic search strategy, automated email marketing and subscription offerings into one connected customer experience.",
         "text": "The project created a clearer path from search and brand discovery to education, purchase and long-term retention. It also gave the Pacha Mana team greater control over its ecommerce operations and a stronger foundation for sustainable digital growth.",
         "primary_label": "Start your project",
         "primary_url": "https://tidycal.com/salesautomateiq/consultation",
         "secondary_label": "Visit pachamana.com",
-        "secondary_url": "https://pachamana.com"
+        "secondary_url": "https://pachamana.com",
+        "secondary_new_tab": true
       }
     },
     "next": {
       "type": "csl-next",
       "settings": {
-        "strap": "Next Case Study",
+        "strap": "(Next Case Study)",
         "name": "Academy of Oracle Arts",
         "services": "Shopify Website, Digital Marketing, Social Media, Paid Ads & SEO",
         "url": "/pages/academy-of-oracle-arts-case-study",

@@ -101,12 +101,13 @@
         "accent_2": "#e2bd6d",
         "back_label": "All work",
         "back_url": "/pages/work",
-        "strap": "Case Study",
+        "strap": "(Case Study)",
         "client": "Academy of Oracle Arts",
         "services": "Shopify Website, Digital Marketing, Social Media, Paid Ads & SEO",
         "lede": "The Academy of Oracle Arts is an educational platform offering courses, teachings and immersive experiences rooted in ancient wisdom, divination and the oracle arts.",
         "body": "<p>The Academy needed a more cohesive digital presence that could communicate the depth of its work, support its expanding course offerings and create a clearer journey from discovering the brand to enrolling in a program.</p><p>We designed a new website for the Academy and are transitioning the organization from WordPress to Shopify, creating a more flexible and scalable platform for managing its courses, content, events and digital marketing.</p>",
-        "orbit_title": "Connected ecosystem",
+        "image_ratio": "portrait",
+        "orbit_title": "(Connected ecosystem)",
         "orbit_status": "In progress",
         "core_label": "Academy of Oracle Arts"
       }
@@ -272,11 +273,12 @@
         "item_19"
       ],
       "settings": {
-        "strap": "Scope",
+        "strap": "(Scope)",
         "heading": "Our work",
         "heading_accent": "included",
         "show_count": true,
-        "count_label": "services in scope"
+        "count_label": "services in scope",
+        "intro": ""
       }
     },
     "chapters": {
@@ -341,26 +343,29 @@
         "chapter_6"
       ],
       "settings": {
-        "strap": "The Story",
+        "strap": "(The Story)",
         "heading": "How we",
         "heading_accent": "approached it",
+        "show_toc": false,
         "toc_label": "In this case study"
       }
     },
     "result": {
       "type": "csl-result",
       "settings": {
-        "strap": "The Result",
+        "strap": "(The Result)",
         "statement": "The Academy of Oracle Arts is building a more connected and scalable digital presence that brings together its website, courses, educational content, organic social media, Pinterest, paid advertising and SEO strategy.",
         "text": "This work has created a clearer path from initial discovery to deeper education and course enrollment while giving the Academy a stronger foundation for consistently sharing its teachings, supporting its faculty and growing its community across multiple digital channels.",
         "primary_label": "Start your project",
-        "primary_url": "https://tidycal.com/salesautomateiq/consultation"
+        "primary_url": "https://tidycal.com/salesautomateiq/consultation",
+        "secondary_label": "",
+        "secondary_new_tab": true
       }
     },
     "next": {
       "type": "csl-next",
       "settings": {
-        "strap": "Next Case Study",
+        "strap": "(Next Case Study)",
         "name": "Aniwa",
         "services": "Ongoing Webmaster Support, Website Optimization & SEO",
         "url": "/pages/aniwa-case-study",

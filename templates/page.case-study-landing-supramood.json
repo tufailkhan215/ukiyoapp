@@ -1,0 +1,266 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "csl-hero",
+      "blocks": {
+        "fact_1": {
+          "type": "fact",
+          "settings": {
+            "label": "Client",
+            "value": "Supramood"
+          }
+        },
+        "fact_2": {
+          "type": "fact",
+          "settings": {
+            "label": "Category",
+            "value": "Branding / Lifestyle & Wellness"
+          }
+        },
+        "fact_3": {
+          "type": "fact",
+          "settings": {
+            "label": "Focus",
+            "value": "Strategy, content & affiliate support"
+          }
+        }
+      },
+      "block_order": [
+        "fact_1",
+        "fact_2",
+        "fact_3"
+      ],
+      "settings": {
+        "accent": "#e95278",
+        "accent_2": "#9d1f43",
+        "back_label": "All work",
+        "back_url": "/pages/work",
+        "strap": "(Case Study)",
+        "client": "Supramood",
+        "services": "Brand Strategy, Website Redesign & Digital Marketing",
+        "lede": "A Connected Brand Experience Across E-commerce, Content & Community.",
+        "body": "",
+        "image": "shopify://shop_images/4_4192c34b-000c-4fd5-be7c-350b15f33157.webp",
+        "image_ratio": "portrait",
+        "orbit_title": "(Connected ecosystem)",
+        "orbit_status": "",
+        "core_label": "Supramood"
+      }
+    },
+    "gallery": {
+      "type": "csl-gallery",
+      "blocks": {
+        "image_1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1_9e4980dd-8adf-4e14-b342-ed62d92822c2.webp",
+            "caption": ""
+          }
+        },
+        "image_2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/2_528d9138-b021-4a76-9cd9-0bc2121d9dfd.webp",
+            "caption": ""
+          }
+        },
+        "image_3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/3_b593cdfd-b9b0-40e0-a58d-48b6557c3850.webp",
+            "caption": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_1",
+        "image_2",
+        "image_3"
+      ],
+      "settings": {
+        "strap": "(Selected Work)",
+        "heading": "",
+        "heading_accent": "",
+        "columns": "3",
+        "bordered": false
+      }
+    },
+    "scope": {
+      "type": "csl-scope",
+      "blocks": {
+        "group_1": {
+          "type": "group",
+          "settings": {
+            "title": "Expected outcomes"
+          }
+        },
+        "item_01": {
+          "type": "item",
+          "settings": {
+            "text": "Establish a clear brand strategy and consistent identity across customer touchpoints."
+          }
+        },
+        "item_02": {
+          "type": "item",
+          "settings": {
+            "text": "Redesign the existing website with intuitive navigation, a cohesive visual experience, and a smoother path to purchase."
+          }
+        },
+        "item_03": {
+          "type": "item",
+          "settings": {
+            "text": "Optimize SEO to support organic visibility and product discovery."
+          }
+        },
+        "item_04": {
+          "type": "item",
+          "settings": {
+            "text": "Produce high-quality photography, video, and podcast content that communicates the brand’s values."
+          }
+        },
+        "item_05": {
+          "type": "item",
+          "settings": {
+            "text": "Connect email automations, UGC initiatives, and affiliate partnerships to support customer engagement and retention."
+          }
+        }
+      },
+      "block_order": [
+        "group_1",
+        "item_01",
+        "item_02",
+        "item_03",
+        "item_04",
+        "item_05"
+      ],
+      "settings": {
+        "strap": "(Scope)",
+        "heading": "Our work",
+        "heading_accent": "included",
+        "show_count": true,
+        "count_label": "goals",
+        "intro": ""
+      }
+    },
+    "chapters": {
+      "type": "csl-chapters",
+      "blocks": {
+        "chapter_1": {
+          "type": "chapter",
+          "settings": {
+            "title": "Client expectations",
+            "text": "<p>Supramood needed a cohesive digital presence that reflected its lifestyle and wellness positioning while making it easier for customers to discover, connect with, and shop the brand.</p><p>The scope brought together brand strategy, a redesign of their existing e-commerce website, SEO optimization, and original photo and video content. They also wanted to extend their brand story through a dedicated podcast, automated email marketing, and opportunities for user-generated content and affiliate partnerships.</p>"
+          }
+        },
+        "chapter_2": {
+          "type": "chapter",
+          "settings": {
+            "title": "How we did it",
+            "text": "<p>We began by refining Supramood’s brand foundations, aligning its positioning, messaging, and visual direction. That strategy guided the website redesign and content creation, bringing consistency to how the brand looked, sounded, and connected with its audience.</p><p>Working within their existing website platform, we refreshed the design, improved the user experience, and optimized the site’s SEO. We also integrated additional payment options to give customers more flexibility at checkout.</p><p>To bring the brand story to life, we produced original photography and video assets and introduced a dedicated podcast series. Email automations connected the shopping experience with relevant follow-up communications, while affiliate program development supported the brand’s broader goals for community participation and UGC partnerships.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "chapter_1",
+        "chapter_2"
+      ],
+      "settings": {
+        "strap": "(The Story)",
+        "heading": "How we",
+        "heading_accent": "approached it",
+        "show_toc": false,
+        "toc_label": "In this case study"
+      }
+    },
+    "stats": {
+      "type": "csl-stats",
+      "blocks": {
+        "stat_1": {
+          "type": "stat",
+          "settings": {
+            "value": "25K+",
+            "label": "Monthly Recurring Revenue",
+            "description": "Reached within the first 12 months."
+          }
+        },
+        "stat_2": {
+          "type": "stat",
+          "settings": {
+            "value": "350%",
+            "label": "Growth in Social Following",
+            "description": "More than quadrupled the brand’s social media audience."
+          }
+        },
+        "stat_3": {
+          "type": "stat",
+          "settings": {
+            "value": "70%",
+            "label": "Increase in Conversions",
+            "description": "Increased conversions by 70% through reactive email marketing that re-engaged customers and encouraged purchases."
+          }
+        },
+        "stat_4": {
+          "type": "stat",
+          "settings": {
+            "value": "800%",
+            "label": "Monthly Subscriptions",
+            "description": "Achieved an 800% increase in monthly subscriptions over one year."
+          }
+        }
+      },
+      "block_order": [
+        "stat_1",
+        "stat_2",
+        "stat_3",
+        "stat_4"
+      ],
+      "settings": {
+        "strap": "(Results)",
+        "heading": "The numbers",
+        "heading_accent": ""
+      }
+    },
+    "result": {
+      "type": "csl-result",
+      "settings": {
+        "strap": "(The Result)",
+        "statement": "Cohesive brand identity across all channels.",
+        "text": "Engaging podcast driving audience growth, automated email campaigns nurturing leads and a successful affiliate program generating revenue.",
+        "primary_label": "Start your project",
+        "primary_url": "https://tidycal.com/salesautomateiq/consultation",
+        "secondary_label": "",
+        "secondary_new_tab": true
+      }
+    },
+    "next": {
+      "type": "csl-next",
+      "settings": {
+        "strap": "(Next Case Study)",
+        "name": "DJI",
+        "services": "Aerial Photography, Drone Video & Product Storytelling",
+        "url": "/pages/dji-case-study",
+        "accent": "#4cc9f0",
+        "all_label": "Back to all work",
+        "all_url": "/pages/work"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "gallery",
+    "scope",
+    "chapters",
+    "stats",
+    "result",
+    "next"
+  ]
+}
