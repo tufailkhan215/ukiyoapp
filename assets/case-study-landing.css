@@ -137,7 +137,7 @@
   font-family: var(--csl-display);
   font-weight: 400;
   /* Sized from the longest word (--len, set in Liquid) so any client name fits its column. */
-  font-size: clamp(1.1rem, calc((100vw - 56px) / (var(--len, 7) * 1.45)), 8rem);
+  font-size: clamp(1rem, calc((100vw - 56px) / (var(--len, 7) * 1.45)), 8rem);
   line-height: .95;
   letter-spacing: -.005em;
   text-transform: uppercase;
@@ -150,7 +150,7 @@
   hyphens: none;
 }
 @supports (width: 1cqi) {
-  .csl-hero__name { font-size: clamp(1.1rem, calc(100cqi / (var(--len, 7) * 1.45)), 8rem); }
+  .csl-hero__name { font-size: clamp(1rem, calc(100cqi / (var(--len, 7) * 1.45)), 8rem); }
 }
 .csl-hero__services {
   display: flex;
@@ -431,14 +431,14 @@
   display: block;
   margin-top: 20px;
   font-family: var(--csl-display);
-  font-size: clamp(1.1rem, calc((100vw - 120px) / (var(--len, 7) * 1.45)), 5rem);
+  font-size: clamp(.85rem, calc((100vw - 120px) / (var(--len, 7) * 1.45)), 5rem);
   line-height: .95;
   text-transform: uppercase;
   color: #fff;
   word-break: keep-all;
 }
 @supports (width: 1cqi) {
-  .csl-next__name { font-size: clamp(1.1rem, calc(100cqi / (var(--len, 7) * 1.45)), 5rem); }
+  .csl-next__name { font-size: clamp(.85rem, calc(100cqi / (var(--len, 7) * 1.45)), 5rem); }
 }
 .csl-next__services { display: block; margin-top: 16px; font-size: 12px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--csl-muted); }
 .csl-next__arrow {
@@ -456,7 +456,7 @@
 }
 .csl-next__arrow svg { width: 38%; height: 38%; }
 @media (max-width: 767px) {
-  .csl-next__card { padding: 28px 24px 100px; }
+  .csl-next__card { padding: 28px 20px 100px; }
   .csl-next__arrow { top: auto; bottom: 24px; right: 24px; width: 56px; transform: none; }
   .csl-next .csl-strap { letter-spacing: .22em; }
 }
