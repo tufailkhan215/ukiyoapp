@@ -604,6 +604,7 @@
         "project_paMYUg": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/ROTR_Logo_Large_Gold_and_Black_2.webp",
             "category": "Entertainment",
             "title": "Reggae On The River",
             "description": "Iconic entertainment venue content creation and brand activation.",
@@ -613,6 +614,7 @@
         "project_BBjmdw": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/Inverted_Coachella_logo_on_black.png",
             "category": "Entertainment",
             "title": "Coachella",
             "description": "Iconic entertainment venue content creation and brand activation.",
@@ -637,6 +639,7 @@
         "project_3WEiLG": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/images_6_59e157da-f97e-4174-8789-ae3a8681b412.jpg",
             "category": "Entertainment",
             "title": "Resiklonyc",
             "description": "Iconic entertainment venue content creation and brand activation.",
@@ -819,6 +822,90 @@
             "gallery_image_3": "shopify://shop_images/2_1213ca2c-9cff-4d89-a009-2d2c74e4a5eb.webp",
             "case_study_link": ""
           }
+        },
+        "project_UQwUkW": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge_1.webp",
+            "category": "Entertainment",
+            "title": "TheHundreds",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/4_47d72b68-e8e3-4a24-85b4-aa82ab0778ad.webp",
+            "gallery_image_3": "shopify://shop_images/2_1213ca2c-9cff-4d89-a009-2d2c74e4a5eb.webp",
+            "case_study_link": ""
+          }
+        },
+        "project_criwcg": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge_1.webp",
+            "category": "Entertainment",
+            "title": "ArtBasel",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/4_47d72b68-e8e3-4a24-85b4-aa82ab0778ad.webp",
+            "gallery_image_3": "shopify://shop_images/2_1213ca2c-9cff-4d89-a009-2d2c74e4a5eb.webp",
+            "case_study_link": ""
+          }
+        },
+        "project_yHUCFz": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge_1.webp",
+            "category": "Entertainment",
+            "title": "Lightning In A Bottle",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/4_47d72b68-e8e3-4a24-85b4-aa82ab0778ad.webp",
+            "gallery_image_3": "shopify://shop_images/2_1213ca2c-9cff-4d89-a009-2d2c74e4a5eb.webp",
+            "case_study_link": ""
+          }
+        },
+        "project_BLrpDt": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge_1.webp",
+            "category": "Entertainment",
+            "title": "Finishline",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/4_47d72b68-e8e3-4a24-85b4-aa82ab0778ad.webp",
+            "gallery_image_3": "shopify://shop_images/2_1213ca2c-9cff-4d89-a009-2d2c74e4a5eb.webp",
+            "case_study_link": ""
+          }
+        },
+        "project_6WGDRC": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge_1.webp",
+            "category": "Entertainment",
+            "title": "Adidas",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/4_47d72b68-e8e3-4a24-85b4-aa82ab0778ad.webp",
+            "gallery_image_3": "shopify://shop_images/2_1213ca2c-9cff-4d89-a009-2d2c74e4a5eb.webp",
+            "case_study_link": ""
+          }
+        },
+        "project_CVnLkw": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge_1.webp",
+            "category": "Entertainment",
+            "title": "ViorWoodworks",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/4_47d72b68-e8e3-4a24-85b4-aa82ab0778ad.webp",
+            "gallery_image_3": "shopify://shop_images/2_1213ca2c-9cff-4d89-a009-2d2c74e4a5eb.webp",
+            "case_study_link": ""
+          }
+        },
+        "project_cRtYyW": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge_1.webp",
+            "category": "Entertainment",
+            "title": "Artifact Guardians",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/4_47d72b68-e8e3-4a24-85b4-aa82ab0778ad.webp",
+            "gallery_image_3": "shopify://shop_images/2_1213ca2c-9cff-4d89-a009-2d2c74e4a5eb.webp",
+            "case_study_link": ""
+          }
         }
       },
       "block_order": [
@@ -857,7 +944,14 @@
         "project_yYfnrk",
         "project_pz6Yaq",
         "project_9c9jBK",
-        "project_qYmWfm"
+        "project_qYmWfm",
+        "project_UQwUkW",
+        "project_criwcg",
+        "project_yHUCFz",
+        "project_BLrpDt",
+        "project_6WGDRC",
+        "project_CVnLkw",
+        "project_cRtYyW"
       ],
       "name": "Featured Work",
       "settings": {
