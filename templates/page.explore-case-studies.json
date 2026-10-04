@@ -906,6 +906,54 @@
             "gallery_image_3": "shopify://shop_images/2_1213ca2c-9cff-4d89-a009-2d2c74e4a5eb.webp",
             "case_study_link": ""
           }
+        },
+        "project_iWWwUW": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge_1.webp",
+            "category": "Entertainment",
+            "title": "SweetSpirit Tattoo",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/4_47d72b68-e8e3-4a24-85b4-aa82ab0778ad.webp",
+            "gallery_image_3": "shopify://shop_images/2_1213ca2c-9cff-4d89-a009-2d2c74e4a5eb.webp",
+            "case_study_link": ""
+          }
+        },
+        "project_7NPVHe": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge_1.webp",
+            "category": "Entertainment",
+            "title": "Soma Rosa",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/4_47d72b68-e8e3-4a24-85b4-aa82ab0778ad.webp",
+            "gallery_image_3": "shopify://shop_images/2_1213ca2c-9cff-4d89-a009-2d2c74e4a5eb.webp",
+            "case_study_link": ""
+          }
+        },
+        "project_GJEiUr": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge_1.webp",
+            "category": "Entertainment",
+            "title": "Limitless Fitness",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/4_47d72b68-e8e3-4a24-85b4-aa82ab0778ad.webp",
+            "gallery_image_3": "shopify://shop_images/2_1213ca2c-9cff-4d89-a009-2d2c74e4a5eb.webp",
+            "case_study_link": ""
+          }
+        },
+        "project_BxKegp": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge_1.webp",
+            "category": "Entertainment",
+            "title": "Limitless Fitness",
+            "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/4_47d72b68-e8e3-4a24-85b4-aa82ab0778ad.webp",
+            "gallery_image_3": "shopify://shop_images/2_1213ca2c-9cff-4d89-a009-2d2c74e4a5eb.webp",
+            "case_study_link": ""
+          }
         }
       },
       "block_order": [
@@ -951,7 +999,11 @@
         "project_BLrpDt",
         "project_6WGDRC",
         "project_CVnLkw",
-        "project_cRtYyW"
+        "project_cRtYyW",
+        "project_iWWwUW",
+        "project_7NPVHe",
+        "project_GJEiUr",
+        "project_BxKegp"
       ],
       "name": "Featured Work",
       "settings": {
