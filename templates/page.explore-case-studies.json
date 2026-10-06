@@ -695,6 +695,7 @@
         "project_a4BMWz": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/images_1.png",
             "category": "Entertainment",
             "title": "Life Force Academy",
             "description": "Iconic entertainment venue content creation and brand activation.",
