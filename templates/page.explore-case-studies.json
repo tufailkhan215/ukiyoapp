@@ -859,6 +859,7 @@
         "project_BLrpDt": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/1953.png",
             "category": "Entertainment",
             "title": "Finishline",
             "description": "Iconic entertainment venue content creation and brand activation.",
