@@ -671,8 +671,9 @@
         "project_98FKXA": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-10-05_at_10.03.40_PM.png",
             "category": "Entertainment",
-            "title": "Manabeachouse",
+            "title": "Manobeachouse",
             "description": "Iconic entertainment venue content creation and brand activation.",
             "case_study_link": ""
           }
