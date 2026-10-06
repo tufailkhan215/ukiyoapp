@@ -672,10 +672,11 @@
         "project_kEp4Rj": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/Supramood___Lifestyle___Drink_15.jpg",
             "category": "Entertainment",
             "title": "Supramood",
             "description": "Iconic entertainment venue content creation and brand activation.",
-            "case_study_link": ""
+            "case_study_link": "shopify://pages/supramood_new"
           }
         },
         "project_98FKXA": {
