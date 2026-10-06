@@ -62,7 +62,6 @@
       "blocks": {
         "case_study_DtTeee": {
           "type": "case_study",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/1_3f7fbe2a-dabc-4cdb-95d6-b9a028e362a9.webp",
             "name": "RESIKLO",
@@ -72,7 +71,6 @@
         },
         "case_study_NWQFja": {
           "type": "case_study",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/2_1b9fb776-6778-41f8-8895-8180aeb8ab12.webp",
             "name": "Fur Traders",
@@ -80,19 +78,8 @@
             "url": "shopify://pages/copy-of-case-study"
           }
         },
-        "case_study_idhENK": {
-          "type": "case_study",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/3_ee95539c-7b78-4e3f-90c4-31755702cccc.webp",
-            "name": "The place of south pine",
-            "tag": "Branding",
-            "url": "shopify://pages/website-design-content-strategy"
-          }
-        },
         "case_study_6XxLrz": {
           "type": "case_study",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/4_42592dca-a3e6-4528-9ebc-14b720f02703.webp",
             "name": "Dynamic Autoworks",
@@ -102,7 +89,6 @@
         },
         "case_study_438jgR": {
           "type": "case_study",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/5_c0b35b9b-8246-4218-9f3d-175821171a47.webp",
             "name": "Supramood",
@@ -112,7 +98,6 @@
         },
         "case_study_ceBNyY": {
           "type": "case_study",
-          "disabled": true,
           "settings": {
             "name": "RESIKLO",
             "tag": "Branding",
@@ -121,7 +106,6 @@
         },
         "case_study_fnjwTn": {
           "type": "case_study",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/6_b11cbb9c-32b4-4b8f-b6c8-12ec9222f3b8.webp",
             "name": "Mano Beach House",
@@ -131,7 +115,6 @@
         },
         "case_study_HyTWqf": {
           "type": "case_study",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/9.webp",
             "name": "Hotel Tugu | BAli",
@@ -141,7 +124,6 @@
         },
         "case_study_tBaeif": {
           "type": "case_study",
-          "disabled": true,
           "settings": {
             "name": "RESIKLO",
             "tag": "Branding",
@@ -150,7 +132,6 @@
         },
         "case_study_iFnNf9": {
           "type": "case_study",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/8.avif",
             "name": "Life Force Academy",
@@ -160,7 +141,6 @@
         },
         "case_study_pfCcXG": {
           "type": "case_study",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/botanical-bitters-why-bitter-drinks-taste-better-and-how-to-balance-them.png",
             "name": "POLAROID",
@@ -170,7 +150,6 @@
         },
         "case_study_qrAGpY": {
           "type": "case_study",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/10.webp",
             "name": "Academy of Oracle Arts",
@@ -180,7 +159,6 @@
         },
         "case_study_8jeqcH": {
           "type": "case_study",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/11.webp",
             "name": "Coachella",
@@ -190,7 +168,6 @@
         },
         "case_study_Erj6iL": {
           "type": "case_study",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/12_f9f25ff6-09b6-4b99-a532-4c2a79aecb34.jpg",
             "name": "Wandrd",
@@ -202,7 +179,6 @@
       "block_order": [
         "case_study_DtTeee",
         "case_study_NWQFja",
-        "case_study_idhENK",
         "case_study_6XxLrz",
         "case_study_438jgR",
         "case_study_ceBNyY",
@@ -643,7 +619,7 @@
             "category": "Entertainment",
             "title": "Resiklonyc",
             "description": "Iconic entertainment venue content creation and brand activation.",
-            "case_study_link": "shopify://pages/resiklo"
+            "case_study_link": ""
           }
         },
         "project_UDGzxn": {
@@ -657,7 +633,7 @@
             "gallery_image_3": "shopify://shop_images/3_2ba60f16-c00a-4c3b-8d92-b782d64f38b0.webp",
             "gallery_image_4": "shopify://shop_images/4_9b22eeb2-57bc-419b-b01a-13753511aab5.webp",
             "gallery_image_5": "shopify://shop_images/1_84442bc5-eda9-4fd5-965d-bd7f24c90482.webp",
-            "case_study_link": "shopify://pages/copy-of-case-study"
+            "case_study_link": ""
           }
         },
         "project_eWJLYy": {
@@ -672,11 +648,10 @@
         "project_kEp4Rj": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/Supramood___Lifestyle___Drink_15.jpg",
             "category": "Entertainment",
             "title": "Supramood",
             "description": "Iconic entertainment venue content creation and brand activation.",
-            "case_study_link": "shopify://pages/supramood_new"
+            "case_study_link": ""
           }
         },
         "project_98FKXA": {
