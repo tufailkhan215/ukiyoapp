@@ -661,10 +661,11 @@
         "project_kEp4Rj": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/2_c08e91bc-f6ed-479c-8a2d-c359aa9d1aa3.webp",
             "category": "Entertainment",
             "title": "Supramood",
             "description": "Iconic entertainment venue content creation and brand activation.",
-            "case_study_link": ""
+            "case_study_link": "shopify://pages/supramood_new"
           }
         },
         "project_98FKXA": {
