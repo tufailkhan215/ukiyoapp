@@ -871,7 +871,7 @@
         "project_6WGDRC": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge_1.webp",
+            "image": "shopify://shop_images/unnamed_1.png",
             "category": "Entertainment",
             "title": "Adidas",
             "description": "Iconic entertainment venue content creation and brand activation.",
@@ -882,6 +882,7 @@
         },
         "project_CVnLkw": {
           "type": "project",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge_1.webp",
             "category": "Entertainment",
@@ -894,6 +895,7 @@
         },
         "project_cRtYyW": {
           "type": "project",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge_1.webp",
             "category": "Entertainment",
@@ -906,6 +908,7 @@
         },
         "project_iWWwUW": {
           "type": "project",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge_1.webp",
             "category": "Entertainment",
@@ -919,17 +922,16 @@
         "project_7NPVHe": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge_1.webp",
+            "image": "shopify://shop_images/Soma_Rosa.webp",
             "category": "Entertainment",
             "title": "Soma Rosa",
             "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_image_2": "shopify://shop_images/4_47d72b68-e8e3-4a24-85b4-aa82ab0778ad.webp",
-            "gallery_image_3": "shopify://shop_images/2_1213ca2c-9cff-4d89-a009-2d2c74e4a5eb.webp",
             "case_study_link": ""
           }
         },
         "project_GJEiUr": {
           "type": "project",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge_1.webp",
             "category": "Entertainment",
@@ -942,6 +944,7 @@
         },
         "project_BxKegp": {
           "type": "project",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge_1.webp",
             "category": "Entertainment",
