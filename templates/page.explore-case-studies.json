@@ -680,9 +680,14 @@
         "project_cmYXEe": {
           "type": "project",
           "settings": {
+            "image": "shopify://shop_images/29_2.webp",
             "category": "Entertainment",
             "title": "Hotel Tugu | BAli",
             "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/2_ae425ecf-0cdc-4c37-bc86-ce6f1b13408d.webp",
+            "gallery_image_3": "shopify://shop_images/6_7405af2c-52cc-4a1e-8a0d-ccab206cd77b.webp",
+            "gallery_image_4": "shopify://shop_images/5_a6f4afe7-03ec-4868-ad2d-fa4c9dc1c8b7.webp",
+            "gallery_image_5": "shopify://shop_images/4_cfa38a31-359f-467b-9bd4-074f2b889031.webp",
             "case_study_link": ""
           }
         },
