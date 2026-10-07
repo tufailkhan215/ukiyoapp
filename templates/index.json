@@ -23,22 +23,22 @@
         "mobile_video_position": 75,
         "show_primary": false,
         "cta_primary_text": "Book a Discovery Call",
-        "cta_primary_link": "#",
+        "cta_primary_link": "https://tidycal.com/salesautomateiq/consultation",
         "show_secondary": true,
         "cta_secondary_text": "View Our Work",
-        "cta_secondary_link": "shopify://pages/work",
+        "cta_secondary_link": "shopify:\/\/pages\/work",
         "show_statement_primary": true,
         "show_scroll": true,
         "scroll_label": "Scroll",
         "bottom_note": "Independent thinking. Shared ambition.",
-        "hero_video_url": "https://pub-86dc5b5484314368ac5436a674b0d919.r2.dev/cloudinarry%20to%20cloudflare/baby-track-video_crqby5.mp4",
-        "cloud_image_url": "https://res.cloudinary.com/dsdhxhhqh/image/upload/v1781500777/cloude_vj4pjv.png",
+        "hero_video_url": "https:\/\/pub-86dc5b5484314368ac5436a674b0d919.r2.dev\/cloudinarry%20to%20cloudflare\/baby-track-video_crqby5.mp4",
+        "cloud_image_url": "https:\/\/res.cloudinary.com\/dsdhxhhqh\/image\/upload\/v1781500777\/cloude_vj4pjv.png",
         "statement_color": "#d92323",
         "statement_heading": "Built to move your brand forward.",
         "statement_intro": "Every brand has something worth bringing into the world. We help you give it shape, presence, and purpose.",
         "statement_body": "From the first idea to the experience your audience remembers, we connect brand strategy, design, digital experiences, and marketing around a clear direction.",
         "statement_body_2": "We work alongside your team to make the ambitious feel possible—with thoughtful creative, practical systems, and care for the details that make you different.",
-        "statement_video_url": "https://pub-86dc5b5484314368ac5436a674b0d919.r2.dev/cloudinarry%20to%20cloudflare/track-video_2_haxdch.mp4"
+        "statement_video_url": "https:\/\/pub-86dc5b5484314368ac5436a674b0d919.r2.dev\/cloudinarry%20to%20cloudflare\/track-video_2_haxdch.mp4"
       }
     },
     "marquee": {
@@ -187,14 +187,14 @@
             "before_heading": "BEFORE UKIYO",
             "after_heading": "AFTER UKIYO",
             "timeline": "In 6 months",
-            "before_revenue": "$2500 / mo",
-            "before_leads": "50 / month",
+            "before_revenue": "$2500 \/ mo",
+            "before_leads": "50 \/ month",
             "before_conversion": "1.2%",
-            "before_hours": "80hrs / week manual work",
-            "after_revenue": "$30,000/ mo",
-            "after_leads": "320 / month",
+            "before_hours": "80hrs \/ week manual work",
+            "after_revenue": "$30,000\/ mo",
+            "after_leads": "320 \/ month",
             "after_conversion": "7.8%",
-            "after_hours": "10hrs / week (automated)",
+            "after_hours": "10hrs \/ week (automated)",
             "quote": "Ukiyo transformed our entire business. We went from struggling to thriving.",
             "attribution": "E-Commerce Brand • Fashion & Apparel"
           }
@@ -206,14 +206,14 @@
             "before_heading": "BEFORE UKIYO",
             "after_heading": "AFTER UKIYO",
             "timeline": "In 6 months",
-            "before_revenue": "$8,000 / mo",
-            "before_leads": "90 / month",
+            "before_revenue": "$8,000 \/ mo",
+            "before_leads": "90 \/ month",
             "before_conversion": "0.8%",
-            "before_hours": "60hrs/week",
-            "after_revenue": "$69K/mo",
-            "after_leads": "720 /month",
+            "before_hours": "60hrs\/week",
+            "after_revenue": "$69K\/mo",
+            "after_leads": "720 \/month",
             "after_conversion": "3.2%",
-            "after_hours": "15hrs/week (automated)",
+            "after_hours": "15hrs\/week (automated)",
             "quote": "From chaos to clarity. Ukiyo built the systems we needed to scale.",
             "attribution": "SaaS Startup • B2B Software"
           }
@@ -225,14 +225,14 @@
             "before_heading": "BEFORE UKIYO",
             "after_heading": "AFTER UKIYO",
             "timeline": "In 6 months",
-            "before_revenue": "$25K/mo",
-            "before_leads": "30/month",
+            "before_revenue": "$25K\/mo",
+            "before_leads": "30\/month",
             "before_conversion": "2%",
-            "before_hours": "70hrs/week",
-            "after_revenue": "$92K/mo",
-            "after_leads": "450/month",
+            "before_hours": "70hrs\/week",
+            "after_revenue": "$92K\/mo",
+            "after_leads": "450\/month",
             "after_conversion": "5.5%",
-            "after_hours": "20hrs/week (automated)",
+            "after_hours": "20hrs\/week (automated)",
             "quote": "Our revenue tripled. Ukiyo gave us a real brand and a real pipeline.",
             "attribution": "Local Service Business • Home Services"
           }
@@ -262,7 +262,7 @@
             "subtitle": "Define your edge",
             "description": "Position your brand for category leadership with strategic foundations.",
             "link_text": "Explore",
-            "link": "https://ukiyoprod.com/pages/services-3"
+            "link": "https:\/\/ukiyoprod.com\/pages\/services-3"
           }
         },
         "service_bA8K3q": {
@@ -273,7 +273,7 @@
             "subtitle": "Scale with less friction",
             "description": "Clarify your positioning, sharpen your message, and build the strategic foundation for stronger visibility and conversion.",
             "link_text": "Explore",
-            "link": "https://ukiyoprod.com/pages/services-3"
+            "link": "https:\/\/ukiyoprod.com\/pages\/services-3"
           }
         },
         "service_MrKaX3": {
@@ -284,7 +284,7 @@
             "subtitle": "Create steadier demand",
             "description": "Implement AI-supported systems that reduce manual work, improve efficiency, and give your business more room to grow.",
             "link_text": "Explore",
-            "link": "https://ukiyoprod.com/pages/services-3"
+            "link": "https:\/\/ukiyoprod.com\/pages\/services-3"
           }
         },
         "service_GfpBDz": {
@@ -295,7 +295,7 @@
             "subtitle": "Stand out with intention",
             "description": "Build outreach and acquisition systems designed to attract qualified leads, start better conversations, and turn interest into revenue.",
             "link_text": "Explore",
-            "link": "https://ukiyoprod.com/pages/services-3"
+            "link": "https:\/\/ukiyoprod.com\/pages\/services-3"
           }
         },
         "service_Wbm4Hz": {
@@ -306,7 +306,7 @@
             "subtitle": "Tell your story",
             "description": "High-quality content that resonates with modern audiences.",
             "link_text": "Explore",
-            "link": "https://ukiyoprod.com/pages/services-3"
+            "link": "https:\/\/ukiyoprod.com\/pages\/services-3"
           }
         },
         "service_Mgcmyy": {
@@ -317,7 +317,7 @@
             "subtitle": "Create with purpose",
             "description": "Build a visual identity that feels distinct, cohesive, and aligned with how your brand wants to be remembered.",
             "link_text": "Explore",
-            "link": "https://ukiyoprod.com/pages/services-3"
+            "link": "https:\/\/ukiyoprod.com\/pages\/services-3"
           }
         }
       },
@@ -336,7 +336,7 @@
         "title_line2": "drive growth",
         "description": "We work with founders, CEOs, and leadership teams to sharpen their positioning, strengthen their marketing, and build the strategy behind sustainable growth.",
         "explore_text": "Explore all services",
-        "explore_url": "#"
+        "explore_url": "/pages/services"
       }
     },
     "value_stack_eE3PiF": {
@@ -346,7 +346,7 @@
           "type": "value_item",
           "settings": {
             "name": "AI Revenue Concierge Chatbot",
-            "desc": "Captures leads 24/7, converts DMs to sales",
+            "desc": "Captures leads 24\/7, converts DMs to sales",
             "value": "$15,000"
           }
         },
@@ -452,7 +452,7 @@
           "type": "service",
           "settings": {
             "title": "AI Revenue Concierge Chatbot",
-            "description": "Captures leads 24/7, converts DMs to sales",
+            "description": "Captures leads 24\/7, converts DMs to sales",
             "price": "$5,000",
             "roi": "+10% Average ROI Increase"
           }
@@ -537,7 +537,7 @@
           "type": "case_study",
           "settings": {
             "layout": "featured",
-            "image": "shopify://shop_images/customer-support-staff-ready-for-work.jpg",
+            "image": "shopify:\/\/shop_images\/customer-support-staff-ready-for-work.jpg",
             "category": "AI & Technology",
             "year": "2026",
             "client": "TechVenture AI",
@@ -548,14 +548,14 @@
             "result_2": "$2.4M revenue",
             "result_3": "",
             "cta_text": "View case study",
-            "link": "https://ukiyoprod.com/pages/explore-case-studies"
+            "link": "https:\/\/ukiyoprod.com\/pages\/explore-case-studies"
           }
         },
         "case_study_KxRN6k": {
           "type": "case_study",
           "settings": {
             "layout": "featured",
-            "image": "shopify://shop_images/framed-quotes-behind-bike-rack.jpg",
+            "image": "shopify:\/\/shop_images\/framed-quotes-behind-bike-rack.jpg",
             "category": "Lifestyle & Fashion",
             "year": "2026",
             "client": "Luxe Lifestyle",
@@ -566,14 +566,14 @@
             "result_2": "Featured in Vogue",
             "result_3": "",
             "cta_text": "View case study",
-            "link": "https://ukiyoprod.com/pages/explore-case-studies"
+            "link": "https:\/\/ukiyoprod.com\/pages\/explore-case-studies"
           }
         },
         "case_study_aJxdEU": {
           "type": "case_study",
           "settings": {
             "layout": "compact",
-            "image": "shopify://shop_images/motherboard-with-wood-grain.jpg",
+            "image": "shopify:\/\/shop_images\/motherboard-with-wood-grain.jpg",
             "category": "Sustainability",
             "year": "2026",
             "client": "",
@@ -584,14 +584,14 @@
             "result_2": "",
             "result_3": "",
             "cta_text": "View case study",
-            "link": "https://ukiyoprod.com/pages/explore-case-studies"
+            "link": "https:\/\/ukiyoprod.com\/pages\/explore-case-studies"
           }
         },
         "case_study_UDM96r": {
           "type": "case_study",
           "settings": {
             "layout": "compact",
-            "image": "shopify://shop_images/dinner-salad.jpg",
+            "image": "shopify:\/\/shop_images\/dinner-salad.jpg",
             "category": "Food & Beverage",
             "year": "2026",
             "client": "",
@@ -602,7 +602,7 @@
             "result_2": "",
             "result_3": "",
             "cta_text": "View case study",
-            "link": "https://ukiyoprod.com/pages/explore-case-studies"
+            "link": "https:\/\/ukiyoprod.com\/pages\/explore-case-studies"
           }
         }
       },
@@ -627,7 +627,7 @@
         "footer_eyebrow": "Have something ambitious in mind?",
         "footer_title": "Let’s build what comes next.",
         "footer_button_text": "Start a Conversation",
-        "footer_button_url": "shopify://pages/blog-page",
+        "footer_button_url": "shopify:\/\/pages\/blog-page",
         "background_color": "#050505",
         "text_color": "#f5f5f2",
         "muted_color": "#777774",
@@ -698,7 +698,7 @@
             "icon": "clock",
             "icon_bg": "bg-red-500",
             "title": "DIY Design Disasters",
-            "metric": "47 hours/week",
+            "metric": "47 hours\/week",
             "description": "Spent watching Canva tutorials while your competitors hire professionals"
           }
         },
@@ -708,7 +708,7 @@
             "icon": "dollar",
             "icon_bg": "bg-orange-500",
             "title": "Money Left on Table",
-            "metric": "$127K/year",
+            "metric": "$127K\/year",
             "description": "Revenue you're missing because your website looks like it's from 2009"
           }
         },
@@ -818,7 +818,7 @@
         "with_subtitle": "Let the grown-ups handle it",
         "testimonial": "\"We went from chaos to clarity. Now I actually have time for hobbies.\"",
         "testimonial_attr": "Every Ukiyo client ever",
-        "cta_url": "https://ukiyoprod.com/pages/contact",
+        "cta_url": "https:\/\/ukiyoprod.com\/pages\/contact",
         "cta_text": "Stop Playing With Yourself",
         "math_heading": "The Math Doesn't Lie",
         "math_subheading": "Average business owner's time and money wasted annually"
@@ -830,7 +830,7 @@
         "testimonial_CXXQxE": {
           "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/avelailuna_Generate_a_30-year-old_woman_with_blonde_curly_hair__2ebe4de4-9576-4f11-97c6-1446b1e72945.png",
+            "image": "shopify:\/\/shop_images\/avelailuna_Generate_a_30-year-old_woman_with_blonde_curly_hair__2ebe4de4-9576-4f11-97c6-1446b1e72945.png",
             "quote": "Ukiyo transformed our entire digital presence. Their AI automation solutions saved us over $500K annually while dramatically improving customer satisfaction.",
             "name": "Sarah. C",
             "role": "CEO & Director of Sales"
@@ -839,7 +839,7 @@
         "testimonial_LQWVCy": {
           "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/u6852356784_Woman_holding_a_cup_of_herbal_tea_on_a_beach_terr_c1aec5ae-f3c0-44b4-858b-e6dace59f8a9_3.png",
+            "image": "shopify:\/\/shop_images\/u6852356784_Woman_holding_a_cup_of_herbal_tea_on_a_beach_terr_c1aec5ae-f3c0-44b4-858b-e6dace59f8a9_3.png",
             "quote": "The team at Ukiyo doesn't just deliver they exceed every expectation. Our brand went from unknown startup to industry leader in just 18 months.",
             "name": "Haley W",
             "role": "Founder"
@@ -848,7 +848,7 @@
         "testimonial_ixkeea": {
           "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/user.png",
+            "image": "shopify:\/\/shop_images\/user.png",
             "quote": "Strategic clarity and execution that actually moves the needle. We saw 340% growth in the first year.",
             "name": "Alex Rivera",
             "role": "CMO,  H Labs"
@@ -857,7 +857,7 @@
         "testimonial_gKdwwh": {
           "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/user.png",
+            "image": "shopify:\/\/shop_images\/user.png",
             "quote": "From brand strategy to launch, Ukiyo felt like an extension of our team. Couldn't recommend them more.",
             "name": "Jordan Lee",
             "role": "Founder, SustainCo"
@@ -885,7 +885,7 @@
           "type": "ai_gen_block_cceddf5",
           "settings": {
             "title": "WHY CLIENTS TRUST US",
-            "intro_text": "<p>Clear expectations. Thoughtful execution. No inflated promises.</p><p>We believe strong client relationships are built on transparency, responsiveness, and work that is delivered with care.</p>",
+            "intro_text": "<p>Clear expectations. Thoughtful execution. No inflated promises.<\/p><p>We believe strong client relationships are built on transparency, responsiveness, and work that is delivered with care.<\/p>",
             "feature_1_title": "Tailored Strategy",
             "feature_1_description": "Every recommendation is shaped around your business, not pulled from a template.",
             "feature_2_title": "Refined with You",
@@ -1029,7 +1029,7 @@
         "description": "We only take on 5 new clients per month to ensure premium quality. Once spots are filled, you'll have to wait until next month.",
         "countdown_label": "Offer Expires In",
         "countdown_end": "2026-03-31 23:59:59",
-        "cta_url": "https://tidycal.com/salesautomateiq/consultation",
+        "cta_url": "https:\/\/tidycal.com\/salesautomateiq\/consultation",
         "cta_new_tab": true,
         "cta_text": "Claim Your Spot Now",
         "cta_subtext": "No credit card required • Free consultation"
@@ -1071,8 +1071,8 @@
         "paragraph_1": "At Ukiyo Productions, we believe exceptional brands are built on strategy, creativity, and relentless innovation.",
         "paragraph_2": "Our team combines deep expertise in branding, content creation, and cutting-edge AI automation to help businesses scale faster.",
         "cta_text": "Learn About Us",
-        "cta_url": "/pages/about",
-        "image": "shopify://shop_images/minimalist-retail-clothing-display.jpg",
+        "cta_url": "\/pages\/about",
+        "image": "shopify:\/\/shop_images\/minimalist-retail-clothing-display.jpg",
         "video_url": "",
         "stat_1_value": "10+",
         "stat_1_label": "Years Experience",
@@ -1096,7 +1096,7 @@
         "heading": "Let's create something legendary",
         "text": "Ready to transform your brand into a market leader?",
         "button_text": "Start Your Project",
-        "button_link": "/pages/contact"
+        "button_link": "\/pages\/contact"
       }
     },
     "dynamic_cta_Rq7hkB": {
@@ -1109,7 +1109,7 @@
         "title_gradient": "something legendary",
         "subtitle": "Ready to transform your brand into a market leader?",
         "cta_text": "Start Your Project",
-        "cta_url": "/contact",
+        "cta_url": "\/contact",
         "cta_new_tab": false
       }
     }

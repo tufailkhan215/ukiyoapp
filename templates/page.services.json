@@ -36,7 +36,7 @@
         "paragraph_1": "Our work spans brand strategy, identity, and experience, delivered as a single integrated system. We lead engagements from positioning through messaging, identity design, digital experiences, and brand systems.",
         "paragraph_2": "The focus is practical by design: building brands that can be applied consistently across product, marketing, and communications.",
         "cta_text": "Book a Discovery Call",
-        "cta_url": "https://tidycal.com/salesautomateiq/consultation"
+        "cta_url": "https:\/\/tidycal.com\/salesautomateiq\/consultation"
       }
     },
     "services_category_grid_nxbLPE": {
@@ -48,7 +48,7 @@
             "icon": "sparkles",
             "title": "Brand Strategy",
             "description": "Define your edge and steer your company into the future",
-            "links_text": "Company Agent Builder| |From $5,000\n\nPartnership & Collaboration Engine|/pages/partnership-collaboration|From $1,500"
+            "links_text": "Company Agent Builder|/pages/company-agent-builder|From $5,000\n\nPartnership & Collaboration Engine|\/pages\/partnership-collaboration|From $1,500"
           }
         },
         "category_PpaMwh": {
@@ -57,7 +57,7 @@
             "icon": "zap",
             "title": "AI Automations",
             "description": "Streamline operations with intelligent solutions",
-            "links_text": "AI Revenue Concierge Chatbot|/pages/ai-revenue-concierge-chatbot-website-ig-dm|From $1,500"
+            "links_text": "AI Revenue Concierge Chatbot|\/pages\/ai-revenue-concierge-chatbot-website-ig-dm|From $1,500"
           }
         },
         "category_pygQfL": {
@@ -66,7 +66,7 @@
             "icon": "palette",
             "title": "Brand Identity",
             "description": "Stand out visually with distinctive design systems",
-            "links_text": "Graphic Design & Brand Identity|/pages/graphic-design-brand-identity|From $3,500"
+            "links_text": "Graphic Design & Brand Identity|\/pages\/graphic-design-brand-identity|From $3,500"
           }
         },
         "category_XrHHgT": {
@@ -75,7 +75,7 @@
             "icon": "globe",
             "title": "Digital Experience",
             "description": "Captivate audiences with immersive experiences",
-            "links_text": "Website & Web Development|/pages/website-web-development-services|From $5,000\n\nMobile & App Development|/pages/mobile-app-development-services|From $15,000"
+            "links_text": "Website & Web Development|\/pages\/website-web-development-services|From $5,000\n\nMobile & App Development|\/pages\/mobile-app-development-services|From $15,000"
           }
         },
         "category_ayXYEP": {
@@ -84,7 +84,7 @@
             "icon": "film",
             "title": "Content Production",
             "description": "Visual storytelling that resonates",
-            "links_text": "Monthly Content Calendar|/pages/monthly-content-calendar|From $1,200\nPinterest SEO Services|/pages/pinterest-seo-services|From $800\nSEO Blog Services|/pages/blog-service|From $3,000"
+            "links_text": "Monthly Content Calendar|\/pages\/monthly-content-calendar|From $1,200\nPinterest SEO Services|\/pages\/pinterest-seo-services|From $800\nSEO Blog Services|\/pages\/seo-blogs-service|From $3,000"
           }
         },
         "category_XAQBt7": {
@@ -93,7 +93,7 @@
             "icon": "trending-up",
             "title": "Growth Marketing",
             "description": "Data-driven strategies for sustainable growth",
-            "links_text": "Klaviyo Flows Services|/pages/klaviyo-flows-services|From $3,500\nPaid Ads Creative System|/pages/paid-ads-creative-system-no-media-buying|From $4,000\nVirtual Assistance & Admin|/pages/virtual-assistance-administrative-support|From $1,500"
+            "links_text": "Klaviyo Flows Services|\/pages\/klaviyo-flows-services|From $3,500\nPaid Ads Creative System|\/pages\/paid-ads-creative-system-no-media-buying|From $4,000\nVirtual Assistance & Admin|\/pages\/virtual-assistance-administrative-support|From $1,500"
           }
         }
       },
