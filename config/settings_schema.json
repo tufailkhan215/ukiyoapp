@@ -62,24 +62,5 @@
         "label": "Header CTA link"
       }
     ]
-  },
-  {
-    "name": "t:settings.homepage_seo.name",
-    "settings": [
-      {
-        "type": "paragraph",
-        "content": "t:settings.homepage_seo.info"
-      },
-      {
-        "type": "text",
-        "id": "homepage_seo_title",
-        "label": "t:settings.homepage_seo.title"
-      },
-      {
-        "type": "textarea",
-        "id": "homepage_seo_description",
-        "label": "t:settings.homepage_seo.description"
-      }
-    ]
   }
 ]
