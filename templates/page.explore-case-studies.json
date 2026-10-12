@@ -532,9 +532,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/Screenshot_2026-09-29_at_9.50.17_PM.png",
-            "category": "Culinary",
+            "category": "Food & Beverage",
             "title": "Pachamana",
-            "description": "Indian-inspired cuisine brand story and visual identity.",
+            "description": "Cacao rooted in ritual, bringing intention, connection, and a moment of presence to everyday life.",
             "gallery_image_2": "shopify://shop_images/gere125.png",
             "gallery_image_3": "shopify://shop_images/124213_123_6.png",
             "gallery_image_4": "shopify://shop_images/ChatGPT_Image_Sep_29_2026_01_43_32_PM-5.png",
@@ -1005,7 +1005,7 @@
         "strap": "(Our Work)",
         "title_before": "Featured",
         "title_gradient": "Projects",
-        "filters_text": "All\nAdventure Travel\nFashion & Lifestyle\nCulinary\nHospitality\nWellness & Education\nNonprofit & Community\nArt & Design\nHealthcare"
+        "filters_text": "All\nAdventure Travel\nFashion & Lifestyle\nCulinary\nHospitality\nWellness & Education\nNonprofit & Community\nArt & Design\nHealthcare\nFood & Beverage"
       }
     }
   },
