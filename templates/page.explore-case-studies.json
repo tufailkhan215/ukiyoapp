@@ -996,10 +996,13 @@
         "project_8UCqhB": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/679ac5b363598f42b95d402c_6385674f0e40d74e3e5df379_howieroll_Logo.png",
+            "image": "shopify://shop_images/DSCF0773.jpg",
             "category": "Cannabis",
             "title": "Limitless Fitness",
             "description": "Sun-grown California cannabis rooted in earth-conscious cultivation and a close connection to the land.",
+            "gallery_image_2": "shopify://shop_images/DSCF1236.jpg",
+            "gallery_image_3": "shopify://shop_images/DSCF1243.jpg",
+            "gallery_image_4": "shopify://shop_images/DSCF0738.jpg",
             "case_study_link": ""
           }
         },
