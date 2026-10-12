@@ -619,7 +619,7 @@
           "settings": {
             "image": "shopify://shop_images/25930044-A454-4EE9-BF1C-43FA0D5EA00E_52cab236-dfa4-4d67-ac5f-754a213b5320.jpg",
             "category": "Fashion & Retail",
-            "title": "Wandrd",
+            "title": "WANDRD",
             "description": "Thoughtfully designed camera bags and travel gear built for photographers, explorers, and everyday adventures.",
             "gallery_image_2": "shopify://shop_images/4_e64cd0cf-7789-4c2d-b9e3-95ef4472e9db.webp",
             "gallery_image_3": "shopify://shop_images/2_fb68f9ba-4703-4ce4-af1e-f91f07463d46.jpg",
@@ -634,7 +634,7 @@
           "settings": {
             "image": "shopify://shop_images/images_6_59e157da-f97e-4174-8789-ae3a8681b412.jpg",
             "category": "Art & Design",
-            "title": "Resiklonyc",
+            "title": "Resiklo NYC",
             "description": "Curated designer furniture and vintage finds giving distinctive pieces a new place to belong.",
             "gallery_image_2": "shopify://shop_images/3_800x_020b868f-5347-42c9-a31e-0b16443796e6.webp",
             "gallery_image_3": "shopify://shop_images/Screenshot_2026-09-19_at_2.56.17_PM_1400x_cad4f5cf-0661-46bd-9349-db266f03cc1c.webp",
@@ -648,7 +648,7 @@
           "settings": {
             "image": "shopify://shop_images/7ee553585c4b70132ae17d870bb3c04d-xxlarge_2.webp",
             "category": "Fashion & Retail",
-            "title": "Furtraders",
+            "title": "Fur Traders",
             "description": "Textured apparel, footwear, and accessories bringing a distinctive perspective to everyday style.",
             "gallery_image_2": "shopify://shop_images/2_7a32cbd8-7550-48bf-80dd-78071b3818bf.webp",
             "gallery_image_3": "shopify://shop_images/3_2ba60f16-c00a-4c3b-8d92-b782d64f38b0.webp",
@@ -661,9 +661,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/images_2_e2ce4a64-b102-4fc4-b3ad-b1a8ea5c5f52.jpg",
-            "category": "Entertainment",
-            "title": "The place of south pine",
-            "description": "Iconic entertainment venue content creation and brand activation.",
+            "category": "Food & Beverage",
+            "title": "The Place on South Pine",
+            "description": "A neighborhood dining spot bringing local character and a welcoming atmosphere to Nevada City.",
             "case_study_link": ""
           }
         },
@@ -671,9 +671,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/2_c08e91bc-f6ed-479c-8a2d-c359aa9d1aa3.webp",
-            "category": "Entertainment",
+            "category": "Food & Beverage",
             "title": "Supramood",
-            "description": "Iconic entertainment venue content creation and brand activation.",
+            "description": "Botanical elixirs bringing bold flavor and a thoughtful sense of ritual to the beverage experience.",
             "gallery_image_2": "shopify://shop_images/3_3f93ce8d-1d12-481a-8b96-e83280c5a06d.webp",
             "gallery_image_3": "shopify://shop_images/4_aea30b69-fee9-4a70-99f7-58a185919291.webp",
             "gallery_image_4": "shopify://shop_images/1_b9cf72b2-2605-409a-b899-6449210b8f24.webp",
@@ -684,9 +684,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/Screenshot_2026-10-05_at_10.03.40_PM.png",
-            "category": "Entertainment",
-            "title": "Manobeachouse",
-            "description": "Iconic entertainment venue content creation and brand activation.",
+            "category": "Hospitality & Travel",
+            "title": "Mano Beach House — Bali",
+            "description": "Laid-back beachfront dining, ocean views, and slow afternoons on Bali’s coast.",
             "case_study_link": ""
           }
         },
