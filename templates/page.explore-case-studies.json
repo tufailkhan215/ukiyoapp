@@ -696,7 +696,7 @@
             "image": "shopify://shop_images/4_cfa38a31-359f-467b-9bd4-074f2b889031.webp",
             "category": "Entertainment",
             "title": "Hotel Tugu | BAli",
-            "description": "Iconic entertainment venue content creation and brand activation.",
+            "description": "Art-filled hospitality weaving Indonesian heritage, distinctive interiors, and coastal beauty into the guest experience.",
             "gallery_image_2": "shopify://shop_images/2_ae425ecf-0cdc-4c37-bc86-ce6f1b13408d.webp",
             "gallery_image_3": "shopify://shop_images/6_7405af2c-52cc-4a1e-8a0d-ccab206cd77b.webp",
             "gallery_image_4": "shopify://shop_images/5_a6f4afe7-03ec-4868-ad2d-fa4c9dc1c8b7.webp",
@@ -708,9 +708,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/images_1.png",
-            "category": "Entertainment",
+            "category": "Wellness & Education",
             "title": "Life Force Academy",
-            "description": "Iconic entertainment venue content creation and brand activation.",
+            "description": "Yoga, meditation, and Ayurveda teachings supporting an intentional, connected approach to everyday life.",
             "case_study_link": ""
           }
         },
