@@ -948,7 +948,17 @@
           "settings": {
             "image": "shopify://shop_images/images_4_e5610c97-0c0a-464a-a438-18e9d69cd506.jpg",
             "category": "Cannabis",
-            "title": "cookiessf",
+            "title": "Monster",
+            "description": "Sun-grown California cannabis rooted in earth-conscious cultivation and a close connection to the land.",
+            "case_study_link": ""
+          }
+        },
+        "project_3ydHG7": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/images_2.png",
+            "category": "Cannabis",
+            "title": "Cukui",
             "description": "Sun-grown California cannabis rooted in earth-conscious cultivation and a close connection to the land.",
             "case_study_link": ""
           }
@@ -1029,6 +1039,7 @@
         "project_Tz6yjB",
         "project_Uh4cYa",
         "project_7fyCmb",
+        "project_3ydHG7",
         "project_GJEiUr",
         "project_BxKegp"
       ],
