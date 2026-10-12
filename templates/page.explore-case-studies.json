@@ -512,9 +512,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/Screenshot_2026-06-12_at_8.57.48_AM.webp",
-            "category": "Culinary",
+            "category": "Healthcare",
             "title": "Pinnacle Health Nursing",
-            "description": "Balinese fine dining experience captured through visual storytelling.",
+            "description": "A nursing brand centered on compassionate care, professional dedication, and the people behind healthcare.",
             "case_study_link": "/pages/pinnacle-health-nursing-case-study"
           }
         },
