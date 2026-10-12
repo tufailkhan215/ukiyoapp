@@ -546,9 +546,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/images_1_9e1331be-5f1b-4d41-8ea1-a8f95ca930fa.jpg",
-            "category": "Hospitality",
+            "category": "Adventure Travel",
             "title": "The Wild Land Experience",
-            "description": "Austin café brand activation and social media content strategy.",
+            "description": "Outdoor experiences inviting people to slow down, explore, and reconnect with the natural world.",
             "case_study_link": ""
           }
         },
