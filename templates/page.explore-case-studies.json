@@ -771,9 +771,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/29_2.webp",
-            "category": "Entertainment",
-            "title": "JI RESTAURANT | BALI INDONESIA",
-            "description": "Iconic entertainment venue content creation and brand activation.",
+            "category": "Food & Beverage",
+            "title": "Ji Restaurant — Bali",
+            "description": "Japanese-inspired dining framed by ocean views, historic details, and Bali’s coastal atmosphere.",
             "gallery_image_2": "shopify://shop_images/4_cfa38a31-359f-467b-9bd4-074f2b889031.webp",
             "gallery_image_3": "shopify://shop_images/5_a6f4afe7-03ec-4868-ad2d-fa4c9dc1c8b7.webp",
             "gallery_image_4": "shopify://shop_images/6_7405af2c-52cc-4a1e-8a0d-ccab206cd77b.webp",
@@ -785,9 +785,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/IMG_9657_1_1.webp",
-            "category": "Entertainment",
+            "category": "Media & Culture",
             "title": "HIGHSNOBIETY",
-            "description": "Iconic entertainment venue content creation and brand activation.",
+            "description": "A global perspective on fashion, design, and the people shaping contemporary culture.",
             "case_study_link": ""
           }
         },
@@ -795,9 +795,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/1_0492f2b1-de00-43ed-b734-f5e575e8fcff.webp",
-            "category": "Entertainment",
+            "category": "Hospitality & Travel",
             "title": "MAVERICK HELICOPTERS | NYC",
-            "description": "Iconic entertainment venue content creation and brand activation.",
+            "description": "Scenic helicopter experiences offering a fresh perspective on remarkable landscapes and destinations.",
             "gallery_image_2": "shopify://shop_images/2_b8ed67b8-4838-4f14-884e-ebd669703416.jpg",
             "gallery_image_3": "shopify://shop_images/IMG_6776_1.webp",
             "case_study_link": ""
@@ -806,10 +806,9 @@
         "project_9c9jBK": {
           "type": "project",
           "settings": {
-            "image": "shopify://shop_images/4_aea30b69-fee9-4a70-99f7-58a185919291.webp",
-            "category": "Entertainment",
-            "title": "CLSC | LA",
-            "description": "Iconic entertainment venue content creation and brand activation.",
+            "category": "Fashion & Retail",
+            "title": "CLSC — Los Angeles",
+            "description": "Los Angeles streetwear expressing an independent attitude through bold graphics and everyday essentials.",
             "case_study_link": ""
           }
         },
@@ -817,9 +816,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge_1.webp",
-            "category": "Entertainment",
-            "title": "Poppy.California",
-            "description": "Iconic entertainment venue content creation and brand activation.",
+            "category": "Fashion & Retail",
+            "title": "Poppy California",
+            "description": "Expressive clothing, adornments, and ritual goods bringing a free-spirited sensibility to everyday life.",
             "gallery_image_2": "shopify://shop_images/4_47d72b68-e8e3-4a24-85b4-aa82ab0778ad.webp",
             "gallery_image_3": "shopify://shop_images/2_1213ca2c-9cff-4d89-a009-2d2c74e4a5eb.webp",
             "case_study_link": ""
@@ -829,9 +828,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/images_7.jpg",
-            "category": "Entertainment",
-            "title": "TheHundreds",
-            "description": "Iconic entertainment venue content creation and brand activation.",
+            "category": "Fashion & Retail",
+            "title": "The Hundreds",
+            "description": "Los Angeles streetwear rooted in community, graphic storytelling, and the intersections of subculture.",
             "case_study_link": ""
           }
         },
@@ -839,9 +838,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/art_basel_miami_beach_logo_1236.webp",
-            "category": "Entertainment",
-            "title": "ArtBasel",
-            "description": "Iconic entertainment venue content creation and brand activation.",
+            "category": "Art & Design",
+            "title": "Art Basel",
+            "description": "An international meeting point for contemporary art, connecting artists, galleries, collectors, and ideas.",
             "case_study_link": ""
           }
         },
@@ -849,9 +848,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/images_8.jpg",
-            "category": "Entertainment",
+            "category": "Entertainment & Events",
             "title": "Lightning In A Bottle",
-            "description": "Iconic entertainment venue content creation and brand activation.",
+            "description": "Music, immersive art, and shared discovery creating a festival experience built around participation and community.",
             "case_study_link": ""
           }
         },
@@ -859,9 +858,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/1953.png",
-            "category": "Entertainment",
+            "category": "Fashion & Retail",
             "title": "Finishline",
-            "description": "Iconic entertainment venue content creation and brand activation.",
+            "description": "Sneakers and athletic apparel connecting sportswear, personal style, and everyday movement.",
             "case_study_link": ""
           }
         },
@@ -869,9 +868,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/unnamed_1.png",
-            "category": "Entertainment",
+            "category": "Fashion & Retail",
             "title": "Adidas",
-            "description": "Iconic entertainment venue content creation and brand activation.",
+            "description": "Sport and culture meet through footwear and apparel designed for performance and personal expression.",
             "case_study_link": ""
           }
         },
@@ -918,9 +917,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/Soma_Rosa.webp",
-            "category": "Entertainment",
+            "category": "Cannabis",
             "title": "Soma Rosa",
-            "description": "Iconic entertainment venue content creation and brand activation.",
+            "description": "Sun-grown California cannabis rooted in earth-conscious cultivation and a close connection to the land.",
             "case_study_link": ""
           }
         },
