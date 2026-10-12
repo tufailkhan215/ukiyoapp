@@ -963,6 +963,16 @@
             "case_study_link": ""
           }
         },
+        "project_TJXH3x": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/images_5_05115303-8b85-428d-992f-bb36cd3817a4.jpg",
+            "category": "Cannabis",
+            "title": "Soma Rosa",
+            "description": "Sun-grown California cannabis rooted in earth-conscious cultivation and a close connection to the land.",
+            "case_study_link": ""
+          }
+        },
         "project_GJEiUr": {
           "type": "project",
           "disabled": true,
@@ -1040,6 +1050,7 @@
         "project_Uh4cYa",
         "project_7fyCmb",
         "project_3ydHG7",
+        "project_TJXH3x",
         "project_GJEiUr",
         "project_BxKegp"
       ],
