@@ -1006,6 +1006,31 @@
             "case_study_link": ""
           }
         },
+        "project_aPhHF8": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/images_3.png",
+            "category": "Cannabis",
+            "title": "SXSW",
+            "description": "Sun-grown California cannabis rooted in earth-conscious cultivation and a close connection to the land.",
+            "gallery_image_2": "shopify://shop_images/DSCF1236.jpg",
+            "gallery_image_3": "shopify://shop_images/DSCF1243.jpg",
+            "gallery_image_4": "shopify://shop_images/DSCF0738.jpg",
+            "case_study_link": ""
+          }
+        },
+        "project_qFfUnW": {
+          "type": "project",
+          "settings": {
+            "category": "Cannabis",
+            "title": "Sweet Spirit Tattoo",
+            "description": "Sun-grown California cannabis rooted in earth-conscious cultivation and a close connection to the land.",
+            "gallery_image_2": "shopify://shop_images/DSCF1236.jpg",
+            "gallery_image_3": "shopify://shop_images/DSCF1243.jpg",
+            "gallery_image_4": "shopify://shop_images/DSCF0738.jpg",
+            "case_study_link": ""
+          }
+        },
         "project_GJEiUr": {
           "type": "project",
           "disabled": true,
@@ -1087,6 +1112,8 @@
         "project_rRkmdN",
         "project_Pj6gJB",
         "project_8UCqhB",
+        "project_aPhHF8",
+        "project_qFfUnW",
         "project_GJEiUr",
         "project_BxKegp"
       ],
