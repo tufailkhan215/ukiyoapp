@@ -522,9 +522,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/DSC09799-15.webp",
-            "category": "Hospitality",
+            "category": "Culinary",
             "title": "Friar Tucks",
-            "description": "Hawaiian wellness retreat brand development and content creation.",
+            "description": "A longtime Nevada City gathering place known for its dining, welcoming atmosphere, and local character.",
             "case_study_link": "/pages/friar-tucks-case-study"
           }
         },
