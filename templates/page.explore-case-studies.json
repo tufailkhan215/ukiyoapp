@@ -467,9 +467,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/UN-0437_1.webp",
-            "category": "Technology",
+            "category": "Art & Design",
             "title": "Crystal Empire Gems",
-            "description": "Aerial photography and drone content creation partnership.",
+            "description": "A family-owned destination for crystals, minerals, and artisan jewelry, grounded in discovery and education.",
             "case_study_link": "/pages/crystal-empire-gems-case-study"
           }
         },
@@ -1005,7 +1005,7 @@
         "strap": "(Our Work)",
         "title_before": "Featured",
         "title_gradient": "Projects",
-        "filters_text": "All\nBrand Partnership\nAdventure Travel\nEnergy & Lifestyle\nFashion & Lifestyle\nCulinary\nHospitality\nWellness & Education\nNonprofit & Community"
+        "filters_text": "All\nBrand Partnership\nAdventure Travel\nEnergy & Lifestyle\nFashion & Lifestyle\nCulinary\nHospitality\nWellness & Education\nNonprofit & Community\nArt & Design"
       }
     }
   },
