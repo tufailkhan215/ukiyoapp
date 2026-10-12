@@ -718,9 +718,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/DSCF9760_2.webp",
-            "category": "Entertainment",
+            "category": "Food & Beverage",
             "title": "Two Hands",
-            "description": "Iconic entertainment venue content creation and brand activation.",
+            "description": "Australian-inspired café culture built around fresh food, thoughtful spaces, and everyday connection.",
             "gallery_image_2": "shopify://shop_images/5_27a76933-e362-4d02-a16f-e4bd147b42fb.webp",
             "gallery_image_3": "shopify://shop_images/2_8b663797-0bce-4102-b52d-f8162cd7acd6.webp",
             "gallery_image_4": "shopify://shop_images/4_d05b7758-7eff-4830-b88d-3a6da5a9e533.webp",
@@ -733,9 +733,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/elmurorosa_drone_shot_of_tropical_island_--ar_916_--style_raw_59a88427-c110-4607-83b8-0a1020b36f59.webp",
-            "category": "Entertainment",
+            "category": "Technology",
             "title": "DJI",
-            "description": "Iconic entertainment venue content creation and brand activation.",
+            "description": "Camera and drone technology opening new perspectives for filmmakers, photographers, and visual storytellers.",
             "gallery_image_2": "shopify://shop_images/3_8ff95775-a593-4995-8b56-43f2bbf4997a.webp",
             "gallery_image_3": "shopify://shop_images/2_dcf18fd2-2bbf-41ce-b766-47fa23f637b7.webp",
             "gallery_image_4": "shopify://shop_images/1_0b1ee30b-0a4d-47d6-b585-ffcf18a43aaa.webp",
@@ -747,9 +747,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/indian1_1_1.webp",
-            "category": "Entertainment",
-            "title": "CHAI'BA | BALI INDONESIA",
-            "description": "Iconic entertainment venue content creation and brand activation.",
+            "category": "Food & Beverage",
+            "title": "CHAI’BA — Bali",
+            "description": "Indian flavors and contemporary presentation meet in a vibrant Bali dining experience.",
             "gallery_image_2": "shopify://shop_images/2_ced96809-1d2d-4aae-b179-a67d9544b37a.webp",
             "gallery_image_3": "shopify://shop_images/4_4944b38e-00cf-4063-bf98-2d34ab04b398.webp",
             "gallery_image_4": "shopify://shop_images/3_4af205b2-1699-4a84-9398-01bd86341147.webp",
@@ -760,9 +760,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/DSCF9519_1_2.webp",
-            "category": "Entertainment",
-            "title": "Satori | Maui",
-            "description": "Iconic entertainment venue content creation and brand activation.",
+            "category": "Food & Beverage",
+            "title": "Satori — Maui",
+            "description": "Farm-to-table sushi bringing fresh ingredients and creative flavor combinations to Maui’s dining scene.",
             "gallery_image_2": "shopify://shop_images/2_05947780-4305-4d1e-9175-a3d7fce97b04.webp",
             "case_study_link": ""
           }
