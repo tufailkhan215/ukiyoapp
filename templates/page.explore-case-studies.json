@@ -900,19 +900,6 @@
             "case_study_link": ""
           }
         },
-        "project_iWWwUW": {
-          "type": "project",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge_1.webp",
-            "category": "Entertainment",
-            "title": "SweetSpirit Tattoo",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_image_2": "shopify://shop_images/4_47d72b68-e8e3-4a24-85b4-aa82ab0778ad.webp",
-            "gallery_image_3": "shopify://shop_images/2_1213ca2c-9cff-4d89-a009-2d2c74e4a5eb.webp",
-            "case_study_link": ""
-          }
-        },
         "project_7NPVHe": {
           "type": "project",
           "settings": {
@@ -927,9 +914,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/images_3_5886f490-cfa7-46a0-a234-7bdf7663fc30.jpg",
-            "category": "Cannabis",
+            "category": "Fashion & Retail",
             "title": "cookiessf",
-            "description": "Sun-grown California cannabis rooted in earth-conscious cultivation and a close connection to the land.",
+            "description": "San Francisco streetwear bringing together bold graphics, music, and the culture of the Bay Area.",
             "case_study_link": ""
           }
         },
@@ -937,9 +924,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/images_1_50c23a4f-2fc8-41a2-a1a7-cbedfcba09ed.png",
-            "category": "Cannabis",
-            "title": "cookiessf",
-            "description": "Sun-grown California cannabis rooted in earth-conscious cultivation and a close connection to the land.",
+            "category": "Media & Culture",
+            "title": "Vice Media",
+            "description": "Documentary storytelling and journalism exploring youth culture, overlooked perspectives, and life beyond the mainstream.",
             "case_study_link": ""
           }
         },
@@ -947,9 +934,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/images_4_e5610c97-0c0a-464a-a438-18e9d69cd506.jpg",
-            "category": "Cannabis",
-            "title": "Monster",
-            "description": "Sun-grown California cannabis rooted in earth-conscious cultivation and a close connection to the land.",
+            "category": "Technology",
+            "title": "Beats by Dre — Monster Headphones",
+            "description": "Bold headphone design rooted in music, connecting personal sound with artist culture and everyday style.",
             "case_study_link": ""
           }
         },
@@ -957,9 +944,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/images_2.png",
-            "category": "Cannabis",
+            "category": "Fashion & Retail",
             "title": "Cukui",
-            "description": "Sun-grown California cannabis rooted in earth-conscious cultivation and a close connection to the land.",
+            "description": "San Jose streetwear blending cultural roots, original artwork, and Bay Area identity.",
             "case_study_link": ""
           }
         },
@@ -979,7 +966,7 @@
             "image": "shopify://shop_images/679ac5b363598f42b95d402c_6385674f0e40d74e3e5df379_howieroll_Logo.png",
             "category": "Cannabis",
             "title": "Howie Roll",
-            "description": "Sun-grown California cannabis rooted in earth-conscious cultivation and a close connection to the land.",
+            "description": "Cannabis flower and pre-rolls pairing a playful personality with an approachable brand experience.",
             "case_study_link": ""
           }
         },
@@ -988,8 +975,8 @@
           "settings": {
             "image": "shopify://shop_images/images_6_f26a9683-408d-4c56-9216-e18885482c3b.jpg",
             "category": "Cannabis",
-            "title": "Emerald Cup",
-            "description": "Sun-grown California cannabis rooted in earth-conscious cultivation and a close connection to the land.",
+            "title": "The Emerald Cup",
+            "description": "A celebration of cannabis craftsmanship honoring cultivators, makers, and the community behind the plant.",
             "case_study_link": ""
           }
         },
@@ -997,9 +984,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/DSCF0773.jpg",
-            "category": "Cannabis",
+            "category": "Fitness & Wellness",
             "title": "Limitless Fitness",
-            "description": "Sun-grown California cannabis rooted in earth-conscious cultivation and a close connection to the land.",
+            "description": "A fitness gym & brand centered on strength, consistent progress, and confidence through movement.",
             "gallery_image_2": "shopify://shop_images/DSCF1236.jpg",
             "gallery_image_3": "shopify://shop_images/DSCF1243.jpg",
             "gallery_image_4": "shopify://shop_images/DSCF0738.jpg",
@@ -1010,50 +997,148 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/images_3.png",
-            "category": "Cannabis",
+            "category": "Entertainment & Events",
             "title": "SXSW",
-            "description": "Sun-grown California cannabis rooted in earth-conscious cultivation and a close connection to the land.",
-            "gallery_image_2": "shopify://shop_images/DSCF1236.jpg",
-            "gallery_image_3": "shopify://shop_images/DSCF1243.jpg",
-            "gallery_image_4": "shopify://shop_images/DSCF0738.jpg",
+            "description": "A gathering of creative industries where music, film, technology, and new ideas come together.",
             "case_study_link": ""
           }
         },
         "project_qFfUnW": {
           "type": "project",
           "settings": {
-            "category": "Cannabis",
+            "category": "Art & Design",
             "title": "Sweet Spirit Tattoo",
-            "description": "Sun-grown California cannabis rooted in earth-conscious cultivation and a close connection to the land.",
-            "gallery_image_2": "shopify://shop_images/DSCF1236.jpg",
-            "gallery_image_3": "shopify://shop_images/DSCF1243.jpg",
-            "gallery_image_4": "shopify://shop_images/DSCF0738.jpg",
+            "description": "Tattoo artistry that turns personal stories and creative expression into meaningful, lasting work.",
             "case_study_link": ""
           }
         },
-        "project_GJEiUr": {
+        "project_ijGUi9": {
           "type": "project",
-          "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge_1.webp",
-            "category": "Entertainment",
-            "title": "Limitless Fitness",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_image_2": "shopify://shop_images/4_47d72b68-e8e3-4a24-85b4-aa82ab0778ad.webp",
-            "gallery_image_3": "shopify://shop_images/2_1213ca2c-9cff-4d89-a009-2d2c74e4a5eb.webp",
+            "image": "shopify://shop_images/21.png",
+            "category": "Fitness & Wellness",
+            "title": "GNC",
+            "description": "Supplements and sports nutrition supporting everyday wellness, active lifestyles, and personal fitness goals.",
             "case_study_link": ""
           }
         },
-        "project_BxKegp": {
+        "project_dQbACk": {
           "type": "project",
-          "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/881aa52d7f9f162bb4287643d39aa4e9-xxlarge_1.webp",
-            "category": "Entertainment",
-            "title": "Limitless Fitness",
-            "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_image_2": "shopify://shop_images/4_47d72b68-e8e3-4a24-85b4-aa82ab0778ad.webp",
-            "gallery_image_3": "shopify://shop_images/2_1213ca2c-9cff-4d89-a009-2d2c74e4a5eb.webp",
+            "image": "shopify://shop_images/315d1a14feeabdb103664f315a91d1f1.jpg",
+            "category": "Technology",
+            "title": "Grab",
+            "description": "An everyday app connecting people with rides, food delivery, and digital financial services across Southeast Asia.",
+            "case_study_link": ""
+          }
+        },
+        "project_AfJWkg": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/88a681ab1e74d60981d7ee779285df3e.jpg",
+            "category": "Beauty & Personal Care",
+            "title": "Loréal",
+            "description": "Beauty grounded in science and creativity, spanning skincare, haircare, makeup, and personal expression.",
+            "case_study_link": ""
+          }
+        },
+        "project_yLKz4a": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/images_9_82552a58-4369-4b56-acc6-54fc837d1086.jpg",
+            "category": "Fashion & Retail",
+            "title": "New York Fashion Week",
+            "description": "Runway presentations and designer collections bringing fashion’s next ideas into focus in New York City.",
+            "case_study_link": ""
+          }
+        },
+        "project_rY3AHT": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/images_7_b607f7c3-e5df-4311-9236-87102ff157ee.jpg",
+            "category": "Automotive",
+            "title": "Falken",
+            "description": "Performance-driven tires connecting everyday road use with a passion for motorsports.",
+            "case_study_link": ""
+          }
+        },
+        "project_Fc8a7h": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/images_8_6ee3c05a-d879-4d70-ae3e-0b81b0b74c22.png",
+            "category": "Automotive & Energy",
+            "title": "Petron",
+            "description": "Fuel and lubricant products supporting everyday journeys, transportation, and industry.",
+            "case_study_link": ""
+          }
+        },
+        "project_nxmrg9": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/images_7.png",
+            "category": "Fashion & Retail",
+            "title": "H&M",
+            "description": "Fashion and everyday essentials offering accessible ways to explore trends and express personal style.",
+            "case_study_link": ""
+          }
+        },
+        "project_HVeUXN": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/Logotipo_Nike.jpg",
+            "category": "Fashion & Retail",
+            "title": "Nike",
+            "description": "Athletic footwear and apparel shaped by innovation, movement, and the culture of sport.",
+            "case_study_link": ""
+          }
+        },
+        "project_rJztAi": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/SM_Supermalls_logo_2022.svg",
+            "category": "Food & Beverage",
+            "title": "SM Supermarket",
+            "description": "A Philippine grocery destination bringing fresh food, pantry staples, and household essentials into everyday life.",
+            "case_study_link": ""
+          }
+        },
+        "project_Xbw9WK": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/bdo-unibank--600.png",
+            "category": "Banking & Finance",
+            "title": "BDO Unibank",
+            "description": "Banking and financial services supporting the everyday needs and ambitions of individuals and businesses.",
+            "case_study_link": ""
+          }
+        },
+        "project_9X3NqM": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/images_10.jpg",
+            "category": "Banking & Finance",
+            "title": "LANDBANK",
+            "description": "A Philippine government bank supporting agriculture, rural development, and broader access to financial services.",
+            "case_study_link": ""
+          }
+        },
+        "project_TdN63g": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/Kimi-logo-2025.png",
+            "category": "Technology",
+            "title": "Kimi Ai",
+            "description": "An AI assistant helping people research, write, code, and work through complex information.",
+            "case_study_link": ""
+          }
+        },
+        "project_YrgqFE": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/images_4.png",
+            "category": "Technology",
+            "title": "Midjourney",
+            "description": "AI-powered visual creation turning imaginative ideas into expressive images and creative explorations.",
             "case_study_link": ""
           }
         }
@@ -1102,7 +1187,6 @@
         "project_6WGDRC",
         "project_CVnLkw",
         "project_cRtYyW",
-        "project_iWWwUW",
         "project_7NPVHe",
         "project_Tz6yjB",
         "project_Uh4cYa",
@@ -1114,8 +1198,19 @@
         "project_8UCqhB",
         "project_aPhHF8",
         "project_qFfUnW",
-        "project_GJEiUr",
-        "project_BxKegp"
+        "project_ijGUi9",
+        "project_dQbACk",
+        "project_AfJWkg",
+        "project_yLKz4a",
+        "project_rY3AHT",
+        "project_Fc8a7h",
+        "project_nxmrg9",
+        "project_HVeUXN",
+        "project_rJztAi",
+        "project_Xbw9WK",
+        "project_9X3NqM",
+        "project_TdN63g",
+        "project_YrgqFE"
       ],
       "name": "Featured Work",
       "settings": {
