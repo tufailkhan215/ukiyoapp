@@ -492,9 +492,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/Screenshot_2026-09-29_at_9.46.17_PM.png",
-            "category": "Travel & Experience",
+            "category": "Wellness & Education",
             "title": "Academy of Oracle Arts",
-            "description": "Luxury travel experience content and brand storytelling.",
+            "description": "Courses and immersive experiences exploring ritual, creative expression, and the practice of the oracle arts.",
             "case_study_link": "/pages/academy-of-oracle-arts-case-study"
           }
         },
@@ -502,9 +502,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/Screenshot_2026-09-29_at_9.47.11_PM.png",
-            "category": "Media & Culture",
+            "category": "Nonprofit & Community",
             "title": "WeAreCot",
-            "description": "Editorial content partnership and cultural brand activation.",
+            "description": "A community centered on shared purpose, meaningful gatherings, and spiritual exploration.",
             "case_study_link": "/pages/wearecot-case-study"
           }
         },
