@@ -665,6 +665,9 @@
             "category": "Entertainment",
             "title": "Supramood",
             "description": "Iconic entertainment venue content creation and brand activation.",
+            "gallery_image_2": "shopify://shop_images/3_3f93ce8d-1d12-481a-8b96-e83280c5a06d.webp",
+            "gallery_image_3": "shopify://shop_images/4_aea30b69-fee9-4a70-99f7-58a185919291.webp",
+            "gallery_image_4": "shopify://shop_images/1_b9cf72b2-2605-409a-b899-6449210b8f24.webp",
             "case_study_link": "shopify://pages/supramood_new"
           }
         },
@@ -776,10 +779,6 @@
             "category": "Entertainment",
             "title": "HIGHSNOBIETY",
             "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_image_2": "shopify://shop_images/4_cfa38a31-359f-467b-9bd4-074f2b889031.webp",
-            "gallery_image_3": "shopify://shop_images/5_a6f4afe7-03ec-4868-ad2d-fa4c9dc1c8b7.webp",
-            "gallery_image_4": "shopify://shop_images/6_7405af2c-52cc-4a1e-8a0d-ccab206cd77b.webp",
-            "gallery_image_5": "shopify://shop_images/2_ae425ecf-0cdc-4c37-bc86-ce6f1b13408d.webp",
             "case_study_link": ""
           }
         },
@@ -802,9 +801,6 @@
             "category": "Entertainment",
             "title": "CLSC | LA",
             "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_image_2": "shopify://shop_images/3_3f93ce8d-1d12-481a-8b96-e83280c5a06d.webp",
-            "gallery_image_3": "shopify://shop_images/2_c08e91bc-f6ed-479c-8a2d-c359aa9d1aa3.webp",
-            "gallery_image_4": "shopify://shop_images/1_b9cf72b2-2605-409a-b899-6449210b8f24.webp",
             "case_study_link": ""
           }
         },
@@ -827,8 +823,6 @@
             "category": "Entertainment",
             "title": "TheHundreds",
             "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_image_2": "shopify://shop_images/4_47d72b68-e8e3-4a24-85b4-aa82ab0778ad.webp",
-            "gallery_image_3": "shopify://shop_images/2_1213ca2c-9cff-4d89-a009-2d2c74e4a5eb.webp",
             "case_study_link": ""
           }
         },
@@ -839,8 +833,6 @@
             "category": "Entertainment",
             "title": "ArtBasel",
             "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_image_2": "shopify://shop_images/4_47d72b68-e8e3-4a24-85b4-aa82ab0778ad.webp",
-            "gallery_image_3": "shopify://shop_images/2_1213ca2c-9cff-4d89-a009-2d2c74e4a5eb.webp",
             "case_study_link": ""
           }
         },
@@ -851,8 +843,6 @@
             "category": "Entertainment",
             "title": "Lightning In A Bottle",
             "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_image_2": "shopify://shop_images/4_47d72b68-e8e3-4a24-85b4-aa82ab0778ad.webp",
-            "gallery_image_3": "shopify://shop_images/2_1213ca2c-9cff-4d89-a009-2d2c74e4a5eb.webp",
             "case_study_link": ""
           }
         },
@@ -863,8 +853,6 @@
             "category": "Entertainment",
             "title": "Finishline",
             "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_image_2": "shopify://shop_images/4_47d72b68-e8e3-4a24-85b4-aa82ab0778ad.webp",
-            "gallery_image_3": "shopify://shop_images/2_1213ca2c-9cff-4d89-a009-2d2c74e4a5eb.webp",
             "case_study_link": ""
           }
         },
@@ -875,8 +863,6 @@
             "category": "Entertainment",
             "title": "Adidas",
             "description": "Iconic entertainment venue content creation and brand activation.",
-            "gallery_image_2": "shopify://shop_images/4_47d72b68-e8e3-4a24-85b4-aa82ab0778ad.webp",
-            "gallery_image_3": "shopify://shop_images/2_1213ca2c-9cff-4d89-a009-2d2c74e4a5eb.webp",
             "case_study_link": ""
           }
         },
