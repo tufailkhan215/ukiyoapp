@@ -973,6 +973,36 @@
             "case_study_link": ""
           }
         },
+        "project_rRkmdN": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/679ac5b363598f42b95d402c_6385674f0e40d74e3e5df379_howieroll_Logo.png",
+            "category": "Cannabis",
+            "title": "Howie Roll",
+            "description": "Sun-grown California cannabis rooted in earth-conscious cultivation and a close connection to the land.",
+            "case_study_link": ""
+          }
+        },
+        "project_Pj6gJB": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/679ac5b363598f42b95d402c_6385674f0e40d74e3e5df379_howieroll_Logo.png",
+            "category": "Cannabis",
+            "title": "Soma Rosa",
+            "description": "Sun-grown California cannabis rooted in earth-conscious cultivation and a close connection to the land.",
+            "case_study_link": ""
+          }
+        },
+        "project_8UCqhB": {
+          "type": "project",
+          "settings": {
+            "image": "shopify://shop_images/679ac5b363598f42b95d402c_6385674f0e40d74e3e5df379_howieroll_Logo.png",
+            "category": "Cannabis",
+            "title": "Limitless Fitness",
+            "description": "Sun-grown California cannabis rooted in earth-conscious cultivation and a close connection to the land.",
+            "case_study_link": ""
+          }
+        },
         "project_GJEiUr": {
           "type": "project",
           "disabled": true,
@@ -1051,6 +1081,9 @@
         "project_7fyCmb",
         "project_3ydHG7",
         "project_TJXH3x",
+        "project_rRkmdN",
+        "project_Pj6gJB",
+        "project_8UCqhB",
         "project_GJEiUr",
         "project_BxKegp"
       ],
