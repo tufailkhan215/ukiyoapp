@@ -447,9 +447,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/0E90A9BB-8444-430C-99E8-968647F03C2B_1_105_c.webp",
-            "category": "E-commerce",
+            "category": "Nonprofit & Community",
             "title": "Back to Earth",
-            "description": "Complete brand refresh with content strategy and e-commerce optimization.",
+            "description": "Nature-based experiences helping young people build confidence, deepen connection, and discover belonging outdoors.",
             "case_study_link": "/pages/back-to-earth-case-study"
           }
         },
@@ -457,9 +457,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/Still_2025-10-11_183207_1.92.1.webp",
-            "category": "Lifestyle & Wellness",
+            "category": "Nonprofit & Community",
             "title": "People Of The Forest",
-            "description": "Comprehensive brand strategy with podcast series and affiliate program.",
+            "description": "People of the Forest is a BIPOC-led environmental organization focused on forest restoration, biodiversity, Indigenous food sovereignty, and ecological education.[1]\n\nIts main initiative, Project Yawanawá, works with the Yawanawá community in Aldeia Mutum, Acre, Brazil. The project combines regenerative agriculture, agroforestry, aquaculture, seed stewardship, and traditional Indigenous ecological knowledge to restore degraded land and strengthen local food systems.",
             "case_study_link": "/pages/people-of-the-forest-case-study"
           }
         },
