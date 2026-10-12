@@ -415,9 +415,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/Screenshot_2026-09-26_at_7.31.52_PM.png",
-            "category": "Lifestyle & Wellness",
+            "category": "Wellness & Education",
             "title": "Aniwa",
-            "description": "Multi-platform content strategy capturing the spirit of adventure travel.",
+            "description": "Indigenous wisdom, cultural gatherings, and shared experiences nurturing connection to community and the earth.",
             "gallery_image_2": "shopify://shop_images/Screenshot_2026-09-26_at_7.32.42_PM.png",
             "gallery_image_3": "shopify://shop_images/Screenshot_2026-09-26_at_7.32.55_PM.png",
             "case_study_link": ""
@@ -429,7 +429,7 @@
             "image": "shopify://shop_images/Screenshot_2026-05-31_at_8.54.18_PM.png",
             "category": "Culinary",
             "title": "Sherwood",
-            "description": "High-energy brand content and experiential marketing campaigns.",
+            "description": "Historic Nevada City charm brought to life through good food, live music, and a welcoming local gathering place.",
             "case_study_link": "/pages/sherwood-case-study"
           }
         },
@@ -437,9 +437,9 @@
           "type": "project",
           "settings": {
             "image": "shopify://shop_images/czadzs1.png",
-            "category": "Travel & Experience",
+            "category": "Hospitality",
             "title": "Water House",
-            "description": "California-inspired brand storytelling and visual identity development.",
+            "description": "A distinctive Nevada City event space for private celebrations, intimate dinners, and memorable gatherings.",
             "case_study_link": "/pages/waterhouse-case-study"
           }
         },
