@@ -23,7 +23,7 @@
         "mobile_video_position": 75,
         "show_primary": false,
         "cta_primary_text": "Book a Discovery Call",
-        "cta_primary_link": "https://tidycal.com/salesautomateiq/consultation",
+        "cta_primary_link": "#",
         "show_secondary": true,
         "cta_secondary_text": "View Our Work",
         "cta_secondary_link": "shopify:\/\/pages\/work",
@@ -32,7 +32,7 @@
         "scroll_label": "Scroll",
         "bottom_note": "Independent thinking. Shared ambition.",
         "hero_video_url": "https:\/\/pub-86dc5b5484314368ac5436a674b0d919.r2.dev\/cloudinarry%20to%20cloudflare\/baby-track-video_crqby5.mp4",
-        "cloud_image_url": "https:\/\/res.cloudinary.com\/dsdhxhhqh\/image\/upload\/v1781500777\/cloude_vj4pjv.png",
+        "cloud_image_url": "",
         "statement_color": "#d92323",
         "statement_heading": "Built to move your brand forward.",
         "statement_intro": "Every brand has something worth bringing into the world. We help you give it shape, presence, and purpose.",
@@ -336,7 +336,7 @@
         "title_line2": "drive growth",
         "description": "We work with founders, CEOs, and leadership teams to sharpen their positioning, strengthen their marketing, and build the strategy behind sustainable growth.",
         "explore_text": "Explore all services",
-        "explore_url": "/pages/services"
+        "explore_url": "#"
       }
     },
     "value_stack_eE3PiF": {
