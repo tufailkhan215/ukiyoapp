@@ -1,3255 +1,1561 @@
 {% comment %}
-  SUR(FACE) — SHOPIFY SCROLL SHOWCASE
-
-  Adaptation of the supplied reference.
-  The original standalone source files are supplied separately, unchanged.
-
-  Features:
-  - Scroll-controlled desktop and mobile image sequences
-  - Oversized hero typography
-  - Rotating photographic ring
-  - Ring-to-horizontal-gallery transition
-  - Expandable profiles
-  - Working in-page shortlist
-  - Reduced-motion and short-screen static layouts
-
-  All styling and interactions are restricted to this section.
-  No external JavaScript libraries are required.
-
-  Demo media uses the external image URLs supplied in the reference.
-  Disable demo media to use your own poster and frame URL lists.
+  UKIYO — Services Experience
+  Scroll-controlled video, service pillars, and process.
+  Existing Services Hero setting IDs are preserved.
 {% endcomment %}
 
-{%- liquid
-  assign uid = 'Surface-' | append: section.id
-  assign scope = '#' | append: uid
-  assign cards = section.blocks | where: 'type', 'profile'
-
-  assign base = 'https://d2ol7oe51mr4n9.cloudfront.net/user_3GJaYKPxdnQG0Q9O26lu6DPmcHu/'
-
-  assign poster = ''
-  assign phone_poster = ''
-
-  if section.settings.demo_media
-    assign poster = base | append: '5f55f68c-b7b2-415e-b3f3-cb0e73c205e6.webp'
-    assign phone_poster = base | append: 'fee305e6-6957-4257-998f-020018a2c048.webp'
-  endif
-
-  if section.settings.poster != blank
-    assign poster = section.settings.poster | image_url: width: 2200
-  endif
-
-  if section.settings.mobile_poster != blank
-    assign phone_poster = section.settings.mobile_poster | image_url: width: 1100
-  endif
-
-  if phone_poster == blank
-    assign phone_poster = poster
-  endif
-
-  assign statement_lines = section.settings.statement | newline_to_br | split: '<br />'
--%}
-
-{% style %}
-
-  /* =====================================================
-     FOUNDATION
-  ====================================================== */
-
-  {{ scope }} {
-    --sf-bg: {{ section.settings.background | default: '#F6F7F9' }};
-    --sf-plate: {{ section.settings.plate | default: '#DCDCDE' }};
-    --sf-accent: {{ section.settings.accent | default: '#C32515' }};
-    --sf-top: {{ section.settings.header_offset | default: 0 }}px;
-    --sf-h: calc(100svh - var(--sf-top));
-    --sf-mega: clamp(72px, 15.5vw, 300px);
-    --sf-display: clamp(30px, 4.4vw, 76px);
-    --sf-body: clamp(15px, 1.3vw, 21px);
-    --sf-small: 12px;
-
-    display: block;
-    position: relative;
-    isolation: isolate;
-    width: 100%;
-    min-width: 0;
-
-    background: var(--sf-bg);
-    color: #000;
-
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    font-size: var(--sf-body);
-    line-height: 1.3;
-    letter-spacing: -.045em;
-  }
-
-  {{ scope }},
-  {{ scope }} *,
-  {{ scope }} *::before,
-  {{ scope }} *::after {
-    box-sizing: border-box;
-  }
-
-  {{ scope }} [hidden] {
-    display: none !important;
-  }
-
-  {{ scope }} :where(h1,h2,h3,p,figure,ul,dl,dd) {
-    margin: 0;
-  }
-
-  {{ scope }} :where(h1,h2,h3) {
-    font: inherit;
-    color: inherit;
-    text-transform: none;
-  }
-
-  {{ scope }} a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  {{ scope }} :where(button,a) {
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  {{ scope }} button {
-    font: inherit;
-    color: inherit;
-    letter-spacing: inherit;
-    appearance: none;
-    border-radius: 0;
-    box-shadow: none;
-    cursor: pointer;
-  }
-
-  {{ scope }} button::before,
-  {{ scope }} button::after {
-    content: none;
-  }
-
-  {{ scope }} :where(a,button,[tabindex]):focus-visible {
-    outline: 2px solid var(--sf-accent);
-    outline-offset: 4px;
-  }
-
-  {{ scope }} img {
-    display: block;
-    max-width: 100%;
-  }
-
-  {{ scope }} .sf-runway {
-    position: relative;
-  }
-
-  {{ scope }} .sf-stage {
-    position: relative;
-    background: var(--sf-bg);
-  }
-
-  /* =====================================================
-     HERO
-  ====================================================== */
-
-  {{ scope }} .sf-hero {
-    position: relative;
-    height: var(--sf-h);
-    min-height: 560px;
-    overflow: hidden;
-  }
-
-  {{ scope }} .sf-media {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    transform: scale(var(--zoom,1));
-  }
-
-  {{ scope }} .sf-poster,
-  {{ scope }} .sf-poster img,
-  {{ scope }} canvas {
-    position: absolute;
-    inset: 0;
-
-    display: block;
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-    object-position: 50% 0;
-  }
-
-  {{ scope }} canvas {
-    opacity: 0;
-  }
-
-  {{ scope }}[data-frame-ready] canvas {
-    opacity: 1;
-  }
-
-  {{ scope }} .sf-media::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: #0000000d;
-    pointer-events: none;
-  }
-
-  {{ scope }} .sf-title,
-  {{ scope }} .sf-number {
-    position: absolute;
-
-    color: #fff;
-    mix-blend-mode: difference;
-
-    font-size: var(--sf-mega);
-    line-height: .9;
-    letter-spacing: -.08em;
-    font-weight: 400;
-
-    pointer-events: none;
-    white-space: nowrap;
-  }
-
-  {{ scope }} .sf-title {
-    left: 16px;
-    top: 16px;
-    max-width: calc(100% - 32px);
-  }
-
-  {{ scope }} .sf-number {
-    right: 16px;
-    top: 48%;
-  }
-
-  {{ scope }} .sf-intro {
-    position: absolute;
-    left: 16px;
-    top: 50%;
-
-    transform: translateY(-50%);
-    max-width: 30ch;
-
-    color: #fff;
-    mix-blend-mode: difference;
-
-    line-height: 1.3;
-    white-space: pre-line;
-    pointer-events: none;
-  }
-
-  {{ scope }} .sf-actions {
-    position: absolute;
-    right: 16px;
-    top: 16px;
-
-    display: grid;
-    gap: 4px;
-
-    font-size: var(--sf-small);
-    letter-spacing: -.035em;
-  }
-
-  {{ scope }} .sf-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    min-height: 44px;
-    padding: 12px 23px;
-
-    border: 0;
-    background: #000;
-    color: #fff;
-
-    text-align: center;
-    font-size: var(--sf-small);
-    font-weight: 500;
-    letter-spacing: -.025em;
-  }
-
-  {{ scope }} .sf-button--accent {
-    background: var(--sf-accent);
-  }
-
-  {{ scope }} .sf-plate {
-    display: none;
-    position: absolute;
-    inset: 0;
-    background: var(--sf-plate);
-    pointer-events: none;
-  }
-
-  {{ scope }} .sf-grain {
-    position: absolute;
-    inset: 0;
-    opacity: .035;
-    pointer-events: none;
-
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-
-  /* =====================================================
-     STATEMENT AND GALLERY
-  ====================================================== */
-
-  {{ scope }} .sf-statement {
-    position: relative;
-    padding: 70px 20px;
-
-    background: var(--sf-plate);
-    color: var(--sf-accent);
-
-    text-align: center;
-    font-size: var(--sf-display);
-    line-height: 1.02;
-    letter-spacing: -.08em;
-    font-weight: 500;
-  }
-
-  {{ scope }} .sf-statement-line {
-    display: block;
-    min-height: .5em;
-  }
-
-  {{ scope }} .sf-word {
-    display: inline-block;
-  }
-
-  {{ scope }} .sf-board {
-    position: relative;
-    padding: 30px 16px 90px;
-    background: var(--sf-plate);
-  }
-
-  {{ scope }} .sf-board-title {
-    margin-bottom: 26px;
-    font-size: var(--sf-display);
-    font-weight: 500;
-    line-height: 1.05;
-    letter-spacing: -.065em;
-  }
-
-  {{ scope }} .sf-cards {
-    display: grid;
-    grid-template-columns: repeat(4,minmax(0,1fr));
-    gap: 30px 16px;
-  }
-
-  {{ scope }} .sf-card {
-    display: block;
-    min-width: 0;
-    background: transparent;
-    text-align: left;
-  }
-
-  {{ scope }} .sf-card-image {
-    width: 100%;
-    aspect-ratio: 3/4;
-    object-fit: cover;
-    background: #b4b4b4;
-  }
-
-  {{ scope }} .sf-card-meta {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    margin-top: 9px;
-    font-size: var(--sf-small);
-    letter-spacing: -.035em;
-  }
-
-  /* =====================================================
-     LOCAL NAVIGATION
-  ====================================================== */
-
-  {{ scope }} .sf-dock {
-    display: flex;
-    width: fit-content;
-    max-width: calc(100% - 32px);
-    gap: 24px;
-    align-items: center;
-
-    margin: 0 auto;
-    padding: 4px 12px 4px 4px;
-
-    background: #fff;
-    color: #000;
-
-    font-size: var(--sf-small);
-    font-weight: 500;
-    letter-spacing: -.035em;
-  }
-
-  {{ scope }} .sf-logo {
-    display: grid;
-    place-items: center;
-    min-height: 44px;
-    padding: 10px 14px;
-    background: var(--sf-accent);
-    color: #fff;
-    flex: none;
-    white-space: nowrap;
-  }
-
-  {{ scope }} .sf-dock-links {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    overflow-x: auto;
-  }
-
-  {{ scope }} .sf-dock-links > * {
-    flex: none;
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
-    white-space: nowrap;
-    padding: 0;
-    background: none;
-    border: 0;
-  }
-
-  {{ scope }} .sf-dock-links > * + *::before {
-    content: '/';
-    padding-right: 16px;
-    opacity: .35;
-  }
-
-  {{ scope }} .sf-empty {
-    padding: 60px 20px;
-    font-size: 16px;
-    letter-spacing: normal;
-  }
-
-  /* =====================================================
-     ENHANCED SCROLL STAGE
-     The default layout remains usable without JavaScript.
-  ====================================================== */
-
-  {{ scope }}[data-cinematic] .sf-runway {
-    height: calc(var(--sf-h) + var(--sf-run));
-  }
-
-  {{ scope }}[data-cinematic] .sf-stage {
-    position: sticky;
-    top: var(--sf-top);
-    height: var(--sf-h);
-    overflow: hidden;
-  }
-
-  {{ scope }}[data-cinematic] .sf-hero {
-    position: absolute;
-    inset: 0;
-    height: 100%;
-    min-height: 0;
-  }
-
-  {{ scope }}[data-cinematic] .sf-plate {
-    display: block;
-    z-index: 1;
-    opacity: var(--haze,0);
-  }
-
-  {{ scope }}[data-cinematic] .sf-statement {
-    position: absolute;
-    z-index: 3;
-    left: 50%;
-    top: 50%;
-
-    padding: 0;
-    background: transparent;
-
-    width: max-content;
-    max-width: 88%;
-
-    transform: translate(-50%,-50%);
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  {{ scope }}[data-cinematic] .sf-word {
-    opacity: var(--wp,0);
-
-    transform:
-      translateY(
-        calc((1 - var(--wp,0)) * .35em)
-      );
-
-    color:
-      color-mix(
-        in srgb,
-        #000,
-        var(--sf-accent) calc(var(--fill,0) * 100%)
-      );
-  }
-
-  {{ scope }}[data-cinematic] .sf-board {
-    position: absolute;
-    z-index: 2;
-    inset: 0;
-
-    padding: 0;
-    background: transparent;
-    pointer-events: none;
-  }
-
-  {{ scope }}[data-cinematic] .sf-board-title {
-    position: absolute;
-    left: 16px;
-    top: 16px;
-    margin: 0;
-    opacity: 0;
-  }
-
-  {{ scope }}[data-cinematic] .sf-cards {
-    display: block;
-  }
-
-  {{ scope }}[data-cinematic] .sf-card {
-    position: absolute;
-    left: 0;
-    top: 0;
-
-    width: var(--card-w);
-    height: var(--card-h);
-
-    opacity: 0;
-    pointer-events: none;
-    transform-origin: 50% 50%;
-  }
-
-  {{ scope }}[data-cinematic] .sf-card-image {
-    height: 100%;
-    width: 100%;
-    aspect-ratio: auto;
-  }
-
-  {{ scope }}[data-cinematic] .sf-card-meta {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-
-    opacity: 0;
-    transform: translateY(8px);
-
-    transition:
-      opacity .35s,
-      transform .5s;
-  }
-
-  {{ scope }}[data-row] .sf-card {
-    pointer-events: auto;
-  }
-
-  {{ scope }}[data-row] .sf-card-meta {
-    opacity: 1;
-    transform: none;
-  }
-
-  {{ scope }}[data-cinematic] .sf-dock {
-    position: absolute;
-    z-index: 6;
-    left: 50%;
-    bottom: max(16px,env(safe-area-inset-bottom));
-    transform: translateX(-50%);
-    margin: 0;
-  }
-
-  /* =====================================================
-     PROFILE DIALOG
-  ====================================================== */
-
-  {{ scope }} .sf-dialog {
-    position: fixed;
-    inset: 0;
-
-    width: 100vw;
-    max-width: 100vw;
-
-    height: 100vh;
-    height: 100dvh;
-    max-height: 100dvh;
-
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-
-    border: 0;
-    background: var(--sf-plate);
-    color: #000;
-  }
-
-  {{ scope }} .sf-dialog:not([open]) {
-    display: none;
-  }
-
-  {{ scope }} .sf-dialog::backdrop {
-    background: #000a;
-  }
-
-  {{ scope }} .sf-close {
-    position: absolute;
-    z-index: 5;
-    top: max(16px,env(safe-area-inset-top));
-    right: 16px;
-
-    width: 44px;
-    height: 44px;
-    padding: 0;
-
-    background: #000;
-    color: #fff;
-    border: 0;
-    font-size: 26px;
-  }
-
-  {{ scope }} .sf-profile {
-    height: 100%;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    scrollbar-width: thin;
-  }
-
-  {{ scope }} .sf-profile-grid {
-    display: grid;
-    grid-template-columns:
-      minmax(0,.29fr)
-      minmax(0,.42fr)
-      minmax(0,.29fr);
-
-    gap: 16px;
-    padding: 16px;
-    min-height: 100%;
-  }
-
-  {{ scope }} .sf-panel {
-    position: sticky;
-    top: 16px;
-    align-self: start;
-
-    min-height: calc(100dvh - 32px);
-    max-height: calc(100dvh - 32px);
-
-    padding: 24px;
-    overflow-y: auto;
-
-    background: #fff;
-
-    display: flex;
-    flex-direction: column;
-  }
-
-  {{ scope }} .sf-profile-name {
-    margin-bottom: 36px;
-    font-size: var(--sf-display);
-    line-height: 1.02;
-    font-weight: 500;
-    letter-spacing: -.08em;
-  }
-
-  {{ scope }} .sf-profile-name span {
-    display: block;
-  }
-
-  {{ scope }} .sf-profile-bio {
-    margin: 10px 0 28px;
-    font-size: var(--sf-body);
-  }
-
-  {{ scope }} .sf-specs {
-    margin-top: 18px;
-    font-size: var(--sf-small);
-  }
-
-  {{ scope }} .sf-specs > div {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    border-top: 1px solid #0002;
-    padding-block: 9px;
-  }
-
-  {{ scope }} .sf-specs dd {
-    font-weight: 500;
-  }
-
-  {{ scope }} .sf-profile-actions {
-    display: grid;
-    gap: 4px;
-    padding-top: 28px;
-    margin-top: auto;
-  }
-
-  {{ scope }} .sf-frames {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    min-width: 0;
-  }
-
-  {{ scope }} .sf-frame {
-    width: 100%;
-    aspect-ratio: 3/4;
-    object-fit: cover;
-    background: #b4b4b4;
-  }
-
-  {{ scope }} .sf-profile-age {
-    position: absolute;
-    right: 16px;
-    bottom: 16px;
-
-    font-size: var(--sf-mega);
-    letter-spacing: -.08em;
-    line-height: .9;
-
-    color: #fff;
-    mix-blend-mode: difference;
-    pointer-events: none;
-  }
-
-  /* =====================================================
-     SHORTLIST
-  ====================================================== */
-
-  {{ scope }} .sf-shortlist {
-    padding: 80px 24px 40px;
-  }
-
-  {{ scope }} .sf-shortlist h2 {
-    font-size: var(--sf-display);
-    margin-bottom: 30px;
-  }
-
-  {{ scope }} .sf-saved-grid {
-    display: grid;
-    grid-template-columns: repeat(4,minmax(0,1fr));
-    gap: 20px;
-  }
-
-  {{ scope }} .sf-saved {
-    padding: 0;
-    border: 0;
-    text-align: left;
-    background: transparent;
-  }
-
-  {{ scope }} .sf-saved img {
-    width: 100%;
-    aspect-ratio: 3/4;
-    object-fit: cover;
-  }
-
-  {{ scope }} .sf-saved span {
-    display: block;
-    margin-top: 8px;
-    font-size: 14px;
-  }
-
-  /* =====================================================
-     RESPONSIVE
-  ====================================================== */
-
-  @media (hover:hover) {
-    {{ scope }} .sf-button:hover,
-    {{ scope }} .sf-close:hover {
-      background: var(--sf-accent);
-    }
-
-    {{ scope }} .sf-card:hover .sf-card-meta {
-      color: var(--sf-accent);
-    }
-  }
-
-  @media (max-width:767px) {
-    {{ scope }} {
-      --sf-mega: clamp(64px,18.5vw,140px);
-      --sf-display: 30px;
-      --sf-body: 16px;
-      --sf-small: 12px;
-    }
-
-    {{ scope }} .sf-media {
-      height: 54%;
-    }
-
-    {{ scope }} .sf-title {
-      font-size: clamp(62px,20vw,150px);
-    }
-
-    {{ scope }} .sf-intro {
-      top: calc(54% + 18px);
-      transform: none;
-      max-width: calc(100% - 110px);
-      font-size: 15px;
-    }
-
-    {{ scope }} .sf-number {
-      top: calc(54% + 18px);
-      font-size: 68px;
-    }
-
-    {{ scope }} .sf-actions {
-      top: auto;
-      bottom: 84px;
-      left: 16px;
-      right: 16px;
-    }
-
-    {{ scope }} .sf-dock {
-      max-width: calc(100% - 24px);
-      gap: 14px;
-      padding-right: 10px;
-    }
-
-    {{ scope }} .sf-dock-links {
-      gap: 12px;
-    }
-
-    {{ scope }} .sf-dock-links > * + *::before {
-      padding-right: 12px;
-    }
-
-    {{ scope }} .sf-wide {
-      display: none !important;
-    }
-
-    {{ scope }} .sf-logo {
-      padding-inline: 10px;
-    }
-
-    {{ scope }} .sf-cards {
-      display: flex;
-      overflow-x: auto;
-      gap: 16px;
-      scroll-snap-type: x mandatory;
-    }
-
-    {{ scope }} .sf-card {
-      flex: 0 0 76%;
-      scroll-snap-align: start;
-    }
-
-    {{ scope }}[data-cinematic] .sf-cards {
-      display: block;
-      overflow: visible;
-    }
-
-    {{ scope }} .sf-statement {
-      font-size: clamp(27px,7.6vw,43px);
-    }
-
-    {{ scope }} .sf-profile-grid {
-      display: flex;
-      flex-direction: column;
-      padding: 12px;
-      gap: 12px;
-    }
-
-    {{ scope }} .sf-frames {
-      display: contents;
-    }
-
-    {{ scope }} .sf-frame {
-      order: 2;
-    }
-
-    {{ scope }} .sf-frame:first-child {
-      order: 0;
-    }
-
-    {{ scope }} .sf-panel {
-      position: static;
-      order: 1;
-      min-height: 0;
-      max-height: none;
-      padding: 24px;
-      overflow: visible;
-    }
-
-    {{ scope }} .sf-profile-name {
-      font-size: 42px;
-      margin-bottom: 26px;
-    }
-
-    {{ scope }} .sf-profile-age {
-      display: none;
-    }
-
-    {{ scope }} .sf-saved-grid {
-      grid-template-columns: repeat(2,minmax(0,1fr));
-    }
-  }
-
-  @media (prefers-reduced-motion:reduce) {
-    {{ scope }} *,
-    {{ scope }} *::before,
-    {{ scope }} *::after {
-      animation: none !important;
-      transition: none !important;
-    }
-  }
-
-{% endstyle %}
-
-<surface-scroll-showcase-v1
-  id="{{ uid }}"
-  data-demo="{{ section.settings.demo_media }}"
-  data-motion="{{ section.settings.motion }}"
-  data-editor="{{ request.design_mode }}"
+{% assign buttons = section.blocks | where: 'type', 'button' %}
+
+{% capture arrow %}
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M4 12h15M13 5l7 7-7 7"/>
+  </svg>
+{% endcapture %}
+
+<div
+  id="UkiyoServices-{{ section.id }}"
+  class="us"
+  data-services-experience
 >
+  <div class="us__backdrop" aria-hidden="true">
+    {% if section.settings.poster != blank %}
+      {{
+        section.settings.poster
+        | image_url: width: 2400
+        | image_tag:
+          class: 'us__poster',
+          widths: '750, 1100, 1600, 2000, 2400',
+          sizes: '100vw',
+          loading: 'eager',
+          fetchpriority: 'high',
+          alt: ''
+      }}
+    {% endif %}
 
-  <div class="sf-runway" data-runway>
-    <div class="sf-stage" data-stage>
-
-      <!-- HERO -->
-
-      <div class="sf-hero" data-hero>
-
-        <div class="sf-media" data-media>
-          {% if poster != blank %}
-            <picture class="sf-poster">
-              <source
-                media="(max-width:767px)"
-                srcset="{{ phone_poster | escape }}"
-              >
-
-              <img
-                src="{{ poster | escape }}"
-                alt="{{ section.settings.hero_alt | escape }}"
-                loading="eager"
-              >
-            </picture>
-          {% endif %}
-
-          <canvas data-canvas aria-hidden="true"></canvas>
-
-          <div class="sf-grain" aria-hidden="true"></div>
-        </div>
-
-        <h1 class="sf-title" data-hero-title>
-          {{ section.settings.wordmark | escape }}
-        </h1>
-
-        <span
-          class="sf-number"
-          data-hero-number
-          aria-hidden="true"
-        >
-          {{ section.settings.number | escape }}
-        </span>
-
-        <p class="sf-intro" data-intro>{{ section.settings.intro | escape }}</p>
-
-        <div class="sf-actions" data-actions>
-
-          <a
-            class="sf-button sf-button--accent"
-            href="#{{ uid }}-board"
-            data-jump="board"
-          >
-            {{ section.settings.primary_label | escape }}
-          </a>
-
-          {% if section.settings.about_url != blank %}
-            <a
-              class="sf-button"
-              href="{{ section.settings.about_url | escape }}"
-            >
-              {{ section.settings.secondary_label | escape }}
-            </a>
-          {% else %}
-            <a
-              class="sf-button"
-              href="#{{ uid }}-statement"
-              data-jump="statement"
-            >
-              {{ section.settings.secondary_label | escape }}
-            </a>
-          {% endif %}
-
-        </div>
-      </div>
-
-      <!-- TRANSITION BACKGROUND -->
-
-      <div class="sf-plate" data-plate aria-hidden="true">
-        <div class="sf-grain"></div>
-      </div>
-
-      <!-- CENTRAL STATEMENT -->
-
-      <div
-        class="sf-statement"
-        id="{{ uid }}-statement"
-        data-statement
+    {% if section.settings.video_url != blank %}
+      <video
+        class="us__video"
+        muted
+        playsinline
+        preload="metadata"
+        tabindex="-1"
+        {% if section.settings.poster != blank %}
+          poster="{{ section.settings.poster | image_url: width: 2400 }}"
+        {% endif %}
+        data-us-video
       >
-        {% for line in statement_lines %}
-          <span class="sf-statement-line">
-            {{ line | strip | escape }}
+        <source
+          src="{{ section.settings.video_url | escape }}"
+          type="video/mp4"
+        >
+      </video>
+    {% endif %}
+
+    <div class="us__shade"></div>
+  </div>
+
+  <div class="us__content">
+    <section
+      class="us__hero us__container"
+      data-testid="services-hero"
+      aria-labelledby="US-Title-{{ section.id }}"
+    >
+      <div class="us__masthead" data-us-reveal>
+        <span class="us__brand">UKIYO</span>
+
+        {% if section.settings.strap != blank %}
+          <span class="us__mono us__masthead-label">
+            {{ section.settings.strap | escape }}
           </span>
-        {% endfor %}
+        {% endif %}
+
+        <button
+          class="us__motion"
+          type="button"
+          aria-pressed="false"
+          data-us-motion
+          hidden
+        >
+          Pause motion
+        </button>
       </div>
 
-      <!-- RING / GALLERY -->
-
-      <section
-        class="sf-board"
-        id="{{ uid }}-board"
-        data-board
-        aria-labelledby="{{ uid }}-board-title"
-      >
-
-        <h2
-          class="sf-board-title"
-          id="{{ uid }}-board-title"
-          data-board-title
-        >
-          {{ section.settings.board_title | escape }}
-        </h2>
-
-        <div class="sf-cards" data-cards>
-
-          {% for block in cards %}
-            {% liquid
-              assign img = block.settings.image_url
-
-              if block.settings.image != blank
-                assign img = block.settings.image | image_url: width: 1200
-              endif
-
-              assign person = block.settings.person_key | default: block.settings.name | handleize
-              assign profile_name = block.settings.name | default: 'Profile'
-            %}
-
-            <a
-              class="sf-card"
-              href="{{ img | default: '#' | escape }}"
-              data-card
-              data-block="{{ block.id }}"
-              data-person="{{ person }}"
-              data-name="{{ profile_name | escape }}"
-              data-focus="{{ block.settings.focus | divided_by: 100.0 }}"
-              {{ block.shopify_attributes }}
-            >
-
-              {% if img != blank %}
-                <img
-                  class="sf-card-image"
-                  src="{{ img | escape }}"
-                  alt="{{ block.settings.alt | escape }}"
-                  width="808"
-                  height="1078"
-                  loading="lazy"
-                  decoding="async"
-                >
-              {% else %}
-                <div class="sf-card-image"></div>
-              {% endif %}
-
-              <span class="sf-card-meta">
-                <span>{{ profile_name | escape }}</span>
-
-                <span>
-                  {% if block.settings.age != blank %}
-                    ({{ block.settings.age | escape }})
-                  {% endif %}
-                </span>
-              </span>
-
-            </a>
-          {% endfor %}
-
-        </div>
-
-        {% if cards.size == 0 %}
-          <p class="sf-empty">
-            Add Profile blocks and photographs in the Theme Editor.
+      <div class="us__hero-grid">
+        {% if section.settings.description != blank %}
+          <p class="us__description" data-us-reveal>
+            {{ section.settings.description | escape }}
           </p>
         {% endif %}
 
-      </section>
-
-      <!-- BOTTOM NAVIGATION -->
-
-      <nav class="sf-dock" aria-label="Showcase navigation">
-
-        <a
-          class="sf-logo"
-          href="#{{ uid }}"
-          data-jump="top"
+        <h1
+          id="US-Title-{{ section.id }}"
+          class="us__title"
+          data-us-reveal
         >
-          {{ section.settings.logo | escape }}
-        </a>
+          <span>{{ section.settings.title_line1 | escape }}</span>
+          <span>{{ section.settings.title_line2 | escape }}</span>
+        </h1>
 
-        <div class="sf-dock-links">
-
-          <a
-            href="#{{ uid }}-board"
-            data-jump="board"
-          >
-            {{ section.settings.board_link_label | escape }}
-          </a>
-
-          {% if section.settings.models_url != blank %}
-            <a
-              class="sf-wide"
-              href="{{ section.settings.models_url | escape }}"
-            >
-              {{ section.settings.models_label | escape }}
-            </a>
-          {% endif %}
-
-          {% if section.settings.casting_url != blank %}
-            <a
-              class="sf-wide"
-              href="{{ section.settings.casting_url | escape }}"
-            >
-              {{ section.settings.casting_label | escape }}
-            </a>
-          {% endif %}
-
-          <button type="button" data-shortlist>
-            Shortlist (<span data-count>0</span>)
-          </button>
-
-        </div>
-      </nav>
-
-    </div>
-  </div>
-
-  <!-- PROFILE DIALOG -->
-
-  <dialog
-    class="sf-dialog"
-    data-dialog
-    aria-label="Profile"
-  >
-    <button
-      class="sf-close"
-      type="button"
-      data-close
-      aria-label="Close profile"
-      autofocus
-    >
-      ×
-    </button>
-
-    <div
-      class="sf-profile"
-      data-profile
-      tabindex="0"
-    ></div>
-  </dialog>
-
-  <!-- PROFILE CONTENT TEMPLATES -->
-
-  {% for block in cards %}
-    {% liquid
-      assign img = block.settings.image_url
-
-      if block.settings.image != blank
-        assign img = block.settings.image | image_url: width: 1800
-      endif
-
-      assign person = block.settings.person_key | default: block.settings.name | handleize
-      assign specs = block.settings.stats | newline_to_br | split: '<br />'
-    %}
-
-    <template data-template="{{ block.id }}">
-      <div class="sf-profile-grid">
-
-        <div class="sf-panel">
-          <h2 class="sf-profile-name">
-            <span>{{ block.settings.name | escape }}</span>
-
-            {% if block.settings.age != blank %}
-              <span>Age {{ block.settings.age | escape }}</span>
-            {% endif %}
-          </h2>
-
-          {% if block.settings.tagline != blank %}
-            <p>{{ block.settings.tagline | escape }}</p>
-          {% endif %}
-
-          {% if block.settings.bio != blank %}
-            <p class="sf-profile-bio">
-              {{ block.settings.bio | escape }}
-            </p>
-          {% endif %}
-
-          <dl class="sf-specs">
-            {% for line in specs %}
-              {% assign item = line | strip | split: '|' %}
-
-              {% if item.size > 1 %}
-                <div>
-                  <dt>{{ item.first | strip | escape }}</dt>
-                  <dd>{{ item.last | strip | escape }}</dd>
-                </div>
+        <div class="us__hero-actions">
+          {% for block in buttons %}
+            {% if block.settings.placement == 'hero' %}
+              {% if block.settings.label != blank and block.settings.link != blank %}
+                <a
+                  class="us__button"
+                  href="{{ block.settings.link | escape }}"
+                  {{ block.shopify_attributes }}
+                >
+                  <span>{{ block.settings.label | escape }}</span>
+                  <i>{{ arrow }}</i>
+                </a>
               {% endif %}
-            {% endfor %}
-          </dl>
-
-          <div class="sf-profile-actions">
-
-            {% if section.settings.contact_url != blank %}
-              <a
-                class="sf-button sf-button--accent"
-                href="{{ section.settings.contact_url | escape }}"
-              >
-                {{ section.settings.contact_label | escape }}
-              </a>
-            {% endif %}
-
-            <button
-              type="button"
-              class="sf-button"
-              data-save="{{ person }}"
-              aria-pressed="false"
-            >
-              Add to shortlist
-            </button>
-
-          </div>
-        </div>
-
-        <div class="sf-frames">
-
-          {% if img != blank %}
-            <img
-              class="sf-frame"
-              src="{{ img | escape }}"
-              alt="{{ block.settings.alt | escape }}"
-              width="808"
-              height="1078"
-            >
-          {% endif %}
-
-          {% for i in (2..3) %}
-            {% liquid
-              assign photo_key = 'photo_' | append: i
-              assign url_key = 'photo_url_' | append: i
-              assign photo = block.settings[url_key]
-
-              if block.settings[photo_key] != blank
-                assign photo = block.settings[photo_key] | image_url: width: 1800
-              endif
-            %}
-
-            {% if photo != blank %}
-              <img
-                class="sf-frame"
-                src="{{ photo | escape }}"
-                alt="{{ block.settings.name | escape }} — additional photograph"
-                width="808"
-                height="1078"
-                loading="lazy"
-              >
             {% endif %}
           {% endfor %}
 
+          {% if section.settings.scroll_text != blank %}
+            <a
+              class="us__scroll us__mono"
+              href="#US-Services-{{ section.id }}"
+              data-us-scroll
+            >
+              {{ section.settings.scroll_text | escape }}
+              <span aria-hidden="true">↓</span>
+            </a>
+          {% endif %}
         </div>
       </div>
 
-      {% if block.settings.age != blank %}
-        <p class="sf-profile-age" aria-hidden="true">
-          ({{ block.settings.age | escape }})
-        </p>
+      {% if section.settings.watermark != blank %}
+        <span class="us__watermark" aria-hidden="true">
+          {{ section.settings.watermark | escape }}
+        </span>
       {% endif %}
-    </template>
-  {% endfor %}
+    </section>
 
-  <script type="application/json" data-sequences>
-    {
-      "desktop": {{ section.settings.desktop_frames | json | replace: '</', '<\/' }},
-      "mobile": {{ section.settings.mobile_frames | json | replace: '</', '<\/' }}
-    }
-  </script>
+    <section
+      id="US-Services-{{ section.id }}"
+      class="us__services us__container"
+      aria-labelledby="US-Overview-{{ section.id }}"
+    >
+      <div class="us__section-meta us__mono" data-us-reveal>
+        <span>01 / Our expertise</span>
+        <span>Strategy meets execution</span>
+      </div>
 
-</surface-scroll-showcase-v1>
+      <h2
+        id="US-Overview-{{ section.id }}"
+        class="us__overview"
+        data-us-words
+      >
+        {{ section.settings.overview | escape }}
+      </h2>
 
-{% javascript %}
-(() => {
-  const tag = 'surface-scroll-showcase-v1';
+      <div class="us__pillars">
+        <article class="us__pillar" data-us-reveal>
+          <div class="us__pillar-top us__mono">
+            <span>{{ section.settings.brand_label | escape }}</span>
+            <span aria-hidden="true">01</span>
+          </div>
 
-  if (
-    !window.customElements ||
-    customElements.get(tag)
-  ) {
-    return;
+          <div class="us__pillar-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64">
+              <circle cx="32" cy="32" r="25"/>
+              <ellipse cx="32" cy="32" rx="12" ry="25"/>
+              <path d="M7 32h50M11 18h42M11 46h42"/>
+            </svg>
+          </div>
+
+          <h3>{{ section.settings.brand_title | escape }}</h3>
+
+          <div class="us__body">
+            {{ section.settings.brand_body }}
+          </div>
+
+          {% if section.settings.brand_tags != blank %}
+            <ul class="us__tags us__mono" role="list">
+              {% assign brand_tags = section.settings.brand_tags | split: ',' %}
+              {% for tag in brand_tags %}
+                <li>{{ tag | strip | escape }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+
+          <div class="us__pillar-actions">
+            {% for block in buttons %}
+              {% if block.settings.placement == 'brand' %}
+                {% if block.settings.label != blank and block.settings.link != blank %}
+                  <a
+                    class="us__button"
+                    href="{{ block.settings.link | escape }}"
+                    {{ block.shopify_attributes }}
+                  >
+                    <span>{{ block.settings.label | escape }}</span>
+                    <i>{{ arrow }}</i>
+                  </a>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        </article>
+
+        <article class="us__pillar" data-us-reveal>
+          <div class="us__pillar-top us__mono">
+            <span>{{ section.settings.ai_label | escape }}</span>
+            <span aria-hidden="true">02</span>
+          </div>
+
+          <div class="us__pillar-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64">
+              <rect x="23" y="23" width="18" height="18" rx="3"/>
+              <path d="M32 23V9M32 41v14M23 32H9M41 32h14"/>
+              <path d="M23 23 13 13M41 23l10-10M23 41 13 51M41 41l10 10"/>
+              <circle cx="32" cy="7" r="2"/>
+              <circle cx="32" cy="57" r="2"/>
+              <circle cx="7" cy="32" r="2"/>
+              <circle cx="57" cy="32" r="2"/>
+            </svg>
+          </div>
+
+          <h3>{{ section.settings.ai_title | escape }}</h3>
+
+          <div class="us__body">
+            {{ section.settings.ai_body }}
+          </div>
+
+          {% if section.settings.ai_tags != blank %}
+            <ul class="us__tags us__mono" role="list">
+              {% assign ai_tags = section.settings.ai_tags | split: ',' %}
+              {% for tag in ai_tags %}
+                <li>{{ tag | strip | escape }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+
+          <div class="us__pillar-actions">
+            {% for block in buttons %}
+              {% if block.settings.placement == 'ai' %}
+                {% if block.settings.label != blank and block.settings.link != blank %}
+                  <a
+                    class="us__button"
+                    href="{{ block.settings.link | escape }}"
+                    {{ block.shopify_attributes }}
+                  >
+                    <span>{{ block.settings.label | escape }}</span>
+                    <i>{{ arrow }}</i>
+                  </a>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section
+      class="us__process-wrap us__container"
+      aria-labelledby="US-Process-{{ section.id }}"
+      data-us-endpoint
+    >
+      <div class="us__glass">
+        <div class="us__process-heading">
+          <div data-us-reveal>
+            <span class="us__mono us__kicker">02 / Our process</span>
+            <h2 id="US-Process-{{ section.id }}">
+              {{ section.settings.process_title | escape }}
+            </h2>
+          </div>
+
+          <p data-us-reveal>
+            {{ section.settings.process_intro | escape }}
+          </p>
+        </div>
+
+        <ol class="us__steps" role="list">
+          {% for index in (1..4) %}
+            {% assign title_key = 'step_' | append: index | append: '_title' %}
+            {% assign body_key = 'step_' | append: index | append: '_body' %}
+
+            <li class="us__step" data-us-reveal>
+              <span class="us__step-number us__mono">
+                0{{ index }}
+              </span>
+              <h3>{{ section.settings[title_key] | escape }}</h3>
+              <p>{{ section.settings[body_key] | escape }}</p>
+            </li>
+          {% endfor %}
+        </ol>
+
+        <div class="us__closing">
+          <h2 data-us-reveal>
+            {{ section.settings.closing_title | escape }}
+          </h2>
+
+          <div class="us__closing-actions">
+            {% for block in buttons %}
+              {% if block.settings.placement == 'process' %}
+                {% if block.settings.label != blank and block.settings.link != blank %}
+                  <a
+                    class="us__button us__button--white"
+                    href="{{ block.settings.link | escape }}"
+                    {{ block.shopify_attributes }}
+                  >
+                    <span>{{ block.settings.label | escape }}</span>
+                    <i>{{ arrow }}</i>
+                  </a>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap');
+
+  .us {
+    display: grid;
+    position: relative;
+    isolation: isolate;
+    background: #050606;
+    color: #fff;
+    font-family: "Manrope", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
 
-  const BASE =
-    'https://d2ol7oe51mr4n9.cloudfront.net/user_3GJaYKPxdnQG0Q9O26lu6DPmcHu/';
+  .us *,
+  .us *::before,
+  .us *::after {
+    box-sizing: border-box;
+  }
 
-  /*
-   * Original 121-frame desktop and mobile media sets.
-   */
-  const DEMO = {
-    d: [
-      '5f55f68c-b7b2-415e-b3f3-cb0e73c205e6',
-      '41089220-94e0-437a-9da8-05e2747b9b3c',
-      '9f9be7b8-1215-4851-8743-cf012e24b149',
-      '12290bb4-d194-4752-ad2d-af9dc938ff79',
-      '2e08f0f0-b4ce-4637-abe3-be7b64f4e204',
-      '1b77c60b-00b4-4d7e-9643-fb95f9ccac33',
-      '3ba9f730-80a3-4011-9f37-765cf728615e',
-      'cd0d0bcf-d159-4395-a52f-3f94794a72bb',
-      'f8f0c4eb-a278-4f4f-9c36-334b36cc97e9',
-      'b60c9d93-616e-45e3-b791-49551bfeda62',
-      '9d305f6b-22f9-437d-85fe-a542036ffc55',
-      'e2d39ac6-008a-4fb5-b00a-74d7326f9012',
-      '4f9e3d12-2afc-488c-9088-3d15eae0f299',
-      'd87a5b2c-4567-4c0c-9ec9-c632e983a209',
-      'a4969ac4-dd2b-4c25-bcc9-4bf68b71e544',
-      'd4f29ff9-7241-448c-9f28-01c88f675378',
-      'c471ece7-1fdd-4b94-811b-15ed1d9e569c',
-      'a189df26-0e9e-4e86-b5c9-35351ac4fab0',
-      'ec755f54-559c-4105-8750-40be747df597',
-      '8c19dc82-fc17-482c-8cd7-ee4f04688135',
-      '5e867037-4f52-4809-9a0c-a03a0cbcaa71',
-      '3fd9911b-0c05-4b0f-8d2c-312161725f57',
-      '3f017cb3-c85e-4a0b-aa96-8e692235c75c',
-      '8c2c5a73-9875-476a-aef5-1f1562ee4763',
-      '8ede5e5c-2148-4924-9556-b4fcb5093859',
-      '8f7b6150-46de-40e5-abd9-679f79510c4f',
-      '2bca683e-5e1a-4025-89c6-811c48b417e3',
-      'dca80c98-ece7-4842-a333-667cff165c22',
-      'fa030f22-2452-496d-aad9-0af4fc60c31c',
-      'eec08c62-323a-4c55-9a98-90cbe6c87d0b',
-      'f47a1edc-17d3-4e67-b2cd-0bef65be12f2',
-      'e5cf0ce1-a22f-4618-b7fe-567a78c3f51e',
-      '93080e38-99b7-4a00-a675-a037032cdefe',
-      '101c5efc-a2b3-4dce-9fc8-74d0f73696f2',
-      '1ab0c42f-5bf9-4985-b1a8-478763baa9a6',
-      '4fc11d30-74fa-4761-87b3-886177704c85',
-      '58fc0af2-933e-4322-904f-54b7d953ef0a',
-      '7b197d88-c48d-4bce-9edf-250cbde7b84c',
-      'badc7f63-714c-4c6f-848f-1173f4d05a6a',
-      'aecd41ae-bbed-4d8d-a9e4-27a6febd0d1a',
-      'cc5329e8-bfda-4382-bc56-45861e1fb84a',
-      '1dc1f794-07c5-4da8-80f1-02ae1d26ce81',
-      '98f2ba5e-428c-4ca5-83e3-71a62d5082b7',
-      '52a88d5a-fc44-425d-a6f7-e84176a523fb',
-      '40de12e9-5b1a-456e-805d-5df1bc812aeb',
-      '7b4b8f10-7175-4af5-b05f-1876ba927d5b',
-      'f13ac19f-48c1-4e52-80c9-a12259ef8671',
-      'c277ff13-10ea-41c0-972c-c6053255abeb',
-      'e81f801c-2891-4331-9c38-982c236e875f',
-      '1e612e17-6d4d-4908-9d71-a2ce2af73c6e',
-      '69db35f0-dfd0-458e-850a-28af88b65829',
-      'd0345d3e-7bfc-49ae-a81a-844b30af85e4',
-      '5ac5c461-81c0-4825-834d-39f997d7bbac',
-      '024d7561-8a20-4184-b12b-3eaf1a2a0469',
-      '17f31164-fef5-495f-9191-eb56bb608e40',
-      'a4aeb3f6-03db-4b32-b809-a91d64b1ceb0',
-      '3a9218c5-0938-4610-bb86-e8741214a8b5',
-      'a39fd4fb-6139-4434-bf06-22888f94193b',
-      '5f98777e-946c-4f3c-87b8-7a1ad4b42e18',
-      '1d9bc409-51da-43cf-b14b-ae262290c21a',
-      '8d79e9f6-93f2-457b-befe-2384895101ff',
-      '71a8f950-8399-4637-9880-684495991152',
-      'd66a3f32-8d99-4bb8-a910-e0df1f570242',
-      'a2b233a8-66f8-47b7-8853-9f0e746298f9',
-      'f57f844f-6332-4d1d-85a7-5a0c4711e872',
-      '89ffdd36-d082-4a05-8ab1-b1b4ed3b5fc6',
-      '9ad65cb0-a2d9-45f6-8772-06b94dd4d0af',
-      '7f393d3f-02cd-49f1-ad24-6f9921c81339',
-      '5bdf70f9-9ec6-436b-b3c6-7792a1356d14',
-      '83cdcd07-77e8-43f0-a12d-b5ddbec60cdd',
-      'd39940aa-396e-4aff-a61c-087b09431b69',
-      'cebfa8f2-6619-4bf7-9b8f-84e12e226c65',
-      '7878287a-73eb-460d-a652-8f5ffb869d85',
-      '71dd4581-c1b0-4db6-8fad-f1007693c107',
-      '80feff76-a2e4-4bf8-8ffc-34623d984716',
-      '0369b18e-07f8-4605-af66-9ea660a0c953',
-      'db3e0265-c219-46de-af21-37953554dbe4',
-      'cb93b770-1007-4b42-96ea-16b8f977995f',
-      'e4d9795e-e760-4c07-9eb0-211278d40ae1',
-      '2ae6919a-3786-476d-b529-8d545b107332',
-      'd6144f0e-eeaa-4c5e-b4e2-fc10455cbdaf',
-      '43e82327-1808-4a3e-91c5-765e4a77a0d1',
-      '4dcbb3a1-45db-48e3-87da-4c4d547569c6',
-      '42600b93-08de-4bf8-b5b3-f60a16645f7b',
-      '272fa46f-2bdf-4993-9992-39ac9376dd08',
-      '67a4d919-037d-43bc-9a37-35021917158e',
-      'd95c9482-a50b-490e-834b-c81ffac9f2db',
-      'b05c9140-eae9-43ea-851c-26f4d8eb2fb3',
-      '0c55ffcf-109c-4780-ae1e-39877b823828',
-      'bb0a9e08-1cac-450a-8fd2-64ddc3b5e7c7',
-      '552e68d3-1452-4cdc-912b-6b6ee36fc6d3',
-      '002e0515-55aa-4868-8d7a-5fc325e67def',
-      '99b533f9-67dc-4369-a3b3-8a0c566963ae',
-      '205a7c7e-6ce7-4f7b-ba05-9f929cdc793d',
-      '78252dae-dabf-4546-b4b9-5f36fcceb543',
-      '08afd88c-51b0-4df0-9f94-3f1ad56dd91a',
-      '99c0674e-2394-418c-9d37-5dc01db42536',
-      '6c9098c7-8316-4be7-bcd0-394f8c626935',
-      '8bcac303-d424-498b-a79b-e8e06b4ea0c5',
-      '6fac0b74-07f4-4840-af64-1e7291ad845f',
-      '72c04b08-c018-4352-b603-73a077925725',
-      '3960f2e8-5127-4229-9928-bcd7e948b54c',
-      '6b13f5f7-bda2-49ce-9029-494d2b605392',
-      '9ba1945a-4dac-4c74-8c4e-752eb1241aac',
-      '7943a431-c6e6-434e-ad7d-e966b21fb8d2',
-      'adbbdf45-0044-42dd-8140-58098a2f1192',
-      'eaa9bbfe-6ebb-4355-aee1-727e7a20288c',
-      '0b842593-0092-458f-a966-96b4be059678',
-      '7f8563f0-f68d-4688-9367-1261e55e6935',
-      'ff2da3ed-3635-44ff-9aeb-50f2c73dcfd6',
-      'aaf8414e-9194-4978-a06d-ea255b35bcd8',
-      'a15e4841-152b-4fb9-8d82-294a8186751a',
-      '51d9855e-12bd-45b8-a64f-37d968fa0d97',
-      'ddcef654-d14c-410b-84bf-1f65444c384d',
-      '3ee3d3cb-4149-47ee-abdf-a71f58e2a4fc',
-      'bc1292bc-ab21-41ca-84c9-9ed3691a0b41',
-      'f312f101-dec0-4f5a-82e1-033385b3021a',
-      '9ccb98d9-b008-4bb9-bf4c-943c786a2a07',
-      'aad31a47-5126-47fa-ae10-fef68379275b',
-      'cb77d855-44aa-4eb5-b92c-745c653a08ba',
-      '152bf232-8035-4042-b6c0-b67b9b0f42bf'
-    ],
+  .us .us__backdrop {
+    grid-area: 1 / 1;
+    position: sticky;
+    top: 0;
+    align-self: start;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse at 65% 25%, #394644, #101918 55%, #050606);
+  }
 
-    m: [
-      'fee305e6-6957-4257-998f-020018a2c048',
-      '283203bd-069b-4e39-8754-682ca5a8b5d8',
-      'c9e7d0f6-5ecb-440e-a53a-f1b762596b41',
-      'af7b79d8-e774-4428-b0cc-3aacc7a32d58',
-      '274c4e83-82e4-49b7-bea6-96c39b62d7f7',
-      'f3b4997a-5675-4d51-9c70-40bc4f532819',
-      '2b34addd-3d6a-4e4a-b604-ba8163245ec1',
-      '692f683a-c0fb-4797-8b98-718cfb167d03',
-      '762a756d-7228-4bb2-b0cc-1199630966cd',
-      'c0924395-eb47-453c-af35-1b3234d7b741',
-      '2d2ede9a-269b-49ea-8cc9-f1bf164ef218',
-      'ba27c894-6e2a-4b05-953b-e6cc06960ecb',
-      'd345a743-4dca-42b4-b674-f0038456bd21',
-      '376c303b-faa4-48e0-bd47-9769dfd5b3bd',
-      '1e390fb9-6d6a-4aa9-82f5-76eba4bfac73',
-      'e42e6b3a-46d5-4590-9d57-68573ab06355',
-      '273bcbe1-214d-41e4-9318-8eeb995571ee',
-      '30977b8d-6c28-4894-9e67-dad1595d6ba4',
-      'fc6e8452-0aef-4d83-aa4f-116aeb5b7216',
-      '5f6fce54-2772-4785-939f-ad309d6b822f',
-      'c1da310e-3b61-4cb5-b2d3-253ecf03bbe6',
-      'a0023eec-e81a-45cb-9914-91fb1b52f4d1',
-      'fa8ae000-4bf0-48a8-8edd-e63c49184bdc',
-      '76b2a30b-3a18-458c-ac3c-c460251c498e',
-      'f5848716-e6ec-424d-b079-1b7ef34c01fc',
-      '984bfdde-7fdc-499c-9643-5317524795f7',
-      'b54887bd-5e42-48c3-b486-058248e888bd',
-      '80254f52-1389-4988-a3fd-1f0e8a15987e',
-      '505c5160-4a67-4eb8-bb21-a64e029a288c',
-      '9064340d-5526-47b7-b643-f0115d54fe9f',
-      'dc799f23-0a21-4d4c-9345-76726c5d3deb',
-      'f8001d18-0659-4f10-a665-623a74aedb78',
-      '70d1f26d-389d-4766-aab4-fa013130ba54',
-      'b76aa89a-41b4-4e33-b860-c8e14199520e',
-      'a7fbdf0f-714e-4a33-a3b7-6a6bd9acb4ae',
-      '70d65558-8bb2-4aed-b33e-8be48901fae9',
-      '3596f164-bc07-4838-b012-3efe96b22830',
-      '641bb45b-1229-4865-a0be-91ae9760ed57',
-      'dde2a5c1-e47c-4052-a4fe-ef61e6df3dac',
-      '69a923b1-8a09-4f2c-98f3-1b9fa9b2e5d1',
-      'ac56348b-4440-4632-9ea4-87cf83dba3f2',
-      'd1fddbe6-866a-49f0-bf97-fe2cf5a962ca',
-      '1e1f22d7-ea04-4a4a-b04f-1062543df028',
-      '68f8653b-e5cb-4098-8579-bb7d67f75d89',
-      '720b546d-5747-45f1-90a6-91a4017a977f',
-      '27db83b5-af77-484a-b723-f52bcac05101',
-      'efcb5b22-19a1-4301-b08c-cad3f7cfe617',
-      '1a2628b9-5085-4881-893a-c5a2ceccdd7c',
-      '942af439-66a3-42c6-a7a2-b841cfa25d52',
-      'cb7b26c8-eecf-4fb0-a127-858ee12ab854',
-      'c6d6dccb-a7e7-4cbb-8361-95723b103a11',
-      '3f36a3d8-66d0-4efc-9795-02f47ced1371',
-      '1b3ad76d-a59f-4da4-a9d4-2c6f93089817',
-      '50911bab-962b-416b-b6ab-18f9a717ac46',
-      '7e3c82cd-5128-4da6-9ee9-71e902cde1f6',
-      'e9028591-48df-4b18-b760-853cd9938848',
-      '8c15fa21-662e-402f-97df-07280169d1d2',
-      'cb1cc378-84a8-49d3-8979-fc39fb5560c1',
-      'df217cb7-819e-4452-a429-b5c0bce9390c',
-      'f02fb8be-50ee-435c-ae0c-abe74c0f28f9',
-      'a94a5e68-f395-46c7-995e-d179775ece7f',
-      '79fad860-2253-4cef-869c-327d689284b3',
-      'a30b3930-b42f-4c5b-9133-3b185ea50690',
-      'ac81f5d9-c8c4-4370-b6d0-8b0040fb31c5',
-      'e92c77f0-e323-48fc-88b2-4cf1eb0bc40c',
-      'a372a3f6-93fc-49c1-9ca4-a4410d0dce58',
-      '8f817e70-4388-4945-bb67-df20d9262432',
-      '30931b39-e26a-424a-9540-e1174d01205c',
-      'a31e9531-2508-48a2-ba63-12e7b036e3c4',
-      'a84969e2-9982-4814-8099-8c3f694ca6dc',
-      'd69f3d69-7e42-42ad-9d79-6bf51894cb90',
-      'cea26b67-360f-4665-a4ec-23d9d62ac6b5',
-      '88388431-94be-40f3-8bc6-4f10d3752edb',
-      '887f5405-3bd0-4700-910d-e7986cc39ce8',
-      'aebba588-c83b-429c-88c7-e9240891f4be',
-      '5d80496f-3459-462e-864b-752763a35dba',
-      '9a5acca0-6f13-4b1b-b938-b43d4ba230e5',
-      '22ecced8-0918-4523-a04d-c65fde33dc47',
-      'c35390a6-f9a6-48cb-9ad3-6f52ca7fa035',
-      '2b99e049-8a21-4485-bcf0-f0af71e9c58d',
-      '97a687de-3439-49f6-b7fd-0905674064ea',
-      'fbbde38c-164e-493c-82e0-2c0a4a6cf01c',
-      'df39c80a-26a3-4fd7-a23f-e84db897e245',
-      '79a81b36-cac0-4661-8288-02c7724a1cb4',
-      '6a20e99d-136c-48b8-acae-ce63fda6f26a',
-      '6823e635-7dfd-4b23-b9df-254b4833bf84',
-      '877a0b73-2ac1-4818-89b3-8e6563dfeb0c',
-      'f5354297-e8d8-4108-b756-0b76fdf4e02e',
-      '6c3b61a4-d35b-4bc4-a005-ee41134a4573',
-      'fbc0898f-aba6-4902-8d3b-74a5d4f306e9',
-      '9532cc82-5259-4dc3-8115-a5a8093ff719',
-      'b2e47403-c828-4231-9f13-cf2385d05386',
-      '7a3f4907-56c4-4279-ac29-72c5c1282e66',
-      '5298f690-5d18-4122-83c5-f221378d40dd',
-      '5d86b868-71f2-4dd8-9169-043997bf0c4c',
-      '3921e3ad-8be6-442c-a998-ac53c57d05ff',
-      'dbde45b5-21cd-4645-9c45-fc6387ae1a69',
-      'cf52fe28-4b4f-48d3-9aca-1bdf5b0185cd',
-      '9f3f7e2b-e810-4f0b-a2b4-519c90e1957a',
-      '0f1cfc18-64ce-40c0-93f6-8059c41b6563',
-      'fb576ae3-85f2-45ee-9f0c-b6e2ea0ce07c',
-      'fc2ff250-ebd6-4101-ab40-e1b99c3d599d',
-      '89da1dfe-0b28-44a7-bf75-cb26724241f4',
-      '3dd6694e-582c-45c7-95ff-20a9788e0fa4',
-      '0a5e6635-bca9-4392-83f5-ed9a630c628c',
-      '4d7637f9-7f33-4666-8f0f-dcf67b9c8dcc',
-      'eaaddc0c-9622-4fd2-813d-ac84c966b8b6',
-      'b49aa3ab-b15b-4a36-a174-7c5b5ea4fa00',
-      '0e3d25d9-f1f5-4e1d-a3a2-0145ecc7c700',
-      '1ea9188f-f09f-4f7e-8c3e-793bcb762436',
-      'cab6b36e-6358-45b4-addf-8acd06219c38',
-      '2bbca4d2-29cd-4a28-99a6-bc58af98a11d',
-      '6774a859-a161-405f-bd9d-4073affc08a9',
-      'b7bd9de4-5486-4a7c-9e64-a7b3baa33594',
-      '9a6322dc-11b4-44d5-ad15-f45d92497dd4',
-      '36352b3c-c9f2-4529-909e-8c7d14089a20',
-      '38acf683-08a5-4f51-b657-5ca8601de515',
-      '518f1d4f-9457-46cb-996e-79bf1b99e574',
-      '93f3f561-4eb0-461e-a837-5fd197099cb6',
-      '863af171-4f66-4035-9c16-15b72c294d59',
-      '3a7c227e-a4ff-4a5e-8f41-b86e42a74b3a'
-    ]
-  };
+  .us .us__poster,
+  .us .us__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
 
-  const clamp = (x, a = 0, b = 1) =>
-    Math.max(a, Math.min(b, x));
+  .us .us__shade {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, #0005, #0002 28%, #0009 100%),
+      linear-gradient(90deg, #0006, #0003);
+  }
 
-  const seg = (x, a, b) =>
-    clamp((x - a) / (b - a));
+  .us .us__content {
+    grid-area: 1 / 1;
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+  }
 
-  const mix = (a, b, p) =>
-    a + (b - a) * p;
+  .us .us__container {
+    width: min(1440px, 90%);
+    margin-inline: auto;
+  }
 
-  const smooth = p =>
-    p * p * (3 - 2 * p);
+  .us .us__mono {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
 
-  const rad = d =>
-    d * Math.PI / 180;
+  .us .us__hero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 760px;
+    min-height: max(700px, 100svh);
+    padding-block: clamp(28px, 4vw, 64px) 54px;
+  }
 
-  /*
-   * Cubic-bezier timing matching the reference's strong
-   * ring-to-row easing, without a global animation library.
-   */
-  const ease = x => {
-    const curve = (t, a, b) =>
-      3 * (1 - t) * (1 - t) * t * a +
-      3 * (1 - t) * t * t * b +
-      t * t * t;
+  .us .us__masthead {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+  }
 
-    let lo = 0;
-    let hi = 1;
+  .us .us__brand {
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -.065em;
+  }
 
-    for (let i = 0; i < 15; i++) {
-      const t = (lo + hi) / 2;
+  .us .us__masthead-label {
+    padding-left: 24px;
+    border-left: 1px solid #ffffff55;
+    color: #e4e8e2;
+  }
 
-      if (curve(t, .77, .175) < x) {
-        lo = t;
-      } else {
-        hi = t;
-      }
+  .us .us__motion {
+    min-height: 44px;
+    padding: 8px 0 8px 12px;
+    margin-left: auto;
+    border: 0;
+    background: transparent;
+    color: #d5dad4;
+    font-family: inherit;
+    font-size: 10px;
+    cursor: pointer;
+  }
+
+  .us .us__motion[hidden] {
+    display: none;
+  }
+
+  .us .us__hero-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    grid-template-rows: minmax(240px, 1fr) auto;
+    grid-template-areas:
+      ". description"
+      "title actions";
+    align-items: end;
+    gap: 44px;
+    flex: 1;
+    padding-top: 80px;
+  }
+
+  .us .us__title {
+    grid-area: title;
+    margin: 0;
+    color: #fff;
+    font-family: inherit;
+    font-size: clamp(48px, 6.3vw, 94px);
+    font-weight: 500;
+    line-height: 1.04;
+    letter-spacing: -.055em;
+    text-transform: none;
+    overflow-wrap: break-word;
+  }
+
+  .us .us__title span {
+    display: block;
+    text-wrap: balance;
+  }
+
+  .us .us__title span + span {
+    color: #e1e7df;
+  }
+
+  .us .us__description {
+    grid-area: description;
+    align-self: center;
+    max-width: 460px;
+    margin: 0 0 0 auto;
+    color: #ecefe9;
+    font-size: clamp(17px, 1.65vw, 22px);
+    font-weight: 400;
+    line-height: 1.55;
+    text-align: right;
+    text-wrap: pretty;
+  }
+
+  .us .us__hero-actions {
+    grid-area: actions;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 18px;
+  }
+
+  .us .us__button {
+    display: inline-flex;
+    align-items: stretch;
+    gap: 3px;
+    max-width: 100%;
+    color: #fff;
+    text-decoration: none;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: .015em;
+    text-transform: uppercase;
+  }
+
+  .us .us__button > span,
+  .us .us__button > i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 56px;
+    background: #ffffff15;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    transition: background .3s, color .3s;
+  }
+
+  .us .us__button > span {
+    padding: 17px 24px;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .us .us__button > i {
+    position: relative;
+    flex: 0 0 56px;
+    width: 56px;
+    overflow: hidden;
+    font-style: normal;
+  }
+
+  .us .us__button svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .us .us__button--white {
+    color: #101410;
+  }
+
+  .us .us__button--white > span,
+  .us .us__button--white > i {
+    background: #f3f5ef;
+  }
+
+  .us .us__scroll {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    min-height: 44px;
+    color: #d5ddd2;
+    text-decoration: none;
+  }
+
+  .us .us__scroll > span {
+    font-size: 20px;
+  }
+
+  .us .us__watermark {
+    position: absolute;
+    bottom: 20%;
+    left: 0;
+    max-width: 100%;
+    overflow: hidden;
+    color: #ffffff04;
+    font-size: 15vw;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -.07em;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .us .us__services {
+    padding-block: clamp(100px, 13vw, 200px);
+    scroll-margin-top: 40px;
+  }
+
+  .us .us__section-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 36px;
+    color: #e0e7dd;
+  }
+
+  .us .us__overview {
+    max-width: 1200px;
+    margin: 0;
+    color: #fff;
+    font-family: inherit;
+    font-size: clamp(30px, 4.5vw, 64px);
+    font-weight: 500;
+    line-height: 1.16;
+    letter-spacing: -.045em;
+    text-transform: none;
+    text-wrap: pretty;
+  }
+
+  .us .us__word {
+    display: inline-block;
+  }
+
+  .us .us__pillars {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(32px, 7vw, 110px);
+    margin-top: clamp(54px, 8vw, 112px);
+  }
+
+  .us .us__pillar {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding-top: 24px;
+    border-top: 1px solid #ffffff50;
+  }
+
+  .us .us__pillar-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    color: #d7e0d3;
+  }
+
+  .us .us__pillar-icon {
+    margin-block: 34px 24px;
+  }
+
+  .us .us__pillar-icon svg {
+    display: block;
+    width: 58px;
+    height: 58px;
+    fill: none;
+    stroke: #e5ecdf;
+    stroke-width: 1.1;
+  }
+
+  .us .us__pillar h3 {
+    margin: 0 0 24px;
+    color: #fff;
+    font-family: inherit;
+    font-size: clamp(24px, 2.5vw, 36px);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -.035em;
+    overflow-wrap: break-word;
+  }
+
+  .us .us__body {
+    max-width: 560px;
+    color: #e1e6dd;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .us .us__body p {
+    margin: 0 0 18px;
+  }
+
+  .us .us__body strong {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .us .us__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    margin: auto 0 0;
+    padding: 20px 0 0;
+  }
+
+  .us .us__tags li {
+    padding: 7px 12px;
+    border: 1px solid #ffffff38;
+    color: #e7ede3;
+    background: #00000020;
+    font-size: 9px;
+  }
+
+  .us .us__pillar-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 25px;
+  }
+
+  .us .us__pillar-actions:empty {
+    display: none;
+  }
+
+  .us .us__process-wrap {
+    padding-bottom: clamp(32px, 5vw, 80px);
+  }
+
+  .us .us__glass {
+    padding: clamp(28px, 4.5vw, 68px);
+    background: rgba(20, 24, 22, .8);
+    border: 1px solid #ffffff28;
+    backdrop-filter: blur(36px);
+    -webkit-backdrop-filter: blur(36px);
+  }
+
+  .us .us__process-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    align-items: end;
+    gap: 36px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid #ffffff28;
+  }
+
+  .us .us__kicker {
+    display: block;
+    color: #c6d1c1;
+    margin-bottom: 18px;
+  }
+
+  .us .us__process-heading h2,
+  .us .us__closing h2 {
+    margin: 0;
+    color: #fff;
+    font-family: inherit;
+    font-size: clamp(30px, 3.7vw, 52px);
+    font-weight: 500;
+    letter-spacing: -.045em;
+    line-height: 1.1;
+    text-transform: none;
+    text-wrap: balance;
+  }
+
+  .us .us__process-heading > p {
+    max-width: 350px;
+    margin: 0;
+    color: #d1d8cc;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .us .us__steps {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 28px;
+    list-style: none;
+    margin: 0;
+    padding: 48px 0;
+  }
+
+  .us .us__step {
+    min-width: 0;
+  }
+
+  .us .us__step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    margin-bottom: 24px;
+    border: 1px solid #ffffff40;
+    color: #e2ebdc;
+  }
+
+  .us .us__step h3 {
+    margin: 0 0 14px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -.02em;
+  }
+
+  .us .us__step p {
+    margin: 0;
+    color: #c9d1c4;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .us .us__closing {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding-top: 42px;
+    border-top: 1px solid #ffffff28;
+  }
+
+  .us .us__closing h2 {
+    max-width: 600px;
+    font-size: clamp(28px, 3.2vw, 44px);
+  }
+
+  .us .us__closing-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .us .us__sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .us a:focus-visible,
+  .us button:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 5px;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .us .us__button:hover > span,
+    .us .us__button:hover > i {
+      background: #fff;
+      color: #111;
     }
 
-    return curve((lo + hi) / 2, 0, 1);
-  };
+    .us .us__button:hover svg {
+      animation: us-arrow .45s ease both;
+    }
+  }
 
-  customElements.define(tag, class extends HTMLElement {
-    connectedCallback() {
-      this.boot = requestAnimationFrame(
-        () => this.init()
-      );
+  @keyframes us-arrow {
+    0% { transform: translateX(0); opacity: 1; }
+    45% { transform: translateX(32px); opacity: 0; }
+    46% { transform: translateX(-32px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+  }
+
+  @media (max-width: 1000px) {
+    .us .us__steps {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 36px;
     }
 
-    init() {
-      if (!this.isConnected || this.events) return;
+    .us .us__hero-grid {
+      gap: 30px;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    }
 
-      this.events = new AbortController();
-      const signal = this.events.signal;
+    .us .us__button > span {
+      padding-inline: 18px;
+    }
+  }
 
-      this.runway = this.querySelector('[data-runway]');
-      this.stage = this.querySelector('[data-stage]');
-      this.canvas = this.querySelector('canvas');
-      this.context = this.canvas.getContext('2d');
-      this.media = this.querySelector('[data-media]');
-      this.heroTitle = this.querySelector('[data-hero-title]');
-      this.number = this.querySelector('[data-hero-number]');
-      this.intro = this.querySelector('[data-intro]');
-      this.actions = this.querySelector('[data-actions]');
-      this.statement = this.querySelector('[data-statement]');
-      this.board = this.querySelector('[data-board]');
-      this.boardTitle = this.querySelector('[data-board-title]');
-      this.cards = [...this.querySelectorAll('[data-card]')];
-      this.dialog = this.querySelector('[data-dialog]');
-      this.profile = this.querySelector('[data-profile]');
+  @media (max-width: 700px) {
+    .us .us__container {
+      width: calc(100% - 40px);
+    }
 
-      this.reduced = matchMedia(
-        '(prefers-reduced-motion: reduce)'
-      );
+    .us .us__hero {
+      min-height: 100svh;
+      padding-block: 24px 36px;
+    }
 
-      this.small = matchMedia(
-        '(max-width:767px)'
-      );
+    .us .us__masthead {
+      gap: 16px;
+      flex-wrap: wrap;
+    }
 
-      this.saved = this.saved || new Set();
-      this.editor = this.dataset.editor === 'true';
+    .us .us__brand {
+      font-size: 27px;
+    }
 
-      this.spin = 0;
-      this.slots = this.cards.map((_, i) => i);
-      this.unwrap = this.cards.map(() => 0);
-      this.words = [];
-      this.animations = new Set();
+    .us .us__masthead-label {
+      font-size: 8px;
+      padding-left: 16px;
+    }
 
-      this.seqGeneration =
-        (this.seqGeneration || 0) + 1;
+    .us .us__hero-grid {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: minmax(90px, 1fr) auto auto auto;
+      grid-template-areas: "." "title" "description" "actions";
+      gap: 26px;
+      padding-top: 20px;
+    }
 
-      let skipped = 0;
-      let gaps = 0;
+    .us .us__title {
+      font-size: clamp(42px, 11vw, 68px);
+      line-height: 1.06;
+    }
 
-      this.statement.setAttribute('role', 'heading');
-      this.statement.setAttribute('aria-level', '2');
+    .us .us__description {
+      align-self: start;
+      max-width: 38ch;
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.7;
+      text-align: left;
+    }
 
-      this.statement.setAttribute(
-        'aria-label',
-        this.statement.textContent.trim()
-      );
+    .us .us__hero-actions {
+      align-items: stretch;
+      gap: 12px;
+    }
 
-      this.statement.querySelectorAll(
-        '.sf-statement-line'
-      ).forEach(line => {
-        const text = line.textContent.trim();
+    .us .us__button {
+      width: 100%;
+    }
 
-        if (!text) {
-          line.style.height = gaps === 0 ? '1em' : '.45em';
-          skipped += gaps++ === 0 ? 2 : 5;
-          return;
-        }
+    .us .us__button > span {
+      justify-content: flex-start;
+      flex: 1;
+    }
 
-        line.setAttribute('aria-hidden', 'true');
-        line.replaceChildren();
+    .us .us__scroll {
+      justify-content: flex-start;
+    }
 
-        text.split(/\s+/).forEach((word, i) => {
-          if (i) {
-            line.append(document.createTextNode(' '));
-          }
+    .us .us__shade {
+      background: linear-gradient(180deg, #0006, #0005 20%, #000b 65%, #000d);
+    }
 
-          const span = document.createElement('span');
+    .us .us__services {
+      padding-block: 80px;
+    }
 
-          span.className = 'sf-word';
-          span.textContent = word;
-          span.setAttribute('aria-hidden', 'true');
+    .us .us__section-meta {
+      margin-bottom: 26px;
+      font-size: 8px;
+    }
 
-          line.append(span);
+    .us .us__section-meta > span:last-child {
+      display: none;
+    }
 
-          this.words.push({
-            el: span,
-            skip: skipped
-          });
-        });
+    .us .us__overview {
+      font-size: clamp(29px, 7.5vw, 42px);
+      line-height: 1.2;
+    }
+
+    .us .us__pillars {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 54px;
+      margin-top: 48px;
+    }
+
+    .us .us__body {
+      font-size: 14px;
+    }
+
+    .us .us__glass {
+      padding: 28px 22px;
+    }
+
+    .us .us__process-heading {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 22px;
+      padding-bottom: 32px;
+    }
+
+    .us .us__steps {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+      padding-block: 12px;
+    }
+
+    .us .us__step {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr);
+      gap: 8px 18px;
+      padding-block: 25px;
+      border-bottom: 1px solid #ffffff18;
+    }
+
+    .us .us__step:last-child {
+      border-bottom: 0;
+    }
+
+    .us .us__step-number {
+      grid-row: span 2;
+      margin: 0;
+    }
+
+    .us .us__step h3 {
+      margin: 0;
+    }
+
+    .us .us__step p {
+      grid-column: 2;
+    }
+
+    .us .us__closing-actions {
+      width: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .us *,
+    .us *::before,
+    .us *::after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
+
+    .us .us__motion {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+(function () {
+  const rootId = 'UkiyoServices-{{ section.id }}';
+  const wrapperId = 'shopify-section-{{ section.id }}';
+
+  window.__ukiyoServices = window.__ukiyoServices || {};
+
+  if (window.__ukiyoServices[rootId]) {
+    window.__ukiyoServices[rootId]();
+  }
+
+  const lifecycle = new AbortController();
+  let cleanup = null;
+
+  function init() {
+    const root = document.getElementById(rootId);
+    if (!root) return;
+    if (cleanup) cleanup();
+
+    const events = new AbortController();
+    const signal = events.signal;
+    const video = root.querySelector('[data-us-video]');
+    const endpoint = root.querySelector('[data-us-endpoint]');
+    const motionButton = root.querySelector('[data-us-motion]');
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const revealElements = [...root.querySelectorAll('[data-us-reveal]')];
+
+    let paused = false;
+    let destroyed = false;
+    let frame = null;
+    let targetTime = 0;
+    let words = [];
+    let originalText = '';
+
+    const revealed = new Set();
+    const animations = new Set();
+    const wordHeading = root.querySelector('[data-us-words]');
+
+    /*
+      Keep one accessible copy of the heading.
+      Animate a separate visual copy word by word.
+    */
+    if (wordHeading) {
+      originalText = wordHeading.textContent.trim();
+      wordHeading.textContent = '';
+
+      const accessible = document.createElement('span');
+      accessible.className = 'us__sr';
+      accessible.textContent = originalText;
+
+      const visual = document.createElement('span');
+      visual.setAttribute('aria-hidden', 'true');
+
+      originalText.split(/\s+/).filter(Boolean).forEach((word, index) => {
+        if (index) visual.appendChild(document.createTextNode(' '));
+
+        const span = document.createElement('span');
+        span.className = 'us__word';
+        span.textContent = word;
+        visual.appendChild(span);
       });
 
-      this.wordSteps =
-        this.words.length + skipped + 4;
-
-      this.schedule = () => {
-        if (!this.frame) {
-          this.frame = requestAnimationFrame(
-            t => this.render(t)
-          );
-        }
-      };
-
-      this.measureLater = () => {
-        if (!this.measureFrame) {
-          this.measureFrame = requestAnimationFrame(
-            () => this.measure()
-          );
-        }
-      };
-
-      addEventListener(
-        'scroll',
-        this.schedule,
-        { passive: true, signal }
-      );
-
-      addEventListener(
-        'resize',
-        this.measureLater,
-        { passive: true, signal }
-      );
-
-      this.reduced.addEventListener(
-        'change',
-        this.measureLater,
-        { signal }
-      );
-
-      this.small.addEventListener(
-        'change',
-        this.measureLater,
-        { signal }
-      );
-
-      document.addEventListener(
-        'visibilitychange',
-        () => {
-          this.lastTime = 0;
-          this.schedule();
-        },
-        { signal }
-      );
-
-      if ('ResizeObserver' in window) {
-        this.resize = new ResizeObserver(() => {
-          if (this.clientWidth !== this.measuredWidth) {
-            this.measureLater();
-          }
-        });
-
-        this.resize.observe(this);
-      }
-
-      if ('IntersectionObserver' in window) {
-        this.observer = new IntersectionObserver(entries => {
-          this.visible = entries[0].isIntersecting;
-
-          if (this.visible) {
-            this.schedule();
-          }
-        });
-
-        this.observer.observe(this);
-      }
-
-      this.addEventListener('click', event => {
-        if (!(event.target instanceof Element)) return;
-
-        const target = event.target;
-
-        const plain =
-          event.button === 0 &&
-          !event.metaKey &&
-          !event.ctrlKey &&
-          !event.shiftKey &&
-          !event.altKey;
-
-        const jump = target.closest('[data-jump]');
-
-        if (jump && plain) {
-          event.preventDefault();
-          this.jump(jump.dataset.jump);
-        }
-
-        const card = target.closest('[data-card]');
-
-        if (
-          card &&
-          plain &&
-          typeof this.dialog.showModal === 'function'
-        ) {
-          event.preventDefault();
-
-          if (
-            !this.cinematic ||
-            this.hasAttribute('data-row')
-          ) {
-            this.openCard(card);
-          }
-        }
-
-        if (target.closest('[data-close]')) {
-          this.closeProfile();
-        }
-
-        if (target.closest('[data-shortlist]')) {
-          this.openShortlist();
-        }
-
-        const save = target.closest('[data-save]');
-
-        if (save) {
-          const key = save.dataset.save;
-
-          if (this.saved.has(key)) {
-            this.saved.delete(key);
-          } else {
-            this.saved.add(key);
-          }
-
-          this.syncSaved();
-        }
-
-        const stored = target.closest('[data-open-saved]');
-
-        if (stored) {
-          this.openCard(
-            this.cards.find(card => {
-              return card.dataset.block ===
-                stored.dataset.openSaved;
-            })
-          );
-        }
-      }, { signal });
-
-      /*
-       * A card reached with Tab is brought into view
-       * without creating a separate page-wide scroll system.
-       */
-      this.addEventListener('focusin', event => {
-        const card = event.target instanceof Element
-          ? event.target.closest('[data-card]')
-          : null;
-
-        if (
-          !card ||
-          !this.cinematic ||
-          !this.hasAttribute('data-row')
-        ) {
-          return;
-        }
-
-        const rect = card.getBoundingClientRect();
-
-        if (
-          rect.left >= 12 &&
-          rect.right <= this.geo.W - 12
-        ) {
-          return;
-        }
-
-        this.stage.scrollLeft = 0;
-
-        const slot = this.slots[
-          this.cards.indexOf(card)
-        ];
-
-        const shift = clamp(
-          slot * (this.geo.cw + 16),
-          0,
-          this.geo.travel
-        );
-
-        const start =
-          scrollY +
-          this.runway.getBoundingClientRect().top -
-          this.geo.top;
-
-        scrollTo({
-          top:
-            start +
-            (this.geo.hero + 3.25) * this.geo.H +
-            shift,
-          behavior: 'instant'
-        });
-      }, { signal });
-
-      this.dialog.addEventListener(
-        'cancel',
-        event => {
-          event.preventDefault();
-          this.closeProfile();
-        },
-        { signal }
-      );
-
-      this.dialog.addEventListener(
-        'close',
-        () => {
-          this.animations.forEach(a => a.cancel());
-          this.animations.clear();
-
-          this.closing = false;
-
-          this.opener?.focus({
-            preventScroll: true
-          });
-
-          this.schedule();
-        },
-        { signal }
-      );
-
-      this.addEventListener(
-        'shopify:block:select',
-        event => {
-          if (
-            this.editor &&
-            event.target instanceof Element
-          ) {
-            event.target.scrollIntoView({
-              block: 'center'
-            });
-          }
-        },
-        { signal }
-      );
-
-      this.measure();
-      this.syncSaved();
+      wordHeading.append(accessible, visual);
+      words = [...visual.querySelectorAll('.us__word')];
     }
 
-    measure() {
-      this.measureFrame = 0;
-
-      if (!this.isConnected) return;
-
-      this.measuredWidth = this.clientWidth;
-
-      const top = parseFloat(
-        getComputedStyle(this).getPropertyValue('--sf-top')
-      ) || 0;
-
-      const H = Math.max(1, innerHeight - top);
-      const W = this.clientWidth;
-
-      const active =
-        !this.reduced.matches &&
-        !this.editor &&
-        this.dataset.motion !== 'false' &&
-        H >= 560 &&
-        W >= 300 &&
-        this.cards.length > 1;
-
-      const changed = active !== this.cinematic;
-
-      this.cinematic = active;
-      this.toggleAttribute('data-cinematic', active);
-      this.style.setProperty('--sf-h', H + 'px');
-
-      const mobile = this.small.matches;
-
-      let cw = mobile
-        ? W * .72
-        : (W - 80) / 4;
-
-      let ch = cw * 4 / 3;
-
-      if (ch > H * (mobile ? .56 : .62)) {
-        ch = H * (mobile ? .56 : .62);
-        cw = ch * .75;
-      }
-
-      const travel = Math.max(
-        0,
-        this.cards.length * cw +
-        (this.cards.length - 1) * 16 -
-        (W - 32)
-      );
-
-      this.geo = {
-        W,
-        H,
-        top,
-        cw,
-        ch,
-        travel,
-        B: Math.min(H, W * 1.25),
-        hero: mobile ? 1.2 : 1.5
-      };
-
-      this.style.setProperty('--card-w', cw + 'px');
-      this.style.setProperty('--card-h', ch + 'px');
-
-      this.style.setProperty(
-        '--sf-run',
-        ((this.geo.hero + 3.4) * H + travel) + 'px'
-      );
-
-      if (!active) {
-        this.removeAttribute('data-row');
-
-        this.cards.forEach(card => {
-          card.removeAttribute('style');
-          card.tabIndex = 0;
-
-          card.querySelector(
-            '.sf-card-image'
-          ).style.clipPath = '';
-        });
-
-        [
-          this.heroTitle,
-          this.number,
-          this.intro,
-          this.actions,
-          this.statement,
-          this.boardTitle,
-          this.media
-        ].forEach(el => {
-          el.removeAttribute('style');
-        });
-
-        this.actions.inert = false;
-        this.board.inert = false;
-
-        this.words.forEach(({ el }) => {
-          el.removeAttribute('style');
-        });
-
-        this.style.removeProperty('--haze');
-      }
-
-      this.setupSequence(active);
-
-      const rect = this.canvas.getBoundingClientRect();
-      const dpr = Math.min(devicePixelRatio || 1, 1.5);
-
-      this.canvas.width = Math.max(
-        1,
-        Math.round(rect.width * dpr)
-      );
-
-      this.canvas.height = Math.max(
-        1,
-        Math.round(rect.height * dpr)
-      );
-
-      this.drawn = -1;
-
-      if (changed) {
-        this.lastTime = 0;
-      }
-
-      this.schedule();
+    function allowed() {
+      return !paused && !reduced.matches;
     }
 
-    setupSequence(active) {
-      const set = this.small.matches ? 'm' : 'd';
+    function updateButton() {
+      if (!motionButton) return;
+      motionButton.hidden = reduced.matches;
+      motionButton.setAttribute('aria-pressed', String(paused));
+      motionButton.textContent = paused ? 'Enable motion' : 'Pause motion';
+    }
 
+    function seekVideo() {
       if (
-        this.sequence?.set === set &&
-        this.sequence.active === active
-      ) {
-        return;
-      }
+        destroyed ||
+        !video ||
+        !allowed() ||
+        document.hidden ||
+        video.seeking ||
+        video.readyState < 1 ||
+        !Number.isFinite(video.duration)
+      ) return;
 
-      this.seqGeneration++;
+      const safeTime = Math.max(
+        0,
+        Math.min(targetTime, Math.max(0, video.duration - .05))
+      );
 
-      const generation = this.seqGeneration;
-      let config = {};
+      if (Math.abs(video.currentTime - safeTime) < .04) return;
 
       try {
-        config = JSON.parse(
-          this.querySelector('[data-sequences]').textContent
-        );
-      } catch (_) {}
-
-      const list = text =>
-        String(text || '')
-          .split(/\r?\n/)
-          .map(s => s.trim())
-          .filter(s => /^https?:\/\//i.test(s));
-
-      let urls = list(
-        set === 'm'
-          ? config.mobile
-          : config.desktop
-      );
-
-      if (!urls.length && set === 'm') {
-        urls = list(config.desktop);
-      }
-
-      if (
-        !urls.length &&
-        this.dataset.demo === 'true'
-      ) {
-        urls = DEMO[set].map(
-          id => BASE + id + '.webp'
-        );
-      }
-
-      this.sequence = {
-        set,
-        active,
-        urls,
-        cache: new Map(),
-        pending: new Set(),
-        failed: new Map(),
-        queue: [],
-        desired: 0,
-        generation
-      };
-
-      this.removeAttribute('data-frame-ready');
-      this.drawn = -1;
-
-      if (
-        active &&
-        urls.length &&
-        this.context
-      ) {
-        this.seek(0);
+        video.currentTime = safeTime;
+      } catch (error) {
+        /* Keep the poster or last decoded frame while media loads. */
       }
     }
 
-    /*
-     * Load around the current playhead rather than retaining
-     * every decoded full-size frame in memory at once.
-     */
-    seek(progress) {
-      const s = this.sequence;
-
-      if (
-        !s?.active ||
-        !s.urls.length ||
-        !this.context
-      ) {
-        return;
-      }
-
-      const target = Math.round(
-        clamp(progress) * (s.urls.length - 1)
-      );
-
-      s.desired = target;
-
-      const order = [target, 0];
-
-      for (let d = 1; d <= 6; d++) {
-        order.push(target + d, target - d);
-      }
-
-      s.queue = [...new Set(order)].filter(i => {
-        return (
-          i >= 0 &&
-          i < s.urls.length &&
-          !s.cache.has(i) &&
-          !s.pending.has(i) &&
-          (s.failed.get(i) || 0) < 2
-        );
-      });
-
-      this.pump();
-      this.draw();
-    }
-
-    pump() {
-      const s = this.sequence;
-
-      if (
-        !s ||
-        !this.isConnected ||
-        !s.active
-      ) {
-        return;
-      }
-
-      while (
-        s.pending.size < 4 &&
-        s.queue.length
-      ) {
-        const i = s.queue.shift();
-
-        if (
-          s.cache.has(i) ||
-          s.pending.has(i)
-        ) {
-          continue;
-        }
-
-        s.pending.add(i);
-
-        const img = new Image();
-        img.decoding = 'async';
-
-        const done = ok => {
-          if (
-            !this.isConnected ||
-            s.generation !== this.seqGeneration
-          ) {
-            return;
-          }
-
-          s.pending.delete(i);
-
-          if (ok) {
-            s.cache.set(i, img);
-
-            const limit = this.small.matches
-              ? 14
-              : 20;
-
-            while (s.cache.size > limit) {
-              const farthest = [...s.cache.keys()]
-                .filter(k => k !== s.desired)
-                .sort((a, b) => {
-                  return (
-                    Math.abs(b - s.desired) -
-                    Math.abs(a - s.desired)
-                  );
-                })[0];
-
-              s.cache.delete(farthest);
-            }
-          } else {
-            s.failed.set(
-              i,
-              (s.failed.get(i) || 0) + 1
-            );
-          }
-
-          this.draw();
-          this.pump();
-        };
-
-        img.onload = () => done(true);
-        img.onerror = () => done(false);
-        img.src = s.urls[i];
-      }
-    }
-
-    draw() {
-      const s = this.sequence;
-
-      if (
-        !s?.cache.size ||
-        !this.context
-      ) {
-        return;
-      }
-
-      const index = [...s.cache.keys()].sort((a, b) => {
-        return (
-          Math.abs(a - s.desired) -
-          Math.abs(b - s.desired)
-        );
-      })[0];
-
-      if (index === this.drawn) return;
-
-      const image = s.cache.get(index);
-      const w = this.canvas.width;
-      const h = this.canvas.height;
-
-      const scale = Math.max(
-        w / image.naturalWidth,
-        h / image.naturalHeight
-      );
-
-      this.context.drawImage(
-        image,
-        (w - image.naturalWidth * scale) / 2,
-        0,
-        image.naturalWidth * scale,
-        image.naturalHeight * scale
-      );
-
-      this.drawn = index;
-      this.setAttribute('data-frame-ready', '');
-    }
-
-    /*
-     * Find a minimally changed row order that avoids adjacent
-     * photographs of the same profile when possible.
-     */
-    rowOrder(poses) {
-      const sorted = poses
-        .map((_, i) => i)
-        .sort((a, b) => poses[a].x - poses[b].x);
-
-      let best = sorted;
-      let score = Infinity;
-
-      const walk = (j, swaps) => {
-        if (j < this.cards.length - 1) {
-          walk(j + 1, swaps);
-          walk(j + 2, [...swaps, j]);
-          return;
-        }
-
-        const order = sorted.slice();
-        let separation = Infinity;
-
-        swaps.forEach(k => {
-          const a = order[k];
-          const b = order[k + 1];
-
-          separation = Math.min(
-            separation,
-            Math.abs(poses[a].y - poses[b].y)
-          );
-
-          [order[k], order[k + 1]] = [b, a];
-        });
-
-        const repeated = order.some((i, k) => {
-          return (
-            k > 0 &&
-            this.cards[i].dataset.person ===
-              this.cards[order[k - 1]].dataset.person
-          );
-        });
-
-        if (repeated) return;
-
-        const rank =
-          swaps.length * 1000000 - separation;
-
-        if (rank < score) {
-          score = rank;
-          best = order;
-        }
-      };
-
-      walk(0, []);
-
-      return best;
-    }
-
-    render(time = performance.now()) {
-      this.frame = 0;
-
-      if (
-        !this.isConnected ||
-        !this.cinematic ||
-        document.hidden
-      ) {
-        return;
-      }
-
-      const g = this.geo;
-      const rect = this.runway.getBoundingClientRect();
-
-      const distance = clamp(
-        g.top - rect.top,
-        0,
-        (g.hero + 3.4) * g.H + g.travel
-      );
-
-      const p = distance / g.H - g.hero;
-
-      this.progress = p;
-
-      if (p < .65) {
-        this.seek(
-          distance / (g.hero * g.H)
-        );
-      }
-
-      const fade =
-        1 -
-        smooth(
-          seg(
-            distance / (g.hero * g.H),
-            .48,
-            .72
-          )
-        );
-
-      [
-        this.heroTitle,
-        this.number,
-        this.intro
-      ].forEach(el => {
-        el.style.opacity = String(fade);
-
-        el.style.filter =
-          fade > 0 && fade < 1
-            ? `blur(${(1 - fade) * 8}px)`
-            : 'none';
-      });
-
-      this.actions.style.opacity = String(
-        1 - seg(p, 0, .5)
-      );
-
-      this.actions.inert = p > .4;
-
-      const haze = seg(p, 0, .6);
-
-      this.style.setProperty(
-        '--haze',
-        haze.toFixed(3)
-      );
-
-      this.media.style.setProperty(
-        '--zoom',
-        String(
-          1 + .4 * smooth(seg(p, .15, .9))
-        )
-      );
-
-      this.media.style.filter =
-        haze > 0 && haze < 1
-          ? `blur(${haze * 12}px)`
-          : 'none';
-
-      this.media.style.visibility =
-        haze >= 1 ? 'hidden' : 'visible';
-
-      const words = seg(p, 1.05, 2);
-      const out = seg(p, 2.05, 2.35);
-
-      this.statement.style.opacity = String(
-        p > 0 ? 1 - out : 0
-      );
-
-      this.words.forEach(({ el, skip }, i) => {
-        const front =
-          words * this.wordSteps - i - skip;
-
-        const wp = clamp(front / 2);
-        const fill = clamp((front - 2) / 3);
-
-        el.style.setProperty(
-          '--wp',
-          wp.toFixed(3)
-        );
-
-        el.style.setProperty(
-          '--fill',
-          fill.toFixed(3)
-        );
-
-        el.style.filter =
-          wp > 0 && wp < 1
-            ? `blur(${(1 - wp) * 8}px)`
-            : 'none';
-      });
-
-      const dt = this.lastTime
-        ? Math.min((time - this.lastTime) / 1000, .05)
-        : 0;
-
-      this.lastTime = time;
-
-      const speed =
-        4 * (1 - smooth(seg(p, 2.2, 2.45)));
-
-      if (
-        p > .45 &&
-        p < 2.45 &&
-        !this.dialog.open
-      ) {
-        this.spin += dt * speed;
-      }
-
-      const grow = mix(
-        .5,
-        1,
-        seg(p, .45, 2.45)
-      );
-
-      const fold = seg(p, 2.45, 3.25);
-
-      const e = ease(fold);
-      const ex = ease(seg(fold, 0, .6));
-      const ey = ease(seg(fold, .4, 1));
-
-      const shift = clamp(
-        (p - 3.25) * g.H,
-        0,
-        g.travel
-      );
-
-      const poses = this.cards.map((card, i) => {
-        const angle =
-          i * (360 / this.cards.length) +
-          this.spin;
-
-        return {
-          x:
-            g.W / 2 +
-            Math.cos(rad(angle)) * .6 * g.B * grow,
-
-          y:
-            g.H / 2 +
-            Math.sin(rad(angle)) * .6 * g.B * grow,
-
-          r: angle + 90,
-
-          s: .146 * g.B * grow / g.cw
-        };
-      });
-
-      if (fold === 0 || !this.hasOrder) {
-        const sorted = this.rowOrder(poses);
-
-        sorted.forEach((i, slot) => {
-          this.slots[i] = slot;
-        });
-
-        this.unwrap = poses.map(v => {
-          return 360 * Math.round(v.r / 360);
-        });
-
-        this.hasOrder = true;
-      }
-
-      this.cards.forEach((card, i) => {
-        const v = poses[i];
-
-        const rotation = mix(
-          v.r - this.unwrap[i],
-          0,
-          ex
-        );
-
-        const scale = mix(v.s, 1, e);
-
-        const inset =
-          (g.ch - g.cw) * (1 - e);
-
-        const focus =
-          Number(card.dataset.focus) || 0;
-
-        const cutTop = inset * focus;
-        const cutBottom = inset - cutTop;
-
-        const off =
-          (cutTop - cutBottom) / 2 * scale;
-
-        const ox =
-          -off * Math.sin(rad(rotation));
-
-        const oy =
-          off * Math.cos(rad(rotation));
-
-        const x = mix(
-          v.x,
-          16 +
-            this.slots[i] * (g.cw + 16) +
-            g.cw / 2 -
-            shift,
-          ex
-        ) - ox - g.cw / 2;
-
-        const y = mix(
-          v.y,
-          g.H / 2,
-          ey
-        ) - oy - g.ch / 2;
-
-        card.style.transform =
-          `translate3d(${x.toFixed(2)}px,` +
-          `${y.toFixed(2)}px,0) ` +
-          `rotate(${rotation.toFixed(3)}deg) ` +
-          `scale(${scale.toFixed(4)})`;
-
-        card.style.opacity = String(
-          Math.max(
-            seg(p, .45, .65),
-            e
-          )
-        );
-
-        card.style.zIndex = String(
-          20 - this.slots[i]
-        );
-
-        card.querySelector(
-          '.sf-card-image'
-        ).style.clipPath =
-          `inset(${cutTop.toFixed(2)}px 0 ` +
-          `${cutBottom.toFixed(2)}px)`;
-
-        card.tabIndex =
-          fold >= .98 ? 0 : -1;
-      });
-
-      const row = fold >= .98;
-
-      this.toggleAttribute('data-row', row);
-      this.board.inert = !row;
-
-      this.boardTitle.style.opacity = String(
-        seg(fold, .9, 1)
-      );
-
-      if (
-        p > .45 &&
-        p < 2.45 &&
-        this.visible !== false &&
-        !this.dialog.open
-      ) {
-        this.schedule();
-      }
-    }
-
-    jump(target) {
-      const g = this.geo;
-
-      if (!this.cinematic) {
-        const el =
-          target === 'board'
-            ? this.board
-            : target === 'statement'
-              ? this.statement
-              : this;
-
-        el.scrollIntoView({
-          block: 'start',
-          behavior: this.reduced.matches
-            ? 'instant'
-            : 'smooth'
-        });
-
-        return;
-      }
-
-      const start =
-        scrollY +
-        this.runway.getBoundingClientRect().top -
-        g.top;
-
-      const y = target === 'top'
-        ? start
-        : start +
-          (
-            g.hero +
-            (target === 'statement' ? 1.95 : 3.26)
-          ) * g.H;
-
-      scrollTo({
-        top: y,
-        behavior: this.reduced.matches
-          ? 'instant'
-          : 'smooth'
-      });
-    }
-
-    syncSaved() {
-      this.querySelectorAll(
-        '[data-count]'
-      ).forEach(el => {
-        el.textContent = String(this.saved.size);
-      });
-
-      this.querySelectorAll(
-        '[data-save]'
-      ).forEach(button => {
-        const on = this.saved.has(
-          button.dataset.save
-        );
-
-        button.setAttribute(
-          'aria-pressed',
-          String(on)
-        );
-
-        button.textContent = on
-          ? 'In your shortlist'
-          : 'Add to shortlist';
-      });
-    }
-
-    openCard(card) {
-      if (
-        !card ||
-        typeof this.dialog.showModal !== 'function'
-      ) {
-        return;
-      }
-
-      const template = [
-        ...this.querySelectorAll('template[data-template]')
-      ].find(t => {
-        return t.dataset.template === card.dataset.block;
-      });
-
-      if (!template) return;
-
-      this.animations.forEach(a => a.cancel());
-      this.animations.clear();
-      this.closing = false;
-
-      this.opener = card;
-
-      const from = card.querySelector(
-        '.sf-card-image'
-      ).getBoundingClientRect();
-
-      this.profile.replaceChildren(
-        template.content.cloneNode(true)
-      );
-
-      this.dialog.setAttribute(
-        'aria-label',
-        card.dataset.name + ' profile'
-      );
-
-      if (!this.dialog.open) {
-        this.dialog.showModal();
-      }
-
-      this.profile.scrollTop = 0;
-      this.syncSaved();
-
-      const image = this.profile.querySelector(
-        '.sf-frame'
-      );
-
-      if (
-        image &&
-        !this.reduced.matches &&
-        image.animate
-      ) {
-        const to = image.getBoundingClientRect();
-
-        if (
-          from.bottom > 0 &&
-          from.top < innerHeight &&
-          to.width &&
-          from.width
-        ) {
-          const animation = image.animate(
-            [
-              {
-                transformOrigin: '0 0',
-                transform:
-                  `translate(${from.left - to.left}px,` +
-                  `${from.top - to.top}px) ` +
-                  `scale(${from.width / to.width},` +
-                  `${from.height / to.height})`,
-                opacity: .75
-              },
-              {
-                transformOrigin: '0 0',
-                transform: 'none',
-                opacity: 1
-              }
-            ],
-            {
-              duration: 800,
-              easing: 'cubic-bezier(.77,0,.175,1)'
-            }
-          );
-
-          this.animations.add(animation);
-        }
-      }
-    }
-
-    closeProfile() {
-      if (
-        !this.dialog.open ||
-        this.closing
-      ) {
-        return;
-      }
-
-      this.closing = true;
-
-      if (
-        this.reduced.matches ||
-        !this.profile.animate
-      ) {
-        this.dialog.close();
-        return;
-      }
-
-      const animation = this.profile.animate(
+    function reveal(element, delay) {
+      if (!element.animate || revealed.has(element)) return;
+      revealed.add(element);
+
+      const animation = element.animate(
         [
-          { opacity: 1 },
-          { opacity: 0 }
+          { opacity: 0, transform: 'translateY(25px)' },
+          { opacity: 1, transform: 'translateY(0)' }
         ],
-        { duration: 180 }
+        {
+          duration: 850,
+          delay,
+          fill: 'backwards',
+          easing: 'cubic-bezier(.16,1,.3,1)'
+        }
       );
 
-      this.animations.add(animation);
-
-      animation.finished.then(
-        () => {
-          if (this.dialog.open) {
-            this.dialog.close();
-          }
-        },
-        () => {}
-      );
+      animations.add(animation);
+      animation.finished
+        .then(() => animations.delete(animation))
+        .catch(() => animations.delete(animation));
     }
 
-    openShortlist() {
-      if (
-        typeof this.dialog.showModal !== 'function'
-      ) {
+    function updateWords() {
+      if (!wordHeading || !words.length) return;
+
+      if (!allowed()) {
+        words.forEach(word => {
+          word.style.opacity = '1';
+          word.style.filter = 'none';
+        });
         return;
       }
 
-      this.opener = this.querySelector(
-        '[data-shortlist]'
+      const rect = wordHeading.getBoundingClientRect();
+      const viewport = window.innerHeight;
+      const range = Math.max(viewport * .55, rect.height);
+
+      const progress = Math.max(
+        0,
+        Math.min(1, (viewport * .9 - rect.top) / range)
       );
 
-      const box = document.createElement('section');
-      box.className = 'sf-shortlist';
+      words.forEach((word, index) => {
+        const start = (index / words.length) * .65;
+        const amount = Math.max(0, Math.min(1, (progress - start) / .35));
 
-      const heading = document.createElement('h2');
-      heading.textContent =
-        `Shortlist (${this.saved.size})`;
+        word.style.opacity = String(.3 + amount * .7);
+        word.style.filter = `blur(${(1 - amount) * 2}px)`;
+      });
+    }
 
-      box.append(heading);
+    function update() {
+      frame = null;
+      if (destroyed || !root.isConnected) return;
 
-      const grid = document.createElement('div');
-      grid.className = 'sf-saved-grid';
+      const rect = root.getBoundingClientRect();
+      const visible = rect.bottom > 0 && rect.top < innerHeight;
 
-      for (const key of this.saved) {
-        const card = this.cards.find(c => {
-          return c.dataset.person === key;
+      if (!visible) return;
+
+      if (allowed()) {
+        let index = 0;
+
+        revealElements.forEach(element => {
+          const bounds = element.getBoundingClientRect();
+
+          if (bounds.top < innerHeight * .96 && bounds.bottom > 0) {
+            reveal(element, Math.min(index++, 4) * 80);
+          }
         });
 
-        if (!card) continue;
+        if (video && endpoint && Number.isFinite(video.duration)) {
+          const endpointRect = endpoint.getBoundingClientRect();
+          const endpointWithinRoot = endpointRect.top - rect.top;
+          const travel = Math.max(1, endpointWithinRoot - innerHeight * .2);
+          const progress = Math.max(0, Math.min(1, -rect.top / travel));
 
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'sf-saved';
-        button.dataset.openSaved = card.dataset.block;
-
-        const image = card.querySelector('img');
-
-        if (image) {
-          button.append(image.cloneNode(true));
+          targetTime = progress * video.duration;
+          seekVideo();
         }
-
-        const name = document.createElement('span');
-        name.textContent = card.dataset.name;
-
-        button.append(name);
-        grid.append(button);
       }
 
-      if (!grid.children.length) {
-        const p = document.createElement('p');
-        p.textContent = 'Your shortlist is empty.';
-        box.append(p);
-      } else {
-        box.append(grid);
-      }
-
-      this.profile.replaceChildren(box);
-      this.dialog.setAttribute('aria-label', 'Shortlist');
-
-      if (!this.dialog.open) {
-        this.dialog.showModal();
-      }
-
-      this.profile.scrollTop = 0;
+      updateWords();
     }
 
-    disconnectedCallback() {
-      cancelAnimationFrame(this.boot);
-      cancelAnimationFrame(this.frame);
-      cancelAnimationFrame(this.measureFrame);
+    function schedule() {
+      if (frame !== null || destroyed) return;
+      frame = requestAnimationFrame(update);
+    }
 
-      this.frame = 0;
-      this.measureFrame = 0;
-      this.seqGeneration++;
+    function stopAnimations() {
+      animations.forEach(animation => animation.cancel());
+      animations.clear();
+    }
 
-      this.events?.abort();
-      this.resize?.disconnect();
-      this.observer?.disconnect();
+    motionButton?.addEventListener('click', () => {
+      paused = !paused;
+      if (paused) stopAnimations();
+      updateButton();
+      updateWords();
+      schedule();
+    }, { signal });
 
-      this.animations?.forEach(a => {
-        a.cancel();
+    reduced.addEventListener('change', () => {
+      if (reduced.matches) stopAnimations();
+      updateButton();
+      updateWords();
+      schedule();
+    }, { signal });
+
+    root.querySelector('[data-us-scroll]')?.addEventListener('click', event => {
+      event.preventDefault();
+      root.querySelector('.us__services').scrollIntoView({
+        behavior: reduced.matches ? 'auto' : 'smooth',
+        block: 'start'
       });
+    }, { signal });
 
-      if (this.dialog?.open) {
-        this.dialog.close();
-      }
+    if (video) {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.pause();
 
-      this.events = null;
+      video.addEventListener('loadedmetadata', schedule, { signal });
+      video.addEventListener('loadeddata', schedule, { signal });
+
+      /*
+        Once the current seek finishes, apply the latest target.
+        This avoids losing the final scroll position during a seek.
+      */
+      video.addEventListener('seeked', seekVideo, { signal });
     }
-  });
+
+    document.addEventListener('scroll', schedule, {
+      passive: true,
+      capture: true,
+      signal
+    });
+
+    window.addEventListener('resize', schedule, { passive: true, signal });
+    document.addEventListener('visibilitychange', schedule, { signal });
+
+    let resizeObserver = null;
+
+    if ('ResizeObserver' in window) {
+      resizeObserver = new ResizeObserver(schedule);
+      resizeObserver.observe(root);
+    }
+
+    updateButton();
+    schedule();
+
+    cleanup = function () {
+      destroyed = true;
+      events.abort();
+      resizeObserver?.disconnect();
+      if (frame !== null) cancelAnimationFrame(frame);
+      stopAnimations();
+      video?.pause();
+
+      if (wordHeading) {
+        wordHeading.textContent = originalText;
+      }
+    };
+  }
+
+  document.addEventListener('shopify:section:load', event => {
+    if (event.target.id === wrapperId) init();
+  }, { signal: lifecycle.signal });
+
+  document.addEventListener('shopify:section:unload', event => {
+    if (event.target.id === wrapperId && cleanup) {
+      cleanup();
+      cleanup = null;
+    }
+  }, { signal: lifecycle.signal });
+
+  window.__ukiyoServices[rootId] = function () {
+    lifecycle.abort();
+    if (cleanup) cleanup();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, {
+      once: true,
+      signal: lifecycle.signal
+    });
+  } else {
+    init();
+  }
 })();
-{% endjavascript %}
+</script>
 
 {% schema %}
 {
-  "name": "Sur(face) scroll showcase",
+  "name": "Services Hero",
   "tag": "section",
-  "limit": 1,
-  "max_blocks": 12,
+  "class": "section-services-hero",
+  "max_blocks": 8,
   "settings": [
     {
       "type": "header",
-      "content": "Copy and links"
+      "content": "Hero"
     },
     {
       "type": "text",
-      "id": "wordmark",
-      "label": "Hero wordmark",
-      "default": "Sur(face)"
+      "id": "watermark",
+      "label": "Background watermark text",
+      "default": "SERVICES"
     },
     {
       "type": "text",
-      "id": "number",
-      "label": "Oversized number",
-      "default": "26"
+      "id": "strap",
+      "label": "Small label",
+      "default": "Our Services"
     },
     {
       "type": "text",
-      "id": "logo",
-      "label": "Navigation logo",
-      "default": "Sur(face)®"
+      "id": "title_line1",
+      "label": "Title line 1",
+      "default": "Let's Plant"
+    },
+    {
+      "type": "text",
+      "id": "title_line2",
+      "label": "Title line 2",
+      "default": "Your Flag"
     },
     {
       "type": "textarea",
-      "id": "intro",
-      "label": "Hero copy",
-      "default": "Skin keeps a record. We read\nwhat the street forgot to correct\nand leave it on the surface."
+      "id": "description",
+      "label": "Hero description",
+      "default": "We work with founders, CEOs, and leadership teams to shape defining ideas and build strategy and design systems for growth at scale."
     },
     {
       "type": "text",
-      "id": "primary_label",
-      "label": "Primary action",
-      "default": "Explore new faces"
-    },
-    {
-      "type": "text",
-      "id": "secondary_label",
-      "label": "Secondary action",
-      "default": "More about Sur(face)"
-    },
-    {
-      "type": "url",
-      "id": "about_url",
-      "label": "Optional About destination",
-      "info": "When blank, the secondary action scrolls to the statement."
-    },
-    {
-      "type": "textarea",
-      "id": "statement",
-      "label": "Center statement",
-      "default": "Sur(face)\n\nBare Skin\nUneven Features\nUNCUT\n\nBone × Light\nSeen – Kept"
-    },
-    {
-      "type": "text",
-      "id": "board_title",
-      "label": "Gallery heading",
-      "default": "(faces)"
-    },
-    {
-      "type": "text",
-      "id": "board_link_label",
-      "label": "Gallery navigation label",
-      "default": "New faces (6)"
-    },
-    {
-      "type": "text",
-      "id": "models_label",
-      "label": "Models link label",
-      "default": "Models (24)"
-    },
-    {
-      "type": "url",
-      "id": "models_url",
-      "label": "Models page link",
-      "info": "Leave blank to hide this extra link. Reference counts are sample copy; change them to match your roster."
-    },
-    {
-      "type": "text",
-      "id": "casting_label",
-      "label": "Casting link label",
-      "default": "Become a model"
-    },
-    {
-      "type": "url",
-      "id": "casting_url",
-      "label": "Casting page link"
-    },
-    {
-      "type": "text",
-      "id": "contact_label",
-      "label": "Profile contact button",
-      "default": "Contact her manager"
-    },
-    {
-      "type": "url",
-      "id": "contact_url",
-      "label": "Manager / booking destination",
-      "info": "The contact button is hidden until an actual destination is provided."
+      "id": "scroll_text",
+      "label": "Scroll link text",
+      "default": "Scroll to explore"
     },
     {
       "type": "header",
-      "content": "Hero media"
+      "content": "Background video"
     },
     {
-      "type": "checkbox",
-      "id": "demo_media",
-      "label": "Use reference image sequence",
-      "default": true,
-      "info": "Uses the externally hosted desktop and mobile frames from your supplied reference. Turn this off for your own media."
+      "type": "text",
+      "id": "video_url",
+      "label": "Scroll-controlled MP4 URL",
+      "default": "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260521_064421_279656fd-e76f-40a0-8fed-7456d4f7715a.mp4",
+      "info": "The video advances as visitors scroll. Short videos encoded with frequent keyframes scrub most smoothly."
     },
     {
       "type": "image_picker",
       "id": "poster",
-      "label": "Custom desktop poster"
-    },
-    {
-      "type": "image_picker",
-      "id": "mobile_poster",
-      "label": "Custom mobile poster"
-    },
-    {
-      "type": "text",
-      "id": "hero_alt",
-      "label": "Hero image description",
-      "default": "A model in a red top, photographed from above"
-    },
-    {
-      "type": "textarea",
-      "id": "desktop_frames",
-      "label": "Custom desktop frame URLs",
-      "info": "One absolute HTTPS image URL per line, in frame order. Leave blank to use the reference sequence when enabled."
-    },
-    {
-      "type": "textarea",
-      "id": "mobile_frames",
-      "label": "Custom mobile frame URLs",
-      "info": "Optional portrait-cropped sequence. Falls back to your desktop URL list when blank."
+      "label": "Video poster",
+      "info": "Shown while video loads and when reduced motion is enabled."
     },
     {
       "type": "header",
-      "content": "Layout and motion"
+      "content": "Services overview"
     },
     {
-      "type": "checkbox",
-      "id": "motion",
-      "label": "Enable cinematic scroll",
-      "default": true,
-      "info": "Reduced-motion preferences and the Theme Editor use the readable static layout. Phones shorter than 560px of available stage height also use the static layout."
+      "type": "textarea",
+      "id": "overview",
+      "label": "Large animated statement",
+      "default": "We blend storytelling with strategy to capture attention and drive growth."
     },
     {
-      "type": "range",
-      "id": "header_offset",
-      "label": "Sticky theme header height",
-      "default": 0,
-      "min": 0,
-      "max": 160,
-      "step": 4,
-      "unit": "px"
+      "type": "text",
+      "id": "brand_label",
+      "label": "Brand service label",
+      "default": "Brand Development"
     },
     {
-      "type": "color",
-      "id": "background",
-      "label": "Hero background",
-      "default": "#F6F7F9"
+      "type": "text",
+      "id": "brand_title",
+      "label": "Brand service title",
+      "default": "UKIYO PRODUCTIONS"
     },
     {
-      "type": "color",
-      "id": "plate",
-      "label": "Gallery background",
-      "default": "#DCDCDE"
+      "type": "richtext",
+      "id": "brand_body",
+      "label": "Brand service description",
+      "default": "<p>At Ukiyo Productions, we build the strategy, creative, and content systems that help brands become easier to understand, easier to trust, and easier to grow.</p><p><strong>Our work blends positioning, storytelling, and execution so the brand does more than look good—it performs better.</strong></p>"
     },
     {
-      "type": "color",
-      "id": "accent",
-      "label": "Accent",
-      "default": "#C32515"
+      "type": "text",
+      "id": "brand_tags",
+      "label": "Brand service tags",
+      "default": "Branding, Content, Strategy",
+      "info": "Separate tags with commas."
+    },
+    {
+      "type": "text",
+      "id": "ai_label",
+      "label": "AI service label",
+      "default": "AI Solutions"
+    },
+    {
+      "type": "text",
+      "id": "ai_title",
+      "label": "AI service title",
+      "default": "AUTOMATEIQ"
+    },
+    {
+      "type": "richtext",
+      "id": "ai_body",
+      "label": "AI service description",
+      "default": "<p>We use AI automation and operational systems to help brands reduce friction, respond faster, and scale more intelligently.</p><p>The goal is greater clarity, efficiency, and better business support behind the scenes.</p>"
+    },
+    {
+      "type": "text",
+      "id": "ai_tags",
+      "label": "AI service tags",
+      "default": "AI, Automation, Data",
+      "info": "Separate tags with commas."
+    },
+    {
+      "type": "header",
+      "content": "Our process"
+    },
+    {
+      "type": "text",
+      "id": "process_title",
+      "label": "Process heading",
+      "default": "How We Deliver"
+    },
+    {
+      "type": "textarea",
+      "id": "process_intro",
+      "label": "Process introduction",
+      "default": "A focused methodology that turns ideas into meaningful work and measurable progress."
+    },
+    {
+      "type": "text",
+      "id": "step_1_title",
+      "label": "Step 1 title",
+      "default": "Discovery"
+    },
+    {
+      "type": "textarea",
+      "id": "step_1_body",
+      "label": "Step 1 description",
+      "default": "We start by understanding the brand, the audience, the friction points, and what success actually needs to look like."
+    },
+    {
+      "type": "text",
+      "id": "step_2_title",
+      "label": "Step 2 title",
+      "default": "Strategy"
+    },
+    {
+      "type": "textarea",
+      "id": "step_2_body",
+      "label": "Step 2 description",
+      "default": "We build a focused roadmap that connects positioning, creative direction, and operational priorities."
+    },
+    {
+      "type": "text",
+      "id": "step_3_title",
+      "label": "Step 3 title",
+      "default": "Creation"
+    },
+    {
+      "type": "textarea",
+      "id": "step_3_body",
+      "label": "Step 3 description",
+      "default": "We turn strategy into real assets, systems, and experiences that people can engage with."
+    },
+    {
+      "type": "text",
+      "id": "step_4_title",
+      "label": "Step 4 title",
+      "default": "Launch & Iterate"
+    },
+    {
+      "type": "textarea",
+      "id": "step_4_body",
+      "label": "Step 4 description",
+      "default": "We put the work into motion, review how it performs, and refine from there."
+    },
+    {
+      "type": "text",
+      "id": "closing_title",
+      "label": "Closing heading",
+      "default": "What are you ready to build?"
     }
   ],
   "blocks": [
     {
-      "type": "profile",
-      "name": "Profile / photograph",
+      "type": "button",
+      "name": "Button",
       "settings": [
         {
           "type": "text",
-          "id": "name",
-          "label": "Name"
+          "id": "label",
+          "label": "Button text",
+          "default": "Let's Talk"
         },
         {
-          "type": "text",
-          "id": "age",
-          "label": "Age"
+          "type": "url",
+          "id": "link",
+          "label": "Button link",
+          "info": "Choose a link to display the button."
         },
         {
-          "type": "text",
-          "id": "person_key",
-          "label": "Shortlist identity",
-          "info": "Use the same key for multiple photographs of the same person, for example eva."
-        },
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Card / main profile photo"
-        },
-        {
-          "type": "text",
-          "id": "image_url",
-          "label": "Fallback photo URL"
-        },
-        {
-          "type": "text",
-          "id": "alt",
-          "label": "Photo alt text"
-        },
-        {
-          "type": "range",
-          "id": "focus",
-          "label": "Square crop focus",
-          "default": 50,
-          "min": 0,
-          "max": 100,
-          "step": 5,
-          "unit": "%"
-        },
-        {
-          "type": "text",
-          "id": "tagline",
-          "label": "Profile label"
-        },
-        {
-          "type": "textarea",
-          "id": "bio",
-          "label": "Biography"
-        },
-        {
-          "type": "textarea",
-          "id": "stats",
-          "label": "Statistics: Label|Value per line"
-        },
-        {
-          "type": "image_picker",
-          "id": "photo_2",
-          "label": "Additional photo 2"
-        },
-        {
-          "type": "text",
-          "id": "photo_url_2",
-          "label": "Photo 2 fallback URL"
-        },
-        {
-          "type": "image_picker",
-          "id": "photo_3",
-          "label": "Additional photo 3"
-        },
-        {
-          "type": "text",
-          "id": "photo_url_3",
-          "label": "Photo 3 fallback URL"
+          "type": "select",
+          "id": "placement",
+          "label": "Button placement",
+          "options": [
+            {
+              "value": "hero",
+              "label": "Hero"
+            },
+            {
+              "value": "brand",
+              "label": "UKIYO Productions"
+            },
+            {
+              "value": "ai",
+              "label": "AutomateIQ"
+            },
+            {
+              "value": "process",
+              "label": "Process closing"
+            }
+          ],
+          "default": "hero"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Sur(face) scroll showcase",
-      "blocks": [
-        {
-          "type": "profile",
-          "settings": {
-            "name": "Malick",
-            "age": "24",
-            "person_key": "malick",
-            "image_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3GJaYKPxdnQG0Q9O26lu6DPmcHu/fbe20760-fd5c-417b-ba8c-5cd6d6e5ff90.webp",
-            "focus": 0,
-            "alt": "A model with a shaved head in a ripped grey sweater, leaning toward the lens"
-          }
-        },
-        {
-          "type": "profile",
-          "settings": {
-            "name": "Liv",
-            "age": "22",
-            "person_key": "liv",
-            "image_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3GJaYKPxdnQG0Q9O26lu6DPmcHu/e83b85a8-a2c7-4d9a-bfde-da579d9172bd.webp",
-            "focus": 30,
-            "alt": "A freckled model with a platinum bob and red lips, in a red strappy top"
-          }
-        },
-        {
-          "type": "profile",
-          "settings": {
-            "name": "Malick",
-            "age": "24",
-            "person_key": "malick",
-            "image_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3GJaYKPxdnQG0Q9O26lu6DPmcHu/f5450d9d-e24a-46ad-a9dd-a697a85c4c8e.webp",
-            "focus": 0,
-            "alt": "The model in the ripped grey sweater in profile, a small red earring turned to the camera"
-          }
-        },
-        {
-          "type": "profile",
-          "settings": {
-            "name": "Liv",
-            "age": "22",
-            "person_key": "liv",
-            "image_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3GJaYKPxdnQG0Q9O26lu6DPmcHu/62f8a6b6-4f28-4f9f-ac65-7df2ee4964c4.webp",
-            "focus": 0,
-            "alt": "The platinum-haired model looking back over a bare shoulder"
-          }
-        },
-        {
-          "type": "profile",
-          "settings": {
-            "name": "Eva",
-            "age": "21",
-            "person_key": "eva",
-            "image_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3GJaYKPxdnQG0Q9O26lu6DPmcHu/fee305e6-6957-4257-998f-020018a2c048.webp",
-            "focus": 50,
-            "alt": "A model in a red top, photographed from above",
-            "tagline": "( New face )",
-            "bio": "Street-cast after a night shift. Cuts her own fringe. Holds a look a beat too long.",
-            "stats": "Height|174\nBust|80\nWaist|59\nHips|86\nShoes|38\nHair|Black\nEyes|Brown",
-            "photo_url_2": "https://d2ol7oe51mr4n9.cloudfront.net/user_3GJaYKPxdnQG0Q9O26lu6DPmcHu/97a687de-3439-49f6-b7fd-0905674064ea.webp",
-            "photo_url_3": "https://d2ol7oe51mr4n9.cloudfront.net/user_3GJaYKPxdnQG0Q9O26lu6DPmcHu/3a7c227e-a4ff-4a5e-8f41-b86e42a74b3a.webp"
-          }
-        },
-        {
-          "type": "profile",
-          "settings": {
-            "name": "Malick",
-            "age": "24",
-            "person_key": "malick",
-            "image_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3GJaYKPxdnQG0Q9O26lu6DPmcHu/6d267ca1-3d60-4ee7-9891-fc2d5e5dedbb.webp",
-            "focus": 15,
-            "alt": "The model in the ripped grey sweater squatting, hands reaching toward the lens"
-          }
-        },
-        {
-          "type": "profile",
-          "settings": {
-            "name": "Liv",
-            "age": "22",
-            "person_key": "liv",
-            "image_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3GJaYKPxdnQG0Q9O26lu6DPmcHu/25408451-ea77-4876-a8a0-7bcbc1378f80.webp",
-            "focus": 25,
-            "alt": "The platinum-haired model sitting on the floor, hugging her knees"
-          }
-        },
-        {
-          "type": "profile",
-          "settings": {
-            "name": "Eva",
-            "age": "21",
-            "person_key": "eva",
-            "image_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3GJaYKPxdnQG0Q9O26lu6DPmcHu/3a7c227e-a4ff-4a5e-8f41-b86e42a74b3a.webp",
-            "focus": 50,
-            "alt": "A model in a red turtleneck, facing the camera",
-            "tagline": "( New face )",
-            "bio": "Street-cast after a night shift. Cuts her own fringe. Holds a look a beat too long.",
-            "stats": "Height|174\nBust|80\nWaist|59\nHips|86\nShoes|38\nHair|Black\nEyes|Brown",
-            "photo_url_2": "https://d2ol7oe51mr4n9.cloudfront.net/user_3GJaYKPxdnQG0Q9O26lu6DPmcHu/97a687de-3439-49f6-b7fd-0905674064ea.webp",
-            "photo_url_3": "https://d2ol7oe51mr4n9.cloudfront.net/user_3GJaYKPxdnQG0Q9O26lu6DPmcHu/fee305e6-6957-4257-998f-020018a2c048.webp"
-          }
-        }
-      ]
+      "name": "Services Hero"
     }
   ]
 }
