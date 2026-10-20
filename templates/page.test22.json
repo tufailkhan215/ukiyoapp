@@ -1,0 +1,544 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "services_hero_7xAyQh": {
+      "type": "services-hero",
+      "disabled": true,
+      "name": "Services Hero",
+      "settings": {
+        "watermark": "SERVICES",
+        "strap": "ABOUT UKIYO",
+        "title_line1": "We build the systems behind",
+        "title_line2": "modern brand growth",
+        "description": "We work with founders, CEOs, and leadership teams to turn strong ideas into clear brands, sharper offers, and scalable growth systems.\n\nOur work sits at the intersection of strategy, creative, and automation helping businesses build a stronger presence, operate more efficiently, and move with more intention as they grow.",
+        "scroll_text": "(Scroll to explore)"
+      }
+    },
+    "text_marquee_Hxikpp": {
+      "type": "text-marquee",
+      "disabled": true,
+      "custom_css": [],
+      "name": "Text Marquee",
+      "settings": {
+        "text": "UKIYO PRODUCTIONS",
+        "speed": 30
+      }
+    },
+    "about_cards_rafhfB": {
+      "type": "about-cards",
+      "name": "About Cards",
+      "settings": {
+        "watermark": "MANAHOUSE",
+        "strap": "",
+        "title_line1": "We build the systems behind",
+        "title_line2": "modern brand growth",
+        "description": "Our work sits at the intersection of strategy, creative, and automation helping businesses build a stronger presence, operate more efficiently, and move with more intention as they grow.",
+        "scroll_text": "Scroll to explore",
+        "video_url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260521_064421_279656fd-e76f-40a0-8fed-7456d4f7715a.mp4",
+        "overview": "We blend storytelling with strategy to capture attention and drive growth.",
+        "brand_label": "Brand Development",
+        "brand_title": "UKIYO PRODUCTIONS",
+        "brand_body": "<p>At Ukiyo Productions, we build the strategy, creative, and content systems that help brands become easier to understand, easier to trust, and easier to grow.</p><p><strong>Our work blends positioning, storytelling, and execution so the brand does more than look good—it performs better.</strong></p>",
+        "brand_tags": "Branding, Content, Strategy",
+        "ai_label": "AI Solutions",
+        "ai_title": "MANAHOUSE",
+        "ai_body": "<p>We use AI automation and operational systems to help brands reduce friction, respond faster, and scale more intelligently.</p><p>The goal is greater clarity, efficiency, and better business support behind the scenes.</p>",
+        "ai_tags": "AI, Automation, Data",
+        "process_title": "How We Deliver",
+        "process_intro": "A focused methodology that turns ideas into meaningful work and measurable progress.",
+        "step_1_title": "Discovery",
+        "step_1_body": "We start by understanding the brand, the audience, the friction points, and what success actually needs to look like.",
+        "step_2_title": "Strategy",
+        "step_2_body": "We build a focused roadmap that connects positioning, creative direction, and operational priorities.",
+        "step_3_title": "Creation",
+        "step_3_body": "We turn strategy into real assets, systems, and experiences that people can engage with.",
+        "step_4_title": "Launch & Iterate",
+        "step_4_body": "We put the work into motion, review how it performs, and refine from there.",
+        "closing_title": "What are you ready to build?"
+      }
+    },
+    "about_stats_PUgd3f": {
+      "type": "about-stats",
+      "blocks": {
+        "stat_NHNwQB": {
+          "type": "stat",
+          "settings": {
+            "gradient": "white_gray4",
+            "icon": "trending_up",
+            "stat": "500K+",
+            "label": "Average yearly savings"
+          }
+        },
+        "stat_ag4GQA": {
+          "type": "stat",
+          "settings": {
+            "gradient": "gray3_gray5",
+            "icon": "zap",
+            "stat": "220%",
+            "label": "Yearly Revenue growth"
+          }
+        },
+        "stat_DHxwHB": {
+          "type": "stat",
+          "settings": {
+            "gradient": "gray2_gray4",
+            "icon": "users",
+            "stat": "94%",
+            "label": "Client retention"
+          }
+        },
+        "stat_WbMgEc": {
+          "type": "stat",
+          "settings": {
+            "gradient": "white_gray3",
+            "icon": "target",
+            "stat": "30M+",
+            "label": "Revenue generated"
+          }
+        },
+        "stat_986MnD": {
+          "type": "stat",
+          "settings": {
+            "gradient": "gray1_gray4",
+            "icon": "award",
+            "stat": "85%",
+            "label": "Productivity boost"
+          }
+        }
+      },
+      "block_order": [
+        "stat_NHNwQB",
+        "stat_ag4GQA",
+        "stat_DHxwHB",
+        "stat_WbMgEc",
+        "stat_986MnD"
+      ],
+      "disabled": true,
+      "name": "About Stats",
+      "settings": {
+        "background_color": "#000000",
+        "badge": "(Our Impact)",
+        "title_before": "Numbers That",
+        "title_gradient": "Matter"
+      }
+    },
+    "about_our_process_q6MDRf": {
+      "type": "about-our-process",
+      "blocks": {
+        "step_R8EQLg": {
+          "type": "step",
+          "settings": {
+            "icon": "target",
+            "title": "Discovery",
+            "description": "We start by understanding the brand, the audience, the friction points, and what success actually needs to look like."
+          }
+        },
+        "step_iPhfAt": {
+          "type": "step",
+          "settings": {
+            "icon": "layers",
+            "title": "Strategy",
+            "description": "We build a focused roadmap that connects positioning, creative direction, and operational priorities."
+          }
+        },
+        "step_QidJWk": {
+          "type": "step",
+          "settings": {
+            "icon": "sparkles",
+            "title": "Creation",
+            "description": "We turn strategy into real assets, systems, and experiences that people can engage with."
+          }
+        },
+        "step_6BPhew": {
+          "type": "step",
+          "settings": {
+            "icon": "trending_up",
+            "title": "Launch & Iterate",
+            "description": "We put the work into motion, review how it performs, and refine from there."
+          }
+        }
+      },
+      "block_order": [
+        "step_R8EQLg",
+        "step_iPhfAt",
+        "step_QidJWk",
+        "step_6BPhew"
+      ],
+      "disabled": true,
+      "name": "About Our Process",
+      "settings": {
+        "badge": "(Our Process)",
+        "title_before": "How We",
+        "title_gradient": "Deliver",
+        "subtitle": "A proven methodology that transforms ideas into impactful results.",
+        "image": "shopify://shop_images/DSCF7109_31fd8ab8-bded-4e9c-bb85-15173a4ce1ce.webp",
+        "overlay_number": "4",
+        "overlay_text": "Step process to success"
+      }
+    },
+    "about_accomplish_clients_fwVyEM": {
+      "type": "about-accomplish-clients",
+      "disabled": true,
+      "name": "About Accomplish Clients",
+      "settings": {
+        "watermark": "SERVICES",
+        "strap": "Our Services",
+        "title_line1": "Let's Plant",
+        "title_line2": "Your Flag",
+        "description": "We work with founders, CEOs, and leadership teams to shape defining ideas and build strategy and design systems for growth at scale.",
+        "scroll_text": "Scroll to explore",
+        "video_url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260521_064421_279656fd-e76f-40a0-8fed-7456d4f7715a.mp4",
+        "overview": "We blend storytelling with strategy to capture attention and drive growth.",
+        "brand_label": "Brand Development",
+        "brand_title": "UKIYO PRODUCTIONS",
+        "brand_body": "<p>At Ukiyo Productions, we build the strategy, creative, and content systems that help brands become easier to understand, easier to trust, and easier to grow.</p><p><strong>Our work blends positioning, storytelling, and execution so the brand does more than look good—it performs better.</strong></p>",
+        "brand_tags": "Branding, Content, Strategy",
+        "ai_label": "AI Solutions",
+        "ai_title": "AUTOMATEIQ",
+        "ai_body": "<p>We use AI automation and operational systems to help brands reduce friction, respond faster, and scale more intelligently.</p><p>The goal is greater clarity, efficiency, and better business support behind the scenes.</p>",
+        "ai_tags": "AI, Automation, Data",
+        "process_title": "How We Deliver",
+        "process_intro": "A focused methodology that turns ideas into meaningful work and measurable progress.",
+        "step_1_title": "Discovery",
+        "step_1_body": "We start by understanding the brand, the audience, the friction points, and what success actually needs to look like.",
+        "step_2_title": "Strategy",
+        "step_2_body": "We build a focused roadmap that connects positioning, creative direction, and operational priorities.",
+        "step_3_title": "Creation",
+        "step_3_body": "We turn strategy into real assets, systems, and experiences that people can engage with.",
+        "step_4_title": "Launch & Iterate",
+        "step_4_body": "We put the work into motion, review how it performs, and refine from there.",
+        "closing_title": "What are you ready to build?"
+      }
+    },
+    "about_culture_code_xCqJnp": {
+      "type": "about-culture-code",
+      "blocks": {
+        "principle_7DmTaA": {
+          "type": "principle",
+          "settings": {
+            "icon": "target",
+            "title": "Results, Not Vanity",
+            "description": "The work should be useful, not just impressive."
+          }
+        },
+        "principle_QAhP6C": {
+          "type": "principle",
+          "settings": {
+            "icon": "zap",
+            "title": "Do Big Things",
+            "description": "We believe ambitious ideas deserve execution that can carry their weight."
+          }
+        },
+        "principle_Mac9Kg": {
+          "type": "principle",
+          "settings": {
+            "icon": "users",
+            "title": "Community First",
+            "description": "We value real relationships, thoughtful collaboration, and long-term trust."
+          }
+        },
+        "principle_AQkaB9": {
+          "type": "principle",
+          "settings": {
+            "icon": "brain",
+            "title": "Work Smarter",
+            "description": "We use strategy and automation to remove unnecessary friction."
+          }
+        },
+        "principle_iMEaUM": {
+          "type": "principle",
+          "settings": {
+            "icon": "award",
+            "title": "Excellence Always",
+            "description": "We care about quality, clarity, and details that hold up over time."
+          }
+        },
+        "principle_VRefVM": {
+          "type": "principle",
+          "settings": {
+            "icon": "sparkles",
+            "title": "Radical Innovation",
+            "description": "We stay open to better tools, better systems, and better ways of building."
+          }
+        }
+      },
+      "block_order": [
+        "principle_7DmTaA",
+        "principle_QAhP6C",
+        "principle_Mac9Kg",
+        "principle_AQkaB9",
+        "principle_iMEaUM",
+        "principle_VRefVM"
+      ],
+      "name": "About Culture Code",
+      "settings": {
+        "badge": "(Culture Code)",
+        "title_before": "What We",
+        "title_gradient": "Stand For"
+      }
+    },
+    "about_team_yiFPU3": {
+      "type": "about-team",
+      "blocks": {
+        "member_kPqV7L": {
+          "type": "member",
+          "settings": {
+            "initials": "PC",
+            "name": "PATRICK. C",
+            "role": "Co-Founder | Creative Strategist",
+            "description": "Shapes the strategic and creative direction behind the work.",
+            "instagram_url": "",
+            "email": "sales.automateiq@gmail.com"
+          }
+        },
+        "member_NYGhfe": {
+          "type": "member",
+          "settings": {
+            "initials": "KC",
+            "name": "KAHALA. C",
+            "role": "Client Operations Manager",
+            "description": "Keeps client communication, process, and delivery moving with care.",
+            "instagram_url": "",
+            "email": "sales.automateiq@gmail.com"
+          }
+        },
+        "member_bBFTny": {
+          "type": "member",
+          "settings": {
+            "initials": "TK",
+            "name": "TAHSEEN. K",
+            "role": "Senior Developer & Tech Architect",
+            "description": "Builds the technical systems and scalable solutions behind the experience.",
+            "instagram_url": "",
+            "email": "sales.automateiq@gmail.com"
+          }
+        },
+        "member_kQaXAP": {
+          "type": "member",
+          "settings": {
+            "initials": "TK",
+            "name": "TUFAIL. K",
+            "role": "Senior Developer | UX & UI",
+            "description": "Focuses on product usability, interface quality, and design execution.",
+            "instagram_url": "",
+            "email": "sales.automateiq@gmail.com"
+          }
+        },
+        "member_aRGay9": {
+          "type": "member",
+          "settings": {
+            "initials": "MC",
+            "name": "MICHAEL. C",
+            "role": "Senior Visual Designer",
+            "description": "Creates visual systems and assets that bring the brand to life.",
+            "instagram_url": "",
+            "email": "sales.automateiq@gmail.com"
+          }
+        },
+        "member_DMzTFd": {
+          "type": "member",
+          "settings": {
+            "initials": "NK",
+            "name": "NUR. K",
+            "role": "Digital Marketing Specialist",
+            "description": "Supports traffic, growth campaigns, and performance-focused execution.",
+            "instagram_url": "",
+            "email": "sales.automateiq@gmail.com"
+          }
+        }
+      },
+      "block_order": [
+        "member_kPqV7L",
+        "member_NYGhfe",
+        "member_bBFTny",
+        "member_kQaXAP",
+        "member_aRGay9",
+        "member_DMzTFd"
+      ],
+      "name": "About Team",
+      "settings": {
+        "badge": "(The Team)",
+        "title_before": "Meet the",
+        "title_gradient": "Visionaries"
+      }
+    },
+    "marquee_logos_LK3BWa": {
+      "type": "marquee-logos",
+      "blocks": {
+        "logo_htLreq": {
+          "type": "logo",
+          "settings": {
+            "name": "NIKE",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
+          }
+        },
+        "logo_tJPQzm": {
+          "type": "logo",
+          "settings": {
+            "name": "SPOTIFY",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
+          }
+        },
+        "logo_x6GxcA": {
+          "type": "logo",
+          "settings": {
+            "name": "APPLE",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
+          }
+        },
+        "logo_RJEMm6": {
+          "type": "logo",
+          "settings": {
+            "name": "ADIDAS",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
+          }
+        },
+        "logo_yP8d9h": {
+          "type": "logo",
+          "settings": {
+            "name": "WANDRD",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
+          }
+        },
+        "logo_PPpJHC": {
+          "type": "logo",
+          "settings": {
+            "name": "COACHELLA",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
+          }
+        },
+        "logo_dnTzU9": {
+          "type": "logo",
+          "settings": {
+            "name": "SXSW",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
+          }
+        },
+        "logo_g8QWbK": {
+          "type": "logo",
+          "settings": {
+            "name": "POLAROID",
+            "logo_width": 160,
+            "caption": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_htLreq",
+        "logo_tJPQzm",
+        "logo_x6GxcA",
+        "logo_RJEMm6",
+        "logo_yP8d9h",
+        "logo_PPpJHC",
+        "logo_dnTzU9",
+        "logo_g8QWbK"
+      ],
+      "name": "Marquee Logos",
+      "settings": {
+        "badge_text": "Trusted By Industry Leaders",
+        "title_before": "Brands That",
+        "title_gradient": "Trust Us",
+        "subtitle": "We have had the opportunity to support brands across culture, retail, hospitality, technology, and beyond.",
+        "background": "#080808",
+        "show_marquee": false,
+        "marquee_speed": 45,
+        "footer_text": "Built on connection. Brought to life through collaboration.",
+        "cta_text": "Explore our work",
+        "cta_link": ""
+      }
+    },
+    "contact_form_DKbNiK": {
+      "type": "contact-form",
+      "name": "Contact form",
+      "settings": {
+        "background_color": "#000000",
+        "badge": "(Get In Touch)",
+        "heading": "Send Us a Message",
+        "subtitle": "Tell us about your project and we’ll get back to you within 24 hours.",
+        "label_name": "Your Name",
+        "placeholder_name": "John Doe",
+        "label_email": "Email Address",
+        "placeholder_email": "john@company.com",
+        "label_company": "Company",
+        "placeholder_company": "Your Company",
+        "label_budget": "Budget Range",
+        "budget_placeholder": "Select budget",
+        "budget_option_1": "$5,000 - $10,000",
+        "budget_option_2": "$10,000 - $25,000",
+        "budget_option_3": "$25,000 - $50,000",
+        "budget_option_4": "$50,000+",
+        "budget_option_5": "",
+        "label_message": "Tell us about your project",
+        "placeholder_message": "Describe your project goals, timeline, and any specific requirements...",
+        "button_text": "Send Message",
+        "success_message": "Thanks for contacting us. We'll get back to you as soon as possible.",
+        "quick_response_heading": "Quick Response Guaranteed",
+        "quick_response_text": "We respond to all inquiries within 24 hours. Most requests are answered same-day.",
+        "email": "hello.ukiyoprod@gmail.com",
+        "label_email_card": "Email",
+        "location": "Nevada County, California",
+        "label_location": "Location",
+        "hours": "Mon - Fri: 9AM - 6PM PST",
+        "label_hours": "Hours",
+        "testimonial_quote": "Working with Ukiyo transformed our brand. The results exceeded every expectation.",
+        "testimonial_author": "— Sarah K., CEO at TechStart"
+      }
+    },
+    "dynamic_cta_GeqrTY": {
+      "type": "dynamic-cta",
+      "disabled": true,
+      "name": "Dynamic CTA",
+      "settings": {
+        "tagline": "(Ready to Rally Around Your Big Idea?)",
+        "title_before": "Let's create",
+        "title_gradient": "something legendary",
+        "subtitle": "Ready to transform your brand into a market leader?",
+        "cta_text": "Start Your Project",
+        "cta_url": "https://tidycal.com/salesautomateiq/consultation",
+        "cta_new_tab": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "services_hero_7xAyQh",
+    "text_marquee_Hxikpp",
+    "about_cards_rafhfB",
+    "about_stats_PUgd3f",
+    "about_our_process_q6MDRf",
+    "about_accomplish_clients_fwVyEM",
+    "about_culture_code_xCqJnp",
+    "about_team_yiFPU3",
+    "marquee_logos_LK3BWa",
+    "contact_form_DKbNiK",
+    "dynamic_cta_GeqrTY"
+  ]
+}
