@@ -1,0 +1,108 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "cs_resiklo_ewmrke": {
+      "type": "cs-resiklo",
+      "blocks": {
+        "service_M8rcG8": {
+          "type": "service",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-09-26_at_4.06.35_PM.png",
+            "title": "Website Design & Creation",
+            "description": "Building effective online ecosystems that boost credibility and drive growth.",
+            "features": "Content Updates: Fresh visuals and engaging copy|Functionality Upgrades: Smooth, conversion-focused interactions|Analytics & Performance: Data tracking to optimize presence"
+          }
+        },
+        "service_KAnwaW": {
+          "type": "service",
+          "settings": {
+            "image": "shopify://shop_images/DSCF726w2.jpg",
+            "title": "Email Automations",
+            "description": "Targeted campaigns and automated workflows for lead nurturing.",
+            "features": "Targeted Campaigns: Personalized messages for higher open rates|Automated Workflows: Timely follow-ups without manual effort|Performance Tracking: Detailed analytics to refine strategies"
+          }
+        },
+        "service_qawchQ": {
+          "type": "service",
+          "settings": {
+            "image": "shopify://shop_images/DSCF6876.jpg",
+            "title": "Inventory Optimization",
+            "description": "Enhanced categorization and notification systems for better team collaboration.",
+            "features": "Enhanced Categorization: Intuitive product organization|Streamlined Notifications: Real-time alerts for order fulfilment|Stock Management: Automated inventory tracking"
+          }
+        }
+      },
+      "block_order": [
+        "service_M8rcG8",
+        "service_KAnwaW",
+        "service_qawchQ"
+      ],
+      "name": "CS - Resiklo",
+      "settings": {
+        "client": "Resiklo",
+        "category": "E-commerce / Sustainable Products",
+        "title": "E-commerce Website Redesign & UI/UX Improvements",
+        "subtitle": "A Refreshed Shopping Experience, Stronger SEO & Connected Email Marketing",
+        "back_url": "",
+        "back_label": "Back",
+        "gallery_image_1": "shopify://shop_images/Screenshot_2026-09-26_at_3.55.54_PM.png",
+        "gallery_image_2": "shopify://shop_images/Screenshot_2026-09-26_at_3.59.43_PM.png",
+        "gallery_image_3": "shopify://shop_images/Screenshot_2026-09-26_at_3.57.38_PM.png",
+        "gallery_image_4": "shopify://shop_images/Screenshot_2026-09-26_at_3.59.39_PM.png",
+        "challenge": "The client wanted to redesign their existing e-commerce website to better reflect their brand and create a more intuitive shopping experience. Beyond the visual refresh, they needed SEO optimization to improve discoverability and email automations to engage customers throughout their buying journey.",
+        "solution": "We collaborated closely with the client to understand their vision for the new e-commerce site and the desired user experience. This allowed us to design a seamless transition strategy, ensuring that the new UI was not only visually appealing but also functional and intuitive.",
+        "expectation_1": "Refresh the website with a cohesive design and user-friendly interface.",
+        "expectation_2": "Improve SEO to help customers discover the brand and its products through search.",
+        "expectation_3": "Make browsing, finding products, and completing purchases more intuitive.",
+        "expectation_4": "Integrate email automations to nurture interest, encourage purchases, and reconnect with customers.",
+        "expectation_5": "Expand payment options for a more flexible checkout experience.",
+        "expectation_6": "",
+        "outcome_1": "A redesigned e-commerce website that better reflects the brand.",
+        "outcome_2": "Comprehensive email automation system deployed",
+        "outcome_3": "Multiple payment gateway integrations",
+        "outcome_4": "Integrated email automations for customer engagement, follow-up, and retention.",
+        "outcome_5": "Improved UI/UX with clearer navigation and a more intuitive shopping experience.",
+        "outcome_6": "Expanded payment options to give customers more flexibility at checkout.",
+        "stat_value_1": "",
+        "stat_label_1": "",
+        "stat_desc_1": "",
+        "stat_value_2": "",
+        "stat_label_2": "",
+        "stat_desc_2": "",
+        "stat_value_3": "",
+        "stat_label_3": "",
+        "stat_desc_3": "",
+        "stat_value_4": "",
+        "stat_label_4": "",
+        "stat_desc_4": "",
+        "testimonial_quote": "",
+        "testimonial_author": "",
+        "testimonial_role": "",
+        "testimonial_company": "",
+        "cta_heading": "Ready to start your project?",
+        "cta_subtext": "Let's collaborate and bring your vision to life.",
+        "cta_primary_label": "Get in Touch",
+        "cta_primary_url": "",
+        "cta_secondary_label": "View More Work",
+        "cta_secondary_url": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "cs_resiklo_ewmrke"
+  ]
+}
